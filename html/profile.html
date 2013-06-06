@@ -26,123 +26,125 @@
 			<div class="row-fluid" id="profile-modify-window" style="display: none;">
 				<div class="span4 well">
 					<ul class="nav nav-list">
-						<li id="button-basic-info" class="active">
-							<a href="#"><h4>Perustiedot</h4></a>
+						<li class="active">
+							<a href="#" id="basic-button"><h4>Perustiedot</h4></a>
 						</li>
-						<li id="button-outlook">
-							<a href="#"><h4>Ulkonäkö</h4></a>
+						<li>
+							<a href="#" id="outlook-button"><h4>Ulkonäkö</h4></a>
 						</li>
-						<li id="button-background">
-							<a href="#"><h4>Tausta</h4></a>
+						<li>
+							<a href="#" id="background-button"><h4>Tausta</h4></a>
 						</li>
-						<li id="button-lifestyle">
-							<a href="#"><h4>Elämäntyyli</h4></a>
+						<li>
+							<a href="#" id="lifestyle-button"><h4>Elämäntyyli</h4></a>
 						</li>
-						<li id="button-favorite-things">
-							<a href="#"><h4>Lempiasiat</h4></a>
+						<li>
+							<a href="#" id="favorite-things-button"><h4>Lempiasiat</h4></a>
 						</li>
 					</ul>
 				</div>
 				<div class="span8 well">
-					<h1>Profiili teksti:</h1>
-					<textarea class="span12" id="profile-text" name="profile-text"></textarea>
-					<button class="btn btn-primary" type="submit" id="save-profile-text">Tallenna</button>
-					<h1>Perustiedot.</h1>
-					<h4>Valitse sukupuolesi:</h4>
-					<div class="row-fluid">
-						<div class="span2 well well-small">
-							<label class="radio" for="male">
-							<input id="male" name="gender" type="radio" value="male" /> Mies
-							</label>
+					<div class="row-fluid" id="basic-window" style="display: none;">
+						<h1>Profiili teksti:</h1>
+						<textarea class="span12" id="profile-text" name="profile-text"></textarea>
+						<button class="btn btn-primary" type="submit" id="save-profile-text">Tallenna</button>
+						<h1>Perustiedot.</h1>
+						<h4>Valitse sukupuolesi:</h4>
+						<div class="row-fluid">
+							<div class="span2 well well-small">
+								<label class="radio" for="male">
+								<input id="male" name="gender" type="radio" value="male" /> Mies
+								</label>
+							</div>
+							<div class="span2 well well-small">
+								<label class="radio" for="female">
+								<input id="female" name="gender" type="radio" value="female" /> Nainen
+								</label>
+							</div>
+							<div class="span2 well well-small">
+								<label class="radio" for="transmale">
+								<input id="transmale" name="gender" type="radio" value="transmale" />
+								 Transumies
+								</label>
+							</div>
+							<div class="span3 well well-small">
+								<label class="radio" for="transfemale">
+								<input id="transfemale" name="gender" type="radio" value="transfemale" />
+								 Transunainen
+								</label>
+							</div>
+							<div class="span3 well well-small">
+								<label class="radio" for="thirdgender">
+								<input id="thirdgender" name="gender" type="radio" value="thirdgender" />
+								 Sukupuoleton
+								</label>
+							</div>
 						</div>
-						<div class="span2 well well-small">
-							<label class="radio" for="female">
-							<input id="female" name="gender" type="radio" value="female" /> Nainen
-							</label>
+						<div class="row-fluid">
+							<button class="btn btn-primary" id="save-gender">Tallenna</button>
 						</div>
-						<div class="span2 well well-small">
-							<label class="radio" for="transmale">
-							<input id="transmale" name="gender" type="radio" value="transmale" />
-							 Transumies
-							</label>
+						<div class="span6">
+							<h4>Syntymäpäiväsi:</h4>
+							<div class="row-fluid">
+								<input type="number" min="1" max="31" name="birthday-day" placeholder="päivä" />
+								<input type="number" min="1" max="12" name="birthday-month" placeholder="Kuukausi" />
+								<input type="number" min="1900" max="2013" name="birthday-year" placeholder="Vuosi" />
+							</div>
+							<div class="row-fluid">
+								<button class="btn btn-primary" id="save-birthday">Tallenna</button>
+							</div>
+							<h4>Osoitteesi:</h4>
+							<div class="row-fluid">
+								<input type="text" name="address" placeholder="Kotiosoite 35, Kunta, Maakunta" />
+							</div>
+							<div class="row-fluid">
+								<button class="btn btn-primary" id="save-address">Tallenna</button>
+							</div>
 						</div>
-						<div class="span3 well well-small">
-							<label class="radio" for="transfemale">
-							<input id="transfemale" name="gender" type="radio" value="transfemale" />
-							 Transunainen
-							</label>
-						</div>
-						<div class="span3 well well-small">
-							<label class="radio" for="thirdgender">
-							<input id="thirdgender" name="gender" type="radio" value="thirdgender" />
-							 Sukupuoleton
-							</label>
+						<div class="span5">
+							<h4>Suhdestatus</h4>
+							<div class="row-fluid">
+								<select name="relationship">
+									<option value="1">Sinkku</option>
+									<option value="2">Parisuhteessa</option>
+									<option value="3">Avioliitossa</option>
+									<option value="4">Naimisissa</option>
+									<option value="5">Eronnut</option>
+									<option value="6">Asumuserossa</option>
+									<option value="7">Leski</option>
+								</select>
+							</div>
+							<div class="row-fluid">
+								<button class="btn btn-primary" id="save-relationship">Tallenna</button>
+							</div>
+							<h4>Suuntautuminen</h4>
+							<div class="row-fluid">
+								<select name="sexuality">
+									<option value="1">Heteroseksuaali</option>
+									<option value="2">Homoseksuaali</option>
+									<option value="3">Biseksuaali</option>
+									<option value="4">Aseksuaali</option>
+								</select>
+							</div>
+							<div class="row-fluid">
+								<button class="btn btn-primary" id="save-sexuality">Tallenna</button>
+							</div>
+							<h4>Kiikarissa</h4>
+							<div class="row-fluid">
+								<select id="looking" name="looking" multiple="multiple">
+									<option value="1[]"> Ystävä</option>
+									<option value="2[]"> Rakkaus</option>
+									<option value="3[]"> Treffeille</option>
+									<option value="4[]"> Seksi</option>
+									<option value="5[]"> Jokin muu</option>
+								</select>
+							</div>
+							<div class="row-fluid">
+								<button class="btn btn-primary" id="save-looking">Tallenna</button>
+							</div>
 						</div>
 					</div>
-					<div class="row-fluid">
-						<button class="btn btn-primary" id="save-gender">Tallenna</button>
-					</div>
-					<div class="span6">
-						<h4>Syntymäpäiväsi:</h4>
-						<div class="row-fluid">
-							<input type="number" min="1" max="31" name="birthday-day" placeholder="päivä" />
-							<input type="number" min="1" max="12" name="birthday-month" placeholder="Kuukausi" />
-							<input type="number" min="1900" max="2013" name="birthday-year" placeholder="Vuosi" />
-						</div>
-						<div class="row-fluid">
-							<button class="btn btn-primary" id="save-birthday">Tallenna</button>
-						</div>
-						<h4>Osoitteesi:</h4>
-						<div class="row-fluid">
-							<input type="text" name="address" placeholder="Kotiosoite 35, Kunta, Maakunta" />
-						</div>
-						<div class="row-fluid">
-							<button class="btn btn-primary" id="save-address">Tallenna</button>
-						</div>
-					</div>
-					<div class="span5">
-						<h4>Suhdestatus</h4>
-						<div class="row-fluid">
-							<select name="relationship">
-								<option value="1">Sinkku</option>
-								<option value="2">Parisuhteessa</option>
-								<option value="3">Avioliitossa</option>
-								<option value="4">Naimisissa</option>
-								<option value="5">Eronnut</option>
-								<option value="6">Asumuserossa</option>
-								<option value="7">Leski</option>
-							</select>
-						</div>
-						<div class="row-fluid">
-							<button class="btn btn-primary" id="save-relationship">Tallenna</button>
-						</div>
-						<h4>Suuntautuminen</h4>
-						<div class="row-fluid">
-							<select name="sexuality">
-								<option value="1">Heteroseksuaali</option>
-								<option value="2">Homoseksuaali</option>
-								<option value="3">Biseksuaali</option>
-								<option value="4">Aseksuaali</option>
-							</select>
-						</div>
-						<div class="row-fluid">
-							<button class="btn btn-primary" id="save-sexuality">Tallenna</button>
-						</div>
-						<h4>Kiikarissa</h4>
-						<div class="row-fluid">
-							<select id="looking" name="looking" multiple="multiple">
-								<option value="1[]"> Ystävä</option>
-								<option value="2[]"> Rakkaus</option>
-								<option value="3[]"> Treffeille</option>
-								<option value="4[]"> Seksi</option>
-								<option value="5[]"> Jokin muu</option>
-							</select>
-						</div>
-						<div class="row-fluid">
-							<button class="btn btn-primary" id="save-looking">Tallenna</button>
-						</div>
-					</div>
-					<div class="row-fluid">
+					<div class="row-fluid" id="outlook-window" style="display: none;">
 						<div class="span12">
 							<h1>Ulkonäkö.</h1>
 							<div class="span6">
@@ -227,7 +229,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid">
+					<div class="row-fluid" id="background-window" style="display: none;">
 						<h1>Tausta.</h1>
 						<div class="span12">
 							<div class="span6">
@@ -360,7 +362,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid">
+					<div class="row-fluid" id="lifestyle-window" style="display: none;">
 						<h1>Elämäntyyli.</h1>
 						<div class="span12">
 							<div class="span6">
@@ -539,7 +541,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid">
+					<div class="row-fluid" id="favorite-things-window" style="display: none;">
 						<h1>Lempiasiat</h1>
 						<div class="span12">
 							<div class="row-fluid">

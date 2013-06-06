@@ -60,18 +60,26 @@ $(function() {
 
 function hide_all() {
 	$("#search-window").hide();
-	$("#own-profile-window").hide();
+	$("#search").parent().removeClass("active");
 	$("#games-window").hide();
+	$("#games").parent().removeClass("active");
 	$("#forum-window").hide();
+	$("#forum").parent().removeClass("active");
 	$("#groups-window").hide();
+	$("#groups").parent().removeClass("active");
 	$("#info-window").hide();
+	$("#info").parent().removeClass("active");
 	$("#welcome-window").hide();
+	$("#own-profile-window").hide();
 }
+
+
 
 $("#search").click(function(event) {
 	event.preventDefault();
 	hide_all();
 	$("#search-window").show();
+	$("#search").parent().addClass("active");
 });
 
 $("#own-profile").click(function(event) {
@@ -89,6 +97,7 @@ $("#modify-profile").click(function(event) {
 	$("#profile-header").hide();
 	$("#profile-header-edit").show();
 	$("#profile-modify-window").show();
+	$("#basic-window").show();
 	$("#own-profile-window").show();
 });
 
@@ -96,8 +105,58 @@ $("#games").click(function(event) {
 	event.preventDefault();
 	hide_all();
 	$("#games-window").show();
+	$("#games").parent().addClass("active");
 
-}) 
+});
+
+function hide_all_modify_profile() {
+	$("#basic-window").hide();
+	$("#basic-button").parent().removeClass("active");
+	$("#outlook-window").hide();
+	$("#outlook-button").parent().removeClass("active");
+	$("#background-window").hide();
+	$("#background-button").parent().removeClass("active");
+	$("#lifestyle-window").hide();
+	$("#lifestyle-button").parent().removeClass("active");
+	$("#favorite-things-window").hide();
+	$("#favorite-things-button").parent().removeclass("active");
+}
+
+$("#basic-button").click(function(event) {
+	event.preventDefault();
+	hide_all_modify_profile();
+	$("#basic-window").show();
+	$("#basic-button").parent().addClass("active");
+});
+
+
+$("#outlook-button").click(function(event) {
+	event.preventDefault();
+	hide_all_modify_profile();
+	$("#outlook-window").show();
+	$("#outlook-button").parent().addClass("active");
+});
+
+$("#background-button").click(function(event) {
+	event.preventDefault();
+	hide_all_modify_profile();
+	$("#background-window").show();
+	$("#background-button").parent().addClass("active");
+});
+
+$("#lifestyle-button").click(function(event) {
+	event.preventDefault();
+	hide_all_modify_profile();
+	$("#lifestyle-window").show();
+	$("#lifestyle-button").parent().addClass("active");
+});
+
+$("#favorite-things-button").click(function(event) {
+	event.preventDefault();
+	hide_all_modify_profile();
+	$("#favorite-things-window").show();
+	$("#favorite-things-button").parent().addClass("active");
+});
 
 $('#hc1').click(function() {
 	$('#hc2, #hc3, #hc4, #hc5')
