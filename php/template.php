@@ -6,8 +6,15 @@ class template {
 		$this->content = file_get_contents($base);
 	}
 	public function replace($tag, $content) {
-		$content = file_get_contents($content);
-		$this->content = str_replace($tag, $content, $this->content);
+		$data = "";
+		if(is_array($content)) {
+			foreach($content as $c) {
+				$data .= file_get_contents($c);
+			}
+		} else {
+			$data = file_get_contents($content);
+		}
+		$this->content = str_replace($tag, $data, $this->content);
 	}
 	public function send() {
 		print($this->content);
