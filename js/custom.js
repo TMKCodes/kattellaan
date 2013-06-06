@@ -119,7 +119,7 @@ function hide_all_modify_profile() {
 	$("#lifestyle-window").hide();
 	$("#lifestyle-button").parent().removeClass("active");
 	$("#favorite-things-window").hide();
-	$("#favorite-things-button").parent().removeclass("active");
+	$("#favorite-things-button").parent().removeClass("active");
 }
 
 $("#basic-button").click(function(event) {
