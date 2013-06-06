@@ -58,19 +58,29 @@ $(function() {
 	});
 });
 
+function hide_all() {
+	$("#search-window").hide();
+	$("#own-profile-window").hide();
+	$("#games-window").hide();
+}
+
 $("#search").click(function(event) {
 	event.preventDefault();
+	hide_all();
 	$("#search-window").show();
 });
 
 $("#own-profile").click(function(event) {
 	event.preventDefault();
+	hide_all();
 	$("#own-profile-window").show();
 });
 
 $("#games").click(function(event) {
 	event.preventDefault();
+	hide_all();
 	$("#games-window").show();
+
 }) 
 
 $('#hc1').click(function() {
