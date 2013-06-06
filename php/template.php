@@ -7,9 +7,10 @@ class template {
 	}
 	public function replace($tag, $content) {
 		$data = "";
+		var_dump(is_array($content));
 		if(is_array($content)) {
 			foreach($content as $c) {
-				$data .= file_get_contents($c);
+				$data .= file_get_contents($c) . "\r\n";
 			}
 		} else {
 			$data = file_get_contents($content);
