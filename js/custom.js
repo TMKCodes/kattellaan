@@ -16,7 +16,8 @@ $("#info-premium").click(function() {
 });
 */
 
-$("#search").click(function() {
+$("#search").click(function(event) {
+	event.preventDefault();
 	$("#search-window").show();
 });
 
