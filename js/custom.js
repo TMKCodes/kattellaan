@@ -1,25 +1,4 @@
-/*$("#hero-button").click(function() {
-	location.href = "index.php?a=apply";
-});
 
-$("#register").click(function() {
-	location.href = "index.php?a=register";
-});
-$("#info-messages").click(function() {
-	location.href = "index.php?a=info-messages";
-});
-$("#info-gallery").click(function() {
-	location.href = "index.php?a=info-gallery";
-});
-$("#info-premium").click(function() {
-	location.href = "index.php?a=info-premium";
-});
-*/
-
-$("#search").click(function(event) {
-	event.preventDefault();
-	$("#search-window").show();
-});
 
 $(function() {
 	var multiselects = '#relationship';
@@ -79,6 +58,10 @@ $(function() {
 	});
 });
 
+$("#search").click(function(event) {
+	event.preventDefault();
+	$("#search-window").show();
+});
 
 $('#hc1').click(function() {
 	$('#hc2, #hc3, #hc4, #hc5')
