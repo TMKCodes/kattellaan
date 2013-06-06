@@ -63,6 +63,16 @@ $("#search").click(function(event) {
 	$("#search-window").show();
 });
 
+$("#own-profile").click(function(event) {
+	event.preventDefault();
+	$("#own-profile-window").show();
+});
+
+$("#games").click(function(event) {
+	event.preventDefault();
+	$("#games-window").show();
+}) 
+
 $('#hc1').click(function() {
 	$('#hc2, #hc3, #hc4, #hc5')
 		.not("btn btn-primary")
