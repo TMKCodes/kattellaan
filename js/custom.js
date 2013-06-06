@@ -16,6 +16,10 @@ $("#info-premium").click(function() {
 });
 */
 
+$("#search").click(function() {
+	$("#search-window").show();
+});
+
 $(function() {
 	var multiselects = '#relationship';
 	multiselects += ', #lookingfor';
