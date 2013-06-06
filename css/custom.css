@@ -6,6 +6,10 @@ form {
 	margin-top: 10px;      
 }
 
+.container-fluid {
+	margin-top: 60px;
+}
+
 .center {
 	text-align: center;
 }
