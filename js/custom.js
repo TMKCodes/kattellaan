@@ -71,6 +71,7 @@ function hide_all() {
 	$("#info").parent().removeClass("active");
 	$("#welcome-window").hide();
 	$("#own-profile-window").hide();
+	$("#picture-ad-window").hide();
 }
 
 
