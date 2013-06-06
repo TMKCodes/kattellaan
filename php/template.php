@@ -9,7 +9,7 @@ class template {
 		$this->content = str_replace($tag, $content, $this->content);
 	}
 	public function send() {
-		print($this->template);
+		print($this->content);
 	}
 }
 
