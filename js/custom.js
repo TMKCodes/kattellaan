@@ -80,6 +80,15 @@ $("#own-profile").click(function(event) {
 	$("#own-profile-window").show();
 });
 
+$("#modify-profile").click(function(event) {
+	event.preventDefault();
+	hide_all();
+	$("#profile-header").hide();
+	$("#profile-header-edit").show();
+	$("#profile-modify-window").show();
+	$("#own-profile-window").show();
+})
+
 $("#games").click(function(event) {
 	event.preventDefault();
 	hide_all();
