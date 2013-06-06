@@ -1,0 +1,725 @@
+<div class="container-fluid" id="profile-page">
+	<div class="row-fluid main-features">
+		<div class="well">
+			<div class="row-fluid" id="profile-header">
+				<div class="span12 well">
+					<div class="span5">
+						<h1>Oman profiilin näkymä.</h1>
+					</div>
+					<div class="span7">
+						<button class="span5 btn btn-primary" id="edit-profile">Muokaa profiilia</button>
+						<button class="span5 btn btn-primary" id="edit-account">Muokkaa tiliä</button>
+					</div>
+				</div>
+			</div>
+			<div class="row-fluid" id="profile-header">
+				<div class="span12 well">
+					<div class="span5">
+						<h1>Muokkaa profiiliasi.</h1>
+					</div>
+					<div class="span7">
+						<button class="span5 btn btn-primary" id="profile">Takaisin profiiliin</button>
+						<button class="span5 btn btn-primary" id="edit-account">Muokkaa tiliä</button>
+					</div>
+				</div>
+			</div>
+			<div class="row-fluid" id="profile-edit">
+				<div class="span4 well">
+					<ul class="nav nav-list">
+						<li id="button-basic-info" class="active">
+							<a href="#"><h4>Perustiedot</h4></a>
+						</li>
+						<li id="button-outlook">
+							<a href="#"><h4>Ulkonäkö</h4></a>
+						</li>
+						<li id="button-background">
+							<a href="#"><h4>Tausta</h4></a>
+						</li>
+						<li id="button-lifestyle">
+							<a href="#"><h4>Elämäntyyli</h4></a>
+						</li>
+						<li id="button-favorite-things">
+							<a href="#"><h4>Lempiasiat</h4></a>
+						</li>
+					</ul>
+				</div>
+				<div class="span8 well">
+					<h1>Profiili teksti:</h1>
+					<textarea class="span12" id="profile-text" name="profile-text"></textarea>
+					<button class="btn btn-primary" type="submit" id="save-profile-text">Tallenna</button>
+					<h1>Perustiedot.</h1>
+					<h4>Valitse sukupuolesi:</h4>
+					<div class="row-fluid">
+						<div class="span2 well well-small">
+							<label class="radio" for="male">
+							<input id="male" name="gender" type="radio" value="male" /> Mies
+							</label>
+						</div>
+						<div class="span2 well well-small">
+							<label class="radio" for="female">
+							<input id="female" name="gender" type="radio" value="female" /> Nainen
+							</label>
+						</div>
+						<div class="span2 well well-small">
+							<label class="radio" for="transmale">
+							<input id="transmale" name="gender" type="radio" value="transmale" />
+							 Transumies
+							</label>
+						</div>
+						<div class="span3 well well-small">
+							<label class="radio" for="transfemale">
+							<input id="transfemale" name="gender" type="radio" value="transfemale" />
+							 Transunainen
+							</label>
+						</div>
+						<div class="span3 well well-small">
+							<label class="radio" for="thirdgender">
+							<input id="thirdgender" name="gender" type="radio" value="thirdgender" />
+							 Sukupuoleton
+							</label>
+						</div>
+					</div>
+					<div class="row-fluid">
+						<button class="btn btn-primary" id="save-gender">Tallenna</button>
+					</div>
+					<div class="span6">
+						<h4>Syntymäpäiväsi:</h4>
+						<div class="row-fluid">
+							<input type="number" min="1" max="31" name="birthday-day" placeholder="päivä" />
+							<input type="number" min="1" max="12" name="birthday-month" placeholder="Kuukausi" />
+							<input type="number" min="1900" max="2013" name="birthday-year" placeholder="Vuosi" />
+						</div>
+						<div class="row-fluid">
+							<button class="btn btn-primary" id="save-birthday">Tallenna</button>
+						</div>
+						<h4>Osoitteesi:</h4>
+						<div class="row-fluid">
+							<input type="text" name="address" placeholder="Kotiosoite 35, Kunta, Maakunta" />
+						</div>
+						<div class="row-fluid">
+							<button class="btn btn-primary" id="save-address">Tallenna</button>
+						</div>
+					</div>
+					<div class="span5">
+						<h4>Suhdestatus</h4>
+						<div class="row-fluid">
+							<select name="relationship">
+								<option value="1">Sinkku</option>
+								<option value="2">Parisuhteessa</option>
+								<option value="3">Avioliitossa</option>
+								<option value="4">Naimisissa</option>
+								<option value="5">Eronnut</option>
+								<option value="6">Asumuserossa</option>
+								<option value="7">Leski</option>
+							</select>
+						</div>
+						<div class="row-fluid">
+							<button class="btn btn-primary" id="save-relationship">Tallenna</button>
+						</div>
+						<h4>Suuntautuminen</h4>
+						<div class="row-fluid">
+							<select name="sexuality">
+								<option value="1">Heteroseksuaali</option>
+								<option value="2">Homoseksuaali</option>
+								<option value="3">Biseksuaali</option>
+								<option value="4">Aseksuaali</option>
+							</select>
+						</div>
+						<div class="row-fluid">
+							<button class="btn btn-primary" id="save-sexuality">Tallenna</button>
+						</div>
+						<h4>Kiikarissa</h4>
+						<div class="row-fluid">
+							<select id="looking" name="looking" multiple="multiple">
+								<option value="1[]"> Ystävä</option>
+								<option value="2[]"> Rakkaus</option>
+								<option value="3[]"> Treffeille</option>
+								<option value="4[]"> Seksi</option>
+								<option value="5[]"> Jokin muu</option>
+							</select>
+						</div>
+						<div class="row-fluid">
+							<button class="btn btn-primary" id="save-looking">Tallenna</button>
+						</div>
+					</div>
+					<div class="row-fluid">
+						<div class="span12">
+							<h1>Ulkonäkö.</h1>
+							<div class="span6">
+								<h4>Pituus:</h4>
+								<div class="row-fluid">
+									<input type="number" name="height" min="100" max="250" value="100" />
+								</div>
+								<div class="row-fluid">
+									<button class="btn btn-primary" id="save-height">Tallenna</button>
+								</div>
+								<h4>Paino:</h4>
+								<div class="row-fluid">
+									<input type="number" name="weight" min="30" max="300" value="70" />
+								</div>
+								<div class="row-fluid">
+									<button class="btn btn-primary" id="save-weight">Tallenna</button>
+								</div>
+								<h4>Ruumiinrakenne:</h4>
+								<div class="row-fluid">
+									<select id="bodytype" name="bodytype">
+										<option value="1">Siro</option>
+										<option value="2">Hoikka</option>
+										<option value="3">Vähärasvainen</option>
+										<option value="4">Sporttinen</option>
+										<option value="5">Lihaksikas</option>
+										<option value="6">Pyöreähkö</option>
+										<option value="7">Ylipainoinen</option>
+									</select>
+								</div>
+								<div class="row-fluid">
+									<button class="btn btn-primary" id="save-bodytype">Tallenna</button>
+								</div>
+							</div>
+							<div class="span5">
+								<h4>Silmienväri:</h4>
+								<div class="row-fluid">
+									<select id="my-eyecolor" name="my-eyecolor">
+										<option value="1">Sininen</option>
+										<option value="2">Ruskea</option>
+										<option value="3">Vihreä</option>
+										<option value="4">Harmaa</option>
+									</select>
+								</div>
+								<div class="row-fluid">
+									<button class="btn btn-primary" id="save-my-eyecolor">Tallenna</button>
+								</div>
+								<h4>Hiusten pituus:</h4>
+								<div class="row-fluid">
+									<select id="my-hairlength" name="my-hairlength">
+										<option value="1">Kalju</option>
+										<option value="2">Siili</option>
+										<option value="3">Lyhyet</option>
+										<option value="4">Silmille</option>
+										<option value="5">Pitkät</option>
+										<option value="6">Olkapäille</option>
+										<option value="7">Alaselkään</option>
+										<option value="8">Villasukiks</option>
+									</select>
+								</div>
+								<div class="row-fluid">
+									<button class="btn btn-primary" id="save-my-hairlength">Tallenna</button>
+								</div>
+								<h4>Hiustenväri:</h4>
+								<div class="row-fluid">
+									<select id="my-haircolor" name="my-haircolor">
+										<option value="1">Hyvin vaalea</option>
+										<option value="2">Vaalea</option>
+										<option value="3">Vaalean ruskea</option>
+										<option value="4">Ruskea</option>
+										<option value="5">Tumman ruskea</option>
+										<option value="6">Musta</option>
+										<option value="7">Harmaa</option>
+										<option value="8">Punainen</option>
+										<option value="9">Valkoinen</option>
+										<option value="10">Värikäs</option>
+										<option value="11">Muuttuu usein</option>
+									</select>
+								</div>
+								<div class="row-fluid">
+									<button class="btn btn-primary" id="save-my-haircolor">Tallenna</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row-fluid">
+						<h1>Tausta.</h1>
+						<div class="span12">
+							<div class="span6">
+								<h4>Lapsia:</h4>
+								<div class="row-fluid">
+										<select id="my-kids" name="my-kids" multiple="multiple">
+											<option value ="1"> Kyllä</option>
+											<option value="2"> Ei</option>
+											<option value="3"> Kotona</option>
+											<option value="4"> Muualla</option>
+											<option value="5"> Yhteishuoltajuus</option>
+											<option value="6"> Yksinhuoltaja</option>
+											<option value="7"> Haluan lapsia</option>
+											<option value="8"> En halua lapsia</option>
+											<option value="9"> En tiedä haluanko lapsia</option>
+											<option value="10"> Lapset eivät haittaa</option>
+											<option value="11"> Viikonloppuna lapset minulla</option>
+											<option value="12"> Kaksikertaa kuussa lapset minulla</option>
+											<option value="13"> Kerran kuussa lapset minulla</option>
+										</select>
+								</div>
+								<div class="row-fluid">
+										<button class="btn btn-primary" id="save-my-kids">Tallenna</button>
+								</div>
+								<h4>Asumismuoto</h4>
+								<div class="row-fluid">
+									<select id="my-livingmode" name="my-livingmode">
+											<option value="1">Yksin</option>
+											<option value="2">Kaverin kanssa</option>
+											<option value="3">Vanhempien luona</option>
+											<option value="4">Kimppakämpässä</option>
+											<option value="5">Kumppanin kanssa</option>
+											<option value="6">Koditon</option>
+									</select>
+								</div>
+								<div class="row-fluid">
+									<button class="btn btn-primary" id="save-my-livingmode">Tallenna</button>
+								</div>
+								<h4>Etninen identiteetti</h4>
+								<div class="row-fluid">
+									<select id="my-ethnic" name="my-ethnic">
+										<option value="1">Valkoinen</option>
+										<option value="2">Musta</option>
+										<option value="3">Intialainen</option>
+										<option value="4">Lation</option>
+										<option value="5">Arabi</option>
+										<option value="6">Aasialainen</option>
+										<option value="7">Kääpiö</option>
+									</select>
+								</div>
+								<div class="row-fluid">
+									<button class="btn btn-primary" id="save-my-ethnic">Tallenna</button>
+								</div>
+								<h4>Kielitaito</h4>
+								<div class="row-fluid">
+									<select id="my-language" name="my-language" multiple="multiple">
+										<option value="1"> Suomi</option>
+										<option value="2"> Ruotsi</option>
+										<option value="3"> Englanti</option>
+										<option value="4"> Venäjä</option>
+										<option value="5"> Japani</option>
+										<option value="7"> Muita</option>
+									</select>
+								</div>
+								<div class="row-fluid">
+									<button class="btn btn-primary" id="save-my-language">Tallenna</button>
+								</div>
+							</div>
+							<div class="span5">
+								<h4>Koulutus</h4>
+								<div class="row-fluid">
+									<select id="my-school" name="my-school">
+										<option value="1">Kouluttamaton</option>
+										<option value="2">Elämänkoulu</option>
+										<option value="3">Peruskoulu</option>
+										<option value="4">Ammattikoulu</option>
+										<option value="5">Lukio</option>
+										<option value="6">Ammattikorkeakoulu</option>
+										<option value="7">Yliopisto/korkeakoulu</option>
+										<option value="8">Maisteri</option>
+										<option value="9">Tohtorin tutkinto</option>
+									</select>
+								</div>
+								<div class="row-fluid">
+									<button class="btn btn-primary" id="save-my-school">Tallenna</button>
+								</div>
+								<h4>Työssäkäynti</h4>
+								<div class="row-fluid">
+									<select id="my-work" name="my-work">
+										<option value="1">Työtön</option>
+										<option value="2">Opiskelija</option>
+										<option value="3">Osa-aikatyössä</option>
+										<option value="4">Aamutyössä</option>
+										<option value="5">Päivätyössä</option>
+										<option value="6">Iltatyössä</option>
+										<option value="7">Yötyössä</option>
+										<option value="8">Työnarkomaani</option>
+										<option value="9">Eläkkeellä</option>			
+									</select>
+								</div>
+								<div class="row-fluid">
+									<button class="btn btn-primary" id="save-my-work">Tallenna</button>
+								</div>
+								<h4>Vuositulot</h4>
+								<div class="row-fluid">
+									<input type="number" value="15000" name="my-income" />
+								</div>
+								<div class="row-fluid">
+									<button class="btn btn-primary" id="save-my-income">Tallenna</button>
+								</div>
+								<h4>Ammatti</h4>
+								<div class="row-fluid">
+									<select id="my-profession" name="my-profession">
+										<option value="1">Hallinto/talous</option>
+										<option value="2">ATK/IT/tietoliikenne</option>
+										<option value="3">Sosiaali-/terveysala</option>
+										<option value="4">Teollisuus/käsityö</option>
+										<option value="5">Viestintä/media/kulttuuri</option>
+										<option value="6">Markkinointi/my-ynti</option>
+										<option value="7">Tiede/teknologia</option>
+										<option value="8">Koulutus</option>
+										<option value="9">Kotiäiti/-isä</option>
+										<option value="10">Maa- ja metsätalous</option>
+										<option value="11">Yrittäjä</option>
+									</select>
+								</div>
+								<div class="row-fluid">
+									<button class="btn btn-primary" id="save-my-profession">Tallenna</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row-fluid">
+						<h1>Elämäntyyli.</h1>
+						<div class="span12">
+							<div class="span6">
+								<h4>Pukeutumistyyli</h4>
+								<div class="row-fluid">
+									<select id="my-dessingstyle" name="my-dressingstyle">
+										<option value="1">Muodikas</option>
+										<option value="2">Bisnes</option>
+										<option value="3">Sporttinen</option>
+										<option value="4">Klassinen</option>
+										<option value="5">Kirpputori</option>
+										<option value="6">Mukavuuden haluinen</option>
+										<option value="7">Normaali</option>
+										<option value="8">Hoppari</option>
+										<option value="9">Rokkari</option>
+										<option value="10">Gootti</option>
+										<option value="11">Ihan sama</option>
+										<option value="12">Nudisti</option>
+									</select>
+								</div>
+								<div class="row-fluid">
+									<button class="btn btn-primary" id="save-my-dressingstyle">Tallenna</button>
+								</div>
+								<h4>Tupakointi</h4>
+								<div class="row-fluid">
+									<select id="my-smoking" name="my-smoking">
+										<option value="1">Savuton</option>
+										<option value="2">Seurassa</option>
+										<option value="3">Humalassa</option>
+										<option value="4">Säännöllisesti</option>
+										<option value="5">Korsteeni</option>
+									</select>	
+								</div>
+								<div class="row-fluid">
+									<button class="btn btn-primary" id="save-my-smoking">Tallenna</button>
+								</div>
+								<h4>Alkoholi</h4>
+								<div class="row-fluid">
+									<select id="my-alcohol" name="my-alcohol">
+										<option value="1">Savuton</option>
+										<option value="2">Seurassa</option>
+										<option value="3">Humalassa</option>
+										<option value="4">Säännöllisesti</option>
+										<option value="5">Korsteeni</option>
+									</select>
+								</div>
+								<div class="row-fluid">
+									<button class="btn btn-primary" id="save-my-alcohol">Tallenna</button>
+								</div>
+								<h4>Lemmikit</h4>
+								<div class="row-fluid">
+									<select id="my-pets" name="my-pets" multiple="multiple">
+										<option value="1[]"> Hevonen</option>
+										<option value="2[]"> Poni</option>
+										<option value="3[]"> Hämähäkki</option>
+										<option value="4[]"> Kala</option>
+										<option value="5[]"> Jyrsijä</option>
+										<option value="6[]"> Kilpikonna</option>
+										<option value="7[]"> Kissa</option>
+										<option value="8[]"> Koira</option>
+										<option value="9[]"> Käärme</option>
+										<option value="10[]"> Lintu</option>
+										<option value="12[]"> Lisko</option>
+										<option value="13[]"> Muu otus</option>
+										<option value="14[]"> Pehmoeläin</option>
+										<option value="15[]"> Ei lemmikkejä</option>
+										<option value="16[]"> Allerginen karvaisille eläimille</option>
+										<option value="16[]"> Pidän eläimistä</option>
+									</select>
+								</div>
+								<div class="row-fluid">
+									<button class="btn btn-primary" id="save-my-pets">Tallenna</button>
+								</div>
+								<h4>Liikunta</h4>
+								<div class="row-flduid">
+									<select id="my-training" name="my-training">
+										<option value="1">En liiku</option>
+										<option value="2">Satunnaisesti</option>
+										<option value="3">Säännöllisesti</option>
+										<option value="4">Lähes päivittäin</option>
+										<option value="5">Elämäntapa</option>
+									</select>
+								</div>
+								<div class="row-fluid">
+									<button class="btn btn-primary" id="save-my-training">Tallenna</button>
+								</div>
+								<h4>Matkailu</h4>
+								<div class="row-fluid">
+									<select id="my-travel" name="my-travel">
+										<option value="1">Mökkihöperö</option>
+										<option value="2">Lähialueilla</option>
+										<option value="3">Satunnaisesti</option>
+										<option value="4">Pari kertaa vuodessa</option>
+										<option value="5">Lähes joka kuukausi</option>
+										<option value="6">Lähes joka viikko</option>
+										<option value="7">Lähes joka päivä</option>
+										<option value="8">Matkalla aina johonkin</option>
+									</select>
+								</div>
+								<div class="row-fluid">
+									<button class="btn btn-primary" id="save-my-travel">Tallenna</button>
+								</div>
+								</div>
+							<div class="span5">
+								<h4>Uskonto</h4>
+								<div class="row-fluid">
+									<select id="my-religion" name="my-religion">
+										<option value="1">Agnostikko</option>
+										<option value="2">Ateisti</option>
+										<option value="3">Buddhalainen</option>
+										<option value="4">Kristitty</option>
+										<option value="5">Hindu</option>
+										<option value="6">Muslimi</option>
+										<option value="7">Juutalainen</option>
+										<option value="8">New Age</option>
+									</select>
+								</div>
+								<div class="row-fluid">
+									<button class="btn btn-primary" id="save-my-religion">Tallenna</button>
+								</div>
+								<h4>Uskonnon Merkitys</h4>
+								<div class="row-fluid">
+									<select id="my-religion-importance" name="my-religion-importance">
+										<option value="1">Merkityksetön</option>
+										<option value="2">Vähäinen</option>
+										<option value="3">Normaali</option>
+										<option value="4">Tärkeä</option>
+										<option value="5">Vakaumuksellinen</option>
+									</select>
+								</div>
+								<div class="row-fluid">
+									<button class="btn btn-primary" id="save-my-religion-importance">Tallenna</button>
+								</div>
+								<h4>Politiikka</h4>
+								<div class="row-fluid">
+									<h5>Vasemmisto vai oikeisto</h5>
+									<div class="row-fluid">
+										<select id="my-left-or-right" name="my-left-or-right">
+											<option value="1">Vasemmistolainen</option>
+											<option value="2">Maltillisesti vasemmalla</option>
+											<option value="3">Jossain välimaastossa</option>
+											<option value="4">Maltillisesti oikealla</option>
+											<option value="5">Oikeistolainen</option>
+										</select>
+									</div>
+									<div class="row-fluid">
+										<button class="btn btn-primary" id="save-my-left-or-right">Tallenna</button>
+									</div>
+									<h5>Liberaali vai konservatiivi</h5>
+									<div class="row-fluid">
+										<select id="my-liberal-or-conservative" name="my-liberal-or-conservative">
+											<option value="1">Konservatiivinen</option>
+											<option value="2">Melko konservatiivinen</option>
+											<option value="3">Jossain välimaastossa</option>
+											<option value="4">Melko liberaali</option>
+											<option value="5">Liberaali</option>
+										</select>
+									</div>
+									<div class="row-fluid">
+										<button class="btn btn-primary" id="save-my-liberal-or-conservative">Tallenna</button>
+									</div>
+									<h5>Politiikan merkitys</h5>
+									<div class="row-fluid">
+										<select id="my-politic-importance" id="my-politic-importance">
+											<option value="1">Aivan sama</option>
+											<option value="2">Ei ihmeemmin kiinnosta</option>
+											<option value="3">Lähinnä otsikkotasolla</option>
+											<option value="4">Seuraan aktiivisesti</option>
+											<option value="5">Mukana politiikassa</option>
+										</select>
+									</div>
+									<div class="row-fluid">
+										<button class="btn btn-primary" id="save-my-politic-importance">Tallenna</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row-fluid">
+						<h1>Lempiasiat</h1>
+						<div class="span12">
+							<div class="row-fluid">
+								<div class="span2">
+									<h5>Television:</h5>
+								</div>
+								<div class="span10">
+									<input class="text-input input-xxlarge" type="text" name="my-television" />
+									<button class="btn btn-normal btn-primary" name="save-my-television">Tallenna</button>
+								</div>
+							</div>
+							<div class="row-fluid">
+								<div class="span2">
+									<h5>Radio:</h5>
+								</div>
+								<div class="span10">
+									<input class="text-input input-xxlarge" type="text" name="my-radio" />
+									<button class="btn btn-normal btn-primary" name="save-my-radio">Tallenna</button>
+								</div>
+							</div>
+							<div class="row-fluid">
+								<div class="span2">
+									<h5>Musiikki:</h5>
+								</div>
+								<div class="span10">
+									<input class="text-input input-xxlarge" type="text" name="my-music" />
+									<button class="btn btn-normal btn-primary" name="save-my-music">Tallenna</button>
+								</div>
+							</div>
+							<div class="row-fluid">
+								<div class="span2">
+									<h5>Elokuvat:</h5>
+								</div>
+								<div class="span10">
+									<input class="text-input input-xxlarge" type="text" name="my-movies" />
+									<button class="btn btn-normal btn-primary" name="save-my-movies">Tallenna</button>
+								</div>
+							</div>
+							<div class="row-fluid">
+								<div class="span2">
+									<h5>Parasta maailmassa:</h5>
+								</div>
+								<div class="span10">
+									<input class="text-input input-xxlarge" type="text" name="my-best-things-in-the-world" />
+									<button class="btn btn-normal btn-primary" name="save-my-best-things-in-the-world">Tallenna</button>
+								</div>
+							</div>
+							<div class="row-fluid">
+								<div class="span2">
+									<h5>Sytyttää minut:</h5>
+								</div>
+								<div class="span10">
+									<input class="text-input input-xxlarge" type="text" name="my-lighter" />
+									<button class="btn btn-normal btn-primary" name="save-my-lighter">Tallenna</button>
+								</div>
+							</div>
+							<div class="row-fluid">
+								<div class="span2">
+									<h5>En innostu:</h5>
+								</div>
+								<div class="span10">
+									<input class="text-input input-xxlarge" type="text" name="my-turns-down" />
+									<button class="btn btn-normal btn-primary" name="save-my-turns-down">Tallenna</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container-fluid" id="profile-page">
+	<div class="row-fluid main-features">
+		<div class="well">
+			<div class="row-fluid" id="profile-header">
+				<div class="span12 well">
+					<div class="span5">
+						<h1>Toisen profiilin näkymä</h1>
+					</div>
+					<div class="span7">
+						<div class="row6">
+						<button class="span4 btn btn-primary" id="like">Tykkää</button>
+						<button class="span4 btn btn-primary" id="send-message">Lähetä viesti</button>
+						<button class="span4 btn btn-primary" id="request-friend">Pyydä ystäväksi</button>
+						</div>
+						<div class="row6">
+						<button class="span4 btn btn-primary" id="flirt">Flirttaa</button>
+						<button class="span4 btn btn-primary" id="block">Estä</button>
+						<button class="span4 btn btn-primary" id="report">Ilmianna</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row-fluid" id="profile-container">
+				<div class="span12 well">
+					<div class="span4">
+						<div class="row-fluid">
+							<img src="img/00004.jpg" alt="" />
+						</div>
+						<div class="row-fluid">
+							<div class="row-fluid">
+								<h4 style="text-align: center;">Profiili Kuva Galleriasta</h4>
+							</div>
+							<div class="row-fluid">							
+								<button class="span6 btn btn-primary">Edellinen</button>
+								<button class="span6 btn btn-primary">Seuraava</button>
+							</div>
+						</div>
+						<div class="row-fluid">
+							<div class="row-fluid">
+								<br />
+							</div>
+							<button class="row-fluid btn btn-primary">Seinä</button>
+							<button class="row-fluid btn btn-primary">Profiili</button>
+							<button class="row-fluid btn btn-primary">Tiedot</button>
+							<button class="row-fluid btn btn-primary">Galleria</button>
+						</div>
+					</div>
+					<div class="span8" id="profile-info">
+						<div class="row-fluid" id="profile-quick-data">
+							<div class="span8">
+								<h4>Mies, 24 vuotias, Sinkku, Pori, Satakunta</h4>
+							</div>
+							<div class="span4"> 
+								<div class="span6">
+									<img src="img/shapes-male-symbol3.png" height="50" width="50" alt="" />
+									<p>Hetero</p>
+								</div>
+								<div class="span6">
+									<img src="img/astrology1-seagoat-sc37.png" height="50" width="50" alt="" />
+									<p>Kauris</p>
+								</div>
+							</div>
+						</div>
+						<div class="row-fluid" id="profile-sync">
+							<div class="span3">
+								<img src="img/holiday-valentines1-sc33.png" height="50" width="50" alt="" />
+								<b>Elämänkumppani</b>
+							</div>
+							<div class="span3"></div>
+							<div class="span3"></div>
+							<div class="span3">
+								<img src="img/holiday-valentines3-sc33.png"  height="50" width="50" alt="" />
+								<b>Synkkausprosentti: </b>
+								<span class="badge badge-success" id="sync-percent">99%</span>
+							</div>
+						</div>
+						<div class="row-fluid user-search margin-five" id="profile-content">
+							<p>Seuraa? Ota yhteyttä.</p>
+							<p>Jos olet sinkku ja etsit vakavaa suhdetta niin saatan olla se oikea, mutta sitä ei tiedä muuta kuin kokeilemalla. Jos etsit ystävää kenelle voit kertoa kaikki murheesi ja välillä pitää hauskaakin niin olen sinulle ystävä jos olet minulle ystävä.</p>
+							<p>Jos haluat tietää minusta niin kysy, mutta voin sinulle seuraavat asiat kertoa näin alustavasti.</p>
+							<p>Ajattelen ennen kuin puhun. Huumorin tajua minulta löytyy aika pitkälle, mutta en osaa välttämättä erottaa oletko tosissasi vai oletko huumorilla liikkeessä. </p>
+							<p>Olen rehellinen ja toivon sitä my-ös sinulta. En kerro sinun asioistasi toisille ellet minua sitä pyydä tekemään.</p>
+							<p>En halua tunteitasi loukata, mutta jos jokin asia on pielessä siitä kyllä suoraan sanon.</p>
+							<p>Olen aika hiljainen ihminen, mutta kun sen muurin yli pääset niin saatan yllättää sinut. Isommassa porukassa en osaa puhua toisten päälle, mutta kaksin keskustelen mielläni.</p> 
+							<p>En ole juoppo vaikka olut välillä maistuukin. </p>
+							<p>Olen koko elämäni elänyt eläinten keskellä kuten koirien, hevosten ja kissojen, mutta minulla on lemmikkeinä vain kaksi kissaa.</p>
+						</div>
+						<div class="row-fluid">
+							<div class="span12 well">
+								<div class="row-fluid">
+									<h4>Lähetä uusi julkinen viesti käyttäjälle.</h4>
+								</div>
+								<div class="row-fluid">
+									<textarea id="new-topic-message"></textarea>
+								</div>
+								<div class="row-fluid">
+									<div class="span10">
+										<div class="span5 start-new-topic-with-files"></div>
+									</div>
+									<div class="span2">
+										<button class="btn btn-primary start-new-topic">Lähetä</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
