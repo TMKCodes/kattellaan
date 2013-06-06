@@ -16,7 +16,7 @@ $("#info-premium").click(function() {
 });
 */
 
-$("#search").click(function() {
+$("#search a").click(function() {
 	$("#search-window").show();
 });
 
