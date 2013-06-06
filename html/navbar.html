@@ -2,12 +2,6 @@
 	<div class="navbar-inner">
 		<a class="brand" href="index.php"><img src="img/heart-3d-sc44.png" height="16" width="16"  alt="" />Kattellaan</a>
 		<ul class="nav">
-			<li class="active">
-				<a href="#" id="friends"><i class="friends-icon icon-user"></i> Ystävät</a>
-			</li>
-			<li>
-				<a href="#" id="messages"><i class="messages-icon icon-envelope"></i> Viestit</a>
-			</li>
 			<li>
 				<a href="#" id="search"><i class="search-icon icon-search"></i> Treffaajat</a>
 			</li>
@@ -18,17 +12,22 @@
 				<a href="#" id="forum"><i class="forum-icon icon-book"></i> Palsta</a>
 			</li>
 			<li>
+				<a href="#" id="groups"><i class="groups-icon icon-user"></i> Ryhmät</a>
+			</li>
+			<li>
 				<a href="#" id="info"><i class="forum-info icon-road"></i> Opastus</a>
 			</li>
 		</ul>
-		<ul class="nav pull-right dropdown">
+		<ul class="nav pull-right dropdown" id="logged">
 			<li id="profile" class="dropdown-toggle" data-toggle="dropdown">   
 				<a href="#" id="own-profile"><i class="profile-icon icon-heart"></i> Oma Profiili</a>
 			</li>
 			<ul class="dropdown-menu">
-				<li><a href="#">Muokkaa profiilia</a></li>
-				<li><a href="#">Muokkaa tiliä</a></li>
-				<li><a href="#">Kirjaudu ulos</a></li>
+				<li><a href="#" id="friends">Ystävät</a></li>
+				<li><a href="#" id="messages">Viestit</a></li>
+				<li><a href="#" id="modify-profile">Muokkaa profiilia</a></li>
+				<li><a href="#" id="modify-account">Muokkaa tiliä</a></li>
+				<li><a href="#" id="logout">Kirjaudu ulos</a></li>
 			</ul>
 		</ul>
 	</div>

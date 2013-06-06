@@ -62,6 +62,10 @@ function hide_all() {
 	$("#search-window").hide();
 	$("#own-profile-window").hide();
 	$("#games-window").hide();
+	$("#forum-window").hide();
+	$("#groups-window").hide();
+	$("#info-window").hide();
+	$("#welcome-window").hide();
 }
 
 $("#search").click(function(event) {
