@@ -4,18 +4,19 @@ $("#navigation-left > li").click(function(evt) {
 	$(this).addClass("active");
 });
 
-$("#home_link").click(function(evt) {
+$("#home-button").click(function(evt) {
 	evt.preventDefault();
 	$("body > .container").hide();
-	$("#home").show();
+	$("#home-page").show();
 });
 
-$("#first_link").click(function(evt) {
+$("#first-link").click(function(evt) {
 	evt.preventDefault();
 	$("body > .container").hide();
 });
 
-$("#register_button").click(function(evt) {
+$("#register-button").click(function(evt) {
 	evt.preventDefault();
 	$("body > .container").hide();
+	$("#register-page").show();
 });
