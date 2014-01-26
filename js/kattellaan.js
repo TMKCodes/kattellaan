@@ -5,10 +5,12 @@ $("#navigation-left > li").click(function() {
 });
 
 $("#home_link").click(function() {
+	event.preventDefault();
 	$("body > .container").hide();
 	$("#home").show();
 });
 
 $("#first_link").click(function() {
+	event.preventDefault();
 	$("body > .container").hide();
 });
