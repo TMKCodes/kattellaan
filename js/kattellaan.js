@@ -14,3 +14,8 @@ $("#first_link").click(function(evt) {
 	evt.preventDefault();
 	$("body > .container").hide();
 });
+
+$("#register_button").click(function(evt) {
+	evt.preventDefault();
+	$("body > .container").hide();
+});
