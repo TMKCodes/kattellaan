@@ -11,4 +11,4 @@ $("#home_link").click(function() {
 
 $("#first_link").click(function() {
 	$("body > .container").hide();
-}
+});
