@@ -36,7 +36,7 @@ class account {
 				"username TEXT NOT NULL," .
 				"address TEXT NOT NULL," .
 				"password TEXT NOT NULL);"; 
-		$statment = $this->database->prepare($table_query);
+		$statement = $this->database->prepare($table_query);
 		$result = $statement->execute();
 		if($result->success() == true) {
 			return true;
