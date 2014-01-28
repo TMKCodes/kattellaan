@@ -7,6 +7,7 @@ require_once("dbwrapper/db.php");
 require_once("account.php");
 
 print_r($_GET);
+$database = new db("sqlite3");
 if($database->open("kattellaan.db") == true) {
 
 	/// register new account event.
