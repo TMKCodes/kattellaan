@@ -29,27 +29,24 @@ if($database->connect("127.0.0.1", "root", "ikaros123", "kattellaan") == true) {
 			$account->set_username($_GET['username']);
 			$account->set_address($_GET['address']);
 			$account->set_password(hash("sha512", $_GET['password']));
-			try {
-				$account->insert();
-			} catch (Exception $e) {
-				printf('{ "success": false, "error": "%s" }', $e->getMessage());
-			}
-			/// send email to the registered user
-			$to = $_GET['address'];
-			$subject = "Tervetuloa kattellaan.com sivustolle!";
-			$message = "Hei " . $_GET['username'] . "!\r\n\r\n" .
-				"Olemme kiitollisia, että olet liittynyt seuraamme.\r\n" .
-				"Toivottavasti löydät itsellesi seuraa joukostamme.\r\n\r\n" .
-				"http://kattellaan.com\r\n\r\n" .
-				"Tähän viestiin saa vastata jos on jotain kysyttävää.\r\n";
-			$headers = "From: toni@mussukka.org\r\n" .
-				"Reply-To: toni@mussukka.org\r\n" .
-				"X-Mailer: PHP/" . phpversion();
-			mail($to, $subject, $message, $headers);
+			if($account->insert() == true) {
+				/// send email to the registered user
+				$to = $_GET['address'];
+				$subject = "Tervetuloa kattellaan.com sivustolle!";
+				$message = "Hei " . $_GET['username'] . "!\r\n\r\n" .
+					"Olemme kiitollisia, että olet liittynyt seuraamme.\r\n" .
+					"Toivottavasti löydät itsellesi seuraa joukostamme.\r\n\r\n" .
+					"http://kattellaan.com\r\n\r\n" .
+					"Tähän viestiin saa vastata jos on jotain kysyttävää.\r\n";
+				$headers = "From: toni@mussukka.org\r\n" .
+					"Reply-To: toni@mussukka.org\r\n" .
+					"X-Mailer: PHP/" . phpversion();
+				mail($to, $subject, $message, $headers);
 	
-			/// return information to the browser
-			printf('{ "success": true, "account": { "identifier": "%s", "username": "%s", "address": "%s", "password": %s"}}', 
-				$account->get_identifier(), $account->get_username(), $account->get_address(), $account->get_password());
+				/// return information to the browser
+				printf('{ "success": true, "account": { "identifier": "%s", "username": "%s", "address": "%s", "password": %s"}}', 
+					$account->get_identifier(), $account->get_username(), $account->get_address(), $account->get_password());
+			}
 		}
 	}
 }

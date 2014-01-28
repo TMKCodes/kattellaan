@@ -83,7 +83,7 @@ class account {
 	}
 	public function insert() {
 		if($this->select() == true) {
-			throw new Exception("Account already exists");
+			return false;	
 		} else {
 			$statement = $this->database->prepare("INSERT INTO `account` (`username`, `address`, `password`) VALUES (?, ?, ?);");
 			if(!empty($this->username)) {
