@@ -29,8 +29,11 @@ if($database->connect("127.0.0.1", "root", "ikaros123", "kattellaan") == true) {
 			$account->set_username($_GET['username']);
 			$account->set_address($_GET['address']);
 			$account->set_password(hash("sha512", $_GET['password']));
-			$account->insert();
-			
+			try {
+				$account->insert();
+			} catch (Exception $e) {
+				printf('{ "success": false, "error": "%s" }', $e->getMessage());
+			}
 			/// send email to the registered user
 			$to = $_GET['address'];
 			$subject = "Tervetuloa kattellaan.com sivustolle!";

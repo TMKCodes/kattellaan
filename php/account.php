@@ -54,6 +54,7 @@ class account {
 	}
 
 	public function select() {
+		$this->select();
 		if(!empty($this->identifier)) {
 			$statement = $this->database->prepare("SELECT * FROM `account` WHERE `id` = ?;");
 			$statement->bind("s", $this->identifier);
@@ -82,27 +83,31 @@ class account {
 		return false;
 	}
 	public function insert() {
-		$statement = $this->database->prepare("INSERT INTO `account` (`username`, `address`, `password`) VALUES (?, ?, ?);");
-		if(!empty($this->username)) {
-			$statement->bind("s", $this->username);	
+		if($this->select() == true) {
+			throw new Exception("Account already exists");
 		} else {
-			throw new Exception("Username was empty.");
-		}
-		if(!empty($this->address)) {
-			$statement->bind("s", $this->address);
-		} else {
-			throw new Exception("Address was empty.");
-		}
-		if(!empty($this->password)) {
-			$statement->bind("s", $this->address);
-		} else {
-			throw new Exception("Password was empty.");
-		}
-		$result = $statement->execute();
-		if($result->success() == true) {
-			return $this->select();
-		} else {
-			throw new Exception("Database query failed!");
+			$statement = $this->database->prepare("INSERT INTO `account` (`username`, `address`, `password`) VALUES (?, ?, ?);");
+			if(!empty($this->username)) {
+				$statement->bind("s", $this->username);	
+			} else {
+				throw new Exception("Username was empty.");
+			}
+			if(!empty($this->address)) {
+				$statement->bind("s", $this->address);
+			} else {
+				throw new Exception("Address was empty.");
+			}
+			if(!empty($this->password)) {
+				$statement->bind("s", $this->address);
+			} else {
+				throw new Exception("Password was empty.");
+			}
+			$result = $statement->execute();
+			if($result->success() == true) {
+				return $this->select();
+			} else {
+				throw new Exception("Database query failed!");
+			}
 		}
 		return false;
 	}
