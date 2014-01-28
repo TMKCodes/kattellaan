@@ -39,6 +39,7 @@ $("#register-form").submit(function(evt) {
 	$("#input-address-empty").hide();
 	$("#input-password-empty").hide();
 	$("#input-password-mismatch").hide();
+	$("#registeration-failure").hide();
 	if($("#input-username").val().length <= 0) {
 		$("#input-username-empty").show();
 	} else if($("#input-address").val().length <= 0) {
@@ -56,8 +57,15 @@ $("#register-form").submit(function(evt) {
 			url: $(this).attr('action'),
 			data: $(this).serialize()
 		}).done(function(data){
-			$("body > .container").hide();
-			$("#invite-page").show();
+			var result = $.parseJSON(data);
+			if(result.success == true) {
+				$("body > .container").hide();
+				$("#invite-page").show();
+				console.log("Registeration success.");
+			} else {
+				$("#registeration-failure");
+				console.log("Registeration failure.");
+			}
 		});
 		
 	}
