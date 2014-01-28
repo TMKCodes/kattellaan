@@ -19,7 +19,7 @@ if($database->open("kattellaan.db") == true) {
 			printf('{ "success": false, "error": "password is empty." }');
 		} else if(empty($_GET['password-confirm'])) {
 			printf('{ "success": false, "error": "password-confirm is empty" }');
-		} else if($_GET['password'] != $_GET['password_confirm']) {
+		} else if($_GET['password'] != $_GET['password-confirm']) {
 			printf('{ "success": false, "error": "password-mismatch" }');
 		} else {
 			/// insert account to the database
