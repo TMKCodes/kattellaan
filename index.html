@@ -42,12 +42,25 @@
 
 	<!-- Register page html code -->
 	<div class="container" id="register-page">
-		<h1>Register</h1>
+		<h1>Registeröi itsellesi käyttäjätunnus sivustolle.</h1>
 		<form role="form">
 			<div class="form-group">
-				<label for="input_address">Sähköposti osoitteesi:</label>
+				<label for="input_username">Käyttäjätunnus:</label>
+				<input type="text" class="form-control" id="input_username" placeholder="Syötä haluamasi käyttäjätunnus." />
+			</div>
+			<div class="form-group">
+				<label for="input_address">Sähköposti:</label>
 				<input type="email" class="form-control" id="input_address" placeholder="Syötä sähköposti osoitteesi." />
 			</div>
+			<div class="form-group">
+				<label for="input_password">Salasana:</label>
+				<input type="password" class="form-control" id="input_password" />
+			</div>
+			<div class="form-group">
+				<label for="input_password_confirm">Salasana varmistus:</label>
+				<input type="password" class="form-control" id="input_password_confirm" />
+			</div>
+			<button type="submit" class="btn btn-default">Liity jäseneksi</button>
 		</form>
 	</div>
 
