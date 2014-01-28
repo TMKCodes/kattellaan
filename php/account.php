@@ -47,11 +47,14 @@ class account {
 	}
 
 	public function select() {
-		$statement = $this->database->prepare("SELECT * FROM `account` WHERE `id` = ?;");
 		if(!empty($this->identifier)) {
+			$statement = $this->database->prepare("SELECT * FROM `account` WHERE `id` = ?;");
 			$statement->bind("s", $this->identifier);
+		} else if(!empty($this->username)) {
+			$statement = $this->database->prepare("SELECT * FROM `account` WHERE `username` = ?;");
+			$statement->bind("s", $this->username);
 		} else {
-			throw new Exception("Identifier is empty!");
+			thro new Exception("No identifying data specified. Give identifier or username.");
 		}
 		$result = $get_statement->execute();
 		if($result->success() == true) {
@@ -64,7 +67,7 @@ class account {
 				$this->password = $this->password;
 				return true;
 			} else {
-				throw new Exception("Account with the identifier does not exist!");
+				throw new Exception("Account does not exist!");
 			}
 		} else {
 			throw new Exception("Database query failed!");
@@ -90,7 +93,7 @@ class account {
 		}
 		$result = $statement->execute();
 		if($result->success() == true) {
-			return true;
+			return $this->select();
 		} else {
 			throw new Exception("Database query failed!");
 		}
@@ -113,7 +116,7 @@ class account {
 		}
 		$result = $statement->execute();
 		if($result->success() == true) {
-			return true;
+			return $this->select();
 		} else {
 			throw new Exception("Database query failed!");
 		}
