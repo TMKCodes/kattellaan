@@ -32,3 +32,8 @@ $("#register-button").click(function(evt) {
 	$("#register-page").show();
 	$.cookie("last-visited-page", "#register-page");
 });
+
+$("#join-button").click(function(evt) {
+	evt.preventDefault();
+});
+
