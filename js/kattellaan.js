@@ -35,6 +35,10 @@ $("#register-button").click(function(evt) {
 
 $("#register-form").submit(function(evt) {
 	evt.preventDefault();
+	$("#input-username-empty").hide();
+	$("#input-address-empty").hide();
+	$("#input-password-empty").hide();
+	$("#input-password-mismatch").hide();
 	if($("#input-username").val().length <= 0) {
 		$("#input-username-empty").show();
 	} else if($("#input-address").val().length <= 0) {
@@ -54,6 +58,7 @@ $("#register-form").submit(function(evt) {
 			$("body > .container").hide();
 			$("#invite-page").show();
 		});
+		
 	}
 });
 
