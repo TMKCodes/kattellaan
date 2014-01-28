@@ -35,13 +35,13 @@ $("#register-button").click(function(evt) {
 
 $("#register-form").submit(function(evt) {
 	evt.preventDefault();
-	if($("#input-username").val().length() <= 0) {
+	if($("#input-username").val().length <= 0) {
 		$("#input-username-empty").show();
-	} else if($("#input-address").val().length() <= 0) {
+	} else if($("#input-address").val().length <= 0) {
 		$("#input-address-empty").show();
-	} else if($("#input-password").val().length() <= 0) {
+	} else if($("#input-password").val().length <= 0) {
 		$("#input-password-empty").show();
-	} else if($("#input-password-confirm").val().length() <= 0) {
+	} else if($("#input-password-confirm").val().length <= 0) {
 		$("#input-password-empty").show();
 	} else if($("#input-password").val() != $("#input-password-confirm")) {
 		$("#input-password-mismatch").show();
