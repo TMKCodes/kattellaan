@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 require_once("dbwrapper/db.php");
 require_once("account.php");
 
-printf("Opened this fucking php file.");
+print_r($_GET);
 if($database->open("kattellaan.db") == true) {
 
 	/// register new account event.
