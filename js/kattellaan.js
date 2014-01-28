@@ -47,7 +47,8 @@ $("#register-form").submit(function(evt) {
 		$("#input-password-empty").show();
 	} else if($("#input-password-confirm").val().length <= 0) {
 		$("#input-password-empty").show();
-	} else if($("#input-password").val() != $("#input-password-confirm")) {
+	} else if($("#input-password").val() != $("#input-password-confirm").val()) {
+		console.log($("#input-password").val() + " != " + $("#input-password-confirm").val());
 		$("#input-password-mismatch").show();
 	} else {
 		$.ajax({
