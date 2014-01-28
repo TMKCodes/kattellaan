@@ -1,6 +1,6 @@
 <?php
 
-require_once("db.php");
+require_once("dbwrapper/db.php");
 require_once("account.php");
 
 $database = new db("sqlite3");
