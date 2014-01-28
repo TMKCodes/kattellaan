@@ -31,7 +31,7 @@ class account {
 	}
 	
 	public function create_table() {
-		$table_query = "CREATE TABLE `account` IF NOT EXISTS (" .
+		$table_query = "CREATE TABLE IF NOT EXISTS `account`(" .
 				"id INT NOT NULL AUTO_INCREMENT PRIMARY KEY," .
 				"username TEXT NOT NULL," .
 				"address TEXT NOT NULL," .
