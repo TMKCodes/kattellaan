@@ -74,7 +74,7 @@ class account {
 				$this->password = $this->password;
 				return true;
 			} else {
-				throw new Exception("Account does not exist!");
+				return false;
 			}
 		} else {
 			throw new Exception("Database query failed!");
