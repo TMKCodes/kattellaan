@@ -63,7 +63,7 @@ class account {
 		} else {
 			throw new Exception("No identifying data specified. Give identifier or username.");
 		}
-		$result = $get_statement->execute();
+		$result = $statement->execute();
 		if($result->success() == true) {
 			if($result->rows() == 1) {
 				$data = $result->fetch_object();
