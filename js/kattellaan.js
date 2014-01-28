@@ -57,6 +57,7 @@ $("#register-form").submit(function(evt) {
 			url: $(this).attr('action'),
 			data: $(this).serialize()
 		}).done(function(data){
+			console.log(data);
 			var result = $.parseJSON(data);
 			if(result.success == true) {
 				$("body > .container").hide();
