@@ -7,9 +7,9 @@ $database = new db("sqlite3");
 if($database->open("kattellaan.db") == true) {
 	$account = new account($database);
 	if($account->create_table() == true) {
-		printf("Created account database table.");
+		printf("Created account database table.\r\n");
 	} else {
-		printf("Failed to create account database table.");
+		printf("Failed to create account database table.\r\n");
 	}
 }
 
