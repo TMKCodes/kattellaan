@@ -11,6 +11,41 @@ class account {
 		$this->database = $database;
 	}
 
+	public function set_identifier($identifier) {
+		$this->identifier = $identifier;
+	}
+	public function get_identifier() {
+		return $this->identifier;
+	}
+	public function set_username($username) {
+		$this->username = $username;
+	}
+	public function get_username() {
+		return $this->username;
+	}
+	public function set_password($password) {
+		$this->password = $password;
+	}
+	public function get_password() {
+		return $this->password;
+	}
+	
+	public function create_table() {
+		$table_query = "CREATE TABLE `account` IF NOT EXISTS (" .
+				"id INT NOT NULL AUTO_INCREMENT PRIMARY KEY," .
+				"username TEXT NOT NULL," .
+				"address TEXT NOT NULL," .
+				"password TEXT NOT NULL);" . 
+		$statment = $this->database->prepare($table_query);
+		$result = $statement->execute();
+		if($result->success() == true) {
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+
 	public function select() {
 		$statement = $this->database->prepare("SELECT * FROM `account` WHERE `id` = ?;");
 		if(!empty($this->identifier)) {
@@ -34,21 +69,22 @@ class account {
 		} else {
 			throw new Exception("Database query failed!");
 		}
+		return false;
 	}
 	public function insert() {
 		$statement = $this->database->prepare("INSERT INTO `account` (`username`, `address`, `password`) VALUES (?, ?, ?);");
 		if(!empty($this->username)) {
-			$statement->bind("s", $username);	
+			$statement->bind("s", $this->username);	
 		} else {
 			throw new Exception("Username was empty.");
 		}
 		if(!empty($this->address)) {
-			$statement->bind("s", $address);
+			$statement->bind("s", $this->address);
 		} else {
 			throw new Exception("Address was empty.");
 		}
 		if(!empty($this->password)) {
-			$statement->bind("s", $address);
+			$statement->bind("s", $this->address);
 		} else {
 			throw new Exception("Password was empty.");
 		}
@@ -58,10 +94,30 @@ class account {
 		} else {
 			throw new Exception("Database query failed!");
 		}
+		return false;
 	}
 	public function update() {
 		$statement = $this->database->prepare("UPDATE `account` SET `username` = ?, `address` = ?, `password` = ? WHERE `id` = ?;");
-		
+		if(!empty($this->username)) {
+			$statement->bind("s", $this->username);
+		} else {
+			throw new Exception("Username was empty.");
+		}
+		if(!empty($this->address)) {
+			$statement->bind("s", $this->address);
+		} else {
+			throw new Exception("Address was empty.");
+		}
+		if(!empty($this->password)) {
+			throw new Exception("Password was empty.");
+		}
+		$result = $statement->execute();
+		if($result->success() == true) {
+			return true;
+		} else {
+			throw new Exception("Database query failed!");
+		}
+		return false;
 	}
 
 }
