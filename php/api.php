@@ -39,6 +39,7 @@ if($database->connect("127.0.0.1", "root", "ikaros123", "kattellaan") == true) {
 					"http://kattellaan.com\r\n\r\n" .
 					"Tähän viestiin saa vastata jos on jotain kysyttävää.\r\n";
 				$headers = "From: toni@mussukka.org\r\n" .
+					"Content-Type: text/html; charset=UTF-8\r\n" .
 					"Reply-To: toni@mussukka.org\r\n" .
 					"X-Mailer: PHP/" . phpversion();
 				mail($to, $subject, $message, $headers);
