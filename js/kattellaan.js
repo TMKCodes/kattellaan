@@ -59,15 +59,12 @@ $("#register-form").submit(function(evt) {
 			url: $(this).attr('action'),
 			data: $(this).serialize()
 		}).done(function(data){
-			console.log(data);
 			var result = $.parseJSON(data);
 			if(result.success == true) {
 				$("body > .container").hide();
 				$("#invite-page").show();
-				console.log("Registeration success.");
 			} else {
-				$("#registeration-failure");
-				console.log("Registeration failure.");
+				$("#registeration-failure").show();
 			}
 		});
 		
