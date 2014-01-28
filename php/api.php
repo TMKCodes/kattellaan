@@ -46,6 +46,8 @@ if($database->connect("127.0.0.1", "root", "ikaros123", "kattellaan") == true) {
 				/// return information to the browser
 				printf('{ "success": true, "account": { "identifier": "%s", "username": "%s", "address": "%s", "password": %s"}}', 
 					$account->get_identifier(), $account->get_username(), $account->get_address(), $account->get_password());
+			} else {
+				printf('{ "success": false, "error": "account already exists"}');
 			}
 		}
 	}
