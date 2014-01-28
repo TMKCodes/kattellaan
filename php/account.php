@@ -39,7 +39,7 @@ class account {
 	
 	public function create_table() {
 		$table_query = "CREATE TABLE IF NOT EXISTS `account`(" .
-				"id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," .
+				"id INT NOT NULL AUTO_INCREMENT PRIMARY KEY," .
 				"username TEXT NOT NULL," .
 				"address TEXT NOT NULL," .
 				"password TEXT NOT NULL);"; 

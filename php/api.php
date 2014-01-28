@@ -8,8 +8,8 @@ ini_set('display_startup_errors', 1);
 require_once("dbwrapper/db.php");
 require_once("account.php");
 
-$database = new db("sqlite3");
-if($database->open("kattellaan.db", SQLITE3_OPEN_READWRITE) == true) {
+$database = new db("mysqli");
+if($database->connect("127.0.0.1", "root", "ikaros123", "kattellaan") == true) {
 
 	/// register new account event.
 	if(!empty($_GET['register'])) {
