@@ -1,12 +1,13 @@
 <?php
 
+header("Access-Control-Allow-Origin: *");
+error_reporting(E_ALL);
+
 require_once("dbwrapper/db.php");
 require_once("account.php");
 
-$database = new db("sqlite3");
 printf("Opened this fucking php file.");
 if($database->open("kattellaan.db") == true) {
-	printf("Connection success.\r\n");
 
 	/// register new account event.
 	if(!empty($_GET['register'])) {
