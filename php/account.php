@@ -1,6 +1,6 @@
 <?php
 
-class account {i
+class account {
 	private $database;
 	private $identifier;
 	private $username;
