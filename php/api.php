@@ -12,15 +12,15 @@ if($database->open("kattellaan.db") == true) {
 	/// register new account event.
 	if(!empty($_GET['register'])) {
 		if(empty($_GET['username'])) {
-			printf('{ "success": false }');
+			printf('{ "success": false, "error", "username is empty." }');
 		} else if(empty($_GET['address'])) {
-			printf('{ "success": false }');
+			printf('{ "success": false, "error", "address is empty." }');
 		} else if(empty($_GET['password'])) {
-			printf('{ "success": false }');
+			printf('{ "success": false, "error", "password is empty." }');
 		} else if(empty($_GET['password-confirm'])) {
-			printf('{ "success": false }');
+			printf('{ "success": false, "error", "password-confirm is empty" }');
 		} else if($_GET['password'] != $_GET['password_confirm']) {
-			printf('{ "success": false }');
+			printf('{ "success": false, "error", "password-mismatch" }');
 		} else {
 			/// insert account to the database
 			$account = new account($database);
