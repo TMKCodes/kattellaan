@@ -23,6 +23,13 @@ class account {
 	public function get_username() {
 		return $this->username;
 	}
+
+	public function set_address($address) {
+		$this->address = $address;
+	}
+	public function get_address() {
+		return $this->address;
+	}
 	public function set_password($password) {
 		$this->password = $password;
 	}
