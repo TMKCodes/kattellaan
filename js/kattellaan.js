@@ -52,6 +52,8 @@ $("#register-form").submit(function(evt) {
 		console.log($("#input-password").val() + " != " + $("#input-password-confirm").val());
 		$("#input-password-mismatch").show();
 	} else {
+		console.log("method: " + $(this).attr('method'));
+		console.log("action: " + $(this).attr('action'));
 		$.ajax({
 			type: $(this).attr('method'),
 			url: $(this).attr('action'),
