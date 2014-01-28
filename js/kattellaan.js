@@ -33,7 +33,6 @@ $("#register-button").click(function(evt) {
 	$.cookie("last-visited-page", "#register-page");
 });
 
-$("#join-button").click(function(evt) {
+$("#register-form").submit(function(evt) {
 	evt.preventDefault();
 });
-
