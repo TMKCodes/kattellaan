@@ -54,7 +54,7 @@ class account {
 			$statement = $this->database->prepare("SELECT * FROM `account` WHERE `username` = ?;");
 			$statement->bind("s", $this->username);
 		} else {
-			thro new Exception("No identifying data specified. Give identifier or username.");
+			throw new Exception("No identifying data specified. Give identifier or username.");
 		}
 		$result = $get_statement->execute();
 		if($result->success() == true) {
