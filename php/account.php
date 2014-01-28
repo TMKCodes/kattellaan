@@ -54,7 +54,6 @@ class account {
 	}
 
 	public function select() {
-		$this->select();
 		if(!empty($this->identifier)) {
 			$statement = $this->database->prepare("SELECT * FROM `account` WHERE `id` = ?;");
 			$statement->bind("s", $this->identifier);
