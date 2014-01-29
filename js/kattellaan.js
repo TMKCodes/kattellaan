@@ -80,7 +80,7 @@ $("#invite-add-button").click(function(evt) {
 	text_friends = friends + 1;	
 	$("#input-friend-addresses").append($("#input-friend-addresses").children(":last").clone());
 	$("#input-friend-addresses").children(":last").children("label").attr("for", "input-friend-address-" + friends);
-	$("#ipnut-friend-addresses").children(":last").children("label").text("Ystävän " + text_friends + " sähköposti osoite:");
+	$("#ipnut-friend-addresses").children(":last").children("label").html("Ystävän " + text_friends + " sähköposti osoite:");
 	$("#input-friend-addresses").children(":last").children("input").attr("id", "input-friend-address-" + friends);
 	$("#input-friend-addresses").children(":last").children("input").attr("name", "friend-address-" + friends);
 	$("#friend-count").val(friends);
