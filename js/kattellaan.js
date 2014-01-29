@@ -72,9 +72,8 @@ $("#register-form").submit(function(evt) {
 		
 	}
 });
-$("#invite-add-button").click(function(evt) {
+$("#invite-add-button").click(function() {
 	$.cookie("last-visited-page", "#invite-page");
-	evt.preventDefault();
 	var friends = parseInt($("#friend-count").val(), 10);
 	console.log(friends);
 	friends = friends + 1;
