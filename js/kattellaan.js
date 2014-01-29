@@ -24,6 +24,7 @@ $("#home-button").click(function(evt) {
 $("#first-link").click(function(evt) {
 	evt.preventDefault();
 	$("body > .container").hide();
+	$("#invite-page").show();
 });
 
 $("#register-button").click(function(evt) {
