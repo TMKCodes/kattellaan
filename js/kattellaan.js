@@ -76,9 +76,12 @@ $("#invite-add-button").click(function(evt) {
 	evt.preventDefault();
 	$.cookie("last-visited-page", "#invite-page");
 	var friends = parseInt($("#friend-count").val(), 10);
-	friends = friends + 1;
-	
+	friends = friends + 1;	
 	$("#input-friend-addresses").append($("#input-friend-addresses").children(":last").clone());
+	$("#input-friend-addresses").children(":last").children("label").attr("for", "input-friend-address-" + friends);
+	$("#ipnut-friend-addresses").children(":last").children("label").text("Ystävän " + (friends + 1) + " sähköposti osoite:");
+	$("#input-friend-addresses").children(":last").children("input").attr("id", "input-friend-address-" + friends);
+	$("#input-friend-addresses").children(":last").children("input").attr("name", "friend-address-" + friends);
 	$("#friend-count").val(friends);
 
 });
