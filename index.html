@@ -82,7 +82,36 @@
 
 	<!-- invite page html code-->
 	<div id="invite-page" class="container">
-
+		<h1>Voit kutsua myös ystäviäsi liittymään seuraamme.</h1>
+		<form role="form" id="invite-form" method="GET" action="php/api.php">
+			<input type="hidden" name="friend-count" id="friend-count" value="4" />
+			<div id="input-friend-addresses">
+				<div class="form-group">
+					<label for="input-friend-address-0">Ystävän 1 sähköposti osoite:</label>
+					<input type="email" class="form-control" id="input-friend-address-0" name="friend-address-0" placeholder="Ystäväsi sähköposti osoite." />
+				</div>
+					<div class="form-group">
+					<label for="input-friend-address-1">Ystävän 1 sähköposti osoite:</label>
+					<input type="email" class="form-control" id="input-friend-address-1" name="friend-address-1" placeholder="Ystäväsi sähköposti osoite." />
+				</div>
+				<div class="form-group">
+					<label for="input-friend-address-2">Ystävän 1 sähköposti osoite:</label>
+					<input type="email" class="form-control" id="input-friend-address-2" name="friend-address-2" placeholder="Ystäväsi sähköposti osoite." />
+				</div>
+				<div class="form-group">
+					<label for="input-friend-address-3">Ystävän 1 sähköposti osoite:</label>
+					<input type="email" class="form-control" id="input-friend-address-3" name="friend-address-3" placeholder="Ystäväsi sähköposti osoite." />
+				</div>
+				<div class="form-group">
+					<label for="input-friend-address-4">Ystävän 1 sähköposti osoite:</label>
+					<input type="email" class="form-control" id="input-friend-address-4" name="friend-address-4" placeholder="Ystäväsi sähköposti osoite." />
+				</div>
+			</div>
+			<button id="invite-add-button">Lisää yksi ystävä lisää.</button>
+			<input type="submit" class="btn btn-default" id="invite-button" value="Kutsu ystäväsi" />
+			<button id="invite-skip-button">Ohita ystävien kutsuminen.</button>
+			
+		</form>
 	</div>
 
 

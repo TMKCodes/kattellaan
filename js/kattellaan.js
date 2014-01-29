@@ -70,4 +70,14 @@ $("#register-form").submit(function(evt) {
 		
 	}
 });
-
+$("#invite-add-button").click(function(evt) {
+	evt.preventDefault();
+	var friends = parseInt($("#friend-count").val(), 10);
+	friends++;
+	var friend_address = $("#input-friend-address").children(":last").clone();
+	friend_address.children("label").attr("for", "input-friend-address-" + friends);
+	friend_address.children("input").attr("id", "input-friend-address-" + friends);
+	friend_address.children("input").attr("name", "friend-address-" + friends);
+	$("#friend-count").val(friends);
+	friend_address.appendTo($("#input-friend-address");
+}
