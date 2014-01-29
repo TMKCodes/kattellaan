@@ -8,8 +8,9 @@ ini_set('display_startup_errors', 1);
 require_once("dbwrapper/db.php");
 require_once("account.php");
 
+$passwd = explode(":", $base64_decode($file_get_contents("../.passwd")));
 $database = new db("mysqli");
-if($database->connect("127.0.0.1", "root", "ikaros123", "kattellaan") == true) {
+if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true) {
 
 	/// register new account event.
 	if(!empty($_GET['register'])) {
