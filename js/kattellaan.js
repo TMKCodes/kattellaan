@@ -78,7 +78,7 @@ $("#invite-add-button").click(function(evt) {
 	var friends = parseInt($("#friend-count").val(), 10);
 	friends = friends + 1;
 	
-	$("#input-friend-address").append($("#input-friend-address").children(":last").clone());
+	$("#input-friend-addresses").append($("#input-friend-addresses").children(":last").clone());
 	$("#friend-count").val(friends);
 
 });
