@@ -97,7 +97,7 @@ class account {
 				throw new Exception("Address was empty.");
 			}
 			if(!empty($this->password)) {
-				$statement->bind("s", $this->address);
+				$statement->bind("s", $this->password);
 			} else {
 				throw new Exception("Password was empty.");
 			}
