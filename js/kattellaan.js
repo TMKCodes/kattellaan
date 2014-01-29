@@ -79,10 +79,10 @@ $("#invite-add-button").click(function(evt) {
 	console.log(friends);
 	friends = friends + 1;
 	console.log(friends);
-	$("#input-friend-address").children(":last").clone().appendTo("#input-friend-addresses");
-	$("#input-friend-address").children(":last").children("label").attr("for", "input-friend-address-" + friends);
-	$("#input-friend-address").children(":last").children("input").attr("id", "input-friend-address-" + friends);
-	$("#input-friend-address").children(":last").children("input").attr("name", "friend-address-" + friends);
+	$("#input-friend-address").children(":last-child").clone().appendTo("#input-friend-addresses");
+	$("#input-friend-address").children(":last-child").children("label").attr("for", "input-friend-address-" + friends);
+	$("#input-friend-address").children(":last-child").children("input").attr("id", "input-friend-address-" + friends);
+	$("#input-friend-address").children(":last-child").children("input").attr("name", "friend-address-" + friends);
 	$("#friend-count").val(friends);
 	console.log($("#friend-count").val());
 
