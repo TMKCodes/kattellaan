@@ -80,4 +80,4 @@ $("#invite-add-button").click(function(evt) {
 	friend_address.children("input").attr("name", "friend-address-" + friends);
 	$("#friend-count").val(friends);
 	friend_address.appendTo($("#input-friend-address"));
-}
+});
