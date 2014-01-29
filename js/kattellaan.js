@@ -76,14 +76,9 @@ $("#invite-add-button").click(function(evt) {
 	evt.preventDefault();
 	$.cookie("last-visited-page", "#invite-page");
 	var friends = parseInt($("#friend-count").val(), 10);
-	console.log(friends);
 	friends = friends + 1;
-	console.log(friends);
-	$("#input-friend-address").children(":last-child").clone().appendTo("#input-friend-addresses");
-	$("#input-friend-address").children(":last-child").children("label").attr("for", "input-friend-address-" + friends);
-	$("#input-friend-address").children(":last-child").children("input").attr("id", "input-friend-address-" + friends);
-	$("#input-friend-address").children(":last-child").children("input").attr("name", "friend-address-" + friends);
+	
+	$("#input-friend-address").append($("#input-friend-address").children(":last").clone());
 	$("#friend-count").val(friends);
-	console.log($("#friend-count").val());
 
 });
