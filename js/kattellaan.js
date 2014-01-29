@@ -25,6 +25,7 @@ $("#first-link").click(function(evt) {
 	evt.preventDefault();
 	$("body > .container").hide();
 	$("#invite-page").show();
+	$.cookie("last-visited-page", "#invite-page");
 });
 
 $("#register-button").click(function(evt) {
@@ -72,13 +73,21 @@ $("#register-form").submit(function(evt) {
 	}
 });
 $("#invite-add-button").click(function(evt) {
+	$.cookie("last-visited-page", "#invite-page");
 	evt.preventDefault();
 	var friends = parseInt($("#friend-count").val(), 10);
+	console.log(friends);
 	friends = friends + 1;
+	console.log(friends);
 	var friend_address = $("#input-friend-address").children(":last").clone();
+	console.log(friend_address.html());
 	friend_address.children("label").attr("for", "input-friend-address-" + friends);
+	console.log(friend_address.html());
 	friend_address.children("input").attr("id", "input-friend-address-" + friends);
+	console.log(friend_address.html());
 	friend_address.children("input").attr("name", "friend-address-" + friends);
+	console.log(friend_address.html());
 	$("#friend-count").val(friends);
+	console.log($("#friend-count").val());
 	friend_address.appendTo($("#input-friend-address"));
 });
