@@ -14,7 +14,7 @@ class session {
 	private function generate($hash, $length) {
 		$key = array();
 		for($i = 0; $i < $length; $i++) {
-			$first_random = mt_rand(0, );
+			$first_random = mt_rand(0, 34);
 			if($first_random >= 0 && $first_random <= 4) {
 				$char = chr(mt_rand(48, 57));
 			} else if($first_random >= 5 && $first_random <= 19) {
@@ -35,7 +35,7 @@ class session {
 	}
 
 	public function open($username, $password) {
-		if(!empty($account) && !empty($password) {
+		if(!empty($account) && !empty($password)) {
 			$account = new account($this->database);
 			$account->set_username($username);
 			$account->set_password($password);
@@ -71,7 +71,7 @@ class session {
 				$statement->bind("s", $data[2]);
 				$result = $statement->execute();
 				if($result->success() == true) {
-					$return $data[0] . "||" . $session_key . "||" . $data[2];
+					return $data[0] . "||" . $session_key . "||" . $data[2];
 				} else {
 					return false;
 				}
