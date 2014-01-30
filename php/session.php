@@ -48,12 +48,12 @@ class session {
 				$statement->bind("s", $client);
 				$result = $statement->execute();
 				if($result->success() == true) {
-					return $this->get_identifier . "||" . $session_key . "||" . $client;
+					return base64_encode($this->get_identifier . "||" . $session_key . "||" . $client);
 				} else {
-					return false;
+					throw new Exception("Session already exists");
 				}
 			} else {
-				return false;
+				throw new Exception("Something wrong with the username and password.");
 			}
 		} else {
 			throw new Exception("Username and password were empty.");
@@ -63,7 +63,7 @@ class session {
 	public function update($data) {
 		if(!empty($data)) {
 			if($this->confirm($data) == true) {
-				$data = explode("||", $data);
+				$data = explode("||", base64_decode($data));
 				$session_key = $this->generate($this->session_hash, 256);
 				$statement = $this->database->prepare("UPDATE `session` SET `key` = '?' WHERE `id` = '?' AND `client` = '?';");
 				$statement->bind("s", $session_key);
@@ -71,7 +71,7 @@ class session {
 				$statement->bind("s", $data[2]);
 				$result = $statement->execute();
 				if($result->success() == true) {
-					return $data[0] . "||" . $session_key . "||" . $data[2];
+					return base64_encode($data[0] . "||" . $session_key . "||" . $data[2]);
 				} else {
 					return false;
 				}
@@ -86,7 +86,7 @@ class session {
 
 	public function confirm($data) {
 		if(!empty($data)) {
-			$data = explode("||", $data);
+			$data = explode("||", base64_decode($data));
 			$statement = $this->database->prepare("SELECT * FROM `session` WHRE `id` = '?' AND `key` = '?' AND `client` = '?';");
 			$statement->bind("s", $data[0]);
 			$statement->bind("s", $data[1]);
@@ -100,7 +100,7 @@ class session {
 	
 	public function close($data) {
 		if(!empty($data)) {
-			$data = explode("||", $data);
+			$data = explode("||", base64_decode($data));
 			$statement = $this->database->prepare("DELETE FROM `session` WHERE `id` = '?' AND `key` = '?' AND `client` = '?';");
 			$statement->bind("s", $data[0]);
 			$statement->bind("s", $data[1]);
