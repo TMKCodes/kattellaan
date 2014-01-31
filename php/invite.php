@@ -12,7 +12,7 @@ class invite {
 				"id INT NOT NULL AUTO_INCREMENT," .
 				"address TEXT NOT NULL," .
 				"count INT NOT NULL," .
-				"UNIQUE(address)," .
+				"UNIQUE(address(128))," .
 				"PRIMARY KEY(id));";
 		$statement = $this->database->prepare($table_statement);
 		return $statement->execute();
