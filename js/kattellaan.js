@@ -83,6 +83,7 @@ $("#register-form").submit(function(evt) {
 			var result = $.parseJSON(data);
 			if(result.success == true) {
 				open_session(result.account.username, result.account.password);
+				console.log($.cookie("session"));
 				if($.cookie("session") != undefined) {
 					$("body > .container").hide();
 					$("#invite-page").show();
