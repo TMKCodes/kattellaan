@@ -58,7 +58,7 @@ class session {
 				$statement->bind("s", $client);
 				$result = $statement->execute();
 				if($result->success() == true) {
-					return base64_encode($this->get_identifier() . "||" . $session_key . "||" . $client);
+					return base64_encode($account->get_identifier() . "||" . $session_key . "||" . $client);
 				} else {
 					throw new Exception("Session already exists");
 				}
