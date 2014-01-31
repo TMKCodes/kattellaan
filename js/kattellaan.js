@@ -4,14 +4,13 @@ function open_session(username, password) {
 		type: "GET",
 		data: { call : 'open_session', username : username, password : password }
 	}).done(function(data) {
-		console.log(data);
 		var result = $.parseJSON(data);
 		if(result.success == true) {
 			$.cookie("session", result.key);
-			return true;
 		} else {
-			console.log("Error: " + result.error);
-			return false;
+			if($.cookie("session") !== undefined) [
+				$.removeCookie("session");
+			}
 		}
 	});
 }
@@ -81,7 +80,8 @@ $("#register-form").submit(function(evt) {
 		}).done(function(data){
 			var result = $.parseJSON(data);
 			if(result.success == true) {
-				if(open_session(result.account.username, result.account.password)) {
+				open_session(result.account.username, result.account.password);
+				if($.cookie("session") !== undefined) {
 					$("body > .container").hide();
 					$("#invite-page").show();
 				} else {
