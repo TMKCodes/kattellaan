@@ -110,12 +110,6 @@ $("#invite-form").submit(function(evt) {
 		$("#input-friend-addresses").children(".form-group").remove();
 		var count = -1;
 		for(var index in result) {
-			console.log("result: " + result);
-			console.log("result[index]: "  + result[index]);
-			console.log("result.index: " + result.index);
-			console.log("result[index].address" + result[index].address);
-			console.log("result.index.address" + result.index.address);
-			console.log("index.address" + index.address);
 			if(result[index] != true) {
 				count = count + 1;
 				$("#input-friend-addresses").append(cloneinput);
@@ -123,7 +117,7 @@ $("#invite-form").submit(function(evt) {
 				$("#input-friend-addresses").children(":last").children("label").html("<h2>Tälle ystävälle kutsun lähettäminen epäonnistui.</h2>");
 				$("#input-friend-addresses").children(":last").children("input").attr("id", "input-friend-address-" + count);
 				$("#input-friend-addresses").children(":last").children("input").attr("name", "friend-address-" + count);		
-				$("#input-friend-addresses").children(":last").children("input").val(index.address);
+				$("#input-friend-addresses").children(":last").children("input").val(result[index]['address']);
 			}
 		}
 		if(count == -1) {
