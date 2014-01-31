@@ -9,7 +9,7 @@ function open_session(username, password) {
 		console.log(data);
 		if(result.success == true) {
 			$.cookie("session", result.key);
-			console.log("After creation:" + $.cookie("session");
+			console.log("After creation:" + $.cookie("session"));
 		} else {
 			if($.cookie("session") != undefined) {
 				$.removeCookie("session");
