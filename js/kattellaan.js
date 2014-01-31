@@ -2,6 +2,7 @@ function open_session(username, password) {
 	$.ajax({
 		url: "php/api.php",
 		type: "GET",
+		async: false;
 		data: { call : 'open_session', username : username, password : password }
 	}).done(function(data) {
 		var result = $.parseJSON(data);
