@@ -112,15 +112,13 @@ $("#invite-form").submit(function(evt) {
 		for(var index in result) {
 			if(result[index] != true) {
 				count = count + 1;
-				console.log(result[index]);
-				console.log(result[index][0]);
-				console.log(result[index][0].address);
+				var x = result[index];
 				$("#input-friend-addresses").append(cloneinput);
 				$("#input-friend-addresses").children(":last").children("label").attr("for-friend-address-" + count);
 				$("#input-friend-addresses").children(":last").children("label").html("<h2>Tälle ystävälle kutsun lähettäminen epäonnistui.</h2>");
 				$("#input-friend-addresses").children(":last").children("input").attr("id", "input-friend-address-" + count);
 				$("#input-friend-addresses").children(":last").children("input").attr("name", "friend-address-" + count);		
-				$("#input-friend-addresses").children(":last").children("input").val(result[index][0].address);
+				$("#input-friend-addresses").children(":last").children("input").val(x[0].address);
 			}
 		}
 		if(count == -1) {
