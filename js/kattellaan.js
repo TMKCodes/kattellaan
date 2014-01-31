@@ -114,11 +114,11 @@ $("#invite-add-button").click(function(evt) {
 
 $("#invite-form").submit(function(evt) {
 	evt.preventDefault();
-	$.ajax(
+	$.ajax({
 		type: $(this).attr('method'),
 		url: $(this).attr('action'),
 		data: $(this).serialize()
 	}).done(function(data) {
 		console.log(data);
-	}	
+	});
 });
