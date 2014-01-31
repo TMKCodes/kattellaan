@@ -9,6 +9,7 @@ function open_session(username, password) {
 		console.log(data);
 		if(result.success == true) {
 			$.cookie("session", result.key);
+			console.log("After creation:" + $.cookie("session");
 		} else {
 			if($.cookie("session") != undefined) {
 				$.removeCookie("session");
@@ -83,7 +84,7 @@ $("#register-form").submit(function(evt) {
 			var result = $.parseJSON(data);
 			if(result.success == true) {
 				open_session(result.account.username, result.account.password);
-				console.log($.cookie("session"));
+				console.log("After session open: " + $.cookie("session"));
 				if($.cookie("session") != undefined) {
 					$("body > .container").hide();
 					$("#invite-page").show();
@@ -91,6 +92,7 @@ $("#register-form").submit(function(evt) {
 					console.log("Failed to authenticate.");
 					$("#login-failure").show();
 				}
+				console.log("After success check: " $.cookie("session"));
 			} else {
 				$("#registeration-failure").show();
 			}
