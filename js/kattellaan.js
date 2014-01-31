@@ -84,7 +84,7 @@ $("#register-form").submit(function(evt) {
 				open_session(result.account.username, result.account.password);
 				if($.cookie("session") != undefined) {
 					$("body > .container").hide();
-					$("#invite-page").show();
+					$("#terms-of-service-page").show();
 				} else {
 					console.log("Failed to authenticate.");
 					$("#login-failure").show();
@@ -95,6 +95,20 @@ $("#register-form").submit(function(evt) {
 		});
 		
 	}
+});
+
+$("#accept-terms-of-service-button").click(function(evt) {
+	evt.preventDefault();
+	// TODO: add this information to database for the user.
+	$("body > .container").hide();
+	$("#invite-page").show();
+});
+
+$("#unaccept-terms-of-service-button").click(function(evt) {
+	evt.preventDefault();
+	// TODO: add this nasty informatio to database for the user.
+	$("body > .container").hide();
+	$("#invite-page").show();
 });
 
 $("#invite-form").submit(function(evt) {
