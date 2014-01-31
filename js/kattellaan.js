@@ -9,6 +9,7 @@ function open_session(username, password) {
 			$.cookie("session", result.key);
 			return true;
 		} else {
+			console.log("Error: " + result.error);
 			return false;
 		}
 	});
