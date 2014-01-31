@@ -5,10 +5,11 @@ function open_session(username, password) {
 		data: { call : 'open_session', username : username, password : password }
 	}).done(function(data) {
 		var result = $.parseJSON(data);
+		console.log(data);
 		if(result.success == true) {
 			$.cookie("session", result.key);
 		} else {
-			if($.cookie("session") != undefined) {
+			if($.cookie("session") !== undefined) {
 				$.removeCookie("session");
 			}
 		}
@@ -81,7 +82,7 @@ $("#register-form").submit(function(evt) {
 			var result = $.parseJSON(data);
 			if(result.success == true) {
 				open_session(result.account.username, result.account.password);
-				if($.cookie("session") != undefined) {
+				if($.cookie("session") !== undefined) {
 					$("body > .container").hide();
 					$("#invite-page").show();
 				} else {
