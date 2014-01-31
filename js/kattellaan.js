@@ -97,6 +97,38 @@ $("#register-form").submit(function(evt) {
 	}
 });
 
+$("#invite-form").submit(function(evt) {
+	evt.preventDefault();
+	$.ajax({
+		type: $(this).attr('method'),
+		url: $(this).attr('action'),
+		data: $(this).serialize()
+	}).done(function(data) {
+		var result = $.parseJSON(data);
+		var clone-input = $("#input-friend-addresses").children(":first").clone();
+		$("#input-friend-addresses").children("form-group").remove();
+		var count = -1;
+		for(var index in result) {
+			if(result.hashOwnProperty(index)) {
+				if(result.index != true) {
+					count = count + 1;
+					$("#input-friend-addresses").append(clone-input);
+					$("#input-friend-addresses").children(":last").children("label").attr("for-friend-address-" + count);
+					$("#input-friend-addresses").children(":last").children("label").html("<h2>Tälle ystävälle kutsun lähettäminen epäonnistui.</h2>");
+					$("#input-friend-addresses").children(":last").children("input").attr("id", "input-friend-address-" + count);
+					$("#input-friend-addresses").children(":last").children("input").attr("name", "friend-address-" + count);		
+					$("#input-friend-addresses").children(":last").children("input").val(result.index.address);
+				}
+			}
+		}
+		if(count == -1) {
+			//continue
+		} else {
+			$("#friend-count").val(count);	
+		}
+	});
+});
+
 $("#invite-add-button").click(function(evt) {
 	evt.preventDefault();
 	$.cookie("last-visited-page", "#invite-page");
@@ -112,13 +144,3 @@ $("#invite-add-button").click(function(evt) {
 
 });
 
-$("#invite-form").submit(function(evt) {
-	evt.preventDefault();
-	$.ajax({
-		type: $(this).attr('method'),
-		url: $(this).attr('action'),
-		data: $(this).serialize()
-	}).done(function(data) {
-		console.log(data);
-	});
-});
