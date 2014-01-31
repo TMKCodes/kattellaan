@@ -34,6 +34,16 @@ class session {
 		return hash($this->session_hash, $client_user_agent . "||" . $client_remote_host . "||" . $client_forwarded_for); 
 	}
 
+	public function create_table() {
+		$table_statement = "CREATE TABLE IF NOT EXISTS `session`(" .
+			"id INT NOT NULL AUTO_INCREMENT PRIMARY KEY," .
+			"key TEXT NOT NULL," .
+			"client TEXT NOT NULL);".
+		$statement = $this->database->prepare($table_statement);
+		$result = $statement->execute();
+		return $result->success();
+	}
+
 	public function open($username, $password) {
 		if(!empty($account) && !empty($password)) {
 			$account = new account($this->database);
