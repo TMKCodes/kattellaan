@@ -75,11 +75,14 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		while(!empty($_GET['friend-address-' . $count])) {
 			try {
 				$invite->insert($_GET['friend-address-' . $count]);
-				printf('"friend-address-%s": true,', $count);
+				printf('"friend-address-%s": true', $count);
 			} catch (Exception $e) {
-				printf('"friend-address-%s": { "error": "%s" },', $count,  $e->getMessage());
+				printf('"friend-address-%s": { "error": "%s" }', $count,  $e->getMessage());
 			}
 			$count++;
+			if(!empty($_GET['friend-address-' . $coount])) {
+				printf(", ");
+			}
 		}
 		printf('}}');
 	} else if($_GET['call'] == "delete_invite") {
