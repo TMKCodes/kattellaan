@@ -80,7 +80,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				printf('"friend-address-%s": { "error": "%s" }', $count,  $e->getMessage());
 			}
 			$count++;
-			if(!empty($_GET['friend-address-' . $coount])) {
+			if(!empty($_GET['friend-address-' . $count])) {
 				printf(", ");
 			}
 		}
