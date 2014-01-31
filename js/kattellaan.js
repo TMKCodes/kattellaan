@@ -96,6 +96,7 @@ $("#register-form").submit(function(evt) {
 		
 	}
 });
+
 $("#invite-add-button").click(function(evt) {
 	evt.preventDefault();
 	$.cookie("last-visited-page", "#invite-page");
@@ -109,4 +110,15 @@ $("#invite-add-button").click(function(evt) {
 	$("#input-friend-addresses").children(":last").children("input").attr("name", "friend-address-" + friends);
 	$("#friend-count").val(friends);
 
+});
+
+$("#invite-form").submit(function(evt) {
+	evt.preventDefault();
+	$.ajax(
+		type: $(this).attr('method'),
+		url: $(this).attr('action'),
+		data: $(this).serialize()
+	}).done(function(data) {
+		console.log(data);
+	}	
 });
