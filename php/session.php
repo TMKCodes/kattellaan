@@ -29,9 +29,9 @@ class session {
 
 	private function client() {
 		$client_user_agent = $_SERVER['HTTP_USER_AGENT'];
-		$client_remote_host = $_SERVER['REMOTE_ADDR'];
-		$client_forwarded_for = $_SERVER['HTTP_X_FORWARDED_FOR'];
-		return hash($this->session_hash, $client_user_agent . "||" . $client_remote_host . "||" . $client_forwarded_for); 
+		$client_remote_addr = $_SERVER['REMOTE_ADDR'];
+		$client_forwarded_for = getenv('HTTP_X_FORWARDED_FOR');
+		return hash($this->session_hash, $client_user_agent . "||" . $client_remote_addr . "||" . $client_forwarded_for); 
 	}
 
 	public function create_table() {
