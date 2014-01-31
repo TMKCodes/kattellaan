@@ -38,7 +38,7 @@ class session {
 		$table_statement = "CREATE TABLE IF NOT EXISTS `session`(" .
 			"id INT NOT NULL AUTO_INCREMENT PRIMARY KEY," .
 			"key TEXT NOT NULL," .
-			"client TEXT NOT NULL);".
+			"client TEXT NOT NULL);";
 		$statement = $this->database->prepare($table_statement);
 		$result = $statement->execute();
 		return $result->success();
