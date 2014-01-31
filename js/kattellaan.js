@@ -3,7 +3,7 @@ function open_session(username, password) {
 		url: "php/api.php",
 		type: "GET",
 		data: { call : 'open_session', username : username, password : password }
-	}).function(data) {
+	}).done(function(data) {
 		var result = $.parseJSON(data);
 		if(result.success == true) {
 			$.cookie("session", result.key);
