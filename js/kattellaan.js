@@ -110,6 +110,7 @@ $("#invite-form").submit(function(evt) {
 		$("#input-friend-addresses").children(".form-group").remove();
 		var count = -1;
 		for(var index in result) {
+			console.log(result.index);
 			if(result.index != true) {
 				count = count + 1;
 				$("#input-friend-addresses").append(cloneinput);
