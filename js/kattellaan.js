@@ -109,7 +109,7 @@ $("#invite-form").submit(function(evt) {
 		var cloneinput = $("#input-friend-addresses").children(":first").clone();
 		$("#input-friend-addresses").children(".form-group").remove();
 		var count = -1;
-		for(var index in result) {
+		for(var index in result.invite) {
 			if(result[index] != true) {
 				count = count + 1;
 				console.log(index);
