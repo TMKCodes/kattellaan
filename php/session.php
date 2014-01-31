@@ -37,7 +37,7 @@ class session {
 	public function create_table() {
 		$table_statement = "CREATE TABLE IF NOT EXISTS `session`(" .
 			"id INT NOT NULL AUTO_INCREMENT PRIMARY KEY," .
-			"key TEXT NOT NULL," .
+			"secret TEXT NOT NULL," .
 			"client TEXT NOT NULL);";
 		$statement = $this->database->prepare($table_statement);
 		$result = $statement->execute();
@@ -52,7 +52,7 @@ class session {
 			if($account->select() == true) {
 				$session_key = $this->generate($this->session_hash, 256);
 				$client = $this->client();
-				$statement = $this->database->prepare("INSERT INTO `session` (`id`, `key`, `client`) VALUES (?, ?, ?);");
+				$statement = $this->database->prepare("INSERT INTO `session` (`id`, `secret`, `client`) VALUES (?, ?, ?);");
 				$statement->bind("s", $account->get_identifier());
 				$statement->bind("s", $session_key);
 				$statement->bind("s", $client);
@@ -75,7 +75,7 @@ class session {
 			if($this->confirm($data) == true) {
 				$data = explode("||", base64_decode($data));
 				$session_key = $this->generate($this->session_hash, 256);
-				$statement = $this->database->prepare("UPDATE `session` SET `key` = '?' WHERE `id` = '?' AND `client` = '?';");
+				$statement = $this->database->prepare("UPDATE `session` SET `secret` = '?' WHERE `id` = '?' AND `client` = '?';");
 				$statement->bind("s", $session_key);
 				$statement->bind("s", $data[0]);
 				$statement->bind("s", $data[2]);
@@ -97,7 +97,7 @@ class session {
 	public function confirm($data) {
 		if(!empty($data)) {
 			$data = explode("||", base64_decode($data));
-			$statement = $this->database->prepare("SELECT * FROM `session` WHRE `id` = '?' AND `key` = '?' AND `client` = '?';");
+			$statement = $this->database->prepare("SELECT * FROM `session` WHRE `id` = '?' AND `secret` = '?' AND `client` = '?';");
 			$statement->bind("s", $data[0]);
 			$statement->bind("s", $data[1]);
 			$statement->bind("s", $this->client());
@@ -111,7 +111,7 @@ class session {
 	public function close($data) {
 		if(!empty($data)) {
 			$data = explode("||", base64_decode($data));
-			$statement = $this->database->prepare("DELETE FROM `session` WHERE `id` = '?' AND `key` = '?' AND `client` = '?';");
+			$statement = $this->database->prepare("DELETE FROM `session` WHERE `id` = '?' AND `secret` = '?' AND `client` = '?';");
 			$statement->bind("s", $data[0]);
 			$statement->bind("s", $data[1]);
 			$statement->bind("s", $data[2]);
