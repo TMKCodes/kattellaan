@@ -79,7 +79,7 @@ $("#register-form").submit(function(evt) {
 		}).done(function(data){
 			var result = $.parseJSON(data);
 			if(result.success == true) {
-				if(open_session(result.account.username, result.account.password)) {
+				if(open_session(result.account.username, result.account.password) == true) {
 					$("body > .container").hide();
 					$("#invite-page").show();
 				} else {
