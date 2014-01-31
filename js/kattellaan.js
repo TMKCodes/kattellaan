@@ -112,6 +112,7 @@ $("#invite-form").submit(function(evt) {
 		for(var index in result) {
 			if(result[index] != true) {
 				count = count + 1;
+				console.log(index);
 				$("#input-friend-addresses").append(cloneinput);
 				$("#input-friend-addresses").children(":last").children("label").attr("for-friend-address-" + count);
 				$("#input-friend-addresses").children(":last").children("label").html("<h2>Tälle ystävälle kutsun lähettäminen epäonnistui.</h2>");
