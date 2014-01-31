@@ -8,6 +8,7 @@ ini_set('display_startup_errors', 1);
 require_once("dbwrapper/db.php");
 require_once("account.php");
 require_once("session.php");
+require_once("invite.php");
 
 $passwd = explode(":", base64_decode(file_get_contents("/home/temek/kattellaan/.passwd")));
 $database = new db("mysqli");
@@ -67,7 +68,39 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		} catch (Exception $e) {
 			printf('{ "success": false, "error": "%s" }', $e->getMessage());
 		}
-	} 
+	} else if($_GET['call'] == "invite") {
+		$count = 0;
+		$invite = new invite($database);
+		printf('{ "invite": {');
+		while(!empty($_GET['friend-address-' . $count])) {
+			try {
+				$invite->insert($_GET['friend-address-' . $count]);
+				printf('"friend-address-%s": true ', $count);
+			} catch (Exception $e) {
+				printf('"friend-address-%s": false, "error": "%s"', $count,  $e->getMessage());
+			}
+			$count++;
+			printf(",");
+		}
+		printf('}}');
+	} else if($_GET['call'] == "delete_invite") {
+		if(!empty($address)) {
+			$invite = new invite($database);
+			if($invite->remove($address) == true) {
+				setcookie("last-visited-page", "#delete-invite-success-page");
+				header("Location: kattellaan.com", true, "303");
+				die();
+			} else {
+				setcookie("last-visited-page", "#delete-invite-failed-page");
+				header("Location: kattellaan.com", true, "303");
+				die();
+			}	
+		} else {
+			setcookie("last-visited-page", "#delete-invite-failed-empty-address-page");
+			header("Location: kattellaan.com", true, "303");
+			die();
+		}
+	}
 }
 
 ?>
