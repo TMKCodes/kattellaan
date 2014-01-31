@@ -81,7 +81,7 @@ $("#register-form").submit(function(evt) {
 		}).done(function(data){
 			var result = $.parseJSON(data);
 			if(result.success == true) {
-				if(open_session(result.account.username, result.account.password) == true) {
+				if(open_session(result.account.username, result.account.password)) {
 					$("body > .container").hide();
 					$("#invite-page").show();
 				} else {
