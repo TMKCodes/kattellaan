@@ -92,7 +92,7 @@ $("#register-form").submit(function(evt) {
 					console.log("Failed to authenticate.");
 					$("#login-failure").show();
 				}
-				console.log("After success check: " $.cookie("session"));
+				console.log("After success check: " + $.cookie("session"));
 			} else {
 				$("#registeration-failure").show();
 			}
