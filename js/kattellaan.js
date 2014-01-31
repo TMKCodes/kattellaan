@@ -8,7 +8,7 @@ function open_session(username, password) {
 		var result = $.parseJSON(data);
 		console.log(data);
 		if(result.success == true) {
-			$.cookie("session", result.key);
+			$.cookie("session", result.session);
 			console.log("After creation:" + $.cookie("session"));
 		} else {
 			if($.cookie("session") != undefined) {
