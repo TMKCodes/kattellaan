@@ -104,9 +104,10 @@ $("#invite-form").submit(function(evt) {
 		url: $(this).attr('action'),
 		data: $(this).serialize()
 	}).done(function(data) {
+		console.log(data);
 		var result = $.parseJSON(data);
 		var cloneinput = $("#input-friend-addresses").children(":first").clone();
-		$("#input-friend-addresses").children("form-group").remove();
+		$("#input-friend-addresses").children(".form-group").remove();
 		var count = -1;
 		for(var index in result) {
 			if(result.index != true) {
@@ -116,7 +117,7 @@ $("#invite-form").submit(function(evt) {
 				$("#input-friend-addresses").children(":last").children("label").html("<h2>Tälle ystävälle kutsun lähettäminen epäonnistui.</h2>");
 				$("#input-friend-addresses").children(":last").children("input").attr("id", "input-friend-address-" + count);
 				$("#input-friend-addresses").children(":last").children("input").attr("name", "friend-address-" + count);		
-				$("#input-friend-addresses").children(":last").children("input").val(result.index.address);
+				$("#input-friend-addresses").children(":last").children("input").val(result.index);
 			}
 		}
 		if(count == -1) {
