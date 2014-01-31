@@ -48,7 +48,7 @@ class invite {
 		if($result->success() == true) {
 			return $this->send($address);
 		} else {
-			throw new Exception("Failed to insert invite to the database.");
+			throw new Exception("Failed to insert invite to the database.\r\n%s" . $statement->get());
 		}
 	}
 
