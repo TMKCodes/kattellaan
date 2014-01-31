@@ -45,7 +45,7 @@ class session {
 	}
 
 	public function open($username, $password) {
-		if(!empty($username) && e!mpty($password)) {
+		if(!empty($username) && !empty($password)) {
 			$account = new account($this->database);
 			$account->set_username($username);
 			$account->set_password($password);
