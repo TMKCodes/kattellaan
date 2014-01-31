@@ -44,10 +44,11 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					"Olemme kiitollisia, että olet liittynyt seuraamme.\r\n" .
 					"Toivottavasti löydät itsellesi seuraa joukostamme.\r\n\r\n" .
 					"http://kattellaan.com\r\n\r\n" .
-					"Tähän viestiin saa vastata jos on jotain kysyttävää.\r\n";
-				$headers = "From: toni@mussukka.org\r\n" .
+					"Tähän viestiin saa vastata jos on jotain kysyttävää.\r\n\r\n" .
+					"Terveisin kattellaan treffipalstalta.\r\n";
+				$headers = "From: support@kattellaan.com\r\n" .
 					"Content-Type: text/html; charset=UTF-8\r\n" .
-					"Reply-To: toni@mussukka.org\r\n" .
+					"Reply-To: support@kattellaan.com\r\n" .
 					"X-Mailer: PHP/" . phpversion();
 				mail($to, $subject, $message, $headers);
 	
