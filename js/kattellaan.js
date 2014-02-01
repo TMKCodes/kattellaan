@@ -28,6 +28,12 @@ function open_session(username, password) {
 	});
 }
 
+$("#file-upload").fileUpload({
+	submitData: { 'call': 'upload' },
+	uploadOptions: { dataType: 'text' },
+	submitOptions: { dataType: 'text' },
+});
+
 $("document").ready(function() {
 	$("body > .container").hide();
 	var page = get_url_parameter("page");
