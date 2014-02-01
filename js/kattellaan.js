@@ -28,21 +28,6 @@ function open_session(username, password) {
 	});
 }
 
-$('#file-upload').fileUpload({
-	uploadData: { 'call': 'upload' },
-	submitData: { 'call': 'upload' },
-	success: function(data, text_status, jqXHR) { 
-		console.log("success: " + data.success); 
-		console.log("files:" + data.formData);
-	},
-	error: function(jqXHR, text_status, error_thrown) { console.log("error:" + jqXHR); },
-	complete: function(jqXHR, text_status) { 
-		console.log("complete: " + jqXHR);
-		console.log("complete_status: " + text_status); 
-	}
-});
-
-
 $("document").ready(function() {
 	$("body > .container").hide();
 	var page = get_url_parameter("page");
