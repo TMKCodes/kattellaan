@@ -152,7 +152,7 @@
 	<!-- picture upload page html code -->
 	<div id="picture-upload-page" class="container" style="display: none;">
 		<h1>Lähetä kuvia palveluun.</h1>
-		<form role="form" id="picture-upload-form" enctype="multipart/form-data" method="GET" action="php/api.php" >
+		<form role="form" id="picture-upload-form" enctype="multipart/form-data" method="POST" action="php/api.php" >
 			<input type="file" name="picture-file" multiple="multiple" id="picture-file"/>
 			<input type="hidden" name="call" value="picture-upload" />
 			<input type="submit" class="btn btn-default" id="picture-upload-button" value="Lähetä kuvasi" />

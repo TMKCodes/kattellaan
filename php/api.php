@@ -20,7 +20,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 	}
 
 	/// register new account event.
-	if($_GET['call'] == "register") {
+	if(!empty($_GET['call']) && $_GET['call'] == "register") {
 		if(empty($_GET['username'])) {
 			printf('{ "success": false, "error": "username is empty." }');
 		} else if(empty($_GET['address'])) {
@@ -60,7 +60,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				printf('{ "success": false, "error": "account already exists"}');
 			}
 		}
-	} else if($_GET['call'] == "open_session") {
+	} else if(!empty($_GET['call']) && $_GET['call'] == "open_session") {
 		try {
 			$session = new session($database, "sha512");
 			$session_key = $session->open($_GET['username'], $_GET['password']);
@@ -68,7 +68,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		} catch (Exception $e) {
 			printf('{ "success": false, "error": "%s" }', $e->getMessage());
 		}
-	} else if($_GET['call'] == "invite") {
+	} else if(!empty($_GET['call']) && $_GET['call'] == "invite") {
 		try {
 			$session = new session($database, "sha512");
 			if(!empty($_GET['session'])) {
@@ -99,7 +99,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		} catch (Exception $e) {
 			printf('{ "success": false, "error": "%s" }', $e->getMessage());
 		}
-	} else if($_GET['call'] == "delete_invite") {
+	} else if(!empty($_GET['call']) && $_GET['call'] == "delete_invite") {
 		if(!empty($address)) {
 			$invite = new invite($database);
 			if($invite->remove($address) == true) {
