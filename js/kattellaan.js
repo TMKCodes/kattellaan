@@ -46,11 +46,11 @@ $("#first-link").click(function(evt) {
 	$.cookie("last-visited-page", "#invite-page");
 });
 
-$("#register-button").click(function(evt) {
+$("#terms-of-service-button").click(function(evt) {
 	evt.preventDefault();
 	$("body > .container").hide();
-	$("#register-page").show();
-	$.cookie("last-visited-page", "#register-page");
+	$("#terms-of-service-page").show();
+	$.cookie("last-visited-page", "#terms-of-service-page");
 });
 
 $("#register-form").submit(function(evt) {
@@ -84,7 +84,7 @@ $("#register-form").submit(function(evt) {
 				open_session(result.account.username, result.account.password);
 				if($.cookie("session") != undefined) {
 					$("body > .container").hide();
-					$("#terms-of-service-page").show();
+					$("#invite-page").show();
 				} else {
 					console.log("Failed to authenticate.");
 					$("#login-failure").show();
@@ -101,14 +101,16 @@ $("#accept-terms-of-service-button").click(function(evt) {
 	evt.preventDefault();
 	// TODO: add this information to database for the user.
 	$("body > .container").hide();
-	$("#invite-page").show();
+	$("#register-page").show();
+	$.cookie("last-visited-page", "#home-page");
 });
 
 $("#unaccept-terms-of-service-button").click(function(evt) {
 	evt.preventDefault();
 	// TODO: add this nasty informatio to database for the user.
 	$("body > .container").hide();
-	$("#invite-page").show();
+	$("#home-page").show();
+	$.cookie("last-visited-page", "#home-page");
 });
 
 $("#invite-form").submit(function(evt) {
