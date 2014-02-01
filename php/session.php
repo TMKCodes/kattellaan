@@ -102,7 +102,7 @@ class session {
 	public function confirm($data) {
 		if(!empty($data)) {
 			$data = explode("||", base64_decode($data));
-			$statement = $this->database->prepare("SELECT * FROM `session` WHRE `id` = '?' AND `secret` = '?' AND `client` = '?';");
+			$statement = $this->database->prepare("SELECT * FROM `session` WHERE `id` = ? AND `secret` = ? AND `client` = ?;");
 			$statement->bind("s", $data[0]);
 			$statement->bind("s", $data[1]);
 			$statement->bind("s", $this->client());
