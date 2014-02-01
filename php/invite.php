@@ -14,8 +14,8 @@ class invite {
 				"count INT NOT NULL," .
 				"a_id INT NOT NULL," .
 				"UNIQUE(address(128))," .
-				"PRIMARY KEY(id));" .
-				"FOREIGN KEY(a_id) REFERENCES account(id);";
+				"PRIMARY KEY(id)," .
+				"FOREIGN KEY(a_id) REFERENCES account(id));";
 		$statement = $this->database->prepare($table_statement);
 		return $statement->execute();
 	}
