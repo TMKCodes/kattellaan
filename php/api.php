@@ -135,7 +135,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					array_push($errors, $file['name']);
 				} else {
 					if(move_uploaded_file($file['tmp_name'], "/home/temek/kattellaan/uploads/" . basename($file['name'])) == true) {
-						array_push($errors, $file['name']);
+						array_push($success, $file['name']);
 					} else {
 						array_push($errors, $file['name']);
 					}	
