@@ -42,7 +42,7 @@ $("document").ready(function() {
 			$.cookie("last-visited-page", "#home-page");
 		} else {
 			$(last_visited_page).show();
-			$.cookie("last-visited-page", last_visited-page);
+			$.cookie("last-visited-page", last_visited_page);
 		}
 	}
 	
