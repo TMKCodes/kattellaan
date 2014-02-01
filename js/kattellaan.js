@@ -48,9 +48,19 @@ $("#file-upload").ajaxForm({
 		if(statusText == "success") {
 			$("#bar").width("100%");
 			$("#percent").html("Lähetetty.");
+			
 			if(responseText.uploaded_files != undefined) {
+				var rowNumber = 0;
 				for(var i = 0; i < responseText.uploaded_files.length; i++) {
 					console.log("Uploaded file: " + responseText.uploaded_files[i]);
+					if(i % 4 == 0) {
+						rowNumber = i / 4;
+						$("#profile-picture-select").append("<div class=\"row\" id=\"row-" + rowNumber + "\"></div>");
+					}
+					$("#row-" + rowNumber).append("<div class=\"thumbnail\" id=\"thumbnail-" + i + "\">" +
+									"<a href=\"uploads/" + responseText.uploaded_files[i] + "\">" +
+									"<img src=\"uploades/" + responseText.uploaded_files[i] + "\" alt=\"" + responseText.uploaded_files[i]+ "\" />" + 
+									"</a></div>");
 				}
 			}
 			if(responseText.failed_files != undefined) {
