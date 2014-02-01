@@ -53,7 +53,7 @@ $("#picture-upload-form").submit(function(evt) {
 	var form_data = new FormData($("#picture-upload-form"));
 	jQuery.each($('#picture-file')[0].files, function(i, file) {
 		form_data.append('file-'+i, file);
-	}
+	});
 	$.ajax({
 		type: $(this).attr("method"),
 		url: $(this).attr("action"),
