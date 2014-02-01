@@ -128,7 +128,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					array_push($failed_files, $_FILEs['file']['name'][$i]);
 				}
 			}
-			if(!empty($failed_files)) {
+			if(empty($failed_files)) {
 				printf('{ "success": true, "uploaded_files": %s }', json_encode($uploaded_files));
 			} else {
 				printf('{ "success": false, "uploaded_files": %s, "failed_files": %s }', json_encode($uploaded_files), json_encode($failed_files));
