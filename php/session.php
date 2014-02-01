@@ -107,7 +107,7 @@ class session {
 			$statement->bind("s", $data[1]);
 			$statement->bind("s", $this->client());
 			$result = $statement->execute();
-			$result->success();
+			return $result->success();
 		} else {
 			throw new Exception("Session data was not given.");
 		}
