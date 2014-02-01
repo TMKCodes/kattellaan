@@ -80,7 +80,7 @@ function submit_form(evt, data) {
 
 $('input[type=file]').change(function(evt) {
 	files = evt.target.files;
-}
+});
 
 $('#upload-form').submit(function(evt) {
 	evt.preventDefault();
