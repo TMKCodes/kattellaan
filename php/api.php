@@ -117,22 +117,32 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			die();
 		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "upload") {
-		$files = array();
-		if(isset($_POST['files']) {
-			$error = false;
-			$upload_directory = "/home/temek/kattellaan/uploads/";
-			foreach($_FILES as $file) {
-				if(move_uploaded_file($file['tmp_name'], $upload_directory . basename($file['name']))) {
-					array_push($files,  $upload_directory . $file['name']);
-				} else {
-					$error = true;
+		if(!empty($_FILES['file'])) {
+			$files = array();
+			$file_data = $_FILES['file'];
+			if(is_array($file_data['name'])) {
+				for($i = 0; $i < count($file_data['name']); $i++) {
+					$file = array('name' => $file_data['name'][$i], 'tmp_name' => $file_data['tmp_name'][$i]);
+					array_push($files, $file);
 				}
-				$data  = ($error) ? array('error' => 'There was an error uploading your files.') : array('files' => $files);
+			} else {
+				array_push($files, $file_data);
 			}
-		}  else {
-			$data = array('success' => "form was submitted", "formData" => $_POST);
+			foreach($files as $file) {
+				if(file_exists("/home/temek/kattellaan/uploads/" . basename($file['name']))) {
+					// file already exists
+					header("Location: kattellaan.com/file-upload-already.html", true, "303");
+					die();
+				} else {
+					move_uploaded_file($files['tmp_name'], "/home/temek/kattellaan/uploads/" . basename($files['name']));
+					header("Location: kattellaan.com/file-upload-success.html", true, "303");
+					die();
+				}
+			}
+		} else {
+			header("Location: kattellaan.com/file-upload-failed.html", true, "303");
+			die();
 		}
-		printf("%s", json_encode($data));
 	}
 }
 
