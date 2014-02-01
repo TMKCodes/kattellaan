@@ -32,12 +32,18 @@ $("#file-upload").ajaxForm({
 	dataType: "json",
 	beforeSubmit: function(formData, jqForm, options) {
 		console.log("About to submit: \r\n" + $.param(formData));
+		$("#progress").show();
+		$("#bar").width("0%");
+		$("#percent").html("0%");
 		return true;
 	},
 	uploadProgress: function(evt, position, total, percentComplete) {
-		
+		$("#bar").width(percentComplete + "%");
+		$("#percent").html(percentComplete + "%");
 	},
 	success: function(responseText, statusText, xhr, $form) {
+		$("#bar").width("100%");
+		$("#percent").html("100%");
 		if(statusText == "success") {
 			for(var i = 0; i < responseText.uploaded_files.length; i++) {
 				console.log("Uploaded file: " + responseText.uploaded_files[i]);
