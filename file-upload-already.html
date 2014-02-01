@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Kattellaan tiedoston lähetys sivu.</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+	<p style="color: red;">Tiedosto oli jo tallennettuna.</p>
+	<form id="file-upload" method="POST" action="php/api.php" enctype="multipart/form-data">
+		<label for="file-input">Valitse tiedostot jotka haluat lähettää:</label>
+		<input type="file" class="btn btn-default" id="file-input" name="file[]" multiple="multiple" />
+		<input type="hidden" name="call" value="upload" />
+		<input type="submit" class="btn btn-default" value="Lähetä tiedostot" />
+	</form>
+</body>
+</html>
