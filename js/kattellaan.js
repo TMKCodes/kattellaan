@@ -48,7 +48,7 @@ $("#file-upload").ajaxForm({
 		if(statusText == "success") {
 			$("#bar").width("100%");
 			$("#percent").html("Lähetetty.");
-			
+			$("#profile-picture-select").append("<h1>Valitse profiili kuvasi.</h1>");
 			if(responseText.uploaded_files != undefined) {
 				var rowNumber = 0;
 				for(var i = 0; i < responseText.uploaded_files.length; i++) {
@@ -58,9 +58,10 @@ $("#file-upload").ajaxForm({
 						$("#profile-picture-select").append("<div class=\"row\" id=\"row-" + rowNumber + "\"></div>");
 					}
 					$("#row-" + rowNumber).append("<div class=\"col-xs-6 col-md-3\"><div class=\"thumbnail\" id=\"thumbnail-" + i + "\">" +
-									"<a href=\"uploads/" + responseText.uploaded_files[i] + "\">" +
 									"<img style=\"heigth: 300px; width: 300px;\" src=\"uploads/" + responseText.uploaded_files[i] + "\" alt=\"" + responseText.uploaded_files[i]+ "\" />" + 
-									"</a></div></div>");
+									"<div class=\"caption\"><h3>" + responseText.uploaded_files[i]+ "</h3>" +
+									"<button class=\"btn btn-default\" id=\"select-profile-picture\" value=\"" + responseText.uploaded_files[i] + "\">Valitse tämä</button></div>" +
+									"</div></div>");
 				}
 			}
 			if(responseText.failed_files != undefined) {
