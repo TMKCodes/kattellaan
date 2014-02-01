@@ -141,14 +141,14 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			setcookie("file-upload-errors", json_encode($errors));
 			setcookie("file-upload-success", json_encode($success));
 			if(!empty($errors)) {
-				header("Location: kattellaan.com/file-upload-already.html", true, "303");
+				header("Location: http://kattellaan.com/file-upload-already.html", true, "303");
 				die();
 			} else {
-				header("Location: kattellaan.com/file-upload-success.html", true, "303");
+				header("Location: http://kattellaan.com/file-upload-success.html", true, "303");
 				die();
 			}
 		} else {
-			header("Location: kattellaan.com/file-upload-failed.html", true, "303");
+			header("Location: http://kattellaan.com/file-upload-failed.html", true, "303");
 			die();
 		}
 	}
