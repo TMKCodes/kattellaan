@@ -32,7 +32,7 @@ $("document").ready(function() {
 	$("body > .container").hide();
 	var page = get_url_parameter("page");
 	if(page != undefined) {
-		$("#" + $page).show();
+		$("#" + page).show();
 	} else { 
 		var last_visited_page = $.cookie("last-visited-page");
 		if(last_visited_page === undefined) {
