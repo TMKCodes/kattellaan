@@ -35,7 +35,7 @@ $("document").ready(function() {
 		var page = get_url_parameter("page");
 		if(page != undefined) {
 			$("#" + $page).show();
-		} else 
+		} else { 
 			$("#home-page").show();
 		}
 	} else {
