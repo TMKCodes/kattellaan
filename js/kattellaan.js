@@ -33,12 +33,16 @@ $("document").ready(function() {
 	var page = get_url_parameter("page");
 	if(page != undefined) {
 		$("#" + page).show();
+		$.cookie("last-visited-page", "#" + page);
+		window.location.href = "http://kattellaan.com/#";
 	} else { 
 		var last_visited_page = $.cookie("last-visited-page");
 		if(last_visited_page === undefined) {
 			$("#home-page").show();
+			$.cookie("last-visited-page", "#home-page");
 		} else {
 			$(last_visited_page).show();
+			$.cookie("last-visited-page", last_visited-page);
 		}
 	}
 	
