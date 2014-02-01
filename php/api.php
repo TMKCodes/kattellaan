@@ -118,7 +118,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "upload") {
 		$files = array();
-		if(!empty($_POST['upload-incoming']) && $_POST['upload-incoming'] == 1) {
+		if(isset($_POST['files']) {
 			$error = false;
 			$upload_directory = "/home/temek/kattellaan/uploads/";
 			foreach($_FILES as $file) {
