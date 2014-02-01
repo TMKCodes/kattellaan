@@ -134,8 +134,11 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				if(file_exists("../uploads/" . basename($file['name']))) {
 					array_push($errors, $file['name']);
 				} else {
-					move_uploaded_file($files['tmp_name'], "../uploads/" . basename($files['name']));
-					array_push($success, $file['name']);
+					if(move_uploaded_file($files['tmp_name'], "../uploads/" . basename($files['name'])) == true) {
+						array_push($success, $file['name']);
+					} else {
+						array_push($errors, $file['name']);
+					}
 				}
 			}
 			setcookie("file-upload-errors", json_encode($errors));
