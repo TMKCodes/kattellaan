@@ -117,7 +117,25 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			die();
 		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "upload") {
-		printf('{ "post": %s, "file": %s }', json_encode($_POST), json_encode($_FILES));	
+		$uploaded_files = array();
+		$failed_files = array();
+		$upload_directory = "/home/temek/kattellaan/uploads/";
+		if(!empty($_FILES)) {
+			for($i = 0; $i < count($_FILES['file']['name']); $i++) {
+				if(move_uploaded_file($_FILES['file']['tmp_name'][$i], $upload_directory . $_FILES['file']['name'][$i])) {
+					array_push($uploaded_files, $_FILES['file']['name'][$i]);
+				} else {
+					array_push($failed_files, $_FILEs['file']['name'][$i]);
+				}
+			}
+			if(!empty($failed_files)) {
+				printf('{ "success": true, "uploaded_files": %s }', json_encode($uploaded_files));
+			} else {
+				printf('{ "success": false, "uploaded_files": %s, "failed_files": %s }', json_encode($uploaded_files), json_encode($failed_files));
+			}
+		} else {
+			printf('{ "success": false, "error": "no files uploaded" }');
+		}	
 	}
 }
 
