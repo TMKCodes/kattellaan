@@ -42,17 +42,24 @@ $("#file-upload").ajaxForm({
 		$("#percent").html(percentComplete + "%");
 	},
 	success: function(responseText, statusText, xhr, $form) {
-		$("#bar").width("100%");
-		$("#percent").html("100%");
 		if(statusText == "success") {
-			for(var i = 0; i < responseText.uploaded_files.length; i++) {
-				console.log("Uploaded file: " + responseText.uploaded_files[i]);
+			$("#bar").width("100%");
+			$("#percent").html("100%");
+			if(responseText.uploaded_files != undefined) {
+				for(var i = 0; i < responseText.uploaded_files.length; i++) {
+					console.log("Uploaded file: " + responseText.uploaded_files[i]);
+				}
+			}
+			if(responseText.failed_files != undefined) {
+				for(var i = 0; i < responseText.failed_files.length; i++) {
+					console.log("Failed to upload file: " + responseText.failed_files[i]);
+				}
 			}
 		} else {
-			for(var i = 0; i < responseText.failed_files.length; i++) {
-				console.log("Failed to upload file: " + responseText.failed_files[i]);
-			}
-		}		
+			$("#bar").width("0%");
+			$("#percent").html("0%");
+			console.log("Uploading failed.");
+		}	
 	}
 });
 
