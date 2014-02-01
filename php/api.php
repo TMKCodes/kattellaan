@@ -134,25 +134,23 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				if(file_exists("/home/temek/kattellaan/uploads/" . basename($file['name']))) {
 					array_push($errors, $file['name']);
 				} else {
-					if(move_uploaded_file($files['tmp_name'], "/home/temek/kattellaan/uploads/" . basename($files['name'])) == true) {
-						array_push($success, $file['name']);
-					} else {
-						array_push($errors, $file['name']);
-					}
+				echo move_uploaded_file($files['tmp_name'], "/home/temek/kattellaan/uploads/" . basename($files['name']));
+				echo error_get_last();
+						
 				}
 			}
-			setcookie("file-upload-errors", json_encode($errors));
-			setcookie("file-upload-success", json_encode($success));
+			//setcookie("file-upload-errors", json_encode($errors));
+			//setcookie("file-upload-success", json_encode($success));
 			if(!empty($errors)) {
-				header("Location: http://kattellaan.com/file-upload-already.html", true, "303");
-				die();
+				//header("Location: http://kattellaan.com/file-upload-already.html", true, "303");
+				//die();
 			} else {
-				header("Location: http://kattellaan.com/file-upload-success.html", true, "303");
-				die();
+				//header("Location: http://kattellaan.com/file-upload-success.html", true, "303");
+				//die();
 			}
 		} else {
-			header("Location: http://kattellaan.com/file-upload-failed.html", true, "303");
-			die();
+			//header("Location: http://kattellaan.com/file-upload-failed.html", true, "303");
+			//die();
 		}
 	}
 }
