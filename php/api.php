@@ -144,7 +144,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			setcookie("file-upload-errors", json_encode($errors));
 			setcookie("file-upload-success", json_encode($success));
 			if(!empty($errors)) {
-				printf('{ "success": false, "error": "%s", "error_files": %s, "success_files": %s }', error_get_last() json_encode($errors), json_encode($success));
+				printf('{ "success": false, "error": "%s", "error_files": %s, "success_files": %s }', error_get_last(), json_encode($errors), json_encode($success));
 			} else {
 				printf('{ "success": true, "success_files": %s }', json_encode($success));
 			}
