@@ -29,7 +29,7 @@ function open_session(username, password) {
 }
 
 $("#file-upload").ajaxForm({
-	dataType: json,
+	dataType: "json",
 	beforeSend: function() {
 		console.log("Starting upload");
 	},
