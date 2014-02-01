@@ -69,12 +69,13 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			printf('{ "success": false, "error": "%s" }', $e->getMessage());
 		}
 	} else if($_GET['call'] == "invite") {
+		var_dump($_GET);
 		$count = 0;
-		$invite = new invite($database, 0);
+		$invite = new invite($database);
 		printf('{ "invite": {');
 		while(!empty($_GET['friend-address-' . $count])) {
 			try {
-				$invite->insert($_GET['friend-address-' . $count]);
+				$invite->insert($_GET['friend-address-' . $count], 0);
 				printf('"friend-address-%s": true', $count);
 			} catch (Exception $e) {
 				printf('"friend-address-%s": { "address": "%s", "error": "%s" }',  $count, $_GET['friend-address-' . $count],  $e->getMessage());
