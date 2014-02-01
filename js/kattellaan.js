@@ -28,6 +28,9 @@ function open_session(username, password) {
 	});
 }
 
+$('#file-upload').fileUpload();
+
+
 $("document").ready(function() {
 	$("body > .container").hide();
 	var page = get_url_parameter("page");

@@ -152,7 +152,7 @@
 	<!-- picture upload page html code -->
 	<div id="picture-upload-page" class="container" style="display: none;">
 		<h1>Lähetä kuvia palveluun.</h1>
-		<form role="form" id="upload-form" enctype="multipart/form-data" method="POST" action="php/api.php" >
+		<form role="form" id="file-upload" enctype="multipart/form-data" method="POST" action="php/api.php" >
 			<input type="file" name="file[]" multiple="multiple" id="file"/>
 			<input type="hidden" name="call" value="upload" />
 			<input type="submit" class="btn btn-default" id="upload-button" value="Lähetä kuvasi" />
@@ -201,6 +201,7 @@
 	<script src="js/jquery-1.11.0.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery-cookie.js"></script>
+	<script src="js/jquery-fileupload.min.js"></script>
 	<script src="js/kattellaan.js"></script>
 </body>
 </html>
