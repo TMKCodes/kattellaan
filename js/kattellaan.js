@@ -32,7 +32,8 @@ $("document").ready(function() {
 	$("body > .container").hide();
 	var last_visited_page = $.cookie("last-visited-page");
 	if(last_visited_page === undefined) {
-		if(var page = get_url_parameter("page") != undefined) {
+		var page = get_url_parameter("page");
+		if(page != undefined) {
 			$("#" + $page).show();
 		} else 
 			$("#home-page").show();
