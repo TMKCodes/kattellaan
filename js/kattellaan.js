@@ -54,15 +54,15 @@ $("#file-upload").ajaxForm({
 				var x = 0;
 				while(true) {
 					if($("#profile-picture-select").children("#row-" + x).length == 0) {
-						rowNumber = x + 1;
 						break;
+					} else {
+						x++;
 					}
-					x++;
 				}
 				for(var i = 0; i < responseText.uploaded_files.length; i++) {
 					console.log("Uploaded file: " + responseText.uploaded_files[i]);
 					if(i % 4 == 0) {
-						rowNumber = i / 4;
+						rowNumber = i / 4 + x;
 						$("#profile-picture-select").append("<div class=\"row\" id=\"row-" + rowNumber + "\"></div>");
 					}
 					$("#row-" + rowNumber).append("<div class=\"col-xs-6 col-md-3\"><div class=\"thumbnail\" id=\"thumbnail-" + i + "\">" +
