@@ -44,11 +44,8 @@ $("#file-upload").ajaxForm({
 	},
 	complete: function(response) {
 		console.log("complete");
-		if(response.success == false) {
-			console.log("error: " + response.error); 
-		} else {
-			console.log("success");
-		}
+		console.log(response.post);
+		console.log(response.file);
 	}
 });
 
