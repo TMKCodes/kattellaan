@@ -59,7 +59,7 @@ function submit_form(evt, data) {
 	$.ajax({
 		url: 'php/api.php',
 		type: 'POST',
-		data: formData;
+		data: formData,
 		cache: false,
 		dataType: 'json',
 		success: function(data, text_status, jqXHR) {
