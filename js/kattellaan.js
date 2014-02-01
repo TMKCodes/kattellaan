@@ -28,7 +28,24 @@ function open_session(username, password) {
 	});
 }
 
-$("#file-upload").ajaxForm();
+$("#file-upload").ajaxForm({
+	dataType: 'json',
+	beforeSend: function() {
+		console.log("Starting upload");
+	},
+	uploadProgress: function(event, position, total, percentComplete) {
+		
+	},
+	error: function() {
+		console.log("error");
+	},
+	success: function() {
+		console.log("success");
+	},
+	complete: function(response) {
+		console.log("complete: " + response);
+	}
+});
 
 $("document").ready(function() {
 	$("body > .container").hide();
