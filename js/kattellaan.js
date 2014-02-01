@@ -31,7 +31,7 @@ function open_session(username, password) {
 $('#file-upload').fileUpload({
 	submitData: { 'call': 'upload' },
 	success: function(data, text_status, jqXHR) { console.log(data); },
-	error: function(jqXHR, text_status, error_thrown) { console.log(jqXHR); }
+	error: function(jqXHR, text_status, error_thrown) { console.log(text_status); }
 });
 
 
