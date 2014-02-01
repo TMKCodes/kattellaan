@@ -51,6 +51,14 @@ $("#file-upload").ajaxForm({
 			$("#profile-picture-select").append("<h1>Valitse profiili kuvasi.</h1>");
 			if(responseText.uploaded_files != undefined) {
 				var rowNumber = 0;
+				var x = 0;
+				while(true) {
+					if($("#profile-picture-select").children("#row-" + x).length == 0) {
+						rowNumber = x + 1;
+						break;
+					}
+					x++;
+				}
 				for(var i = 0; i < responseText.uploaded_files.length; i++) {
 					console.log("Uploaded file: " + responseText.uploaded_files[i]);
 					if(i % 4 == 0) {
