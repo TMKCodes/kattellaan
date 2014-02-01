@@ -120,7 +120,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		$files = array();
 		if(!empty($_POST['upload-incoming']) && $_POST['upload-incoming'] == 1) {
 			$error = false;
-			$upload_directory = "../uploads/";
+			$upload_directory = "/home/temek/kattellaan/uploads/";
 			foreach($_FILES as $file) {
 				if(move_uploaded_file($file['tmp_name'], $upload_directory . basename($file['name']))) {
 					$files[] = $upload_directory . $file['name'];
