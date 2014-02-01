@@ -55,11 +55,12 @@ $("#file-upload").ajaxForm({
 					console.log("Uploaded file: " + responseText.uploaded_files[i]);
 					if(i % 4 == 0) {
 						rowNumber = i / 4;
-						$("#profile-picture-select").append("<div class=\"row\"><div class=\"thumbnail\" id=\"thumbnail-" + rowNumber + "\"></div></div>");
+						$("#profile-picture-select").append("<div class=\"row\" id=\"row-" + rowNumber + "\"></div>");
 					}
-					$("#thumbnail-" + rowNumber).append("<a href=\"uploads/" + responseText.uploaded_files[i] + "\">" +
+					$("#row-" + rowNumber).append("<div class=\"thumbnail\" id=\"thumbnail-" + i + "\">" +
+									"<a href=\"uploads/" + responseText.uploaded_files[i] + "\">" +
 									"<img style=\"heigth: 171px; width: 180px;\" src=\"uploads/" + responseText.uploaded_files[i] + "\" alt=\"" + responseText.uploaded_files[i]+ "\" />" + 
-									"</a>");
+									"</a></div>");
 				}
 			}
 			if(responseText.failed_files != undefined) {
