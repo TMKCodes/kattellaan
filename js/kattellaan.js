@@ -29,6 +29,7 @@ function open_session(username, password) {
 }
 
 $('#file-upload').fileUpload({
+	uploadData: { 'call': 'upload' },
 	submitData: { 'call': 'upload' },
 	uploadOptions: { dataType: 'text' },
 	submitOptions: { dataType: 'text' },
