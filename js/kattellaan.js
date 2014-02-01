@@ -48,7 +48,7 @@ $("document").ready(function() {
 	
 });
 
-/*$("#picture-upload-form").submit(function(evt) {
+$("#picture-upload-form").submit(function(evt) {
 	evt.preventDefault();
 	var form_data = new FormData($("#picture-upload-form"));
 	jQuery.each($('#picture-file')[0].files, function(i, file) {
@@ -63,7 +63,7 @@ $("document").ready(function() {
 	}).done(function(data) {
 		console.log(data);
 	});
-});*/
+});
 
 $("#navigation-left > li").click(function(evt) {
 	evt.preventDefault();	
