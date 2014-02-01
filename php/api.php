@@ -76,7 +76,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					$identifier = $session->get_identifier($_GET['session']);
 					$count = 0;
 					$invite = new invite($database);
-					printf('{ "success" = true, "invite": {');
+					printf('{ "success": true, "invite": {');
 					while(!empty($_GET['friend-address-' . $count])) {
 						try {
 							$invite->insert($_GET['friend-address-' . $count], $identifier);

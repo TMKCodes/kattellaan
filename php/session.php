@@ -35,7 +35,7 @@ class session {
 	}
 
 	public function get_identifier($data) {
-		$data = explode("||", $data);
+		$data = explode("||", base64_decode($data));
 		return $data[0];
 	}
 
