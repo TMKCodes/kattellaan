@@ -117,7 +117,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			die();
 		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "upload") {
-		printf('{ "post": %s, "get": %s, "files": %s }', json_decode($_POST), json_decode($_GET), json_decode($_FILES));
+		printf('{ "post": { %s }, "get": { %s }, "files": { %s } }', json_decode($_POST), json_decode($_GET), json_decode($_FILES));
 	}
 }
 
