@@ -84,7 +84,7 @@ $('input[type=file]').change(function(evt) {
 
 $('#upload-form').submit(function(evt) {
 	evt.preventDefault();
-	var data new FormData();
+	var data = new FormData();
 	$.each(files, function(key, value) {
 		data.append(key, value);
 	});
