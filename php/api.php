@@ -116,21 +116,10 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			header("Location: kattellaan.com", true, "303");
 			die();
 		}
-	} else if(!empty($_GET['files'])) {
-		$data = array();
-		$error = false;
-		$files = array();
-		
-		$upload_directory = '../uploads/';
-		foreach($_FILES as $file) {
-			if(move_uploaded_file($file['tmp_name'], $upload_directory . basename($file['name']))) {
-				$files[] = $upload_directory . $file['name'];
-			} else {
-				$error = true;
-			}
-		}
-		$data = ($error) ? array('error' => "There was an error uploading your files") : array('files' => $files);
-		printf("%s", json_encode($data));
+	} else if(!empty($_POST['call']) && $_POST['call'] == "upload") {
+		var_dump($_POST);
+		var_dump($_GET);
+		var_dump($_FILES);
 	}
 }
 
