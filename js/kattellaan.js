@@ -30,9 +30,6 @@ function open_session(username, password) {
 
 $("#file-upload").ajaxForm({
 	dataType: "json",
-	beforeSend: function() {
-		console.log("Starting upload");
-	},
 	beforeSubmit: function(formData, jqForm, options) {
 		console.log("About to submit: \r\n" + $.param(formData));
 		return true;
@@ -41,8 +38,15 @@ $("#file-upload").ajaxForm({
 		
 	},
 	success: function(responseText, statusText, xhr, $form) {
-		console.log("status: " + statusText);
-		console.log("response: " + responseText);
+		if(statusText == "success") {
+			for(var i = 0; i < responseText.uploaded_files.length; i++) {
+				console.log("Uploaded file: " + responseText.uploaded_files[i]);
+			}
+		} else {
+			for(var i = 0; i < responseText.failed_files.length; i++) {
+				console.log("Failed to upload file: " + responseText.failed_files[i]);
+			}
+		}		
 	}
 });
 
