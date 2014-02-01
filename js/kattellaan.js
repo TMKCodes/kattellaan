@@ -29,7 +29,7 @@ function open_session(username, password) {
 }
 
 $("#file-upload").ajaxForm({
-	dataType: null,
+	dataType: json,
 	beforeSend: function() {
 		console.log("Starting upload");
 	},
@@ -44,8 +44,8 @@ $("#file-upload").ajaxForm({
 	},
 	complete: function(response) {
 		console.log("complete");
-		console.log(response);
-		console.log(response);
+		console.log(response.uploaded_files[0]);
+		console.log(response.uploaded_files[1]);
 	}
 });
 
