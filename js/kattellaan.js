@@ -32,8 +32,11 @@ $('#file-upload').fileUpload({
 	submitData: { 'call': 'upload' },
 	uploadOptions: { dataType: 'text' },
 	submitOptions: { dataType: 'text' },
-	success: function(data, text_status, jqXHR) { console.log(data); },
-	error: function(jqXHR, text_status, error_thrown) { console.log(error_thrown); }
+	before: function() {},
+	beforeSubmit: function() {},
+	success: function(data, text_status, jqXHR) { console.log("success: " + data); },
+	error: function(jqXHR, text_status, error_thrown) { console.log("error:" + jqXHR); }
+	complete: function(jqXHR, text_status) { console.log("complete: " + jqXHR); }
 });
 
 
