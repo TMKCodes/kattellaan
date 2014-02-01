@@ -117,7 +117,21 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			die();
 		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "upload") {
-		printf('{ "post":  %s , "get":  %s , "files":  %s  }', json_encode($_POST), json_encode($_GET), json_encode($_FILES));
+		if(!empty($_POST['upload-incoming']) && $_POST['upload-incoming'] == 1) {
+			$error = false;
+			$upload_directory = "../uploads/";
+			foreach($_FILES as $file) {
+				if(move_uploaded_file($file['tmp_name'], $upload_directory . basename($file['name']))) {
+					$files[] = $upload_directory . $file['name'];
+				} else {
+					$error = true;
+				}
+				$data  = ($error) ? array('error' => 'There was an error uploading your files.') : array('files' => $files);
+			}
+		}  else {
+			$data = array('success' => "form was submitted", "formData" => $_POST);
+		}
+		printf("%s", json_encode($data));
 	}
 }
 

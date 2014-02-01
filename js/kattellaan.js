@@ -31,8 +31,6 @@ function open_session(username, password) {
 $('#file-upload').fileUpload({
 	uploadData: { 'call': 'upload' },
 	submitData: { 'call': 'upload' },
-	uploadOptions: { dataType: 'text' },
-	submitOptions: { dataType: 'text' },
 	success: function(data, text_status, jqXHR) { console.log("success: " + data); },
 	error: function(jqXHR, text_status, error_thrown) { console.log("error:" + jqXHR); },
 	complete: function(jqXHR, text_status) { console.log("complete: " + jqXHR); }
