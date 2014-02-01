@@ -115,7 +115,7 @@ $("#invite-form").submit(function(evt) {
 	evt.preventDefault();
 	var form_data = $(this).serialize();
 	if($.cookie("session") != undefined) {
-		form_data.cookie + "&session=" + $.cookie("session");	
+		form_data + "&session=" + $.cookie("session");	
 	}
 	$.ajax({
 		type: $(this).attr('method'),
