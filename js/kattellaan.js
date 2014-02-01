@@ -33,19 +33,16 @@ $("#file-upload").ajaxForm({
 	beforeSend: function() {
 		console.log("Starting upload");
 	},
-	uploadProgress: function(event, position, total, percentComplete) {
+	beforeSubmit: function(formData, jqForm, options) {
+		console.log("About to submit: \r\n" + $.param(formData));
+		return true;
+	},
+	uploadProgress: function(evt, position, total, percentComplete) {
 		
 	},
-	error: function() {
-		console.log("error");
-	},
-	success: function() {
-		console.log("success");
-	},
-	complete: function(response) {
-		console.log("complete");
-		console.log(response.uploaded_files[0]);
-		console.log(response.uploaded_files[1]);
+	success: function(responseText, statusText, xhr, $form) {
+		console.log("status: " + statusText);
+		console.log("response: " + responseText);
 	}
 });
 
