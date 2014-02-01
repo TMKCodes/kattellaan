@@ -57,9 +57,9 @@ $("#file-upload").ajaxForm({
 						rowNumber = i / 4;
 						$("#profile-picture-select").append("<div class=\"row\" id=\"row-" + rowNumber + "\"></div>");
 					}
-					$("#row-" + rowNumber).append("<div class=\"col-xs-6 col-md-3\"><div class=\"thumbnail\" id=\"thumbnail-" + i + "\" style=\"height: 171px; width: 180px;\">" +
+					$("#row-" + rowNumber).append("<div class=\"col-xs-6 col-md-3\"><div class=\"thumbnail\" id=\"thumbnail-" + i + "\">" +
 									"<a href=\"uploads/" + responseText.uploaded_files[i] + "\">" +
-									"<img style=\"heigth: 171px; width: 180px;\" src=\"uploads/" + responseText.uploaded_files[i] + "\" alt=\"" + responseText.uploaded_files[i]+ "\" />" + 
+									"<img style=\"heigth: 180px; width: 171px;\" src=\"uploads/" + responseText.uploaded_files[i] + "\" alt=\"" + responseText.uploaded_files[i]+ "\" />" + 
 									"</a></div></div>");
 				}
 			}
