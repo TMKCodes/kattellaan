@@ -61,8 +61,7 @@ $("#picture-upload-form").submit(function(evt) {
 		cache: false,
 		processData: false
 	}).done(function(data) {
-		var json = $.parseJSON(data);
-		console.log(json);
+		console.log(data);
 	});
 });
 $("#navigation-left > li").click(function(evt) {
