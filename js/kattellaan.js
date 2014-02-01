@@ -59,7 +59,7 @@ $("#file-upload").ajaxForm({
 					}
 					$("#row-" + rowNumber).append("<div class=\"col-xs-6 col-md-3\"><div class=\"thumbnail\" id=\"thumbnail-" + i + "\">" +
 									"<a href=\"uploads/" + responseText.uploaded_files[i] + "\">" +
-									"<img style=\"heigth: 180px; width: 171px;\" src=\"uploads/" + responseText.uploaded_files[i] + "\" alt=\"" + responseText.uploaded_files[i]+ "\" />" + 
+									"<img style=\"heigth: 300px; width: 300px;\" src=\"uploads/" + responseText.uploaded_files[i] + "\" alt=\"" + responseText.uploaded_files[i]+ "\" />" + 
 									"</a></div></div>");
 				}
 			}
