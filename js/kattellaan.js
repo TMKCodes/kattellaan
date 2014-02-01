@@ -41,13 +41,13 @@ $("#file-upload").ajaxForm({
 		$("#bar").width(percentComplete + "%");
 		$("#percent").html(percentComplete + "%");
 		if(percentComplete == 100) {
-			$("#percent").html("Odota kiitos, käsittelemme tiedostoa.");
+			$("#percent").html("Odota.");
 		}
 	},
 	success: function(responseText, statusText, xhr, $form) {
 		if(statusText == "success") {
 			$("#bar").width("100%");
-			$("#percent").html("Lähetetty");
+			$("#percent").html("Lähetetty.");
 			if(responseText.uploaded_files != undefined) {
 				for(var i = 0; i < responseText.uploaded_files.length; i++) {
 					console.log("Uploaded file: " + responseText.uploaded_files[i]);
