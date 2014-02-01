@@ -131,10 +131,10 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				array_push($files, $file_data);
 			}
 			foreach($files as $file) {
-				if(file_exists("../uploads/" . basename($file['name']))) {
+				if(file_exists("/home/temek/kattellaan/uploads/" . basename($file['name']))) {
 					array_push($errors, $file['name']);
 				} else {
-					if(move_uploaded_file($file['tmp_name'], "../uploads/" . basename($file['name'])) == true) {
+					if(move_uploaded_file($file['tmp_name'], "/home/temek/kattellaan/uploads/" . basename($file['name'])) == true) {
 						array_push($errors, $file['name']);
 					} else {
 						array_push($errors, $file['name']);
