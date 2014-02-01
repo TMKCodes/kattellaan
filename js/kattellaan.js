@@ -48,6 +48,23 @@ $("document").ready(function() {
 	
 });
 
+$("#picture-upload-form").submit(function(evt) {
+	evt.preventDefault();
+	var data = new FormData($("#picture-upload-form"));
+	jQuery.each($('#picture-file')[0].files, function(i, file) {
+		data.append('file-'+i, file);
+	}
+	$.ajax({
+		type: $(this).attr("method"),
+		url: $(this).attr("action"),
+		data: data,
+		cache: false,
+		processData: false
+	}).done(function(data) {
+		var json = $.parseJSON(data);
+		console.log(json);
+	});
+});
 $("#navigation-left > li").click(function(evt) {
 	evt.preventDefault();	
 	$("#navigation-left").children().removeClass("active");

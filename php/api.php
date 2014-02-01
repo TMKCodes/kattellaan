@@ -116,6 +116,24 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			header("Location: kattellaan.com", true, "303");
 			die();
 		}
+	} else if(!empty($_GET['upload']) && $_GET['upload'] === "true") {
+		$headers = getallheaders();
+		if(!empty($headers['Content-Type']) && !empty($headers['Content-Length']) 
+			&& !empty($headers['X-File-Size']) && !empty($headers['X-File-Name']) 
+			&& $headers['Content-Type'] == "multipart/form-data" 
+			&& $headers['Content-Length'] == $headers['X-File-Size']) {
+			$file = new stdClass;
+			$file->name = basename($headers['X-File-Name']);
+			$file->size = $headers['X-File-Size'];
+			$file->content = file_get_contents("php://input");
+			if(file_put_contents("./files/". $file->name, $file->content)) {
+				printf('{ "success": true }');
+			} else {
+				printf('{ "success": false, "error": "Failed to write data into file" }');
+			}
+		} else {
+			printf('{ "success": false, "error": "Incorrect headers" }');
+		}
 	}
 }
 
