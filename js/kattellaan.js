@@ -1,3 +1,15 @@
+function get_url_parameter(param) {
+	var url = window.location.search.substring(1);
+	var variables = url.split('&');
+	for(var i = 0; i < variables.length; i++) {
+		var parameter = variables[i].split('=');
+		if(parameter[0] == param) {
+			return parameter[1];
+		}
+	}
+	return undefined;
+}
+
 function open_session(username, password) {
 	$.ajax({
 		url: "php/api.php",
@@ -20,7 +32,11 @@ $("document").ready(function() {
 	$("body > .container").hide();
 	var last_visited_page = $.cookie("last-visited-page");
 	if(last_visited_page === undefined) {
-		$("#home-page").show();
+		if(var page = get_url_parameter("page") != undefined) {
+			$("#" + $page).show();
+		} else 
+			$("#home-page").show();
+		}
 	} else {
 		$(last_visited_page).show();
 	}
