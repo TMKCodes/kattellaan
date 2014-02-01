@@ -117,8 +117,11 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			die();
 		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "upload") {
+		printf("POST: ");
 		print_r($_POST);
+		printf("\r\nGET: ");
 		print_r($_GET);
+		printf("\r\nFILES: ");
 		print_r($_FILES);
 	}
 }
