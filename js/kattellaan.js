@@ -48,69 +48,6 @@ $("document").ready(function() {
 	
 });
 
-var files;
-
-function submit_form(evt, data) {
-	evt.preventDefault();
-	$form = $(evt.target);
-	var formData = $form.serialize();
-	$.each(data.files, function(key, value) {
-		formData = formData + '&filenames[]=' + value;
-	});
-	$.ajax({
-		url: 'php/api.php',
-		type: 'POST',
-		data: formData,
-		cache: false,
-		dataType: 'json',
-		success: function(data, text_status, jqXHR) {
-			if(typeof data.error === 'undefined') {
-				console.log("Success: " + data.success);
-			} else {
-				console.log("Error: " + data.error);
-			}
-		},
-		error: function(jqXHR, text_status, error_thrown) {
-			console.log("Errors: " + text_status);
-		}, 
-		complete: function() {
-			// stop loading spinner
-		}	
-	});
-}
-
-$('input[type=file]').change(function(evt) {
-	files = evt.target.files;
-});
-
-$('#upload-form').submit(function(evt) {
-	evt.preventDefault();
-	var data = new FormData();
-	$.each(files, function(key, value) {
-		data.append(key, value);
-	});
-	
-	$.ajax({
-		url: 'php/api.php',
-		type: 'POST',
-		data: data,
-		cache: false, 
-		dataType: 'json',
-		processData: false,
-		contentType: false,
-		success: function(data, text_status, jqXHR) {
-			if(typeof data.error === 'undefined') {
-				submit_form(evt, data);
-			} else {
-				console.log('Error: ' + data.error);
-			}
-		},
-		error: function(jqXHR, text_status, error_thrown) {
-			console.log('Error: ' + text_status);
-		}
-	});
-});
-
 $("#navigation-left > li").click(function(evt) {
 	evt.preventDefault();	
 	$("#navigation-left").children().removeClass("active");
