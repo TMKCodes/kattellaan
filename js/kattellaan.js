@@ -30,17 +30,18 @@ function open_session(username, password) {
 
 $("document").ready(function() {
 	$("body > .container").hide();
-	var last_visited_page = $.cookie("last-visited-page");
-	if(last_visited_page === undefined) {
-		var page = get_url_parameter("page");
-		if(page != undefined) {
-			$("#" + $page).show();
-		} else { 
+	var page = get_url_parameter("page");
+	if(page != undefined) {
+		$("#" + $page).show();
+	} else { 
+		var last_visited_page = $.cookie("last-visited-page");
+		if(last_visited_page === undefined) {
 			$("#home-page").show();
+		} else {
+			$(last_visited_page).show();
 		}
-	} else {
-		$(last_visited_page).show();
 	}
+	
 });
 
 $("#navigation-left > li").click(function(evt) {
