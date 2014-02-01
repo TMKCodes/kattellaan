@@ -51,6 +51,7 @@ $("document").ready(function() {
 var files;
 
 function submit_form(evt, data) {
+	evt.preventDefault();
 	$form = $(evt.target);
 	var formData = $form.serialize();
 	$.each(data.files, function(key, value) {
