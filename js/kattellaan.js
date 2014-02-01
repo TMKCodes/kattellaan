@@ -124,25 +124,30 @@ $("#invite-form").submit(function(evt) {
 	}).done(function(data) {
 		console.log(data);
 		var result = $.parseJSON(data);
-		var cloneinput = $("#input-friend-addresses").children(":first").clone();
-		$("#input-friend-addresses").children(".form-group").remove();
-		var count = -1;
-		for(var index in result.invite) {
-			if(result.invite[index] != true) {
-				count = count + 1;
-				$("#input-friend-addresses").append(cloneinput);
-				$("#input-friend-addresses").children(":last").children("label").attr("for-friend-address-" + count);
-				$("#input-friend-addresses").children(":last").children("label").html("Tälle ystävälle kutsun lähettäminen epäonnistui.");
-				$("#input-friend-addresses").children(":last").children("label").css("color", "red");
-				$("#input-friend-addresses").children(":last").children("input").attr("id", "input-friend-address-" + count);
-				$("#input-friend-addresses").children(":last").children("input").attr("name", "friend-address-" + count);		
-				$("#input-friend-addresses").children(":last").children("input").val(result.invite[index].address);
+		if(result.success == true) {
+			var cloneinput = $("#input-friend-addresses").children(":first").clone();
+			$("#input-friend-addresses").children(".form-group").remove();
+			var count = -1;
+			for(var index in result.invite) {
+				if(result.invite[index] != true) {
+					count = count + 1;
+					$("#input-friend-addresses").append(cloneinput);
+					$("#input-friend-addresses").children(":last").children("label").attr("for-friend-address-" + count);
+					$("#input-friend-addresses").children(":last").children("label").html("Tälle ystävälle kutsun lähettäminen epäonnistui.");
+					$("#input-friend-addresses").children(":last").children("label").css("color", "red");
+					$("#input-friend-addresses").children(":last").children("input").attr("id", "input-friend-address-" + count);
+					$("#input-friend-addresses").children(":last").children("input").attr("name", "friend-address-" + count);		
+					$("#input-friend-addresses").children(":last").children("input").val(result.invite[index].address);
+				}
 			}
-		}
-		if(count == -1) {
-			//continue
+			if(count == -1) {
+				//continue
+			} else {
+				$("#friend-count").val(count);	
+			}
 		} else {
-			$("#friend-count").val(count);	
+			// failed to confirm session.
+			console.log("Exception happened: " + result.error);
 		}
 	});
 });

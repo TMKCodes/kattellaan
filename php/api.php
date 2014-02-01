@@ -69,23 +69,36 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			printf('{ "success": false, "error": "%s" }', $e->getMessage());
 		}
 	} else if($_GET['call'] == "invite") {
-		var_dump($_GET);
-		$count = 0;
-		$invite = new invite($database);
-		printf('{ "invite": {');
-		while(!empty($_GET['friend-address-' . $count])) {
-			try {
-				$invite->insert($_GET['friend-address-' . $count], 0);
-				printf('"friend-address-%s": true', $count);
-			} catch (Exception $e) {
-				printf('"friend-address-%s": { "address": "%s", "error": "%s" }',  $count, $_GET['friend-address-' . $count],  $e->getMessage());
+		try {
+			$session = new session($database, "sha512");
+			if(!empty($_GET['session'])) {
+				if($session->confirm($_GET['session']) == true) {
+					$identifier = $session->get_identifier($_GET['session']);
+					$count = 0;
+					$invite = new invite($database);
+					printf('{ "success" = true, "invite": {');
+					while(!empty($_GET['friend-address-' . $count])) {
+						try {
+							$invite->insert($_GET['friend-address-' . $count], $identifier);
+							printf('"friend-address-%s": true', $count);
+						} catch (Exception $e) {
+							printf('"friend-address-%s": { "address": "%s", "error": "%s" }',  $count, $_GET['friend-address-' . $count],  $e->getMessage());
+						}
+						$count++;
+						if(!empty($_GET['friend-address-' . $count])) {
+							printf(", ");
+						}
+					}
+					printf('}}');
+				} else {
+					printf('{ "success": false, "error": "failed to confirm session" }');
+				}
+			} else {
+				printf('{ "success": false, "error": "session data was empty." }');
 			}
-			$count++;
-			if(!empty($_GET['friend-address-' . $count])) {
-				printf(", ");
-			}
+		} catch (Exception $e) {
+			printf('{ "success": false, "error": "%s" }', $e->getMessage());
 		}
-		printf('}}');
 	} else if($_GET['call'] == "delete_invite") {
 		if(!empty($address)) {
 			$invite = new invite($database);

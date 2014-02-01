@@ -34,6 +34,11 @@ class session {
 		return hash($this->session_hash, $client_user_agent . "||" . $client_remote_addr . "||" . $client_forwarded_for); 
 	}
 
+	public function get_identifier($data) {
+		$data = explode("||", $data);
+		return $data[0];
+	}
+
 	public function create_table() {
 		$table_statement = "CREATE TABLE IF NOT EXISTS `session`(" .
 			"id INT NOT NULL AUTO_INCREMENT PRIMARY KEY," .
