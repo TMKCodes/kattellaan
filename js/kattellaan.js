@@ -58,7 +58,7 @@ $("#file-upload").ajaxForm({
 						$("#profile-picture-select").append("<div class=\"row\"><div class=\"thumbnail\" id=\"thumbnail-" + rowNumber + "\"></div></div>");
 					}
 					$("#thumbnail-" + rowNumber).append("<a href=\"uploads/" + responseText.uploaded_files[i] + "\">" +
-									"<img src=\"uploads/" + responseText.uploaded_files[i] + "\" alt=\"" + responseText.uploaded_files[i]+ "\" />" + 
+									"<img style=\"heigth: 171px; width: 180px;\" src=\"uploads/" + responseText.uploaded_files[i] + "\" alt=\"" + responseText.uploaded_files[i]+ "\" />" + 
 									"</a>");
 				}
 			}
