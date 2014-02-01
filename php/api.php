@@ -70,7 +70,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		}
 	} else if($_GET['call'] == "invite") {
 		$count = 0;
-		$invite = new invite($database);
+		$invite = new invite($database, 0);
 		printf('{ "invite": {');
 		while(!empty($_GET['friend-address-' . $count])) {
 			try {

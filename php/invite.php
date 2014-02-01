@@ -12,11 +12,12 @@ class invite {
 				"id INT NOT NULL AUTO_INCREMENT," .
 				"address TEXT NOT NULL," .
 				"count INT NOT NULL," .
+				"a_id INT NOT NULL," .
 				"UNIQUE(address(128))," .
-				"PRIMARY KEY(id));";
+				"PRIMARY KEY(id));" .
+				"FOREIGN KEY(a_id) REFERENCES account(id);";
 		$statement = $this->database->prepare($table_statement);
 		return $statement->execute();
-				
 	}
 
 	private function send($address) {
@@ -40,10 +41,11 @@ class invite {
 		return mail($to, $subject, $message, $headers);
 	}
 
-	public function insert($address) {
-		$statement = $this->database->prepare("INSERT INTO `invite` (`address`, `count`) VALUES (?, ?);");
+	public function insert($address, $requester) {
+		$statement = $this->database->prepare("INSERT INTO `invite` (`address`, `count`, `a_id`) VALUES (?, ?, ?);");
 		$statement->bind("s", $address);
 		$statement->bind("i", 1);
+		$statement->bind("s", $requester);
 		$result = $statement->execute();
 		if($result->success() == true) {
 			return $this->send($address);
