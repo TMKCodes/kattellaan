@@ -117,40 +117,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			die();
 		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "upload") {
-		if(!empty($_FILES['file'])) {
-			$errors = array();
-			$success = array();
-			$files = array();
-			$file_data = $_FILES['file'];
-			if(is_array($file_data['name'])) {
-				for($i = 0; $i < count($file_data['name']); $i++) {
-					$file = array('name' => $file_data['name'][$i], 'tmp_name' => $file_data['tmp_name'][$i]);
-					array_push($files, $file);
-				}
-			} else {
-				array_push($files, $file_data);
-			}
-			foreach($files as $file) {
-				if(file_exists("/home/temek/kattellaan/uploads/" . basename($file['name']))) {
-					array_push($errors, $file['name']);
-				} else {
-					if(move_uploaded_file($file['tmp_name'], "/home/temek/kattellaan/uploads/" . basename($file['name'])) == true) {
-						array_push($success, $file['name']);
-					} else {
-						array_push($errors, $file['name']);
-					}	
-				}
-			}
-			setcookie("file-upload-errors", json_encode($errors));
-			setcookie("file-upload-success", json_encode($success));
-			if(!empty($errors)) {
-				printf('{ "success": false, "error": "%s", "error_files": %s, "success_files": %s }', error_get_last(), json_encode($errors), json_encode($success));
-			} else {
-				printf('{ "success": true, "success_files": %s }', json_encode($success));
-			}
-		} else {
-			printf('{ "success": false, "error": "No files uploaded." }');
-		}
+		printf('{ "post": %s, "file": %s }', json_encode($_POST), json_encode($_FILE));	
 	}
 }
 
