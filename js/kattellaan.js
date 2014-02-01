@@ -112,11 +112,11 @@ $("#unaccept-terms-of-service-button").click(function(evt) {
 });
 
 $("#invite-form").submit(function(evt) {
+	evt.preventDefault();
 	var form_data = $(this).serialize();
 	if($.cookie("session") != undefined) {
-		form_data.cookie = $.cookie("session");	
+		form_data.cookie + "&session=" + $.cookie("session");	
 	}
-	evt.preventDefault();
 	$.ajax({
 		type: $(this).attr('method'),
 		url: $(this).attr('action'),
