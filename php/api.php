@@ -118,6 +118,8 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "upload") {
 		if(!empty($_FILES['file'])) {
+			$errors = array();
+			$success = array();
 			$files = array();
 			$file_data = $_FILES['file'];
 			if(is_array($file_data['name'])) {
@@ -130,14 +132,20 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			}
 			foreach($files as $file) {
 				if(file_exists("/home/temek/kattellaan/uploads/" . basename($file['name']))) {
-					// file already exists
-					header("Location: kattellaan.com/file-upload-already.html", true, "303");
-					die();
+					array_push($errors, $file['name']);
 				} else {
 					move_uploaded_file($files['tmp_name'], "/home/temek/kattellaan/uploads/" . basename($files['name']));
-					header("Location: kattellaan.com/file-upload-success.html", true, "303");
-					die();
+					array_push($success, $file['name']);
 				}
+			}
+			setcookie("file-upload-errors", json_encode($errors));
+			setcookie("file-upload-success", json_encode($success));
+			if(!empty($errors)) {
+				header("Location: kattellaan.com/file-upload-already.html", true, "303");
+				die();
+			} else {
+				header("Location: kattellaan.com/file-upload-success.html", true, "303");
+				die();
 			}
 		} else {
 			header("Location: kattellaan.com/file-upload-failed.html", true, "303");
