@@ -35,7 +35,7 @@ $('#file-upload').fileUpload({
 	before: function() {},
 	beforeSubmit: function() {},
 	success: function(data, text_status, jqXHR) { console.log("success: " + data); },
-	error: function(jqXHR, text_status, error_thrown) { console.log("error:" + jqXHR); }
+	error: function(jqXHR, text_status, error_thrown) { console.log("error:" + jqXHR); },
 	complete: function(jqXHR, text_status) { console.log("complete: " + jqXHR); }
 });
 
