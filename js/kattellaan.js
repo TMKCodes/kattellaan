@@ -55,7 +55,7 @@ $("#file-upload").ajaxForm({
 					console.log("Uploaded file: " + responseText.uploaded_files[i]);
 					if(i % 4 == 0) {
 						rowNumber = i / 4;
-						$("#profile-picture-select").append("<div class=\"row\" id=\"row-" + rowNumber + "><div class=\"col-xs-6 col-md-3\"></div></div>");
+						$("#profile-picture-select").append("<div class=\"row\" id=\"row-" + rowNumber + "\"><div class=\"col-xs-6 col-md-3\"></div></div>");
 					}
 					$("#row-" + rowNumber).children(":first").append("<div class=\"thumbnail\" id=\"thumbnail-" + i + "\" style=\"height: 171px; width: 180px;\">" +
 									"<a href=\"uploads/" + responseText.uploaded_files[i] + "\">" +
