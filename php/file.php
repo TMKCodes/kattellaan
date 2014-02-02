@@ -75,7 +75,7 @@ class file {
 	}
 
 	public function set_owner($owner) {
-
+		$this->owner = $owner;
 	}
 
 	public function create_table() {
