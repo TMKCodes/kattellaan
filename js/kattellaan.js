@@ -48,7 +48,9 @@ $("#file-upload").ajaxForm({
 		if(statusText == "success") {
 			$("#bar").width("100%");
 			$("#percent").html("Lähetetty.");
-			$("#profile-picture-select").append("<h1>Valitse profiili kuvasi.</h1>");
+			if($("#select-picture-header").length == 0) {
+				$("#profile-picture-select").append("<h1 id=\"select-picture-header\">Valitse profiili kuvasi.</h1>");
+			}
 			if(responseText.uploaded_files != undefined) {
 				var rowNumber = 0;
 				var x = 0;
