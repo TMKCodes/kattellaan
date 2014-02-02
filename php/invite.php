@@ -17,7 +17,8 @@ class invite {
 				"PRIMARY KEY(id)," .
 				"FOREIGN KEY(a_id) REFERENCES account(id));";
 		$statement = $this->database->prepare($table_statement);
-		return $statement->execute();
+		$result = $statement->execute();
+		return $result->success();
 	}
 
 	private function send($address) {

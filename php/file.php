@@ -78,6 +78,18 @@ class file {
 
 	}
 
+	public function create_table() {
+		$table_statement = "CREATE IF NOT EXISTS `file` (" .
+					"id INT NOT NULL AUTO_INCREMENT," .
+					"name TEXT NOT NULL," .
+					"owner INT NOT NULL," .
+					"UNIQUE(name(128))," .
+					"PRIMARY KEY(id)," .
+					"FOREIGN KEY (owner) REFERENCES account(id));";
+		$statement = $this->database->prepare($table_statement);
+		$result = $statement->execute();
+		return $result->success();			
+	}
 	private function rename() {
 		$new_name = explode(".", $this->name);
 		$statement = $this->database->prepare("SELECT count(*) AS `total` FROM `file`;");
