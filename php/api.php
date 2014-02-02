@@ -119,14 +119,12 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "upload") {
 		if(!empty($_POST['session'])) {
-			printf("session: %s\r\n", $_POST['session']);
 			$session = new session($database, "sha512");
 			if($session->confirm($_POST['session']) == false) {
 				printf('{ "success": false, "error": "Failed to confirm session" }');
 				die();
 			} 
 			$account_identifier = $session->get_identifier($_POST['session']);
-			printf("account id: %s\r\n", $account_identifier);
 			$uploaded_files = array();
 			$failed_files = array();
 			$upload_directory = "/home/temek/kattellaan/uploads/";
