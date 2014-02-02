@@ -117,24 +117,53 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			die();
 		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "upload") {
-		$uploaded_files = array();
-		$failed_files = array();
-		$upload_directory = "/home/temek/kattellaan/uploads/";
-		if(!empty($_FILES)) {
-			for($i = 0; $i < count($_FILES['file']['name']); $i++) {
-				if(move_uploaded_file($_FILES['file']['tmp_name'][$i], $upload_directory . $_FILES['file']['name'][$i])) {
-					array_push($uploaded_files, $_FILES['file']['name'][$i]);
-				} else {
-					array_push($failed_files, $_FILEs['file']['name'][$i]);
+		if(!empty($_POST['session'])) {
+			$session = new session($database, "sha512");
+			if($session->confirm($_POST['session']) == false) {
+				printf('{ "success": false, "error": "Failed to confirm session" }');
+				die();
+			} 
+			$account_identifier = $session->get_identifier($_POST['session']);
+			$uploaded_files = array();
+			$failed_files = array();
+			$upload_directory = "/home/temek/kattellaan/uploads/";
+			if(!empty($_FILES)) {
+				$file = new file($database, $upload_directory, "uploads/");
+				for($i = 0; $i < count($_FILES['file']['name']); $i++) {
+					$file->set_name(strtolower($_FILES['file']['name'][$i]));
+					$file->set_owner($account_identifier);
+					$dont_save == false;
+					if($type == "picture") {
+						$ex = $file->get_extension();
+						if(!($ex == "jpg" || $ex == "jpeg" || $ex == "gif" || $ex == "png" || $ex == "webp")) {
+							$dont_save == true;
+						}
+					}
+					if($dont_save == false) {
+						if($file->insert() == true) {
+							if(move_uploaded_file($_FILES['file']['tmp_name'][$i], $upload_directory . $file->get_name())) {	
+								array_push($uploaded_files, $file->get_name());
+							} else {
+								$file->delete();
+								array_push($failed_files, $_FILES['file']['name'][$i]);
+							}
+						} else {
+							printf('{ "success": false, "error": "Failed to store filename in database" }');
+						}
+					} else {
+						array_push($failed_files, $_FILES['file']['name'][$i]);
+					}
 				}
-			}
-			if(empty($failed_files)) {
-				printf('{ "success": true, "uploaded_files": %s }', json_encode($uploaded_files));
+				if(empty($failed_files)) {
+					printf('{ "success": true, "uploaded_files": %s }', json_encode($uploaded_files));
+				} else {
+					printf('{ "success": false, "uploaded_files": %s, "failed_files": %s }', json_encode($uploaded_files), json_encode($failed_files));
+				}
 			} else {
-				printf('{ "success": false, "uploaded_files": %s, "failed_files": %s }', json_encode($uploaded_files), json_encode($failed_files));
+				printf('{ "success": false, "error": "no files uploaded" }');
 			}
 		} else {
-			printf('{ "success": false, "error": "no files uploaded" }');
+			printf('{ "success": false, "error": "Not authenticated" }');
 		}	
 	}
 }
