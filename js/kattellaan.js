@@ -63,9 +63,9 @@ $("#file-upload").ajaxForm({
 				}
 				var start = 0;
 				var count = responseText.uploaded_files.length;
-				if(var uploaded_count = $_cookie("pictures-uploaded") != undefined) {
-					start = start + uploaded_count;	
-					count = count + uploaded_count;
+				if($.cookie("pictures-uploaded") != undefined) {
+					start = start + $.cookie("pictures-uploaded");	
+					count = count + $.cookie("pictures-uploaded");
 				} 
 				for(var i = start; i < count; i++) {
 					console.log("Uploaded file: " + responseText.uploaded_files[i]);
