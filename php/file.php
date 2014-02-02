@@ -93,7 +93,7 @@ class file {
 	
 	public function get_extension() {
 		$extension = explode(".", $this->name);
-		return $extension[count($extension)];
+		return $extension[count($extension)-1];
 	}
 	
 	public function select() {
