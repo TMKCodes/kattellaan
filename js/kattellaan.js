@@ -27,7 +27,7 @@ function open_session(username, password) {
 		}
 	});
 }
-
+/*
 $("#file-upload").ajaxForm({
 	dataType: "json",
 	data: { session: $.cookie("session") },
@@ -86,7 +86,7 @@ $("#file-upload").ajaxForm({
 		}	
 	}
 });
-
+*/
 $("document").ready(function() {
 	$("body > .container").hide();
 	var page = get_url_parameter("page");
