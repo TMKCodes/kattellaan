@@ -79,7 +79,7 @@ class file {
 	}
 
 	public function create_table() {
-		$table_statement = "CREATE IF NOT EXISTS `file` (" .
+		$table_statement = "CREATE TABLE IF NOT EXISTS `file` (" .
 					"id INT NOT NULL AUTO_INCREMENT," .
 					"name TEXT NOT NULL," .
 					"owner INT NOT NULL," .
