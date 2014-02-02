@@ -27,6 +27,13 @@ function open_session(username, password) {
 		}
 	});
 }
+
+$("#file-upload").submit(function(evt) {
+	evt.preventDefault();
+	$("#file-upload").append("<input type=\"hidden\" name=\"session\" value=\"" + $.cookie("session") +"\" />");
+	$("#file-upload").submit();
+});
+
 /*
 $("#file-upload").ajaxForm({
 	dataType: "json",
