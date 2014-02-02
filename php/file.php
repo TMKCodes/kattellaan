@@ -96,8 +96,8 @@ class file {
 		$result = $statement->execute();
 		if($result->success() == true) {
 			$files = $result->fetch_object();
-			$new_name[0] == $ne_name[0] . "-" . ($files->total + 1);
-			$this->name = implode(".", $this->name);
+			$new_name[0] == $new_name[0] . "-" . ($files->total + 1);
+			$this->name = implode(".", $new_name);
 		} else {
 			return false;
 		}
