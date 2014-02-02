@@ -111,7 +111,7 @@ $("document").ready(function() {
 			$.cookie("last-visited-page", last_visited_page);
 		}
 	}
-	
+	$.removeCookie("pictures-uploaded");	
 });
 
 $("#navigation-left > li").click(function(evt) {
