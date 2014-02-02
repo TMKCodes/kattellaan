@@ -30,6 +30,7 @@ function open_session(username, password) {
 
 $("#file-upload").ajaxForm({
 	dataType: "json",
+	data: { session: $.cookie("session") }
 	beforeSubmit: function(formData, jqForm, options) {
 		console.log("About to submit: \r\n" + $.param(formData));
 		$("#progress").show();
