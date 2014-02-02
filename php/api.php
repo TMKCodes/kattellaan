@@ -135,8 +135,8 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					$file->set_owner($account_identifier);
 					$dont_save = false;
 					if($_POST['type'] == "picture") {
-						$ex = $file->get_extension();
-						if(!($ex == "jpg" || $ex == "jpeg" || $ex == "gif" || $ex == "png" || $ex == "webp")) {
+						$finfo = new finfo(FILEINFO_MIME_TYPE);
+						if(false === $ext = array_search($finfo->file($_FILES['file']['tmp_name'][$i]), array('jpg' => 'image/jpeg', 'jpeg' => 'image/jpeg', 'png' => 'image/png', 'gif' => 'image/gif'), true)) {
 							$dont_save == true;
 						}
 					}
