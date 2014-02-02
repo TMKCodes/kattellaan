@@ -141,7 +141,7 @@ class file {
 			$this->private = $this->private_path . $this->name;
 			return $result->success();
 		} else {
-			throw new Exception("File name and owner members are not specified");
+			throw new Exception("File name: " . $this->name . " and owner: " . $this->owner . "members are not specified");
 		}
 	}
 	public function delete() {
