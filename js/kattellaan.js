@@ -53,7 +53,7 @@ $("#file-upload").ajaxForm({
 			$("#percent").html("Lähetetty.");
 			if(responseText.uploaded_files != undefined) {
 				if($("#select-picture").length == 0) {
-					$("#profile-picture-select").append("<div id=\"select-picture\"></div>";
+					$("#profile-picture-select").append("<div id=\"select-picture\"></div>");
 				}
 				if($("#select-picture-header").length == 0) {
 					$("#select-picture").append("<h1 id=\"select-picture-header\">Valitse profiili kuvasi.</h1>");
