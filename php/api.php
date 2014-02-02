@@ -133,7 +133,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				for($i = 0; $i < count($_FILES['file']['name']); $i++) {
 					$file->set_name(strtolower($_FILES['file']['name'][$i]));
 					$file->set_owner($account_identifier);
-					$dont_save == false;
+					$dont_save = false;
 					if($type == "picture") {
 						$ex = $file->get_extension();
 						if(!($ex == "jpg" || $ex == "jpeg" || $ex == "gif" || $ex == "png" || $ex == "webp")) {
