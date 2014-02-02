@@ -59,10 +59,16 @@ $("#file-upload").ajaxForm({
 						x++;
 					}
 				}
-				for(var i = 0; i < responseText.uploaded_files.length; i++) {
+				var start = 0;
+				var count = responseText.uploaded_files.length;
+				if(var uploaded_count = $_cookie("pictures-uploaded") != undefined) {
+					start = start + uploaded_count;	
+					count = count + uploaded_count;
+				} 
+				for(var i = start; i < count; i++) {
 					console.log("Uploaded file: " + responseText.uploaded_files[i]);
 					if(i % 4 == 0) {
-						rowNumber = i / 4 + x;
+						rowNumber = i / 4 + (x-1);
 						$("#profile-picture-select").append("<div class=\"row\" id=\"row-" + rowNumber + "\"></div>");
 					}
 					$("#row-" + rowNumber).append("<div class=\"col-xs-6 col-md-3\"><div class=\"thumbnail\" id=\"thumbnail-" + i + "\">" +
@@ -70,6 +76,7 @@ $("#file-upload").ajaxForm({
 									"<div class=\"caption\"><p>" + responseText.uploaded_files[i]+ "</p>" +
 									"<button class=\"btn btn-default\" id=\"select-profile-picture\" value=\"" + responseText.uploaded_files[i] + "\">Valitse tämä</button></div>" +
 									"</div></div>");
+					$.cookie("pictures-uploaded", i);
 				}
 			}
 			if(responseText.failed_files != undefined) {
