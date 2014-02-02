@@ -114,12 +114,16 @@ class file {
 			$statement->bind("s", $this->name);
 			$result = $statement->execute();
 			if($result->success() == true) {
-				$dfile = $result->fetch_object();
-				$this->owner = $dfile->owner;
-				$this->name = $dfile->name;
-				$this->public = $this->public_path . $dfile->name;
-				$this->private = $this->private_path . $dfile->name;
+				if($result->rows() == 1) {
+					$dfile = $result->fetch_object();
+					$this->owner = $dfile->owner;
+					$this->name = $dfile->name;
+					$this->public = $this->public_path . $dfile->name;
+					$this->private = $this->private_path . $dfile->name;
 				return true;
+				} else {
+					return false;
+				}
 			} else {
 				return false;
 			}
