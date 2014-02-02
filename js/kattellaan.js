@@ -28,13 +28,12 @@ function open_session(username, password) {
 	});
 }
 
-$("#file-upload > input[type=submit]").click(function(evt) {
+/*$("#file-upload > input[type=submit]").click(function(evt) {
 	evt.preventDefault();
 	$("#file-upload").append("<input type=\"hidden\" name=\"session\" value=\"" + $.cookie("session") +"\" />");
 	$("#file-upload").submit();
 });
-
-/*
+*/
 $("#file-upload").ajaxForm({
 	dataType: "json",
 	data: { session: $.cookie("session") },
@@ -93,7 +92,7 @@ $("#file-upload").ajaxForm({
 		}	
 	}
 });
-*/
+
 $("document").ready(function() {
 	$("body > .container").hide();
 	var page = get_url_parameter("page");
