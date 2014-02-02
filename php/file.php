@@ -91,7 +91,7 @@ class file {
 		}
 	}
 	
-	private function get_extension() {
+	public function get_extension() {
 		$extension = explode(".", $this->name);
 		return $extension[count($extension)];
 	}
