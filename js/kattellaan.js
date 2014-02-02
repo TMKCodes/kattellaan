@@ -67,7 +67,7 @@ $("#file-upload").ajaxForm({
 					}
 					$("#row-" + rowNumber).append("<div class=\"col-xs-6 col-md-3\"><div class=\"thumbnail\" id=\"thumbnail-" + i + "\">" +
 									"<img style=\"heigth: 300px; width: 300px;\" src=\"uploads/" + responseText.uploaded_files[i] + "\" alt=\"" + responseText.uploaded_files[i]+ "\" />" + 
-									"<div class=\"caption\"><h3>" + responseText.uploaded_files[i]+ "</h3>" +
+									"<div class=\"caption\"><p>" + responseText.uploaded_files[i]+ "</p>" +
 									"<button class=\"btn btn-default\" id=\"select-profile-picture\" value=\"" + responseText.uploaded_files[i] + "\">Valitse tämä</button></div>" +
 									"</div></div>");
 				}
