@@ -35,6 +35,9 @@ $("#file-upload").ajaxForm({
 		$("#progress").show();
 		$("#bar").width("0%");
 		$("#percent").html("0%");
+		if($("#select-picture").length > 0) {
+			$("#select-picture").remove();
+		}
 		return true;
 	},
 	uploadProgress: function(evt, position, total, percentComplete) {
@@ -48,37 +51,26 @@ $("#file-upload").ajaxForm({
 		if(statusText == "success") {
 			$("#bar").width("100%");
 			$("#percent").html("Lähetetty.");
-			if($("#select-picture-header").length == 0) {
-				$("#profile-picture-select").append("<h1 id=\"select-picture-header\">Valitse profiili kuvasi.</h1>");
-			}
 			if(responseText.uploaded_files != undefined) {
-				var rowNumber = 0;
-				var x = 0;
-				while(true) {
-					if($("#profile-picture-select").children("#row-" + x).length == 0) {
-						break;
-					} else {
-						x++;
-					}
+				if($("#select-picture").length == 0) {
+					$("#profile-picture-select").append("<div id=\"select-picture\"></div>";
 				}
-				var start = 0;
+				if($("#select-picture-header").length == 0) {
+					$("#select-picture").append("<h1 id=\"select-picture-header\">Valitse profiili kuvasi.</h1>");
+				}
+				var rowNumber = 0;
 				var count = responseText.uploaded_files.length;
-				if($.cookie("pictures-uploaded") != undefined) {
-					start = start + $.cookie("pictures-uploaded");	
-					count = count + $.cookie("pictures-uploaded");
-				} 
-				for(var i = start; i < count; i++) {
+				for(var i = 0; i < count; i++) {
 					console.log("Uploaded file: " + responseText.uploaded_files[i]);
 					if(i % 4 == 0) {
-						rowNumber = i / 4 + (x-1);
-						$("#profile-picture-select").append("<div class=\"row\" id=\"row-" + rowNumber + "\"></div>");
+						rowNumber = i / 4;
+						$("#select-picture").append("<div class=\"row\" id=\"row-" + rowNumber + "\"></div>");
 					}
 					$("#row-" + rowNumber).append("<div class=\"col-xs-6 col-md-3\"><div class=\"thumbnail\" id=\"thumbnail-" + i + "\">" +
 									"<img style=\"heigth: 300px; width: 300px;\" src=\"uploads/" + responseText.uploaded_files[i] + "\" alt=\"" + responseText.uploaded_files[i]+ "\" />" + 
 									"<div class=\"caption\"><p>" + responseText.uploaded_files[i]+ "</p>" +
 									"<button class=\"btn btn-default\" id=\"select-profile-picture\" value=\"" + responseText.uploaded_files[i] + "\">Valitse tämä</button></div>" +
 									"</div></div>");
-					$.cookie("pictures-uploaded", i+1);
 				}
 			}
 			if(responseText.failed_files != undefined) {
@@ -111,7 +103,6 @@ $("document").ready(function() {
 			$.cookie("last-visited-page", last_visited_page);
 		}
 	}
-	$.removeCookie("pictures-uploaded");	
 });
 
 $("#navigation-left > li").click(function(evt) {
