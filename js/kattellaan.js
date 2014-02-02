@@ -78,7 +78,7 @@ $("#file-upload").ajaxForm({
 									"<div class=\"caption\"><p>" + responseText.uploaded_files[i]+ "</p>" +
 									"<button class=\"btn btn-default\" id=\"select-profile-picture\" value=\"" + responseText.uploaded_files[i] + "\">Valitse tämä</button></div>" +
 									"</div></div>");
-					$.cookie("pictures-uploaded", i);
+					$.cookie("pictures-uploaded", i+1);
 				}
 			}
 			if(responseText.failed_files != undefined) {
