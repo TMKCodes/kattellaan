@@ -82,7 +82,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			} else {
 				printf('{ "success": false, "error": "session data was empty" }');
 			}
-		} catch {
+		} catch (Exception $e) {
 			printf('{ "success": false, "error": "%s" }', $e->getMessage());
 		}
 	} else if(!empty($_GET['call']) && $_GET['call'] == "invite") {
