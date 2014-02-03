@@ -344,7 +344,7 @@ $("#register-select-location-show-on-map").click(function(evt) {
 			var myLatLong = new google.maps.LatLng(json.results.geometry.location.lat, json.results.geometry.location.lng) 
 			var marker = new google.maps.Marker({
 				position: ,
-				map: map,
+				map: window.map,
 			});
 		} else {
 			// display error
