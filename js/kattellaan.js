@@ -306,8 +306,8 @@ function show_register_select_location_page() {
 	$("#register-select-location-page").show()
 	var map_canvas = document.getElementById("google_map_canvas");
 	var map_options = {
-		center: new google.maps.LatLng(61.924109, 61.924109),
-		zoom: 8,
+		center: new google.maps.LatLng(61.4894846, 21.7298981),
+		zoom: 0,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
 	map = new google.maps.Map(map_canvas, map_options);
