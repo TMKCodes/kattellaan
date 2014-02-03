@@ -44,38 +44,38 @@
 	<div class="container" id="register-page" style="display: none;">
 		<h1>Registeröi itsellesi käyttäjätunnus sivustolle.</h1>
 		<form role="form" id="register-form" method="GET" action="php/api.php">
-			<div class="form-group">
-				<label for="input-username">Käyttäjätunnus:</label>
+			<div class="input-group" style="margin-bottom: 5px;">
+				<label class="input-group-addon" for="input-username">Käyttäjätunnus:</label>
 				<input type="text" class="form-control" id="input-username" name="username" placeholder="Syötä haluamasi käyttäjätunnus." />
 			</div>
-			<div id="input-username-empty" style="display: none;">
-				<h2>Sinun tarvitsee syöttää käyttäjätunnus.</h2>
+			<div id="input-username-empty" class="alert alert-danger" style="display: none;">
+				<p>Sinun tarvitsee syöttää käyttäjätunnus.</p>
 			</div>
-			<div class="form-group">
-				<label for="input-address">Sähköposti:</label>
+			<div class="input-group" style="margin-bottom: 5px;">
+				<label class="input-group-addon" for="input-address">Sähköposti:</label>
 				<input type="email" class="form-control" id="input-address" name="address" placeholder="Syötä sähköposti osoitteesi." />
 			</div>
-			<div id="input-address-empty" style="display: none;">
-				<h2>Sinun tarvitsee syöttää sähköposti osoitteesi.</h2>
+			<div id="input-address-empty" class="alert alert-danger" style="display: none;">
+				<p>Sinun tarvitsee syöttää sähköposti osoitteesi.</p>
 			</div>
-			<div class="form-group">
-				<label for="input-password">Salasana:</label>
+			<div class="input-group" style="margin-bottom: 5px;">
+				<label class="input-group-addon" for="input-password">Salasana:</label>
 				<input type="password" class="form-control" id="input-password" name="password" />
 			</div>
-			<div class="form-group">
-				<label for="input-password-confirm">Salasana varmistus:</label>
+			<div class="input-group" style="margin-bottom: 5px;">
+				<label class="input-group-addon" for="input-password-confirm">Salasana varmistus:</label>
 				<input type="password" class="form-control" id="input-password-confirm" name="password-confirm" />
 			</div>
-			<div id="input-password-empty" style="display: none;">
-				<h2>Sinun tarvitsee syöttää salasanasi.</h2>
+			<div id="input-password-empty" class="alert alert-danger" style="display: none;">
+				<p>Sinun tarvitsee syöttää salasanasi.</p>
 			</div>
-			<div id="input-password-mismatch" style="display: none;">
-				<h2>Syöttämäsi salasanat ovet erilaiset. Niiden tarvitsee olla samanlaiset.</h2>
+			<div id="input-password-mismatch" class="alert alert-danger" style="display: none;">
+				<p>Syöttämäsi salasanat ovet erilaiset. Niiden tarvitsee olla samanlaiset.</p>
 			</div>
-			<input type="hidden" name="call" value="register" />
+			<input type="hidden" name="call" value="register" style="margin-right: 5px;"/>
 			<input type="submit" class="btn btn-default" id="join-button" value="Liity jäseneksi" />
-			<div id="registeration-failure" style="display: none;">
-				<h2>Rekisteröinti epännostui. Yritä uudelleen.</h2>
+			<div id="registeration-failure" class="alert alert-danger" style="display: none;">
+				<p>Rekisteröinti epännostui. Yritä uudelleen.</p>
 			</div>
 		</form>
 	</div>
