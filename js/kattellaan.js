@@ -293,7 +293,7 @@ $("#register-select-birthday-done-button").click(function(evt) {
 	console.log($("#select-birthday").val());
 	if(birthday != undefined) {
 		$.cookie("birthday", birthday);
-		$("#body > .container").hide();
+		$("body > .container").hide();
 		show_register_select_location_page();
 	} else {
 		$("#select-birthday-error").show();
