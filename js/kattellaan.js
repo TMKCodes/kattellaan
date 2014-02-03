@@ -308,7 +308,7 @@ function show_register_select_location_page() {
 		center: new google.maps.LatLng(61.924109, 61.924109),
 		zoom: 8,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
-	}
+	};
 	map = new google.maps.Map(map_canvas, map_options);
 }
 
