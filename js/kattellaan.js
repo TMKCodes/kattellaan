@@ -104,26 +104,24 @@ $("document").ready(function() {
 			$.cookie("last-visited-page", last_visited_page);
 		}
 	}
-	while(true) {
-		setTimeout(function() { 
-			if($.cookie("session") != undefined) {
-				$.ajax({
-					url: "php/api.php",
-			                type: "GET",
-                			async: false,
-               				data: { call : 'update_session', session : $.cookie("session") }
-				}).done(function(data) {
-					var result = $.parseJSON(data);
-					if(result.success == true) {
-						$.cookie("session", result.session);
-					} else {
-						console.log(result.error);
-						$.removeCookie("session");
-					}
-				});
-			}
-		}, 15000);
-	}
+	setInterval(function() { 
+		if($.cookie("session") != undefined) {
+			$.ajax({
+				url: "php/api.php",
+				type: "GET",
+				async: false,
+				data: { call : 'update_session', session : $.cookie("session") }
+			}).done(function(data) {
+				var result = $.parseJSON(data);
+				if(result.success == true) {
+					$.cookie("session", result.session);
+				} else {
+					console.log(result.error);
+					$.removeCookie("session");
+				}
+			});
+		}
+	}, 15000);
 });
 
 $("#navigation-left > li").click(function(evt) {
