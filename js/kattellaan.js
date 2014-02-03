@@ -271,7 +271,7 @@ $("#select-gender").change(function(evt) {
 	$("#select-gender-error").hide();
 });
 
-#("#register-select-gender-done-button").click(function(evt) {
+$("#register-select-gender-done-button").click(function(evt) {
 	evt.preventDefault();
 	var gender = $("#select-gender").val();
 	if(gender != undefined) {
