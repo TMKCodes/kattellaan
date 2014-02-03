@@ -77,10 +77,10 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				if($session_key != false) {
 					printf('{ "success": true, "session": "%s" }', $session_key);
 				} else {
-					printf('{ "success": false, "error": "failed to update session" }');
+					printf('{ "success": false, "error": "Failed to update session: %s" }', $session_key);
 				}
 			} else {
-				printf('{ "success": false, "error": "session data was empty" }');
+				printf('{ "success": false, "error": "Session data was empty" }');
 			}
 		} catch (Exception $e) {
 			printf('{ "success": false, "error": "%s" }', $e->getMessage());

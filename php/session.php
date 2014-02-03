@@ -80,9 +80,9 @@ class session {
 			if($this->confirm($data) == true) {
 				$data = explode("||", base64_decode($data));
 				$session_key = $this->generate($this->session_hash, 256);
-				$statement = $this->database->prepare("UPDATE `session` SET `secret` = '?' WHERE `id` = '?' AND `client` = '?';");
+				$statement = $this->database->prepare("UPDATE `session` SET `secret` = ? WHERE `id` = ? AND `client` = ?;");
 				$statement->bind("s", $session_key);
-				$statement->bind("s", $data[0]);
+				$statement->bind("i", $data[0]);
 				$statement->bind("s", $data[2]);
 				$result = $statement->execute();
 				if($result->success() == true) {
