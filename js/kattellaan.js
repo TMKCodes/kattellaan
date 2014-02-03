@@ -335,6 +335,7 @@ $("#register-select-location-show-on-map").click(function(evt) {
 	var municipality = $("#select-municipality").val();
 	var country = $("#select-country").val();
 	var jaddress = street_address.replace(" ", "+") + "+" + municipality.replace(" ", "+") + "+" + country.replace(" ", "+");
+	console.log(jaddress);
 	$.ajax({
 		url: "http://maps.googleapis.com/maps/api/geocode/json",
 		type: "GET",
