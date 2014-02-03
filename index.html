@@ -240,15 +240,15 @@
 			</div>
 			<div class="col-xs-6">
 				<form role="form" id="register-select-location-form" action="php/api.php" method="POST">
-					<div class="input-group">
+					<div class="input-group" style="margin-bottom: 5px;">
 						<label class="input-group-addon" for="select-street-address">Katuosoite:</label>
 						<input type="text" class="form-control" name="select-street-address" id="select-street-address" required="required">
 					</div>
-					<div class="input-group">
+					<div class="input-group" style="margin-bottom: 5px;">
 						<label class="input-group-addon" for="select-municipality">Kunta:</label>
 						<input type="text" class="form-control" name="select-municipality" id="select-municipality" required="required"> 
 					</div>
-					<div class="input-group">
+					<div class="input-group" style="margin-bottom: 5px;">
 						<label class="input-group-addon" for="select-country">Valtio:</label>
 						<input type="text" class="form-control" name="select-country" id="select-country"required="required">
 					</div>
@@ -256,7 +256,7 @@
 					<div id="select-municipality-error" class="alert alert-danger" style="display: none;"><p>Et vielä valinnut kuntaasi.</p></div>
 					<div id="select-country-error" class="alert alert-danger" style="display: none;"><p>Et vielä valinnut maatasi</p></div>
 					<div id="select-location-error" class="alert alert-danger" style="display: none;"><p>Kotiosoitettasi ei tunnistettu</p></div>
-					<button id="register-select-location-show-on-map" class="btn btn-default">Näytä kartalla</button>
+					<button id="register-select-location-show-on-map" class="btn btn-default" style="margin-right: 5px;">Näytä kartalla</button>
 					<input type="submit" class="btn btn-default" id="register-select-location-done-button" value="Jatka" />
 				</form>
 			</div>
