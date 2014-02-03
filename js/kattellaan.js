@@ -290,6 +290,7 @@ $("#select-birthday").change(function(evt) {
 $("#register-select-birthday-done-button").click(function(evt) {
 	evt.preventDefault();
 	var birthday = $("#select-birthday").val();
+	console.log($("#select-birthday").val();
 	if(birthday != undefined) {
 		$.cookie("birthday", birthday);
 		$("#body > .container").hide();
