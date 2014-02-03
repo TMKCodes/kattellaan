@@ -337,13 +337,14 @@ $("#register-select-location-show-on-map").click(function(evt) {
 	var street_address_replaced = street_address.replace(" ", "+");
 	var municipality_replaced = municipality.replace(" ", "+");
 	var country_replaced = country.replace(" ", "+");
-	var jaddress = street_address_replaced + municipality_replaced + country_replaced;
+	var jaddress = street_address_replaced + "+" + municipality_replaced + "+" + country_replaced;
 	console.log(jaddress);
 	$.ajax({
 		url: "http://maps.googleapis.com/maps/api/geocode/json",
 		type: "GET",
 		data: { address : jaddress, sensor: false  }
 	}).done(function(data) {
+		console.log(data);
 		var json = $.parseJSON(data);
 		if(json.status == "OK") {
 			var myLatLong = new google.maps.LatLng(json.results.geometry.location.lat, json.results.geometry.location.lng) 
