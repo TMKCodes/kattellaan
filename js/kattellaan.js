@@ -294,7 +294,7 @@ $("#register-select-birthday-done-button").click(function(evt) {
 	if(birthday != undefined) {
 		$.cookie("birthday", birthday);
 		$("body > .container").hide();
-		show_register_select_location_page();
+		$("#register-select-location-page").show();
 	} else {
 		$("#select-birthday-error").show();
 	}
@@ -302,8 +302,8 @@ $("#register-select-birthday-done-button").click(function(evt) {
 
 var map;
 
-function show_register_select_location_page() {
-	$("#register-select-location-page").show()
+$("#register-select-location-page").change(function(evt) {
+	$.cookie("last-visited-page", "#register-select-location-page");
 	var map_canvas = document.getElementById("google_map_canvas");
 	var map_options = {
 		center: new google.maps.LatLng(61.4894846, 21.7298981),
@@ -311,7 +311,7 @@ function show_register_select_location_page() {
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
 	map = new google.maps.Map(map_canvas, map_options);
-}
+});
 
 $("#select-street-address").change(function(evt) {
 	$("#select-street-address-error").hide();
@@ -328,6 +328,7 @@ $("#select-country").change(function(evt) {
 	$("#select-location-error").hide();
 
 });
+
 
 $("#register-select-location-show-on-map").click(function(evt) {
 	evt.preventDefault();
