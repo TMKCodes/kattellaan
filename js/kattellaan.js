@@ -333,7 +333,7 @@ $("#register-select-location-show-on-map").click(function(evt) {
 	evt.preventDefault();
 	var street_address = $("#select-street-address").val();
 	var municipality = $("#select-municipality").val();
-	var country = $("#select-country");
+	var country = $("#select-country").val();
 	var jaddress = street_address.replace(" ", "+") + "+" + municipality.replace(" ", "+") + "+" + country.replace(" ", "+");
 	$.ajax({
 		url: "http://maps.googleapis.com/maps/api/geocode/json",
