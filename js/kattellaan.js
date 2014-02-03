@@ -299,10 +299,9 @@ $("#register-select-birthday-done-button").click(function(evt) {
 		$("#select-birthday-error").show();
 	}
 });
-
 var map;
 
-$("#register-select-location-page").change(function(evt) {
+$("#register-select-location-page").show().done(function() {
 	$.cookie("last-visited-page", "#register-select-location-page");
 	var map_canvas = document.getElementById("google_map_canvas");
 	var map_options = {
