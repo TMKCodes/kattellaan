@@ -328,8 +328,17 @@ $("#select-country").change(function(evt) {
 
 });
 
+(function ($) {
+	$.each(['show', 'hide'], function (i, ev) {
+		var el = $.fn[ev];
+		$.fn[ev] = function () {
+			this.trigger(ev);
+			return el.apply(this, arguments);
+		};
+	});
+})(jQuery);
 
-$("#register-select-location-show-on-map").click(function(evt) {
+$("#register-select-location-show-on-map").on("show", function(evt) {
 	evt.preventDefault();
 	if(window.map == undefined) {
 		show_register_select_location_page();
