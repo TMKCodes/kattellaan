@@ -144,7 +144,7 @@
 			<p>Käyttöehtoihin ja palvelun tarjoamiseen sovelletaan Suomen lakia. Kaikki käyttöehtoja ja palvelua koskevat riidat käsitellään palvelun tarjoajan valitsemassa käräjäoikeudessa.</p> 
 			<br />
 		</div>
-		<button id="unaccept-terms-of-service-button" class="btn btn-default">En hyväksy</button>
+		<button id="unaccept-terms-of-service-button" class="btn btn-default" style="margin-right: 5px;">En hyväksy</button>
 		<button id="accept-terms-of-service-button" class="btn btn-default">Hyväksy</button>
 
 	</div>
@@ -170,30 +170,30 @@
 		<form role="form" id="invite-form" method="GET" action="php/api.php">
 			<input type="hidden" name="friend-count" id="friend-count" value="4" />
 			<div id="input-friend-addresses">
-				<div class="form-group">
-					<label for="input-friend-address-0">Ystävän 1 sähköposti osoite:</label>
+				<div class="input-group" style="margin-bottom: 5px;">
+					<label class="input-group-addon"for="input-friend-address-0">Ystävän 1 sähköposti osoite:</label>
 					<input type="email" class="form-control" id="input-friend-address-0" name="friend-address-0" placeholder="Ystäväsi sähköposti osoite." />
 				</div>
-					<div class="form-group">
-					<label for="input-friend-address-1">Ystävän 2 sähköposti osoite:</label>
+				<div class="input-group" style="margin-bottom: 5px;">
+					<label class="input-group-addon" for="input-friend-address-1">Ystävän 2 sähköposti osoite:</label>
 					<input type="email" class="form-control" id="input-friend-address-1" name="friend-address-1" placeholder="Ystäväsi sähköposti osoite." />
 				</div>
-				<div class="form-group">
-					<label for="input-friend-address-2">Ystävän 3 sähköposti osoite:</label>
+				<div class="input-group" style="margin-bottom: 5px;">
+					<label class="input-group-addon" for="input-friend-address-2">Ystävän 3 sähköposti osoite:</label>
 					<input type="email" class="form-control" id="input-friend-address-2" name="friend-address-2" placeholder="Ystäväsi sähköposti osoite." />
 				</div>
-				<div class="form-group">
-					<label for="input-friend-address-3">Ystävän 4 sähköposti osoite:</label>
+				<div class="input-group" style="margin-bottom: 5px;">
+					<label class="input-group-addon" for="input-friend-address-3">Ystävän 4 sähköposti osoite:</label>
 					<input type="email" class="form-control" id="input-friend-address-3" name="friend-address-3" placeholder="Ystäväsi sähköposti osoite." />
 				</div>
-				<div class="form-group">
-					<label for="input-friend-address-4">Ystävän 5 sähköposti osoite:</label>
+				<div class="input-group" style="margin-bottom: 5px;">
+					<label class="input-group-addon" for="input-friend-address-4">Ystävän 5 sähköposti osoite:</label>
 					<input type="email" class="form-control" id="input-friend-address-4" name="friend-address-4" placeholder="Ystäväsi sähköposti osoite." />
 				</div>
 			</div>
 			<input type="hidden" name="call" value="invite" />
-			<button id="invite-add-button" class="btn btn-default">Lisää yksi ystävä lisää.</button>
-			<input type="submit" class="btn btn-default" id="invite-button" value="Kutsu ystäväsi" />
+			<button id="invite-add-button" class="btn btn-default" style="margin-right: 5px;">Lisää yksi ystävä lisää.</button>
+			<input type="submit" class="btn btn-default" id="invite-button" value="Kutsu ystäväsi" style="margin-right: 5px;"/>
 			<button id="invite-skip-button" class="btn btn-default">Ohita ystävien kutsuminen.</button>
 			
 		</form>
@@ -203,8 +203,8 @@
 	<div id="register-select-gender-page" class="container" style="display: none;">
 		<h1>Valitse sukupuolesi</h1>
 		<form role="form" id="register-select-gender-form" action="php/api.php" method="POST">
-			<div class="form-group">
-				<label for="select-gender">Sukupuoli:</label>
+			<div class="input-group">
+				<label class="input-group-addon" for="select-gender">Sukupuoli:</label>
 				<select id="select-gender" name="select-gender" required="required">
 					<option value="man">Mies</option>
 					<option value="nainen">Nainen</option>
@@ -222,8 +222,8 @@
 	<div id="register-select-birthday-page" class="container" style="display: none;">
 		<h1>Valitse syntymäpäiväsi</h1>
 		<form role="form" id="register-select-birthday-form" action="php/api.php" method="POST">
-			<div class="form-group">
-				<label for="select-birthday">Syntymäpäivä:</label>
+			<div class="input-group">
+				<label class="input-group-addon" for="select-birthday">Syntymäpäivä:</label>
 				<input type="date" name="select-birthday" id="select-birthday" required="required">
 			</div>
 			<div id="select-birthday-error" class="alert alert-danger" style="display: none;"><p>Et vielä valinnut syntymäpäivääsi.</p></div>

@@ -328,6 +328,9 @@ $("#select-country").change(function(evt) {
 
 });
 
+// DO NOT REMOVE Enables hide and show binding
+// $("element").on("show", someFunc);
+// $("element").on("hide", someFunc);
 (function ($) {
 	$.each(['show', 'hide'], function (i, ev) {
 		var el = $.fn[ev];
