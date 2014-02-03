@@ -233,28 +233,34 @@
 
 	<!-- location selection register page -->
 	<div id="register-select-location-page" class="container" style="display: none;">
+		<div class="row">
 		<h1>Valitse kotiosoitteesi</h1>
-		<div id="google_map_canvas" style="width: 500px; height: 400px;"></div>
-		<form role="form" id="register-select-location-form" action="php/api.php" method="POST">
-			<div class="form-group">
-				<label for="select-street-address">Katuosoite:</label>
-				<input type="text" name="select-street-address" id="select-street-address" required="required">
+			<div class="col-sx-6 col-md-3">
+				<div id="google_map_canvas" style="width: 500px; height: 400px;"></div>
 			</div>
-			<div class="form-group">
-				<label for="select-municipality">Kunta:</label>
-				<input type="text" name="select-municipality" id="select-municipality" required="required"> 
+			<div class="col-sx-6 col-md-3">
+				<form role="form" id="register-select-location-form" action="php/api.php" method="POST">
+					<div class="input-group">
+						<label for="select-street-address">Katuosoite:</label>
+						<input type="text" name="select-street-address" id="select-street-address" required="required">
+					</div>
+					<div class="input-group">
+						<label for="select-municipality">Kunta:</label>
+						<input type="text" name="select-municipality" id="select-municipality" required="required"> 
+					</div>
+					<div class="input-group">
+						<label for="select-country">Valtio:</label>
+						<input type="text" name="select-country" id="select-country"required="required">
+					</div>
+					<div id="select-street-address-error" class="alert alert-danger" style="display: none;"><p>Et vielä valinnut katuosoitettasi.</p></div>
+					<div id="select-municipality-error" class="alert alert-danger" style="display: none;"><p>Et vielä valinnut kuntaasi.</p></div>
+					<div id="select-country-error" class="alert alert-danger" style="display: none;"><p>Et vielä valinnut maatasi</p></div>
+					<div id="select-location-error" class="alert alert-danger" style="display: none;"><p>Kotiosoitettasi ei tunnistettu</p></div>
+					<button id="register-select-location-show-on-map" class="btn btn-default">Näytä kartalla</button>
+					<input type="submit" class="btn btn-default" id="register-select-location-done-button" value="Jatka" />
+				</form>
 			</div>
-			<div class="from-group">
-				<label for="select-country">Valtio:</label>
-				<input type="text" name="select-country" id="select-country"required="required">
-			</div>
-			<div id="select-street-address-error" class="alert alert-danger" style="display: none;"><p>Et vielä valinnut katuosoitettasi.</p></div>
-			<div id="select-municipality-error" class="alert alert-danger" style="display: none;"><p>Et vielä valinnut kuntaasi.</p></div>
-			<div id="select-country-error" class="alert alert-danger" style="display: none;"><p>Et vielä valinnut maatasi</p></div>
-			<div id="select-location-error" class="alert alert-danger" style="display: none;"><p>Kotiosoitettasi ei tunnistettu</p></div>
-			<button id="register-select-location-show-on-map" class="btn btn-default">Näytä kartalla</button>
-			<input type="submit" class="btn btn-default" id="register-select-location-done-button" value="Jatka" />
-		</form>
+		</div>
 	</div>	
 
 	<div id="footer" style="height: 50px">

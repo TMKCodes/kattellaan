@@ -331,6 +331,9 @@ $("#select-country").change(function(evt) {
 
 $("#register-select-location-show-on-map").click(function(evt) {
 	evt.preventDefault();
+	if(window.map == undefined) {
+		show_register_select_location_page();
+	}
 	var street_address = $("#select-street-address").val();
 	var municipality = $("#select-municipality").val();
 	var country = $("#select-country").val();
