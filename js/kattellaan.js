@@ -311,7 +311,6 @@ function show_register_select_location_page() {
 	};
 	map = new google.maps.Map(map_canvas, map_options);
 }
-google.maps.event.addDomListener(window, 'load', show_register_select_location_page);
 
 $("#select-street-address").change(function(evt) {
 	$("#select-street-address-error").hide();
