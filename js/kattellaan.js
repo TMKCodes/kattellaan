@@ -301,7 +301,7 @@ $("#register-select-birthday-done-button").click(function(evt) {
 });
 var map;
 
-$("#register-select-location-page").show().done(function() {
+$("#register-select-location-page").on("show", function() {
 	$.cookie("last-visited-page", "#register-select-location-page");
 	var map_canvas = document.getElementById("google_map_canvas");
 	var map_options = {
@@ -338,7 +338,7 @@ $("#select-country").change(function(evt) {
 	});
 })(jQuery);
 
-$("#register-select-location-show-on-map").on("show", function(evt) {
+$("#register-select-location-show-on-map").click(function(evt) {
 	evt.preventDefault();
 	if(window.map == undefined) {
 		show_register_select_location_page();
