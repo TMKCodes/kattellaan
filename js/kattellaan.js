@@ -267,3 +267,103 @@ $("#invite-add-button").click(function(evt) {
 
 });
 
+$("#select-gender").change(function(evt) {
+	$("#select-gender-error").hide();
+});
+
+#("#register-select-gender-done-button").click(function(evt) {
+	evt.preventDefault();
+	var gender = $("#select-gender").val();
+	if(gender != undefined) {
+		$.cookie("gender", gender);
+		$("body > .container").hide();
+		$("#register-select-birthday-page").show();
+	} else {
+		$("#select-gender-error").show();
+	}
+});
+
+$("#select-birthday").change(function(evt) {
+	$("#select-birthday-error").hide();
+});
+
+$("#register-select-birthday-done-button").click(function(evt) {
+	evt.preventDefault();
+	var birthday = $("#select-birthday").val();
+	if(birthday != undefined) {
+		$.cookie("birthday", birthday);
+		$("#body > .container").hide();
+		show_register_select_location_page();
+	} else {
+		$("#select-birthday-error").show();
+	}
+});
+
+var map;
+
+function show_register_select_location_page() {
+	$("#register-select-location-page").show()
+	var map_canvas = document.getElementById("google_map_canvas");
+	var map_options = {
+		center: new google.maps.LatLng(61.924109, 61.924109),
+		zoom: 8,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	}
+	map = new google.maps.Map(map_canvas, map_options);
+}
+
+$("#select-street-address").change(function(evt) {
+	$("#select-street-address-error").hide();
+	$("#select-location-error").hide();
+});
+
+$("#select-municipality").change(function(evt) {
+	$("#select-municipality-error").hide();
+	$("#select-location-error").hide();
+});
+
+$("#select-country").change(function(evt) {
+	$("#select-country-error").hide();
+	$("#select-location-error").hide();
+
+});
+
+$("#register-select-location-show-on-map").click(function(evt) {
+	evt.preventDefault();
+	var street_address = $("#select-street-address").val();
+	var municipality = $("#select-municipality").val();
+	var country = $("#select-country");
+	var jaddress = street_address.replace(" ", "+") + "+" + municipality.replace(" ", "+") + "+" + country.replace(" ", "+");
+	$.ajax({
+		url: "http://maps.googleapis.com/maps/api/geocode/json",
+		type: "GET",
+		data: { address : jaddress, sensor: false  }
+	}).done(function(data) {
+		var json = $.parseJSON(data);
+		if(json.status == "OK") {
+			var myLatLong = new google.maps.LatLng(json.results.geometry.location.lat, json.results.geometry.location.lng) 
+			var marker = new google.maps.Marker({
+				position: ,
+				map: map,
+			});
+		} else {
+			// display error
+			console.log("failed to query location.");
+		}
+	});	
+});
+
+$("#register-select-location-done-button").click(function(evt) {
+	evt.preventDefault();
+	var street_address = $("#select-street-address").val();
+	var municipality = $("#select-municipality").val();
+	var country = $("#select-country").val();
+	if(street_address == undefined) {
+		$("#select-street-address-error").show();
+	} else if(municipality == undefined) {
+		$("#select-municipality-error").show();
+	} else if(country == undefined) {
+		$("#select-country-error").show();
+	} else {
+	}
+});
