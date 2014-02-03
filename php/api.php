@@ -69,6 +69,22 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		} catch (Exception $e) {
 			printf('{ "success": false, "error": "%s" }', $e->getMessage());
 		}
+	} else if(!empty($_GET['call']) && $_GET['call'] == "update_session") {
+		try {
+			$session = new session($database, "sha512");
+			if(!empty($_GET['session'])) {
+				$session_key = $session->update($_GET['session']);
+				if($session_key != false) {
+					printf('{ "success": true, "session": "%s" }', $session_key);
+				} else {
+					printf('{ "success": false, "error": "failed to update session" }');
+				}
+			} else {
+				printf('{ "success": false, "error": "session data was empty" }');
+			}
+		} catch {
+			printf('{ "success": false, "error": "%s" }', $e->getMessage());
+		}
 	} else if(!empty($_GET['call']) && $_GET['call'] == "invite") {
 		try {
 			$session = new session($database, "sha512");
