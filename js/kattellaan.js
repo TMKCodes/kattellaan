@@ -71,7 +71,7 @@ $("#register-picture-upload-form").ajaxForm({
 						$("#row-" + rowNumber).append("<div class=\"col-xs-6 col-md-3\"><div class=\"thumbnail\" id=\"thumbnail-" + i + "\">" +
 										"<img style=\"heigth: 300px; width: 300px;\" src=\"uploads/" + responseText.uploaded_files[i] + "\" alt=\"" + responseText.uploaded_files[i]+ "\" />" + 
 										"<div class=\"caption\"><p>" + responseText.uploaded_files[i]+ "</p>" +
-										"<button class=\"btn btn-default\" onclick=\"register_select_profile_picture(\"" + responseText.uploaded_files[i] + "\");\">Valitse tämä</button>" +
+										"<button class=\"btn btn-default\" onclick=\"register_select_profile_picture(\"" + responseText.uploaded_files[i] + "\"); return false;\">Valitse tämä</button>" +
 										"</div></div></div>");
 					}
 				}
