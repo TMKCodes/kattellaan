@@ -135,7 +135,7 @@ class file {
 	
 	public function insert() {
 		printf("name: %s, owner: %s\r\n", $this->name, $this->owner);
-		if(!empty($this->name) && !empty($this->owner)) {
+		if(isset($this->name) && isset($this->owner)) {
 			$tfile = new file($this->database, $this->private_path, $this->public_path);
 			$tfile->set_name($this->name);
 			if($tfile->select() == true) {
