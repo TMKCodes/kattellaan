@@ -299,7 +299,7 @@ $("#register-select-birthday-done-button").click(function(evt) {
 		$.cookie("birthday", birthday);
 		$("body > .container").hide();
 		$("#register-select-location-page").show();
-		$.cookie("last-visited-page", "register-select-location-page");
+		$.cookie("last-visited-page", "#register-select-location-page");
 	} else {
 		$("#register-select-birthday-error").show();
 	}
