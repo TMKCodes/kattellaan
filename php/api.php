@@ -147,10 +147,10 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			$failed_files = array();
 			$upload_directory = "/home/temek/kattellaan/uploads/";
 			if(!empty($_FILES)) {
-				$file = new file($database, $upload_directory, "uploads/");
+				$ufile = new file($database, $upload_directory, "uploads/");
 				for($i = 0; $i < count($_FILES['file']['name']); $i++) {
-					$file->set_name(strtolower($_FILES['file']['name'][$i]));
-					$file->set_owner($account_identifier);
+					$ufile->set_name(strtolower($_FILES['file']['name'][$i]));
+					$ufile->set_owner($account_identifier);
 					$dont_save = false;
 					if($_POST['type'] == "picture") {
 						$finfo = new finfo(FILEINFO_MIME_TYPE);
@@ -160,18 +160,20 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					}
 					if($dont_save == false) {
 						try {
-							if($file->insert() == true) {
-								if(move_uploaded_file($_FILES['file']['tmp_name'][$i], $upload_directory . $file->get_name())) {	
-									array_push($uploaded_files, $file->get_name());
+							if($ufile->insert() == true) {
+								if(move_uploaded_file($_FILES['file']['tmp_name'][$i], $upload_directory . $ufile->get_name())) {	
+									array_push($uploaded_files, $ufile->get_name());
 								} else {
 									$file->delete();
 									array_push($failed_files, $_FILES['file']['name'][$i]);
 								}
 							} else {
 								printf('{ "success": false, "error": "Failed to store filename in database" }');
+								die();
 							}
 						} catch (Exception $e) {
 							printf('{ "success": false, "error": "%s" }', $e->getMessage());
+							die();
 						}
 					} else {
 						array_push($failed_files, $_FILES['file']['name'][$i]);
