@@ -104,6 +104,7 @@ $("document").ready(function() {
 			$.cookie("last-visited-page", last_visited_page);
 		}
 	}
+	window.location.href = "http://kattellaan.com/#";
 	setInterval(function() { 
 		if($.cookie("session") != undefined) {
 			$.ajax({
