@@ -159,15 +159,19 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 						}
 					}
 					if($dont_save == false) {
-						if($file->insert() == true) {
-							if(move_uploaded_file($_FILES['file']['tmp_name'][$i], $upload_directory . $file->get_name())) {	
-								array_push($uploaded_files, $file->get_name());
+						try {
+							if($file->insert() == true) {
+								if(move_uploaded_file($_FILES['file']['tmp_name'][$i], $upload_directory . $file->get_name())) {	
+									array_push($uploaded_files, $file->get_name());
+								} else {
+									$file->delete();
+									array_push($failed_files, $_FILES['file']['name'][$i]);
+								}
 							} else {
-								$file->delete();
-								array_push($failed_files, $_FILES['file']['name'][$i]);
+								printf('{ "success": false, "error": "Failed to store filename in database" }');
 							}
-						} else {
-							printf('{ "success": false, "error": "Failed to store filename in database" }');
+						} catch (Exception $e) {
+							printf('{ "success": false, "error": "%s" }', $e->getMessage());
 						}
 					} else {
 						array_push($failed_files, $_FILES['file']['name'][$i]);
