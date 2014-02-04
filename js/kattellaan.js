@@ -28,36 +28,36 @@ function open_session(username, password) {
 	});
 }
 
-$("#file-upload").ajaxForm({
+$("#register-picture-upload-form").ajaxForm({
 	dataType: "json",
 	data: { session: $.cookie("session") },
 	beforeSubmit: function(formData, jqForm, options) {
 		console.log("About to submit: \r\n" + $.param(formData));
-		$("#progress").show();
-		$("#bar").width("0%");
-		$("#percent").html("0%");
-		if($("#select-picture").length > 0) {
-			$("#select-picture").remove();
+		$("#register-picture-upload-progress").show();
+		$("#register-picture-upload-progress-bar").width("0%");
+		$("#register-picture-upload-progress-percent").html("0%");
+		if($("#register-select-picture").length > 0) {
+			$("#register-select-picture").remove();
 		}
 		return true;
 	},
 	uploadProgress: function(evt, position, total, percentComplete) {
-		$("#bar").width(percentComplete + "%");
-		$("#percent").html(percentComplete + "%");
+		$("#register-picture-upload-progress-bar").width(percentComplete + "%");
+		$("#register-picture-upload-progress-percent").html(percentComplete + "%");
 		if(percentComplete == 100) {
-			$("#percent").html("Odota.");
+			$("#register-picture-upload-progress-percent").html("Odota.");
 		}
 	},
 	success: function(responseText, statusText, xhr, $form) {
 		if(statusText == "success") {
-			$("#bar").width("100%");
-			$("#percent").html("Lähetetty.");
+			$("#register-picture-upload-progress-bar").width("100%");
+			$("#register-picture-upload-progress-percent").html("Lähetetty.");
 			if(responseText.uploaded_files != undefined) {
-				if($("#select-picture").length == 0) {
-					$("#profile-picture-select").append("<div id=\"select-picture\"></div>");
+				if($("#register-select-picture").length == 0) {
+					$("#register-select-profile-picture-page").append("<div id=\"register-select-picture\"></div>");
 				}
-				if($("#select-picture-header").length == 0) {
-					$("#select-picture").append("<h1 id=\"select-picture-header\">Valitse profiili kuvasi.</h1>");
+				if($("#register-select-picture-header").length == 0) {
+					$("#register-select-picture").append("<h1 id=\"register-select-picture-header\">Valitse profiili kuvasi.</h1>");
 				}
 				var rowNumber = 0;
 				var count = responseText.uploaded_files.length;
@@ -65,12 +65,13 @@ $("#file-upload").ajaxForm({
 					console.log("Uploaded file: " + responseText.uploaded_files[i]);
 					if(i % 4 == 0) {
 						rowNumber = i / 4;
-						$("#select-picture").append("<div class=\"row\" id=\"row-" + rowNumber + "\"></div>");
+						$("#register-select-picture").append("<div class=\"row\" id=\"row-" + rowNumber + "\"></div>");
 					}
 					$("#row-" + rowNumber).append("<div class=\"col-xs-6 col-md-3\"><div class=\"thumbnail\" id=\"thumbnail-" + i + "\">" +
 									"<img style=\"heigth: 300px; width: 300px;\" src=\"uploads/" + responseText.uploaded_files[i] + "\" alt=\"" + responseText.uploaded_files[i]+ "\" />" + 
 									"<div class=\"caption\"><p>" + responseText.uploaded_files[i]+ "</p>" +
-									"<button class=\"btn btn-default\" id=\"select-profile-picture\" value=\"" + responseText.uploaded_files[i] + "\">Valitse tämä</button></div>" +
+									"<button class=\"btn btn-default\" class=\"register-select-profile-picture-button\" name=\"picture\" value=\"" + responseText.uploaded_files[i] + "\">" + 
+									"Valitse tämä</button></div>" +
 									"</div></div>");
 				}
 			}
@@ -80,11 +81,16 @@ $("#file-upload").ajaxForm({
 				}
 			}
 		} else {
-			$("#bar").width("0%");
-			$("#percent").html("0%");
+			$("#register-picture-upload-progress-bar").width("0%");
+			$("#register-picture-upload-progress-percent").html("0%");
 			console.log("Uploading failed.");
 		}	
 	}
+});
+
+$(".register-select-profile-picture-button").click(function(evt) {
+	evt.preventDefault();
+	console.log($(this).val());
 });
 
 $("document").ready(function() {
@@ -392,6 +398,24 @@ $("#register-select-location-done-button").click(function(evt) {
 	} else if(country == undefined) {
 		$("#register-select-country-error").show();
 	} else {
-
+		var street_address_replaced = street_address.replace(" ", "+");
+		var municipality_replaced = municipality.replace(" ", "+");
+		var country_replaced = country.replace(" ", "+");
+		var jaddress = street_address_replaced + "+" + municipality_replaced + "+" + country_replaced;
+		$.cookie("address", jaddress);
+		$.ajax({
+			url: "http://maps.googleapis.com/maps/api/geocode/json",
+			type: "GET",
+			data: { address : jaddress, sensor: false  }	
+		}.done(function(data) {
+			if(data.status == "OK") {
+				var myLatLong = new google.maps.LatLng(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng)
+				$.cookie("latlng", myLatLong);
+				$("#register-select-profile-picture-page").show();
+				$.cookie("last-visited-page", "#register-select-profile-picture-page");
+			} else {
+				console.log("Failed to retrieve address location");
+			}
+		});
 	}
 });
