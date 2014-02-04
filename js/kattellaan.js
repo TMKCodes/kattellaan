@@ -407,7 +407,7 @@ $("#register-select-location-done-button").click(function(evt) {
 			url: "http://maps.googleapis.com/maps/api/geocode/json",
 			type: "GET",
 			data: { address : jaddress, sensor: false  }	
-		}.done(function(data) {
+		}).done(function(data) {
 			if(data.status == "OK") {
 				var myLatLong = new google.maps.LatLng(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng)
 				$.cookie("latlng", myLatLong);
