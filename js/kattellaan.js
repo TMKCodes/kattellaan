@@ -39,6 +39,9 @@ $("#register-picture-upload-form").ajaxForm({
 		if($("#register-select-picture").length > 0) {
 			$("#register-select-picture").remove();
 		}
+		if($("#register-select-profile-picture-success-alert").length > 0) {
+			$("#register-select-profile-picture-success-alert").remove();
+		}
 		return true;
 	},
 	uploadProgress: function(evt, position, total, percentComplete) {
@@ -96,7 +99,7 @@ $("#register-picture-upload-form").ajaxForm({
 function register_select_profile_picture(picture) {
 	$.cookie("picture", picture);
 	if($("#register-select-profile-picture-name").length == 0) {
-		$("#register-select-profile-picture-page").append("<div class\"row\"><div class=\"alert alert-success\" id=\"register-select-profile-picture-name\"><p>Valitsit " + picture + " profiili kuvaksesi.</p></div></div>");
+		$("#register-select-profile-picture-page").append("<div class\"row\" id=\"register-select-profile-picture-success-alert\"><div class=\"alert alert-success\" id=\"register-select-profile-picture-name\"><p>Valitsit " + picture + " profiili kuvaksesi.</p></div></div>");
 	} else {
 		$("#register-select-profile-picture-name").html("<p>Valitsit " + picture + " profiili kuvaksesi.</p>");
 	}
