@@ -220,11 +220,11 @@ $("#register-invite-form").submit(function(evt) {
 		if(result.success == true) {
 			var cloneinput = $("#register-invite-friend-addresses").children(":first").clone();
 			$("#register-invite-friend-addresses").children(".input-group").remove();
-			var count = -1;
+			var count = 0;
 			for(var index in result.invite) {
 				console.log(result.invite[index]);
 				if(result.invite[index] != true) {
-					count = count + 1;
+					console.log(count);	
 					$("#register-invite-friend-addresses").append(cloneinput);
 					$("#register-invite-friend-addresses").children(":last").children("label").attr("for", "register-invite-friend-address-input-" + count);
 					$("#register-invite-friend-addresses").children(":last").children("label").html("Tälle ystävälle kutsun lähettäminen epäonnistui.");
@@ -233,9 +233,10 @@ $("#register-invite-form").submit(function(evt) {
 					$("#register-invite-friend-addresses").children(":last").children("input").attr("name", "friend-address-" + count);		
 					$("#register-invite-friend-addresses").children(":last").children("input").val(result.invite[index].address);
 					cloneinput = $("#register-invite-friennd-addresses").children(":last").clone();
+					count = count + 1;
 				}
 			}
-			if(count == -1) {
+			if(count == 0) {
 				//continue
 			} else {
 				$("#register-invite-friend-count").val(count);	
