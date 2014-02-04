@@ -139,10 +139,10 @@ class file {
 			$tfile->set_name($this->name);
 			if($tfile->select() == true) {
 				if($this->rename() == false) {
-					printf("renamed: %s\r\n", $this->name);
 					return false;
 				}		
-			} 
+			}
+			printf("name: %s, owner: %s\r\n", $this->name, $this->owner); 
 			$statement = $this->database->prepare("INSERT INTO `file` (`owner`, `name`) VALUES (?, ?);");
 			$statement->bind("i", $this->owner);
 			$statement->bind("s", $this->name);

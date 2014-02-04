@@ -159,8 +159,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 						}
 					}
 					if($dont_save == false) {
-						try {
-							if($ufile->insert() == true) {
+						try { if($ufile->insert() == true) {
 								if(move_uploaded_file($_FILES['file']['tmp_name'][$i], $upload_directory . $ufile->get_name())) {	
 									array_push($uploaded_files, $ufile->get_name());
 								} else {
