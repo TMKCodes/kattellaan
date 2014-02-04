@@ -95,10 +95,10 @@ $("#register-picture-upload-form").ajaxForm({
 
 function register_select_profile_picture(picture) {
 	$.cookie("picture", picture);
-	$("#register-select-picture").append("<div class=\"row\"\"><button class=\"btn btn-default\" id=\"register-select-profile-picture-done-button>Jatka</button></div>");
+	$("#register-select-profile-picture-page").append("<div class=\"row\"\"><button class=\"btn btn-default\" id=\"register-select-profile-picture-done-button>Jatka</button></div>");
 }
 
-$("#register-select-profile-picture-done-buttin").click(function(evt) {
+$("#register-select-profile-picture-done-button").click(function(evt) {
 	evt.preventDefault();
 });
 
