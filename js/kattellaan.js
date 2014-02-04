@@ -95,7 +95,7 @@ $("#register-picture-upload-form").ajaxForm({
 	}
 });
 
-$(".register-select-profile-picture-button").submit(function(evt) {
+$(".register-select-profile-picture-form").submit(function(evt) {
 	evt.preventDefault();
 	console.log($("#register-select-profile-picture-input").val());
 });
