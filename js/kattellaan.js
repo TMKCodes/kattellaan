@@ -204,7 +204,7 @@ $("#register-terms-of-service-stop-button").click(function(evt) {
 	$.cookie("last-visited-page", "#home-page");
 });
 
-$("#invite-form").submit(function(evt) {
+$("#register-invite-form").submit(function(evt) {
 	evt.preventDefault();
 	var form_data = $(this).serialize();
 	if($.cookie("session") != undefined) {
@@ -218,25 +218,25 @@ $("#invite-form").submit(function(evt) {
 		console.log(data);
 		var result = $.parseJSON(data);
 		if(result.success == true) {
-			var cloneinput = $("#input-friend-addresses").children(":first").clone();
-			$("#input-friend-addresses").children(".form-group").remove();
+			var cloneinput = $("#register-invite-friend-addresses").children(":first").clone();
+			$("#register-invite-friend-addresses").children(".form-group").remove();
 			var count = -1;
 			for(var index in result.invite) {
 				if(result.invite[index] != true) {
 					count = count + 1;
-					$("#input-friend-addresses").append(cloneinput);
-					$("#input-friend-addresses").children(":last").children("label").attr("for-friend-address-" + count);
-					$("#input-friend-addresses").children(":last").children("label").html("Tälle ystävälle kutsun lähettäminen epäonnistui.");
-					$("#input-friend-addresses").children(":last").children("label").css("color", "red");
-					$("#input-friend-addresses").children(":last").children("input").attr("id", "input-friend-address-" + count);
-					$("#input-friend-addresses").children(":last").children("input").attr("name", "friend-address-" + count);		
-					$("#input-friend-addresses").children(":last").children("input").val(result.invite[index].address);
+					$("#register-invite-friend-addresses").append(cloneinput);
+					$("#register-invite-friend-addresses").children(":last").children("label").attr("for", "register-invite-friend-address-input-" + count);
+					$("#register-invite-friend-addresses").children(":last").children("label").html("Tälle ystävälle kutsun lähettäminen epäonnistui.");
+					$("#register-invite-friend-addresses").children(":last").children("label").css("color", "red");
+					$("#register-invite-friend-addresses").children(":last").children("input").attr("id", "register-invite-friend-address-input-" + count);
+					$("#register-invite-friend-addresses").children(":last").children("input").attr("name", "friend-address-" + count);		
+					$("#register-invite-friend-addresses").children(":last").children("input").val(result.invite[index].address);
 				}
 			}
 			if(count == -1) {
 				//continue
 			} else {
-				$("#friend-count").val(count);	
+				$("#register-invite-friend-count").val(count);	
 			}
 		} else {
 			// failed to confirm session.

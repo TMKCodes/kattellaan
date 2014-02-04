@@ -170,36 +170,36 @@
 	</div>
 
 	<!-- invite page html code-->
-	<div id="invite-page" class="container" style="display: none;">
+	<div id="register-invite-page" class="container" style="display: none;">
 		<h1>Voit kutsua myös ystäviäsi liittymään seuraamme.</h1>
-		<form role="form" id="invite-form" method="GET" action="php/api.php">
-			<input type="hidden" name="friend-count" id="friend-count" value="4" />
-			<div id="input-friend-addresses">
+		<form role="form" id="register-invite-form" method="GET" action="php/api.php">
+			<input type="hidden" name="friend-count" id="register-invite-friend-count" value="4" />
+			<div id="register-invite-friend-addresses">
 				<div class="input-group" style="margin-bottom: 5px;">
-					<label class="input-group-addon"for="input-friend-address-0">Ystävän 1 sähköposti osoite:</label>
-					<input type="email" class="form-control" id="input-friend-address-0" name="friend-address-0" placeholder="Ystäväsi sähköposti osoite." />
+					<label class="input-group-addon"for="register-invite-friend-address-input-0">Ystävän 1 sähköposti osoite:</label>
+					<input type="email" class="form-control" id="register-invite-friend-address-input-0" name="friend-address-0" placeholder="Ystäväsi sähköposti osoite." />
 				</div>
 				<div class="input-group" style="margin-bottom: 5px;">
-					<label class="input-group-addon" for="input-friend-address-1">Ystävän 2 sähköposti osoite:</label>
-					<input type="email" class="form-control" id="input-friend-address-1" name="friend-address-1" placeholder="Ystäväsi sähköposti osoite." />
+					<label class="input-group-addon" for="register-invite-friend-address-input-1">Ystävän 2 sähköposti osoite:</label>
+					<input type="email" class="form-control" id="register-invite-friend-address-input-1" name="friend-address-1" placeholder="Ystäväsi sähköposti osoite." />
 				</div>
 				<div class="input-group" style="margin-bottom: 5px;">
-					<label class="input-group-addon" for="input-friend-address-2">Ystävän 3 sähköposti osoite:</label>
-					<input type="email" class="form-control" id="input-friend-address-2" name="friend-address-2" placeholder="Ystäväsi sähköposti osoite." />
+					<label class="input-group-addon" for="register-invite-friend-address-input-2">Ystävän 3 sähköposti osoite:</label>
+					<input type="email" class="form-control" id="register-invite-friend-address-input-2" name="friend-address-2" placeholder="Ystäväsi sähköposti osoite." />
 				</div>
 				<div class="input-group" style="margin-bottom: 5px;">
-					<label class="input-group-addon" for="input-friend-address-3">Ystävän 4 sähköposti osoite:</label>
-					<input type="email" class="form-control" id="input-friend-address-3" name="friend-address-3" placeholder="Ystäväsi sähköposti osoite." />
+					<label class="input-group-addon" for="register-invite-friend-address-input-3">Ystävän 4 sähköposti osoite:</label>
+					<input type="email" class="form-control" id="register-invite-friend-address-input-3" name="friend-address-3" placeholder="Ystäväsi sähköposti osoite." />
 				</div>
 				<div class="input-group" style="margin-bottom: 5px;">
-					<label class="input-group-addon" for="input-friend-address-4">Ystävän 5 sähköposti osoite:</label>
-					<input type="email" class="form-control" id="input-friend-address-4" name="friend-address-4" placeholder="Ystäväsi sähköposti osoite." />
+					<label class="input-group-addon" for="register-invite-friend-address-input-4">Ystävän 5 sähköposti osoite:</label>
+					<input type="email" class="form-control" id="register-invite-friend-address-input-4" name="friend-address-4" placeholder="Ystäväsi sähköposti osoite." />
 				</div>
 			</div>
 			<input type="hidden" name="call" value="invite" />
-			<button id="invite-add-button" class="btn btn-default" style="margin-right: 5px;">Lisää yksi ystävä lisää.</button>
-			<input type="submit" class="btn btn-default" id="invite-button" value="Kutsu ystäväsi" style="margin-right: 5px;"/>
-			<button id="invite-skip-button" class="btn btn-default">Ohita ystävien kutsuminen.</button>
+			<button id="register-invite-add-button" class="btn btn-default" style="margin-right: 5px;">Lisää yksi ystävä lisää.</button>
+			<input type="submit" class="btn btn-default" id="register-invite-done-button" value="Kutsu ystäväsi" style="margin-right: 5px;"/>
+			<button id="register-inviteinvite-skip-button" class="btn btn-default">Ohita ystävien kutsuminen.</button>
 			
 		</form>
 	</div>
