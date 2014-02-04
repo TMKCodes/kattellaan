@@ -231,6 +231,7 @@ $("#register-invite-form").submit(function(evt) {
 					$("#register-invite-friend-addresses").children(":last").children("input").attr("id", "register-invite-friend-address-input-" + count);
 					$("#register-invite-friend-addresses").children(":last").children("input").attr("name", "friend-address-" + count);		
 					$("#register-invite-friend-addresses").children(":last").children("input").val(result.invite[index].address);
+					cloneinput = $("#register-invite-friennd-addresses").children(":last").clone();
 				}
 			}
 			if(count == -1) {
