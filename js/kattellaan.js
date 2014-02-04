@@ -28,7 +28,7 @@ function open_session(username, password) {
 	});
 }
 
-$("#register-picture-upload-form-disable").ajaxForm({
+$("#register-picture-upload-form").ajaxForm({
 	dataType: "json",
 	data: { session: $.cookie("session") },
 	beforeSubmit: function(formData, jqForm, options) {

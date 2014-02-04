@@ -142,7 +142,6 @@ class file {
 					return false;
 				}		
 			}
-			printf("name: %s, owner: %s\r\n", $this->name, $this->owner); 
 			$statement = $this->database->prepare("INSERT INTO `file` (`owner`, `name`) VALUES (?, ?);");
 			$statement->bind("i", $this->owner);
 			$statement->bind("s", $this->name);
