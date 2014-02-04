@@ -96,7 +96,7 @@ class file {
 		$result = $statement->execute();
 		if($result->success() == true) {
 			$files = $result->fetch_object();
-			$new_name[0] == $new_name[0] . "-" . ($files->total + 1);
+			$new_name[0] = $new_name[0] . "-" . ($files->total + 1);
 			$this->name = implode(".", $new_name);
 			return true;
 		} else {
@@ -141,8 +141,7 @@ class file {
 				if($this->rename() == false) {
 					return false;
 				}		
-			}
-			printf("name: %s, owner: %s\r\n", $this->name, $this->owner); 
+			} 
 			$statement = $this->database->prepare("INSERT INTO `file` (`owner`, `name`) VALUES (?, ?);");
 			$statement->bind("i", $this->owner);
 			$statement->bind("s", $this->name);
