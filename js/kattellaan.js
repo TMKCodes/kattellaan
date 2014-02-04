@@ -71,9 +71,10 @@ $("#register-picture-upload-form").ajaxForm({
 						$("#row-" + rowNumber).append("<div class=\"col-xs-6 col-md-3\"><div class=\"thumbnail\" id=\"thumbnail-" + i + "\">" +
 										"<img style=\"heigth: 300px; width: 300px;\" src=\"uploads/" + responseText.uploaded_files[i] + "\" alt=\"" + responseText.uploaded_files[i]+ "\" />" + 
 										"<div class=\"caption\"><p>" + responseText.uploaded_files[i]+ "</p>" +
-										"<button class=\"btn btn-default\" class=\"register-select-profile-picture-button\" name=\"picture\" value=\"" + responseText.uploaded_files[i] + "\">" + 
-										"Valitse tämä</button></div>" +
-										"</div></div>");
+										"<form class=\"register-select-profile-picture-form\" role=\"form\" method=\"GET\" action=\"php/api.php\">" +
+										"<input type=\"hidden\" id=\"register-select-profile-picture-input\" name=\"picture\" value=\"" + responseText.uploaded_files[i] + "\" />" +
+										"<input type=\"submit\" class=\"btn btn-default\" value=\"Valitse tämä\" />" +
+										"</form></div></div></div>");
 					}
 				}
 				if(responseText.failed_files != undefined) {
@@ -94,9 +95,9 @@ $("#register-picture-upload-form").ajaxForm({
 	}
 });
 
-$(".register-select-profile-picture-button").click(function(evt) {
+$(".register-select-profile-picture-button").submit(function(evt) {
 	evt.preventDefault();
-	console.log($(this).val());
+	console.log($($("#register-select-profile-picture-input").val());
 });
 
 $("document").ready(function() {
