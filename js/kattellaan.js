@@ -224,18 +224,14 @@ $("#register-invite-form").submit(function(evt) {
 			for(var index in result.invite) {
 				console.log(result.invite[index]);
 				if(result.invite[index] != true) {
-					console.log(count);
 					$("#register-invite-friend-addresses").append(cloneinput);
-					console.log(cloneinput);
 					$("#register-invite-friend-addresses").children(":last").children("label").attr("for", "register-invite-friend-address-input-" + count);
 					$("#register-invite-friend-addresses").children(":last").children("label").html("Tälle ystävälle kutsun lähettäminen epäonnistui.");
 					$("#register-invite-friend-addresses").children(":last").children("label").css("color", "red");
 					$("#register-invite-friend-addresses").children(":last").children("input").attr("id", "register-invite-friend-address-input-" + count);
 					$("#register-invite-friend-addresses").children(":last").children("input").attr("name", "friend-address-" + count);		
 					$("#register-invite-friend-addresses").children(":last").children("input").val(result.invite[index].address);
-					console.log(cloneinput);
 					cloneinput = $("#register-invite-friend-addresses").children(":last").clone();
-					console.log(cloneinput);
 					count = count + 1;
 				}
 			}
