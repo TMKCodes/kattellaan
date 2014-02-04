@@ -36,52 +36,55 @@
 			<h1>Tervetuloa treffisivustollemme.</h1>
 			<p>Kattellaan kehitysvaiheessa oleva treffisivusto sinkuille</p>
 			<p>Reksiteröitymällä saat tiedotteita kehityksestä ja voit käyttää sivustoamme samalla kun kehitämme sitä.</p>
-			<button type="button" class="btn btn-default btn-lg" id="terms-of-service-button">Rekisteröidy käyttäjäksi</button>
+			<button type="button" class="btn btn-default btn-lg" id="start-registeration-button">Rekisteröidy käyttäjäksi</button>
 		</div>
 	</div>
 
 	<!-- Register page html code -->
-	<div class="container" id="register-page" style="display: none;">
+	<div class="container" id="register-account-page" style="display: none;">
 		<h1>Registeröi itsellesi käyttäjätunnus sivustolle.</h1>
-		<form role="form" id="register-form" method="GET" action="php/api.php">
+		<form role="form" id="register-account-form" method="GET" action="php/api.php">
 			<div class="input-group" style="margin-bottom: 5px;">
-				<label class="input-group-addon" for="input-username">Käyttäjätunnus:</label>
-				<input type="text" class="form-control" id="input-username" name="username" placeholder="Syötä haluamasi käyttäjätunnus." />
+				<label class="input-group-addon" for="register-account-username-input">Käyttäjätunnus:</label>
+				<input type="text" class="form-control" id="register-account-username-input" name="username" placeholder="Syötä haluamasi käyttäjätunnus." />
 			</div>
-			<div id="input-username-empty" class="alert alert-danger" style="display: none;">
+			<div id="register-account-username-empty-error" class="alert alert-danger" style="display: none;">
 				<p>Sinun tarvitsee syöttää käyttäjätunnus.</p>
 			</div>
 			<div class="input-group" style="margin-bottom: 5px;">
-				<label class="input-group-addon" for="input-address">Sähköposti:</label>
-				<input type="email" class="form-control" id="input-address" name="address" placeholder="Syötä sähköposti osoitteesi." />
+				<label class="input-group-addon" for="register-account-address-input">Sähköposti:</label>
+				<input type="email" class="form-control" id="register-account-address-input" name="address" placeholder="Syötä sähköposti osoitteesi." />
 			</div>
-			<div id="input-address-empty" class="alert alert-danger" style="display: none;">
+			<div id="register-account-address-empty-error" class="alert alert-danger" style="display: none;">
 				<p>Sinun tarvitsee syöttää sähköposti osoitteesi.</p>
 			</div>
 			<div class="input-group" style="margin-bottom: 5px;">
-				<label class="input-group-addon" for="input-password">Salasana:</label>
-				<input type="password" class="form-control" id="input-password" name="password" />
+				<label class="input-group-addon" for="register-account-password-input">Salasana:</label>
+				<input type="password" class="form-control" id="register-account-password-input" name="password" />
 			</div>
 			<div class="input-group" style="margin-bottom: 5px;">
-				<label class="input-group-addon" for="input-password-confirm">Salasana varmistus:</label>
-				<input type="password" class="form-control" id="input-password-confirm" name="password-confirm" />
+				<label class="input-group-addon" for="register-account-password-confirm-input">Salasana varmistus:</label>
+				<input type="password" class="form-control" id="register-account-password-confirm-input" name="password-confirm" />
 			</div>
-			<div id="input-password-empty" class="alert alert-danger" style="display: none;">
+			<div id="register-account-password-empty-error" class="alert alert-danger" style="display: none;">
 				<p>Sinun tarvitsee syöttää salasanasi.</p>
 			</div>
-			<div id="input-password-mismatch" class="alert alert-danger" style="display: none;">
+			<div id="register-account-password-mismatch-error" class="alert alert-danger" style="display: none;">
 				<p>Syöttämäsi salasanat ovet erilaiset. Niiden tarvitsee olla samanlaiset.</p>
 			</div>
 			<input type="hidden" name="call" value="register" style="margin-right: 5px;"/>
-			<input type="submit" class="btn btn-default" id="join-button" value="Liity jäseneksi" />
-			<div id="registeration-failure" class="alert alert-danger" style="display: none;">
+			<input type="submit" class="btn btn-default" id="register-account-done-button" value="Liity jäseneksi" />
+			<div id="register-account-failure-error" class="alert alert-danger" style="display: none;">
 				<p>Rekisteröinti epännostui. Yritä uudelleen.</p>
+			</div>
+			<div id="register-account-first-login-error" class="alert alert-danger" style="display: none;">
+				<p>Jokin meni pieleen rekisteröinnissä, ensimmäisen istunnon aloittaminen epäonnistui.</p>
 			</div>
 		</form>
 	</div>
 
 	<!-- terms of servcice page html code -->
-	<div id="terms-of-service-page" class="container" style="display: none;">
+	<div id="register-terms-of-service-page" class="container" style="display: none;">
 		<div class="jumpotron">
 			<h1>Kattellaan palvelun käyttöehdot:</h1>
 			<!-- TODO: write the Terms of Service -->
@@ -144,8 +147,8 @@
 			<p>Käyttöehtoihin ja palvelun tarjoamiseen sovelletaan Suomen lakia. Kaikki käyttöehtoja ja palvelua koskevat riidat käsitellään palvelun tarjoajan valitsemassa käräjäoikeudessa.</p> 
 			<br />
 		</div>
-		<button id="unaccept-terms-of-service-button" class="btn btn-default" style="margin-right: 5px;">En hyväksy</button>
-		<button id="accept-terms-of-service-button" class="btn btn-default">Hyväksy</button>
+		<button id="register-terms-of-service-stop-button" class="btn btn-default" style="margin-right: 5px;">En hyväksy</button>
+		<button id="register-terms-of-service-continue-button" class="btn btn-default">Hyväksy</button>
 
 	</div>
 

@@ -137,38 +137,31 @@ $("#home-button").click(function(evt) {
 	$.cookie("last-visited-page", "#home-page");
 });
 
-$("#first-link").click(function(evt) {
+$("#start-registeration-button").click(function(evt) {
 	evt.preventDefault();
 	$("body > .container").hide();
-	$("#invite-page").show();
-	$.cookie("last-visited-page", "#invite-page");
+	$("#register-terms-of-service-page").show();
+	$.cookie("last-visited-page", "#register-terms-of-service-page");
 });
 
-$("#terms-of-service-button").click(function(evt) {
+$("#register-account-form").submit(function(evt) {
 	evt.preventDefault();
-	$("body > .container").hide();
-	$("#terms-of-service-page").show();
-	$.cookie("last-visited-page", "#terms-of-service-page");
-});
-
-$("#register-form").submit(function(evt) {
-	evt.preventDefault();
-	$("#input-username-empty").hide();
-	$("#input-address-empty").hide();
-	$("#input-password-empty").hide();
-	$("#input-password-mismatch").hide();
-	$("#registeration-failure").hide();
-	if($("#input-username").val().length <= 0) {
-		$("#input-username-empty").show();
-	} else if($("#input-address").val().length <= 0) {
-		$("#input-address-empty").show();
-	} else if($("#input-password").val().length <= 0) {
-		$("#input-password-empty").show();
-	} else if($("#input-password-confirm").val().length <= 0) {
-		$("#input-password-empty").show();
-	} else if($("#input-password").val() != $("#input-password-confirm").val()) {
-		console.log($("#input-password").val() + " != " + $("#input-password-confirm").val());
-		$("#input-password-mismatch").show();
+	$("#register-account-username-empty-error").hide();
+	$("#register-account-address-empty-error").hide();
+	$("#register-account-password-empty-error").hide();
+	$("#register-account-password-mismatch-error").hide();
+	$("#register-account-failure-error").hide();
+	if($("#register-account-username-input").val().length <= 0) {
+		$("#register-account-username-empty-error").show();
+	} else if($("#register-account-address-input").val().length <= 0) {
+		$("#register-account-address-empty-error").show();
+	} else if($("#register-account-password-input").val().length <= 0) {
+		$("#register-account-password-empty-error").show();
+	} else if($("#register-account-password-confirm-input").val().length <= 0) {
+		$("#register-account-password-empty-error").show();
+	} else if($("#register-account-password-input").val() != $("#register-account-password-confirm-input").val()) {
+		console.log($("#register-account-password-input").val() + " != " + $("#register-account-password-confirm-input").val());
+		$("#register-account-password-mismatch-error").show();
 	} else {
 		console.log("method: " + $(this).attr('method'));
 		console.log("action: " + $(this).attr('action'));
@@ -182,28 +175,28 @@ $("#register-form").submit(function(evt) {
 				open_session(result.account.username, result.account.password);
 				if($.cookie("session") != undefined) {
 					$("body > .container").hide();
-					$("#invite-page").show();
+					$("#register-invite-page").show();
 				} else {
 					console.log("Failed to authenticate.");
-					$("#login-failure").show();
+					$("#register-account-first-login-error").show();
 				}
 			} else {
-				$("#registeration-failure").show();
+				$("#register-account-failure-error").show();
 			}
 		});
 		
 	}
 });
 
-$("#accept-terms-of-service-button").click(function(evt) {
+$("#register-terms-of-service-continue-button").click(function(evt) {
 	evt.preventDefault();
 	// TODO: add this information to database for the user.
 	$("body > .container").hide();
-	$("#register-page").show();
-	$.cookie("last-visited-page", "#home-page");
+	$("#register-account-page").show();
+	$.cookie("last-visited-page", "#register-account-page");
 });
 
-$("#unaccept-terms-of-service-button").click(function(evt) {
+$("#register-terms-of-service-stop-button").click(function(evt) {
 	evt.preventDefault();
 	// TODO: add this nasty informatio to database for the user.
 	$("body > .container").hide();
