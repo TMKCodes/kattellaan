@@ -121,7 +121,7 @@ class file {
 					$this->name = $dfile->name;
 					$this->public = $this->public_path . $dfile->name;
 					$this->private = $this->private_path . $dfile->name;
-				return true;
+					return true;
 				} else {
 					return false;
 				}
@@ -135,7 +135,9 @@ class file {
 	
 	public function insert() {
 		if(!empty($this->name) && !empty($this->owner)) {
-			if($this->select() == true) {
+			$tfile = new file($this->database, $this->private_path, $this->public_path);
+			$tfile->set_name($this->name);
+			if($tfile->select() == true) {
 				if($this->rename() == false) {
 					return false;
 				}		
