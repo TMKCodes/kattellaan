@@ -142,7 +142,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			} 
 			$account_identifier = $session->get_identifier($_POST['session']);
 			*/
-			$account_identifier = 0;
+			$account_identifier = 48;
 			$uploaded_files = array();
 			$failed_files = array();
 			$upload_directory = "/home/temek/kattellaan/uploads/";
