@@ -95,7 +95,14 @@ $("#register-picture-upload-form").ajaxForm({
 
 function register_select_profile_picture(picture) {
 	$.cookie("picture", picture);
-	$("#register-select-profile-picture-page").append("<div class=\"row\"><button class=\"btn btn-default\" id=\"register-select-profile-picture-done-button\">Jatka</button></div>");
+	if($("#register-select-profile-picture-name").length == 0) {
+		$("#register-select-profile-picture-page").append("<div class\"row\"><div class=\"alert alert-success\" id=\"register-select-profile-picture-name\"><p>Valitsit " + picture + " profiili kuvaksesi.</p></div></div>");
+	} else {
+		$("#register-select-profile-picture-name").html("<p>Valitsit " + picture + " profiili kuvaksesi.</p>");
+	}
+	if($("#register-select-profile-picture-done-button").length == 0) {
+		$("#register-select-profile-picture-page").append("<div class=\"row\"><button class=\"btn btn-default\" id=\"register-select-profile-picture-done-button\">Jatka</button></div>");
+	}
 }
 
 $("#register-select-profile-picture-done-button").click(function(evt) {
