@@ -411,6 +411,7 @@ $("#register-select-location-done-button").click(function(evt) {
 			if(data.status == "OK") {
 				var myLatLong = new google.maps.LatLng(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng)
 				$.cookie("latlng", myLatLong);
+				$("body > .container").hide();
 				$("#register-select-profile-picture-page").show();
 				$.cookie("last-visited-page", "#register-select-profile-picture-page");
 			} else {
