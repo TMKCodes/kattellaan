@@ -256,6 +256,7 @@ $("#register-invite-add-button").click(function(evt) {
 	$("#register-invite-friend-addresses").append($("#register-invite-friend-addresses").children(":last").clone());
 	$("#register-invite-friend-addresses").children(":last").children("label").attr("for", "register-friend-address-input-" + friends);
 	$("#register-invite-friend-addresses").children(":last").children("label").html("Ystävän " + String(text_friends) + " sähköposti osoite:");
+	$("#register-invite-friend-addresses").children(":last").children("label").css("color", "black");
 	$("#register-invite-friend-addresses").children(":last").children("input").attr("id", "register-friend-address-input-" + friends);
 	$("#register-invite-friend-addresses").children(":last").children("input").attr("name", "friend-address-" + friends);
 	$("#register-invite-friend-count").val(friends);
