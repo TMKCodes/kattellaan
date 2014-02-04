@@ -222,6 +222,7 @@ $("#register-invite-form").submit(function(evt) {
 			$("#register-invite-friend-addresses").children(".input-group").remove();
 			var count = -1;
 			for(var index in result.invite) {
+				console.log(result.invite[index]);
 				if(result.invite[index] != true) {
 					count = count + 1;
 					$("#register-invite-friend-addresses").append(cloneinput);
