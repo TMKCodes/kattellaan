@@ -219,7 +219,7 @@ $("#register-invite-form").submit(function(evt) {
 		var result = $.parseJSON(data);
 		if(result.success == true) {
 			var cloneinput = $("#register-invite-friend-addresses").children(":first").clone();
-			$("#register-invite-friend-addresses").children(".form-group").remove();
+			$("#register-invite-friend-addresses").children(".input-group").remove();
 			var count = -1;
 			for(var index in result.invite) {
 				if(result.invite[index] != true) {
@@ -245,18 +245,18 @@ $("#register-invite-form").submit(function(evt) {
 	});
 });
 
-$("#invite-add-button").click(function(evt) {
+$("#register-invite-add-button").click(function(evt) {
 	evt.preventDefault();
-	$.cookie("last-visited-page", "#invite-page");
-	var friends = parseInt($("#friend-count").val(), 10);
+	$.cookie("last-visited-page", "#register-invite-page");
+	var friends = parseInt($("#register-invite-friend-count").val(), 10);
 	friends = friends + 1;
 	text_friends = friends + 1;	
-	$("#input-friend-addresses").append($("#input-friend-addresses").children(":last").clone());
-	$("#input-friend-addresses").children(":last").children("label").attr("for", "input-friend-address-" + friends);
-	$("#input-friend-addresses").children(":last").children("label").html("Ystävän " + String(text_friends) + " sähköposti osoite:");
-	$("#input-friend-addresses").children(":last").children("input").attr("id", "input-friend-address-" + friends);
-	$("#input-friend-addresses").children(":last").children("input").attr("name", "friend-address-" + friends);
-	$("#friend-count").val(friends);
+	$("#register-invite-friend-addresses").append($("#register-invite-friend-addresses").children(":last").clone());
+	$("#register-invite-friend-addresses").children(":last").children("label").attr("for", "register-friend-address-input-" + friends);
+	$("#register-invite-friend-addresses").children(":last").children("label").html("Ystävän " + String(text_friends) + " sähköposti osoite:");
+	$("#register-invite-friend-addresses").children(":last").children("input").attr("id", "register-friend-address-input-" + friends);
+	$("#register-invite-friend-addresses").children(":last").children("input").attr("name", "friend-address-" + friends);
+	$("#register-invite-friend-count").val(friends);
 
 });
 
