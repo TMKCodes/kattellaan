@@ -234,7 +234,7 @@ $("#register-invite-form").submit(function(evt) {
 					$("#register-invite-friend-addresses").children(":last").children("input").attr("name", "friend-address-" + count);		
 					$("#register-invite-friend-addresses").children(":last").children("input").val(result.invite[index].address);
 					console.log(cloneinput);
-					cloneinput = $("#register-invite-friennd-addresses").children(":last").clone();
+					cloneinput = $("#register-invite-friend-addresses").children(":last").clone();
 					console.log(cloneinput);
 					count = count + 1;
 				}
