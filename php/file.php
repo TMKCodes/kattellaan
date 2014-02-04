@@ -98,6 +98,7 @@ class file {
 			$files = $result->fetch_object();
 			$new_name[0] == $new_name[0] . "-" . ($files->total + 1);
 			$this->name = implode(".", $new_name);
+			return true;
 		} else {
 			return false;
 		}
@@ -135,8 +136,10 @@ class file {
 	public function insert() {
 		if(!empty($this->name) && !empty($this->owner)) {
 			if($this->select() == true) {
-				$this->rename();		
-			}
+				if($this->rename() == false) {
+					return false;
+				}		
+			} 
 			$statement = $this->database->prepare("INSERT INTO `file` (`owner`, `name`) VALUES (?, ?);");
 			$statement->bind("i", $this->owner);
 			$statement->bind("s", $this->name);
@@ -145,7 +148,7 @@ class file {
 			$this->private = $this->private_path . $this->name;
 			return $result->success();
 		} else {
-			throw new Exception("File name: " . $this->name . " and owner: " . $this->owner . "members are not specified");
+			throw new Exception("File name: " . $this->name . " and owner: " . $this->owner . " members are not specified");
 		}
 	}
 	public function delete() {
