@@ -325,13 +325,47 @@ $("#register-select-birthday-done-button").click(function(evt) {
 	if(birthday != undefined) {
 		$.cookie("birthday", birthday);
 		$("body > .container").hide();
-		$("#register-select-location-page").show();
-		$.cookie("last-visited-page", "#register-select-location-page");
+		$("#register-select-relationship-status-page").show();
+		$.cookie("last-visited-page", "#register-select-relationship-status-page");
 	} else {
 		$("#register-select-birthday-error").show();
 	}
 });
 
+
+$("#register-select-relationship-status-input").change(function(evt) {
+	$("#register-select-relationship-status-error").hide();
+});
+
+$("#register-select-relationshio-status-done-button").click(function(evt) {
+	evt.preventDefault();
+	var relationshipStatus = $("#register-select-relationship-status-input").val();
+	if(relationshipStatus != undefined) {
+		$.cookie("relationship-status", relationshipStatus);
+		$("body > .container").hide();
+		$("#register-select-sexual-orientation-page").show();
+		$.cookie("last-visited-page", "#register-select-sexual-orientation-page");
+	} else {
+		$("#register-select-relationship-status-error").show();
+	}
+});
+
+$("#register-selext-sexual-orientation-input").change(function(evt) {
+	$("#register-select-sexual-orientation-error").hide();
+});
+
+$("#register-select-sexual-orientation-done-button").click(function(evt) {
+	evt.preventDefault();
+	var sexualOrientation = $("#register-select-sexual-orientation-input").val();
+	if(sexualOrientation != undefined) {
+		$.cookie("sexual-orientation", sexualOrientation);
+		$("body > .container").hide();
+		$("#register-select-looking-for-page").show();
+		$.cookie("last-visited-page", "#register-select-looking-for-page");
+	} else {
+		$("#register-select-sexual-orientation-error").show();
+	}
+});
 
 // DO NOT REMOVE Enables hide and show binding
 // $("element").on("show", someFunc);
