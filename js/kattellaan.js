@@ -337,7 +337,7 @@ $("#register-select-relationship-status-input").change(function(evt) {
 	$("#register-select-relationship-status-error").hide();
 });
 
-$("#register-select-relationshio-status-done-button").click(function(evt) {
+$("#register-select-relationship-status-done-button").click(function(evt) {
 	evt.preventDefault();
 	var relationshipStatus = $("#register-select-relationship-status-input").val();
 	if(relationshipStatus != undefined) {
