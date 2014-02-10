@@ -210,7 +210,7 @@
 		<form role="form" id="register-select-gender-form" action="php/api.php" method="POST">
 			<div class="input-group">
 				<label class="input-group-addon" for="register-select-gender-input">Sukupuoli:</label>
-				<select id="register-select-gender-input" name="gender" required="required">
+				<select id="register-select-gender-input" class="form-control" name="gender" required="required">
 					<option value="man">Mies</option>
 					<option value="nainen">Nainen</option>
 					<option value="transman">Transmies</option>
@@ -229,7 +229,7 @@
 		<form role="form" id="register-select-birthday-form" action="php/api.php" method="POST">
 			<div class="input-group">
 				<label class="input-group-addon" for="register-select-birthday-input">Syntymäpäivä:</label>
-				<input type="date" name="birthday" id="register-select-birthday-input" required="required" placeholder="mm/dd/yyyy">
+				<input type="date" class="form-control" name="birthday" id="register-select-birthday-input" required="required" placeholder="mm/dd/yyyy">
 			</div>
 			<div id="register-select-birthday-error" class="alert alert-danger" style="display: none;"><p>Et vielä valinnut syntymäpäivääsi.</p></div>
 			<input type="submit" class="btn btn-default" id="register-select-birthday-done-button" value="Jatka" />
@@ -273,7 +273,7 @@
 		<form id="register-select-relationship-status-form" role="form" method="POST" action="php/api.php">
 			<div class="input-group">
 				<label class="input-group-addon" for="register-select-relationship-status-input">Suhde tilanne:</label>
-				<select id="register-select-relationship-status-input" name="relationship-status">
+				<select id="register-select-relationship-status-input" class="form-control" name="relationship-status">
 					<option value="single">Sinkku</option>
 					<option value="relationship">Parisuhde</option>
 					<option value="marriage">Avioliitto</option>
@@ -293,7 +293,7 @@
 		<form id="register-select-sexual-orientation-form" role="form" method="POST" action="php/api.php">
 			<div class="input-group">
 				<label class="input-group-addon" for="register-select-sexual-orientation-input">Seksuaalinen suuntautuminen:</label>
-				<select id="register-select-sexual-orientation-input" name="sexual-orientation">
+				<select id="register-select-sexual-orientation-input" class="form-control" name="sexual-orientation">
 					<option value="hetero">Heteroseksuaali</option>
 					<option value="gay">Homoseksuaali</option>
 					<option value="bi">Biseksuaali</option>
@@ -302,6 +302,24 @@
 			</div>
 			<div id="register-select-sexual-orientation-error" class="alert alert-danger" style="display: none;"><p>Et vielä kertonut meille seksuaalista suuntautumistasi.</p></div>
 			<input type="submit" id="register-select-sexual-orientation-done-button" class="btn btn-default" value="Jatka" />
+		</form>
+	</div>
+
+	<div id="register-select-looking-for-page" class="container" style="display: none;">
+		<h1>Mitä sinä etsit?<h1>
+		<form id="register-select-looking-for-form" role="form" method="POST" action="php/api.php">
+			<div class="input-group">
+				<label class="input-group-addon" for="register-select-looking-for-input">Kiikarissa:</label>
+				<select id="register-select-looking-for-input" class="form-control" name="looking-for" multiple="multiple">
+					<option value="friends">Ystävyys<option>
+					<option value="love">Rakkaus</option>
+					<option value="date">Tapaaminen</option>
+					<option value="sex">Seksi</option>
+					<option vlaue="other">Jotain muuta</option>
+				</select>
+			</div>
+			<div id="register-select-looking-for-error" class="alert alert-danger" style="display: none;"><p>Et ole vielä kertonut meille mitä sinä täältä tulet etsimään.</p></div>
+			<input type="submit" id="register-select-looking-for-done-button" class="btn btn-default" value="Jatka" />
 		</form>
 	</div>
 
