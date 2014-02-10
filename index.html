@@ -310,12 +310,12 @@
 		<form id="register-select-looking-for-form" role="form" method="POST" action="php/api.php">
 			<div class="input-group">
 				<label class="input-group-addon" for="register-select-looking-for-input">Kiikarissa:</label>
-				<select id="register-select-looking-for-input" class="form-control" name="looking-for" multiple="multiple">
+				<select id="register-select-looking-for-input" class="multiselect form-control" name="looking-for" multiple="multiple">
 					<option value="friends">Ystävyys<option>
 					<option value="love">Rakkaus</option>
 					<option value="date">Tapaaminen</option>
 					<option value="sex">Seksi</option>
-					<option vlaue="other">Jotain muuta</option>
+					<option value="other">Jotain muuta</option>
 				</select>
 			</div>
 			<div id="register-select-looking-for-error" class="alert alert-danger" style="display: none;"><p>Et ole vielä kertonut meille mitä sinä täältä tulet etsimään.</p></div>
@@ -332,6 +332,7 @@
 	<script src="js/jquery-cookie.js"></script>
 	<script src="js/jquery.form.min.js"></script>
 	<script src="js/bootstrap-filestyle.min.js"></script>
+	<script src="js/bootstrap-multiselect.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 	<script src="js/kattellaan.js"></script>
 </body>

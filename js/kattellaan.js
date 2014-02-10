@@ -114,6 +114,7 @@ $("#register-select-profile-picture-done-button").click(function(evt) {
 
 
 $("document").ready(function() {
+	$(".multiselect").multiselect();
 	$("body > .container").hide();
 	var page = get_url_parameter("page");
 	if(page != undefined) {
