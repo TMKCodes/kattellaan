@@ -351,7 +351,7 @@ $("#register-select-relationship-status-done-button").click(function(evt) {
 	}
 });
 
-$("#register-selext-sexual-orientation-input").change(function(evt) {
+$("#register-select-sexual-orientation-input").change(function(evt) {
 	$("#register-select-sexual-orientation-error").hide();
 });
 
@@ -365,6 +365,23 @@ $("#register-select-sexual-orientation-done-button").click(function(evt) {
 		$.cookie("last-visited-page", "#register-select-looking-for-page");
 	} else {
 		$("#register-select-sexual-orientation-error").show();
+	}
+});
+
+$("#register-select-looking-for-input").change(function(evt) {
+	$("#register-select-looking-for-error").hide();
+});
+
+$("#register-select-looking-for-done-button").click(function(evt) {
+	evt.preventDefault();
+	var lookingForValues = $("#register-select-looking-for-input").val();
+	if(lookingForValues != undefined) {
+		$.cookie("looking-for", lookingForValues);
+		$("body > .container").hide();
+		$("#register-select-height-page").show();
+		$.cookie("last-visited-page", "#register-select-height-page");
+	} else {
+		$("#register-select-looking-for-error").show();
 	}
 });
 
