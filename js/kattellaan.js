@@ -131,6 +131,9 @@ window.onpopstate = function(event) {
 $("document").ready(function() {
 	$(".multiselect").multiselect();
 	$("body > .container").hide();
+	if(window.history && window.history.pushState) {
+		alert("Tarvitset uudemman browserin!");
+	}
 	hostname = location.protocol + '//' + location.hostname + location.pathname;
 	var page = get_url_parameter("page");
 	if(page != undefined) {
