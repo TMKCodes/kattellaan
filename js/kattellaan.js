@@ -110,15 +110,6 @@ function register_select_profile_picture(picture) {
 
 var hostname;
 
-$("#register-select-profile-picture-done-button").click(function(evt) {
-	alert("fuck me!");
-	evt.preventDefault();
-	$("body > .container").hide();
-	$("#register-select-gender-page").show();
-	history.pushState(null, "register select gender", hostname + "?page=register-select-gender-page");
-});
-
-
 
 window.onpopstate = function(event) {
 	$("body > .container").hide();
@@ -161,6 +152,15 @@ $("#navigation-left > li").click(function(evt) {
 	$("#navigation-left").children().removeClass("active");
 	$(this).addClass("active");
 });
+
+$("#register-select-profile-picture-done-button").click(function(evt) {
+	alert("fuck me!");
+	evt.preventDefault();
+	$("body > .container").hide();
+	$("#register-select-gender-page").show();
+	history.pushState(null, "register select gender", hostname + "?page=register-select-gender-page");
+});
+
 
 $("#home-button").click(function(evt) {
 	evt.preventDefault();
