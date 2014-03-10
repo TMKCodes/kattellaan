@@ -113,7 +113,7 @@ var hostname;
 $("#register-select-profile-picture-done-button").click(function(evt) {
 	evt.preventDefault();
 	$("body > .container").hide();
-	$("register-select-gender-page").show();
+	$("#register-select-gender-page").show();
 	history.pushState(null, "register select gender", hostname + "?page=register-select-gender-page");
 });
 
