@@ -120,9 +120,11 @@ function register_select_profile_picture_done_button() {
 
 window.onpopstate = function(event) {
 	$("body > .container").hide();
-	var page = get_url_parameter("page")
+	var page = get_url_parameter("page");
 	if(page != undefined) {
-		$("#" + page).show()
+		$("#" + page).show();
+	} else {
+		$("#home-page").show();
 	}
 }
 
@@ -133,6 +135,8 @@ $("document").ready(function() {
 	var page = get_url_parameter("page");
 	if(page != undefined) {
 		$("#" + page).show();
+	} else {
+		$("#home-page").show();
 	}
 	setInterval(function() { 
 		if($.cookie("session") != undefined) {
