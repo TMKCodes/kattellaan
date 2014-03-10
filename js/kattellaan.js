@@ -119,20 +119,7 @@ $("document").ready(function() {
 	var page = get_url_parameter("page");
 	if(page != undefined) {
 		$("#" + page).show();
-		history.pushState(null, "#" + page, "?page=" + page);
-		$.cookie("last-visited-page", "#" + page);
-		//window.location.href = "http://kattellaan.com/#";
-	} else { 
-		var last_visited_page = $.cookie("last-visited-page");
-		if(last_visited_page === undefined) {
-			$("#home-page").show();
-			$.cookie("last-visited-page", "#home-page");
-		} else {
-			$(last_visited_page).show();
-			$.cookie("last-visited-page", last_visited_page);
-		}
 	}
-	//window.location.href = "http://kattellaan.com/#";
 	setInterval(function() { 
 		if($.cookie("session") != undefined) {
 			$.ajax({
@@ -163,14 +150,16 @@ $("#home-button").click(function(evt) {
 	evt.preventDefault();
 	$("body > .container").hide();
 	$("#home-page").show();
-	$.cookie("last-visited-page", "#home-page");
+	history.pushState(null, "Kattellaan home page", "kattellaan.com");
+	//$.cookie("last-visited-page", "#home-page");
 });
 
 $("#start-registeration-button").click(function(evt) {
 	evt.preventDefault();
 	$("body > .container").hide();
 	$("#register-terms-of-service-page").show();
-	$.cookie("last-visited-page", "#register-terms-of-service-page");
+	history.pushState(null, "Registeration terms of service", "kattellaan.com/?page=register-terms-of-service-page");
+	//$.cookie("last-visited-page", "#register-terms-of-service-page");
 });
 
 $("#register-account-form").submit(function(evt) {
@@ -205,7 +194,8 @@ $("#register-account-form").submit(function(evt) {
 				if($.cookie("session") != undefined) {
 					$("body > .container").hide();
 					$("#register-invite-page").show();
-					$.cookie("last-visited-page", "#register-invite-page");
+					history.pushState(null, "Registeration invite friend", "kattellaan.com/?page=register-invite-page")
+					//$.cookie("last-visited-page", "#register-invite-page");
 				} else {
 					console.log("Failed to authenticate.");
 					$("#register-account-first-login-error").show();
@@ -223,7 +213,8 @@ $("#register-terms-of-service-continue-button").click(function(evt) {
 	// TODO: add this information to database for the user.
 	$("body > .container").hide();
 	$("#register-account-page").show();
-	$.cookie("last-visited-page", "#register-account-page");
+	history.pushState(null, "Register Account", "kattellaan.com/?page=register-account-page")
+	//$.cookie("last-visited-page", "#register-account-page");
 });
 
 $("#register-terms-of-service-stop-button").click(function(evt) {
@@ -231,7 +222,8 @@ $("#register-terms-of-service-stop-button").click(function(evt) {
 	// TODO: add this nasty informatio to database for the user.
 	$("body > .container").hide();
 	$("#home-page").show();
-	$.cookie("last-visited-page", "#home-page");
+	history.pushState(null, "Home page", "kattellaan.com")
+	//$.cookie("last-visited-page", "#home-page");
 });
 
 $("#register-invite-form").submit(function(evt) {
