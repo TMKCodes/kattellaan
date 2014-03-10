@@ -108,11 +108,15 @@ function register_select_profile_picture(picture) {
 	}
 }
 
+var hostname;
+
 $("#register-select-profile-picture-done-button").click(function(evt) {
 	evt.preventDefault();
+	$("register-select-gender-page").show()
+	history.pushState(null, "register select gender", hostname + "?page=register-select-gender-page");
 });
 
-var hostname;
+
 
 window.onpopstate = function(event) {
 	$("body > .container").hide();
@@ -161,7 +165,6 @@ $("#home-button").click(function(evt) {
 	$("body > .container").hide();
 	$("#home-page").show();
 	history.pushState(null, "Kattellaan home page", hostname);
-	//$.cookie("last-visited-page", "#home-page");
 });
 
 $("#start-registeration-button").click(function(evt) {
@@ -169,7 +172,6 @@ $("#start-registeration-button").click(function(evt) {
 	$("body > .container").hide();
 	$("#register-terms-of-service-page").show();
 	history.pushState(null, "Registeration terms of service", hostname + "?page=register-terms-of-service-page");
-	//$.cookie("last-visited-page", "#register-terms-of-service-page");
 });
 
 $("#register-account-form").submit(function(evt) {
@@ -205,7 +207,6 @@ $("#register-account-form").submit(function(evt) {
 					$("body > .container").hide();
 					$("#register-invite-page").show();
 					history.pushState(null, "Registeration invite friend", hostname + "?page=register-invite-page")
-					//$.cookie("last-visited-page", "#register-invite-page");
 				} else {
 					console.log("Failed to authenticate.");
 					$("#register-account-first-login-error").show();
@@ -220,20 +221,16 @@ $("#register-account-form").submit(function(evt) {
 
 $("#register-terms-of-service-continue-button").click(function(evt) {
 	evt.preventDefault();
-	// TODO: add this information to database for the user.
 	$("body > .container").hide();
 	$("#register-account-page").show();
 	history.pushState(null, "Register Account", hostname + "?page=register-account-page")
-	//$.cookie("last-visited-page", "#register-account-page");
 });
 
 $("#register-terms-of-service-stop-button").click(function(evt) {
 	evt.preventDefault();
-	// TODO: add this nasty informatio to database for the user.
 	$("body > .container").hide();
 	$("#home-page").show();
 	history.pushState(null, "Home page", hostname)
-	//$.cookie("last-visited-page", "#home-page");
 });
 
 $("#register-invite-form").submit(function(evt) {
@@ -281,7 +278,6 @@ $("#register-invite-form").submit(function(evt) {
 
 $("#register-invite-add-button").click(function(evt) {
 	evt.preventDefault();
-	$.cookie("last-visited-page", "#register-invite-page");
 	var friends = parseInt($("#register-invite-friend-count").val(), 10);
 	friends = friends + 1;
 	text_friends = friends + 1;	
@@ -298,8 +294,8 @@ $("#register-invite-add-button").click(function(evt) {
 $("#register-invite-skip-button").click(function(evt) {
 	evt.preventDefault();
 	$("body > .container").hide();
-	$("#register-select-gender-page").show();
-	$.cookie("last-visited-page", "#register-select-gender-page");
+	$("#register-select-location-page").show();
+	history.pushState(null, "register select location", hostname + "?page=register-select-location-page");
 });
 
 $("#register-select-gender-input").change(function(evt) {
@@ -313,7 +309,7 @@ $("#register-select-gender-done-button").click(function(evt) {
 		$.cookie("gender", gender);
 		$("body > .container").hide();
 		$("#register-select-birthday-page").show();
-		$.cookie("last-visited-page", "#register-select-birthday-page");
+		history.pushState(null, "register select birthday", hostname + "?page=register-select-birthday-page");
 	} else {
 		$("#register-select-gender-error").show();
 	}
@@ -330,7 +326,7 @@ $("#register-select-birthday-done-button").click(function(evt) {
 		$.cookie("birthday", birthday);
 		$("body > .container").hide();
 		$("#register-select-relationship-status-page").show();
-		$.cookie("last-visited-page", "#register-select-relationship-status-page");
+		history.pushState(null, "register select relationship", hostname + "?page=register-select-relationship-status-page");
 	} else {
 		$("#register-select-birthday-error").show();
 	}
@@ -348,7 +344,7 @@ $("#register-select-relationship-status-done-button").click(function(evt) {
 		$.cookie("relationship-status", relationshipStatus);
 		$("body > .container").hide();
 		$("#register-select-sexual-orientation-page").show();
-		$.cookie("last-visited-page", "#register-select-sexual-orientation-page");
+		history.pushState(null, "register select sexual orientation", hostname + "?page=register-select-sexual-orientation-page");
 	} else {
 		$("#register-select-relationship-status-error").show();
 	}
@@ -365,7 +361,7 @@ $("#register-select-sexual-orientation-done-button").click(function(evt) {
 		$.cookie("sexual-orientation", sexualOrientation);
 		$("body > .container").hide();
 		$("#register-select-looking-for-page").show();
-		$.cookie("last-visited-page", "#register-select-looking-for-page");
+		history.pushState(null, "register select looking for", hostname + "?page=register-select-looking-for-page");
 	} else {
 		$("#register-select-sexual-orientation-error").show();
 	}
@@ -382,7 +378,7 @@ $("#register-select-looking-for-done-button").click(function(evt) {
 		$.cookie("looking-for", lookingForValues);
 		$("body > .container").hide();
 		$("#register-select-height-page").show();
-		$.cookie("last-visited-page", "#register-select-height-page");
+		history.pushState(null, "register select height", hostname + "?page=register-select-height-page");
 	} else {
 		$("#register-select-looking-for-error").show();
 	}
@@ -488,7 +484,7 @@ $("#register-select-location-done-button").click(function(evt) {
 				$.cookie("latlng", myLatLong);
 				$("body > .container").hide();
 				$("#register-select-profile-picture-page").show();
-				$.cookie("last-visited-page", "#register-select-profile-picture-page");
+				history.pushState(null, "register select profile picture", hostname + "?page=register-select-profile-picture-page");
 			} else {
 				console.log("Failed to retrieve address location");
 			}
