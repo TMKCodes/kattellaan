@@ -115,6 +115,7 @@ $("#register-select-profile-picture-done-button").click(function(evt) {
 var hostname;
 
 window.onpopstate = function(event) {
+	$("body > .container").hide();
 	var page = get_url_parameter("page")
 	if(page != undefined) {
 		$("#" + page).show()
