@@ -111,6 +111,7 @@ function register_select_profile_picture(picture) {
 var hostname;
 
 $("#register-select-profile-picture-done-button").click(function(evt) {
+	alert("fuck me!");
 	evt.preventDefault();
 	$("body > .container").hide();
 	$("#register-select-gender-page").show();
