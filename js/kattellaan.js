@@ -114,7 +114,7 @@ function register_select_profile_picture_done_button() {
 	$("body > .container").hide();
 	$("#register-select-gender-page").show();
 	history.pushState(null, "register select gender", hostname + "?page=register-select-gender-page");
-});
+}
 
 
 
