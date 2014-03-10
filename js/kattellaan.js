@@ -119,6 +119,7 @@ $("document").ready(function() {
 	var page = get_url_parameter("page");
 	if(page != undefined) {
 		$("#" + page).show();
+		history.pushState(null, "#" + page, "?page=" + page);
 		$.cookie("last-visited-page", "#" + page);
 		window.location.href = "http://kattellaan.com/#";
 	} else { 
