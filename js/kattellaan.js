@@ -160,7 +160,7 @@ $("#start-registeration-button").click(function(evt) {
 	evt.preventDefault();
 	$("body > .container").hide();
 	$("#register-terms-of-service-page").show();
-	history.pushState(null, "Registeration terms of service", hostname + "/?page=register-terms-of-service-page");
+	history.pushState(null, "Registeration terms of service", hostname + "?page=register-terms-of-service-page");
 	//$.cookie("last-visited-page", "#register-terms-of-service-page");
 });
 
@@ -196,7 +196,7 @@ $("#register-account-form").submit(function(evt) {
 				if($.cookie("session") != undefined) {
 					$("body > .container").hide();
 					$("#register-invite-page").show();
-					history.pushState(null, "Registeration invite friend", hostname + "/?page=register-invite-page")
+					history.pushState(null, "Registeration invite friend", hostname + "?page=register-invite-page")
 					//$.cookie("last-visited-page", "#register-invite-page");
 				} else {
 					console.log("Failed to authenticate.");
@@ -215,7 +215,7 @@ $("#register-terms-of-service-continue-button").click(function(evt) {
 	// TODO: add this information to database for the user.
 	$("body > .container").hide();
 	$("#register-account-page").show();
-	history.pushState(null, "Register Account", hostname + "/?page=register-account-page")
+	history.pushState(null, "Register Account", hostname + "?page=register-account-page")
 	//$.cookie("last-visited-page", "#register-account-page");
 });
 
