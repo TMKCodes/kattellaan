@@ -121,7 +121,7 @@ $("document").ready(function() {
 		$("#" + page).show();
 		history.pushState(null, "#" + page, "?page=" + page);
 		$.cookie("last-visited-page", "#" + page);
-		window.location.href = "http://kattellaan.com/#";
+		//window.location.href = "http://kattellaan.com/#";
 	} else { 
 		var last_visited_page = $.cookie("last-visited-page");
 		if(last_visited_page === undefined) {
