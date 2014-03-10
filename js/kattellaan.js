@@ -104,11 +104,18 @@ function register_select_profile_picture(picture) {
 		$("#register-select-profile-picture-name").html("<p>Valitsit " + picture + " profiili kuvaksesi.</p>");
 	}
 	if($("#register-select-profile-picture-done-button").length == 0) {
-		$("#register-select-profile-picture-name").append("<button class=\"btn btn-default\" id=\"register-select-profile-picture-done-button\">Jatka</button>");
+		$("#register-select-profile-picture-name").append("<button class=\"btn btn-default\" id=\"register-select-profile-picture-done-button\" onclick=\"register_select_profile_picture_done_button(); return false;\">Jatka</button>");
 	}
 }
 
 var hostname;
+
+function register_select_profile_picture_done_button() {
+	$("body > .container").hide();
+	$("#register-select-gender-page").show();
+	history.pushState(null, "register select gender", hostname + "?page=register-select-gender-page");
+});
+
 
 
 window.onpopstate = function(event) {
@@ -152,15 +159,6 @@ $("#navigation-left > li").click(function(evt) {
 	$("#navigation-left").children().removeClass("active");
 	$(this).addClass("active");
 });
-
-$("#register-select-profile-picture-done-button").click(function(evt) {
-	alert("fuck me!");
-	evt.preventDefault();
-	$("body > .container").hide();
-	$("#register-select-gender-page").show();
-	history.pushState(null, "register select gender", hostname + "?page=register-select-gender-page");
-});
-
 
 $("#home-button").click(function(evt) {
 	evt.preventDefault();
