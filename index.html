@@ -397,7 +397,24 @@
 		</form>
 	</div>
 
-
+	<div id="register-select-hair-length-page" class="container" style="display: none;">
+		<h1>Kuinka pitkät hiukset sinulla on?</h1>
+		<form id="register-select-hair-length-form" role="form" method="POST" action="php/api.php">
+			<div class="btn-group">
+				<label class="btn btn-default" for="register-select-hair-length-input">Hiusten pituus:</label>
+				<select id="register-select-hair-length-input" class="multiselect form-control" name="hair-length" required="required">
+					<option="bald">Kalju</option>
+					<option="hedgehog">Siili</option>
+					<option="short">Lyhyet</option>
+					<option="long">Pitkät</option>
+				</select>
+			</div>
+			<div id="register-select-hair-length-error" class="alert alert-danger" style="display: none;">
+				<p>Et vielä kertonut hiustesi pituutta</p>
+			</div>
+			<input type="submit" id="register-select-hair-length-done-button" class="btn btn-default" value="Jatka" />
+		</form>
+	</div>
 	<div id="footer" style="height: 50px">
 
 	</div>

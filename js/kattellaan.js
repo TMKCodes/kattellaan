@@ -443,7 +443,7 @@ $("#register-select-body-type-done-button").click(function(evt) {
 });
 
 $("#register-select-eye-color-input").change(function(evt) {
-	$("#register-select-eye-color-show").hide();
+	$("#register-select-eye-color-error").hide();
 });
 
 $("#register-select-eye-color-done-button").click(function(evt) {
@@ -456,6 +456,23 @@ $("#register-select-eye-color-done-button").click(function(evt) {
 		history.pushState(null, "register select hair length", hostname + "?page=register-select-hair-length-page");
 	} else {
 		$("#register-select-eye-color-error").show();
+	}
+});
+
+$("#register-select-hair-length-input").change(function(evt) {
+	$("#register-select-hair-length-error").hide();
+});
+
+$("#register-select-hair-length-done-button").click(function(evt) {
+	evt.preventDefault();
+	var hairLength = $("#register-select-hair-lenght-input").val();
+	if(hairLength != undefined) {
+		$.cookie("hair-lenght", hairLength);
+		$("body > .container").hide();
+		$("#register-select-hair-color-page").show();
+		history.pushState(null, "register select hair color", hostname + "?page=register-select-hair-color-page");
+	} else {
+		$("#register-select-hair-length-error").show();
 	}
 });
 
