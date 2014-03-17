@@ -329,7 +329,7 @@
 		<form id="register-select-height-form" role="form" method="POST" action="php/api.php">
 			<div class="btn-group">
 				<label class="btn btn-default" for="register-select-height-input">Pituus cm:</label>
-				<input type="number" id="register-select-height-input" name="height">
+				<input type="number" class="form-control" id="register-select-height-input" name="height" required="required">
 			</div>
 			<div id="register-select-height-error" class="alert alert-danger" style="display: none;">
 				<p>Et vielä kertonut kuinka pitkä sinä olet.</p>
@@ -343,7 +343,7 @@
 		<form id="register-select-weight-form" role="form" method="POST" action="php/api.php">
 			<div class="btn-group">
 				<label class="btn btn-default" for="register-select-weight-input">Paino kg:</label>
-				<input type="number" id="register-select-weight-input" name="weight">
+				<input type="number" class="form-control" id="register-select-weight-input" name="weight" required="required">
 			</div>
 			<div id="register-select-weight-error" class="alert alert-danger" style="display: none;">
 				<p>Et vielä kertonut kuinka paljon sinä painat.</p>
@@ -357,7 +357,7 @@
 		<form id="register-select-body-type-form" role="form" method="POST" action="php/api.php">
 			<div class="btn-group">
 				<label class="btn btn-default" for="register-select-body-type-input">Ruumiinrakenne:</label>
-				<select id="register-select-body-type-input" class="multiselect form-control" name="body-type">
+				<select id="register-select-body-type-input" class="multiselect form-control" name="body-type" required="required">
 					<option value="slender">Siro</option>
 					<option value="slim">Hoikka</option>
 					<option value="low-fat">Vähärasvainen</option>
