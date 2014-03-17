@@ -402,9 +402,26 @@ $("#register-select-height-done-button").click(function(evt) {
 		$.cookie("height", height);
 		$("body > .container").hide();
 		$("#register-select-weight-page").show();
-		history.pushState(null, "register select weight", hostname + "?page=Register-select-weight-page");
+		history.pushState(null, "register select weight", hostname + "?page=register-select-weight-page");
 	} else {
 		$("#register-select-height-error").show();
+	}
+});
+
+$("#register-select-weight-input").change(function(evt) {
+	$("#register-select-weight-error").hide();
+});
+
+$("#register-select-weight-done-button").click(function(evt) {
+	evt.preventDefault();
+	var weight = $("#register-select-weight-input").val();
+	if(weight != undefined) {
+		$.cookie("weight", weight);
+		$("body > .container").hide();
+		$("#register-select-body-type-page").show();
+		history.pushState(null, "register select body type", hostname + "?page=register-select-body-type-page");
+	} else {
+		$("#register-select-weight-error").show();
 	}
 });
 

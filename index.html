@@ -324,17 +324,31 @@
 			<input type="submit" id="register-select-looking-for-done-button" class="btn btn-default" value="Jatka" />
 		</form>
 	</div>
-	<div id ="register-select-height-page" class="container" style="display: none;">
+	<div id="register-select-height-page" class="container" style="display: none;">
 		<h1>Kuinka pitkä olet?</h1>
 		<form id="register-select-height-form" role="form" method="POST" action="php/api.php">
 			<div class="btn-group">
-				<label class="btn btn-default" for="register-select-height-input">Pituus CM:</label>
+				<label class="btn btn-default" for="register-select-height-input">Pituus cm:</label>
 				<input type="number" id="register-select-height-input" name="height">
 			</div>
 			<div id="register-select-height-error" class="alert alert-danger" style="display: none;">
 				<p>Et vielä kertonut kuinka pitkä sinä olet.</p>
 			</div>
 			<input type="submit" id="register-select-height-done-button" class="btn btn-default" value="Jatka" />
+		</form>
+	</div>
+
+	<div id="register-select-weight-page" class="container" style="display: none;">
+		<h1>Kuinka paljon painat?</h1>
+		<form id="register-select-weight-form" role="form" method="POST" action="php/api.php">
+			<div class="btn-group">
+				<label class="btn btn-default" for="register-select-weight-input">Paino kg:</label>
+				<input type="number" id="register-select-weight-input" name="weight">
+			</div>
+			<div id="register-select-weight-error" class="alert alert-danger" style="display: none;">
+				<p>Et vielä kertonut kuinka paljon sinä painat.</p>
+			</div>
+			<input type="submit" id="register-select-weight-done-button" class="btn btn-default" value="Jatka" />
 		</form>
 	</div>
 
