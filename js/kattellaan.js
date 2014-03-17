@@ -425,6 +425,23 @@ $("#register-select-weight-done-button").click(function(evt) {
 	}
 });
 
+$("#register-select-body-type-input").change(function(evt) {
+	$("register-select-body-type-error").hide();
+});
+
+$("#register-select-body-type-done-button").click(function(evt) {
+	evt.preventDefault();
+	var bodyType = $("#register-select-body-type-input").val();
+	if(bodyType != undefined) {
+		$.cookie("body-type", bodyType);
+		$("body > .container").hide();
+		$("#register-select-eye-color").show();
+		history.pushState(null, "register select eye color", hostname + "?page=register-select-eye-color-page");
+	} else {
+		$("#register-select-body-type-error").show();
+	}
+});
+
 // DO NOT REMOVE Enables hide and show binding
 // $("element").on("show", someFunc);
 // $("element").on("hide", someFunc);

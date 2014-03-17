@@ -352,6 +352,28 @@
 		</form>
 	</div>
 
+	<div id="register-select-body-type-page" class="container" style="display: none;">
+		<h1>Mikä on ruumiinrakenteesi?</h1>
+		<form id="register-select-body-type-form" role="form" method="POST" action="php/api.php">
+			<div class="btn-group">
+				<label class="btn btn-default" for="register-select-body-type-input">Ruumiinrakenne:</label>
+				<select id="register-select-body-type-input" class="multiselect form-control" name="body-type">
+					<option value="slender">Siro</option>
+					<option value="slim">Hoikka</option>
+					<option value="low-fat">Vähärasvainen</option>
+					<option value="sporty">Sporttinen</option>
+					<option value="muscular">Lihaksikas</option>
+					<option value="roundish">Pyöreähkö</option>
+					<option value="overweight">Ylipainoinen</option>
+				</select>
+			</div>
+			<div id="register-select-body-type-error" class="alert alert-danger" style="display: none;">
+				<p>Et vielä kertonut ruumiinrakennettasi.</p>
+			</div>
+			<input type="submit" id="register-select-body-type-done-button" class="btn btn-default" value="Jatka" />
+		</form>
+	</div>
+
 	<div id="footer" style="height: 50px">
 
 	</div>
