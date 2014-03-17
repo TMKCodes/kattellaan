@@ -498,7 +498,7 @@ $("#register-select-kids-done-button").click(function(evt) {
 	evt.preventDefault();
 	var kids = $("#register-select-kids-input").val();
 	if(kids != undefined) {
-		$.cookie("kids", hairColor);
+		$.cookie("kids", kids);
 		$("body > .container").hide();
 		$("#register-select-accomodation-page").show();
 		history.pushState(null, "register select accomodation", hostname + "?page=register-select-accomodation-page");
@@ -506,6 +506,25 @@ $("#register-select-kids-done-button").click(function(evt) {
 		$("#register-select-kids-error").show();
 	}
 });
+
+
+$("#register-select-accomodation-input").change(function(evt) {
+	$("#register-select-accomodation-error").hide();
+});
+
+$("#register-select-accomodation-done-button").click(function(evt) {
+	evt.preventDefault();
+	var accomodation = $("#register-select-accomodation-input").val();
+	if(accomodation != undefined) {
+		$.cookie("hair-color", accomodation);
+		$("body > .container").hide();
+		$("#register-select-ethnic-identy-page").show();
+		history.pushState(null, "register select ethnic identy", hostname + "?page=register-select-ethnic-identy-page");
+	} else {
+		$("#register-select-accomodation-error").show();
+	}
+});
+
 // DO NOT REMOVE Enables hide and show binding
 // $("element").on("show", someFunc);
 // $("element").on("hide", someFunc);

@@ -470,6 +470,27 @@
 		</form>
 	</div>
 
+	<div id="register-select-accomodation-page" class="container" style="display: none;">
+		<h1>Millainen on asumis tilanteesi?</h1>
+		<form id="register-select-accomodation-form" role="form" method="POST" action="php/api.php">
+			<div class="btn-group">
+				<label class="btn btn-default" for="register-select-accomodation-input">Asumismuoto:</label>
+				<select id="register-select-accomodation-input" class="multiselect form-control" name="kids" required="required">
+					<option value="alone">Yksin</option>
+					<option value="withfriend">Ystävän kanssa</option>
+					<option value="withparents">Vanhempien luona</option>
+					<option value="sharedflat">Kimppakämpässä</option>
+					<option value="withpartner">Kumppanin kanssa</option>
+					<option value="homeless">Koditon</option>
+				</select>
+			</div>
+			<div id="register-select-accomodation-error" class="alert alert-danger" style="display: none;">
+				<p>Et vielä kertonut asumismuotoasi.</p>
+			</div>
+			<input type="submit" id="register-select-accomodation-done-button" class="btn btn-default" value="Jatka" />
+		</form>
+	</div>
+
 	<div id="footer" style="height: 50px">
 
 	</div>
