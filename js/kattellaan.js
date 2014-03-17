@@ -132,7 +132,7 @@ $("document").ready(function() {
 	$(".multiselect").multiselect();
 	$("body > .container").hide();
 	if(window.history && window.history.pushState) {
-		alert("Tarvitset uudemman browserin!");
+		alert("Tarvitset uudemman selaimen!");
 	}
 	hostname = location.protocol + '//' + location.hostname + location.pathname;
 	var page = get_url_parameter("page");
@@ -388,6 +388,23 @@ $("#register-select-looking-for-done-button").click(function(evt) {
 		history.pushState(null, "register select height", hostname + "?page=register-select-height-page");
 	} else {
 		$("#register-select-looking-for-error").show();
+	}
+});
+
+$("#register-select-height-input").change(function(evt) {
+	$("#register-select-height-error").hide();
+});
+
+$("#register-select-height-done-button").click(function(evt) {
+	evt.preventDefault();
+	var height = $("#register-select-height-input").val();
+	if(heigth != undefined) {
+		$.cookie("height", height);
+		$("body > .container").hide();
+		$("#register-select-weight-page").show();
+		history.pushState(null, "register select weight", hostname + "?page=Register-select-weight-page");
+	} else {
+		$("#register-select-height-error").show();
 	}
 });
 
