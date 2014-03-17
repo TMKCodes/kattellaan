@@ -442,6 +442,34 @@
 		</form>
 	</div>
 
+	<div id="register-select-kids-page" class="container" style="display: none;">
+		<h1>Onko sinulla lapsia tai haluatko niitä?</h1>
+		<form id="register-select-kids-form" role="form" method="POST" action="php/api.php">
+			<div class="btn-group">
+				<label class="btn btn-default" for="register-select-kids-input">Lapsia:</label>
+				<select id="register-select-kids-input" class="multiselect form-control" name="kids" required="required">
+					<option value="yes">Kyllä</option>
+					<option value="no">Ei</option>
+					<option value="athome">Kotona</option>
+					<option value="somewhereelse">Muualla</option>
+					<option value="jointcustody">Yhteishuoltajuus</option>
+					<option value="solecustody">Yksinhuoltaja</option>
+					<option value="iwantkids">Haluan lapsia</option>
+					<option value="idontwantkids">En halua lapsia</option>
+					<option value="idontknowifiwantkids">En tiedä haluanko lapsia</option>
+					<option value="kidsdonotmatter">Lapset eivät haittaa</option>
+					<option value="weekendparent">Kerran viikossa lapset minulla</option>
+					<option value="secondweekendparent">Kaksi kertaa kuussa lapset minulla</option>
+					<option value="monthlyparent">Kerran kuussa lapset minulla</option>
+				</select>
+			</div>
+			<div id="register-select-kids-error" class="alert alert-danger" style="display: none;">
+				<p>Et vielä kertonut onko sinulla lapsia tai haluatko niitä.</p>
+			</div>
+			<input type="submit" id="register-select-kids-done-button" class="btn btn-default" value="Jatka" />
+		</form>
+	</div>
+
 	<div id="footer" style="height: 50px">
 
 	</div>

@@ -490,6 +490,22 @@ $("#register-select-hair-color-done-button").click(function(evt) {
 	}
 });
 
+$("#register-select-kids-input").change(function(evt) {
+	$("#register-select-kids-error").hide();
+});
+
+$("#register-select-kids-done-button").click(function(evt) {
+	evt.preventDefault();
+	var kids = $("#register-select-kids-input").val();
+	if(kids != undefined) {
+		$.cookie("kids", hairColor);
+		$("body > .container").hide();
+		$("#register-select-accomodation-page").show();
+		history.pushState(null, "register select accomodation", hostname + "?page=register-select-accomodation-page");
+	} else {
+		$("#register-select-kids-error").show();
+	}
+});
 // DO NOT REMOVE Enables hide and show binding
 // $("element").on("show", someFunc);
 // $("element").on("hide", someFunc);
