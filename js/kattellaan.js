@@ -435,10 +435,27 @@ $("#register-select-body-type-done-button").click(function(evt) {
 	if(bodyType != undefined) {
 		$.cookie("body-type", bodyType);
 		$("body > .container").hide();
-		$("#register-select-eye-color").show();
+		$("#register-select-eye-color-page").show();
 		history.pushState(null, "register select eye color", hostname + "?page=register-select-eye-color-page");
 	} else {
 		$("#register-select-body-type-error").show();
+	}
+});
+
+$("#register-select-eye-color-input").change(function(evt) {
+	$("#register-select-eye-color-show").hide();
+});
+
+$("#register-select-eye-color-done-button").click(function(evt) {
+	evt.preventDefault();
+	var eyeColor = $("#register-select-eye-color-input").val();
+	if(eyeColor != undefined) {
+		$.cookie("eye-color", eyeColor);
+		$("body > .container").hide();
+		$("#register-select-hair-length-page").show();
+		history.pushState(null, "register select hair length", hostname + "?page=register-select-hair-length-page");
+	} else {
+		$("#register-select-eye-color-error").show();
 	}
 });
 

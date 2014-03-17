@@ -374,6 +374,30 @@
 		</form>
 	</div>
 
+	<div id="register-select-eye-color-page" class="container" style="display: none;">
+		<h1>Sinun silmiesi väri?</h1>
+		<form id="register-select-eye-color-form" role="form" method="POST" action="php/api.php">
+			<div class="btn-group">
+				<label class="btn btn-default" for="register-select-eye-color-input">Silmienväri:</label>
+				<select id="register-select-eye-color-input" class="multiselect form-control" name="eye-color" required="required">
+					<option="blue">Sininen</option>
+					<option="brown">Ruskea</option>
+					<option="green">Vihreä</option>
+					<option="gray">Harmaa</option>
+					<option="amber">Kullanruskea</option>
+					<option="hazel">Pähkinänruskea</option>
+					<option="red">Punainen</option>
+					<option="violet">Violetti</option>
+				</select>
+			</div>
+			<div id="register-select-eye-color-error" class="alert alert-danger" style="display: none;">
+				<p>Et vielä kertonut silmiesi väriä</p>
+			</div>
+			<input type="submit" id="register-select-eye-color-done-button" class="btn btn-default" value="Jatka" />
+		</form>
+	</div>
+
+
 	<div id="footer" style="height: 50px">
 
 	</div>
