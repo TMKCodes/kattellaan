@@ -513,6 +513,28 @@
 		</form>
 	</div>
 
+	<div id="register-select-language-skills-page" class="container" style="display: none;">
+		<h1>Mitä kieliä puhut?</h1>
+		<form id="register-select-language-skills" role="form" method="POST" action="php/api.php">
+			<div class="btn btn-group">
+				<label class="btn btn-default" for="register-select-language-skills-input">Kielitaito:</label>
+				<select id="register-select-language-skills-input" class="multiselect form-control" name="language-skills" multiple="multiple" required="required">
+					<option value="finnish">Suomi</option>
+					<option value="swedish">Ruotsi</option>
+					<option value="english">Englanti</option>
+					<option value="russian">Venäjä</option>
+					<option value="german">Saksa</option>
+					<option value="japanese">Japania</option>
+					<option value="others">Muita</option>
+				</select>
+			</div>
+			<div id="register-select-language-skills-error" class="alert alert-danger" style="display: none;">
+				<p>Et vielä kertonut mitä kieliä puhut.</p>
+			</div>
+			<input type="submit" id="register-select-language-skills-done-button" class="btn btn-default" value="Jatka" />
+		</form>
+	</div>
+
 	<div id="footer" style="height: 50px">
 
 	</div>

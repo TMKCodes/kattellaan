@@ -538,7 +538,24 @@ $("#register-select-ethnic-identity-done-button").click(function(evt) {
 		$("#register-select-language-skills-page").show();
 		history.pushState(null, "register select language skills", hostname + "?page=register-select-language-skills-page");
 	} else {
-		$("#register-select-ethnic-identity-error");
+		$("#register-select-ethnic-identity-error").show();
+	}
+});
+
+$("#register-select-language-skills-input").change(function(evt) {
+	$("#register-select-language-skills-error").hide();
+});
+
+$("#register-select-language-skills-done-button").click(function(evt) {
+	evt.preventDefault();
+	var languageSkills = $("#register-select-language-skills-input").val();
+	if(languageSkills != undefined) {
+		$.cookie("language-skills", languageSkills);
+		$("body > .container").hide();
+		$("#register-select-education-page").show();
+		history.pushState(null, "register select education", hostname + "?page=register-select-education-page");
+	} else {
+		$("#register-select-language-skills-error").show();
 	}
 });
 
