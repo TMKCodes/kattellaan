@@ -465,7 +465,7 @@ $("#register-select-hair-length-input").change(function(evt) {
 
 $("#register-select-hair-length-done-button").click(function(evt) {
 	evt.preventDefault();
-	var hairLength = $("#register-select-hair-lenght-input").val();
+	var hairLength = $("#register-select-hair-length-input").val();
 	if(hairLength != undefined) {
 		$.cookie("hair-lenght", hairLength);
 		$("body > .container").hide();
