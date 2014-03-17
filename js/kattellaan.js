@@ -561,7 +561,7 @@ $("#register-select-language-skills-done-button").click(function(evt) {
 });
 
 $("#register-select-education-input").change(function(evt) {
-	$("#register-select-education-input").hide();
+	$("#register-select-education-error").hide();
 });
 
 $("#register-select-education-done-button").click(function(evt) {
@@ -574,6 +574,23 @@ $("#register-select-education-done-button").click(function(evt) {
 		history.pushState(null, "register select work", hostname + "?page=register-select-work-page");
 	} else {
 		$("#register-select-education-error").show();
+	}
+});
+
+$("#register-select-work-input").change(function(evt) {
+	$("#register-select-work-error").hide();
+});
+
+$("#register-select-work-done-button").click(function(evt) {
+	evt.preventDefault();
+	var work = $("#register-select-work-input").val();
+	if(work != undefined) {
+		$.cookie("work", work);
+		$("body > .container").hide();
+		$("#register-select-income-page").show();
+		history.pushState(null, "register select income", hostname + "?page=register-select-income-page");
+	} else {
+		$("#register-select-work-error").show();
 	}
 });
 

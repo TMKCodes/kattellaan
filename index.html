@@ -556,7 +556,32 @@
 				<p>Et vielä kertonut koulustasi.</p>
 			</div>
 			<input type="submit" id="register-select-education-done-button" class="btn btn-default" value="Jatka" />
-		</div>
+		</form>
+	</div>
+
+
+	<div id="register-select-work-page" class="container" style="display: none;">
+		<h1>Käytkö töissä?</h1>
+		<form id="register-select-work-form" role="form" method="POSt" action="php/api.php">
+			<div class="btn btn-group">
+				<label class="btn btn-default" for="register-select-work-input">Työssäkäynti:</label>
+				<select id="register-select-work-input" class="form-control" name="work" required="required">
+					<option value="unemployed">Työtön</option>
+					<option value="student">Opiskelija</option>
+					<option value="part-time">Osa-aikatyö</option>
+					<option value="morning">Aamutyö</option>
+					<option value="day">Päivätyö</option>
+					<option value="evening">Iltatyö</option>
+					<option value="night">Yötyö</option>
+					<option value="workaholic">Työnarkomaani</option>
+					<option value="pension">Eläke</option>
+				</select>
+			</div>
+			<div id="register-select-work-error" class="alert alert-danger" style="display: none;">
+				<p>Et vielä kertonyt työtilannettasi.</p>
+			</div>
+			<input type="submit" id="register-select-work-done-button" class="btn btn-default" value="Jatka" />
+		</form>
 	</div>
 
 	<div id="footer" style="height: 50px">
