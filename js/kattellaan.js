@@ -398,7 +398,7 @@ $("#register-select-height-input").change(function(evt) {
 $("#register-select-height-done-button").click(function(evt) {
 	evt.preventDefault();
 	var height = $("#register-select-height-input").val();
-	if(heigth != undefined) {
+	if(height != undefined) {
 		$.cookie("height", height);
 		$("body > .container").hide();
 		$("#register-select-weight-page").show();
