@@ -380,14 +380,14 @@
 			<div class="btn-group">
 				<label class="btn btn-default" for="register-select-eye-color-input">Silmienväri:</label>
 				<select id="register-select-eye-color-input" class="multiselect form-control" name="eye-color" required="required">
-					<option="blue">Sininen</option>
-					<option="brown">Ruskea</option>
-					<option="green">Vihreä</option>
-					<option="gray">Harmaa</option>
-					<option="amber">Kullanruskea</option>
-					<option="hazel">Pähkinänruskea</option>
-					<option="red">Punainen</option>
-					<option="violet">Violetti</option>
+					<option value="blue">Sininen</option>
+					<option value="brown">Ruskea</option>
+					<option value="green">Vihreä</option>
+					<option value="gray">Harmaa</option>
+					<option value="amber">Kullanruskea</option>
+					<option value="hazel">Pähkinänruskea</option>
+					<option value="red">Punainen</option>
+					<option value="violet">Violetti</option>
 				</select>
 			</div>
 			<div id="register-select-eye-color-error" class="alert alert-danger" style="display: none;">
@@ -403,10 +403,10 @@
 			<div class="btn-group">
 				<label class="btn btn-default" for="register-select-hair-length-input">Hiusten pituus:</label>
 				<select id="register-select-hair-length-input" class="multiselect form-control" name="hair-length" required="required">
-					<option="bald">Kalju</option>
-					<option="hedgehog">Siili</option>
-					<option="short">Lyhyet</option>
-					<option="long">Pitkät</option>
+					<option value="bald">Kalju</option>
+					<option value="hedgehog">Siili</option>
+					<option value="short">Lyhyet</option>
+					<option value="long">Pitkät</option>
 				</select>
 			</div>
 			<div id="register-select-hair-length-error" class="alert alert-danger" style="display: none;">
@@ -415,6 +415,33 @@
 			<input type="submit" id="register-select-hair-length-done-button" class="btn btn-default" value="Jatka" />
 		</form>
 	</div>
+
+	<div id="register-select-hair-color-page" class="container" style="display: none;">
+		<h1>Minkä väriset hiuksesi ovat?</h1>
+		<form id="register-select-hair-color-form" role="form" method="POST" action="php/api.php">
+			<div class="btn-group">
+				<label class="btn btn-default" for="register-select-hair-color-input">Hiusten väri:</label>
+				<select id="register-select-hair-color-input" class="multiselect form-control" name="hair-color" required="required">
+					<option value="verylight">Hyvin vaalea</option>
+					<option value="light">Vaalea</option>
+					<option value="lightbrown">Vaaleanruskea</option>
+					<option value="brown">Ruskea</option>
+					<option value="black">Musta</option>
+					<option value="gray">Harmaa</option>
+					<option value="red">Punainen</option>
+					<option value="pink">Pinkki</option>
+					<option value="white">Valkoinen</option>
+					<option value="colorful">Värikäs</option>
+					<option value="changeable">Muutuu usein</option>
+				</select>
+			</div>
+			<div id="register-select-hair-color-error" class="alert alert-danger" style="display: none;">
+				<p>Et vielä kertonut hiustesi väriä.</p>
+			</div>
+			<input type="submit" id="register-select-hair-color-done-button" class="btn btn-default" value="Jatka" />
+		</form>
+	</div>
+
 	<div id="footer" style="height: 50px">
 
 	</div>

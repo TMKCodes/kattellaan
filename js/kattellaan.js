@@ -476,6 +476,23 @@ $("#register-select-hair-length-done-button").click(function(evt) {
 	}
 });
 
+$("#register-select-hair-color-input").change(function(evt) {
+	$("#register-select-hair-color-error").hide();
+});
+
+$("#register-select-hair-color-done-button").click(function(evt) {
+	evt.preventDefault();
+	var hairColor = $("#register-select-hair-color-input").val();
+	if(hairColor != undefined) {
+		$.cookie("hair-color", hairColor);
+		$("body > .container").hide();
+		$("#register-select-kids-page").show();
+		history.pushState(null, "register select kids", hostname + "?page=register-select-kids-page");
+	} else {
+		$("#register-select-hair-color-error").show();
+	}
+});
+
 // DO NOT REMOVE Enables hide and show binding
 // $("element").on("show", someFunc);
 // $("element").on("hide", someFunc);
