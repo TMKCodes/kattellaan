@@ -167,6 +167,7 @@ $("#navigation-left > li").click(function(evt) {
 $("#home-button").click(function(evt) {
 	evt.preventDefault();
 	$("body > .container").hide();
+	// Check if user has already logged, do not show the registeration.
 	$("#home-page").show();
 	history.pushState(null, "Kattellaan home page", hostname);
 });
@@ -556,6 +557,23 @@ $("#register-select-language-skills-done-button").click(function(evt) {
 		history.pushState(null, "register select education", hostname + "?page=register-select-education-page");
 	} else {
 		$("#register-select-language-skills-error").show();
+	}
+});
+
+$("#register-select-education-input").change(function(evt) {
+	$("#register-select-education-input").hide();
+});
+
+$("#register-select-education-done-button").click(function(evt) {
+	evt.preventDefault();
+	var education = $("#register-select-education-input").val();
+	if(education != undefined) {
+		$.cookie("education", education);
+		$("body > .container").hide();
+		$("#register-select-work-page").show();
+		history.pushState(null, "register select work", hostname + "?page=register-select-work-page");
+	} else {
+		$("#register-select-education-error").show();
 	}
 });
 
