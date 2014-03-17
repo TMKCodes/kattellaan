@@ -516,12 +516,29 @@ $("#register-select-accomodation-done-button").click(function(evt) {
 	evt.preventDefault();
 	var accomodation = $("#register-select-accomodation-input").val();
 	if(accomodation != undefined) {
-		$.cookie("hair-color", accomodation);
+		$.cookie("accomodation", accomodation);
 		$("body > .container").hide();
 		$("#register-select-ethnic-identy-page").show();
 		history.pushState(null, "register select ethnic identy", hostname + "?page=register-select-ethnic-identy-page");
 	} else {
 		$("#register-select-accomodation-error").show();
+	}
+});
+
+$("#register-select-ethnic-identity-input").change(function(evt) {
+	$("#register-select-ethnic-identity-error").hide();
+});
+
+$("#register-select-ethnic-identity-done-button").click(function(evt) {
+	evt.preventDefault();
+	var ethnicIdentity = $("#register-select-ethnic-identity-input");
+	if(ethnicIdentity != undefined) {
+		$.cookie("ethnic-identity", ethnicIdentity);
+		$("body > .container").hide();
+		$("#register-select-language-skills-page").show();
+		history.pushState(null, "register select language skills", hostname + "?page=register-select-language-skills-page");
+	} else {
+		$("#register-select-ethnic-identity-error");
 	}
 });
 
