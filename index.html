@@ -540,7 +540,7 @@
 		<form id="register-select-education-form" role="form" method="POST" action="php/api.php">
 			<div class="btn btn-group">
 				<label class="btn btn-default" for="register-select-education-input">Koulutus:</label>
-				<select id="register-select-education-input" class="form-control" name="education" required="required">
+				<select id="register-select-education-input" class="multiselect form-control" name="education" required="required">
 					<option value="untrained">Kouluttamaton</option>
 					<option value="lifeschool">Elämänkoulu</option>
 					<option value="school">Peruskoulu</option>
@@ -565,7 +565,7 @@
 		<form id="register-select-work-form" role="form" method="POST" action="php/api.php">
 			<div class="btn btn-group">
 				<label class="btn btn-default" for="register-select-work-input">Työssäkäynti:</label>
-				<select id="register-select-work-input" class="form-control" name="work" required="required">
+				<select id="register-select-work-input" class="multiselect form-control" name="work" required="required">
 					<option value="unemployed">Työtön</option>
 					<option value="student">Opiskelija</option>
 					<option value="part-time">Osa-aikatyö</option>
@@ -589,7 +589,7 @@
 		<form id="register-select-income-form" role="form" method="POST" action="php/api.php">
 			<div id="input-group">
 				<label class="input-group-addon" for="register-select-income-input">Vuositulot:</label>
-				<input type="number" id="register-select-income-input" name="income" required="required">
+				<input type="number" class="form-control" id="register-select-income-input" name="income" required="required">
 				<input type="submit" id="register-select-income-done-button" class="btn btn-default" value="Jatka" />
 			</div>
 			<div id="register-select-income-error" class="alert alert-danger" style="display: none;">
