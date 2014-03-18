@@ -519,8 +519,8 @@ $("#register-select-accomodation-done-button").click(function(evt) {
 	if(accomodation != undefined) {
 		$.cookie("accomodation", accomodation);
 		$("body > .container").hide();
-		$("#register-select-ethnic-identy-page").show();
-		history.pushState(null, "register select ethnic identy", hostname + "?page=register-select-ethnic-identy-page");
+		$("#register-select-ethnic-identity-page").show();
+		history.pushState(null, "register select ethnic identity", hostname + "?page=register-select-ethnic-identity-page");
 	} else {
 		$("#register-select-accomodation-error").show();
 	}
