@@ -594,6 +594,23 @@ $("#register-select-work-done-button").click(function(evt) {
 	}
 });
 
+$("#register-select-income-input").change(function(evt) {
+	$("#register-select-income-error").hide();
+});
+
+$("#register-select-income-done-button").click(function(evt) {
+	evt.preventDefault();
+	var income = $("#register-select-income-input").val();
+	if(income != undefined) {
+		$.cookie("income", income);
+		$("body > .container").hide();
+		$("#register-select-vocation-page").show();
+		history.pushState(null, "register select vocation", hostname + "?page=register-select-vocation-page");
+	} else {
+		$("#register-select-income-error").show();
+	}
+});
+
 // DO NOT REMOVE Enables hide and show binding
 // $("element").on("show", someFunc);
 // $("element").on("hide", someFunc);

@@ -562,7 +562,7 @@
 
 	<div id="register-select-work-page" class="container" style="display: none;">
 		<h1>Käytkö töissä?</h1>
-		<form id="register-select-work-form" role="form" method="POSt" action="php/api.php">
+		<form id="register-select-work-form" role="form" method="POST" action="php/api.php">
 			<div class="btn btn-group">
 				<label class="btn btn-default" for="register-select-work-input">Työssäkäynti:</label>
 				<select id="register-select-work-input" class="form-control" name="work" required="required">
@@ -581,6 +581,20 @@
 				<p>Et vielä kertonyt työtilannettasi.</p>
 			</div>
 			<input type="submit" id="register-select-work-done-button" class="btn btn-default" value="Jatka" />
+		</form>
+	</div>
+
+	<div id="register-select-income-page" class="container" style="display: none;">
+		<h1>Kuinka varakas sinä olet?</h1>
+		<form id="register-select-income-form" role="form" method="POST" action="php/api.php">
+			<div id="input-group">
+				<label class="input-group-addon" for="register-select-income-input">Vuositulot:</label>
+				<input type="number" id="register-select-income-input" name="income" required="required">
+				<input type="submit" id="register-select-income-done-button" class="btn btn-default" value="Jatka" />
+			</div>
+			<div id="register-select-income-error" class="alert alert-danger" style="display: none;">
+				<p>Et vielä kertonut vuositulojasi.</p>
+			</div>
 		</form>
 	</div>
 
