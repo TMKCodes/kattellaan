@@ -617,9 +617,9 @@
 		<form id="register-select-income-form" role="form" method="POST" action="php/api.php">
 			<div class="input-group col-xs-6">
 				<label class="input-group-addon" for="register-select-income-input">Vuositulot:</label>
-				<input type="number" class="form-control" id="register-select-income-input" name="income" required="required" />
+				<input type="number" class="form-control" id="register-select-income-input" name="income" min="0" value="0" required="required" />
 				<span class="input-group-btn">
-					<input type="submit" id="register-select-income-done-button" class="btn btn-default" mix="0" value="0" value="Jatka" />
+					<input type="submit" id="register-select-income-done-button" class="btn btn-default" value="Jatka" />
 				</span>
 			</div>
 			<div id="register-select-income-error" class="alert alert-danger" style="display: none;">
