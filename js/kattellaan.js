@@ -686,32 +686,25 @@ $("#register-select-location-done-button").click(function(evt) {
 	var street_address = $("#register-select-street-address-input").val();
 	var municipality = $("#register-select-municipality-input").val();
 	var country = $("#register-select-country-input").val();
-	if(street_address == undefined) {
-		$("#register-select-location-page-error").show();
-	} else if(municipality == undefined) {
-		$("#register-select-location-page-error").show();
-	} else if(country == undefined) {
-		$("#register-select-location-page-error").show();
-	} else {
-		var street_address_replaced = street_address.replace(" ", "+");
-		var municipality_replaced = municipality.replace(" ", "+");
-		var country_replaced = country.replace(" ", "+");
-		var jaddress = street_address_replaced + "+" + municipality_replaced + "+" + country_replaced;
-		$.cookie("address", jaddress);
-		$.ajax({
-			url: "http://maps.googleapis.com/maps/api/geocode/json",
-			type: "GET",
-			data: { address : jaddress, sensor: false  }	
-		}).done(function(data) {
-			if(data.status == "OK") {
-				var myLatLong = new google.maps.LatLng(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng)
-				$.cookie("latlng", myLatLong);
-				$("body > .container").hide();
-				$("#register-select-profile-picture-page").show();
-				history.pushState(null, "register select profile picture", hostname + "?page=register-select-profile-picture-page");
-			} else {
-				console.log("Failed to retrieve address location");
-			}
-		});
-	}
+	var street_address_replaced = street_address.replace(" ", "+");
+	var municipality_replaced = municipality.replace(" ", "+");
+	var country_replaced = country.replace(" ", "+");
+	var jaddress = street_address_replaced + "+" + municipality_replaced + "+" + country_replaced;
+	$.cookie("address", jaddress);
+	$.ajax({
+		url: "http://maps.googleapis.com/maps/api/geocode/json",
+		type: "GET",
+		data: { address : jaddress, sensor: false  }	
+	}).done(function(data) {
+		if(data.status == "OK") {
+			var myLatLong = new google.maps.LatLng(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng)
+			$.cookie("latlng", myLatLong);
+			$("body > .container").hide();
+			$("#register-select-profile-picture-page").show();
+			history.pushState(null, "register select profile picture", hostname + "?page=register-select-profile-picture-page");
+		} else {
+			$("#register-select-location-page-error").show();
+			console.log("Failed to retrieve address location");
+		}
+	});
 });
