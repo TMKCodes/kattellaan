@@ -589,12 +589,24 @@
 		<form id="register-select-income-form" role="form" method="POST" action="php/api.php">
 			<div class="input-group">
 				<label class="input-group-addon" for="register-select-income-input">Vuositulot:</label>
-				<input type="number" class="form-control" id="register-select-income-input" name="income" required="required" />
+				<input type="number" class="col-sx-4 form-control" id="register-select-income-input" name="income" required="required" />
 			</div>
 			<div id="register-select-income-error" class="alert alert-danger" style="display: none;">
 				<p>Et vielä kertonut vuositulojasi.</p>
 			</div>
 			<input type="submit" id="register-select-income-done-button" class="btn btn-default" value="Jatka" />
+		</form>
+	</div>
+
+	<div id="register-select-vocation-page" class="container" style="display: none;">
+		<h1>Millä alalla työskentelet?</h1>
+		<form id="register-select-vocation-form" role="form" method="POST" action="php/api.php">
+			<div class="btn btn-group">
+				<label class="btn btn-default" for="register-select-vocation-input">Ammattiala</label>
+				<select id="register-select-vocation-input" name="vocation" class="multiselect form-control" required="required" />
+					
+				</select>
+			</div>
 		</form>
 	</div>
 
