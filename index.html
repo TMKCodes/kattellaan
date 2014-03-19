@@ -329,6 +329,7 @@
 					<option value="date">Tapaaminen</option>
 					<option value="sex">Seksi</option>
 					<option value="other">Jotain muuta</option>
+					<option value="none" selected="selected">En halua kertoa</option>
 				</select>
 				<input type="submit" id="register-select-looking-for-done-button" class="btn btn-default" value="Jatka" />
 			</div>
@@ -342,7 +343,7 @@
 		<form id="register-select-height-form" role="form" method="POST" action="php/api.php">
 			<div class="input-group col-xs-3">
 				<label class="input-group-addon" for="register-select-height-input">Pituus cm:</label>
-				<input type="number" class="form-control" id="register-select-height-input" name="height" required="required">
+				<input type="number" class="form-control" id="register-select-height-input" name="height" min="0" max="300" value="150" required="required">
 				<div class="input-group-btn">
 					<input type="submit" id="register-select-height-done-button" class="btn btn-default" value="Jatka" />
 				</div>
@@ -358,7 +359,7 @@
 		<form id="register-select-weight-form" role="form" method="POST" action="php/api.php">
 			<div class="input-group col-xs-3">
 				<label class="input-group-addon" for="register-select-weight-input">Paino kg:</label>
-				<input type="number" class="form-control" id="register-select-weight-input" name="weight" required="required">
+				<input type="number" class="form-control" id="register-select-weight-input" name="weight" min="0" max="600" value="60" required="required">
 				<div class="input-group-btn">
 					<input type="submit" id="register-select-weight-done-button" class="btn btn-default" value="Jatka" />
 				</div>
@@ -382,6 +383,7 @@
 					<option value="muscular">Lihaksikas</option>
 					<option value="roundish">Pyöreähkö</option>
 					<option value="overweight">Ylipainoinen</option>
+					<option value="none" selected="selected">En halua kertoa</option>
 				</select>
 				<input type="submit" id="register-select-body-type-done-button" class="btn btn-default" value="Jatka" />
 			</div>
@@ -405,6 +407,7 @@
 					<option value="hazel">Pähkinänruskea</option>
 					<option value="red">Punainen</option>
 					<option value="violet">Violetti</option>
+					<option value="none" selected="selected">En halua kertoa</option>
 				</select>
 				<input type="submit" id="register-select-eye-color-done-button" class="btn btn-default" value="Jatka" />
 			</div>
@@ -424,6 +427,7 @@
 					<option value="hedgehog">Siili</option>
 					<option value="short">Lyhyet</option>
 					<option value="long">Pitkät</option>
+					<option value="none" selected="selected">En halua kertoa</option>
 				</select>
 				<input type="submit" id="register-select-hair-length-done-button" class="btn btn-default" value="Jatka" />
 			</div>
@@ -450,6 +454,7 @@
 					<option value="white">Valkoinen</option>
 					<option value="colorful">Värikäs</option>
 					<option value="changeable">Muutuu usein</option>
+					<option value="none" selected="selected">En halua kertoa</option>
 				</select>
 				<input type="submit" id="register-select-hair-color-done-button" class="btn btn-default" value="Jatka" />
 			</div>
@@ -478,6 +483,7 @@
 					<option value="weekendparent">Kerran viikossa lapset minulla</option>
 					<option value="secondweekendparent">Kaksi kertaa kuussa lapset minulla</option>
 					<option value="monthlyparent">Kerran kuussa lapset minulla</option>
+					<option value="none" selected="selected">En halua kertoa</option>
 				</select>
 				<input type="submit" id="register-select-kids-done-button" class="btn btn-default" value="Jatka" />
 			</div>
@@ -499,6 +505,7 @@
 					<option value="sharedflat">Kimppakämpässä</option>
 					<option value="withpartner">Kumppanin kanssa</option>
 					<option value="homeless">Koditon</option>
+					<option value="none" selected="selected">En halua kertoa</option>
 				</select>
 				<input type="submit" id="register-select-accomodation-done-button" class="btn btn-default" value="Jatka" />
 			</div>
@@ -521,6 +528,7 @@
 					<option value="Arab">Arabi</option>
 					<option value="Asian">Aasialainen</option>
 					<option value="midget">Kääpiö</option>
+					<option value="none" selected="selected">En halua kertoa</option>
 				</select>
 				<input type="submit" id="register-select-ethnic-identity-done-button" class="btn btn-default" value="Jatka" />
 			</div>
@@ -543,6 +551,7 @@
 					<option value="german">Saksa</option>
 					<option value="japanese">Japania</option>
 					<option value="others">Muita</option>
+					<option value="none" selected="selected">En halua kertoa</option>
 				</select>
 				<input type="submit" id="register-select-language-skills-done-button" class="btn btn-default" value="Jatka" />
 			</div>
@@ -567,6 +576,7 @@
 					<option value="college">Yliopisto/korkeakoulu</option>
 					<option value="masters">Maisterin tutkinto</option>
 					<option value="doctor">Tohtorin tutkinto</option>
+					<option value="none" selected="selected">En halua kertoa</option>
 				</select>
 				<input type="submit" id="register-select-education-done-button" class="btn btn-default" value="Jatka" />
 			</div>
@@ -592,6 +602,7 @@
 					<option value="night">Yötyö</option>
 					<option value="workaholic">Työnarkomaani</option>
 					<option value="pension">Eläke</option>
+					<option value="none" selected="selected">En halua kertoa</option>
 				</select>
 				<input type="submit" id="register-select-work-done-button" class="btn btn-default" value="Jatka" />
 			</div>
@@ -608,7 +619,7 @@
 				<label class="input-group-addon" for="register-select-income-input">Vuositulot:</label>
 				<input type="number" class="form-control" id="register-select-income-input" name="income" required="required" />
 				<span class="input-group-btn">
-					<input type="submit" id="register-select-income-done-button" class="btn btn-default" value="Jatka" />
+					<input type="submit" id="register-select-income-done-button" class="btn btn-default" mix="0" value="0" value="Jatka" />
 				</span>
 			</div>
 			<div id="register-select-income-error" class="alert alert-danger" style="display: none;">
