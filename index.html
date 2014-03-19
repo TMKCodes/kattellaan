@@ -44,25 +44,25 @@
 	<div class="container" id="register-account-page" style="display: none;">
 		<h1>Registeröi itsellesi käyttäjätunnus sivustolle.</h1>
 		<form role="form" id="register-account-form" method="GET" action="php/api.php">
-			<div class="input-group" style="margin-bottom: 5px;">
+			<div class="input-groupi col-sx-4" style="margin-bottom: 5px;">
 				<label class="input-group-addon" for="register-account-username-input">Käyttäjätunnus:</label>
 				<input type="text" class="form-control" id="register-account-username-input" name="username" placeholder="Syötä haluamasi käyttäjätunnus." />
 			</div>
 			<div id="register-account-username-empty-error" class="alert alert-danger" style="display: none;">
 				<p>Sinun tarvitsee syöttää käyttäjätunnus.</p>
 			</div>
-			<div class="input-group" style="margin-bottom: 5px;">
+			<div class="input-group col-sx-4" style="margin-bottom: 5px;">
 				<label class="input-group-addon" for="register-account-address-input">Sähköposti:</label>
 				<input type="email" class="form-control" id="register-account-address-input" name="address" placeholder="Syötä sähköposti osoitteesi." />
 			</div>
 			<div id="register-account-address-empty-error" class="alert alert-danger" style="display: none;">
 				<p>Sinun tarvitsee syöttää sähköposti osoitteesi.</p>
 			</div>
-			<div class="input-group" style="margin-bottom: 5px;">
+			<div class="input-group col-sx-4" style="margin-bottom: 5px;">
 				<label class="input-group-addon" for="register-account-password-input">Salasana:</label>
 				<input type="password" class="form-control" id="register-account-password-input" name="password" />
 			</div>
-			<div class="input-group" style="margin-bottom: 5px;">
+			<div class="input-group col-sx-4" style="margin-bottom: 5px;">
 				<label class="input-group-addon" for="register-account-password-confirm-input">Salasana varmistus:</label>
 				<input type="password" class="form-control" id="register-account-password-confirm-input" name="password-confirm" />
 			</div>
@@ -208,7 +208,7 @@
 	<div id="register-select-gender-page" class="container" style="display: none;">
 		<h1>Valitse sukupuolesi</h1>
 		<form role="form" id="register-select-gender-form" action="php/api.php" method="POST">
-			<div class="input-group">
+			<div class="input-group col-xs-4">
 				<label class="input-group-addon" for="register-select-gender-input">Sukupuoli:</label>
 				<select id="register-select-gender-input" class="form-control" name="gender" required="required">
 					<option value="man">Mies</option>
@@ -217,9 +217,12 @@
 					<option value="transwoman">Transnainen</option>
 					<option value="sexless">Sukupuoleton</option>
 				</select>
+				<div id="input-group-btn">
+					<input type="submit" class="btn btn-default" id="register-select-gender-done-button" value="Jatka" />
+				</div>
 			</div>
 			<div id="register-select-gender-error" class="alert alert-danger" style="display: none;"><p>Et vielä valinnut sukupuoltasi.</p></div>
-			<input type="submit" class="btn btn-default" id="register-select-gender-done-button" value="Jatka" />
+
 		</form>
 	</div>
 
@@ -227,12 +230,15 @@
 	<div id="register-select-birthday-page" class="container" style="display: none;">
 		<h1>Valitse syntymäpäiväsi</h1>
 		<form role="form" id="register-select-birthday-form" action="php/api.php" method="POST">
-			<div class="input-group">
+			<div class="input-group col-xs-4">
 				<label class="input-group-addon" for="register-select-birthday-input">Syntymäpäivä:</label>
 				<input type="date" class="form-control" name="birthday" id="register-select-birthday-input" required="required" placeholder="mm/dd/yyyy">
+				<div class="input-group-btn">
+					<input type="submit" class="btn btn-default" id="register-select-birthday-done-button" value="Jatka" />
+				</div>
 			</div>
 			<div id="register-select-birthday-error" class="alert alert-danger" style="display: none;"><p>Et vielä valinnut syntymäpäivääsi.</p></div>
-			<input type="submit" class="btn btn-default" id="register-select-birthday-done-button" value="Jatka" />
+
 		</form>
 	</div>
 
@@ -245,15 +251,15 @@
 			</div>
 			<div class="col-xs-6">
 				<form role="form" id="register-select-location-form" action="php/api.php" method="POST">
-					<div class="input-group" style="margin-bottom: 5px;">
+					<div class="input-group col-xs-4" style="margin-bottom: 5px;">
 						<label class="input-group-addon" for="register-select-street-address-input">Katuosoite:</label>
 						<input type="text" class="form-control" id="register-select-street-address-input" name="street-address" required="required">
 					</div>
-					<div class="input-group" style="margin-bottom: 5px;">
+					<div class="input-group col-xs-4" style="margin-bottom: 5px;">
 						<label class="input-group-addon" for="register-select-municipality-input">Kunta:</label>
 						<input type="text" class="form-control" id="register-select-municipality-input" name="municipality" required="required"> 
 					</div>
-					<div class="input-group" style="margin-bottom: 5px;">
+					<div class="input-group col-xs-4" style="margin-bottom: 5px;">
 						<label class="input-group-addon" for="register-select-country-input">Valtio:</label>
 						<input type="text" class="form-control" id="register-select-country-input" name="country" required="required">
 					</div>
@@ -271,7 +277,7 @@
 	<div id="register-select-relationship-status-page" class="container" style="display: none;">
 		<h1>Valitse suhde tilanteesi</h1>
 		<form id="register-select-relationship-status-form" role="form" method="POST" action="php/api.php">
-			<div class="input-group">
+			<div class="input-group col-xs-4">
 				<label class="input-group-addon" for="register-select-relationship-status-input">Suhde tilanne:</label>
 				<select id="register-select-relationship-status-input" class="form-control" name="relationship-status">
 					<option value="single">Sinkku</option>
@@ -282,16 +288,18 @@
 					<option value="widow">Leski</option>
 					<option value="unknown">En halua kertoa</option>
 				</select>
+				<div class="input-group-btn">
+					<input id="register-select-relationship-status-done-button" type="submit" class="btn btn-default" value="Jatka" />
+				</div>
 			</div>
 			<div id="register-select-relationship-status-error" class="alert alert-danger" style="display: none;"><p>Et vielä valinnut suhde tilannettasi.</p></div>
-			<input id="register-select-relationship-status-done-button" type="submit" class="btn btn-default" value="Jatka" />
 		</form>
 	</div>
 
 	<div id="register-select-sexual-orientation-page" class="container" style="display: none;">
 		<h1>Valitse seksuaalinen suuntautumisesi</h1>
 		<form id="register-select-sexual-orientation-form" role="form" method="POST" action="php/api.php">
-			<div class="input-group">
+			<div class="input-group col-xs-4">
 				<label class="input-group-addon" for="register-select-sexual-orientation-input">Seksuaalinen suuntautuminen:</label>
 				<select id="register-select-sexual-orientation-input" class="form-control" name="sexual-orientation">
 					<option value="hetero">Heteroseksuaali</option>
@@ -299,16 +307,18 @@
 					<option value="bi">Biseksuaali</option>
 					<option value="ase">Aseksuaali</option>
 				</select>
+				<div class="input-group-btn">
+					<input type="submit" id="register-select-sexual-orientation-done-button" class="btn btn-default" value="Jatka" />
+				</div>
 			</div>
 			<div id="register-select-sexual-orientation-error" class="alert alert-danger" style="display: none;"><p>Et vielä kertonut meille seksuaalista suuntautumistasi.</p></div>
-			<input type="submit" id="register-select-sexual-orientation-done-button" class="btn btn-default" value="Jatka" />
 		</form>
 	</div>
 
 	<div id="register-select-looking-for-page" class="container" style="display: none;">
 		<h1>Mitä sinä etsit?<h1>
 		<form id="register-select-looking-for-form" role="form" method="POST" action="php/api.php">
-			<div class="btn-group">
+			<div class="btn-group col-xs-4">
 				<label class="btn btn-default" for="register-select-looking-for-input">Kiikarissa:</label>
 				<select id="register-select-looking-for-input" class="multiselect form-control" name="looking-for" multiple="multiple">
 					<option value="friends">Ystävyys</option>
@@ -317,45 +327,49 @@
 					<option value="sex">Seksi</option>
 					<option value="other">Jotain muuta</option>
 				</select>
+				<input type="submit" id="register-select-looking-for-done-button" class="btn btn-default" value="Jatka" />
 			</div>
 			<div id="register-select-looking-for-error" class="alert alert-danger" style="display: none;">
 				<p>Et ole vielä kertonut meille mitä sinä täältä tulet etsimään.</p>
 			</div>
-			<input type="submit" id="register-select-looking-for-done-button" class="btn btn-default" value="Jatka" />
 		</form>
 	</div>
 	<div id="register-select-height-page" class="container" style="display: none;">
 		<h1>Kuinka pitkä olet?</h1>
 		<form id="register-select-height-form" role="form" method="POST" action="php/api.php">
-			<div class="input-group">
+			<div class="input-group col-xs-4">
 				<label class="input-group-addon" for="register-select-height-input">Pituus cm:</label>
 				<input type="number" class="form-control" id="register-select-height-input" name="height" required="required">
+				<div class="input-group-btn">
+					<input type="submit" id="register-select-height-done-button" class="btn btn-default" value="Jatka" />
+				</div>
 			</div>
 			<div id="register-select-height-error" class="alert alert-danger" style="display: none;">
 				<p>Et vielä kertonut kuinka pitkä sinä olet.</p>
 			</div>
-			<input type="submit" id="register-select-height-done-button" class="btn btn-default" value="Jatka" />
 		</form>
 	</div>
 
 	<div id="register-select-weight-page" class="container" style="display: none;">
 		<h1>Kuinka paljon painat?</h1>
 		<form id="register-select-weight-form" role="form" method="POST" action="php/api.php">
-			<div class="input-group">
+			<div class="input-group col-xs-4">
 				<label class="input-group-addon" for="register-select-weight-input">Paino kg:</label>
 				<input type="number" class="form-control" id="register-select-weight-input" name="weight" required="required">
+				<div class="input-group-btn">
+					<input type="submit" id="register-select-weight-done-button" class="btn btn-default" value="Jatka" />
+				</div>
 			</div>
 			<div id="register-select-weight-error" class="alert alert-danger" style="display: none;">
 				<p>Et vielä kertonut kuinka paljon sinä painat.</p>
 			</div>
-			<input type="submit" id="register-select-weight-done-button" class="btn btn-default" value="Jatka" />
 		</form>
 	</div>
 
 	<div id="register-select-body-type-page" class="container" style="display: none;">
 		<h1>Mikä on ruumiinrakenteesi?</h1>
 		<form id="register-select-body-type-form" role="form" method="POST" action="php/api.php">
-			<div class="btn-group">
+			<div class="btn-group col-xs-4">
 				<label class="btn btn-default" for="register-select-body-type-input">Ruumiinrakenne:</label>
 				<select id="register-select-body-type-input" class="multiselect form-control" name="body-type" required="required">
 					<option value="slender">Siro</option>
@@ -366,18 +380,18 @@
 					<option value="roundish">Pyöreähkö</option>
 					<option value="overweight">Ylipainoinen</option>
 				</select>
+				<input type="submit" id="register-select-body-type-done-button" class="btn btn-default" value="Jatka" />
 			</div>
 			<div id="register-select-body-type-error" class="alert alert-danger" style="display: none;">
 				<p>Et vielä kertonut ruumiinrakennettasi.</p>
 			</div>
-			<input type="submit" id="register-select-body-type-done-button" class="btn btn-default" value="Jatka" />
 		</form>
 	</div>
 
 	<div id="register-select-eye-color-page" class="container" style="display: none;">
 		<h1>Sinun silmiesi väri?</h1>
 		<form id="register-select-eye-color-form" role="form" method="POST" action="php/api.php">
-			<div class="btn-group">
+			<div class="btn-group col-xs-4">
 				<label class="btn btn-default" for="register-select-eye-color-input">Silmienväri:</label>
 				<select id="register-select-eye-color-input" class="multiselect form-control" name="eye-color" required="required">
 					<option value="blue">Sininen</option>
@@ -389,18 +403,18 @@
 					<option value="red">Punainen</option>
 					<option value="violet">Violetti</option>
 				</select>
+				<input type="submit" id="register-select-eye-color-done-button" class="btn btn-default" value="Jatka" />
 			</div>
 			<div id="register-select-eye-color-error" class="alert alert-danger" style="display: none;">
 				<p>Et vielä kertonut silmiesi väriä</p>
 			</div>
-			<input type="submit" id="register-select-eye-color-done-button" class="btn btn-default" value="Jatka" />
 		</form>
 	</div>
 
 	<div id="register-select-hair-length-page" class="container" style="display: none;">
 		<h1>Kuinka pitkät hiukset sinulla on?</h1>
 		<form id="register-select-hair-length-form" role="form" method="POST" action="php/api.php">
-			<div class="btn-group">
+			<div class="btn-group col-xs-4">
 				<label class="btn btn-default" for="register-select-hair-length-input">Hiusten pituus:</label>
 				<select id="register-select-hair-length-input" class="multiselect form-control" name="hair-length" required="required">
 					<option value="bald">Kalju</option>
@@ -408,18 +422,18 @@
 					<option value="short">Lyhyet</option>
 					<option value="long">Pitkät</option>
 				</select>
+				<input type="submit" id="register-select-hair-length-done-button" class="btn btn-default" value="Jatka" />
 			</div>
 			<div id="register-select-hair-length-error" class="alert alert-danger" style="display: none;">
 				<p>Et vielä kertonut hiustesi pituutta</p>
 			</div>
-			<input type="submit" id="register-select-hair-length-done-button" class="btn btn-default" value="Jatka" />
 		</form>
 	</div>
 
 	<div id="register-select-hair-color-page" class="container" style="display: none;">
 		<h1>Minkä väriset hiuksesi ovat?</h1>
 		<form id="register-select-hair-color-form" role="form" method="POST" action="php/api.php">
-			<div class="btn-group">
+			<div class="btn-group col-xs-4">
 				<label class="btn btn-default" for="register-select-hair-color-input">Hiusten väri:</label>
 				<select id="register-select-hair-color-input" class="multiselect form-control" name="hair-color" required="required">
 					<option value="verylight">Hyvin vaalea</option>
@@ -434,18 +448,18 @@
 					<option value="colorful">Värikäs</option>
 					<option value="changeable">Muutuu usein</option>
 				</select>
+				<input type="submit" id="register-select-hair-color-done-button" class="btn btn-default" value="Jatka" />
 			</div>
 			<div id="register-select-hair-color-error" class="alert alert-danger" style="display: none;">
 				<p>Et vielä kertonut hiustesi väriä.</p>
 			</div>
-			<input type="submit" id="register-select-hair-color-done-button" class="btn btn-default" value="Jatka" />
 		</form>
 	</div>
 
 	<div id="register-select-kids-page" class="container" style="display: none;">
 		<h1>Onko sinulla lapsia tai haluatko niitä?</h1>
 		<form id="register-select-kids-form" role="form" method="POST" action="php/api.php">
-			<div class="btn-group">
+			<div class="btn-group col-xs-4">
 				<label class="btn btn-default" for="register-select-kids-input">Lapsia:</label>
 				<select id="register-select-kids-input" class="multiselect form-control" name="kids" multiple="multiple" required="required">
 					<option value="yes">Kyllä</option>
@@ -462,18 +476,18 @@
 					<option value="secondweekendparent">Kaksi kertaa kuussa lapset minulla</option>
 					<option value="monthlyparent">Kerran kuussa lapset minulla</option>
 				</select>
+				<input type="submit" id="register-select-kids-done-button" class="btn btn-default" value="Jatka" />
 			</div>
 			<div id="register-select-kids-error" class="alert alert-danger" style="display: none;">
 				<p>Et vielä kertonut onko sinulla lapsia tai haluatko niitä.</p>
 			</div>
-			<input type="submit" id="register-select-kids-done-button" class="btn btn-default" value="Jatka" />
 		</form>
 	</div>
 
 	<div id="register-select-accomodation-page" class="container" style="display: none;">
 		<h1>Millainen on asumis tilanteesi?</h1>
 		<form id="register-select-accomodation-form" role="form" method="POST" action="php/api.php">
-			<div class="btn-group">
+			<div class="btn-group col-xs-4">
 				<label class="btn btn-default" for="register-select-accomodation-input">Asumismuoto:</label>
 				<select id="register-select-accomodation-input" class="multiselect form-control" name="accomodation" required="required">
 					<option value="alone">Yksin</option>
@@ -483,18 +497,18 @@
 					<option value="withpartner">Kumppanin kanssa</option>
 					<option value="homeless">Koditon</option>
 				</select>
+				<input type="submit" id="register-select-accomodation-done-button" class="btn btn-default" value="Jatka" />
 			</div>
 			<div id="register-select-accomodation-error" class="alert alert-danger" style="display: none;">
 				<p>Et vielä kertonut asumismuotoasi.</p>
 			</div>
-			<input type="submit" id="register-select-accomodation-done-button" class="btn btn-default" value="Jatka" />
 		</form>
 	</div>
 	
 	<div id="register-select-ethnic-identity-page" class="container" style="display: none;">
 		<h1>Etninten identiteettisi?</h1>
 		<form id="register-select-ethnic-identity-form" role="form" method="POST" action="php/api.php">
-			<div class="btn btn-group">
+			<div class="btn btn-group col-xs-4">
 				<label class="btn btn-default" for="register-select-ethnic-identity-input">Etninen identiteetti:</label>
 				<select id="register-select-ethnic-identity-input" class="multiselect form-control" name="ethnic-identity" required="required">
 					<option value="white">Valkoinen</option>
@@ -505,18 +519,18 @@
 					<option value="Asian">Aasialainen</option>
 					<option value="midget">Kääpiö</option>
 				</select>
+				<input type="submit" id="register-select-ethnic-identity-done-button" class="btn btn-default" value="Jatka" />
 			</div>
 			<div id="register-select-ethnic-identity-error" class="alert alert-danger" style="display: none;">
 				<p>Et vielä kertonut etnistä identiteettiäsi.</p>
 			</div>
-			<input type="submit" id="register-select-ethnic-identity-done-button" class="btn btn-default" value="Jatka" />
 		</form>
 	</div>
 
 	<div id="register-select-language-skills-page" class="container" style="display: none;">
 		<h1>Mitä kieliä puhut?</h1>
 		<form id="register-select-language-skills-form" role="form" method="POST" action="php/api.php">
-			<div class="btn btn-group">
+			<div class="btn btn-group col-xs-4">
 				<label class="btn btn-default" for="register-select-language-skills-input">Kielitaito:</label>
 				<select id="register-select-language-skills-input" class="multiselect form-control" name="language-skills" multiple="multiple" required="required">
 					<option value="finnish">Suomi</option>
@@ -527,18 +541,18 @@
 					<option value="japanese">Japania</option>
 					<option value="others">Muita</option>
 				</select>
+				<input type="submit" id="register-select-language-skills-done-button" class="btn btn-default" value="Jatka" />
 			</div>
 			<div id="register-select-language-skills-error" class="alert alert-danger" style="display: none;">
 				<p>Et vielä kertonut mitä kieliä puhut.</p>
 			</div>
-			<input type="submit" id="register-select-language-skills-done-button" class="btn btn-default" value="Jatka" />
 		</form>
 	</div>
 
 	<div id="register-select-education-page" class="container" style="display: none;">
 		<h1>Kuinka hyvä koulutus sinulla on?</h1>
 		<form id="register-select-education-form" role="form" method="POST" action="php/api.php">
-			<div class="btn btn-group">
+			<div class="btn btn-group col-xs-4">
 				<label class="btn btn-default" for="register-select-education-input">Koulutus:</label>
 				<select id="register-select-education-input" class="multiselect form-control" name="education" required="required">
 					<option value="untrained">Kouluttamaton</option>
@@ -551,11 +565,11 @@
 					<option value="masters">Maisterin tutkinto</option>
 					<option value="doctor">Tohtorin tutkinto</option>
 				</select>
+				<input type="submit" id="register-select-education-done-button" class="btn btn-default" value="Jatka" />
 			</div>
 			<div id="register-select-education-error" class="alert alert-danger" style="display: none;">
 				<p>Et vielä kertonut koulustasi.</p>
 			</div>
-			<input type="submit" id="register-select-education-done-button" class="btn btn-default" value="Jatka" />
 		</form>
 	</div>
 
@@ -563,7 +577,7 @@
 	<div id="register-select-work-page" class="container" style="display: none;">
 		<h1>Käytkö töissä?</h1>
 		<form id="register-select-work-form" role="form" method="POST" action="php/api.php">
-			<div class="btn btn-group">
+			<div class="btn btn-group col-xs-4">
 				<label class="btn btn-default" for="register-select-work-input">Työssäkäynti:</label>
 				<select id="register-select-work-input" class="multiselect form-control" name="work" required="required">
 					<option value="unemployed">Työtön</option>
@@ -576,11 +590,11 @@
 					<option value="workaholic">Työnarkomaani</option>
 					<option value="pension">Eläke</option>
 				</select>
+				<input type="submit" id="register-select-work-done-button" class="btn btn-default" value="Jatka" />
 			</div>
 			<div id="register-select-work-error" class="alert alert-danger" style="display: none;">
 				<p>Et vielä kertonyt työtilannettasi.</p>
 			</div>
-			<input type="submit" id="register-select-work-done-button" class="btn btn-default" value="Jatka" />
 		</form>
 	</div>
 
