@@ -637,18 +637,15 @@ $("#register-select-location-page").on("show", function() {
 });
 
 $("#register-select-street-address-input").change(function(evt) {
-	$("#register-select-street-address-error").hide();
-	$("#register-select-location-error").hide();
+	$("#register-select-location-page-error").hide();
 });
 
 $("#register-select-municipality-input").change(function(evt) {
-	$("#register-select-municipality-error").hide();
-	$("#register-select-location-error").hide();
+	$("#register-select-location-page-error").hide();
 });
 
 $("#register-select-country-input").change(function(evt) {
-	$("#register-select-country-error").hide();
-	$("#register-select-location-error").hide();
+	$("#register-select-location-page-error").hide();
 
 });
 
@@ -690,11 +687,11 @@ $("#register-select-location-done-button").click(function(evt) {
 	var municipality = $("#register-select-municipality-input").val();
 	var country = $("#register-select-country-input").val();
 	if(street_address == undefined) {
-		$("#register-select-street-address-error").show();
+		$("#register-select-location-page-error").show();
 	} else if(municipality == undefined) {
-		$("#register-select-municipality-error").show();
+		$("#register-select-location-page-error").show();
 	} else if(country == undefined) {
-		$("#register-select-country-error").show();
+		$("#register-select-location-page-error").show();
 	} else {
 		var street_address_replaced = street_address.replace(" ", "+");
 		var municipality_replaced = municipality.replace(" ", "+");
