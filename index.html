@@ -487,7 +487,7 @@
 				</select>
 				<input type="submit" id="register-select-kids-done-button" class="btn btn-default" value="Jatka" />
 			</div>
-			<div id="register-select-kids-error" class="col-xs-12 alert alert-danger" style="display: none;">
+			<div id="register-select-kids-error" class="col-xs-12 alert alert-danger" style="display: none; margin-top: 5px;">
 				<p>Et vielä kertonut onko sinulla lapsia tai haluatko niitä.</p>
 			</div>
 		</form>
@@ -555,7 +555,7 @@
 				</select>
 				<input type="submit" id="register-select-language-skills-done-button" class="btn btn-default" value="Jatka" />
 			</div>
-			<div id="register-select-language-skills-error" class="col-xs-12 alert alert-danger" style="display: none;">
+			<div id="register-select-language-skills-error" class="col-xs-12 alert alert-danger" style="display: none; margin-top: 5px;">
 				<p>Et vielä kertonut mitä kieliä puhut.</p>
 			</div>
 		</form>
@@ -615,7 +615,7 @@
 	<div id="register-select-income-page" class="container" style="display: none;">
 		<h1>Kuinka varakas sinä olet?</h1>
 		<form id="register-select-income-form" role="form" method="POST" action="php/api.php">
-			<div class="input-group col-xs-6">
+			<div class="input-group col-xs-3">
 				<label class="input-group-addon" for="register-select-income-input">Vuositulot:</label>
 				<input type="number" class="form-control" id="register-select-income-input" name="income" min="0" value="0" required="required" />
 				<span class="input-group-btn">
