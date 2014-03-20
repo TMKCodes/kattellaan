@@ -860,12 +860,35 @@
 					<option value="right">Oikeistolainen</option>
 					<option value="dontknow">En tiedä</option>
 					<option value="dontcare">En välitä</option>
-					<option value="none">En halua kertoa</option>
+					<option value="none" selected="selected">En halua kertoa</option>
 				</select>
 				<input type="submit" id="register-select-left-right-politics-done-button" class="btn btn-default" value="Jatka" />
 			</div>
 			<div id="register-select-left-right-polticis-error" class="alert alert-danger" style="display: none;">
 				<p>Et vielä kertonut oletko vasemmiston vai oikeiston suuntaan.</p>
+			</div>
+		</form>
+	</div>
+
+	<div id="register-select-liberal-conservative-politics-page" class="container" style="display: none;">
+		<h1>Oletko liberaali vai konservatiivi?</h1>
+		<form id="register-select-liberal-conservative-politics-form" role="form" method="post" action="php/api.php">
+			<div class="btn-group col-xs-6">
+				<label class="btn btn-default" for="register-select-liberal-conservative-politics-input">Liberaali/Konservatiivi</label>
+				<select id="register-select-liberal-conservative-politics-input" name="liberal-conservative-politics" class="multiselect form-control" required="required">
+					<option value="conservative">Konservatiivinen</option>
+					<option value="ratherconservative">Melko konservatiivinen</option>
+					<option value="inbetween">Jossain välimaastossa</option>
+					<option value="ratherliberal">Melko liberaalinen</option>
+					<option value="liberal">Liberaalinen</option>
+					<option value="dontknow">En tiedä</option>
+					<option value="dontcare">En välitä</option>
+					<option value="none" selected="selected">En halua kertoa</option>
+				</select>
+				<input type="submit" id="register-select-liberal-conservative-politics-done-button" class="btn btn-default" value="Jatka" />
+			</div>
+			<div id="register-select-liberal-conservative-poltics-error" class="alert alert-danger" style="display: none;">
+				<p>Et vielä kertonut oletko konservatiivinen vai liberaalinen</p>
 			</div>
 		</form>
 	</div>

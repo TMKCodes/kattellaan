@@ -781,6 +781,23 @@ $("#register-select-left-right-policits-done-button").click(function(evt) {
 	}
 });
 
+$("#register-select-liberal-conservative-politics-input").change(function(evt) {
+	$("#register-select-liberal-conservative-politics-error").hide();
+});
+
+$("#register-select-liberal-conservative-politics-done-button").click(function(evt) {
+	evt.preventDefault();
+	var liberalConservative = $("#register-select-liberal-conservative-politics-input").val();
+	if(liberalConservative != undefined) {
+		$.cookie("liberal-conservative-politics", liberalConservative);
+		$("body > .container").hide();
+		$("#register-select-political-importance-page").show();
+		history.pushState(null, "register select political importance", hostname + "?page=register-select-political-importance-page");
+	} else {
+		$("#register-select-liberal-conservative-politics-error").show();
+	}
+});
+
 // DO NOT REMOVE Enables hide and show binding
 // $("element").on("show", someFunc);
 // $("element").on("hide", someFunc);
