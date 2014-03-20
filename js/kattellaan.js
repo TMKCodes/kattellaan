@@ -747,6 +747,23 @@ $("#register-select-religion-done-button").click(function(evt) {
 	}
 });
 
+$("#register-select-religion-importance-input").change(function(evt) {
+	$("#register-select-religion-importance-error").hide();
+});
+
+$("#reigster-select-religion-importance-done-button").click(function(evt) {
+	evt.preventDefault();
+	var religionImportance = $("#register-select-religion-importance-input").val();
+	if(religionImportance != undefined) {
+		$.cookie("religion-importance", religion);
+		$("body > .container").hide();
+		$("#register-select-left-right-politics-page").show();
+		history.pushState(null, "register select left-right politics", hostname + "?page=register-select-left-right-politics-page");
+	} else {
+		$("#register-select-religion-error").show();
+	}
+});
+
 // DO NOT REMOVE Enables hide and show binding
 // $("element").on("show", someFunc);
 // $("element").on("hide", someFunc);

@@ -826,6 +826,27 @@
 		</form>
 	</div>
 
+	<div id="register-select-religion-importance-page" class="container" style="display: none;">
+		<h1>Kuinka tärkeä merkitys uskonnolla on sinulle?</h1>
+		<form id="register-select-religion-importance-form" role="form" method="POST" action="php/api.php">
+			<div id="btn-group col-xs-4">
+				<label class="btn btn-default" for="register-select-religion-importance-input">Uskonnon merkitys:</label>
+				<select id="register-select-religion-importance-input" name="religion-importance" class="multiselect form-control" required="required">
+					<option value="insignificant">Merkityksetön</option>
+					<option value="low">Vähäinen</option>
+					<option value="normal">Normaali</option>
+					<option value="important">Tärkeä</option>
+					<option value="true-blue">Vakaumuksellinen</option>
+					<option value="none" selected="selected">En halua kertoa</option>
+				</select>
+				<input type="submit" id="register-select-religion-importance-done-button" class="btn btn-default" value="Jatka" />
+			</div>
+			<div id="register-select-religion-error" class="alert alert-danger" style="display: none;">
+				<p>Et kertonut vielä uskontosi merkitystä.</p>
+			</div>
+		</form>
+	</div>
+
 	<div id="footer" style="height: 50px">
 
 	</div>
