@@ -757,6 +757,27 @@
 		</form>
 	</div>
 
+	<div id="register-select-exercise-page" class="container" style="display: none;">
+		<h1>Kuinka paljon urheilet?</h1>
+		<form id="register-select-exercise-form" role="form" method="POST" action="php/api.php">
+			<div class="btn-group col-xs-4">
+				<label class="btn btn-default" for="register-select-exercise-input">Urheilu:</label>
+				<select id="register-select-exercise-input" name="exercise" class="multiselect form-control" required="required">
+					<option value="idont">En uhreile</option>
+					<option value="casually">Satunnaisesti</option>
+					<option value="regularly">Säännöllisesti</option>
+					<option value="daily">Lähes päivittäin</option>
+					<option value="lifestyle">Elämäntapa</option>
+					<option value="none" selected="selected">En halua kertoa</option>
+				</select>
+				<input type="submit" id="register-select-exercise-done-button" class="btn btn-default" value="Jatka" />
+			</div>
+			<div id="register-select-exercise-error" class="alert alert-danger" style="display: none;">
+				<p>Et vielä valinnut urheiletko.</p>
+			</div>
+		</form>
+	</div>
+
 	<div id="footer" style="height: 50px">
 
 	</div>

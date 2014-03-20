@@ -696,6 +696,23 @@ $("#register-select-pets-done-button").click(function(evt) {
 	}
 });
 
+$("#register-select-exercise-input").change(function(evt) {
+	$("#register-select-exercise-error").hide();
+});
+
+$("#register-select-exercise-done-button").click(function(evt) {
+	evt.preventDefault();
+	var exercise = $("#register-select-exercise-input").val();
+	if(exercise != undefined) {
+		$.cookie("exercise", exercise);
+		$("body > .container").hide();
+		$("#register-select-travel-page").show();
+		history.pushState(null, "register select travel", hostname + "?page=register-select-exercise-page");
+	} else {
+		$("#register-select-exercise-error").show();
+	} 
+});
+
 // DO NOT REMOVE Enables hide and show binding
 // $("element").on("show", someFunc);
 // $("element").on("hide", someFunc);
