@@ -751,7 +751,7 @@ $("#register-select-religion-importance-input").change(function(evt) {
 	$("#register-select-religion-importance-error").hide();
 });
 
-$("#reigster-select-religion-importance-done-button").click(function(evt) {
+$("#register-select-religion-importance-done-button").click(function(evt) {
 	evt.preventDefault();
 	var religionImportance = $("#register-select-religion-importance-input").val();
 	if(religionImportance != undefined) {
