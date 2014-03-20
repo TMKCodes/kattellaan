@@ -755,7 +755,7 @@ $("#register-select-religion-importance-done-button").click(function(evt) {
 	evt.preventDefault();
 	var religionImportance = $("#register-select-religion-importance-input").val();
 	if(religionImportance != undefined) {
-		$.cookie("religion-importance", religion);
+		$.cookie("religion-importance", religionImportance);
 		$("body > .container").hide();
 		$("#register-select-left-right-politics-page").show();
 		history.pushState(null, "register select left-right politics", hostname + "?page=register-select-left-right-politics-page");
