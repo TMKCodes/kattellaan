@@ -707,7 +707,7 @@ $("#register-select-exercise-done-button").click(function(evt) {
 		$.cookie("exercise", exercise);
 		$("body > .container").hide();
 		$("#register-select-travel-page").show();
-		history.pushState(null, "register select travel", hostname + "?page=register-select-exercise-page");
+		history.pushState(null, "register select travel", hostname + "?page=register-select-travel-page");
 	} else {
 		$("#register-select-exercise-error").show();
 	} 
