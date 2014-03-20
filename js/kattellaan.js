@@ -646,7 +646,7 @@ $("#register-select-dress-style-done-button").click(function(evt) {
 });
 
 $("#register-select-smoking-input").change(function(evt) {
-	$("#register-select-smoking-error").hide();
+	$("#register-select-smoking-input").hide();
 });
 
 $("#register-select-smoking-done-button").click(function(evt) {
@@ -659,23 +659,6 @@ $("#register-select-smoking-done-button").click(function(evt) {
 		history.pushState(null, "register select alcohol", hostname + "?page=register-select-alcohol-page");
 	} else {
 		$("#register-select-smoking-error").show();
-	}
-});
-
-$("#register-select-alcohol-input").change(function(evt) {
-	$("#register-select-alcohol-error").hide();
-});
-
-$("#register-select-alcohol-done-button").click(function(evt) {
-	evt.preventDefault();
-	var alcohol = $("#register-select-alcohol-input").val();
-	if(alcohol != undefined) {
-		$.cookie("alcohol", alcohol);
-		$("body > .container").hide();
-		$("#register-select-pets-page").show();
-		history.pushState(null, "register select pets", hostname + "?page=register-select-pets-page");
-	} else {
-		$("#register-select-alcohol-error").show();
 	}
 });
 
