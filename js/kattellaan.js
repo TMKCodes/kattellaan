@@ -713,6 +713,23 @@ $("#register-select-exercise-done-button").click(function(evt) {
 	} 
 });
 
+$("#register-select-travel-input").change(function(evt) {
+	$("#register-select-travel-error").hide();
+});
+
+$("#register-select-travel-done-button").click(function(evt) {
+	evt.preventDefault();
+	var travel = $("#register-select-travel-input").val();
+	if(travel != undefined) {
+		$.cookie("travel", travel);
+		$("body > .container").hide();
+		$("#register-select-religion-page").show();
+		history.pushState(null, "register select religion", hostname + "?page=register-select-religion-page");
+	} else {
+		$("#register-select-travel-error").show();
+	}
+}); 
+
 // DO NOT REMOVE Enables hide and show binding
 // $("element").on("show", someFunc);
 // $("element").on("hide", someFunc);

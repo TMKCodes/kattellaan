@@ -778,6 +778,30 @@
 		</form>
 	</div>
 
+	<div id="register-select-travel-page" class="container" style="display: none;">
+		<h1>Kuinka paljon matkustat?</h1>
+		<form id="register-select-travel-form" role="form" method="POST" action="php/api.php">
+			<div id="btn-group col-xs-4">
+				<label class="btn btn-default" for="register-select-travel-input">Matkustelu:</label>
+				<select id="register-select-travel-input" name="travel" class="multiselect form-control" required="required">
+					<option value="cottagebatty">Mökkihöperö</option>
+					<option value="neighboring-areas">Lähialueilla</option>
+					<option value="occasionally">Satunnaisesti</option>
+					<option value="few-times-a-year">Muutaman kertaa vuodessa</option>
+					<option value="monthly">Lähes joka kuukausi</option>
+					<option value="weekly">Lähes joka viikko</option>
+					<option value="daily">Lähes joka päivä</option>
+					<option value="allthetime">Matkalla aina johonkin</option>
+					<option value="none" selected="selected">En halua kertoa</option>
+				</select>
+				<input type="submit" id="register-select-travel-done-button" class="btn btn-default" value="Jatka" />
+			</div>
+			<div id="register-select-travel-error" class="alert alert-danger" style="display: none;">
+				<p>Et vielä kertonut matkusteletko.</p>
+			</div>
+		</form>
+	</div>
+
 	<div id="footer" style="height: 50px">
 
 	</div>
