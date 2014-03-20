@@ -621,7 +621,7 @@ $("#register-select-vocation-done-button").click(function(evt) {
 	if(vocation != undefined) {
 		$.cookie("vocation", vocation);
 		$("body > .container").hide();
-		$("#register-select-dess-style-page").show();
+		$("#register-select-dress-style-page").show();
 		history.pushState(null, "register select dress style", hostname + "?page=register-select-dress-style-page");
 	} else {
 		$("#register-select-vocation-error").show();
