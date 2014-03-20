@@ -768,7 +768,7 @@ $("#register-select-left-right-politics-input").change(function(evt) {
 	$("#register-select-left-right-politics-error").hide();
 });
 
-$("#register-select-left-right-policits-done-button").click(function(evt) {
+$("#register-select-left-right-politics-done-button").click(function(evt) {
 	evt.preventDefault();
 	var leftRight = $("#register-select-left-right-politics-input").val();
 	if(leftRight != undefined) {
