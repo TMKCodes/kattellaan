@@ -645,6 +645,22 @@ $("#register-select-dress-style-done-button").click(function(evt) {
 	}
 });
 
+$("#register-select-smoking-input").change(function(evt) {
+	$("#register-select-smoking-input").hide();
+});
+
+$("#register-select-smoking-done-button").click(function(evt) {
+	evt.preventDefault();
+	var smoking = $("#register-select-smoking-input").val();
+	if(smoking != undefined) {
+		$.cookie("smoking", smoking);
+		$("body > .container").hide();
+		$("#register-select-alcohol-page").show();
+		history.pushState(null, "register select alcohol", hostname + "?page=register-select-alcohol-page");
+	} else {
+		$("#register-select-smoking-error").show();
+	}
+});
 
 // DO NOT REMOVE Enables hide and show binding
 // $("element").on("show", someFunc);

@@ -682,6 +682,27 @@
 		</form>
 	</div>
 
+	<div id="register-select-smoking-page" class="container" style="display: none;">
+		<h1>Tupakoitko sinä?</h1>
+		<form id="register-select-smoking-form" role="form" method="POST" action="php/api.php">
+			<div class="btn-group col-xs-3">
+				<label class="btn btn-default" for="register-select-smoking-input">Tupakointi:</label>
+				<select id="register-select-smoking-input" name="dress-style" class="multiselect form-control" required="required">
+					<option value="smokeless">Savuton</option>
+					<option value="company">Seurassa</option>
+					<option value="drunken">Humalassa</option>
+					<option value="regular">Säännöllisesti</option>
+					<option value="chimney">Korsteeni</option>
+					<option value="none">En halua kertoa</option>
+				</select>
+				<input type="submit" id="register-select-smoking-done-button" class="btn btn-default" value="Jatka" />
+			</div>
+			<div id="register-select-smoking-error" class="alert alert-danger" style="display: none;">
+				<p>Et vielä valinnut tupakoitsetko sinä.</p>
+			</div>
+		</form>
+	</div>
+
 	<div id="footer" style="height: 50px">
 
 	</div>
