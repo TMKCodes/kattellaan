@@ -631,11 +631,25 @@
 	<div id="register-select-vocation-page" class="container" style="display: none;">
 		<h1>Millä alalla työskentelet?</h1>
 		<form id="register-select-vocation-form" role="form" method="POST" action="php/api.php">
-			<div class="btn-group">
+			<div class="btn-group col-sx-3">
 				<label class="btn btn-default" for="register-select-vocation-input">Ammattiala</label>
 				<select id="register-select-vocation-input" name="vocation" class="multiselect form-control" required="required" />
-					
+					<option value="administration/finance">Hallinto/talous</option>
+					<option value="information-technology">Atk/it/tietoliikenne</option>
+					<option value="social/health">Sosiaali-/terveysala</option>
+					<option value="communications/media/culture">Viestintä/media/kulttuuri</option>
+					<option value="marketing/sales">Markkinointi/myynti</option>
+					<option value="science/technology">Tiede/teknologia</option>
+					<option value="education">Koulutus</option>
+					<option value="housewife/-husband">Kotiäiti/-isä</option>
+					<option value="agriculture-forestry">Maa- ja metsätalous</option>
+					<option value="entrepreneur">Yrittäjä</option>
+					<option value="none">En halua kertoa</option>
 				</select>
+				<input type="submit" id="register-select-vocation-done-button" class="btn btn-default" value="Jatka" />
+			</div>
+			<div id="register-select-vocation-error" class="alert alert-danger" style="display: none;">
+				<p>Et vielä valinnut ammattialaasi</p>
 			</div>
 		</form>
 	</div>

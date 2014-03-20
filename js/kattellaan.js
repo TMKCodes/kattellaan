@@ -611,6 +611,23 @@ $("#register-select-income-done-button").click(function(evt) {
 	}
 });
 
+$("#register-select-vocation-input").change(function(evt) {
+	$("#register-select-vocation-error").hide();
+});
+
+$("#register-select-vocation-done-button").click(function(evt) {
+	evt.preventDefault();
+	var vocation = $("#register-select-vocation-input").val();
+	if(vocation != undefined) {
+		$.cookie("vocation", vocation);
+		$("body > .container").hide();
+		$("#register-select-dess-style-page").show();
+		history.pushState(null, "register select dress style", hostname + "?page=register-select-dress-style-page");
+	} else {
+		$("#register-select-vocation-error").show();
+	}
+});
+
 // DO NOT REMOVE Enables hide and show binding
 // $("element").on("show", someFunc);
 // $("element").on("hide", someFunc);
