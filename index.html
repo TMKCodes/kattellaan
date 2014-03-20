@@ -708,7 +708,7 @@
 		<form id="register-select-alhocol-form" role="form" method="post" action="php/api.php">
 			<div class="btn-group col-xs-4">
 				<label class="btn btn-default" for="register-select-alcohol-input">Alkoholi:</label>
-				<select id="register-select-alcohol-input" name="alchol" class="multiselect form-control" required="required">
+				<select id="register-select-alcohol-input" name="alcohol" class="multiselect form-control" required="required">
 					<option value="alcohol-free">Alkoholiton</option>
 					<option value="holidays">Juhlapäivinä</option>
 					<option value="company">Hyvässä seurassa</option>
@@ -724,6 +724,35 @@
 			</div>
 			<div id="register-select-alcohol-error" class="alert alert-danger" style="display: none;">
 				<p>Et ole vielä valinnut käytätkö alkoholia</p>
+			</div>
+		</form>
+	</div>
+
+	<div id="register-select-pets-page" class="container" style="display: none;">
+		<h1>Onko sinulla lemmikkejä?</h1>
+		<form id="register-select-pets-form" role="form" method="POST" action="php/api.php">
+			<div class="btn-group col-xs-4">
+				<label class="btn btn-default" for="register-select-pets-input">Lemmikkit:</label>
+				<select id="register-select-pets-input" name="pets" class="multiselect form-control" multiple="multiple" required="required">	
+					<option value="horse">Hevonen</option>
+					<option value="pony">Poni</option>
+					<option value="spider">Hämähäkki</option>
+					<option value="fish">Kala</option>
+					<option value="rodent">Jyrsijä</option>
+					<option value="turtle">Kilpikonna</option>
+					<option value="dog">Koira</option>
+					<option value="cat">Kissa</option>
+					<option value="snake">Käärme</option>
+					<option value="bird">Lintu</option>
+					<option value="stuffed-animal">Pehmolelu</option>
+					<option value="nopets">Ei eläimiä</option>
+					<option value="likepets">Pidän eläimistä</option>
+					<option value="none">En halua kertoa</option>
+				</select>
+				<input type="submit" id="register-select-pets-done-button" class="btn btn-default" value="Jatka" />
+			</div>
+			<div id="register-select-pets-error" class="alert alert-danger col-xs-12" style="display: none; margin-top: 5px;">
+				<p>Et ole vielä kertonut onko sinulla lemmikkejä.</p>
 			</div>
 		</form>
 	</div>

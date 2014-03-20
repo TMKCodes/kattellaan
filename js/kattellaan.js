@@ -679,6 +679,23 @@ $("#register-select-alcohol-done-button").click(function(evt) {
 	}
 });
 
+$("#register-select-pets-input").change(function(evt) {
+	$("#register-select-pets-error").hide();
+});
+
+$("#register-select-pets-done-button").click(function(evt) {
+	evt.preventDefault();
+	var pets = $("#register-select-pets-input").val();
+	if(pets != undefined) {
+		$.cookie("pets", pets);
+		$("body > .container").hide();
+		$("#register-select-exercise-page").show();
+		history.pushState(null, "register select exercise", hostname + "?page=register-select-exercise-page");
+	} else {
+		$("#register-select-pets-error").show();
+	}
+});
+
 // DO NOT REMOVE Enables hide and show binding
 // $("element").on("show", someFunc);
 // $("element").on("hide", someFunc);
