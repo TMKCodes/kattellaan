@@ -44,7 +44,7 @@
 	<!-- Register page html code -->
 	<div class="container" id="register-account-page" style="display: none;">
 		<h1>Registeröi itsellesi käyttäjätunnus sivustolle.</h1>
-		<form role="form" id="register-account-form" method="GET" action="phpapi.php">
+		<form role="form" id="register-account-form" method="GET" action="php/api.php">
 			<div class="input-group col-sx-6" style="margin-bottom: 5px;">
 				<label class="input-group-addon" for="register-account-username-input">Käyttäjätunnus:</label>
 				<input type="text" class="form-control" id="register-account-username-input" name="username" placeholder="Syötä haluamasi käyttäjätunnus." />
@@ -208,7 +208,7 @@
 	<!-- gender selection register page -->
 	<div id="register-select-gender-page" class="container" style="display: none;">
 		<h1>Valitse sukupuolesi</h1>
-		<form role="form" id="register-select-gender-form" action="phpapi.php" method="POST">
+		<form role="form" id="register-select-gender-form" action="php/api.php" method="POST">
 			<div class="input-group col-sx-3">
 				<label class="input-group-addon" for="register-select-gender-input">Sukupuoli:</label>
 				<select id="register-select-gender-input" class="form-control" name="gender" required="required">
@@ -230,7 +230,7 @@
 	<!-- birthday selection register page -->
 	<div id="register-select-birthday-page" class="container" style="display: none;">
 		<h1>Valitse syntymäpäiväsi</h1>
-		<form role="form" id="register-select-birthday-form" action="phpapi.php" method="POST">
+		<form role="form" id="register-select-birthday-form" action="php/api.php" method="POST">
 			<div class="input-group col-sx-3">
 				<label class="input-group-addon" for="register-select-birthday-input">Syntymäpäivä:</label>
 				<input type="date" class="form-control" name="birthday" id="register-select-birthday-input" required="required" placeholder="mm/dd/yyyy">
@@ -279,7 +279,7 @@
 
 	<div id="register-select-relationship-status-page" class="container" style="display: none;">
 		<h1>Valitse suhde tilanteesi</h1>
-		<form id="register-select-relationship-status-form" role="form" method="POST" action="phpapi.php">
+		<form id="register-select-relationship-status-form" role="form" method="POST" action="php/api.php">
 			<div class="input-group col-sx-4">
 				<label class="input-group-addon" for="register-select-relationship-status-input">Suhde tilanne:</label>
 				<select id="register-select-relationship-status-input" class="form-control" name="relationship-status">
@@ -301,7 +301,7 @@
 
 	<div id="register-select-sexual-orientation-page" class="container" style="display: none;">
 		<h1>Valitse seksuaalinen suuntautumisesi</h1>
-		<form id="register-select-sexual-orientation-form" role="form" method="POST" action="phpapi.php">
+		<form id="register-select-sexual-orientation-form" role="form" method="POST" action="php/api.php">
 			<div class="input-group col-sx-6">
 				<label class="input-group-addon" for="register-select-sexual-orientation-input">Seksuaalinen suuntautuminen:</label>
 				<select id="register-select-sexual-orientation-input" class="form-control" name="sexual-orientation">
@@ -320,7 +320,7 @@
 
 	<div id="register-select-looking-for-page" class="container" style="display: none;">
 		<h1>Mitä sinä etsit?</h1>
-		<form id="register-select-looking-for-form" role="form" method="POST" action="phpapi.php">
+		<form id="register-select-looking-for-form" role="form" method="POST" action="php/api.php">
 			<div class="btn-group col-sx-6">
 				<label class="btn btn-default" for="register-select-looking-for-input">Kiikarissa:</label>
 				<select id="register-select-looking-for-input" class="multiselect form-control" name="looking-for" multiple="multiple">
@@ -340,7 +340,7 @@
 	</div>
 	<div id="register-select-height-page" class="container" style="display: none;">
 		<h1>Kuinka pitkä olet?</h1>
-		<form id="register-select-height-form" role="form" method="POST" action="phpapi.php">
+		<form id="register-select-height-form" role="form" method="POST" action="php/api.php">
 			<div class="input-group col-sx-3">
 				<label class="input-group-addon" for="register-select-height-input">Pituus cm:</label>
 				<input type="number" class="form-control" id="register-select-height-input" name="height" min="0" max="300" value="150" required="required">
@@ -356,7 +356,7 @@
 
 	<div id="register-select-weight-page" class="container" style="display: none;">
 		<h1>Kuinka paljon painat?</h1>
-		<form id="register-select-weight-form" role="form" method="POST" action="phpapi.php">
+		<form id="register-select-weight-form" role="form" method="POST" action="php/api.php">
 			<div class="input-group col-sx-3">
 				<label class="input-group-addon" for="register-select-weight-input">Paino kg:</label>
 				<input type="number" class="form-control" id="register-select-weight-input" name="weight" min="0" max="600" value="60" required="required">
@@ -372,7 +372,7 @@
 
 	<div id="register-select-body-type-page" class="container" style="display: none;">
 		<h1>Mikä on ruumiinrakenteesi?</h1>
-		<form id="register-select-body-type-form" role="form" method="POST" action="phpapi.php">
+		<form id="register-select-body-type-form" role="form" method="POST" action="php/api.php">
 			<div class="btn-group col-sx-6">
 				<label class="btn btn-default" for="register-select-body-type-input">Ruumiinrakenne:</label>
 				<select id="register-select-body-type-input" class="multiselect form-control" name="body-type" required="required">
@@ -395,7 +395,7 @@
 
 	<div id="register-select-eye-color-page" class="container" style="display: none;">
 		<h1>Sinun silmiesi väri?</h1>
-		<form id="register-select-eye-color-form" role="form" method="POST" action="phpapi.php">
+		<form id="register-select-eye-color-form" role="form" method="POST" action="php/api.php">
 			<div class="btn-group col-sx-6">
 				<label class="btn btn-default" for="register-select-eye-color-input">Silmienväri:</label>
 				<select id="register-select-eye-color-input" class="multiselect form-control" name="eye-color" required="required">
@@ -419,7 +419,7 @@
 
 	<div id="register-select-hair-length-page" class="container" style="display: none;">
 		<h1>Kuinka pitkät hiukset sinulla on?</h1>
-		<form id="register-select-hair-length-form" role="form" method="POST" action="phpapi.php">
+		<form id="register-select-hair-length-form" role="form" method="POST" action="php/api.php">
 			<div class="btn-group col-sx-6">
 				<label class="btn btn-default" for="register-select-hair-length-input">Hiusten pituus:</label>
 				<select id="register-select-hair-length-input" class="multiselect form-control" name="hair-length" required="required">
@@ -439,7 +439,7 @@
 
 	<div id="register-select-hair-color-page" class="container" style="display: none;">
 		<h1>Minkä väriset hiuksesi ovat?</h1>
-		<form id="register-select-hair-color-form" role="form" method="POST" action="phpapi.php">
+		<form id="register-select-hair-color-form" role="form" method="POST" action="php/api.php">
 			<div class="btn-group col-sx-6">
 				<label class="btn btn-default" for="register-select-hair-color-input">Hiusten väri:</label>
 				<select id="register-select-hair-color-input" class="multiselect form-control" name="hair-color" required="required">
@@ -466,7 +466,7 @@
 
 	<div id="register-select-kids-page" class="container" style="display: none;">
 		<h1>Onko sinulla lapsia tai haluatko niitä?</h1>
-		<form id="register-select-kids-form" role="form" method="POST" action="phpapi.php">
+		<form id="register-select-kids-form" role="form" method="POST" action="php/api.php">
 			<div class="btn-group col-sx-12">
 				<label class="btn btn-default" for="register-select-kids-input">Lapsia:</label>
 				<select id="register-select-kids-input" class="multiselect form-control" name="kids" multiple="multiple" required="required">
@@ -495,7 +495,7 @@
 
 	<div id="register-select-accomodation-page" class="container" style="display: none;">
 		<h1>Millainen on asumis tilanteesi?</h1>
-		<form id="register-select-accomodation-form" role="form" method="POST" action="phpapi.php">
+		<form id="register-select-accomodation-form" role="form" method="POST" action="php/api.php">
 			<div class="btn-group col-sx-6">
 				<label class="btn btn-default" for="register-select-accomodation-input">Asumismuoto:</label>
 				<select id="register-select-accomodation-input" class="multiselect form-control" name="accomodation" required="required">
@@ -517,7 +517,7 @@
 	
 	<div id="register-select-ethnic-identity-page" class="container" style="display: none;">
 		<h1>Etninten identiteettisi?</h1>
-		<form id="register-select-ethnic-identity-form" role="form" method="POST" action="phpapi.php">
+		<form id="register-select-ethnic-identity-form" role="form" method="POST" action="php/api.php">
 			<div class="btn-group col-sx-6">
 				<label class="btn btn-default" for="register-select-ethnic-identity-input">Etninen identiteetti:</label>
 				<select id="register-select-ethnic-identity-input" class="multiselect form-control" name="ethnic-identity" required="required">
@@ -540,7 +540,7 @@
 
 	<div id="register-select-language-skills-page" class="container" style="display: none;">
 		<h1>Mitä kieliä puhut?</h1>
-		<form id="register-select-language-skills-form" role="form" method="POST" action="phpapi.php">
+		<form id="register-select-language-skills-form" role="form" method="POST" action="php/api.php">
 			<div class="btn-group col-sx-6">
 				<label class="btn btn-default" for="register-select-language-skills-input">Kielitaito:</label>
 				<select id="register-select-language-skills-input" class="multiselect form-control" name="language-skills" multiple="multiple" required="required">
@@ -563,7 +563,7 @@
 
 	<div id="register-select-education-page" class="container" style="display: none;">
 		<h1>Kuinka hyvä koulutus sinulla on?</h1>
-		<form id="register-select-education-form" role="form" method="POST" action="phpapi.php">
+		<form id="register-select-education-form" role="form" method="POST" action="php/api.php">
 			<div class="btn-group col-sx-6">
 				<label class="btn btn-default" for="register-select-education-input">Koulutus:</label>
 				<select id="register-select-education-input" class="multiselect form-control" name="education" required="required">
@@ -589,7 +589,7 @@
 
 	<div id="register-select-work-page" class="container" style="display: none;">
 		<h1>Käytkö töissä?</h1>
-		<form id="register-select-work-form" role="form" method="POST" action="phpapi.php">
+		<form id="register-select-work-form" role="form" method="POST" action="php/api.php">
 			<div class="btn-group col-sx-6">
 				<label class="btn btn-default" for="register-select-work-input">Työssäkäynti:</label>
 				<select id="register-select-work-input" class="multiselect form-control" name="work" required="required">
@@ -614,7 +614,7 @@
 
 	<div id="register-select-income-page" class="container" style="display: none;">
 		<h1>Kuinka varakas sinä olet?</h1>
-		<form id="register-select-income-form" role="form" method="POST" action="phpapi.php">
+		<form id="register-select-income-form" role="form" method="POST" action="php/api.php">
 			<div class="input-group col-sx-3">
 				<label class="input-group-addon" for="register-select-income-input">Vuositulot:</label>
 				<input type="number" class="form-control" id="register-select-income-input" name="income" min="0" value="0" required="required" />
@@ -684,7 +684,7 @@
 
 	<div id="register-select-smoking-page" class="container" style="display: none;">
 		<h1>Tupakoitko sinä?</h1>
-		<form id="register-select-smoking-form" role="form" method="POST" action="phpapi.php">
+		<form id="register-select-smoking-form" role="form" method="POST" action="php/api.php">
 			<div class="btn-group col-sx-4">
 				<label class="btn btn-default" for="register-select-smoking-input">Tupakointi:</label>
 				<select id="register-select-smoking-input" name="dress-style" class="multiselect form-control" required="required">
@@ -703,11 +703,9 @@
 		</form>
 	</div>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 	<div id="register-select-alcohol-page" class="container" style="display: none;">
 		<h1>Kuinka paljon juot alkoholia?</h1>
-		<form id="register-select-alhocol-form" role="form" method="post" action="phpapi.php">
+		<form id="register-select-alhocol-form" role="form" method="post" action="php/api.php">
 			<div class="btn-group col-sx-4">
 				<label class="btn btn-default" for="register-select-alcohol-input">Alkoholi:</label>
 				<select id="register-select-alcohol-input" name="alchol" class="multiselect form-control" required="required">
@@ -730,10 +728,6 @@
 		</form>
 	</div>
 
-=======
->>>>>>> parent of b60d13b... add registeration alcohol selection page
-=======
->>>>>>> parent of b60d13b... add registeration alcohol selection page
 	<div id="footer" style="height: 50px">
 
 	</div>
