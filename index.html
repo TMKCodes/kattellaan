@@ -633,7 +633,7 @@
 		<form id="register-select-vocation-form" role="form" method="POST" action="php/api.php">
 			<div class="btn-group col-sx-3">
 				<label class="btn btn-default" for="register-select-vocation-input">Ammattiala</label>
-				<select id="register-select-vocation-input" name="vocation" class="multiselect form-control" required="required" />
+				<select id="register-select-vocation-input" name="vocation" class="multiselect form-control" required="required" >
 					<option value="administration/finance">Hallinto/talous</option>
 					<option value="information-technology">Atk/it/tietoliikenne</option>
 					<option value="social/health">Sosiaali-/terveysala</option>
@@ -650,6 +650,34 @@
 			</div>
 			<div id="register-select-vocation-error" class="alert alert-danger" style="display: none;">
 				<p>Et vielä valinnut ammattialaasi</p>
+			</div>
+		</form>
+	</div>
+
+	<div id="register-select-dress-style-page" class="container" style="display: none;">
+		<h1>Millain pukeudut?</h1>
+		<form id="register-select-dress-style-form" role="form" method="POST" action="php/api.php">
+			<div class="btn-group col-sx-3">
+				<label class="btn btn-default" for="register-select-dress-style-input">Pukeutumistyyli</label>
+				<select id="register-select-dress-style-input" name="dress-style" class="multiselect form-control" required="required" >
+					<option value="fashionable">Muodikas</option>
+					<option value="business">Bisnes</option>
+					<option value="sporty">Sporttinen</option>
+					<option value="classic">Klassinen</option>
+					<option value="fleamarket">Kirpputori</option>
+					<option value="self-indulgent">Mukavuuden haluinen</option>
+					<option value="regular">Normaali</option>
+					<option value="hoppers">Hoppari</option>
+					<option value="rocker">Rokkari</option>
+					<option value="goth">Gootti</option>
+					<option value="allthesame">Ihan sama</option>
+					<option value="nudist">Nudisti</option>
+					<option value="none">En halua kertoa</option>
+				</select>
+				<input type="submit" id="register-select-dress-style-done-button" class="btn btn-default" value="Jatka" />
+			</div>
+			<div id="register-select-dress-style-error" class="alert alert-danger" style="display: none;">
+				<p>Et vielä valinnut pukeutumistyyliäsi.</p>
 			</div>
 		</form>
 	</div>

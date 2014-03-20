@@ -628,6 +628,24 @@ $("#register-select-vocation-done-button").click(function(evt) {
 	}
 });
 
+$("#register-select-dress-style-input").change(function(evt) {
+	$("#register-select-dress-style-error").hide();
+});
+
+$("#register-select-dress-style-done-button").click(function(evt) {
+	evt.preventDefault();
+	var dressStyle = $("#register-select-dress-style-input").val();
+	if(dressStyle != undefined) {
+		$.cookie("dress-style", dressStyle);
+		$("body > .container").hide();
+		$("#register-select-smoking-page").show();
+		history.pushState(null, "register select smoking", hostname + "?page=register-select-smoking-page");
+	} else {
+		$("#register-select-dress-style-error").show();
+	}
+});
+
+
 // DO NOT REMOVE Enables hide and show binding
 // $("element").on("show", someFunc);
 // $("element").on("hide", someFunc);
