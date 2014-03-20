@@ -802,6 +802,30 @@
 		</form>
 	</div>
 
+	<div id="register-select-religion-page" class="container" style="display: none;">
+		<h1>Uskotko johonkin uskontoon.</h1>
+		<form id="register-select-religion-form" role="form" method="POST" action="php/api.php">
+			<div id="btn-group col-xs-4">
+				<label class="btn btn-default" for="register-select-religion-input">Uskonto:</label>
+				<select id="register-select-religion-input" name="religion" class="multiselect form-control" required="required">
+					<option value="atheist">Ateisti</option>
+					<option value="agnostic">Agnostikko</option>
+					<option value="buddhism">Buddhalainen</option>
+					<option value="christian">Kristitty</option>
+					<option value="hinduism">Hindu</option>
+					<option value="muslism">Muslismi</option>
+					<option value="jewish">Juutalainen</option>
+					<option value="newage">New Age</option>
+					<option value="none" selected="selected">En halua kertoa</option>
+				</select>
+				<input type="submit" id="register-select-religion-done-button" class="btn btn-default" value="Jatka" />
+			</div>
+			<div id="register-select-religion-error" class="alert alert-danger" style="display: none;">
+				<p>Et vielä valinnut uskontoasi.</p>
+			</div>
+		</form>
+	</div>
+
 	<div id="footer" style="height: 50px">
 
 	</div>

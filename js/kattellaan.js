@@ -730,6 +730,23 @@ $("#register-select-travel-done-button").click(function(evt) {
 	}
 }); 
 
+$("#register-select-religion-input").change(function(evt) {
+	$("#register-select-religion-error").hide();
+});
+
+$("#register-select-religion-done-button").click(function(evt) {
+	evt.preventDefault();
+	var religion = $("#register-select-religion-input").val();
+	if(religion != undefined) {
+		$.cookie("religion", religion);
+		$("body > .container").hide();
+		$("#register-select-religion-importance-page").show();
+		history.pushState(null, "register select religion importance", hostname + "?page=register-select-religion-importance-page");
+	} else {
+		$("#register-select-religion-error").show();
+	}
+});
+
 // DO NOT REMOVE Enables hide and show binding
 // $("element").on("show", someFunc);
 // $("element").on("hide", someFunc);
