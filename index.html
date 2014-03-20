@@ -847,6 +847,29 @@
 		</form>
 	</div>
 
+	<div id="register-select-left-right-politics-page" class="container" style="display: none;">
+		<h1>Oletko vasemmistolainen vai oikeistolainen?</h1>
+		<form id="register-select-left-right-politics-form" role="form" method="post" action="php/api.php">
+			<div class="btn-group col-xs-4">
+				<label class="btn btn-default" for="register-select-left-right-politics-input">Oikeisto/Vasemmist:</label>
+				<select id="register-select-left-right-politics-input" name="left-right-politics" class="multiselect form-control" required="required">
+					<option value="left">Vasemmistolainen</option>
+					<option value="moderateleft">Maltillisesti vasemmalla</option>
+					<option value="inbetween">Jossain välimaastossa</option>
+					<option value="moderateright">Maltillisesti oikealla</option>
+					<option value="right">Oikeistolainen</option>
+					<option value="dontknow">En tiedä</option>
+					<option value="dontcare">En välitä</option>
+					<option value="none">En halua kertoa</option>
+				</select>
+				<input type="submit" id="register-select-left-right-politics-done-button" class="btn btn-default" value="Jatka" />
+			</div>
+			<div id="register-select-left-right-polticis-error" class="alert alert-danger" style="display: none;">
+				<p>Et vielä kertonut oletko vasemmiston vai oikeiston suuntaan.</p>
+			</div>
+		</form>
+	</div>
+
 	<div id="footer" style="height: 50px">
 
 	</div>

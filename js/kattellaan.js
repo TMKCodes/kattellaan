@@ -764,6 +764,23 @@ $("#register-select-religion-importance-done-button").click(function(evt) {
 	}
 });
 
+$("#register-select-left-right-politics-input").change(function(evt) {
+	$("#register-select-left-right-politics-error").hide();
+});
+
+$("#register-select-left-right-policits-done-button").click(function(evt) {
+	evt.preventDefault();
+	var leftRight = $("#register-select-left-right-politics-input").val();
+	if(leftRight != undefined) {
+		$.cookie("left-right-politics", leftRight);
+		$("body > .container").hide();
+		$("#register-select-liberal-conservative-politics-page").show();
+		history.pushState(null, "register select liberal and conservative politics", hostname + "?page=register-select-liberal-conservative-politics-page");
+	} else {
+		$("#register-select-left-right-politics-error").show();
+	}
+});
+
 // DO NOT REMOVE Enables hide and show binding
 // $("element").on("show", someFunc);
 // $("element").on("hide", someFunc);
