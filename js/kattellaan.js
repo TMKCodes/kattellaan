@@ -824,6 +824,15 @@ $("#register-select-favorite-television-series-done-button").click(function(evt)
 	history.pushState(null, "register select favorite radio shows", hostname + "?page=register-select-favorite-radio-shows-page");
 });
 
+$("#register-select-favorite-radio-shows-done-button").click(function(evt) {
+	evt.preventDefault();
+	var favoriteRadioShows = $("#register-select-favorite-radio-shows-input").val();
+	$.cookie("favorite-radio-shows", favoriteRadioShows);
+	$("body > .container").hide();
+	$("#register-select-favorite-bands-page").show();
+	history.pushState(null, "register select favorite bands", hostname + "?page=register-select-favorite-bands-page");  
+});
+
 // DO NOT REMOVE Enables hide and show binding
 // $("element").on("show", someFunc);
 // $("element").on("hide", someFunc);
