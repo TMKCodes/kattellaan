@@ -815,6 +815,15 @@ $("#register-select-political-importance-done-button").click(function(evt) {
 	}
 });
 
+$("#register-select-favorite-television-series-done-button").click(function(evt) {
+	evt.preventDefault();
+	var favoriteTelevisionSeries = $("#register-select-favorite-television-series-input").val();
+	$.cookie("favorite-television-series", favoriteTelevisionSeries);
+	$("body > .container").hide();
+	$("#register-select-favorite-radio-shows-page").show();
+	history.pushState(null, "register select favorite radio shows", hostname + "?page=register-select-favorite-radio-shows-page");
+});
+
 // DO NOT REMOVE Enables hide and show binding
 // $("element").on("show", someFunc);
 // $("element").on("hide", someFunc);
