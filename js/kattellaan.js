@@ -798,6 +798,23 @@ $("#register-select-liberal-conservative-politics-done-button").click(function(e
 	}
 });
 
+$("#register-select-political-importance-input").change(function(evt) {
+	$("#register-select-political-importance-error").hide();
+});
+
+$("#register-select-political-importance-done-button").click(function(evt) {
+	evt.preventDefault();
+	var politicalImportance = $("#register-select-political-importance-input").val();
+	if(politicalImportance != undefined) {
+		$.cookie("political-importance", politicalImportance);
+		$("body > .container").hide();
+		$("#register-select-favorite-television-series-page").show();
+		history.pushState(null, "register select favorite television series", hostname + "?page=register-select-favorite-television-series-page");
+	} else {
+		$("#register-select-political-importance-error").show();
+	}
+});
+
 // DO NOT REMOVE Enables hide and show binding
 // $("element").on("show", someFunc);
 // $("element").on("hide", someFunc);

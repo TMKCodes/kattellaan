@@ -893,6 +893,25 @@
 		</form>
 	</div>
 
+	<div id="register-select-political-importance-page" clas="container" style="display: none;">
+		<h1>Kuinka tärkeää politiikka on sinulle?</h1>
+		<form id="register-select-political-importance-form" role="form" method="POST" action="php/api.php">
+			<div class="btn-group col-xs-6">
+				<label class="btn btn-default" for="register-select-political-importance-input">Politiikan tärkeys:</label>
+				<select id="register-select-politica-importance-input" name="political-importance" class="multiselect form-control" required="required">
+					<option value="dontcare">Aivan sama</option>
+					<option value="title-follow">Lähinnä otsikko tasolla</option>
+					<option value="active-follow">Seuraan aktiivisesti</option>
+					<option value="involved">Mukana politiikassa</option>
+					<option value="none" selected="selected">En halua kertoa</option>
+				</select>
+				<input type="submit" id="register-select-political-importance-done-button" class="btn btn-default" value="Jatka" />
+			</div>
+			<div id="register-select-political-importance-error" class="alert alert-danger" style="display: none;">
+				<p>Et vielä kertonut kuinka tärkeää politiikka on sinulle.</p>
+			</div>
+		</form>
+	</div>
 	<div id="footer" style="height: 50px">
 
 	</div>
