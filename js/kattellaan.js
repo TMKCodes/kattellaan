@@ -833,6 +833,15 @@ $("#register-select-favorite-radio-shows-done-button").click(function(evt) {
 	history.pushState(null, "register select favorite bands", hostname + "?page=register-select-favorite-bands-page");  
 });
 
+$("#register-select-favorite-bands-done-button").click(function(evt) {
+	evt.preventDefault();
+	var favoriteBands = $("#register-select-favorite-bands-input").val();
+	$.cookie("favorite-bands", favoriteBands);
+	$("body > .container").hide();
+	$("#register-select-favorite-movies-page").show();
+	history.pushState(null, "register select favorite movies", hostname + "?page=register-select-favorite-movies-page");
+});
+
 // DO NOT REMOVE Enables hide and show binding
 // $("element").on("show", someFunc);
 // $("element").on("hide", someFunc);
