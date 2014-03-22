@@ -28,6 +28,34 @@ function open_session(username, password) {
 	});
 }
 
+function check_session() {
+	update_session();
+	if($.cookie("session") != undefined) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function update_session() {
+	var session = $.cookie("session");
+	$.ajax({
+		url: "php/api.php",
+		type: "GET",
+		async: false,
+		data: { call : 'update_session', session : session }
+	}).done(function(data) {
+		var result = $.parseJSON(data);
+		if(result.success == true) {
+			$cookie("session", result.session);
+		} else {
+			if($.cookie("session") != undefined) {
+				$.removeCookie("session");
+			}
+		}
+	});
+}
+
 function register_select_profile_picture(picture) {
 	$.cookie("picture", picture);
 	if($("#register-select-profile-picture-name").length == 0) {
@@ -42,19 +70,43 @@ function register_select_profile_picture(picture) {
 
 var hostname;
 
+// DO NOT REMOVE Enables hide and show binding
+// $("element").on("show", someFunc);
+// $("element").on("hide", someFunc);
+(function ($) {
+	$.each(['show', 'hide'], function (i, ev) {
+		var el = $.fn[ev];
+		$.fn[ev] = function () {
+			this.trigger(ev);
+			return el.apply(this, arguments);
+		};
+	});
+})(jQuery);
+
+
 function register_select_profile_picture_done_button() {
 	$("body > .container").hide();
 	$("#register-select-gender-page").show();
 	history.pushState(null, "register select gender", hostname + "?page=register-select-gender-page");
 }
 
+function load_home_page() {
+	$("body > .container").hide();
+	$("#home-page").show();
+	history.pushState(null, "home page", hostname);
+}
 
+function load_page(page) {
+	$("body > .container").hide();
+	$("#" + page).show();
+	history.pushState(null, page, hostname + "?page=" + page);
+}
 
 window.onpopstate = function(event) {
 	$("body > .container").hide();
 	var page = get_url_parameter("page");
 	if(page != undefined) {
-		$("#" + page).show();
+		load_page(page);
 	} else {
 		$("#home-page").show();
 	}
@@ -66,7 +118,7 @@ $("document").ready(function() {
 	hostname = location.protocol + '//' + location.hostname + location.pathname;
 	var page = get_url_parameter("page");
 	if(page != undefined) {
-		$("#" + page).show();
+		load_page(page);
 	} else {
 		$("#home-page").show();
 	}
@@ -166,23 +218,18 @@ $("#navigation-left > li").click(function(evt) {
 
 $("#home-button").click(function(evt) {
 	evt.preventDefault();
-	$("body > .container").hide();
 	// Check if user has already logged, do not show the registeration.
-	$("#home-page").show();
-	history.pushState(null, "Kattellaan home page", hostname);
+	load_home_page();
 });
 
 $("#register-select-profile-picture-skip-button").click(function(evt) {
-	$("body > .container").hide();
-	$("#register-select-gender-page").show();
-	history.pushState(null, "register select gender", hostname + "?page=register-select-gender-page");
+	evt.preventDefault();
+	load_page("register-select-gender-page");
 });
 
 $("#start-registeration-button").click(function(evt) {
 	evt.preventDefault();
-	$("body > .container").hide();
-	$("#register-terms-of-service-page").show();
-	history.pushState(null, "Registeration terms of service", hostname + "?page=register-terms-of-service-page");
+	load_page("register-terms-of-service-page");
 });
 
 $("#register-account-form").submit(function(evt) {
@@ -215,9 +262,7 @@ $("#register-account-form").submit(function(evt) {
 			if(result.success == true) {
 				open_session(result.account.username, result.account.password);
 				if($.cookie("session") != undefined) {
-					$("body > .container").hide();
-					$("#register-invite-page").show();
-					history.pushState(null, "Registeration invite friend", hostname + "?page=register-invite-page")
+					load_page("register-invite-page");
 				} else {
 					console.log("Failed to authenticate.");
 					$("#register-account-first-login-error").show();
@@ -232,22 +277,18 @@ $("#register-account-form").submit(function(evt) {
 
 $("#register-terms-of-service-continue-button").click(function(evt) {
 	evt.preventDefault();
-	$("body > .container").hide();
-	$("#register-account-page").show();
-	history.pushState(null, "Register Account", hostname + "?page=register-account-page")
+	load_page("register-account-page");
 });
 
 $("#register-terms-of-service-stop-button").click(function(evt) {
 	evt.preventDefault();
-	$("body > .container").hide();
-	$("#home-page").show();
-	history.pushState(null, "Home page", hostname)
+	load_page("home-page");
 });
 
 $("#register-invite-form").submit(function(evt) {
 	evt.preventDefault();
 	var form_data = $(this).serialize();
-	if($.cookie("session") != undefined) {
+	if(check_session() == true) {
 		form_data = form_data + "&session=" + $.cookie("session");	
 	}
 	$.ajax({
@@ -304,9 +345,13 @@ $("#register-invite-add-button").click(function(evt) {
 
 $("#register-invite-skip-button").click(function(evt) {
 	evt.preventDefault();
-	$("body > .container").hide();
-	$("#register-select-location-page").show();
-	history.pushState(null, "register select location", hostname + "?page=register-select-location-page");
+	load_page("register-select-location-page");
+});
+
+$("#register-select-gender-page").on("show", function(evt) {
+	if($.cookie("gender") != undefined) {
+		$("#register-select-gender-input").val($.cookie("gender"));
+	}
 });
 
 $("#register-select-gender-input").change(function(evt) {
@@ -315,14 +360,28 @@ $("#register-select-gender-input").change(function(evt) {
 
 $("#register-select-gender-done-button").click(function(evt) {
 	evt.preventDefault();
-	var gender = $("#register-select-gender-input").val();
-	if(gender != undefined) {
-		$.cookie("gender", gender);
-		$("body > .container").hide();
-		$("#register-select-birthday-page").show();
-		history.pushState(null, "register select birthday", hostname + "?page=register-select-birthday-page");
+	if(check_session() == true) {
+		var gender = $("#register-select-gender-input").val();
+		if(gender != undefined) {
+			$.cookie("gender", gender);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-birthday-page");
+			}
+		} else {
+			$("#register-select-gender-error").show();
+		}
 	} else {
-		$("#register-select-gender-error").show();
+		load_home_page();
+	}
+});
+
+$("#register-select-birthday-page").on("show", function(evt) {
+	if($.cookie("birthday") != undefined) {
+		$("#register-select-birthday-input").val($.cookie("birthday"));
 	}
 });
 
@@ -333,16 +392,29 @@ $("#register-select-birthday-input").change(function(evt) {
 $("#register-select-birthday-done-button").click(function(evt) {
 	evt.preventDefault();
 	var birthday = $("#register-select-birthday-input").val();
-	if(birthday != undefined) {
-		$.cookie("birthday", birthday);
-		$("body > .container").hide();
-		$("#register-select-relationship-status-page").show();
-		history.pushState(null, "register select relationship", hostname + "?page=register-select-relationship-status-page");
+	if(check_session() == true) {
+		if(birthday != undefined) {
+			$.cookie("birthday", birthday);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-relationship-status-page");
+			}
+		} else {
+			$("#register-select-birthday-error").show();
+		}
 	} else {
-		$("#register-select-birthday-error").show();
+		load_home_page();
 	}
 });
 
+$("#register-select-relationship-status-page").on("show", function(evt) {
+	if($.cookie("relationship-status") != undefined) {
+		$("#register-select-relationship-status-input").val($.cookie("relationship-status"));
+	}
+});
 
 $("#register-select-relationship-status-input").change(function(evt) {
 	$("#register-select-relationship-status-error").hide();
@@ -351,13 +423,25 @@ $("#register-select-relationship-status-input").change(function(evt) {
 $("#register-select-relationship-status-done-button").click(function(evt) {
 	evt.preventDefault();
 	var relationshipStatus = $("#register-select-relationship-status-input").val();
-	if(relationshipStatus != undefined) {
-		$.cookie("relationship-status", relationshipStatus);
-		$("body > .container").hide();
-		$("#register-select-sexual-orientation-page").show();
-		history.pushState(null, "register select sexual orientation", hostname + "?page=register-select-sexual-orientation-page");
-	} else {
-		$("#register-select-relationship-status-error").show();
+	if(check_session() == true) {
+		if(relationshipStatus != undefined) {
+			$.cookie("relationship-status", relationshipStatus);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-sexual-orientation-page");
+			}
+		} else {
+			$("#register-select-relationship-status-error").show();
+		}
+	}
+});
+
+$("#register-select-sexual-orientation-page").on("show", function(evt) {
+	if($.cookie("sexual-orientation") != undefined) {
+		$("#register-select-sexual-orientation-input").val($.cookie("sexual-orientation"));
 	}
 });
 
@@ -368,13 +452,25 @@ $("#register-select-sexual-orientation-input").change(function(evt) {
 $("#register-select-sexual-orientation-done-button").click(function(evt) {
 	evt.preventDefault();
 	var sexualOrientation = $("#register-select-sexual-orientation-input").val();
-	if(sexualOrientation != undefined) {
-		$.cookie("sexual-orientation", sexualOrientation);
-		$("body > .container").hide();
-		$("#register-select-looking-for-page").show();
-		history.pushState(null, "register select looking for", hostname + "?page=register-select-looking-for-page");
-	} else {
-		$("#register-select-sexual-orientation-error").show();
+	if(check_session() == true) {
+		if(sexualOrientation != undefined) {
+			$.cookie("sexual-orientation", sexualOrientation);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-looking-for-page");
+			}
+		} else {
+			$("#register-select-sexual-orientation-error").show();
+		}
+	}
+});
+
+$("#register-select-looking-for-page").on("show", function(evt) {
+	if($.cookie("looking-for") != undefined) {
+		$("#register-select-looking-for-input").val($.cookie("looking-for"));
 	}
 });
 
@@ -385,13 +481,27 @@ $("#register-select-looking-for-input").change(function(evt) {
 $("#register-select-looking-for-done-button").click(function(evt) {
 	evt.preventDefault();
 	var lookingForValues = $("#register-select-looking-for-input").val();
-	if(lookingForValues != undefined) {
-		$.cookie("looking-for", lookingForValues);
-		$("body > .container").hide();
-		$("#register-select-height-page").show();
-		history.pushState(null, "register select height", hostname + "?page=register-select-height-page");
+	if(check_session() == true) {
+		if(lookingForValues != undefined) {
+			$.cookie("looking-for", lookingForValues);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-height-page");
+			}
+		} else {
+			$("#register-select-looking-for-error").show();
+		}
 	} else {
-		$("#register-select-looking-for-error").show();
+		load_home_page();
+	}
+});
+
+$("#register-select-height-page").on("show", function(evt) {
+	if($.cookie("height") != undefined) {
+		$("#register-select-height-input").val($.cookie("height"));
 	}
 });
 
@@ -402,13 +512,27 @@ $("#register-select-height-input").change(function(evt) {
 $("#register-select-height-done-button").click(function(evt) {
 	evt.preventDefault();
 	var height = $("#register-select-height-input").val();
-	if(height != undefined) {
-		$.cookie("height", height);
-		$("body > .container").hide();
-		$("#register-select-weight-page").show();
-		history.pushState(null, "register select weight", hostname + "?page=register-select-weight-page");
+	if(check_session() == true) {
+		if(height != undefined) {
+			$.cookie("height", height);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-weight-page");
+			}
+		} else {
+			$("#register-select-height-error").show();
+		}
 	} else {
-		$("#register-select-height-error").show();
+		load_home_page();
+	}
+});
+
+$("#register-select-weight-page").on("show", function(evt) {
+	if($.cookie("weight") != undefined) {
+		$("#register-select-weight-input").val($.cookie("weight"));
 	}
 });
 
@@ -419,30 +543,58 @@ $("#register-select-weight-input").change(function(evt) {
 $("#register-select-weight-done-button").click(function(evt) {
 	evt.preventDefault();
 	var weight = $("#register-select-weight-input").val();
-	if(weight != undefined) {
-		$.cookie("weight", weight);
-		$("body > .container").hide();
-		$("#register-select-body-type-page").show();
-		history.pushState(null, "register select body type", hostname + "?page=register-select-body-type-page");
+	if(check_session() == true) {
+		if(weight != undefined) {
+			$.cookie("weight", weight);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-body-type-page");
+			}
+		} else {
+			$("#register-select-weight-error").show();
+		}
 	} else {
-		$("#register-select-weight-error").show();
+		load_home_page();
+	}
+});
+
+$("#register-select-body-type-page").on("show", function(evt) {
+	if($.cookie("body-type" != undefined) {
+		$("#register-select-body-type-input").val($.cookie("body-type"));
 	}
 });
 
 $("#register-select-body-type-input").change(function(evt) {
-	$("register-select-body-type-error").hide();
+	$("#register-select-body-type-error").hide();
 });
 
 $("#register-select-body-type-done-button").click(function(evt) {
 	evt.preventDefault();
 	var bodyType = $("#register-select-body-type-input").val();
-	if(bodyType != undefined) {
-		$.cookie("body-type", bodyType);
-		$("body > .container").hide();
-		$("#register-select-eye-color-page").show();
-		history.pushState(null, "register select eye color", hostname + "?page=register-select-eye-color-page");
+	if(check_session() == true) {
+		if(bodyType != undefined) {
+			$.cookie("body-type", bodyType);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-eye-color-page");
+			}
+		} else {
+			$("#register-select-body-type-error").show();
+		}
 	} else {
-		$("#register-select-body-type-error").show();
+		load_home_page();
+	}
+});
+
+$("#register-select-eye-color-page").on("show", function(evt) {
+	if($.cookie("eye-color") != undefined) {
+		$("#register-select-eye-color-input".val($.cookie("eye-color"));
 	}
 });
 
@@ -453,13 +605,27 @@ $("#register-select-eye-color-input").change(function(evt) {
 $("#register-select-eye-color-done-button").click(function(evt) {
 	evt.preventDefault();
 	var eyeColor = $("#register-select-eye-color-input").val();
-	if(eyeColor != undefined) {
-		$.cookie("eye-color", eyeColor);
-		$("body > .container").hide();
-		$("#register-select-hair-length-page").show();
-		history.pushState(null, "register select hair length", hostname + "?page=register-select-hair-length-page");
+	if(check_session() == true) {
+		if(eyeColor != undefined) {
+			$.cookie("eye-color", eyeColor);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-hair-length-page");
+			}
+		} else {
+			$("#register-select-eye-color-error").show();
+		}
 	} else {
-		$("#register-select-eye-color-error").show();
+		load_home_page();
+	}
+});
+
+$("#register-select-hair-length-page").on("show", function(evt) {
+	if($.cookie("hair-length") != undefined) {
+		$("#register-select-hair-length-input").val($.cookie("hair-length"));
 	}
 });
 
@@ -470,13 +636,27 @@ $("#register-select-hair-length-input").change(function(evt) {
 $("#register-select-hair-length-done-button").click(function(evt) {
 	evt.preventDefault();
 	var hairLength = $("#register-select-hair-length-input").val();
-	if(hairLength != undefined) {
-		$.cookie("hair-lenght", hairLength);
-		$("body > .container").hide();
-		$("#register-select-hair-color-page").show();
-		history.pushState(null, "register select hair color", hostname + "?page=register-select-hair-color-page");
+	if(check_session() == true) {
+		if(hairLength != undefined) {
+			$.cookie("hair-lenght", hairLength);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-hair-color-page");
+			}
+		} else {
+			$("#register-select-hair-length-error").show();
+		}
 	} else {
-		$("#register-select-hair-length-error").show();
+		load_home_page();
+	}
+});
+
+$("#register-select-hair-color-page").on("show", function(evt) {
+	if($.cookie("hair-color") != undefined) {
+		$("#register-select-hair-color-input").val($.cookie("hair-color"));
 	}
 });
 
@@ -487,13 +667,27 @@ $("#register-select-hair-color-input").change(function(evt) {
 $("#register-select-hair-color-done-button").click(function(evt) {
 	evt.preventDefault();
 	var hairColor = $("#register-select-hair-color-input").val();
-	if(hairColor != undefined) {
-		$.cookie("hair-color", hairColor);
-		$("body > .container").hide();
-		$("#register-select-kids-page").show();
-		history.pushState(null, "register select kids", hostname + "?page=register-select-kids-page");
+	if(check_session() == true) {
+		if(hairColor != undefined) {
+			$.cookie("hair-color", hairColor);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-kids-page");
+			}
+		} else {
+			$("#register-select-hair-color-error").show();
+		}
 	} else {
-		$("#register-select-hair-color-error").show();
+		load_home_page();
+	}
+});
+
+$("#register-select-kids-page").on("show", function(evt) {
+	if($.cookie("kids") != undefined) {
+		$("#register-select-kids-input").val($.cookie("kids"));
 	}
 });
 
@@ -504,16 +698,29 @@ $("#register-select-kids-input").change(function(evt) {
 $("#register-select-kids-done-button").click(function(evt) {
 	evt.preventDefault();
 	var kids = $("#register-select-kids-input").val();
-	if(kids != undefined) {
-		$.cookie("kids", kids);
-		$("body > .container").hide();
-		$("#register-select-accomodation-page").show();
-		history.pushState(null, "register select accomodation", hostname + "?page=register-select-accomodation-page");
+	if(check_session() == true) {
+		if(kids != undefined) {
+			$.cookie("kids", kids);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-accomodation-page");
+			}
+		} else {
+			$("#register-select-kids-error").show();
+		}
 	} else {
-		$("#register-select-kids-error").show();
+		load_home_page();
 	}
 });
 
+$("#register-select-accomodation-input").change("show", function(evt) {
+	if($.cookie("accomodation") != undefined) {
+		$("#register-select-accomodation-input").val($.cookie("accomodation"));
+	}
+});
 
 $("#register-select-accomodation-input").change(function(evt) {
 	$("#register-select-accomodation-error").hide();
@@ -522,13 +729,27 @@ $("#register-select-accomodation-input").change(function(evt) {
 $("#register-select-accomodation-done-button").click(function(evt) {
 	evt.preventDefault();
 	var accomodation = $("#register-select-accomodation-input").val();
-	if(accomodation != undefined) {
-		$.cookie("accomodation", accomodation);
-		$("body > .container").hide();
-		$("#register-select-ethnic-identity-page").show();
-		history.pushState(null, "register select ethnic identity", hostname + "?page=register-select-ethnic-identity-page");
+	if(check_session() == true) {
+		if(accomodation != undefined) {
+			$.cookie("accomodation", accomodation);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-ethnic-identity-page");
+			}
+		} else {
+			$("#register-select-accomodation-error").show();
+		}
 	} else {
-		$("#register-select-accomodation-error").show();
+		load_home_page();
+	}
+});
+
+$("#register-select-ethnic-identity-page").on("show", function(evt) {
+	if($.cookie("ethnic-identity") != undefined) {
+		$("#register-select-ethnic-identity-input").val($.cookie("ethnic-identity");
 	}
 });
 
@@ -538,15 +759,29 @@ $("#register-select-ethnic-identity-input").change(function(evt) {
 
 $("#register-select-ethnic-identity-done-button").click(function(evt) {
 	evt.preventDefault();
-	var ethnicIdentity = $("#register-select-ethnic-identity-input");
-	if(ethnicIdentity != undefined) {
-		$.cookie("ethnic-identity", ethnicIdentity);
-		$("body > .container").hide();
-		$("#register-select-language-skills-page").show();
-		history.pushState(null, "register select language skills", hostname + "?page=register-select-language-skills-page");
+	var ethnicIdentity = $("#register-select-ethnic-identity-input").val();
+	if(check_session() == true) {
+		if(ethnicIdentity != undefined) {
+			$.cookie("ethnic-identity", ethnicIdentity);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-language-skills-page");
+			}
+		} else {
+			$("#register-select-ethnic-identity-error").show();
+		}
 	} else {
-		$("#register-select-ethnic-identity-error").show();
+		load_home_page();
 	}
+});
+
+$("#register-select-language-skills-page").on("show", function(evt) {
+	if($.cookie("language-skills") != undefined) {
+		$("#register-select-language-skills-input").val($.cookie("language-skills");
+	}	
 });
 
 $("#register-select-language-skills-input").change(function(evt) {
@@ -556,13 +791,27 @@ $("#register-select-language-skills-input").change(function(evt) {
 $("#register-select-language-skills-done-button").click(function(evt) {
 	evt.preventDefault();
 	var languageSkills = $("#register-select-language-skills-input").val();
-	if(languageSkills != undefined) {
-		$.cookie("language-skills", languageSkills);
-		$("body > .container").hide();
-		$("#register-select-education-page").show();
-		history.pushState(null, "register select education", hostname + "?page=register-select-education-page");
+	if(check_session() == true) {
+		if(languageSkills != undefined) {
+			$.cookie("language-skills", languageSkills);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-education-page");
+			}
+		} else {
+			$("#register-select-language-skills-error").show();
+		}
 	} else {
-		$("#register-select-language-skills-error").show();
+		load_home_page();
+	}
+});
+
+$("#register-select-education-page").on("show", function(evt) {
+	if($.cookie("education") != undefined) {
+		$("#register-select-education-input").val($.cookie("education"));
 	}
 });
 
@@ -573,13 +822,27 @@ $("#register-select-education-input").change(function(evt) {
 $("#register-select-education-done-button").click(function(evt) {
 	evt.preventDefault();
 	var education = $("#register-select-education-input").val();
-	if(education != undefined) {
-		$.cookie("education", education);
-		$("body > .container").hide();
-		$("#register-select-work-page").show();
-		history.pushState(null, "register select work", hostname + "?page=register-select-work-page");
+	if(check_session() == true) {
+		if(education != undefined) {
+			$.cookie("education", education);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-work-page");
+			}
+		} else {
+			$("#register-select-education-error").show();
+		}
 	} else {
-		$("#register-select-education-error").show();
+		load_home_page();
+	}
+});
+
+$("#register-select-work-page").on("show", function(evt) {
+	if($.cookie("work") != undefined) {
+		$("#register-select-work-input").val($.cookie("work"));
 	}
 });
 
@@ -590,13 +853,27 @@ $("#register-select-work-input").change(function(evt) {
 $("#register-select-work-done-button").click(function(evt) {
 	evt.preventDefault();
 	var work = $("#register-select-work-input").val();
-	if(work != undefined) {
-		$.cookie("work", work);
-		$("body > .container").hide();
-		$("#register-select-income-page").show();
-		history.pushState(null, "register select income", hostname + "?page=register-select-income-page");
+	if(check_session() == true) {
+		if(work != undefined) {
+			$.cookie("work", work);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-income-page");
+			}
+		} else {
+			$("#register-select-work-error").show();
+		}
 	} else {
-		$("#register-select-work-error").show();
+		load_home_page();
+	}
+});
+
+$("#register-select-incom-page").on("show", function(evt) {
+	if($.cookie("income") != undefined) {
+		$("#register-select-income-input").val($.cookie("income"));
 	}
 });
 
@@ -607,13 +884,27 @@ $("#register-select-income-input").change(function(evt) {
 $("#register-select-income-done-button").click(function(evt) {
 	evt.preventDefault();
 	var income = $("#register-select-income-input").val();
-	if(income != undefined) {
-		$.cookie("income", income);
-		$("body > .container").hide();
-		$("#register-select-vocation-page").show();
-		history.pushState(null, "register select vocation", hostname + "?page=register-select-vocation-page");
+	if(check_session() == true) {
+		if(income != undefined) {
+			$.cookie("income", income);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-vocation-page");
+			}
+		} else {
+			$("#register-select-income-error").show();
+		}
 	} else {
-		$("#register-select-income-error").show();
+		load_home_page();
+	}
+});
+
+$("#register-select-vocation-page").on("show", function(evt) {
+	if($.cookie("vocation") != undefined) {
+		$("#register-select-vocation-input").val($.cookie("vocation"));
 	}
 });
 
@@ -624,13 +915,27 @@ $("#register-select-vocation-input").change(function(evt) {
 $("#register-select-vocation-done-button").click(function(evt) {
 	evt.preventDefault();
 	var vocation = $("#register-select-vocation-input").val();
-	if(vocation != undefined) {
-		$.cookie("vocation", vocation);
-		$("body > .container").hide();
-		$("#register-select-dress-style-page").show();
-		history.pushState(null, "register select dress style", hostname + "?page=register-select-dress-style-page");
+	if(check_session() == true) {
+		if(vocation != undefined) {
+			$.cookie("vocation", vocation);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-dress-style-page");
+			}
+		} else {
+			$("#register-select-vocation-error").show();
+		}
 	} else {
-		$("#register-select-vocation-error").show();
+		load_home_page();
+	}
+});
+
+$("#register-select-dress-style-page").on("show", function(evt) {
+	if($.cookie("dress-style") != undefined) {
+		$("#register-select-dress-style-input").val($.cookie("dress-style"));
 	}
 });
 
@@ -641,13 +946,27 @@ $("#register-select-dress-style-input").change(function(evt) {
 $("#register-select-dress-style-done-button").click(function(evt) {
 	evt.preventDefault();
 	var dressStyle = $("#register-select-dress-style-input").val();
-	if(dressStyle != undefined) {
-		$.cookie("dress-style", dressStyle);
-		$("body > .container").hide();
-		$("#register-select-smoking-page").show();
-		history.pushState(null, "register select smoking", hostname + "?page=register-select-smoking-page");
+	if(check_session() == true) {
+		if(dressStyle != undefined) {
+			$.cookie("dress-style", dressStyle);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-smoking-page");
+			}
+		} else {
+			$("#register-select-dress-style-error").show();
+		}
 	} else {
-		$("#register-select-dress-style-error").show();
+		load_home_page();
+	}
+});
+
+$("#register-select-smoking-page").on("show", function(evt) {
+	if($.cookie("smoking") != undefined) {
+		$("#register-select-smoking-input").val($.cookie("smoking"));
 	}
 });
 
@@ -658,13 +977,27 @@ $("#register-select-smoking-input").change(function(evt) {
 $("#register-select-smoking-done-button").click(function(evt) {
 	evt.preventDefault();
 	var smoking = $("#register-select-smoking-input").val();
-	if(smoking != undefined) {
-		$.cookie("smoking", smoking);
-		$("body > .container").hide();
-		$("#register-select-alcohol-page").show();
-		history.pushState(null, "register select alcohol", hostname + "?page=register-select-alcohol-page");
+	if(check_session() == true) {
+		if(smoking != undefined) {
+			$.cookie("smoking", smoking);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-alcohol-page");
+			}
+		} else {
+			$("#register-select-smoking-error").show();
+		}
 	} else {
-		$("#register-select-smoking-error").show();
+		load_home_page();
+	}
+});
+
+$("#register-select-alcohol-page").on("show", function(evt) {
+	if($.cookie("alcohol") != undefined) {
+		$("#register-select-alcohol-input").val($.cookie("alcohol"));
 	}
 });
 
@@ -675,13 +1008,27 @@ $("#register-select-alcohol-input").change(function(evt) {
 $("#register-select-alcohol-done-button").click(function(evt) {
 	evt.preventDefault();
 	var alcohol = $("#register-select-alcohol-input").val();
-	if(alcohol != undefined) {
-		$.cookie("alcohol", alcohol);
-		$("body > .container").hide();
-		$("#register-select-pets-page").show();
-		history.pushState(null, "register select pets", hostname + "?page=register-select-pets-page");
+	if(check_session() == true) {
+		if(alcohol != undefined) {
+			$.cookie("alcohol", alcohol);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-pets-page");
+			}
+		} else {
+			$("#register-select-alcohol-error").show();
+		}
 	} else {
-		$("#register-select-alcohol-error").show();
+		load_home_page();
+	}
+});
+
+$("#register-select-pets-page").on("show", function(evt) {
+	if($.cookie("pets") != undefined) {
+		$("#register-select-pets-input").val($.cookie("pets");
 	}
 });
 
@@ -692,13 +1039,27 @@ $("#register-select-pets-input").change(function(evt) {
 $("#register-select-pets-done-button").click(function(evt) {
 	evt.preventDefault();
 	var pets = $("#register-select-pets-input").val();
-	if(pets != undefined) {
-		$.cookie("pets", pets);
-		$("body > .container").hide();
-		$("#register-select-exercise-page").show();
-		history.pushState(null, "register select exercise", hostname + "?page=register-select-exercise-page");
+	if(check_session() == true) {	
+		if(pets != undefined) {
+			$.cookie("pets", pets);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-exercise-page");
+			}	
+		} else {
+			$("#register-select-pets-error").show();
+		}
 	} else {
-		$("#register-select-pets-error").show();
+		load_home_page();
+	}
+});
+
+$("#register-select-exercise-page").on("show", function(evt) {
+	if($.cookie("exercise") != undefined) {
+		$("#register-select-exercise-input").val($.cookie("exercise"));
 	}
 });
 
@@ -709,14 +1070,28 @@ $("#register-select-exercise-input").change(function(evt) {
 $("#register-select-exercise-done-button").click(function(evt) {
 	evt.preventDefault();
 	var exercise = $("#register-select-exercise-input").val();
-	if(exercise != undefined) {
-		$.cookie("exercise", exercise);
-		$("body > .container").hide();
-		$("#register-select-travel-page").show();
-		history.pushState(null, "register select travel", hostname + "?page=register-select-travel-page");
+	if(check_session() == true) {
+		if(exercise != undefined) {
+			$.cookie("exercise", exercise);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-travel-page");
+			}
+		} else {
+			$("#register-select-exercise-error").show();
+		} 
 	} else {
-		$("#register-select-exercise-error").show();
-	} 
+		load_home_page();
+	}
+});
+
+$("#register-select-travel-page").on("show", function(evt) {
+	if($.cookie("travel") != undefined) {
+		$("#register-select-travel-input").val($.cookie("travel"));
+	}
 });
 
 $("#register-select-travel-input").change(function(evt) {
@@ -726,15 +1101,29 @@ $("#register-select-travel-input").change(function(evt) {
 $("#register-select-travel-done-button").click(function(evt) {
 	evt.preventDefault();
 	var travel = $("#register-select-travel-input").val();
-	if(travel != undefined) {
-		$.cookie("travel", travel);
-		$("body > .container").hide();
-		$("#register-select-religion-page").show();
-		history.pushState(null, "register select religion", hostname + "?page=register-select-religion-page");
+	if(check_session() == true) {
+		if(travel != undefined) {
+			$.cookie("travel", travel);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-religion-page");
+			}
+		} else {
+			$("#register-select-travel-error").show();
+		}
 	} else {
-		$("#register-select-travel-error").show();
+		load_home_page();
 	}
 }); 
+
+$("#register-select-religion-page").on("show", function(evt) {
+	if($.cookie("religion") != undefined) {
+		$("#register-select-religion-input").val($.cookie("religion"));
+	}
+});
 
 $("#register-select-religion-input").change(function(evt) {
 	$("#register-select-religion-error").hide();
@@ -743,13 +1132,27 @@ $("#register-select-religion-input").change(function(evt) {
 $("#register-select-religion-done-button").click(function(evt) {
 	evt.preventDefault();
 	var religion = $("#register-select-religion-input").val();
-	if(religion != undefined) {
-		$.cookie("religion", religion);
-		$("body > .container").hide();
-		$("#register-select-religion-importance-page").show();
-		history.pushState(null, "register select religion importance", hostname + "?page=register-select-religion-importance-page");
+	if(check_session() == true) {
+		if(religion != undefined) {
+			$.cookie("religion", religion);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-religion-importance-page");
+			}
+		} else {
+			$("#register-select-religion-error").show();
+		}
 	} else {
-		$("#register-select-religion-error").show();
+		load_home_page();
+	}
+});
+
+$("#register-select-religion-importance-page").on("show", function(evt) {
+	if($.cookie("religion-importance") != undefined) {
+		$("#register-select-religion-importance-input").val($.cookie("religion-importance"));
 	}
 });
 
@@ -760,13 +1163,27 @@ $("#register-select-religion-importance-input").change(function(evt) {
 $("#register-select-religion-importance-done-button").click(function(evt) {
 	evt.preventDefault();
 	var religionImportance = $("#register-select-religion-importance-input").val();
-	if(religionImportance != undefined) {
-		$.cookie("religion-importance", religionImportance);
-		$("body > .container").hide();
-		$("#register-select-left-right-politics-page").show();
-		history.pushState(null, "register select left-right politics", hostname + "?page=register-select-left-right-politics-page");
+	if(check_session() == true) {
+		if(religionImportance != undefined) {
+			$.cookie("religion-importance", religionImportance);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-left-right-politics-page");
+			}
+		} else {
+			$("#register-select-religion-error").show();
+		}
 	} else {
-		$("#register-select-religion-error").show();
+		load_home_page();
+	}
+});
+
+$("#register-select-left-right-politics-page").on("show", function(evt) {
+	if($.cookie("left-right-politics") != undefined) {
+		$("#register-select-left-right-politics-input").val($.cookie("left-right-politics"));
 	}
 });
 
@@ -777,13 +1194,27 @@ $("#register-select-left-right-politics-input").change(function(evt) {
 $("#register-select-left-right-politics-done-button").click(function(evt) {
 	evt.preventDefault();
 	var leftRight = $("#register-select-left-right-politics-input").val();
-	if(leftRight != undefined) {
-		$.cookie("left-right-politics", leftRight);
-		$("body > .container").hide();
-		$("#register-select-liberal-conservative-politics-page").show();
-		history.pushState(null, "register select liberal and conservative politics", hostname + "?page=register-select-liberal-conservative-politics-page");
+	if(check_session() == true) {
+		if(leftRight != undefined) {
+			$.cookie("left-right-politics", leftRight);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-liberal-conservative-politics-page");
+			}
+		} else {
+			$("#register-select-left-right-politics-error").show();
+		}
 	} else {
-		$("#register-select-left-right-politics-error").show();
+		load_home_page();
+	}
+});
+
+$("#register-select-liberal-conservative-politics-page").on("show", function(evt) {
+	if($.cookie("liberal-conservative-politics") != undefined) {
+		$("#register-select-liberal-conservative-politics-input").val($.cookie("liberal-conservative-politics"));
 	}
 });
 
@@ -794,13 +1225,27 @@ $("#register-select-liberal-conservative-politics-input").change(function(evt) {
 $("#register-select-liberal-conservative-politics-done-button").click(function(evt) {
 	evt.preventDefault();
 	var liberalConservative = $("#register-select-liberal-conservative-politics-input").val();
-	if(liberalConservative != undefined) {
-		$.cookie("liberal-conservative-politics", liberalConservative);
-		$("body > .container").hide();
-		$("#register-select-political-importance-page").show();
-		history.pushState(null, "register select political importance", hostname + "?page=register-select-political-importance-page");
+	if(check_session() == true) {
+		if(liberalConservative != undefined) {
+			$.cookie("liberal-conservative-politics", liberalConservative);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-political-importance-page");
+			}	
+		} else {
+			$("#register-select-liberal-conservative-politics-error").show();
+		}
 	} else {
-		$("#register-select-liberal-conservative-politics-error").show();
+		load_home_page();
+	}
+});
+
+$("#register-select-political-importance-page").on("show", function(evt) {
+	if($.cookie("political-importance") != undefined) {
+		$("#register-select-political-importance-input").val($.cookie("political-importance"));
 	}
 });
 
@@ -811,93 +1256,187 @@ $("#register-select-political-importance-input").change(function(evt) {
 $("#register-select-political-importance-done-button").click(function(evt) {
 	evt.preventDefault();
 	var politicalImportance = $("#register-select-political-importance-input").val();
-	if(politicalImportance != undefined) {
-		$.cookie("political-importance", politicalImportance);
-		$("body > .container").hide();
-		$("#register-select-favorite-television-series-page").show();
-		history.pushState(null, "register select favorite television series", hostname + "?page=register-select-favorite-television-series-page");
+	if(check_session() == true) {
+		if(politicalImportance != undefined) {
+			$.cookie("political-importance", politicalImportance);
+			var nextPage = $.cookie("next-page");
+			if(nextPage != undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-favorite-television-series-page");
+			}
+		} else {
+			$("#register-select-political-importance-error").show();
+		}
 	} else {
-		$("#register-select-political-importance-error").show();
+		load_home_page();
+	}
+});
+
+$("#register-select-favorite-television-series-page").on("show", function(evt) {
+	if($.cookie("favorite-television-series") != undefined) {
+		$("#register-select-favorite-television-series-input").val($.cookie("favorite-television-series"));
 	}
 });
 
 $("#register-select-favorite-television-series-done-button").click(function(evt) {
 	evt.preventDefault();
 	var favoriteTelevisionSeries = $("#register-select-favorite-television-series-input").val();
-	$.cookie("favorite-television-series", favoriteTelevisionSeries);
-	$("body > .container").hide();
-	$("#register-select-favorite-radio-shows-page").show();
-	history.pushState(null, "register select favorite radio shows", hostname + "?page=register-select-favorite-radio-shows-page");
+	if(check_session() == true) {
+		$.cookie("favorite-television-series", favoriteTelevisionSeries);
+		var nextPage = $.cookie("next-page");
+		if(nextPage != undefined) {
+			load_page(nextPage);
+			$.removeCookie("next-page");
+		} else {
+			load_page("register-select-favorite-radio-shows-page");
+		}
+	} else {
+		load_home_page();
+	}
+});
+
+$("#register-select-favorite-radio-shows-page").on("show", function(evt) {
+	if($.cookie("favorite-radio-shows") != undefined) {
+		$("#register-select-favorite-radio-shows-input").val($.cookie("favorite-radio-shows"));
+	}
 });
 
 $("#register-select-favorite-radio-shows-done-button").click(function(evt) {
 	evt.preventDefault();
 	var favoriteRadioShows = $("#register-select-favorite-radio-shows-input").val();
-	$.cookie("favorite-radio-shows", favoriteRadioShows);
-	$("body > .container").hide();
-	$("#register-select-favorite-bands-page").show();
-	history.pushState(null, "register select favorite bands", hostname + "?page=register-select-favorite-bands-page");  
+	if(check_session() == true) {
+		$.cookie("favorite-radio-shows", favoriteRadioShows);
+		var nextPage = $.cookie("next-page");
+		if(nextPage != undefined) {
+			load_page(nextPage);
+			$.removeCookie("next-page");
+		} else {
+			load_page("register-select-favorite-bands-page");
+		}
+	} else {
+		load_home_page();
+	}
+});
+
+$("#register-select-favorite-bands-page").on("show", function(evt) {
+	if($.cookie("favorite-bands") != undefined) {
+		$("#register-select-favorite-bands-input").val($.cookie("favorite-bands"));
+	}
 });
 
 $("#register-select-favorite-bands-done-button").click(function(evt) {
 	evt.preventDefault();
 	var favoriteBands = $("#register-select-favorite-bands-input").val();
-	$.cookie("favorite-bands", favoriteBands);
-	$("body > .container").hide();
-	$("#register-select-favorite-movies-page").show();
-	history.pushState(null, "register select favorite movies", hostname + "?page=register-select-favorite-movies-page");
+	if(check_session() == true) {
+		$.cookie("favorite-bands", favoriteBands);
+		var nextPage = $.cookie("next-page");
+		if(nextPage != undefined) {
+			load_page(nextPage);
+			$.removeCookie("next-page");
+		} else {
+			load_page("register-select-favorite-movies-page");
+		}
+	} else {
+		load_home_page();
+	}
+});
+
+$("#register-select-favorite-movies-page").on("show", function(evt) {
+	if($.cookie("favorite-movies") != undefined) {
+		$("#register-select-favorite-movies-input").val($.cookie("favorite-movies"));
+	}
 });
 
 $("#register-select-favorite-movies-done-button").click(function(evt) {
 	evt.preventDefault();
 	var favoriteMovies = $("#register-select-favorite-movies-input").val();
-	$.cookie("favorite-movies", favoriteMovies);
-	$("body > .container").hide();
-	$("#register-select-best-things-in-the-world-page").show();
-	history.pushState(null, "register select best things of the world", hostname + "?page=register-select-best-things-in-the-world-page");
+	if(check_session() == true) {
+		$.cookie("favorite-movies", favoriteMovies);
+		var nextPage = $.cookie("next-page");
+		if(nextPage != undefined) {
+			load_page(nextPage);
+			$.removeCookie("next-page");
+		} else {
+			load_page("register-select-best-things-in-the-world-page");
+		}
+	} else {
+		load_home_page();
+	}
+});
+
+$("#register-select-best-things-in-the-world-page").on("show", function(evt) {
+	if($.cookie("best-things-in-the-world") != undefined) {
+		$("#register-select-best-things-in-the-world-input").val($.cookie("best-things-in-the-world"));
+	}
 });
 
 $("#register-select-best-things-in-the-world-done-button").click(function(evt) {
 	evt.preventDefault();
 	var bestThingsInTheWorld = $("#register-select-best-things-in-the-world-input").val();
-	$.cookie("best-things-in-the-world", bestThingsInTheWorld);
-	$("body > .container").hide();
-	$("#register-select-ignite-me-page").show();
-	history.pushState(null, "register select ignite me", hostname + "?page=register-select-ignite-me-page");
+	if(check_session() != undefined) {
+		$.cookie("best-things-in-the-world", bestThingsInTheWorld);
+		var nextPage = $.cookie("next-page");
+		if(nextPage != undefined) {
+			load_page(nextPage);
+			$.removeCookie("next-page");
+		} else {
+			load_page("register-select-ignite-me-page");
+		}
+	} else {
+		load_home_page();
+	}
+});
+
+$("#register-select-ignite-me-page").on("show", function(evt) {
+	if($.cookie("ignite-me") != undefined) {
+		$("#register-select-ingite-me-input").val($.cookie("ignite-me"));
+	}
 });
 
 $("#register-select-ignite-me-done-button").click(function(evt) {
 	evt.preventDefault();
 	var igniteMe = $("#register-select-ignite-me-input").val();
-	$.cookie("ignite-me", igniteMe);
-	$("body > .container").hide();
-	$("#register-select-not-exciting-page").show();
-	history.pushState(null, "register select not exciting", hostname + "?page=register-select-not-exciting-page");
+	if(check_session() == true) {
+		$.cookie("ignite-me", igniteMe);
+		var nextPage = $.cookie("next-page");
+		if(nextPage != undefined) {
+			load_page(nextPage);
+			$.removeCookie("next-page");
+		} else {
+			load_page("register-select-not-exciting-page");
+		}
+	} else {
+		load_home_page();
+	}
+});
+
+$("#register-select-not-exciting-page").on("show", function(evt) {
+	if($.cookie("not-exciting") != undefined) {
+		$("#register-select-not-exciting-input").val($.cookie("not-exciting"));
+	}
 });
 
 $("#register-select-not-exciting-done-button").click(function(evt) {
 	evt.preventDefault();
 	var notExciting = $("#register-select-not-exciting-input").val();
-	$.cookie("not-exciting", notExciting);
-	$("body > .container").hide();
-	$("#register-confirm-profile-information-page").show();
-	history.pushState(null, "register confirm profile information", hostname + "?page=register-confirm-profile-information-page");
+	if(check_session() == true) {
+		$.cookie("not-exciting", notExciting);
+		var nextPage = $.cookie("next-page");
+		if(nextPage != undefined) {
+			load_page(nextPage);
+			$.removeCookie("next-page");
+		} else {
+			load_page("register-confirm-profile-information-page");
+		}
+	} else {
+
+	}
 });
 
-// DO NOT REMOVE Enables hide and show binding
-// $("element").on("show", someFunc);
-// $("element").on("hide", someFunc);
-(function ($) {
-	$.each(['show', 'hide'], function (i, ev) {
-		var el = $.fn[ev];
-		$.fn[ev] = function () {
-			this.trigger(ev);
-			return el.apply(this, arguments);
-		};
-	});
-})(jQuery);
-
 $("#register-confirm-profile-information-page").on("show", function() {
+	$.cookie("next-page", "register-confirm-profile-information-page");
 	var address = $.cookie("address");
 	address = address.replace(/\+/gi, " ");
 	$("#register-confirm-address-data").val(address);
