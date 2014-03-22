@@ -1028,7 +1028,7 @@ $("#register-select-alcohol-done-button").click(function(evt) {
 
 $("#register-select-pets-page").on("show", function(evt) {
 	if($.cookie("pets") != undefined) {
-		$("#register-select-pets-input").val($.cookie("pets");
+		$("#register-select-pets-input").val($.cookie("pets"));
 	}
 });
 
