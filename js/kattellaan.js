@@ -47,7 +47,7 @@ function update_session() {
 	}).done(function(data) {
 		var result = $.parseJSON(data);
 		if(result.success == true) {
-			$cookie("session", result.session);
+			$.cookie("session", result.session);
 		} else {
 			if($.cookie("session") != undefined) {
 				$.removeCookie("session");
