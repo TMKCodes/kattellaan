@@ -893,7 +893,7 @@ $("#register-select-not-exciting-done-button").click(function(evt) {
 
 $("#register-confirm-profile-information-page").on("show", function() {
 	var address = $.cookie("address");
-	address = address.replace(/,/g, " ");
+	address = address.replace(/ /g, "+");
 	$("#register-confirm-address-data").val(address);
 	
 	var gender = $.cookie("gender");
