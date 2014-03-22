@@ -749,7 +749,7 @@ $("#register-select-accomodation-done-button").click(function(evt) {
 
 $("#register-select-ethnic-identity-page").on("show", function(evt) {
 	if($.cookie("ethnic-identity") != undefined) {
-		$("#register-select-ethnic-identity-input").val($.cookie("ethnic-identity");
+		$("#register-select-ethnic-identity-input").val($.cookie("ethnic-identity"));
 	}
 });
 
