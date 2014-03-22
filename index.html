@@ -249,7 +249,7 @@
 				<label class="input-group-addon" for="register-select-gender-input">Sukupuoli:</label>
 				<select id="register-select-gender-input" class="form-control" name="gender" required="required">
 					<option value="man">Mies</option>
-					<option value="nainen">Nainen</option>
+					<option value="woman">Nainen</option>
 					<option value="transman">Transmies</option>
 					<option value="transwoman">Transnainen</option>
 					<option value="sexless">Sukupuoleton</option>
@@ -1011,46 +1011,23 @@
 		<form id="register-confirm-profile-information-form" role="form" method="POST" action="php/api.php">
 			<div id="register-confirm-address" class="input-group col-xs-6">
 				<label for="register-confirm-address-data" class="input-group-addon"><b>Koti osoitteesi:</b></label>
-				<input type="text" id="register-confirm-address-data" class="form-control" name="address" value="" disabled="disabled" />
+				<input type="text" id="register-confirm-address-data" class="form-control" name="confirm-address" disabled="disabled" />
 				<div class="input-group-btn">
 					<input type="button" id="register-confirm-change-address-button" class="btn btn-default" value="Vaihda osoite" />
 				</div>
 			</div>
-			<div id="register-confirm-profile-picture">
-				<input type="hidden" name="profile-picture" value="" id="register-confirm-profile-picture-input">
-				<div id="register-confirm-profile-picture-current">
-					<p><b>Profiilikuvasi: </b></p>
-					<img src="" width="100" height="100" id="register-confirm-profile-picture-data">
-					<br />
-					<input type="button" id="register-confirm-change-profile-picture-button" class="btn btn-default" value="Vaihda profiilikuva" /> 
+			<div id="register-confirm-gender" class="input-group col-xs-6">
+				<label for="register-confirm-gender-data" class="input-group-addon"><b>Sukupuolesi:</b></label>
+				<input type="text" id="register-confirm-gender-data" class="form-control" name="confirm-gender" disabled="disabled" />
+				<div class="input-group-btn">
+					<input type="button" id="register-confirm-change-gender-button" class="btn btn-default" value="Vaihda sukupuolta" />
 				</div>
 			</div>
-			<div id="register-confirm-gender">
-				<input type="hidden" name="gender" value="" id="register-confirm-gender-input">
-				<div id="register-confirm-gender-current">
-					<p><b>Sukupuoli: </b><span id="register-confirm-gender-data"></span></p>
-					<input type="button" id="register-confirm-change-gender-button" class="btn btn-default" value="Vaihda sukupuoli" />
-				</div>
-			</div>
-			<div id="register-confirm-birthday">
-				<input type="hidden" name="birthday" value="" id="register-confirm-birthday-input">
-				<div id="register-confirm-birthday-current">
-					<p><b>Syntymäpäivä: </b><span id="register-confirm-birthday-data"></span></p>
-					<input type="button" id="register-confirm-change-birthday-button" class="btn btn-default" value="Vaihda syntymäpäivä" />
-				</div>
-			</div>
-			<div id="register-confirm-relationship-status">
-				<input type="hidden" name="relationship-status" value="" id="register-confirm-relationship-status-input">
-				<div id="register-confirm-relationship-status-current">
-					<p><b>Suhdetilanne: </b><span id="register-confirm-relationship-status-data"></span></p>
-					<input type="button" id="register-confirm-change-relationship-status-button" class="btn btn-default" value="Vaihda suhdetilanne" />
-				</div>
-			</div>
-			<div id="register-confirm-sexual-orientation">
-				<input type="hidden" name="sexual-orientation" value="" id="register-confirm-sexual-orientation-input">
-				<div id="register-confirm-sexual-orientation-current">
-					<p><b>Seksuaalinen suuntautuminen: </b><span id="register-confirm-sexual-orientation-data"></span></p>
-					<input type="button" id="register-confirm-change-sexual-orientation-button" class="btn btn-default" value="Vaihda suhdetilanne" />
+			<div id="register-confirm-birthday" class="input-group col-xs-6">
+				<label for="register-confirm-birthday-data" class="input-group-addon"><b>Syntymäpäiväsi:</b></label>
+				<input type="text" id="register-confirm-birthday-data" class="form-control" name="confirm-birthday" disabled="disabled" />
+				<div class="input-group-btn">
+					<input type="button" id="register-confirm-change-birthday-button" class="btn-default" value="Vaihda syntymäpäivä" />
 				</div>
 			</div>
 		</form>

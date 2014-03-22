@@ -892,18 +892,27 @@ $("#register-select-not-exciting-done-button").click(function(evt) {
 })(jQuery);
 
 $("#register-confirm-profile-information-page").on("show", function() {
-	$("#register-confirm-address-input").val($.cookie("address"));
-	$("#register-confirm-address-data").val($.cookie("address"));
-	$("#register-confirm-profile-picture-input").val($.cookie("picture"));
-	$("#register-confirm-profile-picture-data").attr("src", hostname + "uploads/" + $.cookie("picture"));
-	$("#register-confirm-gender-input").val($.cookie("gender"));
-	$("#register-confirm-gender-data").html($.cookie("gender"));
-	$("#register-confirm-birthday-input").val($.cookie("birthday"));
-	$("#register-confirm-birthday-data").html($.cookie("birthday"));
-	$("#register-confirm-relationship-status-input").val($.cookie("relationship-status"));
-	$("#regsiter-confirm-relationship-status-data").html($.cookie("relationship-status"));
-	$("#register-confirm-sexual-orientation-input").val($.cookie("sexual-orientation"));
-	$("#register-confirm-sexual-orientation-data").html($.cookie("sexual-orientation"));
+	var address = $.cookie("address");
+	address = address.replace("+", " ");
+	$("#register-confirm-address-data").val(address);
+	
+	var gender = $.cookie("gender");
+	if(gender == "man") {
+		$("#register-confirm-gender-data").val("Mies");
+	} else if(gender == "woman") {
+		$("#register-confirm-gender-data").val("Nainen");
+	} else if(gender == "transman") {
+		$("#register-confirm-gender-data").val("Transmies");
+	} else if(gender == "transwoman") {
+		$("#register-confirm-gender-data").val("Transnainen");
+	} else if(gender == "sexless") {
+		$("#register-confirm-gender-data").val("Sukupuoleton");
+	}
+
+	var birthday = $.cookie("birthday");
+	var birthdayArr = birthday.split("-");
+	$("#register-confirm-birthday-data").val(birthdayArr[2] + "/" + birthdayArr[1] + "/" + birthdayArr[0]);
+
 });
 
 var map;
