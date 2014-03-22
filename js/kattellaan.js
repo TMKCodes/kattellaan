@@ -913,6 +913,99 @@ $("#register-confirm-profile-information-page").on("show", function() {
 	var birthdayArr = birthday.split("-");
 	$("#register-confirm-birthday-data").val(birthdayArr[2] + "/" + birthdayArr[1] + "/" + birthdayArr[0]);
 
+	var relationshipStatus = $.cookie("relationship-status");
+	if(relationshipStatus == "single") {
+		$("#register-confirm-relationship-status-data").val("Sinkku");
+	} else if(relationshipStatus == "relationship") {
+		$("#register-confirm-relationship-status-data").val("Parisuhde");
+	} else if(relationshipStatus == "marriage") {
+		$("#register-confirm-relationship-status-data").val("Avioliitto");
+	} else if(relationshipStatus == "divorced") {
+		$("#register-confirm-relationship-status-data").val("Eronnut");
+	} else if(relationshipStatus == "seperation") {
+		$("#register-confirm-relationship-status-data").val("Asumusero");
+	} else if(relationshipStatus == "widow") {
+		$("#register-confirm-relationship-status-data").val("Leski");
+	} else if(relationshipStatus == "none") {
+		$("#register-confirm-relationship-status-data").val("En halua kertoa");
+	}
+
+	var sexualOrientation = $.cookie("sexual-orientation");
+	if(sexualOrientation == "hetero") {
+		$("#register-confirm-sexual-orientation-data").val("Heteroseksuaali");
+	} else if(sexualOrientation == "gay") {
+		$("#register-confirm-sexual-orientation-data").val("Homoseksuaali");
+	} else if(sexualOrientation == "bi") {
+		$("#register-confirm-sexual-orientation-data").val("Bisexsuaali");
+	} else if(sexualOrientation == "ase") {
+		$("#register-confirm-sexual-orientation-data").val("Aseksuaali");
+	}
+
+	var lookingFor = $.cookie("looking-for");
+	var lookingForArr = lookingFor.split(",");
+	var i;
+	for(i = 0; i < lookingForArr.length; i++) {
+		if(lookingForArr[i] == "friends") {
+			lookingForArr[i] = "Ystävyyttä";
+		} else if(lookingForArr[i] == "love") {
+			lookingForArr[i] = "Rakkautta";
+		} else if(lookingForArr[i] == "date") {
+			lookingForArr[i] = "Tapaamisia";
+		} else if(lookingForArr[i] == "sex") {
+			lookingForArr[i] = "Seksiä";
+		} else if(lookingForArr[i] == "other") {
+			lookingForArr[i] = "Jotain muuta";
+		} else if(lookingForArr[i] == "none") {
+			lookingForArr[i] == "En halua kertoa";
+		}
+	}
+	var lookingForParsed = lookingForArr.join(", ");
+	$("#register-confirm-looking-for-data").val(lookingForParsed);
+	
+	$("#register-confirm-height-data").val($.cookie("height") + " cm");
+	$("#register-confirm-weight-data").val($.cookie("weight") + " kg");
+
+	var bodyType = $.cookie("body-type");
+	if(bodyType == "slender") {
+		bodyType = "Siro";
+	} else if(bodyType == "slim") {
+		bodyType = "Hoikka";
+	} else if(bodyType == "low-fat") {
+		bodyType = "Vähärasvainen";
+	} else if(bodyType == "sporty") {
+		bodyType = "Sporttinen";
+	} else if(bodyType == "muscular") {
+		bodyType = "Lihaksikas";
+	} else if(bodyType == "roundish") {
+		bodyType = "Pyöreähkö";
+	} else if(bodyType == "overweight") {
+		bodyType = "Ylipainoinen";
+	} else if(bodyType == "none") {
+		bodyType = "En halua kertoa";
+	}
+	$("#register-confirm-body-type-data").val(bodyType);
+
+	var eyeColor = $.cookie("eye-color");
+	if(eyeColor == "blue") {
+		eyeColor = "Sininen";
+	} else if(eyeColor == "brown") {
+		eyeColor = "Ruskea";
+	} else if(eyeColor == "green") {
+		eyeColor = "Vihreä";
+	} else if(eyeColor == "gray") {
+		eyeColor = "Harmaa";
+	} else if(eyeColor == "amber") {
+		eyeColor = "Kullanruskea";
+	} else if(eyeColor == "hazel") {
+		eyeColor = "Pähkinänruseka";
+	} else if(eyeColor == "red") {
+		eyeColor = "Punainen";
+	} else if(eyeColor == "violet") {
+		eyeColor = "Violetti";
+	} else if(eyeColor == "none") {
+		eyeColor = "En halua kertoa";
+	}
+	$("#register-confirm-eye-color-data").val(eyeColor);
 });
 
 var map;
