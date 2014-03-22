@@ -842,6 +842,42 @@ $("#register-select-favorite-bands-done-button").click(function(evt) {
 	history.pushState(null, "register select favorite movies", hostname + "?page=register-select-favorite-movies-page");
 });
 
+$("#register-select-favorite-movies-done-button").click(function(evt) {
+	evt.preventDefault();
+	var favoriteMovies = $("#register-select-favorite-movies-input").val();
+	$.cookie("favorite-movies", favoriteMovies);
+	$("body > .container").hide();
+	$("#register-select-best-things-of-the-world-page").show();
+	history.pushState(null, "register select best things of the world", hostname + "?page=register-select-best-things-of-the-world-page");
+});
+
+$("#register-select-best-things-in-the-world-done-button").click(function(evt) {
+	evt.preventDefault();
+	var bestThingsInTheWorld = $("#register-select-best-things-in-the-world-input").val();
+	$.cookie("best-things-in-the-world", bestThingsInTheWorld);
+	$("body > .container").hide();
+	$("#register-select-ignite-me-page").show();
+	history.pushState(null, "register select ignite me", hostname + "?page=register-select-ignite-me-page");
+});
+
+$("#register-select-ignite-me-done-button").click(function(evt) {
+	evt.preventDefault();
+	var igniteMe = $("#register-select-ignite-me-input").val();
+	$.cookie("ignite-me", igniteMe);
+	$("body > .container").hide();
+	$("#register-select-not-exciting-page").show();
+	history.pushState(null, "register select not exciting", hostname + "?page=register-select-not-exciting-page");
+});
+
+$("#register-select-not-exciting-done-button").click(function(evt) {
+	evt.preventDefault();
+	var notExciting = $("#register-select-not-exciting-input").val();
+	$.cookie("not-exciting", notExciting);
+	$("body > .container").hide();
+	$("#register-confirm-profile-information-page").show();
+	history.pushState(null, "register confirm profile information", hostname + "?page=register-confirm-profile-information-page");
+});
+
 // DO NOT REMOVE Enables hide and show binding
 // $("element").on("show", someFunc);
 // $("element").on("hide", someFunc);
