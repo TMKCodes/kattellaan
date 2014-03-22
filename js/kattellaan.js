@@ -28,74 +28,6 @@ function open_session(username, password) {
 	});
 }
 
-$("#register-picture-upload-form").ajaxForm({
-	dataType: "json",
-	data: { session: $.cookie("session") },
-	beforeSubmit: function(formData, jqForm, options) {
-		console.log("About to submit: \r\n" + $.param(formData));
-		$("#register-picture-upload-progress").show();
-		$("#register-picture-upload-progress-bar").width("0%");
-		$("#register-picture-upload-progress-percent").html("0%");
-		if($("#register-select-picture").length > 0) {
-			$("#register-select-picture").remove();
-		}
-		if($("#register-select-profile-picture-success-alert").length > 0) {
-			$("#register-select-profile-picture-success-alert").remove();
-		}
-		return true;
-	},
-	uploadProgress: function(evt, position, total, percentComplete) {
-		$("#register-picture-upload-progress-bar").width(percentComplete + "%");
-		$("#register-picture-upload-progress-percent").html(percentComplete + "%");
-		if(percentComplete == 100) {
-			$("#register-picture-upload-progress-percent").html("Odota.");
-		}
-	},
-	success: function(responseText, statusText, xhr, $form) {
-		if(statusText == "success") {
-			if(responseText.success == true) {
-				$("#register-picture-upload-progress-bar").width("100%");
-				$("#register-picture-upload-progress-percent").html("Lähetetty.");
-				if(responseText.uploaded_files != undefined) {
-					if($("#register-select-picture").length == 0) {
-						$("#register-select-profile-picture-page").append("<div id=\"register-select-picture\"></div>");
-					}
-					if($("#register-select-picture-header").length == 0) {
-						$("#register-select-picture").append("<h1 id=\"register-select-picture-header\">Valitse profiili kuvasi.</h1>");
-					}
-					var rowNumber = 0;
-					var count = responseText.uploaded_files.length;
-					for(var i = 0; i < count; i++) {
-						console.log("Uploaded file: " + responseText.uploaded_files[i]);
-						if(i % 4 == 0) {
-							rowNumber = i / 4;
-							$("#register-select-picture").append("<div class=\"row\" id=\"row-" + rowNumber + "\"></div>");
-						}
-						$("#row-" + rowNumber).append("<div class=\"col-xs-6 col-md-3\"><div class=\"thumbnail\" id=\"thumbnail-" + i + "\">" +
-										"<img style=\"heigth: 300px; width: 300px;\" src=\"uploads/" + responseText.uploaded_files[i] + "\" alt=\"" + responseText.uploaded_files[i]+ "\" />" + 
-										"<div class=\"caption\"><p>" + responseText.uploaded_files[i]+ "</p>" +
-										"<button class=\"btn btn-default\" onclick=\"register_select_profile_picture('" + responseText.uploaded_files[i] + "'); return false;\">Valitse tämä</button>" +
-										"</div></div></div>");
-					}
-				}
-				if(responseText.failed_files != undefined) {
-					for(var i = 0; i < responseText.failed_files.length; i++) {
-						console.log("Failed to upload file: " + responseText.failed_files[i]);
-					}
-				}
-			} else {
-				$("#register-picture-upload-progress-bar").width("0%");
-				$("#register-picture-upload-progress-percent").width("Epäonnistui.");
-				console.log("File uploading failed: " + responseText.error);
-			}
-		} else {
-			$("#register-picture-upload-progress-bar").width("0%");
-			$("#register-picture-upload-progress-percent").html("0%");
-			console.log("Uploading failed.");
-		}	
-	}
-});
-
 function register_select_profile_picture(picture) {
 	$.cookie("picture", picture);
 	if($("#register-select-profile-picture-name").length == 0) {
@@ -156,6 +88,74 @@ $("document").ready(function() {
 			});
 		}
 	}, 15000);
+
+	$("#register-picture-upload-form").ajaxForm({
+		dataType: "json",
+		data: { session: $.cookie("session") },
+		beforeSubmit: function(formData, jqForm, options) {
+			console.log("About to submit: \r\n" + $.param(formData));
+			$("#register-picture-upload-progress").show();
+			$("#register-picture-upload-progress-bar").width("0%");
+			$("#register-picture-upload-progress-percent").html("0%");
+			if($("#register-select-picture").length > 0) {
+				$("#register-select-picture").remove();
+			}
+			if($("#register-select-profile-picture-success-alert").length > 0) {
+				$("#register-select-profile-picture-success-alert").remove();
+			}
+			return true;
+		},
+		uploadProgress: function(evt, position, total, percentComplete) {
+			$("#register-picture-upload-progress-bar").width(percentComplete + "%");
+			$("#register-picture-upload-progress-percent").html(percentComplete + "%");
+			if(percentComplete == 100) {
+				$("#register-picture-upload-progress-percent").html("Odota.");
+			}
+		},
+		success: function(responseText, statusText, xhr, $form) {
+			if(statusText == "success") {
+				if(responseText.success == true) {
+					$("#register-picture-upload-progress-bar").width("100%");
+					$("#register-picture-upload-progress-percent").html("Lähetetty.");
+					if(responseText.uploaded_files != undefined) {
+						if($("#register-select-picture").length == 0) {
+							$("#register-select-profile-picture-page").append("<div id=\"register-select-picture\"></div>");
+						}
+						if($("#register-select-picture-header").length == 0) {
+							$("#register-select-picture").append("<h1 id=\"register-select-picture-header\">Valitse profiili kuvasi.</h1>");
+						}
+						var rowNumber = 0;
+						var count = responseText.uploaded_files.length;
+						for(var i = 0; i < count; i++) {
+							console.log("Uploaded file: " + responseText.uploaded_files[i]);
+							if(i % 4 == 0) {
+								rowNumber = i / 4;
+								$("#register-select-picture").append("<div class=\"row\" id=\"row-" + rowNumber + "\"></div>");
+							}
+							$("#row-" + rowNumber).append("<div class=\"col-xs-6 col-md-3\"><div class=\"thumbnail\" id=\"thumbnail-" + i + "\">" +
+											"<img style=\"heigth: 300px; width: 300px;\" src=\"uploads/" + responseText.uploaded_files[i] + "\" alt=\"" + responseText.uploaded_files[i]+ "\" />" + 
+											"<div class=\"caption\"><p>" + responseText.uploaded_files[i]+ "</p>" +
+											"<button class=\"btn btn-default\" onclick=\"register_select_profile_picture('" + responseText.uploaded_files[i] + "'); return false;\">Valitse tämä</button>" +
+											"</div></div></div>");
+						}
+					}
+					if(responseText.failed_files != undefined) {
+						for(var i = 0; i < responseText.failed_files.length; i++) {
+							console.log("Failed to upload file: " + responseText.failed_files[i]);
+						}
+					}
+				} else {
+					$("#register-picture-upload-progress-bar").width("0%");
+					$("#register-picture-upload-progress-percent").width("Epäonnistui.");
+					console.log("File uploading failed: " + responseText.error);
+				}
+			} else {
+				$("#register-picture-upload-progress-bar").width("0%");
+				$("#register-picture-upload-progress-percent").html("0%");
+				console.log("Uploading failed.");
+			}	
+		}
+	});
 });
 
 $("#navigation-left > li").click(function(evt) {
