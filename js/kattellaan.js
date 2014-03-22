@@ -893,7 +893,7 @@ $("#register-select-not-exciting-done-button").click(function(evt) {
 
 $("#register-confirm-profile-information-page").on("show", function() {
 	$("#register-confirm-address-input").val($.cookie("address"));
-	$("#register-confirm-address-data").html($.cookie("address"));
+	$("#register-confirm-address-data").val($.cookie("address"));
 	$("#register-confirm-profile-picture-input").val($.cookie("picture"));
 	$("#register-confirm-profile-picture-data").attr("src", hostname + "uploads/" + $.cookie("picture"));
 	$("#register-confirm-gender-input").val($.cookie("gender"));
