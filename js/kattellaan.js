@@ -562,7 +562,7 @@ $("#register-select-weight-done-button").click(function(evt) {
 });
 
 $("#register-select-body-type-page").on("show", function(evt) {
-	if($.cookie("body-type" != undefined) {
+	if($.cookie("body-type") != undefined) {
 		$("#register-select-body-type-input").val($.cookie("body-type"));
 	}
 });
