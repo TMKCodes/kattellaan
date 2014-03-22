@@ -594,7 +594,7 @@ $("#register-select-body-type-done-button").click(function(evt) {
 
 $("#register-select-eye-color-page").on("show", function(evt) {
 	if($.cookie("eye-color") != undefined) {
-		$("#register-select-eye-color-input".val($.cookie("eye-color"));
+		$("#register-select-eye-color-input").val($.cookie("eye-color"));
 	}
 });
 
