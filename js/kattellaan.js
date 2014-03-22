@@ -847,8 +847,8 @@ $("#register-select-favorite-movies-done-button").click(function(evt) {
 	var favoriteMovies = $("#register-select-favorite-movies-input").val();
 	$.cookie("favorite-movies", favoriteMovies);
 	$("body > .container").hide();
-	$("#register-select-best-things-of-the-world-page").show();
-	history.pushState(null, "register select best things of the world", hostname + "?page=register-select-best-things-of-the-world-page");
+	$("#register-select-best-things-in-the-world-page").show();
+	history.pushState(null, "register select best things of the world", hostname + "?page=register-select-best-things-in-the-world-page");
 });
 
 $("#register-select-best-things-in-the-world-done-button").click(function(evt) {
