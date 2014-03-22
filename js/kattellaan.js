@@ -87,13 +87,13 @@ var hostname;
 function register_select_profile_picture_done_button() {
 	$("body > .container").hide();
 	$("#register-select-gender-page").show();
-	history.pushState(null, "register select gender", hostname + "?page=register-select-gender-page");
+	history.pushState(null, "register-select-gender-page", hostname + "?page=register-select-gender-page");
 }
 
 function load_home_page() {
 	$("body > .container").hide();
 	$("#home-page").show();
-	history.pushState(null, "home page", hostname);
+	history.pushState(null, "home-page", hostname);
 }
 
 function load_page(page) {
@@ -106,7 +106,7 @@ window.onpopstate = function(event) {
 	$("body > .container").hide();
 	var page = get_url_parameter("page");
 	if(page != undefined) {
-		load_page(page);
+		$("#" + page).show();
 	} else {
 		$("#home-page").show();
 	}
