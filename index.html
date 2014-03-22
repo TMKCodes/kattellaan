@@ -1006,6 +1006,55 @@
 		</form>
 	</div>
 
+	<div id="register-confirm-profile-information-page" class="container" style="display: none;">
+		<h1>Varmista, että kaikki syöttämäsi vastaukset ovat niin kuin haluat.</h1>
+		<form id="register-confirm-profile-information-form" role="form" method="POST" action="php/api.php">
+			<div id="register-confirm-address">
+				<input type="hidden" name="address" value="" id="register-confirm-address-input">
+				<div id="register-confirm-address-current">
+					<p><b>Koti osoitteesi:</b><span id="register-confirm-address-data"></span></p>
+					<input type="button" id="register-confirm-change-address-button" class="btn btn-default" value="Vaihda osoite" />
+				</div>
+			</div>
+			<div id="register-confirm-profile-picture">
+				<input type="hidden" name="profile-picture" value="" id="register-confirm-profile-picture-input">
+				<div id="register-confirm-profile-picture-current">
+					<p><b>Profiilikuvasi:</b></p>
+					<img src="" id="register-confirm-profile-picture-data">
+					<input type="button" id="register-confirm-change-profile-picture-button" class="btn btn-default" value="Vaihda profiilikuva" /> 
+				</div>
+			</div>
+			<div id="register-confirm-gender">
+				<input type="hidden" name="gender" value="" id="register-confirm-gender-input">
+				<div id="register-confirm-gender-current">
+					<p><b>Sukupuoli:</b><span id="register-confirm-gender-data"></span></p>
+					<input type="button" id="register-confirm-change-gender-button" class="btn btn-default" value="Vaihda sukupuoli" />
+				</div>
+			</div>
+			<div id="register-confirm-birthday">
+				<input type="hidden" name="birthday" value="" id="register-confirm-birthday-input">
+				<div id="register-confirm-birthday-current">
+					<p><b>Syntymäpäivä:</b><span id="register-confirm-birthday-data"></span></p>
+					<input type="button" id="register-confirm-change-birthday-button" class="btn btn-default" value="Vaihda syntymäpäivä" />
+				</div>
+			</div>
+			<div id="register-confirm-relationship-status">
+				<input type="hidden" name="relationship-status" value="" id="register-confirm-relationship-status-input">
+				<div id="register-confirm-relationship-status-current">
+					<p><b>Suhdetilanne:</b><span id="register-confirm-relationship-status-data"></span></p>
+					<input type="button" id="register-confirm-change-relationship-status-button" class="btn btn-default" value="Vaihda suhdetilanne" />
+				</div>
+			</div>
+			<div id="register-confirm-sexual-orientation">
+				<input type="hidden" name="sexual-orientation" value="" id="register-confirm-sexual-orientation-input">
+				<div id="register-confirm-sexual-orientation-current">
+					<p><b>Seksuaalinen suuntautuminen:</b><span id="register-confirm-sexual-orientation-data"></span></p>
+					<input type="button" id="register-confirm-change-sexual-orientation-button" class="btn btn-default" value="Vaihda suhdetilanne" />
+				</div>
+			</div>
+		</form>
+	</div>
+
 	<div id="footer" style="height: 50px">
 	
 	</div>

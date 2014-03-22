@@ -891,6 +891,21 @@ $("#register-select-not-exciting-done-button").click(function(evt) {
 	});
 })(jQuery);
 
+$("#register-confirm-profile-information-page").on("show", function() {
+	$("#register-confirm-address-input").val($.cookie("address"));
+	$("#register-confirm-address-data").html($.cookie("address"));
+	$("#register-confirm-profile-picture-input").val($.cookie("profile-picture"));
+	$("#register-confirm-profile-picture-data").attr("src", hostname + "/uploads/" + $.cookie("profile-picture"));
+	$("#register-confirm-gender-input").val($.cookie("gender"));
+	$("#register-confirm-gender-data").html($.cookie("gender"));
+	$("#register-confirm-birthday-input").val($.cookie("birthday"));
+	$("#register-confirm-birthday-data").html($.cookie("birthday"));
+	$("#register-confirm-relationship-status-input").val($.cookie("relationship-status"));
+	$("#regsiter-confirm-relationship-status-data").html($.cookie("relationship-status"));
+	$("#register-confirm-sexual-orientation-input").val($.cookie("sexual-orientation"));
+	$("#register-confirm-sexual-orientation-data").html($.cookie("sexual-orientation"));
+});
+
 var map;
 
 $("#register-select-location-page").on("show", function() {
