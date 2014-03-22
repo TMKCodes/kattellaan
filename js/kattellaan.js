@@ -924,6 +924,8 @@ $("#register-confirm-profile-information-page").on("show", function() {
 		$("#register-confirm-relationship-status-data").val("Sinkku");
 	} else if(relationshipStatus == "relationship") {
 		$("#register-confirm-relationship-status-data").val("Parisuhde");
+	} else if(relationshipStatus == "cohabitation") {
+		$("#register-confirm-relationship-status-data").val("Avoliitto");
 	} else if(relationshipStatus == "marriage") {
 		$("#register-confirm-relationship-status-data").val("Avioliitto");
 	} else if(relationshipStatus == "divorced") {

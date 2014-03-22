@@ -36,7 +36,7 @@
 		<div class="jumpotron">
 			<h1>Tervetuloa treffisivustollemme.</h1>
 			<p>Kattellaan kehitysvaiheessa oleva treffisivusto sinkuille</p>
-			<p>Reksiteröitymällä saat tiedotteita kehityksestä ja voit käyttää sivustoamme samalla kun kehitämme sitä.</p>
+			<p>Rekisteröitymällä saat tiedotteita kehityksestä ja voit käyttää sivustoamme samalla kun kehitämme sitä.</p>
 			<button type="button" class="btn btn-default btn-lg" id="start-registeration-button">Rekisteröidy käyttäjäksi</button>
 		</div>
 	</div>
@@ -290,6 +290,7 @@
 				<select id="register-select-relationship-status-input" class="form-control" name="relationship-status">
 					<option value="single">Sinkku</option>
 					<option value="relationship">Parisuhde</option>
+					<option value="cohabitation">Avoliitto</option>
 					<option value="marriage">Avioliitto</option>
 					<option value="divorce">Eronnut</option>
 					<option value="seperation">Asumusero</option>
@@ -1083,6 +1084,49 @@
 					<input type="button" id="register-confirm-change-eye-color-button" class="btn btn-default" value="Vaihda silmien väri" />
 				</div>
 			</div>
+			<div id="register-confirm-hair-length" class="input-group col-xs-8" style="margin-bottom: 5px;">
+				<label for="register-confirm-hair-length-data" class="input-group-addon"><b>15. Hiustesi pituus:</b></label>
+				<input type="text" id="register-confirm-hair-length-data" class="form-control" name="confirm-hair-length" disabled="disabled" />
+				<div class="input-group-btn">
+					<input type="button" id="register-confirm-change-hair-length-button" class="btn btn-default" value="Vaihda hiustesi pituus" />
+				</div>
+			</div>
+			<div id="register-confirm-hair-color" class="input-group col-xs-8" style="margin-bottom: 5px;">
+				<label for="register-confirm-hair-color-data" class="input-group-addon"><b>16. Hiustesi väri:</b></label>
+				<input type="text" id="register-confirm-hair-color-data" class="form-control" name="confirm-hair-color" disabled="disabled" />
+				<div class="input-group-btn">
+					<input type="button" id="register-confirm-change-hair-color-button" class="btn btn-default" value="Vaihda hiustesi väri" />
+				</div>
+			</div>
+			<div id="register-confirm-kids" class="input-group col-xs-8" style="margin-bottom: 5px;">
+				<label for="register-confirm-kids-data" class="input-group-addon"><b>17. Lapsia:</b></label>
+				<input type="text" id="register-confirm-kids-data" class="form-control" name="confirm-kids" disabled="disabled" />
+				<div class="input-group-btn">
+					<input type="button" id="register-confirm-change-kids-button" class="btn btn-default" value="Vaihda lapsitilanne" />
+				</div>
+			</div>
+			<div id="register-confirm-accomodation" class="input-group col-xs-8" style="margin-bottom: 5px;">
+				<label for="register-confirm-accomodation-data" class="input-group-addon"><b>18. Asumistilanteesi:</b></label>
+				<input type="text" id="register-confirm-accomodation-data" class=form-control" name="confirm-accomodation" disabled="disabled" />
+				<div class="input-group-btn">
+					<input type="button" id="register-confirm-change-accomodation-button" class="btn btn-default" value="Vaihda asumistilanne" />
+				</div>
+			</div>
+			<div id="register-confirm-ethnic-identity" class="input-group col-xs-8" style="margin-bottom: 5px;">
+				<label for="register-confirm-ethnic-identity-data" class="input-group-addon"><b>19. Etninen identiteettisi:</b></label>
+				<input type="text" id="register-confirm-ethnic-identity-data" class="form-control" name="confirm-ethnic-identity" disabled="disabled" />
+				<div class="input-group-btn">
+					<input type="button" id="register-confirm-change-ethnic-identity-button" class="btn btn-default" value="Vaihda etninen identiteetti" />
+				</div>
+			</div>
+			<div id="register-confirm-language-skills" class="input-group col-xs-8" style="margin-bottom: 5px;">
+				<label for="register-confirm-language-skills-data" class="input-group-addon"><b>20. Kielitaitosi:</b></label>
+				<input type="text" id="register-confirm-language-skills-data" class="form-control" name="confirm-language-skills" disabled="disabled" />
+				<div class="input-group-btn">
+					<input type="button" id="register-confirm-change-language-skills-button" class="btn btn-default" value="Vaihda kieliä" />
+				</div>
+			</div>
+			
 		</form>
 	</div>
 
