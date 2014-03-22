@@ -780,7 +780,7 @@ $("#register-select-ethnic-identity-done-button").click(function(evt) {
 
 $("#register-select-language-skills-page").on("show", function(evt) {
 	if($.cookie("language-skills") != undefined) {
-		$("#register-select-language-skills-input").val($.cookie("language-skills");
+		$("#register-select-language-skills-input").val($.cookie("language-skills"));
 	}	
 });
 
