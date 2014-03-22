@@ -172,6 +172,12 @@ $("#home-button").click(function(evt) {
 	history.pushState(null, "Kattellaan home page", hostname);
 });
 
+$("#register-select-profile-picture-skip-button").click(function(evt) {
+	$("body > .container").hide();
+	$("#register-select-gender-page").show();
+	history.pushState(null, "register select gender", hostname + "?page=register-select-gender-page");
+});
+
 $("#start-registeration-button").click(function(evt) {
 	evt.preventDefault();
 	$("body > .container").hide();
