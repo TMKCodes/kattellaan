@@ -895,7 +895,7 @@ $("#register-confirm-profile-information-page").on("show", function() {
 	$("#register-confirm-address-input").val($.cookie("address"));
 	$("#register-confirm-address-data").html($.cookie("address"));
 	$("#register-confirm-profile-picture-input").val($.cookie("picture"));
-	$("#register-confirm-profile-picture-data").attr("src", hostname + "/uploads" + $.cookie("picture"));
+	$("#register-confirm-profile-picture-data").attr("src", hostname + "uploads/" + $.cookie("picture"));
 	$("#register-confirm-gender-input").val($.cookie("gender"));
 	$("#register-confirm-gender-data").html($.cookie("gender"));
 	$("#register-confirm-birthday-input").val($.cookie("birthday"));
