@@ -1441,9 +1441,19 @@ $("#register-select-not-exciting-done-button").click(function(evt) {
 
 $("#register-confirm-profile-information-page").on("show", function() {
 	$.cookie("next-page", "register-confirm-profile-information-page");
+
+	var username = $.cookie("username");
+	$("#register-confirm-username-data").val(username);
+
+	var invites = $.cookie("invites");
+	$("#register-confirm-invites-data").val(invites);
+
 	var address = $.cookie("address");
 	address = address.replace(/\+/gi, " ");
 	$("#register-confirm-address-data").val(address);
+
+	var profilePicture $.cookie("profile-picture");
+	$("#register-confirm-profile-picture-data-url").attr("href", hostname + "uploads/" + profilePicture);
 	
 	var gender = $.cookie("gender");
 	if(gender == "man") {
