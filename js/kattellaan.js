@@ -1454,7 +1454,7 @@ $("#register-confirm-profile-information-page").on("show", function() {
 
 	var profilePicture = $.cookie("picture");
 	$("#register-confirm-profile-picture-data-url").attr("href", hostname + "uploads/" + profilePicture);
-	$("#register-confirm-profile-picture-data-url").html(profilePicture);
+	$("#register-confirm-profile-picture-data-url").html(hostname + "uploads/" + profilePicture);
 	
 	var gender = $.cookie("gender");
 	if(gender == "man") {
