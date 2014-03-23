@@ -1672,7 +1672,7 @@ $("#register-confirm-profile-information-page").on("show", function() {
 		ethnic = "Valkoinen";
 	} else if(ethnic == "black") {
 		ethnic = "Musta";
-	} else if(ethnic == "indian";
+	} else if(ethnic == "indian") {
 		ethnic = "Intialainen";	
 	} else if(ethnic == "latino") {
 		ethnic = "Latino";
