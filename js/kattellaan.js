@@ -1648,7 +1648,95 @@ $("#register-confirm-profile-information-page").on("show", function() {
 	}
 	var kidsParsed = kidsArr.join(", ");
 	$("#register-confirm-kids-data").val(kidsParsed);
+
+	var accomodation = $.cookie("accomodation");
+	if(accomodation == "alone") {
+		accomodation = "yksin";
+	} else if(accomodation = "withfriend") {
+		accomodation = "Ystävän kanssa";
+	} else if(accomodation = "withparents") {
+		accomodation = "Vanhempien luona";
+	} else if(accomodation = "sharedflat") {
+		accomodation = "Kimppakämpässä";
+	} else if(accomodation = "withpartner") {
+		accomodation = "Kumppanin kanssa";
+	} else if(accomodation = "homeless") {
+		accomodation = "Koditon";
+	} else if(accomodation = "none") {
+		accomodation = "En halua kertoa";
+	}
+	$("#register-confirm-accomodation-data").val(accomodation);
 	
+	var ethnic = $.cookie("ethnic-identity");
+	if(ethnic == "white") {
+		ethnic = "Valkoinen";
+	} else if(ethnic == "black") {
+		ethnic = "Musta";
+	} else if(ethnic == "indian";
+		ethnic = "Intialainen";	
+	} else if(ethnic == "latino") {
+		ethnic = "Latino";
+	} else if(ethnic == "arab") {
+		ethnic = "Arabi";
+	} else if(ethnic == "asian") {
+		ethnic = "Aasialainen";
+	} else if(ethnic == "midget") {
+		ethnic = "Kääpiö";
+	} else if(ethnic == "none") {
+		ethnic = "En halua kertoa";
+	}
+	$("#register-confirm-ethnic-identity-data").val(ethnic);
+
+	var lang = $.cookie("language-skills");
+	var langArr = lang.split(",");
+        var i;
+        for(i = 0; i < langArr.length; i++) {
+		if(lang[i] == "finnish") {
+			lang[i] = "Suomi";
+		} else if(lang[i] == "swedish") {
+			lang[i] = "Ruotsi";
+		} else if(lang[i] == "english") {
+			lang[i] = "Englanti";
+		} else if(lang[i] == "russian") {
+			lang[i] = "Venäjä";
+		} else if(lang[i] == "german") {
+			lang[i] = "Saksa";
+		} else if(lang[i] == "japanese") {
+			lang[i] = "Japani";
+		} else if(lang[i] == "others") {
+			lang[i] = "Muita";
+		} else if(lang[i] == "none") {
+			lang[i] = "En halua kertoa";
+		}
+	}
+        var langParsed = langArr.join(", ");
+	$("#register-confirm-language-skills-data").val(langParsed);
+
+	var edu = $.cookie("education");
+	if(edu == "untrained") {
+		edu = "Kouluttamaton";
+	} else if(edu == "lifeschool") {
+		edu = "Elämänkoulu";
+	} else if(edu == "school") {
+		edu = "Peruskoulu"; 
+	} else if(edu == "vocational") {
+		edu = "Ammattikoulu";
+	} else if(edu == "high") {
+		edu = "Lukio";
+	} else if(edu == "applied") {
+		edu = "Ammattikorkeakoulu";
+	} else if(edu == "college") {
+		edu = "Yliopisto/korkeakoulu";
+	} else if(edu == "masters") {
+		edu = "Maisterin tutkinto";
+	} else if(edu == "doctor") {
+		edu = "Tohtorin tutkinto";
+	} else if(edu == "none") {
+		edu = "En halua kertoa";
+	}
+	$("#register-confirm-education-data").val(edu);
+
+
 
 });
 
