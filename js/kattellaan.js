@@ -1553,6 +1553,88 @@ $("#register-confirm-profile-information-page").on("show", function() {
 		eyeColor = "En halua kertoa";
 	}
 	$("#register-confirm-eye-color-data").val(eyeColor);
+
+	var hairLength = $.cookie("hair-length");
+	if(hairLength == "bald") {
+		hairLength = "Kalju";
+	} else if(hairLength == "hedgehog") {
+		hairLength = "Siili";
+	} else if(hairLength == "short") {
+		hairLength = "Lyhyet";
+	} else if(hairlength == "long") {
+		hairLength = "Pitkät";
+	} else if(hairLength == "none") {
+		hairLength = "En halua kertoa";
+	}
+	$("#register-confirm-hair-length-data").val(hairLength);
+
+	var hairColor = $.cookie("hair-color");
+	if(hairColor == "verylight") {
+		hairColor = "Hyvin vaalea";
+	} else if(hairColor == "light") {
+		hairColor = "Vaalea";
+	} else if(hairColor == "lightbrown") {
+		hairColor = "Vaaleanruskea";
+	} else if(hairColor == "brown") {
+		hairColor = "Ruskea";
+	} else if(hairColor == "black") {
+		hairColor = "Musta";
+	} else if(hairColor == "gray") {
+		hairColor = "Harmaa";
+	} else if(hairColor == "red") {
+		hairColor = "Punainen";
+	} else if(hairColor == "pink") {
+		hairColor = "Pinkki";
+	} else if(hairColor == "white") {
+		hairColor = "Valkoinen";
+	} else if(hairColor == "colorful") {
+		hairColor = "Värikäs";
+	} else if(hairColor == "changeable") {
+		hairColor = "Muuttuu usein";
+	} else if(hairColor == "none") {
+		hairColor = "En halua kertoa";
+	}
+	$("#register-confirm-hair-color-data").val(hairColor);
+	
+	var kids = $.cookie("kids");
+
+	var kidsArr = kids.split(",");
+	var i;
+	for(i = 0; i < kidsArr.length; i++) {
+		if(kidsArr[i] == "yes") {
+			kidsArr[i] = "Kyllä";
+		} else if(kidsArr[i] == "no") {
+			kidsArr[i] = "Ei";
+		} else if(kidsArr[i] == "athome") {
+			kidsArr[i] = "Kotona";
+		} else if(kidsArr[i] == "somewhereelse") {
+			kidsArr[i] = "Muualla";
+		} else if(kidsArr[i] == "jointcustody") {
+			kidsArr[i] = "Yhteishuoltajuus";
+		} else if(kidsArr[i] == "solecustody") {
+			kidsArr[i] = "Yksinhuoltaja";
+		} else if(kidsArr[i] == "iwantkids") {
+			kidsArr[i] = "Haluan lapsia";
+		} else if(kidsArr[i] == "idontwantkids") {
+			kidsArr[i] = "En halua lapsia";
+		} else if(kidsArr[i] == "idontknowifiwantkids") {
+			kidsArr[i] = "En tiedä haluanko lapsia";
+		} else if(kidsArr[i] == "kidsdonotmatter") {
+			kidsArr[i] = "Lapset eivät haittaa";
+		} else if(kidsArr[i] == "weekendparent") {
+			kidsArr[i] = "Kerran viikossa lapset minulla";
+		} else if(kidsArr[i] == "secondweekendparent") {
+			kidsArr[i] = "Kaksi kertaa kuussa lapset minulla";
+		} else if(kidsArr[i] == "monthlyparent") {
+			kidsArr[i] = "Kerran kuussa lapset minulla";
+		} else if(kidsArr[i] == "none") {
+			kidsArr[i] = "En halua kertoa";
+		}
+	}
+	var kidsParsed = kidsArr.join(", ");
+	$("#register-confirm-kids-data").val(kidsParsed);
+	
+
 });
 
 var map;
