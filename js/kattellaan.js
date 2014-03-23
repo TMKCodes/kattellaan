@@ -1554,7 +1554,7 @@ $("#register-confirm-profile-information-page").on("show", function() {
 	}
 	$("#register-confirm-eye-color-data").val(eyeColor);
 
-	var hairLength = $.cookie("hair-length");
+	var hairLength = $.cookie("hair-lenght");
 	if(hairLength == "bald") {
 		hairLength = "Kalju";
 	} else if(hairLength == "hedgehog") {
