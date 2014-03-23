@@ -1691,22 +1691,22 @@ $("#register-confirm-profile-information-page").on("show", function() {
 	var langArr = lang.split(",");
         var i;
         for(i = 0; i < langArr.length; i++) {
-		if(lang[i] == "finnish") {
-			lang[i] = "Suomi";
-		} else if(lang[i] == "swedish") {
-			lang[i] = "Ruotsi";
-		} else if(lang[i] == "english") {
-			lang[i] = "Englanti";
-		} else if(lang[i] == "russian") {
-			lang[i] = "Venäjä";
-		} else if(lang[i] == "german") {
-			lang[i] = "Saksa";
-		} else if(lang[i] == "japanese") {
-			lang[i] = "Japani";
-		} else if(lang[i] == "others") {
-			lang[i] = "Muita";
-		} else if(lang[i] == "none") {
-			lang[i] = "En halua kertoa";
+		if(langArr[i] == "finnish") {
+			langArr[i] = "Suomi";
+		} else if(langArr[i] == "swedish") {
+			langArr[i] = "Ruotsi";
+		} else if(langArr[i] == "english") {
+			langArr[i] = "Englanti";
+		} else if(langArr[i] == "russian") {
+			langArr[i] = "Venäjä";
+		} else if(langArr[i] == "german") {
+			langArr[i] = "Saksa";
+		} else if(langArr[i] == "japanese") {
+			langArr[i] = "Japani";
+		} else if(langArr[i] == "others") {
+			langArr[i] = "Muita";
+		} else if(langArr[i] == "none") {
+			langArr[i] = "En halua kertoa";
 		}
 	}
         var langParsed = langArr.join(", ");
