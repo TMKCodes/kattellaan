@@ -1561,7 +1561,7 @@ $("#register-confirm-profile-information-page").on("show", function() {
 		hairLength = "Siili";
 	} else if(hairLength == "short") {
 		hairLength = "Lyhyet";
-	} else if(hairlength == "long") {
+	} else if(hairLength == "long") {
 		hairLength = "Pitkät";
 	} else if(hairLength == "none") {
 		hairLength = "En halua kertoa";
