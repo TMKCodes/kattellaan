@@ -1912,6 +1912,152 @@ $("#register-confirm-profile-information-page").on("show", function() {
 	}
 	$("#register-confirm-exercise-data").val(ex);
 
+	var travel = $.cookie("travel");
+	if(travel == "cottagebatty") {
+		travel = "Mökkihöperö";
+	} else if(travel == "neighboring-areas") {
+		travel = "Lähialueilla";
+	} else if(travel == "occasionally") {
+		travel = "Satunnaisesti";
+	} else if(travel == "few-times-a-yer") {
+		travel = "Muutaman kertaa vuodessa";
+	} else if(travel == "monthly") {
+		travel = "Lähes joka kuukausi";
+	} else if(travel == "weekly") {
+		travel = "Lähes joka viikko";
+	} else if(travel == "daily") {
+		travel = "Lähes joka päivä";
+	} else if(travel == "allthetime") {
+		travel = "Matkalla aina johonkin";
+	} else if(travel == "none") {
+		travel = "En halua kertoa";
+	}
+	$("#register-confirm-travel-data").val(travel);
+
+	var religion = $.cookie("religion");
+	if(religion == "atheist") {
+		religion = "Ateisti";
+	} else if(religion == "agnostic") {
+		religion = "Agnostikko";
+	} else if(religion == "buddhism") {
+		religion = "Buddhalainen";
+	} else if(religion == "christian") {
+		religion = "Kristitty";
+	} else if(religion == "hinduism") {
+		religion = "Hindu";
+	} else if(religion == "muslism") {
+		religion = "Muslimi";
+	} else if(religion == "jewish") {
+		religion = "Juutalainen";
+	} else if(religion == "newage") {
+		religion = "New Age";
+	} else if(religion == "none") {
+		religion = "En halua kertoa";
+	}
+	$("#register-confirm-religion-data").val(religion);
+
+	var relimp = $.cookie("religion-importance");
+	if(relimp == "insignificant") {
+		relimp = "Merkityksetön";
+	} else if(relimp == "low") {
+		relimp = "Vähäinen";
+	} else if(relimp == "normal") {
+		relimp = "Normaali";
+	} else if(relimp == "important") {
+		relimp = "Tärkeä";
+	} else if(relimp == "true-blue") {
+		relimp = "Vakaumuksellinen";
+	} else if(relimp == "none") {
+		relimp = "En halua kertoa";
+	}
+	$("#register-confirm-religion-importance-data").val(relimp);
+
+	var lrp = $.cookie("left-right-politics");
+	switch(lrp) {
+		case "left":
+			lrp = "Vasemmistolainen";
+			break;
+		case "moderateleft":
+			lrp = "Maltillisesti vasemmalla";
+			break;
+		case "inbetween":
+			lrp = "Jossain välimaastossa";
+			break;
+		case "moderateright":
+			lrp = "Maltillisesti oikealla";
+			break;
+		case "right":
+			lrp = "Oikeistolainen";
+			break;
+		case "dontknow":
+			lrp = "En tiedä";
+			break;
+		case "dontcare":
+			lrp = "En välitä";
+			break;
+		case "none":
+			lrp = "En halua kertoa";
+			break;
+	}
+	$("#register-confirm-left-right-politics-data").val(lrp);
+	
+	var lcp = $.cookie("liberal-conservative-politics");
+	switch(lcp) {
+		case "conservative":
+			lcp = "Konservatiivinen";
+			break;
+		case "ratherconservative":
+			lcp = "Melko konservatiivinen";
+			break;
+		case "inbetween":
+			lcp = "Jossain välimaastossa";
+			break;
+		case "ratherliberal":
+			lcp = "Melko liberaalinen";
+			break;
+		case "liberal":
+			lcp = "Liberaalinen";
+			break;
+		case "dontknow":
+			lcp = "En tiedä";
+			break;
+		case "dontcare":
+			lcp = "En välitä";
+			break;
+		case "none":
+			lcp = "En halua kertoa";
+			break;
+	}
+	$("#register-confirm-liberal-conservative-politics-data").val(lcp);
+	
+	var pi = $.cookie("political-importance");
+	switch(pi) {
+		case "dontcare":
+			pi = "Aivan sama";
+			break;
+		case "title-follow":
+			pi = "Lähinnä otsikko tasolla";
+			break;
+		case "active-follow":
+			pi = "Seuraan aktiivisesti";
+			break;
+		case "involved":
+			pi = "Mukana politiikassa";
+			break;
+		case "none":
+			pi = "En halua kertoa";
+			break;
+	}
+	$("#register-confirm-political-importance-data").val(pi);
+
+	$("#register-confirm-favorite-television-series-data").val($.cookie("favorite-television-series"));
+	$("#register-confirm-favorite-radio-shows-data").val($.cookie("favorite-radio-shows"));
+	$("#register-confirm-favorite-bands-data").val($.cookie("favorite-bands"));
+	$("#register-confirm-favorite-movies-data").val($.cookie("favorite-movies"));
+	$("#register-confirm-best-things-in-the-world-data").val($.cookie("best-things-in-the-world"));
+	$("#register-confirm-ignite-me-data").val($.cookie("ignite-me"));
+	$("#register-confirm-not-exciting-data").val($.cookie("not-exciting"));
+
 	
 });
 
