@@ -1452,7 +1452,7 @@ $("#register-confirm-profile-information-page").on("show", function() {
 	address = address.replace(/\+/gi, " ");
 	$("#register-confirm-address-data").val(address);
 
-	var profilePicture $.cookie("profile-picture");
+	var profilePicture = $.cookie("profile-picture");
 	$("#register-confirm-profile-picture-data-url").attr("href", hostname + "uploads/" + profilePicture);
 	
 	var gender = $.cookie("gender");
