@@ -1887,7 +1887,7 @@ $("#register-confirm-profile-information-page").on("show", function() {
 			petsArr[i] = "Pehmolelu";
 		} else if(petsArr[i] == "nopets") {
 			petsArr[i] = "Ei lemmikkejä";
-		} else if(petsArr[ı] == "likepets") {
+		} else if(petsArr[i] == "likepets") {
 			petsArr[i] = "Pidän eläimistä";
 		} else if(petsArr[i] == "none") {
 			petsArr[i] = "En halua kertoa";
