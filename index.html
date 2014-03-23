@@ -1014,6 +1014,13 @@
 	<div id="register-confirm-profile-information-page" class="container" style="display: none;">
 		<h1>Varmista, että kaikki syöttämäsi vastaukset ovat niin kuin haluat.</h1>
 		<form id="register-confirm-profile-information-form" role="form" method="POST" action="php/api.php">
+			<div id="register-confirm-terms-of-service" class="input-group col-xs-8" style="margin-bottom: 5px;">
+				<label for="register-confirm-terms-of-service-data" class="input-group-addon"><b>1. Hyväksyit käyttöehdot</b></label>
+				<input type="text" id="register-confirm-terms-of-service-data" class="form-control" name="confirm-terms-of-service" disabled="disabled" value="Kyllä" />
+				<div class="input-group-btn">
+					<input type="button" id="register-confirm-change-terms-of-service-button" class="btn btn-default" value="Vaihda käyttöehtojen hyväksyntä." />
+				</div>
+			</div>
 			<div id="register-confirm-address" class="input-group col-xs-8" style="margin-bottom: 5px;">
 				<label for="register-confirm-address-data" class="input-group-addon"><b>4. Koti osoitteesi:</b></label>
 				<input type="text" id="register-confirm-address-data" class="form-control" name="confirm-address" disabled="disabled" />
