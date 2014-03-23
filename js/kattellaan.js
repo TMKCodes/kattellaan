@@ -1783,7 +1783,7 @@ $("#register-confirm-profile-information-page").on("show", function() {
 	} else if(vocation == "entrepreneur") {
 		vocation = "Yrittäjä";
 	} else if(vocation == "none") {
-		vocation = "En halua kertoa!");
+		vocation = "En halua kertoa!";
 	}
 	$("#register-confirm-vocation-data").val(vocation);
 
