@@ -1736,8 +1736,183 @@ $("#register-confirm-profile-information-page").on("show", function() {
 	}
 	$("#register-confirm-education-data").val(edu);
 
+	var work = $.cookie("work");
+	if(work == "unemployed") {
+		work = "Työtön";
+	} else if(work == "student") {
+		work = "Opiskelija";
+	} else if(work == "part-time") {
+		work = "Osa-aikatyö";
+	} else if(work == "morning") {
+		work = "Aamutyö";
+	} else if(work == "day") {
+		work = "Päivätyö";
+	} else if(work == "evening") {
+		work = "Iltatyö";
+	} else if(work == "night") {
+		work = "Yötyö";
+	} else if(work == "workaholic") {
+		work = "Työnarkomaani";
+	} else if(work == "pension") {
+		work = "Eläke";
+	} else if(work == "none") {
+		work = "En halua kertoa";
+	}
+	$("#register-confirm-work-data").val(work);
 
+	var income = $.cookie("income");
+	$("#register-confirm-income-data").val(income);
+	
+	var vocation = $.cookie("vocation");
+	if(vocation == "administration/finance") {
+		vocation = "Hallinto/talous";
+	} else if(vocation == "information-technology") {
+		vocation = "Atk/it/tietoliikenne";
+	} else if(vocation == "social/health") {
+		vocation = "Sosiaali-/terveysala";
+	} else if(vocation == "marketing/sales") {
+		vocation = "Markkinointi/myynti";
+	} else if(vocation == "science/technology") {
+		vocation = "Tiede/teknologia";
+	} else if(vocation == "education") {
+		vocation = "Koulutus";
+	} else if(vocation == "housewife/-husband") {
+		vocation = "Kotiäiti/-isä";
+	} else if(vocation == "agriculture-forestry") {
+		vocation = "Maa- ja metsätalous";
+	} else if(vocation == "entrepreneur") {
+		vocation = "Yrittäjä";
+	} else if(vocation == "none") {
+		vocation = "En halua kertoa!");
+	}
+	$("#register-confirm-vocation-data").val(vocation);
 
+	var dress = $.cookie("dress-style");
+	if(dress = "fashionable") {
+		dress = "Muodikas";
+	} else if(dress = "business") {
+		dress = "Bisnes";
+	} else if(dress = "sporty") {
+		dress = "Sporttinen";
+	} else if(dress = "classic") {
+		dress = "Klassinen";
+	} else if(dress = "fleamarket") {
+		dress = "Kirpputori";
+	} else if(dress = "self-indulgent") {
+		dress = "Mukavuuden haluinen";	
+	} else if(dress = "regular") {
+		dress = "Normaali";
+	} else if(dress = "hoppers") {
+		dress = "Hoppari";
+	} else if(dress = "rocker") {
+		dress = "Rokkari";
+	} else if(dress = "goth") {
+		dress = "Gootti";
+	} else if(dress = "allthesame") {
+		dress = "Ihan sama";
+	} else if(dress = "nudist") {
+		dress = "Nudisti";
+	} else if(dress = "none") {
+		dress = "En halua kertoa";
+	}
+	$("#register-confirm-dress-style-data").val(dress);
+
+	var smoke = $.cookie("smoking");
+	if(smoke == "smokeless") {
+		smoke = "Savuton";
+	} else if(smoke == "company") {
+		smoke = "Seurassa";
+	} else if(smoke == "drunken") {
+		smoke = "Humalassa";
+	} else if(smoke == "regular") {
+		smoke = "Säännöllisesti";
+	} else if(smoke == "chimney") {
+		smoke = "Korsteeni";
+	} else if(smoke == "none") {
+		smoke = "En halua kertoa";
+	}
+	$("#register-confirm-smoking-data").val(smoke);
+
+	var alc = $.cookie("alcohol");
+	if(alc == "alcohol-free") {
+		alc = "Alkoholiton";
+	} else if(alc == "holidays") {
+		alc = "Juhlapäivinä";
+	} else if(alc == "company") {
+		alc = "Hyvässä seurassa";
+	} else if(alc == "withfood") {
+		alc = "Ruuan kanssa";
+	} else if(alc == "occasionally") {
+		alc = "Satunnaisesti";
+	} else if(acl == "everyday") {
+		alc = "Joka päivä";
+	} else if(alc == "weekly") {
+		alc = "Viikottain";
+	} else if(alc == "monthly") {
+		alc = "Kerran kuussa";
+	} else if(alc == "yearly") {
+		alc = "Kerran vuodessa";
+	} else if(alc == "alcoholic") {
+		alc = "Tapajuoppo";
+	} else if(alc == "none") {
+		alc = "En halua kertoa";
+	}
+	$("#register-confirm-alcohol-data").val(alc);
+
+	var pets = $.cookie("pets");
+        var petsArr = pets.split(",");
+        var i;
+        for(i = 0; i < petsArr.length; i++) {
+		if(petsArr[i] == "horse") {
+			petsArr[i] = "Hevonen";
+		} else if(petsArr[i] == "pony") {
+			petsArr[i] = "Poni";
+		} else if(petsArr[i] == "spider") {
+			petsArr[i] = "Hämähäkki";
+		} else if(petsArr[i] == "fish") {
+			petsArr[i] = "Kala";
+		} else if(petsArr[i] == "rodent") {
+			petsArr[i] = "Jyrsijä";
+		} else if(petsArr[i] == "turtle") {
+			petsArr[i] = "Kilpikonna";
+		} else if(petsArr[i] == "dog") {
+			petsArr[i] = "Koira";
+		} else if(petsArr[i] == "cat") {
+			petsArr[i] = "Kissa";
+		} else if(petsArr[i] == "snake") {
+			petsArr[i] = "Käärme";
+		} else if(petsArr[i] == "bird") {
+			petsArr[i] = "Lintu";
+		} else if(petsArr[i] == "stuffed-animal") {
+			petsArr[i] = "Pehmolelu";
+		} else if(petsArr[ı] == "nopets") {
+			petsArr[ı] = "Ei lemmikkejä";
+		} else if(petsArr[ı] == "likepets") {
+			petsArr[i] = "Pidän eläimistä";
+		} else if(petsArr[i] == "none") {
+			petsArr[i] = "En halua kertoa";
+		}
+        }
+        var petsParsed = petsArr.join(", ");
+        $("#register-confirm-pets-data").val(petsParsed);
+
+	var ex = $.cookie("exercise");
+	if(ex == "idont") {
+		ex = "En urheile";
+	} else if(ex == "casually") {
+		ex = "Satunnaisesti";
+	} else if(ex == "regularily") {
+		ex = "Säännöllisesti";
+	} else if(ex == "daily") {
+		ex = "Lähes Päivittäin";
+	} else if(ex == "lifestyle") {
+		ex = "Elämäntapa";
+	} else if(ex == "none") {
+		ex = "En halua kertoa";
+	}
+	$("#register-confirm-exercise-data").val(ex);
+
+	
 });
 
 var map;
