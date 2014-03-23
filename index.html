@@ -1015,17 +1015,36 @@
 		<h1>Varmista, että kaikki syöttämäsi vastaukset ovat niin kuin haluat.</h1>
 		<form id="register-confirm-profile-information-form" role="form" method="POST" action="php/api.php">
 			<div id="register-confirm-terms-of-service" class="input-group col-xs-8" style="margin-bottom: 5px;">
-				<label for="register-confirm-terms-of-service-data" class="input-group-addon"><b>1. Hyväksyit käyttöehdot</b></label>
+				<label for="register-confirm-terms-of-service-data" class="input-group-addon"><b>1. Hyväksyit käyttöehdot:</b></label>
 				<input type="text" id="register-confirm-terms-of-service-data" class="form-control" name="confirm-terms-of-service" disabled="disabled" value="Kyllä" />
 				<div class="input-group-btn">
 					<input type="button" id="register-confirm-change-terms-of-service-button" class="btn btn-default" value="Vaihda käyttöehtojen hyväksyntä." />
 				</div>
+			</div>
+			<div id="register-confirm-username" class="input-group col-xs-8" style="margin-bottom: 5px;">
+				<label for="register-confirm-username-data" class="input-group-addon"><b>2. Käyttäjänimesi:</b></label>
+				<input type="text" id="register-confirm-username-data" class="form-control" name="confirm-username" disabled="disabled">
+			</div>
+			<div id="register-confirm-invites" class="input-group col-xs-8" style="margin-bottom: 5px;">
+				<label for="register-confirm-invites-data" class="input-group-addon"><b>3. Kutsusi:</b></label>
+				<input type="text" id="register-confirm-invites-data" class="form-control" name="confirm-invites" disabled="disabled">
 			</div>
 			<div id="register-confirm-address" class="input-group col-xs-8" style="margin-bottom: 5px;">
 				<label for="register-confirm-address-data" class="input-group-addon"><b>4. Koti osoitteesi:</b></label>
 				<input type="text" id="register-confirm-address-data" class="form-control" name="confirm-address" disabled="disabled" />
 				<div class="input-group-btn">
 					<input type="button" id="register-confirm-change-address-button" class="btn btn-default" value="Vaihda osoitteesi" />
+				</div>
+			</div>
+			<div id="register-confirm-profile-picture" class="input-group col-xs-8" style="margin-bottom: 5px;">
+				<div class="input-group-btn">
+					<input type="button" id="register-confirm-profile-picture-label" class="btn" value="5. Profiilikuvasi:" />
+				</div>
+				<div class="input-group-btn">
+					<button><img src="" id="register-confirm-profile-picture-data" height="100" width="100" alt="" /></button>
+				</div>
+				<div class="input-group-btn">
+					<input type="button" id="register-confirm-change-profile-picture-button" class="btn btn-default" value="Vaihda profiilikuvasi" />
 				</div>
 			</div>
 			<div id="register-confirm-gender" class="input-group col-xs-8" style="margin-bottom: 5px;">

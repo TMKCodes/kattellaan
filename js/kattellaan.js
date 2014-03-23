@@ -263,6 +263,7 @@ $("#register-account-form").submit(function(evt) {
 				open_session(result.account.username, result.account.password);
 				if($.cookie("session") != undefined) {
 					load_page("register-invite-page");
+					$.cookie("username", result.account.username);
 				} else {
 					console.log("Failed to authenticate.");
 					$("#register-account-first-login-error").show();
@@ -302,6 +303,7 @@ $("#register-invite-form").submit(function(evt) {
 			var cloneinput = $("#register-invite-friend-addresses").children(":first").clone();
 			$("#register-invite-friend-addresses").children(".input-group").remove();
 			var count = 0;
+			var invites = "";
 			for(var index in result.invite) {
 				console.log(result.invite[index]);
 				if(result.invite[index] != true) {
@@ -314,8 +316,10 @@ $("#register-invite-form").submit(function(evt) {
 					$("#register-invite-friend-addresses").children(":last").children("input").val(result.invite[index].address);
 					cloneinput = $("#register-invite-friend-addresses").children(":last").clone();
 					count = count + 1;
+					invites = invites + result.invite[index].address + ", ";
 				}
 			}
+			$.cookie("invites", invites);
 			if(count == 0) {
 				//continue
 			} else {
