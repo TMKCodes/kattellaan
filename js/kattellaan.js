@@ -1844,7 +1844,7 @@ $("#register-confirm-profile-information-page").on("show", function() {
 		alc = "Ruuan kanssa";
 	} else if(alc == "occasionally") {
 		alc = "Satunnaisesti";
-	} else if(acl == "everyday") {
+	} else if(alc == "everyday") {
 		alc = "Joka päivä";
 	} else if(alc == "weekly") {
 		alc = "Viikottain";
