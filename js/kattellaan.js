@@ -2061,6 +2061,64 @@ $("#register-confirm-profile-information-page").on("show", function() {
 	
 });
 
+$("#register-confirm-profile-information-form").submit(function(evt) {
+	evt.preventDefault();
+	$.ajax({
+		type: $(this).attr('method')
+		url: $(this).attr('action'),
+		data: { call : 'create_profile', 
+			accomodation : $.cookie("accomodation"), 
+			address : $.cookie("address"), 
+			alcohol : $.cookie("alcohol"), 
+			best_things_in_the_world : $.cookie("best-things-in-the-world"), 
+			birthday : $.cookie("birthday"), 
+			body_type : $.cookie("body-type"), 
+			dress_style : $.cookie("dess-style"),
+			education : $.cookie("education"), 
+			ethnic_identity : $.cookie("ethnic-identity"), 
+			exercise : $.cookie("exercise"),
+			eye_color : $.cookie("eye-color"),
+			favorite_bands : $.cookie("favorite-bands"),
+			favorite_movies : $.cookie("favorite-movies"),
+			favorite_radio_shows : $.cookie("favorite-radio-shows"),
+			favorite_television_series : $.cookie("favorite-television-series"),
+			gender : $.cookie("gender"),
+			hair_color : $.cookie("hair-color"),
+			hair_length : $.cookie("hair-length"),
+			height : $.cookie("height"),
+			ignite_me : $.cookie("ignite-me"),
+			income : $.cookie("income"),
+			kids : $.cookie("kids"),
+			language_skills : $.cookie("language-skills"),
+			latlong : $.cookie("latlng"),
+			left_right_politics : $.cookie("left-right-politics"),
+			liberal_conservative_politics : $.cookie("liberal-conservative-politics"),
+			looking_for : $.cookie("looking-for"),
+			not_exciting : $.cookie("not-exciting"),
+			pets : $.cookie("pets"),
+			picture : $.cookie("picture"),
+			political_importance : $.cookie("political-importance"),
+			relationship_status : $.cookie("relationship-status"),
+			religion : $.cookie("religion"),
+			religion_importance : $.cookie("religion-importance"),
+			session : $.cookie("session"),
+			sexual_orientation : $.cookie("sexual-orientation"),
+			smoking : $.cookie("smoking"),
+			trave : $.cookie("travel"),
+			vocation : $.cookie("vocation"),
+			weight : $.cookie("weight") }
+	}).done(function(data) {
+		var result = $.parseJSON(data);
+		if(result.success == true) {
+			console.log("Profile saved\r\n");
+			$.removeCookie("next-page");
+			next_page("registeration-done-page");
+		} else {
+			console.log(result.error);
+		}
+	});
+});
+
 var map;
 
 $("#register-select-location-page").on("show", function() {
