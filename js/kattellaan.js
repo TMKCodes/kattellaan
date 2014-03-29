@@ -2064,7 +2064,7 @@ $("#register-confirm-profile-information-page").on("show", function() {
 $("#register-confirm-profile-information-form").submit(function(evt) {
 	evt.preventDefault();
 	$.ajax({
-		type: $(this).attr('method')
+		type: $(this).attr('method'),
 		url: $(this).attr('action'),
 		data: { call : 'create_profile', 
 			accomodation : $.cookie("accomodation"), 
