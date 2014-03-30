@@ -168,9 +168,8 @@ class profile {
 			"travel TEXT," . 
 			"weight TEXT);";
 		$statement = $this->database->prepare($table_query);
-		printf("table creation statement: %s\r\n", $table_query);
 		$result = $statement->execute();
-		if($result->success() == false) {
+		if($result->success() == true) {
 			return true;
 		} else {
 			return false;
