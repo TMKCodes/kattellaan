@@ -167,7 +167,7 @@ class profile {
 			"smoking TEXT," .
 			"travel TEXT," . 
 			"weight TEXT);";
-		$statment = $this->database->prepare($table_query);
+		$statement = $this->database->prepare($table_query);
 		$result = $statement->execute();
 		if($result->success() == false) {
 			return true;
