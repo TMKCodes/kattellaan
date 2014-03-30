@@ -2090,7 +2090,7 @@ $("#register-confirm-profile-information-form").submit(function(evt) {
 			income : $.cookie("income"),
 			kids : $.cookie("kids"),
 			language_skills : $.cookie("language-skills"),
-			latlong : $.cookie("latlng"),
+			latlng : $.cookie("latlng"),
 			left_right_politics : $.cookie("left-right-politics"),
 			liberal_conservative_politics : $.cookie("liberal-conservative-politics"),
 			looking_for : $.cookie("looking-for"),
@@ -2104,7 +2104,7 @@ $("#register-confirm-profile-information-form").submit(function(evt) {
 			session : $.cookie("session"),
 			sexual_orientation : $.cookie("sexual-orientation"),
 			smoking : $.cookie("smoking"),
-			trave : $.cookie("travel"),
+			travel : $.cookie("travel"),
 			vocation : $.cookie("vocation"),
 			weight : $.cookie("weight") }
 	}).done(function(data) {
