@@ -177,16 +177,78 @@ class profile {
 			
 	}
 
-	public function select() {
-
+	public function select($identifier) {
+		$statement = $this->database->prepare("SELECT * FROM `profile` WHERE `identifier` = ?;");
+		$statement->bind('i', $identifier);
+		$result = $statement->execute();
+		if($result->success() == true) {
+			$data = $result->fetch_array(RASSOC);
+			$this->set($data);
+			return true;
+		} else {
+			return false;
+		} 
 	}
 
 	public function insert() {
-
+		if(!empty($this->identifier)) {
+			$query = "INSERT INTO `profile` ('accomodation', 'address', 'alcohol', " . 
+				"'best_things_in_the_world', 'birthday', 'body_type', 'dress_style', " .
+				"'education', 'ethnic_identity', 'exercise', 'eye_color', 'favorite_bands', " .
+				"'favorite_movies', 'favorite_radio_shows', 'gender', 'hair_color', 'height', " .
+				"'identifier', 'ignite_me', 'income', 'kids', 'language_skills', 'latlng', " .
+				"'left_right_politics', 'liberal_conservative_politics', 'looking_for', " .
+				"'not_exciting', 'pets', 'picture', 'political_importance', 'relationship_status', " .
+				"'religion', 'religion_importance', 'smoking', 'travel', 'weight') " . 
+			//		 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27
+				"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " .
+			//  	28,29,30,31,32,33,34,35,36,37
+				"?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+			$statement = $this->database->prepare($query);
+			$statement->bind('s', $this->accomodation);
+			$statement->bind('s', $this->address);
+			$statement->bind('s', $this->best_things_in_the_world);
+			$statement->bind('s', $this->birthday);
+			$statement->bind('s', $this->body_type);
+			$statement->bind('s', $this->dress_style);
+			$statement->bind('s', $this->education);
+			$statement->bind('s', $this->ethnic_identity);
+			$statement->bind('s', $this->exercise);
+			$statement->bind('s', $this->eye_color);
+			$statement->bind('s', $this->favorite_bands);
+			$statement->bind('s', $this->favorite_movies);
+			$statement->bind('s', $this->favorite_radio_shows);
+			$statement->bind('s', $this->gender);
+			$statement->bind('s', $this->hair_color);
+			$statement->bind('s', $this->height);
+			$statement->bind('i', $this->identifier);
+			$statement->bind('s', $this->ignite_me);
+			$statement->bind('s', $this->income);
+			$statement->bind('s', $this->kids);
+			$statement->bind('s', $this->language_skills);
+			$statement->bind('s', $this->latlng);
+			$statement->bind('s', $this->left_right_politics);
+			$statement->bind('s', $this->liberal_conservative_politics);
+			$statement->bind('s', $this->looking_for);
+			$statement->bind('s', $this->not_exciting);
+			$statement->bind('s', $this->pets);
+			$statement->bind('s', $this->picture);
+			$statement->bind('s', $this->political_importance);
+			$statement->bind('s', $this->relationship_status);
+			$statement->bind('s', $this->religion);
+			$statement->bind('s', $this->religion_importance);
+			$statement->bind('s', $this->smoking);
+			$statement->bind('s', $this->travel);
+			$statement->bind('s', $this->weight);
+			$result = $statement->execute();
+			return $result->success();
+		} else {
+			return false;
+		}
 	}
 
 	public function update() {
-
+		
 	}
 }
 
