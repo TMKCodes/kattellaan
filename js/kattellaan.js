@@ -230,6 +230,7 @@ $("#register-select-profile-picture-skip-button").click(function(evt) {
 $("#start-registeration-button").click(function(evt) {
 	evt.preventDefault();
 	load_page("register-terms-of-service-page");
+	$.removeCookie("next-page");
 });
 
 $("#register-account-form").submit(function(evt) {
