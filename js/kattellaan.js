@@ -128,6 +128,8 @@ $("document").ready(function() {
 	if(check_session() == true) {
 		// disable login form and show user buttons
 		$("#authentication-form").hide();
+	} else {
+		$("#authentication-form").show();
 	}
 
 	setInterval(function() { 
