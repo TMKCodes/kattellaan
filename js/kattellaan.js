@@ -96,6 +96,8 @@ function load_home_page() {
 	if(check_session() == true) {
 		// disable register jumbotron
 		$("#register-information-jumbotron").hide();
+	} else {
+		$("#register-information-jumbotron").show();
 	}
 	history.pushState(null, "home-page", hostname);
 }
@@ -129,10 +131,12 @@ $("document").ready(function() {
 	if(check_session() == true) {
 		// disable login form and show user buttons
 		$("#authentication-form").hide();
+		$("#register-information-jumbotron").hide();
 		$("#user-menu").show();
 	} else {
 		$("#user-menu").hide();
 		$("#authentication-form").show();
+		$("#register-information-jumbotron").show();
 	}
 
 	setInterval(function() { 
