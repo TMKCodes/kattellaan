@@ -2074,7 +2074,7 @@ $("#register-confirm-profile-information-form").submit(function(evt) {
 			best_things_in_the_world : $.cookie("best-things-in-the-world"), 
 			birthday : $.cookie("birthday"), 
 			body_type : $.cookie("body-type"), 
-			dress_style : $.cookie("dess-style"),
+			dress_style : $.cookie("dress-style"),
 			education : $.cookie("education"), 
 			ethnic_identity : $.cookie("ethnic-identity"), 
 			exercise : $.cookie("exercise"),
