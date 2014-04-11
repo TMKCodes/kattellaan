@@ -164,8 +164,10 @@ class profile {
 			"relationship_status TEXT," .
 			"religion TEXT," .
 			"religion_importance TEXT," .
+			"sexual_orientation TEXT," .
 			"smoking TEXT," .
-			"travel TEXT," . 
+			"travel TEXT," .
+			"vocation TEXT," . 
 			"weight TEXT);";
 		$statement = $this->database->prepare($table_query);
 		$result = $statement->execute();
@@ -230,8 +232,10 @@ class profile {
 		$statement->bind('s', $this->relationship_status);
 		$statement->bind('s', $this->religion);
 		$statement->bind('s', $this->religion_importance);
+		$statement->bind('s', $this->sexual_orientation);
 		$statement->bind('s', $this->smoking);
 		$statement->bind('s', $this->travel);
+		$statement->bind('s', $this->vocation);
 		$statement->bind('s', $this->weight);
 		return $statement;	
 	}
@@ -245,12 +249,13 @@ class profile {
 				"`identifier`, `ignite_me`, `income`, `kids`, `language_skills`, `latlng`, " .
 				"`left_right_politics`, `liberal_conservative_politics`, `looking_for`, " .
 				"`not_exciting`, `pets`, `picture`, `political_importance`, `relationship_status`, " .
-				"`religion`, `religion_importance`, `smoking`, `travel`, `weight`) " . 
+				"`religion`, `religion_importance`, `sexual_orientation`, `smoking`, " . 
+				"`travel`, `vocation`, `weight`) " . 
 				"VALUES (".	
 				"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " . // 10
 				"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " . // 20
 				"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " . // 30
-				"?, ?, ?, ?, ?, ?);"; // 36
+				"?, ?, ?, ?, ?, ?, ?, ?);"; // 38
 			$statement = $this->database->prepare($query);
 			$statement = $this->sbind($statement, true);
 			$result = $statement->execute();
@@ -273,7 +278,8 @@ class profile {
 				"`left_right_politics` = ?, `liberal_conservative_politics` = ?, " .	
 				"`looking_for` = ?, `not_exciting` = ?, `pets` = ?, `picture` = ?, " .
 				"`political_importance` = ?, `relationship_status` = ?, `religion` = ?, " .
-				"`religion_importance` = ?, `smoking` = ?, `travel` = ?, `weight` = ? " .
+				"`religion_importance` = ?, `sexual_orientation` = ?, `smoking` = ?, " .
+				"`travel` = ?, `vocation` = ?, `weight` = ? " .
 				"WHERE `identifier` = ?;";
 			$statement = $this->database->prepare($query);
 			$statement = $this->sbind($statement, false);
