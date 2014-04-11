@@ -10,6 +10,8 @@ require_once("account.php");
 require_once("session.php");
 require_once("invite.php");
 require_once("file.php");
+require_once("profile.php");
+
 
 $passwd = explode(":", base64_decode(file_get_contents("/home/temek/kattellaan/.passwd")));
 $database = new db("mysqli");
@@ -182,11 +184,33 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					printf('{ "success": false, "uploaded_files": %s, "failed_files": %s }', json_encode($uploaded_files), json_encode($failed_files));
 				}
 			} else {
-				printf('{ "success": false, "error": "no files uploaded" }');
+				printf('{ "success": false, "error": "No files uploaded." }');
 			}
 		} else {
-			printf('{ "success": false, "error": "Not authenticated" }');
+			printf('{ "success": false, "error": "Not authenticated." }');
 		}	
+	} else if(!empty($_POST['call']) &&  $_POST['call'] == "create_profile") {
+		if(!empty($_POST['session'])) {
+			$session = new session($database, "sha512");
+			if($sesion->confirm($_POST['session']) == false) {
+				printf('{ "success": false, "error": "Failed to confirm session." }');
+				die();
+			}
+			$identifier = $session->get_identifier($_POST['session']);
+			$data = $_POST;
+			unset($_POST['call']);
+			unset($_POST['session']);
+			$data['identifier'] = $identifier;
+			$profile = new profile($database);
+			$profile->set($data);
+			if($profile->insert() == true) {
+				printf('{ "succes": true }');
+			} else {
+				printf('{ "success": false, "error": "Failed to insert into database." }');
+			}
+		} else {
+			printf('{ "success": false, "error": "Not auhtenticated." }');
+		}
 	}
 }
 
