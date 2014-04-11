@@ -182,9 +182,13 @@ class profile {
 		$statement->bind('i', $identifier);
 		$result = $statement->execute();
 		if($result->success() == true) {
-			$data = $result->fetch_array(RASSOC);
-			$this->set($data);
-			return true;
+			if($result->rows() > 0) {
+				$data = $result->fetch_array(RASSOC);
+				$this->set($data);
+				return true;
+			} else {
+				return false;
+			}
 		} else {
 			return false;
 		} 
