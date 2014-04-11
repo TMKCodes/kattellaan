@@ -2109,11 +2109,11 @@ $("#register-confirm-profile-information-form").submit(function(evt) {
 			vocation : $.cookie("vocation"),
 			weight : $.cookie("weight") }
 	}).done(function(data) {
+		console.log(data);
 		var result = $.parseJSON(data);
 		if(result.success == true) {
 			console.log("Profile saved\r\n");
 			$.removeCookie("next-page");
-			console.log(result);
 		//	next_page("registeration-done-page");
 	
 		} else {
