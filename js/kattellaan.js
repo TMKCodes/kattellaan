@@ -252,7 +252,7 @@ $("#authentication-form").submit(function(evt) {
 
 $("#hide-authentication-error-page-button").click(function(evt) {
 	$("#authentication-error-page").hide();
-}
+});
 
 $("#register-select-profile-picture-skip-button").click(function(evt) {
 	evt.preventDefault();
