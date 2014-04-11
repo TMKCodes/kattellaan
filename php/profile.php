@@ -228,7 +228,7 @@ class profile {
 		$statement->bind('s', $this->smoking);
 		$statement->bind('s', $this->travel);
 		$statement->bind('s', $this->weight);
-		return $statement;	
+		//return $statement;	
 	}
 
 	public function insert() {
@@ -247,7 +247,7 @@ class profile {
 				"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " . // 30
 				"?, ?, ?, ?, ?, ?, ?);"; // 37
 			$statement = $this->database->prepare($query);
-			$statement = $this->sbind($statement, true);
+			$this->sbind($statement, true);
 			$result = $statement->execute();
 			return $result->success();
 		} else {
