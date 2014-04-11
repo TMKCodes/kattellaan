@@ -29,10 +29,10 @@
 				</ul>
 				<form class="navbar-from navbar-right" id="authentication-form" role="form" style="display: none;">
 					<div class="btn-group" style="margin-top: 7px;">
-						<input type="text" placeholder="Sähköposti" name="email" class="form-control" />
+						<input type="text" placeholder="Käyttäjätunnus" name="username" id="authentication-form-usename-input" class="form-control" />
 					</div>
 					<div class="btn-group" style="margin-top: 7px;">
-						<input type="text" placeholder="Salasana" name="password" class="form-control" />
+						<input type="text" placeholder="Salasana" name="password" id="authentication-form-password-input" class="form-control" />
 					</div>
 					<button type="submit" id="authenticate" class="btn btn-success" style="margin-top: 7px">Kirjaudu</button>
 				</form>
@@ -41,6 +41,13 @@
 				</ul>
 			</div>
 		</nav>
+	</div>
+	
+	<div class="container" id="authentication-error-page" style="display: none;">
+		<div id="alert alert-danger">
+			Syötit väärän käyttäjänimen tai salasanan.
+			<button type="button" class="btn btn-default btn-lg" id="hide-authentication-error-page-button">Piiloita</button>
+		</div>
 	</div>
 
 	<!-- Home page html code -->

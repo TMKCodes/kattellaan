@@ -60,6 +60,9 @@ class account {
 		} else if(!empty($this->username)) {
 			$statement = $this->database->prepare("SELECT * FROM `account` WHERE `username` = ?;");
 			$statement->bind("s", $this->username);
+		} else if(!empty($this->address)) {
+			$statement = $this->database->prepare("SELECT * FROM `account` WHERE `address` = ?;");
+			$statement->bind("s", $this->address);
 		} else {
 			throw new Exception("No identifying data specified. Give identifier or username.");
 		}

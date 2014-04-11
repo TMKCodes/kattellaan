@@ -239,6 +239,21 @@ $("#home-button").click(function(evt) {
 	load_home_page();
 });
 
+$("#authentication-form").submit(function(evt) {
+	evt.preventDefault();
+	open_session($("#authentication-form-username-input").val(), $("#authentication-form-password-input").val());
+	if(check_session() == true) {
+		$("#authentication-form").hide();
+		$("#user-menu").show();
+	} else {
+		load_page("#authentication-error-page");
+	}
+});
+
+$("#hide-authentication-error-page-button").click(function(evt) {
+	$("#authentication-error-page").hide();
+}
+
 $("#register-select-profile-picture-skip-button").click(function(evt) {
 	evt.preventDefault();
 	load_page("register-select-gender-page");
