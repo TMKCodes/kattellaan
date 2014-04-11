@@ -154,7 +154,7 @@ class profile {
 			"kids TEXT," .
 			"language_skills TEXT," .
 			"latlng TEXT," .
-			"left_right_poltics TEXT," .
+			"left_right_politics TEXT," .
 			"liberal_conservative_politics TEXT," .
 			"looking_for TEXT," .
 			"not_exciting TEXT," .
@@ -246,7 +246,7 @@ class profile {
 				"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " . // 10
 				"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " . // 20
 				"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " . // 30
-				"?, ?, ?, ?, ?, ?, ?);"; // 37
+				"?, ?, ?, ?, ?, ?);"; // 36
 			$statement = $this->database->prepare($query);
 			$statement = $this->sbind($statement, true);
 			$result = $statement->execute();

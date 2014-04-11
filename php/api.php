@@ -198,14 +198,18 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			}
 			$identifier = $session->get_identifier($_POST['session']);
 			$data = $_POST;
-			unset($_POST['call']);
-			unset($_POST['session']);
 			$data['identifier'] = $identifier;
 			$profile = new profile($database);
 			$profile->set($data);
-			$result = $profile->insert();
-				$data = json_encode($data);
-				printf('{ "success": false, "error": "Failed to insert into database.", "query": "'.$result.'", "data": '.$data.' }');
+			if($profile->select($identifier) == false) {	
+				if($profile->insert() == true) {
+					printf('{ "success": true }');
+				} else {
+					printf('{ "success": false, "error": "Failed to insert into database." }');
+				}
+			} else {
+				printf('{ "success": false, "error": "Profile with the user id already exists." }');
+			}
 		} else {
 			printf('{ "success": false, "error": "Not auhtenticated." }');
 		}
