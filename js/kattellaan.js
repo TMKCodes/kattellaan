@@ -93,6 +93,9 @@ function register_select_profile_picture_done_button() {
 function load_home_page() {
 	$("body > .container").hide();
 	$("#home-page").show();
+	if(check_session() == true) {
+		// remove register button
+	}
 	history.pushState(null, "home-page", hostname);
 }
 
@@ -122,6 +125,11 @@ $("document").ready(function() {
 	} else {
 		$("#home-page").show();
 	}
+	if(check_session() == true) {
+		// disable login form and show user buttons
+		$("#authentication-form").hide();
+	}
+
 	setInterval(function() { 
 		if($.cookie("session") != undefined) {
 			$.ajax({
