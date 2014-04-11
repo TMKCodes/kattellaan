@@ -206,7 +206,8 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			if($profile->insert() == true) {
 				printf('{ "succes": true }');
 			} else {
-				printf('{ "success": false, "error": "Failed to insert into database." }');
+				$data = json_encode($data);
+				printf('{ "success": false, "error": "Failed to insert into database.", "data": '.$data.' }');
 			}
 		} else {
 			printf('{ "success": false, "error": "Not auhtenticated." }');
