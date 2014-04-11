@@ -190,7 +190,7 @@ class profile {
 		} 
 	}
 
-	private sbind($statement, $with_identifier) {
+	private function sbind($statement, $with_identifier) {
 		$statement->bind('s', $this->accomodation);
 		$statement->bind('s', $this->address);
 		$statement->bind('s', $this->best_things_in_the_world);
