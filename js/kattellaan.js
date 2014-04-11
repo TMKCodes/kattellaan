@@ -247,7 +247,7 @@ $("#authentication-form").submit(function(evt) {
 		$("#authentication-form").hide();
 		$("#user-menu").show();
 	} else {
-		load_page("#authentication-error-page");
+		load_page("authentication-error-page");
 	}
 });
 
