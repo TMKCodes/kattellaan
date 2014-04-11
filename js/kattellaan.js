@@ -17,6 +17,7 @@ function open_session(username, password) {
 		async: false,
 		data: { call : 'open_session', username : username, password : password }
 	}).done(function(data) {
+		console.log(data);	
 		var result = $.parseJSON(data);
 		if(result.success == true) {
 			$.cookie("session", result.session);
