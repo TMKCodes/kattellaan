@@ -94,7 +94,8 @@ function load_home_page() {
 	$("body > .container").hide();
 	$("#home-page").show();
 	if(check_session() == true) {
-		// remove register button
+		// disable register jumbotron
+		$("#register-information-jumbotron").hide();
 	}
 	history.pushState(null, "home-page", hostname);
 }
