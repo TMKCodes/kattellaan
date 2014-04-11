@@ -245,6 +245,7 @@ $("#authentication-form").submit(function(evt) {
 	open_session($("#authentication-form-username-input").val(), $("#authentication-form-password-input").val());
 	if(check_session() == true) {
 		$("#authentication-form").hide();
+		$("#register-information-jumbotron").hide();
 		$("#user-menu").show();
 	} else {
 		load_page("authentication-error-page");
