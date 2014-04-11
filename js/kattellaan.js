@@ -128,7 +128,9 @@ $("document").ready(function() {
 	if(check_session() == true) {
 		// disable login form and show user buttons
 		$("#authentication-form").hide();
+		$("#user-menu").show();
 	} else {
+		$("#user-menu").hide();
 		$("#authentication-form").show();
 	}
 
