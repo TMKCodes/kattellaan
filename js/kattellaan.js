@@ -158,7 +158,7 @@ $("document").ready(function() {
 			});
 		}
 	}, 15000);
-
+	// ...
 	$("#register-picture-upload-form").ajaxForm({
 		dataType: "json",
 		data: { session: $.cookie("session") },
