@@ -36,9 +36,16 @@
 					</div>
 					<button type="submit" id="authenticate" class="btn btn-success" style="margin-top: 7px">Kirjaudu</button>
 				</form>
-				<ul class="nav navbar-nav navbar-right" id="user-menu" style="display: none;">
-					<li><a href="#">Testing..</a></li>
-				</ul>
+				<div class="nav navbar-nav navbar-right" id="user-menu" style="display: none;">
+					<div class="dropdown">
+						<button class="btn dropdown-toggle sr-only" type="button" id="dropdown-user-menu" data-toggle="dropdown">
+							DropDown<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-user-menu">
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</nav>
 	</div>
