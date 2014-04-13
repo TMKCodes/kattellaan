@@ -45,6 +45,7 @@ function close_session() {
 			}
 			$("#user-menu").hide();
 			$("#authentication-form").show();
+			$("#register-information-jumbotron").show();
 			load_page("home-page");
 		} else {
 			console.log("Error: " + result.error);
