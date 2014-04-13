@@ -46,6 +46,7 @@ function update_session() {
 		async: false,
 		data: { call : 'update_session', session : session }
 	}).done(function(data) {
+		console.log(data);
 		var result = $.parseJSON(data);
 		if(result.success == true) {
 			$.cookie("session", result.session);
