@@ -42,7 +42,7 @@ function update_session() {
 	var session = $.cookie("session");
 	$.ajax({
 		url: "php/api.php",
-		type: "GET",
+		type: "POST",
 		async: false,
 		data: { call : 'update_session', session : session }
 	}).done(function(data) {
