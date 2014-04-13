@@ -144,7 +144,7 @@ $("document").ready(function() {
 		if($.cookie("session") != undefined) {
 			$.ajax({
 				url: "php/api.php",
-				type: "GET",
+				type: "POST",
 				async: false,
 				data: { call : 'update_session', session : $.cookie("session") }
 			}).done(function(data) {
