@@ -74,8 +74,12 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 	} else if(!empty($_POST['call']) && $_POST['call'] == "close_session") {
 		try {
 			$session = new session($database, "sha512");
-			$session->close($_POST['session']);
-			printf('{ "success": true }');
+			$success = $session->close($_POST['session']);
+			if($success == true) {
+				printf('{ "success": true }');
+			} else {
+				printf('{ "success": false }');
+			}
 		} catch (Exception $e) {
 			printf('{ "success": false, "error": "%s" }', $e->getMessage());
 		}
