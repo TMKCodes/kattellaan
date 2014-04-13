@@ -43,6 +43,9 @@ function close_session() {
 			if($.cookie("session") != undefined) {
 				$.removeCookie("session");
 			}
+			$("#user-menu").hide();
+			$("#authentication-form").show();
+			load_page("home-page");
 		} else {
 			console.log("Error: " + result.error);
 		}
