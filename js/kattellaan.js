@@ -134,6 +134,7 @@ $("document").ready(function() {
 		// disable login form and show user buttons
 		$("#authentication-form").hide();
 		$("#register-information-jumbotron").hide();
+		$("#authentication-error-page").hide();
 		$("#user-menu").show();
 	} else {
 		$("#user-menu").hide();
@@ -232,6 +233,7 @@ $("#authentication-form").submit(function(evt) {
 	if(check_session() == true) {
 		$("#authentication-form").hide();
 		$("#register-information-jumbotron").hide();
+		$("#authentication-error-page").hide();
 		$("#user-menu").show();
 	} else {
 		load_page("authentication-error-page");
