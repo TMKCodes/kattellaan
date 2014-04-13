@@ -64,22 +64,26 @@ function check_session() {
 
 function update_session() {
 	var session = $.cookie("session");
-	$.ajax({
-		url: "php/api.php",
-		type: "POST",
-		async: false,
-		data: { call : 'update_session', session : session }
-	}).done(function(data) {
-		console.log(data);
-		var result = $.parseJSON(data);
-		if(result.success == true) {
-			$.cookie("session", result.session);
-		} else {
-			if($.cookie("session") != undefined) {
-				$.removeCookie("session");
+	if(session != undefined) {
+		$.ajax({
+			url: "php/api.php",
+			type: "POST",
+			async: false,
+			data: { call : 'update_session', session : session }
+		}).done(function(data) {
+			console.log(data);
+			var result = $.parseJSON(data);
+			if(result.success == true) {
+				$.cookie("session", result.session);
+			} else {
+				if($.cookie("session") != undefined) {
+					$.removeCookie("session");
+				}
 			}
-		}
-	});
+		});
+	} else {
+		console.log("Session was not found.");
+	}
 }
 
 function register_select_profile_picture(picture) {
