@@ -123,6 +123,9 @@ class session {
 			$statement->bind("s", $data[1]);
 			$statement->bind("s", $data[2]);
 			$result = $statement->execute();
+			if($result == false) {
+				throw new Exception("Failed Query: " . $statement->get());
+			}
 			return $result->success();
 		} else {
 			throw new Exception("Session data was not given.");
