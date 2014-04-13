@@ -38,7 +38,19 @@
 				</form>
 				<ul class="nav navbar-nav navbar-right" id="user-menu" style="display: none;">
 					<li><a id="own-profile-button" href="#">Oma profiili</a></li>
-					<li class="dropdown">
+					<li class="dropdown" id="user-menu-requests">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Pyynnöt <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li id="empty">Ei pyyntöjä</li>
+						</ul>
+					</li>
+					<li class="dropdown" id="user-menu-messages">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Viestit <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li id="empty">Ei viestejä</li>
+						</ul>
+					</li>
+					<li class="dropdown" id="user-menu-settings">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Asetukset <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="#">Muokkaa profiili</a></li>
