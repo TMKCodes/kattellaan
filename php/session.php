@@ -26,7 +26,7 @@ class session {
 		}
 		return hash($hash, implode($key));
 	}
-
+:
 	private function client() {
 		$client_user_agent = $_SERVER['HTTP_USER_AGENT'];
 		$client_remote_addr = $_SERVER['REMOTE_ADDR'];

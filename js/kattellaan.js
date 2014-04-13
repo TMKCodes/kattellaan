@@ -83,6 +83,9 @@ function update_session() {
 		});
 	} else {
 		console.log("Session was not found.");
+		$("#user-menu").hide();
+		$("#authentication-form").show();
+		$("#register-information-jumbotron").show();
 	}
 }
 
