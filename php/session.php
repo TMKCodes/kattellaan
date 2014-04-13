@@ -125,8 +125,9 @@ class session {
 			$result = $statement->execute();
 			if($result == false) {
 				throw new Exception("Failed Query: " . $statement->get());
+			} else {
+				return $result->success();
 			}
-			return $result->success();
 		} else {
 			throw new Exception("Session data was not given.");
 		}
