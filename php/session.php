@@ -59,12 +59,26 @@ class session {
 				$session_key = $this->generate($this->session_hash, 256);
 				$client = $this->client();
 				$statement = $this->database->prepare("INSERT INTO `session` (`uid`, `secret`, `client`) VALUES (?, ?, ?);");
-				$statement->bind("s", $account->get_identifier());
+				$statement->bind("i", $account->get_identifier());
 				$statement->bind("s", $session_key);
 				$statement->bind("s", $client);
 				$result = $statement->execute();
 				if($result->success() == true) {
-					return base64_encode($account->get_identifier() . "||" . $session_key . "||" . $client);
+					$statement = $this->database->prepare("SELECT * FROM `session` WHERE `uid` = ? AND `secret` = ? AND `client` = ?;");
+					$statement->bind("i", $account->get_identifier());
+					$statement->bind("s", $session_key);
+					$statement->bind("s", $client);
+					$result = $statement->execute();
+					if($result->success() == true) {
+						if($result->rows() > 1) {
+							throw new Exception("Too many identical sessions.");
+						} else {
+							$data = $result->fetch_array(RASSOC);
+							return base64_encode($data['id'] . "||" . $account->get_identifier() . "||" . $session_key . "||" . $client);
+						}
+					} else {
+						throw new Exception("Failed to create session.");
+					}
 				} else {
 					
 					throw new Exception("Session already exists");
@@ -82,13 +96,12 @@ class session {
 			if($this->confirm($data) == true) {
 				$data = explode("||", base64_decode($data));
 				$session_key = $this->generate($this->session_hash, 256);
-				$statement = $this->database->prepare("UPDATE `session` SET `secret` = ? WHERE `uid` = ? AND `client` = ?;");
+				$statement = $this->database->prepare("UPDATE `session` SET `secret` = ? WHERE `id` = ?");
 				$statement->bind("s", $session_key);
 				$statement->bind("i", $data[0]);
-				$statement->bind("s", $data[2]);
 				$result = $statement->execute();
 				if($result->success() == true) {
-					return base64_encode($data[0] . "||" . $session_key . "||" . $data[2]);
+					return base64_encode($data[0] . "||" . $data[1] . "||" . $session_key . "||" . $data[3]);
 				} else {
 					return false;
 				}
@@ -118,10 +131,8 @@ class session {
 	public function close($data) {
 		if(!empty($data)) {
 			$data = explode("||", base64_decode($data));
-			$statement = $this->database->prepare("DELETE FROM `session` WHERE `uid` = '?' AND `secret` = '?' AND `client` = '?';");
-			$statement->bind("s", $data[0]);
-			$statement->bind("s", $data[1]);
-			$statement->bind("s", $data[2]);
+			$statement = $this->database->prepare("DELETE FROM `session` WHERE `id` = '?';");
+			$statement->bind("i", $data[0]);
 			$result = $statement->execute();
 			if($result->success() == false) {
 				throw new Exception("Failed Query: " . $statement->get());
