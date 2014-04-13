@@ -74,8 +74,8 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 	} else if(!empty($_POST['call']) && $_POST['call'] == "update_session") {
 		try {
 			$session = new session($database, "sha512");
-			if(!empty($_GET['session'])) {
-				$session_key = $session->update($_GET['session']);
+			if(!empty($_POST['session'])) {
+				$session_key = $session->update($_POST['session']);
 				if($session_key != false) {
 					printf('{ "success": true, "session": "%s" }', $session_key);
 				} else {
