@@ -141,22 +141,7 @@ $("document").ready(function() {
 	}
 
 	setInterval(function() { 
-		if($.cookie("session") != undefined) {
-			$.ajax({
-				url: "php/api.php",
-				type: "POST",
-				async: false,
-				data: { call : 'update_session', session : $.cookie("session") }
-			}).done(function(data) {
-				var result = $.parseJSON(data);
-				if(result.success == true) {
-					$.cookie("session", result.session);
-				} else {
-					console.log(result.error);
-					$.removeCookie("session");
-				}
-			});
-		}
+		update_session();
 	}, 15000);
 	// ...
 	$("#register-picture-upload-form").ajaxForm({
