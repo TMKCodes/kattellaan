@@ -29,6 +29,26 @@ function open_session(username, password) {
 	});
 }
 
+function close_session() {
+	var session = $.cookie("session");
+	$.ajax({
+		url: "php/api.php",
+		type: "POST",
+		async: false,
+		data: { call: 'close_session', session: session }
+	}).done(function(data) {
+		console.log(data);
+		var result = $.parseJSON(data);
+		if(result.success == true) {
+			if($.cookie("session") != undefined) {
+				$.removeCookie("session");
+			}
+		} else {
+			console.log("Error: " + result.error);
+		}
+	});
+}
+
 function check_session() {
 	update_session();
 	if($.cookie("session") != undefined) {
@@ -227,6 +247,11 @@ $("#home-button").click(function(evt) {
 	load_home_page();
 });
 
+$("#logout-button").click(function(evt) {
+	evt.preventDefault();
+	close_session();
+});
+
 $("#authentication-form").submit(function(evt) {
 	evt.preventDefault();
 	open_session($("#authentication-form-username-input").val(), $("#authentication-form-password-input").val());
@@ -375,6 +400,7 @@ $("#register-invite-skip-button").click(function(evt) {
 	load_page("register-select-location-page");
 });
 
+
 $("#register-select-gender-page").on("show", function(evt) {
 	if($.cookie("gender") != undefined) {
 		$("#register-select-gender-input").val($.cookie("gender"));
@@ -384,6 +410,8 @@ $("#register-select-gender-page").on("show", function(evt) {
 $("#register-select-gender-input").change(function(evt) {
 	$("#register-select-gender-error").hide();
 });
+
+
 
 $("#register-select-gender-done-button").click(function(evt) {
 	evt.preventDefault();

@@ -71,6 +71,14 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		} catch (Exception $e) {
 			printf('{ "success": false, "error": "%s" }', $e->getMessage());
 		}
+	} else if(!empty($_POST['call']) && $_POST['call'] == "close_session") {
+		try {
+			$session = new session($database, "sha512");
+			$session->close($_POST['session']);
+			printf('{ "success": true }');
+		} catch (Exception $e) {
+			printf('{ "success": false, "error": "%s" }', $e->getMessage());
+		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "update_session") {
 		try {
 			$session = new session($database, "sha512");
