@@ -123,7 +123,7 @@ class session {
 			$statement->bind("s", $data[1]);
 			$statement->bind("s", $data[2]);
 			$result = $statement->execute();
-			if($result == false) {
+			if($result->success() == false) {
 				throw new Exception("Failed Query: " . $statement->get());
 			} else {
 				return $result->success();
