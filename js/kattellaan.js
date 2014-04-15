@@ -285,9 +285,13 @@ $("#logout-button").click(function(evt) {
 
 
 $("#own-profile-button").click(function(evt) {
-	$("profile-page").show();
-	var profile = get_profile();
-	$("profile-page-top-bar-username").html("<h1>" + profile.username + "</h1>");
+	if($.cookie("session") != undefined) {
+		$("profile-page").show();
+		var session = window.atob($.cookie("session"));
+		var session = session.split("||");
+		var profile = get_profile(session[1]);
+		$("profile-page-top-bar-username").html("<h1>" + profile.username + "</h1>");
+	}
 });
 
 $("#authentication-form").submit(function(evt) {
