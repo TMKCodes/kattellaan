@@ -180,6 +180,66 @@ function load_page(page) {
 	history.pushState(null, page, hostname + "?page=" + page);
 }
 
+function gender(gender) {
+	switch(gender) {
+		case 'man':
+			return "Mies";
+		case 'woman':
+			return "Nainen";
+		case 'transman':
+			return "Transmies";
+		case 'transwoman':
+			return "Transnainen";
+		case 'sexless':
+			return "Sukupuoleton";
+		case 'Mies':
+			return "man";
+		case 'Nainen':
+			return "nainen";
+		case 'Transmies':
+			return "transman";
+		case 'Transnainen':
+			return "transwoman";
+		case 'Sukupuoleton':
+			return "sexless";
+	}		
+}
+
+function looking_for(looking_for) {
+	switch(looking_for) {
+		case 'friends':
+			return "Ystäviä";
+		case 'love':
+			return "Rakkautta";
+		case 'date':
+			return "Tapaamisia";
+		case 'sex': 
+			return "Seksiä";
+		case 'other':
+			return "Jotain muuta";
+		case 'none':
+			return "En halua kertoa";
+		case 'Ystäviä':
+			return "friends";
+		case 'Rakkautta':
+			return "love";
+		case 'Tapaamisia':
+			return "date";
+		case 'Jotain muuta':
+			return "other";
+		case 'En halua kertoa":
+			return "none";
+	}
+}
+
+function recursive_looking_for(looking_for) {
+	var lookingForArr = lookingFor.split(",");
+	for(var i = 0; i < lookingForArr.length; i++) {
+		lookingForArr[i] = looking_for(lookingForArr[i]);
+	}
+	return lookingForArr.join(",");
+}
+
 function load_profile_page(uid) {
 	if($.cookie("session") != undefined) {
 		var session = window.atob($.cookie("session"));
@@ -202,7 +262,14 @@ function load_profile_page(uid) {
 	$.cookie("last-viewed-profile", profile.identifier);
 	var username = get_username(uid);
 	$("#profile-page-top-bar-username").html("<h1>" + username + "</h1>");
+	
 	$("#profile-page-main-picture").children("img").attr("src", "uploads/" + profile.picture);
+	
+	var lookingFor = recurseive_looking_for(profile.looking_for);
+	var lookingForArr = lookingFor.split(",");
+	lookingFor = lookingForArr.join(", ");
+	var asl = "<p>" + profile.age + " vuotias " + gender(profile.gender) + " joka etsii " + lookingFor + ".</p>"; 
+	$("#profile-page-basic-information-asl").html(asl);
 	
 	load_page("profile-page");
 }
