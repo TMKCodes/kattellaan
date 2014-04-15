@@ -264,11 +264,16 @@ function load_profile_page(uid) {
 	$("#profile-page-top-bar-username").html("<h1>" + username + "</h1>");
 	
 	$("#profile-page-main-picture").children("img").attr("src", "uploads/" + profile.picture);
+
+	var cTime = new Date();
+	var cYear = cTime.getFullYear();
+	var birthday = profile.birthday.split("-");
+	var age = cYear - birthday[0];
 	
 	var lookingFor = recursive_looking_for(profile.looking_for);
 	var lookingForArr = lookingFor.split(",");
 	lookingFor = lookingForArr.join(", ");
-	var asl = "<p>" + profile.age + " vuotias " + gender(profile.gender) + " joka etsii " + lookingFor + ".</p>"; 
+	var asl = "<p>" + age + " vuotias " + gender(profile.gender) + " joka etsii " + lookingFor + ".</p>"; 
 	$("#profile-page-basic-information-asl").html(asl);
 	
 	load_page("profile-page");
