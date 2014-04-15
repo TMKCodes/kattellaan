@@ -181,18 +181,22 @@ function load_page(page) {
 }
 
 function load_profile_page(uid) {
-	if($.cookie("session") != undefined && $.cookie("session") == uid) {
-		$("#profile-page-top-bar-menu-send-msg").hide();
-		$("#profile-page-top-bar-menu-add-friend").hide();
-		$("#profile-page-top-bar-menu-request-date").hide();
-		$("#profile-page-top-bar-menu-block-user").hide();
-		$("#profile-page-top-bar-menu-report-user").hide();
-	} else {
-		$("#profile-page-top-bar-menu-send-msg").show();
-		$("#profile-page-top-bar-menu-add-friend").show();
-		$("#profile-page-top-bar-menu-request-date").show();
-		$("#profile-page-top-bar-menu-block-user").show();
-		$("#profile-page-top-bar-menu-report-user").show();
+	if($.cookie("session") != undefined) {
+		var session = window.atob($.cookie("session");
+		var rsession = session.split("||");
+		if(rsession[1] == uid) {
+			$("#profile-page-top-bar-menu-send-msg").hide();
+			$("#profile-page-top-bar-menu-add-friend").hide();
+			$("#profile-page-top-bar-menu-request-date").hide();
+			$("#profile-page-top-bar-menu-block-user").hide();
+			$("#profile-page-top-bar-menu-report-user").hide();
+		} else {
+			$("#profile-page-top-bar-menu-send-msg").show();
+			$("#profile-page-top-bar-menu-add-friend").show();
+			$("#profile-page-top-bar-menu-request-date").show();
+			$("#profile-page-top-bar-menu-block-user").show();
+			$("#profile-page-top-bar-menu-report-user").show();
+		}
 	}
 	var profile = get_profile(uid);
 	$.cookie("last-viewed-profile", profile.identifier);
