@@ -202,6 +202,8 @@ function load_profile_page(uid) {
 	$.cookie("last-viewed-profile", profile.identifier);
 	var username = get_username(uid);
 	$("#profile-page-top-bar-username").html("<h1>" + username + "</h1>");
+	$("#profile-page-main-picture").attr("src", "uploads/" + profile.picture);
+	
 	load_page("profile-page");
 }
 window.onpopstate = function(event) {
