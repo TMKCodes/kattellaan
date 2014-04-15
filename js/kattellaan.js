@@ -291,7 +291,7 @@ $("#own-profile-button").click(function(evt) {
 		var rsession = session.split("||");
 		var profile = get_profile(rsession[1]);
 		console.log(profile);
-		$("profile-page-top-bar-username").html("<h1>" + profile.username + "</h1>");
+		$("#profile-page-top-bar-username").html("<h1>" + profile.username + "</h1>");
 	}
 });
 
