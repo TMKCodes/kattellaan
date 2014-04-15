@@ -205,8 +205,8 @@ function gender(gender) {
 	}		
 }
 
-function looking_for(looking_for) {
-	switch(looking_for) {
+function looking_for(lookingFor) {
+	switch(lookingFor) {
 		case 'friends':
 			return "Ystäviä";
 		case 'love':
@@ -232,7 +232,7 @@ function looking_for(looking_for) {
 	}
 }
 
-function recursive_looking_for(looking_for) {
+function recursive_looking_for(lookingFor) {
 	var lookingForArr = lookingFor.split(",");
 	for(var i = 0; i < lookingForArr.length; i++) {
 		lookingForArr[i] = looking_for(lookingForArr[i]);
