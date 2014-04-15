@@ -265,7 +265,7 @@ function load_profile_page(uid) {
 	
 	$("#profile-page-main-picture").children("img").attr("src", "uploads/" + profile.picture);
 	
-	var lookingFor = recurseive_looking_for(profile.looking_for);
+	var lookingFor = recursive_looking_for(profile.looking_for);
 	var lookingForArr = lookingFor.split(",");
 	lookingFor = lookingForArr.join(", ");
 	var asl = "<p>" + profile.age + " vuotias " + gender(profile.gender) + " joka etsii " + lookingFor + ".</p>"; 
