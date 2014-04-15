@@ -309,6 +309,7 @@ $("#own-profile-button").click(function(evt) {
 		var rsession = session.split("||");
 		var profile = get_profile(rsession[1]);
 		var username = get_username(rsession[1]);
+		console.log(username);
 		$("#profile-page-top-bar-username").html("<h1>" + username + "</h1>");
 		load_page("profile-page");
 	}
