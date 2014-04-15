@@ -315,7 +315,7 @@ function load_profile_page(uid) {
 	var lookingForArr = lookingFor.split(",");
 	lookingFor = lookingForArr.join(", ");
 
-	var asl = "<h2> Olen" + age + " vuotias " + 
+	var asl = "<h2> Olen " + age + " vuotias " + 
 		relationshipStatus + " " + sGender.toLowerCase() 
 		+ " joka etsii " + lookingFor.toLowerCase() + ".</h2>"; 
 
