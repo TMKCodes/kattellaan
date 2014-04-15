@@ -288,8 +288,10 @@ $("#own-profile-button").click(function(evt) {
 	if($.cookie("session") != undefined) {
 		$("profile-page").show();
 		var session = window.atob($.cookie("session"));
-		var session = session.split("||");
-		var profile = get_profile(session[1]);
+		console.log(session);
+		var rsession = session.split("||");
+		console.log(rsession);
+		var profile = get_profile(rsession[1]);
 		$("profile-page-top-bar-username").html("<h1>" + profile.username + "</h1>");
 	}
 });
