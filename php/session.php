@@ -36,7 +36,7 @@ class session {
 
 	public function get_identifier($data) {
 		$data = explode("||", base64_decode($data));
-		return $data[0];
+		return $data[1];
 	}
 
 	public function create_table() {
