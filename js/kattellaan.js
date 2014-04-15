@@ -96,7 +96,7 @@ function get_profile(uid) {
 		type: "POST",
 		async: false,
 		data: { call : 'get_profile', uid : uid }	
-	}.done(function(data) {
+	}).done(function(data) {
 		console.log(data);
 		var result = $.parseJSON(data);
 		if(result.success == true) {
