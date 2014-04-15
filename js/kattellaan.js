@@ -240,6 +240,43 @@ function recursive_looking_for(lookingFor) {
 	return lookingForArr.join(",");
 }
 
+function relationship_status(s) {
+	switch(s) {
+		case 'single': return "Sinkku";
+		case 'relationship': return "Parisuhde";
+		case 'cohabitation': return "Avoliitto";
+		case 'marriage': return "Avioliitto";
+		case 'divorced': return "Eronnut";
+		case 'seperation': return "Asumusero";
+		case 'widow': return "Leski";
+		case 'none': return "En halua kerota";
+		case 'Sinkku': return "single";
+		case 'Parisuhde': return "relationship";
+		case 'Avoliitto': return "cohabitation";
+		case 'Avioliitto': return "marriage";
+		case 'Eronnut': return "divorced";
+		case 'Asumusero': return "seperation";
+		case 'Leski': return "widow";
+		case 'En halua kertoa': return "none";
+		
+	}
+}
+
+function odd_relationship_status(s) {
+	switch(s) {
+		case 'Sinkku': return "sinkku";
+		case 'Parisuhde': return "parisuhteessa elävä";
+		case 'Avoliitto': return "avoliitossa elävä";
+		case 'Avioliitto': return "avioliitossa elävä";
+		case 'Eronnut': return "eronnut";
+		case 'Asumusero': return "asumuserossa elävä";
+		case 'Leski': return "leski";
+		case 'En halua kertoa': return "";
+	}
+}
+
+
+
 function load_profile_page(uid) {
 	if($.cookie("session") != undefined) {
 		var session = window.atob($.cookie("session"));
@@ -269,11 +306,15 @@ function load_profile_page(uid) {
 	var cYear = cTime.getFullYear();
 	var birthday = profile.birthday.split("-");
 	var age = cYear - birthday[0];
+
+	var relationship_status = odd_relationship_status(relationship_status(profile.relationship_status));
 	
 	var lookingFor = recursive_looking_for(profile.looking_for);
 	var lookingForArr = lookingFor.split(",");
 	lookingFor = lookingForArr.join(", ");
-	var asl = "<p>" + age + " vuotias " + gender(profile.gender) + " joka etsii " + lookingFor + ".</p>"; 
+
+	var asl = "<p>" + age + " vuotias " + relationship_status + " " + gender(profile.gender) + " joka etsii " + lookingFor + ".</p>"; 
+
 	$("#profile-page-basic-information-asl").html(asl);
 	
 	load_page("profile-page");
