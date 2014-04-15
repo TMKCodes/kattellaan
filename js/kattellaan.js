@@ -286,7 +286,7 @@ $("#logout-button").click(function(evt) {
 
 $("#own-profile-button").click(function(evt) {
 	if($.cookie("session") != undefined) {
-		$("profile-page").show();
+		$("#profile-page").show();
 		var session = window.atob($.cookie("session"));
 		var rsession = session.split("||");
 		var profile = get_profile(rsession[1]);
