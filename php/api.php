@@ -95,6 +95,15 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		} catch (Exception $e) {
 			printf('{ "success": false, "error": "%s" }', $e->getMessage());
 		}
+	} else if(!empty($_POST['call']) && $_POST['call'] == "get_username") {
+	 	try {
+			$account = new account($database);
+			$account->set_identifier($_POST['uid']);
+			$account->select();
+			printf('{ "success": true, "username": "%s" }', $account->get_username());
+		} catch (Exception $e) {
+			printf('{ "success": false, "error": "%s" }', $e->getMessage());
+		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "get_profile") {
 		$profile = new profile($database);
 		if($profile->select($_POST['uid']) == true) {

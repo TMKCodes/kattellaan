@@ -89,6 +89,25 @@ function update_session() {
 	}
 }
 
+function get_username(uid) {
+	var username;
+	$.ajax({
+		url: "php/api.php",
+		type: "POST",
+		async: false,
+		data: { call : 'get_username', uid : uid }
+	}).done(function(data) {
+		console.log(data);
+		var result = $.parseJSON(data);
+		if(result.sucess == true) {
+			username = result.username;
+		} else {
+			console.log(result.error);
+		}
+	});
+	return username;
+}
+
 function get_profile(uid) {
 	var profile;
 	$.ajax({
@@ -289,8 +308,8 @@ $("#own-profile-button").click(function(evt) {
 		var session = window.atob($.cookie("session"));
 		var rsession = session.split("||");
 		var profile = get_profile(rsession[1]);
-		console.log(profile);
-		$("#profile-page-top-bar-username").html("<h1>" + profile.username + "</h1>");
+		var username = get_username(rsession[1]);
+		$("#profile-page-top-bar-username").html("<h1>" + username + "</h1>");
 		load_page("profile-page");
 	}
 });

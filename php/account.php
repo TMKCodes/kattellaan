@@ -14,12 +14,15 @@ class account {
 	public function set_identifier($identifier) {
 		$this->identifier = $identifier;
 	}
+	
 	public function get_identifier() {
 		return $this->identifier;
 	}
+	
 	public function set_username($username) {
 		$this->username = $username;
 	}
+	
 	public function get_username() {
 		return $this->username;
 	}
@@ -27,16 +30,19 @@ class account {
 	public function set_address($address) {
 		$this->address = $address;
 	}
+	
 	public function get_address() {
 		return $this->address;
 	}
+	
 	public function set_password($password) {
 		$this->password = $password;
 	}
+	
 	public function get_password() {
 		return $this->password;
 	}
-	
+
 	public function create_table() {
 		$table_query = "CREATE TABLE IF NOT EXISTS `account`(" .
 				"id INT NOT NULL AUTO_INCREMENT PRIMARY KEY," .
