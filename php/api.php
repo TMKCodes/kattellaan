@@ -100,7 +100,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		if($profile->select($_POST['uid']) == true) {
 			printf('{ "success": true, "profile": %s }', json_encode($profile->get()));
 		} else {
-			printf('{ "success": false, "error": "Profile could not be found."');
+			printf('{ "success": false, "error": "Profile could not be found." }');
 		}
 		
 	} else if(!empty($_GET['call']) && $_GET['call'] == "invite") {
