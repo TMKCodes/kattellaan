@@ -311,10 +311,12 @@ function load_profile_page(uid) {
 	
 	var sGender = gender(profile.gender);
 
+
 	var lookingFor = recursive_looking_for(profile.looking_for);
 	var lookingForArr = lookingFor.split(",");
 	lookingFor = lookingForArr.join(", ");
-
+	lookingFor = lookingFor.substring(0, lookingFor.lastIndexOf(", ")) + " ja ";
+	
 	var asl = "<h2> Olen " + age + " vuotias " + 
 		relationshipStatus + " " + sGender.toLowerCase() 
 		+ " joka etsii " + lookingFor.toLowerCase() + ".</h2>"; 
