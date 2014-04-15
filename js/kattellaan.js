@@ -180,6 +180,13 @@ function load_page(page) {
 	history.pushState(null, page, hostname + "?page=" + page);
 }
 
+function load_profile_page(uid) {
+	var profile = get_profile(uid);
+	$.cookie("last-viewed-profile", profile.identifier);
+	var username = get_username(uid);
+	$("#profile-page-top-bar-username").html("<h1>" + username + "</h1>");
+	load_page("profile-page");
+}
 window.onpopstate = function(event) {
 	$("body > .container").hide();
 	var page = get_url_parameter("page");
@@ -200,6 +207,24 @@ $("document").ready(function() {
 	} else {
 		$("#home-page").show();
 	}
+
+	if(page == "profile-page") {
+		var uid = get_url_parameter("uid");
+		if(uid != undefined) {
+			load_profile_page(uid);
+		} else if($.cookie("last-viewed-profile") != undefined) {
+			load_profile_page($.cookie("last-viewed-profile"));
+		} else {	
+			if($.cookie("session") != undefined) {
+				var session = window.atob($.cookie("session"));
+				var rsession = session.split("||");
+				load_profile_page(rsession[1]);
+			} else {
+				load_home_page();
+			}
+		}
+	}
+
 	if(check_session() == true) {
 		// disable login form and show user buttons
 		$("#authentication-form").hide();
@@ -307,10 +332,7 @@ $("#own-profile-button").click(function(evt) {
 	if($.cookie("session") != undefined) {
 		var session = window.atob($.cookie("session"));
 		var rsession = session.split("||");
-		var profile = get_profile(rsession[1]);
-		var username = get_username(rsession[1]);
-		$("#profile-page-top-bar-username").html("<h1>" + username + "</h1>");
-		load_page("profile-page");
+		load_profile_page(rsession[1]);
 	}
 });
 
