@@ -307,13 +307,13 @@ function load_profile_page(uid) {
 	var birthday = profile.birthday.split("-");
 	var age = cYear - birthday[0];
 
-	var relationship_status = odd_relationship_status(relationship_status(profile.relationship_status));
+	var relationshipStatus = odd_relationship_status(relationship_status(profile.relationship_status));
 	
 	var lookingFor = recursive_looking_for(profile.looking_for);
 	var lookingForArr = lookingFor.split(",");
 	lookingFor = lookingForArr.join(", ");
 
-	var asl = "<p>" + age + " vuotias " + relationship_status + " " + gender(profile.gender) + " joka etsii " + lookingFor + ".</p>"; 
+	var asl = "<p>" + age + " vuotias " + relationshipStatus + " " + gender(profile.gender) + " joka etsii " + lookingFor + ".</p>"; 
 
 	$("#profile-page-basic-information-asl").html(asl);
 	
