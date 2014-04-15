@@ -227,7 +227,7 @@ function looking_for(looking_for) {
 			return "date";
 		case 'Jotain muuta':
 			return "other";
-		case 'En halua kertoa":
+		case 'En halua kertoa':
 			return "none";
 	}
 }
