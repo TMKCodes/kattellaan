@@ -89,6 +89,26 @@ function update_session() {
 	}
 }
 
+function get_profile(uid) {
+	var profile;
+	$.ajax({
+		url: "php/api.php",
+		type: "POST",
+		async: false,
+		data: { call : 'get_profile', uid : uid }	
+	}.done(function(data) {
+		console.log(data);
+		var result = $.parseJSON(data);
+		if(result.success == true) {
+			profile = result.profile;
+		} else {
+			console.log(result.error);
+			profile = result.error;
+		}
+	});
+	return profile;
+}
+
 function register_select_profile_picture(picture) {
 	$.cookie("picture", picture);
 	if($("#register-select-profile-picture-name").length == 0) {
@@ -261,6 +281,13 @@ $("#home-button").click(function(evt) {
 $("#logout-button").click(function(evt) {
 	evt.preventDefault();
 	close_session();
+});
+
+
+$("#own-profile-button").click(function(evt) {
+	$("profile-page").show();
+	var profile = get_profile();
+	$("profile-page-top-bar-username").html("<h1>" + profile.username + "</h1>");
 });
 
 $("#authentication-form").submit(function(evt) {

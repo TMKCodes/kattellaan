@@ -95,6 +95,14 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		} catch (Exception $e) {
 			printf('{ "success": false, "error": "%s" }', $e->getMessage());
 		}
+	} else if(!empty($_POST['call']) && $_POST['call'] == "get_profile") {
+		$profile = new profile($database);
+		if($profile->select($_POST['uid']) == true) {
+			printf('{ "success": true, "profile": %s }', json_encode($profile->get()));
+		} else {
+			printf('{ "success": false, "error": "Profile could not be found."');
+		}
+		
 	} else if(!empty($_GET['call']) && $_GET['call'] == "invite") {
 		try {
 			$session = new session($database, "sha512");
