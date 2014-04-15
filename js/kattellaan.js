@@ -90,7 +90,7 @@ function update_session() {
 }
 
 function get_username(uid) {
-	var output;
+	var username
 	$.ajax({
 		url: "php/api.php",
 		type: "POST",
@@ -99,13 +99,13 @@ function get_username(uid) {
 	}).done(function(data) {
 		console.log(data);
 		var result = $.parseJSON(data);
-		if(result.sucess == true) {
-			output = result;
+		if(result.success == true) {
+			username = result.username;
 		} else {
 			console.log(result.error);
 		}
 	});
-	return output;
+	return username;
 }
 
 function get_profile(uid) {
@@ -308,8 +308,8 @@ $("#own-profile-button").click(function(evt) {
 		var session = window.atob($.cookie("session"));
 		var rsession = session.split("||");
 		var profile = get_profile(rsession[1]);
-		var account = get_username(rsession[1]);
-		$("#profile-page-top-bar-username").html("<h1>" + account.username + "</h1>");
+		var username = get_username(rsession[1]);
+		$("#profile-page-top-bar-username").html("<h1>" + username + "</h1>");
 		load_page("profile-page");
 	}
 });
