@@ -182,7 +182,7 @@ function load_page(page) {
 
 function load_profile_page(uid) {
 	if($.cookie("session") != undefined) {
-		var session = window.atob($.cookie("session");
+		var session = window.atob($.cookie("session"));
 		var rsession = session.split("||");
 		if(rsession[1] == uid) {
 			$("#profile-page-top-bar-menu-send-msg").hide();
