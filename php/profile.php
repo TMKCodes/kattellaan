@@ -127,6 +127,7 @@ class profile {
 		$profile['smoking'] = $this->smoking;
 		$profile['travel'] = $this->travel;
 		$profile['weight'] = $this->weight;
+		return $profile;
 	}
 
 	public function create_table() {
