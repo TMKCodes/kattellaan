@@ -148,7 +148,7 @@ function get_town(latlng) {
 		async: false,
 		data: { latlng: latlng, sensor: true }
 	}).done(function(data) {
-		result = $.parseJSON(data);
+	 	var result = $.parseJSON(data);
 		if(result.status == "OK") {
 			for(var i = 0; i < results[0].address_components.length(); i++) {
 				if(results[0].address_components[i].types[0] == "locality") {
