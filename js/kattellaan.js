@@ -140,6 +140,29 @@ function register_select_profile_picture(picture) {
 	}
 }
 
+function get_town(latlng) {
+	var town;
+	$.ajax({
+		url: "http://maps.googleapis.com/maps/api/geocode/json",
+		type: "GET",
+		async: false,
+		data: { latlng: ltlng, sensor: true }
+	}).done(function(data) {
+		result = $.parseJSON(data);
+		if(result.status == "OK") {
+			for(var i = 0; i < results[0].address_components.length(); i++) {
+				if(results[0].address_components[i].types[0] == "locality") {
+					town = result[0].address_components[i].long_name;
+					break;
+				}
+			}
+		} else {
+			town = "";
+		}
+	});
+	return town;
+}
+
 var hostname;
 
 // DO NOT REMOVE Enables hide and show binding
@@ -275,6 +298,127 @@ function odd_relationship_status(s) {
 	}
 }
 
+function unknown_town(town) {
+	// TODO: write ajax query to save unknown towns in to file.
+	return town;
+}
+
+
+function from_town(town) {
+	switch(town) {
+		case 'Akaa': return "Akaasta";
+		case 'Alajärvi': return "Alajärveltä";
+		case 'Alavus': return "Alavukselta";
+		case 'Espoo': return "Espoosta";
+		case 'Forssa': return "Forssasta";
+		case 'Haapajärvi': return "Haapajärveltä";
+		case 'Haapavesi': return "Haapavedeltä";
+		case 'Hämeenlinna': return "Hämeenlinnasta";
+		case 'Hamina': return "Haminasta";
+		case 'Hanko': return "Hangosta";
+		case 'Harjavalta': return "Harjavallasta";
+		case 'Haukipudas': return "Haikupudaasta";
+		case 'Heinola': return "Heinolasta";
+		case 'Helsinki': return "Helsingistä";
+		case 'Huittinen': return "Huittisista";
+		case 'Hyvinkää': return "Hyvinkäältä";
+		case 'Iisalmi': return "Iisalmesta";
+		case 'Ikaalinen': return "Ikaalisesta";
+		case 'Imatra': return "Imatralta";
+		case 'Pietarsaari': return "Pietarsaaresta";
+		case 'Joensuu': return "Joensuusta";
+		case 'Juankoski': return "Juankoskelta";
+		case 'Jyväskylä': return "Jyväskylästä";
+		case 'Jämsä': return "Jämsästä";
+		case 'Järvenpää': return "Järvenpäästä";
+		case 'Kaarina': return "Kaarinasta";
+		case 'Kajaani': return "Kajaanista";
+		case 'Kalajoki': return "Kalajoelta";
+		case 'Kankaanpäästä': return "Kankaanpäästä";
+		case 'Kannus': return "Kannuksesta";
+		case 'Karkkila': return "Karkkilasta";
+		case 'Kaskinen': return "Kaskilasta";
+		case 'Kauhajoki': return "Kauhajoelta";
+		case 'Kauhava': return "Kauhavalta";
+		case 'Kauniainen': return "Kauniaisista";
+		case 'Kemi': return "Kemistä";
+		case 'Kemijärvi': return "Kemijärveltä";
+		case 'Kerava': return "Keravasta";
+		case 'Keuruu': return "Keuruusta";
+		case 'Kitee': return "Kiteestä";
+		case 'Kiuruvesi': return "Kiuruvedeltä";
+		case 'Kokemäki': return "Kokemäeltä";
+		case 'Kokkola': return "Kokkolasta";
+		case 'Kotka': return "Kotkasta";
+		case 'Kouvola': return "Kouvolasta";
+		case 'Kristiinankaupunki': return "Kristiinankaupungista";
+		case 'Kuhmo': return "Kuhmosta";
+		case 'Kuopio': return "Kuopiosta";
+		case 'Kurikka': return "Kurikasta";
+		case 'Kuusamo': return "Kuusamosta";
+		case 'Lahti': return "Lahdesta";
+		case 'Laitila': return "Laitilasta";
+		case 'Lappeenranta': return "Lappeenrannasta";
+		case 'Lapua': return "Lapualta";
+		case 'Lieksa': return "Lieksasta";
+		case 'Lohja': return "Lohjalta";
+		case 'Loimaa': return "Loimaalta";
+		case 'Loviisa': return "Loviisasta";
+		case 'Mänttä-Vilppula': return "Mänttä-Vilppulasta";
+		case 'Maarianhamina': return "Maarianhaminasta";
+		case 'Mikkeli': return "Mikkelistä";
+		case 'Naantali': return "Naantalista";
+		case 'Närpiö': return "Närpiöstä";
+		case 'Nilsiä': return "Nilsiästä";
+		case 'Nivala': return "Nivalasta";
+		case 'Nokia': return "Nokialta";
+		case 'Nurmes': return "Nurmesta";
+		case 'Uusikaarlepyy': return "Uusikaarlepyystä";
+		case 'Orimattila': return "Orimattilasta";
+		case 'Orivesi': return "Orivedestä";
+		case 'Oulainen': return "Oulaisista";
+		case 'Oulu': return "Oulusta";
+		case 'Outokumpu': return "Outokummusta";
+		case 'Paimi': return "Paimiosta";
+		case 'Parainen': return "Paraisesta";
+		case 'Parkano': return "Parkanosta";
+		case 'Pieksämäki': return "Pieksämäeltä";
+		case 'Pori': return "Porista";
+		case 'Porvoo': return "Porvoosta";
+		case 'Pudasjärvi': return "Pudasjärveltä";
+		case 'Pyhäjärvi': return "Pyhäjärveötä";
+		case 'Raahe': return "Raahesta";
+		case 'Raasepori': return "Raaseporista";
+		case 'Rauma': return "Raumalta";
+		case 'Raisio': return "Raisiosta";
+		case 'Riihimäki': return "Riihimäeltä";
+		case 'Rovaniemi': return "Rovaniemestä";
+		case 'Saarijärvi': return "Saarijärveltä";
+		case 'Salo': return "Salosta";
+		case 'Sastamala': return "Sastamalasta";
+		case 'Savonlinna': return "Savonlinnasta";
+		case 'Seinäjoki': return "Seinäjoelta";
+		case 'Siuntio': return "Siuntiosta";
+		case 'Somero': return "Somerosta";
+		case 'Suonenjoki': return "Suonenjoelta";
+		case 'Tampere': return "Tampereelta";
+		case 'Tornio': return "Torniosta";
+		case 'Turku': return "Turusta";
+		case 'Ulvila': return "Ulvilasta";
+		case 'Uusikaupunki': return "Uusikaupungista";
+		case 'Vaasa': return "Vaasasta";
+		case 'Valkeakoski': return "Valkeakoskelta";
+		case 'Vantaa': return "Vantaalta";
+		case 'Varkaus': return "Varkaudesta";
+		case 'Viitasaari': return "Viitasaaresta";
+		case 'Virrat': return "Virrasta";
+		case 'Ylivieska': return "Ylivieskasta";
+		case 'Ylöjärvi': return "Ylöjärveltä";
+		case 'Äänekoski': return "Äänekoskelta";
+		case 'Ähtäri': return "Ähtäristä";
+		case default: return unknown_town(town);
+	}
+}
 
 
 function load_profile_page(uid) {
@@ -311,6 +455,7 @@ function load_profile_page(uid) {
 	
 	var sGender = gender(profile.gender);
 
+	var town = from_town(get_town(profile.latlng));
 
 	var lookingFor = recursive_looking_for(profile.looking_for);
 	var lookingForArr = lookingFor.split(",");
@@ -318,7 +463,7 @@ function load_profile_page(uid) {
 	lookingFor = lookingFor.replace(/,\s([^,]+)$/, " ja $1");
 	
 	var asl = "<h2> Olen " + age + " vuotias " + 
-		relationshipStatus + " " + sGender.toLowerCase() 
+		relationshipStatus + " " + sGender.toLowerCase() + " " + town
 		+ " joka etsii " + lookingFor.toLowerCase() + ".</h2>"; 
 
 	$("#profile-page-basic-information-asl").html(asl);
