@@ -156,6 +156,7 @@ function get_town(latlng) {
 		console.log(data); 
 		var result = data;
 		if(result.status == "OK") {
+			console.log(result[0]);
 			for(var i = 0; i < result[0].address_components.length; i++) {
 				if(result[0].address_components[i].types[0] == "locality") {
 					town = result[0].address_components[i].long_name;
