@@ -146,7 +146,7 @@ function get_town(latlng) {
 		url: "http://maps.googleapis.com/maps/api/geocode/json",
 		type: "GET",
 		async: false,
-		data: { latlng: ltlng, sensor: true }
+		data: { latlng: latlng, sensor: true }
 	}).done(function(data) {
 		result = $.parseJSON(data);
 		if(result.status == "OK") {
