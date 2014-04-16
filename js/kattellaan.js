@@ -416,7 +416,7 @@ function from_town(town) {
 		case 'Ylöjärvi': return "Ylöjärveltä";
 		case 'Äänekoski': return "Äänekoskelta";
 		case 'Ähtäri': return "Ähtäristä";
-		case default: return unknown_town(town);
+		default: return unknown_town(town);
 	}
 }
 
