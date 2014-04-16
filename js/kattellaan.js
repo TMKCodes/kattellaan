@@ -142,6 +142,8 @@ function register_select_profile_picture(picture) {
 
 function get_town(latlng) {
 	var town;
+	latlng = latlng.replace(/(/g, '');
+	latlng = latlng.replace(/)/g, '');
 	console.log(latlng);
 	$.ajax({
 		url: "http://maps.googleapis.com/maps/api/geocode/json",
