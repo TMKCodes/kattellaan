@@ -154,12 +154,10 @@ function get_town(latlng) {
 		data: { latlng: latlng, sensor: true }
 	}).done(function(data) {
 		console.log(data); 
-		var result = data;
-		if(result.status == "OK") {
-			console.log(result[0]);
-			for(var i = 0; i < result[0].address_components.length; i++) {
-				if(result[0].address_components[i].types[0] == "locality") {
-					town = result[0].address_components[i].long_name;
+		if(data.status == "OK") {
+			for(var i = 0; i < data.results[0].address_components.length; i++) {
+				if(data.results[0].address_components[i].types[0] == "locality") {
+					town = data.results[0].address_components[i].long_name;
 					break;
 				}
 			}
