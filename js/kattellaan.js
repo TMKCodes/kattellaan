@@ -149,6 +149,7 @@ function get_town(latlng) {
 	$.ajax({
 		url: "http://maps.googleapis.com/maps/api/geocode/json",
 		type: "GET",
+		dataType: 'json',
 		async: false,
 		data: { latlng: latlng, sensor: true }
 	}).done(function(data) {
