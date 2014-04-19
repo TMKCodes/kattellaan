@@ -1,9 +1,9 @@
 function get_url_parameter(param) {
-	var url = window.location.search.substring(1);
+  var url = window.location.search.substring(1);
 	var variables = url.split('&');
 	for(var i = 0; i < variables.length; i++) {
 		var parameter = variables[i].split('=');
-		if(parameter[0] == param) {
+		if(parameter[0] === param) {
 			return parameter[1];
 		}
 	}
@@ -17,12 +17,12 @@ function open_session(username, password) {
 		async: false,
 		data: { call : 'open_session', username : username, password : password }
 	}).done(function(data) {
-		console.log(data);	
+		console.log(data);
 		var result = $.parseJSON(data);
-		if(result.success == true) {
+		if(result.success === true) {
 			$.cookie("session", result.session);
 		} else {
-			if($.cookie("session") != undefined) {
+			if($.cookie("session") !== undefined) {
 				$.removeCookie("session");
 			}
 		}
@@ -39,8 +39,8 @@ function close_session() {
 	}).done(function(data) {
 		console.log(data);
 		var result = $.parseJSON(data);
-		if(result.success == true) {
-			if($.cookie("session") != undefined) {
+		if(result.success === true) {
+			if($.cookie("session") !== undefined) {
 				$.removeCookie("session");
 			}
 			$("#user-menu").hide();
@@ -55,7 +55,7 @@ function close_session() {
 
 function check_session() {
 	update_session();
-	if($.cookie("session") != undefined) {
+	if($.cookie("session") !== undefined) {
 		return true;
 	} else {
 		return false;
@@ -64,7 +64,7 @@ function check_session() {
 
 function update_session() {
 	var session = $.cookie("session");
-	if(session != undefined) {
+	if(session !== undefined) {
 		$.ajax({
 			url: "php/api.php",
 			type: "POST",
@@ -73,10 +73,10 @@ function update_session() {
 		}).done(function(data) {
 			console.log(data);
 			var result = $.parseJSON(data);
-			if(result.success == true) {
+			if(result.success === true) {
 				$.cookie("session", result.session);
 			} else {
-				if($.cookie("session") != undefined) {
+				if($.cookie("session") !== undefined) {
 					$.removeCookie("session");
 				}
 			}
@@ -90,7 +90,7 @@ function update_session() {
 }
 
 function get_username(uid) {
-	var username
+	var username;
 	$.ajax({
 		url: "php/api.php",
 		type: "POST",
@@ -99,7 +99,7 @@ function get_username(uid) {
 	}).done(function(data) {
 		console.log(data);
 		var result = $.parseJSON(data);
-		if(result.success == true) {
+		if(result.success === true) {
 			username = result.username;
 		} else {
 			console.log(result.error);
@@ -114,11 +114,11 @@ function get_profile(uid) {
 		url: "php/api.php",
 		type: "POST",
 		async: false,
-		data: { call : 'get_profile', uid : uid }	
+		data: { call : 'get_profile', uid : uid }
 	}).done(function(data) {
 		console.log(data);
 		var result = $.parseJSON(data);
-		if(result.success == true) {
+		if(result.success === true) {
 			profile = result.profile;
 		} else {
 			console.log(result.error);
@@ -130,12 +130,12 @@ function get_profile(uid) {
 
 function register_select_profile_picture(picture) {
 	$.cookie("picture", picture);
-	if($("#register-select-profile-picture-name").length == 0) {
+	if($("#register-select-profile-picture-name").length === 0) {
 		$("#register-select-profile-picture-page").append("<div class\"row\" id=\"register-select-profile-picture-success-alert\"><div class=\"alert alert-success\" id=\"register-select-profile-picture-name\"><p>Valitsit " + picture + " profiili kuvaksesi.</p></div></div>");
 	} else {
 		$("#register-select-profile-picture-name").html("<p>Valitsit " + picture + " profiili kuvaksesi.</p>");
 	}
-	if($("#register-select-profile-picture-done-button").length == 0) {
+	if($("#register-select-profile-picture-done-button").length === 0) {
 		$("#register-select-profile-picture-name").append("<button class=\"btn btn-default\" id=\"register-select-profile-picture-done-button\" onclick=\"register_select_profile_picture_done_button(); return false;\">Jatka</button>");
 	}
 }
@@ -153,10 +153,10 @@ function get_town(latlng) {
 		async: false,
 		data: { latlng: latlng, sensor: true }
 	}).done(function(data) {
-		console.log(data); 
-		if(data.status == "OK") {
+		console.log(data);
+		if(data.status === "OK") {
 			for(var i = 0; i < data.results[0].address_components.length; i++) {
-				if(data.results[0].address_components[i].types[0] == "locality") {
+				if(data.results[0].address_components[i].types[0] === "locality") {
 					town = data.results[0].address_components[i].long_name;
 					break;
 				}
@@ -193,7 +193,7 @@ function register_select_profile_picture_done_button() {
 function load_home_page() {
 	$("body > .container").hide();
 	$("#home-page").show();
-	if(check_session() == true) {
+	if(check_session() === true) {
 		// disable register jumbotron
 		$("#register-information-jumbotron").hide();
 	} else {
@@ -208,8 +208,8 @@ function load_page(page) {
 	history.pushState(null, page, hostname + "?page=" + page);
 }
 
-function gender(gender) {
-	switch(gender) {
+function gender(g) {
+	switch(g) {
 		case 'man':
 			return "Mies";
 		case 'woman':
@@ -230,7 +230,7 @@ function gender(gender) {
 			return "transwoman";
 		case 'Sukupuoleton':
 			return "sexless";
-	}		
+	}
 }
 
 function looking_for(lookingFor) {
@@ -241,7 +241,7 @@ function looking_for(lookingFor) {
 			return "Rakkautta";
 		case 'date':
 			return "Tapaamisia";
-		case 'sex': 
+		case 'sex':
 			return "Seksiä";
 		case 'other':
 			return "Jotain muuta";
@@ -427,10 +427,10 @@ function from_town(town) {
 
 
 function load_profile_page(uid) {
-	if($.cookie("session") != undefined) {
+	if($.cookie("session") !== undefined) {
 		var session = window.atob($.cookie("session"));
 		var rsession = session.split("||");
-		if(rsession[1] == uid) {
+		if(rsession[1] === uid) {
 			$("#profile-page-top-bar-menu-send-msg").hide();
 			$("#profile-page-top-bar-menu-add-friend").hide();
 			$("#profile-page-top-bar-menu-request-date").hide();
@@ -467,43 +467,44 @@ function load_profile_page(uid) {
 	lookingFor = lookingForArr.join(", ");
 	lookingFor = lookingFor.replace(/,\s([^,]+)$/, " ja $1");
 	
-	var asl = "<h2> Olen " + age + " vuotias " + 
+	var asl = "<h2> Olen " + age + " vuotias " +
 		relationshipStatus + " " + sGender.toLowerCase() + " " + town
-		+ " joka etsii " + lookingFor.toLowerCase() + ".</h2>"; 
+		+ " joka etsii " + lookingFor.toLowerCase() + ".</h2>";
 
 	$("#profile-page-basic-information-asl").html(asl);
 	
 	load_page("profile-page");
 }
+
 window.onpopstate = function(event) {
 	$("body > .container").hide();
 	var page = get_url_parameter("page");
-	if(page != undefined) {
+	if(page !== undefined) {
 		$("#" + page).show();
 	} else {
 		$("#home-page").show();
 	}
-}
+};
 
 $("document").ready(function() {
 	$(".multiselect").multiselect();
 	$("body > .container").hide();
 	hostname = location.protocol + '//' + location.hostname + location.pathname;
 	var page = get_url_parameter("page");
-	if(page != undefined) {
+	if(page !== undefined) {
 		load_page(page);
 	} else {
 		$("#home-page").show();
 	}
 
-	if(page == "profile-page") {
+	if(page === "profile-page") {
 		var uid = get_url_parameter("uid");
-		if(uid != undefined) {
+		if(uid !== undefined) {
 			load_profile_page(uid);
-		} else if($.cookie("last-viewed-profile") != undefined) {
+		} else if($.cookie("last-viewed-profile") !== undefined) {
 			load_profile_page($.cookie("last-viewed-profile"));
-		} else {	
-			if($.cookie("session") != undefined) {
+		} else {
+			if($.cookie("session") !== undefined) {
 				var session = window.atob($.cookie("session"));
 				var rsession = session.split("||");
 				load_profile_page(rsession[1]);
@@ -513,7 +514,7 @@ $("document").ready(function() {
 		}
 	}
 
-	if(check_session() == true) {
+	if(check_session() === true) {
 		// disable login form and show user buttons
 		$("#authentication-form").hide();
 		$("#register-information-jumbotron").hide();
@@ -525,7 +526,7 @@ $("document").ready(function() {
 		$("#register-information-jumbotron").show();
 	}
 
-	setInterval(function() { 
+	setInterval(function() {
 		update_session();
 	}, 15000);
 	// ...
@@ -548,40 +549,40 @@ $("document").ready(function() {
 		uploadProgress: function(evt, position, total, percentComplete) {
 			$("#register-picture-upload-progress-bar").width(percentComplete + "%");
 			$("#register-picture-upload-progress-percent").html(percentComplete + "%");
-			if(percentComplete == 100) {
+			if(percentComplete === 100) {
 				$("#register-picture-upload-progress-percent").html("Odota.");
 			}
 		},
 		success: function(responseText, statusText, xhr, $form) {
-			if(statusText == "success") {
-				if(responseText.success == true) {
+			if(statusText === "success") {
+				if(responseText.success === true) {
 					$("#register-picture-upload-progress-bar").width("100%");
 					$("#register-picture-upload-progress-percent").html("Lähetetty.");
-					if(responseText.uploaded_files != undefined) {
-						if($("#register-select-picture").length == 0) {
+					if(responseText.uploaded_files !== undefined) {
+						if($("#register-select-picture").length === 0) {
 							$("#register-select-profile-picture-page").append("<div id=\"register-select-picture\"></div>");
 						}
-						if($("#register-select-picture-header").length == 0) {
+						if($("#register-select-picture-header").length === 0) {
 							$("#register-select-picture").append("<h1 id=\"register-select-picture-header\">Valitse profiili kuvasi.</h1>");
 						}
 						var rowNumber = 0;
 						var count = responseText.uploaded_files.length;
 						for(var i = 0; i < count; i++) {
 							console.log("Uploaded file: " + responseText.uploaded_files[i]);
-							if(i % 4 == 0) {
+							if(i % 4 === 0) {
 								rowNumber = i / 4;
 								$("#register-select-picture").append("<div class=\"row\" id=\"row-" + rowNumber + "\"></div>");
 							}
 							$("#row-" + rowNumber).append("<div class=\"col-xs-6 col-md-3\"><div class=\"thumbnail\" id=\"thumbnail-" + i + "\">" +
-											"<img style=\"heigth: 300px; width: 300px;\" src=\"uploads/" + responseText.uploaded_files[i] + "\" alt=\"" + responseText.uploaded_files[i]+ "\" />" + 
+											"<img style=\"heigth: 300px; width: 300px;\" src=\"uploads/" + responseText.uploaded_files[i] + "\" alt=\"" + responseText.uploaded_files[i]+ "\" />" +
 											"<div class=\"caption\"><p>" + responseText.uploaded_files[i]+ "</p>" +
 											"<button class=\"btn btn-default\" onclick=\"register_select_profile_picture('" + responseText.uploaded_files[i] + "'); return false;\">Valitse tämä</button>" +
 											"</div></div></div>");
 						}
 					}
-					if(responseText.failed_files != undefined) {
-						for(var i = 0; i < responseText.failed_files.length; i++) {
-							console.log("Failed to upload file: " + responseText.failed_files[i]);
+					if(responseText.failed_files !== undefined) {
+						for(var x = 0; x < responseText.failed_files.length; x++) {
+							console.log("Failed to upload file: " + responseText.failed_files[x]);
 						}
 					}
 				} else {
@@ -593,13 +594,13 @@ $("document").ready(function() {
 				$("#register-picture-upload-progress-bar").width("0%");
 				$("#register-picture-upload-progress-percent").html("0%");
 				console.log("Uploading failed.");
-			}	
+			}
 		}
 	});
 });
 
 $("#navigation-left > li").click(function(evt) {
-	evt.preventDefault();	
+	evt.preventDefault();
 	$("#navigation-left").children().removeClass("active");
 	$(this).addClass("active");
 });
@@ -617,7 +618,7 @@ $("#logout-button").click(function(evt) {
 
 
 $("#own-profile-button").click(function(evt) {
-	if($.cookie("session") != undefined) {
+	if($.cookie("session") !== undefined) {
 		var session = window.atob($.cookie("session"));
 		var rsession = session.split("||");
 		load_profile_page(rsession[1]);
@@ -627,7 +628,7 @@ $("#own-profile-button").click(function(evt) {
 $("#authentication-form").submit(function(evt) {
 	evt.preventDefault();
 	open_session($("#authentication-form-username-input").val(), $("#authentication-form-password-input").val());
-	if(check_session() == true) {
+	if(check_session() === true) {
 		$("#authentication-form").hide();
 		$("#register-information-jumbotron").hide();
 		$("#authentication-error-page").hide();
@@ -667,8 +668,8 @@ $("#register-account-form").submit(function(evt) {
 		$("#register-account-password-empty-error").show();
 	} else if($("#register-account-password-confirm-input").val().length <= 0) {
 		$("#register-account-password-empty-error").show();
-	} else if($("#register-account-password-input").val() != $("#register-account-password-confirm-input").val()) {
-		console.log($("#register-account-password-input").val() + " != " + $("#register-account-password-confirm-input").val());
+	} else if($("#register-account-password-input").val() !== $("#register-account-password-confirm-input").val()) {
+		console.log($("#register-account-password-input").val() + " !== " + $("#register-account-password-confirm-input").val());
 		$("#register-account-password-mismatch-error").show();
 	} else {
 		console.log("method: " + $(this).attr('method'));
@@ -679,9 +680,9 @@ $("#register-account-form").submit(function(evt) {
 			data: $(this).serialize()
 		}).done(function(data){
 			var result = $.parseJSON(data);
-			if(result.success == true) {
+			if(result.success === true) {
 				open_session(result.account.username, result.account.password);
-				if($.cookie("session") != undefined) {
+				if($.cookie("session") !== undefined) {
 					load_page("register-invite-page");
 					$.cookie("username", result.account.username);
 				} else {
@@ -709,30 +710,30 @@ $("#register-terms-of-service-stop-button").click(function(evt) {
 $("#register-invite-form").submit(function(evt) {
 	evt.preventDefault();
 	var form_data = $(this).serialize();
-	if(check_session() == true) {
-		form_data = form_data + "&session=" + $.cookie("session");	
+	if(check_session() === true) {
+		form_data = form_data + "&session=" + $.cookie("session");
 	}
 	$.ajax({
 		type: $(this).attr('method'),
 		url: $(this).attr('action'),
-		data: form_data 
+		data: form_data
 	}).done(function(data) {
 		console.log(data);
 		var result = $.parseJSON(data);
-		if(result.success == true) {
+		if(result.success === true) {
 			var cloneinput = $("#register-invite-friend-addresses").children(":first").clone();
 			$("#register-invite-friend-addresses").children(".input-group").remove();
 			var count = 0;
 			var invites = "";
 			for(var index in result.invite) {
 				console.log(result.invite[index]);
-				if(result.invite[index] != true) {
+				if(result.invite[index] !== true) {
 					$("#register-invite-friend-addresses").append(cloneinput);
 					$("#register-invite-friend-addresses").children(":last").children("label").attr("for", "register-invite-friend-address-input-" + count);
 					$("#register-invite-friend-addresses").children(":last").children("label").html("Tälle ystävälle kutsun lähettäminen epäonnistui.");
 					$("#register-invite-friend-addresses").children(":last").children("label").css("color", "red");
 					$("#register-invite-friend-addresses").children(":last").children("input").attr("id", "register-invite-friend-address-input-" + count);
-					$("#register-invite-friend-addresses").children(":last").children("input").attr("name", "friend-address-" + count);		
+					$("#register-invite-friend-addresses").children(":last").children("input").attr("name", "friend-address-" + count);
 					$("#register-invite-friend-addresses").children(":last").children("input").val(result.invite[index].address);
 					cloneinput = $("#register-invite-friend-addresses").children(":last").clone();
 					count = count + 1;
@@ -740,10 +741,10 @@ $("#register-invite-form").submit(function(evt) {
 				}
 			}
 			$.cookie("invites", invites);
-			if(count == 0) {
+			if(count === 0) {
 				//continue
 			} else {
-				$("#register-invite-friend-count").val(count);	
+				$("#register-invite-friend-count").val(count);
 			}
 		} else {
 			// failed to confirm session.
@@ -756,7 +757,7 @@ $("#register-invite-add-button").click(function(evt) {
 	evt.preventDefault();
 	var friends = parseInt($("#register-invite-friend-count").val(), 10);
 	friends = friends + 1;
-	text_friends = friends + 1;	
+	text_friends = friends + 1;
 	$("#register-invite-friend-addresses").append($("#register-invite-friend-addresses").children(":last").clone());
 	$("#register-invite-friend-addresses").children(":last").children("label").attr("for", "register-friend-address-input-" + friends);
 	$("#register-invite-friend-addresses").children(":last").children("label").html("Ystävän " + String(text_friends) + " sähköposti osoite:");
@@ -774,7 +775,7 @@ $("#register-invite-skip-button").click(function(evt) {
 
 
 $("#register-select-gender-page").on("show", function(evt) {
-	if($.cookie("gender") != undefined) {
+	if($.cookie("gender") !== undefined) {
 		$("#register-select-gender-input").val($.cookie("gender"));
 	}
 });
@@ -787,12 +788,12 @@ $("#register-select-gender-input").change(function(evt) {
 
 $("#register-select-gender-done-button").click(function(evt) {
 	evt.preventDefault();
-	if(check_session() == true) {
+	if(check_session() === true) {
 		var gender = $("#register-select-gender-input").val();
-		if(gender != undefined) {
+		if(gender !== undefined) {
 			$.cookie("gender", gender);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
@@ -807,7 +808,7 @@ $("#register-select-gender-done-button").click(function(evt) {
 });
 
 $("#register-select-birthday-page").on("show", function(evt) {
-	if($.cookie("birthday") != undefined) {
+	if($.cookie("birthday") !== undefined) {
 		$("#register-select-birthday-input").val($.cookie("birthday"));
 	}
 });
@@ -819,11 +820,11 @@ $("#register-select-birthday-input").change(function(evt) {
 $("#register-select-birthday-done-button").click(function(evt) {
 	evt.preventDefault();
 	var birthday = $("#register-select-birthday-input").val();
-	if(check_session() == true) {
-		if(birthday != undefined) {
+	if(check_session() === true) {
+		if(birthday !== undefined) {
 			$.cookie("birthday", birthday);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
@@ -838,7 +839,7 @@ $("#register-select-birthday-done-button").click(function(evt) {
 });
 
 $("#register-select-relationship-status-page").on("show", function(evt) {
-	if($.cookie("relationship-status") != undefined) {
+	if($.cookie("relationship-status") !== undefined) {
 		$("#register-select-relationship-status-input").val($.cookie("relationship-status"));
 	}
 });
@@ -850,11 +851,11 @@ $("#register-select-relationship-status-input").change(function(evt) {
 $("#register-select-relationship-status-done-button").click(function(evt) {
 	evt.preventDefault();
 	var relationshipStatus = $("#register-select-relationship-status-input").val();
-	if(check_session() == true) {
-		if(relationshipStatus != undefined) {
+	if(check_session() === true) {
+		if(relationshipStatus !== undefined) {
 			$.cookie("relationship-status", relationshipStatus);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
@@ -867,7 +868,7 @@ $("#register-select-relationship-status-done-button").click(function(evt) {
 });
 
 $("#register-select-sexual-orientation-page").on("show", function(evt) {
-	if($.cookie("sexual-orientation") != undefined) {
+	if($.cookie("sexual-orientation") !== undefined) {
 		$("#register-select-sexual-orientation-input").val($.cookie("sexual-orientation"));
 	}
 });
@@ -879,11 +880,11 @@ $("#register-select-sexual-orientation-input").change(function(evt) {
 $("#register-select-sexual-orientation-done-button").click(function(evt) {
 	evt.preventDefault();
 	var sexualOrientation = $("#register-select-sexual-orientation-input").val();
-	if(check_session() == true) {
-		if(sexualOrientation != undefined) {
+	if(check_session() === true) {
+		if(sexualOrientation !== undefined) {
 			$.cookie("sexual-orientation", sexualOrientation);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
@@ -896,7 +897,7 @@ $("#register-select-sexual-orientation-done-button").click(function(evt) {
 });
 
 $("#register-select-looking-for-page").on("show", function(evt) {
-	if($.cookie("looking-for") != undefined) {
+	if($.cookie("looking-for") !== undefined) {
 		$("#register-select-looking-for-input").val($.cookie("looking-for"));
 	}
 });
@@ -908,11 +909,11 @@ $("#register-select-looking-for-input").change(function(evt) {
 $("#register-select-looking-for-done-button").click(function(evt) {
 	evt.preventDefault();
 	var lookingForValues = $("#register-select-looking-for-input").val();
-	if(check_session() == true) {
-		if(lookingForValues != undefined) {
+	if(check_session() === true) {
+		if(lookingForValues !== undefined) {
 			$.cookie("looking-for", lookingForValues);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
@@ -927,7 +928,7 @@ $("#register-select-looking-for-done-button").click(function(evt) {
 });
 
 $("#register-select-height-page").on("show", function(evt) {
-	if($.cookie("height") != undefined) {
+	if($.cookie("height") !== undefined) {
 		$("#register-select-height-input").val($.cookie("height"));
 	}
 });
@@ -939,11 +940,11 @@ $("#register-select-height-input").change(function(evt) {
 $("#register-select-height-done-button").click(function(evt) {
 	evt.preventDefault();
 	var height = $("#register-select-height-input").val();
-	if(check_session() == true) {
-		if(height != undefined) {
+	if(check_session() === true) {
+		if(height !== undefined) {
 			$.cookie("height", height);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
@@ -958,7 +959,7 @@ $("#register-select-height-done-button").click(function(evt) {
 });
 
 $("#register-select-weight-page").on("show", function(evt) {
-	if($.cookie("weight") != undefined) {
+	if($.cookie("weight") !== undefined) {
 		$("#register-select-weight-input").val($.cookie("weight"));
 	}
 });
@@ -970,11 +971,11 @@ $("#register-select-weight-input").change(function(evt) {
 $("#register-select-weight-done-button").click(function(evt) {
 	evt.preventDefault();
 	var weight = $("#register-select-weight-input").val();
-	if(check_session() == true) {
-		if(weight != undefined) {
+	if(check_session() === true) {
+		if(weight !== undefined) {
 			$.cookie("weight", weight);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
@@ -989,7 +990,7 @@ $("#register-select-weight-done-button").click(function(evt) {
 });
 
 $("#register-select-body-type-page").on("show", function(evt) {
-	if($.cookie("body-type") != undefined) {
+	if($.cookie("body-type") !== undefined) {
 		$("#register-select-body-type-input").val($.cookie("body-type"));
 	}
 });
@@ -1001,11 +1002,11 @@ $("#register-select-body-type-input").change(function(evt) {
 $("#register-select-body-type-done-button").click(function(evt) {
 	evt.preventDefault();
 	var bodyType = $("#register-select-body-type-input").val();
-	if(check_session() == true) {
-		if(bodyType != undefined) {
+	if(check_session() === true) {
+		if(bodyType !== undefined) {
 			$.cookie("body-type", bodyType);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
@@ -1020,7 +1021,7 @@ $("#register-select-body-type-done-button").click(function(evt) {
 });
 
 $("#register-select-eye-color-page").on("show", function(evt) {
-	if($.cookie("eye-color") != undefined) {
+	if($.cookie("eye-color") !== undefined) {
 		$("#register-select-eye-color-input").val($.cookie("eye-color"));
 	}
 });
@@ -1032,11 +1033,11 @@ $("#register-select-eye-color-input").change(function(evt) {
 $("#register-select-eye-color-done-button").click(function(evt) {
 	evt.preventDefault();
 	var eyeColor = $("#register-select-eye-color-input").val();
-	if(check_session() == true) {
-		if(eyeColor != undefined) {
+	if(check_session() === true) {
+		if(eyeColor !== undefined) {
 			$.cookie("eye-color", eyeColor);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
@@ -1051,7 +1052,7 @@ $("#register-select-eye-color-done-button").click(function(evt) {
 });
 
 $("#register-select-hair-length-page").on("show", function(evt) {
-	if($.cookie("hair-length") != undefined) {
+	if($.cookie("hair-length") !== undefined) {
 		$("#register-select-hair-length-input").val($.cookie("hair-length"));
 	}
 });
@@ -1063,11 +1064,11 @@ $("#register-select-hair-length-input").change(function(evt) {
 $("#register-select-hair-length-done-button").click(function(evt) {
 	evt.preventDefault();
 	var hairLength = $("#register-select-hair-length-input").val();
-	if(check_session() == true) {
-		if(hairLength != undefined) {
+	if(check_session() === true) {
+		if(hairLength !== undefined) {
 			$.cookie("hair-lenght", hairLength);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
@@ -1082,7 +1083,7 @@ $("#register-select-hair-length-done-button").click(function(evt) {
 });
 
 $("#register-select-hair-color-page").on("show", function(evt) {
-	if($.cookie("hair-color") != undefined) {
+	if($.cookie("hair-color") !== undefined) {
 		$("#register-select-hair-color-input").val($.cookie("hair-color"));
 	}
 });
@@ -1094,11 +1095,11 @@ $("#register-select-hair-color-input").change(function(evt) {
 $("#register-select-hair-color-done-button").click(function(evt) {
 	evt.preventDefault();
 	var hairColor = $("#register-select-hair-color-input").val();
-	if(check_session() == true) {
-		if(hairColor != undefined) {
+	if(check_session() === true) {
+		if(hairColor !== undefined) {
 			$.cookie("hair-color", hairColor);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
@@ -1113,7 +1114,7 @@ $("#register-select-hair-color-done-button").click(function(evt) {
 });
 
 $("#register-select-kids-page").on("show", function(evt) {
-	if($.cookie("kids") != undefined) {
+	if($.cookie("kids") !== undefined) {
 		$("#register-select-kids-input").val($.cookie("kids"));
 	}
 });
@@ -1125,11 +1126,11 @@ $("#register-select-kids-input").change(function(evt) {
 $("#register-select-kids-done-button").click(function(evt) {
 	evt.preventDefault();
 	var kids = $("#register-select-kids-input").val();
-	if(check_session() == true) {
-		if(kids != undefined) {
+	if(check_session() === true) {
+		if(kids !== undefined) {
 			$.cookie("kids", kids);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
@@ -1144,7 +1145,7 @@ $("#register-select-kids-done-button").click(function(evt) {
 });
 
 $("#register-select-accomodation-input").change("show", function(evt) {
-	if($.cookie("accomodation") != undefined) {
+	if($.cookie("accomodation") !== undefined) {
 		$("#register-select-accomodation-input").val($.cookie("accomodation"));
 	}
 });
@@ -1156,11 +1157,11 @@ $("#register-select-accomodation-input").change(function(evt) {
 $("#register-select-accomodation-done-button").click(function(evt) {
 	evt.preventDefault();
 	var accomodation = $("#register-select-accomodation-input").val();
-	if(check_session() == true) {
-		if(accomodation != undefined) {
+	if(check_session() === true) {
+		if(accomodation !== undefined) {
 			$.cookie("accomodation", accomodation);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
@@ -1175,7 +1176,7 @@ $("#register-select-accomodation-done-button").click(function(evt) {
 });
 
 $("#register-select-ethnic-identity-page").on("show", function(evt) {
-	if($.cookie("ethnic-identity") != undefined) {
+	if($.cookie("ethnic-identity") !== undefined) {
 		$("#register-select-ethnic-identity-input").val($.cookie("ethnic-identity"));
 	}
 });
@@ -1187,11 +1188,11 @@ $("#register-select-ethnic-identity-input").change(function(evt) {
 $("#register-select-ethnic-identity-done-button").click(function(evt) {
 	evt.preventDefault();
 	var ethnicIdentity = $("#register-select-ethnic-identity-input").val();
-	if(check_session() == true) {
-		if(ethnicIdentity != undefined) {
+	if(check_session() === true) {
+		if(ethnicIdentity !== undefined) {
 			$.cookie("ethnic-identity", ethnicIdentity);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
@@ -1206,9 +1207,9 @@ $("#register-select-ethnic-identity-done-button").click(function(evt) {
 });
 
 $("#register-select-language-skills-page").on("show", function(evt) {
-	if($.cookie("language-skills") != undefined) {
+	if($.cookie("language-skills") !== undefined) {
 		$("#register-select-language-skills-input").val($.cookie("language-skills"));
-	}	
+	}
 });
 
 $("#register-select-language-skills-input").change(function(evt) {
@@ -1218,11 +1219,11 @@ $("#register-select-language-skills-input").change(function(evt) {
 $("#register-select-language-skills-done-button").click(function(evt) {
 	evt.preventDefault();
 	var languageSkills = $("#register-select-language-skills-input").val();
-	if(check_session() == true) {
-		if(languageSkills != undefined) {
+	if(check_session() === true) {
+		if(languageSkills !== undefined) {
 			$.cookie("language-skills", languageSkills);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
@@ -1237,7 +1238,7 @@ $("#register-select-language-skills-done-button").click(function(evt) {
 });
 
 $("#register-select-education-page").on("show", function(evt) {
-	if($.cookie("education") != undefined) {
+	if($.cookie("education") !== undefined) {
 		$("#register-select-education-input").val($.cookie("education"));
 	}
 });
@@ -1249,11 +1250,11 @@ $("#register-select-education-input").change(function(evt) {
 $("#register-select-education-done-button").click(function(evt) {
 	evt.preventDefault();
 	var education = $("#register-select-education-input").val();
-	if(check_session() == true) {
-		if(education != undefined) {
+	if(check_session() === true) {
+		if(education !== undefined) {
 			$.cookie("education", education);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
@@ -1268,7 +1269,7 @@ $("#register-select-education-done-button").click(function(evt) {
 });
 
 $("#register-select-work-page").on("show", function(evt) {
-	if($.cookie("work") != undefined) {
+	if($.cookie("work") !== undefined) {
 		$("#register-select-work-input").val($.cookie("work"));
 	}
 });
@@ -1280,11 +1281,11 @@ $("#register-select-work-input").change(function(evt) {
 $("#register-select-work-done-button").click(function(evt) {
 	evt.preventDefault();
 	var work = $("#register-select-work-input").val();
-	if(check_session() == true) {
-		if(work != undefined) {
+	if(check_session() === true) {
+		if(work !== undefined) {
 			$.cookie("work", work);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
@@ -1299,7 +1300,7 @@ $("#register-select-work-done-button").click(function(evt) {
 });
 
 $("#register-select-incom-page").on("show", function(evt) {
-	if($.cookie("income") != undefined) {
+	if($.cookie("income") !== undefined) {
 		$("#register-select-income-input").val($.cookie("income"));
 	}
 });
@@ -1311,11 +1312,11 @@ $("#register-select-income-input").change(function(evt) {
 $("#register-select-income-done-button").click(function(evt) {
 	evt.preventDefault();
 	var income = $("#register-select-income-input").val();
-	if(check_session() == true) {
-		if(income != undefined) {
+	if(check_session() === true) {
+		if(income !== undefined) {
 			$.cookie("income", income);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
@@ -1330,7 +1331,7 @@ $("#register-select-income-done-button").click(function(evt) {
 });
 
 $("#register-select-vocation-page").on("show", function(evt) {
-	if($.cookie("vocation") != undefined) {
+	if($.cookie("vocation") !== undefined) {
 		$("#register-select-vocation-input").val($.cookie("vocation"));
 	}
 });
@@ -1342,11 +1343,11 @@ $("#register-select-vocation-input").change(function(evt) {
 $("#register-select-vocation-done-button").click(function(evt) {
 	evt.preventDefault();
 	var vocation = $("#register-select-vocation-input").val();
-	if(check_session() == true) {
-		if(vocation != undefined) {
+	if(check_session() === true) {
+		if(vocation !== undefined) {
 			$.cookie("vocation", vocation);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
@@ -1361,7 +1362,7 @@ $("#register-select-vocation-done-button").click(function(evt) {
 });
 
 $("#register-select-dress-style-page").on("show", function(evt) {
-	if($.cookie("dress-style") != undefined) {
+	if($.cookie("dress-style") !== undefined) {
 		$("#register-select-dress-style-input").val($.cookie("dress-style"));
 	}
 });
@@ -1373,11 +1374,11 @@ $("#register-select-dress-style-input").change(function(evt) {
 $("#register-select-dress-style-done-button").click(function(evt) {
 	evt.preventDefault();
 	var dressStyle = $("#register-select-dress-style-input").val();
-	if(check_session() == true) {
-		if(dressStyle != undefined) {
+	if(check_session() === true) {
+		if(dressStyle !== undefined) {
 			$.cookie("dress-style", dressStyle);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
@@ -1392,7 +1393,7 @@ $("#register-select-dress-style-done-button").click(function(evt) {
 });
 
 $("#register-select-smoking-page").on("show", function(evt) {
-	if($.cookie("smoking") != undefined) {
+	if($.cookie("smoking") !== undefined) {
 		$("#register-select-smoking-input").val($.cookie("smoking"));
 	}
 });
@@ -1404,11 +1405,11 @@ $("#register-select-smoking-input").change(function(evt) {
 $("#register-select-smoking-done-button").click(function(evt) {
 	evt.preventDefault();
 	var smoking = $("#register-select-smoking-input").val();
-	if(check_session() == true) {
-		if(smoking != undefined) {
+	if(check_session() === true) {
+		if(smoking !== undefined) {
 			$.cookie("smoking", smoking);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
@@ -1423,7 +1424,7 @@ $("#register-select-smoking-done-button").click(function(evt) {
 });
 
 $("#register-select-alcohol-page").on("show", function(evt) {
-	if($.cookie("alcohol") != undefined) {
+	if($.cookie("alcohol") !== undefined) {
 		$("#register-select-alcohol-input").val($.cookie("alcohol"));
 	}
 });
@@ -1435,11 +1436,11 @@ $("#register-select-alcohol-input").change(function(evt) {
 $("#register-select-alcohol-done-button").click(function(evt) {
 	evt.preventDefault();
 	var alcohol = $("#register-select-alcohol-input").val();
-	if(check_session() == true) {
-		if(alcohol != undefined) {
+	if(check_session() === true) {
+		if(alcohol !== undefined) {
 			$.cookie("alcohol", alcohol);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
@@ -1454,7 +1455,7 @@ $("#register-select-alcohol-done-button").click(function(evt) {
 });
 
 $("#register-select-pets-page").on("show", function(evt) {
-	if($.cookie("pets") != undefined) {
+	if($.cookie("pets") !== undefined) {
 		$("#register-select-pets-input").val($.cookie("pets"));
 	}
 });
@@ -1466,16 +1467,16 @@ $("#register-select-pets-input").change(function(evt) {
 $("#register-select-pets-done-button").click(function(evt) {
 	evt.preventDefault();
 	var pets = $("#register-select-pets-input").val();
-	if(check_session() == true) {	
-		if(pets != undefined) {
+	if(check_session() === true) {
+		if(pets !== undefined) {
 			$.cookie("pets", pets);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
 				load_page("register-select-exercise-page");
-			}	
+			}
 		} else {
 			$("#register-select-pets-error").show();
 		}
@@ -1485,7 +1486,7 @@ $("#register-select-pets-done-button").click(function(evt) {
 });
 
 $("#register-select-exercise-page").on("show", function(evt) {
-	if($.cookie("exercise") != undefined) {
+	if($.cookie("exercise") !== undefined) {
 		$("#register-select-exercise-input").val($.cookie("exercise"));
 	}
 });
@@ -1497,11 +1498,11 @@ $("#register-select-exercise-input").change(function(evt) {
 $("#register-select-exercise-done-button").click(function(evt) {
 	evt.preventDefault();
 	var exercise = $("#register-select-exercise-input").val();
-	if(check_session() == true) {
-		if(exercise != undefined) {
+	if(check_session() === true) {
+		if(exercise !== undefined) {
 			$.cookie("exercise", exercise);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
@@ -1509,14 +1510,14 @@ $("#register-select-exercise-done-button").click(function(evt) {
 			}
 		} else {
 			$("#register-select-exercise-error").show();
-		} 
+		}
 	} else {
 		load_home_page();
 	}
 });
 
 $("#register-select-travel-page").on("show", function(evt) {
-	if($.cookie("travel") != undefined) {
+	if($.cookie("travel") !== undefined) {
 		$("#register-select-travel-input").val($.cookie("travel"));
 	}
 });
@@ -1528,11 +1529,11 @@ $("#register-select-travel-input").change(function(evt) {
 $("#register-select-travel-done-button").click(function(evt) {
 	evt.preventDefault();
 	var travel = $("#register-select-travel-input").val();
-	if(check_session() == true) {
-		if(travel != undefined) {
+	if(check_session() === true) {
+		if(travel !== undefined) {
 			$.cookie("travel", travel);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
@@ -1544,10 +1545,10 @@ $("#register-select-travel-done-button").click(function(evt) {
 	} else {
 		load_home_page();
 	}
-}); 
+});
 
 $("#register-select-religion-page").on("show", function(evt) {
-	if($.cookie("religion") != undefined) {
+	if($.cookie("religion") !== undefined) {
 		$("#register-select-religion-input").val($.cookie("religion"));
 	}
 });
@@ -1559,11 +1560,11 @@ $("#register-select-religion-input").change(function(evt) {
 $("#register-select-religion-done-button").click(function(evt) {
 	evt.preventDefault();
 	var religion = $("#register-select-religion-input").val();
-	if(check_session() == true) {
-		if(religion != undefined) {
+	if(check_session() === true) {
+		if(religion !== undefined) {
 			$.cookie("religion", religion);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
@@ -1578,7 +1579,7 @@ $("#register-select-religion-done-button").click(function(evt) {
 });
 
 $("#register-select-religion-importance-page").on("show", function(evt) {
-	if($.cookie("religion-importance") != undefined) {
+	if($.cookie("religion-importance") !== undefined) {
 		$("#register-select-religion-importance-input").val($.cookie("religion-importance"));
 	}
 });
@@ -1590,11 +1591,11 @@ $("#register-select-religion-importance-input").change(function(evt) {
 $("#register-select-religion-importance-done-button").click(function(evt) {
 	evt.preventDefault();
 	var religionImportance = $("#register-select-religion-importance-input").val();
-	if(check_session() == true) {
-		if(religionImportance != undefined) {
+	if(check_session() === true) {
+		if(religionImportance !== undefined) {
 			$.cookie("religion-importance", religionImportance);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
@@ -1609,7 +1610,7 @@ $("#register-select-religion-importance-done-button").click(function(evt) {
 });
 
 $("#register-select-left-right-politics-page").on("show", function(evt) {
-	if($.cookie("left-right-politics") != undefined) {
+	if($.cookie("left-right-politics") !== undefined) {
 		$("#register-select-left-right-politics-input").val($.cookie("left-right-politics"));
 	}
 });
@@ -1621,11 +1622,11 @@ $("#register-select-left-right-politics-input").change(function(evt) {
 $("#register-select-left-right-politics-done-button").click(function(evt) {
 	evt.preventDefault();
 	var leftRight = $("#register-select-left-right-politics-input").val();
-	if(check_session() == true) {
-		if(leftRight != undefined) {
+	if(check_session() === true) {
+		if(leftRight !== undefined) {
 			$.cookie("left-right-politics", leftRight);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
@@ -1640,7 +1641,7 @@ $("#register-select-left-right-politics-done-button").click(function(evt) {
 });
 
 $("#register-select-liberal-conservative-politics-page").on("show", function(evt) {
-	if($.cookie("liberal-conservative-politics") != undefined) {
+	if($.cookie("liberal-conservative-politics") !== undefined) {
 		$("#register-select-liberal-conservative-politics-input").val($.cookie("liberal-conservative-politics"));
 	}
 });
@@ -1652,16 +1653,16 @@ $("#register-select-liberal-conservative-politics-input").change(function(evt) {
 $("#register-select-liberal-conservative-politics-done-button").click(function(evt) {
 	evt.preventDefault();
 	var liberalConservative = $("#register-select-liberal-conservative-politics-input").val();
-	if(check_session() == true) {
-		if(liberalConservative != undefined) {
+	if(check_session() === true) {
+		if(liberalConservative !== undefined) {
 			$.cookie("liberal-conservative-politics", liberalConservative);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
 				load_page("register-select-political-importance-page");
-			}	
+			}
 		} else {
 			$("#register-select-liberal-conservative-politics-error").show();
 		}
@@ -1671,7 +1672,7 @@ $("#register-select-liberal-conservative-politics-done-button").click(function(e
 });
 
 $("#register-select-political-importance-page").on("show", function(evt) {
-	if($.cookie("political-importance") != undefined) {
+	if($.cookie("political-importance") !== undefined) {
 		$("#register-select-political-importance-input").val($.cookie("political-importance"));
 	}
 });
@@ -1683,11 +1684,11 @@ $("#register-select-political-importance-input").change(function(evt) {
 $("#register-select-political-importance-done-button").click(function(evt) {
 	evt.preventDefault();
 	var politicalImportance = $("#register-select-political-importance-input").val();
-	if(check_session() == true) {
-		if(politicalImportance != undefined) {
+	if(check_session() === true) {
+		if(politicalImportance !== undefined) {
 			$.cookie("political-importance", politicalImportance);
 			var nextPage = $.cookie("next-page");
-			if(nextPage != undefined) {
+			if(nextPage !== undefined) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
@@ -1702,7 +1703,7 @@ $("#register-select-political-importance-done-button").click(function(evt) {
 });
 
 $("#register-select-favorite-television-series-page").on("show", function(evt) {
-	if($.cookie("favorite-television-series") != undefined) {
+	if($.cookie("favorite-television-series") !== undefined) {
 		$("#register-select-favorite-television-series-input").val($.cookie("favorite-television-series"));
 	}
 });
@@ -1710,10 +1711,10 @@ $("#register-select-favorite-television-series-page").on("show", function(evt) {
 $("#register-select-favorite-television-series-done-button").click(function(evt) {
 	evt.preventDefault();
 	var favoriteTelevisionSeries = $("#register-select-favorite-television-series-input").val();
-	if(check_session() == true) {
+	if(check_session() === true) {
 		$.cookie("favorite-television-series", favoriteTelevisionSeries);
 		var nextPage = $.cookie("next-page");
-		if(nextPage != undefined) {
+		if(nextPage !== undefined) {
 			load_page(nextPage);
 			$.removeCookie("next-page");
 		} else {
@@ -1725,7 +1726,7 @@ $("#register-select-favorite-television-series-done-button").click(function(evt)
 });
 
 $("#register-select-favorite-radio-shows-page").on("show", function(evt) {
-	if($.cookie("favorite-radio-shows") != undefined) {
+	if($.cookie("favorite-radio-shows") !== undefined) {
 		$("#register-select-favorite-radio-shows-input").val($.cookie("favorite-radio-shows"));
 	}
 });
@@ -1733,10 +1734,10 @@ $("#register-select-favorite-radio-shows-page").on("show", function(evt) {
 $("#register-select-favorite-radio-shows-done-button").click(function(evt) {
 	evt.preventDefault();
 	var favoriteRadioShows = $("#register-select-favorite-radio-shows-input").val();
-	if(check_session() == true) {
+	if(check_session() === true) {
 		$.cookie("favorite-radio-shows", favoriteRadioShows);
 		var nextPage = $.cookie("next-page");
-		if(nextPage != undefined) {
+		if(nextPage !== undefined) {
 			load_page(nextPage);
 			$.removeCookie("next-page");
 		} else {
@@ -1748,7 +1749,7 @@ $("#register-select-favorite-radio-shows-done-button").click(function(evt) {
 });
 
 $("#register-select-favorite-bands-page").on("show", function(evt) {
-	if($.cookie("favorite-bands") != undefined) {
+	if($.cookie("favorite-bands") !== undefined) {
 		$("#register-select-favorite-bands-input").val($.cookie("favorite-bands"));
 	}
 });
@@ -1756,10 +1757,10 @@ $("#register-select-favorite-bands-page").on("show", function(evt) {
 $("#register-select-favorite-bands-done-button").click(function(evt) {
 	evt.preventDefault();
 	var favoriteBands = $("#register-select-favorite-bands-input").val();
-	if(check_session() == true) {
+	if(check_session() === true) {
 		$.cookie("favorite-bands", favoriteBands);
 		var nextPage = $.cookie("next-page");
-		if(nextPage != undefined) {
+		if(nextPage !== undefined) {
 			load_page(nextPage);
 			$.removeCookie("next-page");
 		} else {
@@ -1771,7 +1772,7 @@ $("#register-select-favorite-bands-done-button").click(function(evt) {
 });
 
 $("#register-select-favorite-movies-page").on("show", function(evt) {
-	if($.cookie("favorite-movies") != undefined) {
+	if($.cookie("favorite-movies") !== undefined) {
 		$("#register-select-favorite-movies-input").val($.cookie("favorite-movies"));
 	}
 });
@@ -1779,10 +1780,10 @@ $("#register-select-favorite-movies-page").on("show", function(evt) {
 $("#register-select-favorite-movies-done-button").click(function(evt) {
 	evt.preventDefault();
 	var favoriteMovies = $("#register-select-favorite-movies-input").val();
-	if(check_session() == true) {
+	if(check_session() === true) {
 		$.cookie("favorite-movies", favoriteMovies);
 		var nextPage = $.cookie("next-page");
-		if(nextPage != undefined) {
+		if(nextPage !== undefined) {
 			load_page(nextPage);
 			$.removeCookie("next-page");
 		} else {
@@ -1794,7 +1795,7 @@ $("#register-select-favorite-movies-done-button").click(function(evt) {
 });
 
 $("#register-select-best-things-in-the-world-page").on("show", function(evt) {
-	if($.cookie("best-things-in-the-world") != undefined) {
+	if($.cookie("best-things-in-the-world") !== undefined) {
 		$("#register-select-best-things-in-the-world-input").val($.cookie("best-things-in-the-world"));
 	}
 });
@@ -1802,10 +1803,10 @@ $("#register-select-best-things-in-the-world-page").on("show", function(evt) {
 $("#register-select-best-things-in-the-world-done-button").click(function(evt) {
 	evt.preventDefault();
 	var bestThingsInTheWorld = $("#register-select-best-things-in-the-world-input").val();
-	if(check_session() != undefined) {
+	if(check_session() !== undefined) {
 		$.cookie("best-things-in-the-world", bestThingsInTheWorld);
 		var nextPage = $.cookie("next-page");
-		if(nextPage != undefined) {
+		if(nextPage !== undefined) {
 			load_page(nextPage);
 			$.removeCookie("next-page");
 		} else {
@@ -1817,7 +1818,7 @@ $("#register-select-best-things-in-the-world-done-button").click(function(evt) {
 });
 
 $("#register-select-ignite-me-page").on("show", function(evt) {
-	if($.cookie("ignite-me") != undefined) {
+	if($.cookie("ignite-me") !== undefined) {
 		$("#register-select-ingite-me-input").val($.cookie("ignite-me"));
 	}
 });
@@ -1825,10 +1826,10 @@ $("#register-select-ignite-me-page").on("show", function(evt) {
 $("#register-select-ignite-me-done-button").click(function(evt) {
 	evt.preventDefault();
 	var igniteMe = $("#register-select-ignite-me-input").val();
-	if(check_session() == true) {
+	if(check_session() === true) {
 		$.cookie("ignite-me", igniteMe);
 		var nextPage = $.cookie("next-page");
-		if(nextPage != undefined) {
+		if(nextPage !== undefined) {
 			load_page(nextPage);
 			$.removeCookie("next-page");
 		} else {
@@ -1840,7 +1841,7 @@ $("#register-select-ignite-me-done-button").click(function(evt) {
 });
 
 $("#register-select-not-exciting-page").on("show", function(evt) {
-	if($.cookie("not-exciting") != undefined) {
+	if($.cookie("not-exciting") !== undefined) {
 		$("#register-select-not-exciting-input").val($.cookie("not-exciting"));
 	}
 });
@@ -1848,10 +1849,10 @@ $("#register-select-not-exciting-page").on("show", function(evt) {
 $("#register-select-not-exciting-done-button").click(function(evt) {
 	evt.preventDefault();
 	var notExciting = $("#register-select-not-exciting-input").val();
-	if(check_session() == true) {
+	if(check_session() === true) {
 		$.cookie("not-exciting", notExciting);
 		var nextPage = $.cookie("next-page");
-		if(nextPage != undefined) {
+		if(nextPage !== undefined) {
 			load_page(nextPage);
 			$.removeCookie("next-page");
 		} else {
@@ -1880,15 +1881,15 @@ $("#register-confirm-profile-information-page").on("show", function() {
 	$("#register-confirm-profile-picture-data-url").html(hostname + "uploads/" + profilePicture);
 	
 	var gender = $.cookie("gender");
-	if(gender == "man") {
+	if(gender === "man") {
 		$("#register-confirm-gender-data").val("Mies");
-	} else if(gender == "woman") {
+	} else if(gender === "woman") {
 		$("#register-confirm-gender-data").val("Nainen");
-	} else if(gender == "transman") {
+	} else if(gender === "transman") {
 		$("#register-confirm-gender-data").val("Transmies");
-	} else if(gender == "transwoman") {
+	} else if(gender === "transwoman") {
 		$("#register-confirm-gender-data").val("Transnainen");
-	} else if(gender == "sexless") {
+	} else if(gender === "sexless") {
 		$("#register-confirm-gender-data").val("Sukupuoleton");
 	}
 
@@ -1897,32 +1898,32 @@ $("#register-confirm-profile-information-page").on("show", function() {
 	$("#register-confirm-birthday-data").val(birthdayArr[2] + "/" + birthdayArr[1] + "/" + birthdayArr[0]);
 
 	var relationshipStatus = $.cookie("relationship-status");
-	if(relationshipStatus == "single") {
+	if(relationshipStatus === "single") {
 		$("#register-confirm-relationship-status-data").val("Sinkku");
-	} else if(relationshipStatus == "relationship") {
+	} else if(relationshipStatus === "relationship") {
 		$("#register-confirm-relationship-status-data").val("Parisuhde");
-	} else if(relationshipStatus == "cohabitation") {
+	} else if(relationshipStatus === "cohabitation") {
 		$("#register-confirm-relationship-status-data").val("Avoliitto");
-	} else if(relationshipStatus == "marriage") {
+	} else if(relationshipStatus === "marriage") {
 		$("#register-confirm-relationship-status-data").val("Avioliitto");
-	} else if(relationshipStatus == "divorced") {
+	} else if(relationshipStatus === "divorced") {
 		$("#register-confirm-relationship-status-data").val("Eronnut");
-	} else if(relationshipStatus == "seperation") {
+	} else if(relationshipStatus === "seperation") {
 		$("#register-confirm-relationship-status-data").val("Asumusero");
-	} else if(relationshipStatus == "widow") {
+	} else if(relationshipStatus === "widow") {
 		$("#register-confirm-relationship-status-data").val("Leski");
-	} else if(relationshipStatus == "none") {
+	} else if(relationshipStatus === "none") {
 		$("#register-confirm-relationship-status-data").val("En halua kertoa");
 	}
 
 	var sexualOrientation = $.cookie("sexual-orientation");
-	if(sexualOrientation == "hetero") {
+	if(sexualOrientation === "hetero") {
 		$("#register-confirm-sexual-orientation-data").val("Heteroseksuaali");
-	} else if(sexualOrientation == "gay") {
+	} else if(sexualOrientation === "gay") {
 		$("#register-confirm-sexual-orientation-data").val("Homoseksuaali");
-	} else if(sexualOrientation == "bi") {
+	} else if(sexualOrientation === "bi") {
 		$("#register-confirm-sexual-orientation-data").val("Bisexsuaali");
-	} else if(sexualOrientation == "ase") {
+	} else if(sexualOrientation === "ase") {
 		$("#register-confirm-sexual-orientation-data").val("Aseksuaali");
 	}
 
@@ -1930,18 +1931,18 @@ $("#register-confirm-profile-information-page").on("show", function() {
 	var lookingForArr = lookingFor.split(",");
 	var i;
 	for(i = 0; i < lookingForArr.length; i++) {
-		if(lookingForArr[i] == "friends") {
+		if(lookingForArr[i] === "friends") {
 			lookingForArr[i] = "Ystävyyttä";
-		} else if(lookingForArr[i] == "love") {
+		} else if(lookingForArr[i] === "love") {
 			lookingForArr[i] = "Rakkautta";
-		} else if(lookingForArr[i] == "date") {
+		} else if(lookingForArr[i] === "date") {
 			lookingForArr[i] = "Tapaamisia";
-		} else if(lookingForArr[i] == "sex") {
+		} else if(lookingForArr[i] === "sex") {
 			lookingForArr[i] = "Seksiä";
-		} else if(lookingForArr[i] == "other") {
+		} else if(lookingForArr[i] === "other") {
 			lookingForArr[i] = "Jotain muuta";
-		} else if(lookingForArr[i] == "none") {
-			lookingForArr[i] == "En halua kertoa";
+		} else if(lookingForArr[i] === "none") {
+			lookingForArr[i] === "En halua kertoa";
 		}
 	}
 	var lookingForParsed = lookingForArr.join(", ");
@@ -1951,85 +1952,85 @@ $("#register-confirm-profile-information-page").on("show", function() {
 	$("#register-confirm-weight-data").val($.cookie("weight") + " kg");
 
 	var bodyType = $.cookie("body-type");
-	if(bodyType == "slender") {
+	if(bodyType === "slender") {
 		bodyType = "Siro";
-	} else if(bodyType == "slim") {
+	} else if(bodyType === "slim") {
 		bodyType = "Hoikka";
-	} else if(bodyType == "low-fat") {
+	} else if(bodyType === "low-fat") {
 		bodyType = "Vähärasvainen";
-	} else if(bodyType == "sporty") {
+	} else if(bodyType === "sporty") {
 		bodyType = "Sporttinen";
-	} else if(bodyType == "muscular") {
+	} else if(bodyType === "muscular") {
 		bodyType = "Lihaksikas";
-	} else if(bodyType == "roundish") {
+	} else if(bodyType === "roundish") {
 		bodyType = "Pyöreähkö";
-	} else if(bodyType == "overweight") {
+	} else if(bodyType === "overweight") {
 		bodyType = "Ylipainoinen";
-	} else if(bodyType == "none") {
+	} else if(bodyType === "none") {
 		bodyType = "En halua kertoa";
 	}
 	$("#register-confirm-body-type-data").val(bodyType);
 
 	var eyeColor = $.cookie("eye-color");
-	if(eyeColor == "blue") {
+	if(eyeColor === "blue") {
 		eyeColor = "Sininen";
-	} else if(eyeColor == "brown") {
+	} else if(eyeColor === "brown") {
 		eyeColor = "Ruskea";
-	} else if(eyeColor == "green") {
+	} else if(eyeColor === "green") {
 		eyeColor = "Vihreä";
-	} else if(eyeColor == "gray") {
+	} else if(eyeColor === "gray") {
 		eyeColor = "Harmaa";
-	} else if(eyeColor == "amber") {
+	} else if(eyeColor === "amber") {
 		eyeColor = "Kullanruskea";
-	} else if(eyeColor == "hazel") {
+	} else if(eyeColor === "hazel") {
 		eyeColor = "Pähkinänruseka";
-	} else if(eyeColor == "red") {
+	} else if(eyeColor === "red") {
 		eyeColor = "Punainen";
-	} else if(eyeColor == "violet") {
+	} else if(eyeColor === "violet") {
 		eyeColor = "Violetti";
-	} else if(eyeColor == "none") {
+	} else if(eyeColor === "none") {
 		eyeColor = "En halua kertoa";
 	}
 	$("#register-confirm-eye-color-data").val(eyeColor);
 
 	var hairLength = $.cookie("hair-lenght");
-	if(hairLength == "bald") {
+	if(hairLength === "bald") {
 		hairLength = "Kalju";
-	} else if(hairLength == "hedgehog") {
+	} else if(hairLength === "hedgehog") {
 		hairLength = "Siili";
-	} else if(hairLength == "short") {
+	} else if(hairLength === "short") {
 		hairLength = "Lyhyet";
-	} else if(hairLength == "long") {
+	} else if(hairLength === "long") {
 		hairLength = "Pitkät";
-	} else if(hairLength == "none") {
+	} else if(hairLength === "none") {
 		hairLength = "En halua kertoa";
 	}
 	$("#register-confirm-hair-length-data").val(hairLength);
 
 	var hairColor = $.cookie("hair-color");
-	if(hairColor == "verylight") {
+	if(hairColor === "verylight") {
 		hairColor = "Hyvin vaalea";
-	} else if(hairColor == "light") {
+	} else if(hairColor === "light") {
 		hairColor = "Vaalea";
-	} else if(hairColor == "lightbrown") {
+	} else if(hairColor === "lightbrown") {
 		hairColor = "Vaaleanruskea";
-	} else if(hairColor == "brown") {
+	} else if(hairColor === "brown") {
 		hairColor = "Ruskea";
-	} else if(hairColor == "black") {
+	} else if(hairColor === "black") {
 		hairColor = "Musta";
-	} else if(hairColor == "gray") {
+	} else if(hairColor === "gray") {
 		hairColor = "Harmaa";
-	} else if(hairColor == "red") {
+	} else if(hairColor === "red") {
 		hairColor = "Punainen";
-	} else if(hairColor == "pink") {
+	} else if(hairColor === "pink") {
 		hairColor = "Pinkki";
-	} else if(hairColor == "white") {
+	} else if(hairColor === "white") {
 		hairColor = "Valkoinen";
-	} else if(hairColor == "colorful") {
+	} else if(hairColor === "colorful") {
 		hairColor = "Värikäs";
-	} else if(hairColor == "changeable") {
+	} else if(hairColor === "changeable") {
 		hairColor = "Muuttuu usein";
-	} else if(hairColor == "none") {
+	} else if(hairColor === "none") {
 		hairColor = "En halua kertoa";
 	}
 	$("#register-confirm-hair-color-data").val(hairColor);
@@ -2039,33 +2040,33 @@ $("#register-confirm-profile-information-page").on("show", function() {
 	var kidsArr = kids.split(",");
 	var i;
 	for(i = 0; i < kidsArr.length; i++) {
-		if(kidsArr[i] == "yes") {
+		if(kidsArr[i] === "yes") {
 			kidsArr[i] = "Kyllä";
-		} else if(kidsArr[i] == "no") {
+		} else if(kidsArr[i] === "no") {
 			kidsArr[i] = "Ei";
-		} else if(kidsArr[i] == "athome") {
+		} else if(kidsArr[i] === "athome") {
 			kidsArr[i] = "Kotona";
-		} else if(kidsArr[i] == "somewhereelse") {
+		} else if(kidsArr[i] === "somewhereelse") {
 			kidsArr[i] = "Muualla";
-		} else if(kidsArr[i] == "jointcustody") {
+		} else if(kidsArr[i] === "jointcustody") {
 			kidsArr[i] = "Yhteishuoltajuus";
-		} else if(kidsArr[i] == "solecustody") {
+		} else if(kidsArr[i] === "solecustody") {
 			kidsArr[i] = "Yksinhuoltaja";
-		} else if(kidsArr[i] == "iwantkids") {
+		} else if(kidsArr[i] === "iwantkids") {
 			kidsArr[i] = "Haluan lapsia";
-		} else if(kidsArr[i] == "idontwantkids") {
+		} else if(kidsArr[i] === "idontwantkids") {
 			kidsArr[i] = "En halua lapsia";
-		} else if(kidsArr[i] == "idontknowifiwantkids") {
+		} else if(kidsArr[i] === "idontknowifiwantkids") {
 			kidsArr[i] = "En tiedä haluanko lapsia";
-		} else if(kidsArr[i] == "kidsdonotmatter") {
+		} else if(kidsArr[i] === "kidsdonotmatter") {
 			kidsArr[i] = "Lapset eivät haittaa";
-		} else if(kidsArr[i] == "weekendparent") {
+		} else if(kidsArr[i] === "weekendparent") {
 			kidsArr[i] = "Kerran viikossa lapset minulla";
-		} else if(kidsArr[i] == "secondweekendparent") {
+		} else if(kidsArr[i] === "secondweekendparent") {
 			kidsArr[i] = "Kaksi kertaa kuussa lapset minulla";
-		} else if(kidsArr[i] == "monthlyparent") {
+		} else if(kidsArr[i] === "monthlyparent") {
 			kidsArr[i] = "Kerran kuussa lapset minulla";
-		} else if(kidsArr[i] == "none") {
+		} else if(kidsArr[i] === "none") {
 			kidsArr[i] = "En halua kertoa";
 		}
 	}
@@ -2073,7 +2074,7 @@ $("#register-confirm-profile-information-page").on("show", function() {
 	$("#register-confirm-kids-data").val(kidsParsed);
 
 	var accomodation = $.cookie("accomodation");
-	if(accomodation == "alone") {
+	if(accomodation === "alone") {
 		accomodation = "yksin";
 	} else if(accomodation = "withfriend") {
 		accomodation = "Ystävän kanssa";
@@ -2091,21 +2092,21 @@ $("#register-confirm-profile-information-page").on("show", function() {
 	$("#register-confirm-accomodation-data").val(accomodation);
 	
 	var ethnic = $.cookie("ethnic-identity");
-	if(ethnic == "white") {
+	if(ethnic === "white") {
 		ethnic = "Valkoinen";
-	} else if(ethnic == "black") {
+	} else if(ethnic === "black") {
 		ethnic = "Musta";
-	} else if(ethnic == "indian") {
-		ethnic = "Intialainen";	
-	} else if(ethnic == "latino") {
+	} else if(ethnic === "indian") {
+		ethnic = "Intialainen";
+	} else if(ethnic === "latino") {
 		ethnic = "Latino";
-	} else if(ethnic == "arab") {
+	} else if(ethnic === "arab") {
 		ethnic = "Arabi";
-	} else if(ethnic == "asian") {
+	} else if(ethnic === "asian") {
 		ethnic = "Aasialainen";
-	} else if(ethnic == "midget") {
+	} else if(ethnic === "midget") {
 		ethnic = "Kääpiö";
-	} else if(ethnic == "none") {
+	} else if(ethnic === "none") {
 		ethnic = "En halua kertoa";
 	}
 	$("#register-confirm-ethnic-identity-data").val(ethnic);
@@ -2114,21 +2115,21 @@ $("#register-confirm-profile-information-page").on("show", function() {
 	var langArr = lang.split(",");
         var i;
         for(i = 0; i < langArr.length; i++) {
-		if(langArr[i] == "finnish") {
+		if(langArr[i] === "finnish") {
 			langArr[i] = "Suomi";
-		} else if(langArr[i] == "swedish") {
+		} else if(langArr[i] === "swedish") {
 			langArr[i] = "Ruotsi";
-		} else if(langArr[i] == "english") {
+		} else if(langArr[i] === "english") {
 			langArr[i] = "Englanti";
-		} else if(langArr[i] == "russian") {
+		} else if(langArr[i] === "russian") {
 			langArr[i] = "Venäjä";
-		} else if(langArr[i] == "german") {
+		} else if(langArr[i] === "german") {
 			langArr[i] = "Saksa";
-		} else if(langArr[i] == "japanese") {
+		} else if(langArr[i] === "japanese") {
 			langArr[i] = "Japani";
-		} else if(langArr[i] == "others") {
+		} else if(langArr[i] === "others") {
 			langArr[i] = "Muita";
-		} else if(langArr[i] == "none") {
+		} else if(langArr[i] === "none") {
 			langArr[i] = "En halua kertoa";
 		}
 	}
@@ -2136,49 +2137,49 @@ $("#register-confirm-profile-information-page").on("show", function() {
 	$("#register-confirm-language-skills-data").val(langParsed);
 
 	var edu = $.cookie("education");
-	if(edu == "untrained") {
+	if(edu === "untrained") {
 		edu = "Kouluttamaton";
-	} else if(edu == "lifeschool") {
+	} else if(edu === "lifeschool") {
 		edu = "Elämänkoulu";
-	} else if(edu == "school") {
-		edu = "Peruskoulu"; 
-	} else if(edu == "vocational") {
+	} else if(edu === "school") {
+		edu = "Peruskoulu";
+	} else if(edu === "vocational") {
 		edu = "Ammattikoulu";
-	} else if(edu == "high") {
+	} else if(edu === "high") {
 		edu = "Lukio";
-	} else if(edu == "applied") {
+	} else if(edu === "applied") {
 		edu = "Ammattikorkeakoulu";
-	} else if(edu == "college") {
+	} else if(edu === "college") {
 		edu = "Yliopisto/korkeakoulu";
-	} else if(edu == "masters") {
+	} else if(edu === "masters") {
 		edu = "Maisterin tutkinto";
-	} else if(edu == "doctor") {
+	} else if(edu === "doctor") {
 		edu = "Tohtorin tutkinto";
-	} else if(edu == "none") {
+	} else if(edu === "none") {
 		edu = "En halua kertoa";
 	}
 	$("#register-confirm-education-data").val(edu);
 
 	var work = $.cookie("work");
-	if(work == "unemployed") {
+	if(work === "unemployed") {
 		work = "Työtön";
-	} else if(work == "student") {
+	} else if(work === "student") {
 		work = "Opiskelija";
-	} else if(work == "part-time") {
+	} else if(work === "part-time") {
 		work = "Osa-aikatyö";
-	} else if(work == "morning") {
+	} else if(work === "morning") {
 		work = "Aamutyö";
-	} else if(work == "day") {
+	} else if(work === "day") {
 		work = "Päivätyö";
-	} else if(work == "evening") {
+	} else if(work === "evening") {
 		work = "Iltatyö";
-	} else if(work == "night") {
+	} else if(work === "night") {
 		work = "Yötyö";
-	} else if(work == "workaholic") {
+	} else if(work === "workaholic") {
 		work = "Työnarkomaani";
-	} else if(work == "pension") {
+	} else if(work === "pension") {
 		work = "Eläke";
-	} else if(work == "none") {
+	} else if(work === "none") {
 		work = "En halua kertoa";
 	}
 	$("#register-confirm-work-data").val(work);
@@ -2187,25 +2188,25 @@ $("#register-confirm-profile-information-page").on("show", function() {
 	$("#register-confirm-income-data").val(income);
 	
 	var vocation = $.cookie("vocation");
-	if(vocation == "administration/finance") {
+	if(vocation === "administration/finance") {
 		vocation = "Hallinto/talous";
-	} else if(vocation == "information-technology") {
+	} else if(vocation === "information-technology") {
 		vocation = "Atk/it/tietoliikenne";
-	} else if(vocation == "social/health") {
+	} else if(vocation === "social/health") {
 		vocation = "Sosiaali-/terveysala";
-	} else if(vocation == "marketing/sales") {
+	} else if(vocation === "marketing/sales") {
 		vocation = "Markkinointi/myynti";
-	} else if(vocation == "science/technology") {
+	} else if(vocation === "science/technology") {
 		vocation = "Tiede/teknologia";
-	} else if(vocation == "education") {
+	} else if(vocation === "education") {
 		vocation = "Koulutus";
-	} else if(vocation == "housewife/-husband") {
+	} else if(vocation === "housewife/-husband") {
 		vocation = "Kotiäiti/-isä";
-	} else if(vocation == "agriculture-forestry") {
+	} else if(vocation === "agriculture-forestry") {
 		vocation = "Maa- ja metsätalous";
-	} else if(vocation == "entrepreneur") {
+	} else if(vocation === "entrepreneur") {
 		vocation = "Yrittäjä";
-	} else if(vocation == "none") {
+	} else if(vocation === "none") {
 		vocation = "En halua kertoa!";
 	}
 	$("#register-confirm-vocation-data").val(vocation);
@@ -2222,7 +2223,7 @@ $("#register-confirm-profile-information-page").on("show", function() {
 	} else if(dress = "fleamarket") {
 		dress = "Kirpputori";
 	} else if(dress = "self-indulgent") {
-		dress = "Mukavuuden haluinen";	
+		dress = "Mukavuuden haluinen";
 	} else if(dress = "regular") {
 		dress = "Normaali";
 	} else if(dress = "hoppers") {
@@ -2241,43 +2242,43 @@ $("#register-confirm-profile-information-page").on("show", function() {
 	$("#register-confirm-dress-style-data").val(dress);
 
 	var smoke = $.cookie("smoking");
-	if(smoke == "smokeless") {
+	if(smoke === "smokeless") {
 		smoke = "Savuton";
-	} else if(smoke == "company") {
+	} else if(smoke === "company") {
 		smoke = "Seurassa";
-	} else if(smoke == "drunken") {
+	} else if(smoke === "drunken") {
 		smoke = "Humalassa";
-	} else if(smoke == "regular") {
+	} else if(smoke === "regular") {
 		smoke = "Säännöllisesti";
-	} else if(smoke == "chimney") {
+	} else if(smoke === "chimney") {
 		smoke = "Korsteeni";
-	} else if(smoke == "none") {
+	} else if(smoke === "none") {
 		smoke = "En halua kertoa";
 	}
 	$("#register-confirm-smoking-data").val(smoke);
 
 	var alc = $.cookie("alcohol");
-	if(alc == "alcohol-free") {
+	if(alc === "alcohol-free") {
 		alc = "Alkoholiton";
-	} else if(alc == "holidays") {
+	} else if(alc === "holidays") {
 		alc = "Juhlapäivinä";
-	} else if(alc == "company") {
+	} else if(alc === "company") {
 		alc = "Hyvässä seurassa";
-	} else if(alc == "withfood") {
+	} else if(alc === "withfood") {
 		alc = "Ruuan kanssa";
-	} else if(alc == "occasionally") {
+	} else if(alc === "occasionally") {
 		alc = "Satunnaisesti";
-	} else if(alc == "everyday") {
+	} else if(alc === "everyday") {
 		alc = "Joka päivä";
-	} else if(alc == "weekly") {
+	} else if(alc === "weekly") {
 		alc = "Viikottain";
-	} else if(alc == "monthly") {
+	} else if(alc === "monthly") {
 		alc = "Kerran kuussa";
-	} else if(alc == "yearly") {
+	} else if(alc === "yearly") {
 		alc = "Kerran vuodessa";
-	} else if(alc == "alcoholic") {
+	} else if(alc === "alcoholic") {
 		alc = "Tapajuoppo";
-	} else if(alc == "none") {
+	} else if(alc === "none") {
 		alc = "En halua kertoa";
 	}
 	$("#register-confirm-alcohol-data").val(alc);
@@ -2286,33 +2287,33 @@ $("#register-confirm-profile-information-page").on("show", function() {
         var petsArr = pets.split(",");
         var i;
         for(i = 0; i < petsArr.length; i++) {
-		if(petsArr[i] == "horse") {
+		if(petsArr[i] === "horse") {
 			petsArr[i] = "Hevonen";
-		} else if(petsArr[i] == "pony") {
+		} else if(petsArr[i] === "pony") {
 			petsArr[i] = "Poni";
-		} else if(petsArr[i] == "spider") {
+		} else if(petsArr[i] === "spider") {
 			petsArr[i] = "Hämähäkki";
-		} else if(petsArr[i] == "fish") {
+		} else if(petsArr[i] === "fish") {
 			petsArr[i] = "Kala";
-		} else if(petsArr[i] == "rodent") {
+		} else if(petsArr[i] === "rodent") {
 			petsArr[i] = "Jyrsijä";
-		} else if(petsArr[i] == "turtle") {
+		} else if(petsArr[i] === "turtle") {
 			petsArr[i] = "Kilpikonna";
-		} else if(petsArr[i] == "dog") {
+		} else if(petsArr[i] === "dog") {
 			petsArr[i] = "Koira";
-		} else if(petsArr[i] == "cat") {
+		} else if(petsArr[i] === "cat") {
 			petsArr[i] = "Kissa";
-		} else if(petsArr[i] == "snake") {
+		} else if(petsArr[i] === "snake") {
 			petsArr[i] = "Käärme";
-		} else if(petsArr[i] == "bird") {
+		} else if(petsArr[i] === "bird") {
 			petsArr[i] = "Lintu";
-		} else if(petsArr[i] == "stuffed-animal") {
+		} else if(petsArr[i] === "stuffed-animal") {
 			petsArr[i] = "Pehmolelu";
-		} else if(petsArr[i] == "nopets") {
+		} else if(petsArr[i] === "nopets") {
 			petsArr[i] = "Ei lemmikkejä";
-		} else if(petsArr[i] == "likepets") {
+		} else if(petsArr[i] === "likepets") {
 			petsArr[i] = "Pidän eläimistä";
-		} else if(petsArr[i] == "none") {
+		} else if(petsArr[i] === "none") {
 			petsArr[i] = "En halua kertoa";
 		}
         }
@@ -2320,77 +2321,77 @@ $("#register-confirm-profile-information-page").on("show", function() {
         $("#register-confirm-pets-data").val(petsParsed);
 
 	var ex = $.cookie("exercise");
-	if(ex == "idont") {
+	if(ex === "idont") {
 		ex = "En urheile";
-	} else if(ex == "casually") {
+	} else if(ex === "casually") {
 		ex = "Satunnaisesti";
-	} else if(ex == "regularily") {
+	} else if(ex === "regularily") {
 		ex = "Säännöllisesti";
-	} else if(ex == "daily") {
+	} else if(ex === "daily") {
 		ex = "Lähes Päivittäin";
-	} else if(ex == "lifestyle") {
+	} else if(ex === "lifestyle") {
 		ex = "Elämäntapa";
-	} else if(ex == "none") {
+	} else if(ex === "none") {
 		ex = "En halua kertoa";
 	}
 	$("#register-confirm-exercise-data").val(ex);
 
 	var travel = $.cookie("travel");
-	if(travel == "cottagebatty") {
+	if(travel === "cottagebatty") {
 		travel = "Mökkihöperö";
-	} else if(travel == "neighboring-areas") {
+	} else if(travel === "neighboring-areas") {
 		travel = "Lähialueilla";
-	} else if(travel == "occasionally") {
+	} else if(travel === "occasionally") {
 		travel = "Satunnaisesti";
-	} else if(travel == "few-times-a-yer") {
+	} else if(travel === "few-times-a-yer") {
 		travel = "Muutaman kertaa vuodessa";
-	} else if(travel == "monthly") {
+	} else if(travel === "monthly") {
 		travel = "Lähes joka kuukausi";
-	} else if(travel == "weekly") {
+	} else if(travel === "weekly") {
 		travel = "Lähes joka viikko";
-	} else if(travel == "daily") {
+	} else if(travel === "daily") {
 		travel = "Lähes joka päivä";
-	} else if(travel == "allthetime") {
+	} else if(travel === "allthetime") {
 		travel = "Matkalla aina johonkin";
-	} else if(travel == "none") {
+	} else if(travel === "none") {
 		travel = "En halua kertoa";
 	}
 	$("#register-confirm-travel-data").val(travel);
 
 	var religion = $.cookie("religion");
-	if(religion == "atheist") {
+	if(religion === "atheist") {
 		religion = "Ateisti";
-	} else if(religion == "agnostic") {
+	} else if(religion === "agnostic") {
 		religion = "Agnostikko";
-	} else if(religion == "buddhism") {
+	} else if(religion === "buddhism") {
 		religion = "Buddhalainen";
-	} else if(religion == "christian") {
+	} else if(religion === "christian") {
 		religion = "Kristitty";
-	} else if(religion == "hinduism") {
+	} else if(religion === "hinduism") {
 		religion = "Hindu";
-	} else if(religion == "muslism") {
+	} else if(religion === "muslism") {
 		religion = "Muslimi";
-	} else if(religion == "jewish") {
+	} else if(religion === "jewish") {
 		religion = "Juutalainen";
-	} else if(religion == "newage") {
+	} else if(religion === "newage") {
 		religion = "New Age";
-	} else if(religion == "none") {
+	} else if(religion === "none") {
 		religion = "En halua kertoa";
 	}
 	$("#register-confirm-religion-data").val(religion);
 
 	var relimp = $.cookie("religion-importance");
-	if(relimp == "insignificant") {
+	if(relimp === "insignificant") {
 		relimp = "Merkityksetön";
-	} else if(relimp == "low") {
+	} else if(relimp === "low") {
 		relimp = "Vähäinen";
-	} else if(relimp == "normal") {
+	} else if(relimp === "normal") {
 		relimp = "Normaali";
-	} else if(relimp == "important") {
+	} else if(relimp === "important") {
 		relimp = "Tärkeä";
-	} else if(relimp == "true-blue") {
+	} else if(relimp === "true-blue") {
 		relimp = "Vakaumuksellinen";
-	} else if(relimp == "none") {
+	} else if(relimp === "none") {
 		relimp = "En halua kertoa";
 	}
 	$("#register-confirm-religion-importance-data").val(relimp);
@@ -2489,16 +2490,16 @@ $("#register-confirm-profile-information-form").submit(function(evt) {
 	$.ajax({
 		type: $(this).attr('method'),
 		url: $(this).attr('action'),
-		data: { call : 'create_profile', 
-			accomodation : $.cookie("accomodation"), 
-			address : $.cookie("address"), 
-			alcohol : $.cookie("alcohol"), 
-			best_things_in_the_world : $.cookie("best-things-in-the-world"), 
-			birthday : $.cookie("birthday"), 
-			body_type : $.cookie("body-type"), 
+		data: { call : 'create_profile',
+			accomodation : $.cookie("accomodation"),
+			address : $.cookie("address"),
+			alcohol : $.cookie("alcohol"),
+			best_things_in_the_world : $.cookie("best-things-in-the-world"),
+			birthday : $.cookie("birthday"),
+			body_type : $.cookie("body-type"),
 			dress_style : $.cookie("dress-style"),
-			education : $.cookie("education"), 
-			ethnic_identity : $.cookie("ethnic-identity"), 
+			education : $.cookie("education"),
+			ethnic_identity : $.cookie("ethnic-identity"),
 			exercise : $.cookie("exercise"),
 			eye_color : $.cookie("eye-color"),
 			favorite_bands : $.cookie("favorite-bands"),
@@ -2533,7 +2534,7 @@ $("#register-confirm-profile-information-form").submit(function(evt) {
 	}).done(function(data) {
 		console.log(data);
 		var result = $.parseJSON(data);
-		if(result.success == true) {
+		if(result.success === true) {
 			console.log("Profile saved\r\n");
 			$.removeCookie("next-page");
 		//	next_page("registeration-done-page");
@@ -2571,7 +2572,7 @@ $("#register-select-country-input").change(function(evt) {
 
 $("#register-select-location-show-on-map").click(function(evt) {
 	evt.preventDefault();
-	if(window.map == undefined) {
+	if(window.map === undefined) {
 		show_register_select_location_page();
 	}
 	var street_address = $("#register-select-street-address-input").val();
@@ -2585,11 +2586,11 @@ $("#register-select-location-show-on-map").click(function(evt) {
 	$.ajax({
 		url: "http://maps.googleapis.com/maps/api/geocode/json",
 		type: "GET",
-		data: { address : jaddress, sensor: false  }
+		data: { address : jaddress, sensor: false }
 	}).done(function(data) {
 		console.log(data);
-		if(data.status == "OK") {
-			var myLatLong = new google.maps.LatLng(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng) 
+		if(data.status === "OK") {
+			var myLatLong = new google.maps.LatLng(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng)
 			var marker = new google.maps.Marker({
 				position: myLatLong,
 				map: window.map
@@ -2598,7 +2599,7 @@ $("#register-select-location-show-on-map").click(function(evt) {
 			// display error
 			console.log("failed to query location.");
 		}
-	});	
+	});
 });
 
 $("#register-select-location-done-button").click(function(evt) {
@@ -2614,9 +2615,9 @@ $("#register-select-location-done-button").click(function(evt) {
 	$.ajax({
 		url: "http://maps.googleapis.com/maps/api/geocode/json",
 		type: "GET",
-		data: { address : jaddress, sensor: false  }	
+		data: { address : jaddress, sensor: false }
 	}).done(function(data) {
-		if(data.status == "OK") {
+		if(data.status === "OK") {
 			var myLatLong = new google.maps.LatLng(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng)
 			$.cookie("latlng", myLatLong);
 			$("body > .container").hide();
