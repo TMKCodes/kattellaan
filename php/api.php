@@ -228,6 +228,14 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			$profile->set($data);
 			if($profile->select($identifier) == false) {	
 				if($profile->insert() == true) {
+					$position = new position($database);
+					$latlng = $_POST['latlng'];
+					$latlng = str_replace("(", "", $latlng);
+					$latlng = str_replace(")", "", $latlng);
+					$latlng = explode(", " $latlng);
+					$position->set_latitude($latlng[0]);
+					$position->set_longitude($latlng[1]);
+					$position->insert();
 					printf('{ "success": true }');
 				} else {
 					printf('{ "success": false, "error": "Failed to insert into database." }');
