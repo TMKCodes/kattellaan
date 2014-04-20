@@ -232,7 +232,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					$latlng = $_POST['latlng'];
 					$latlng = str_replace("(", "", $latlng);
 					$latlng = str_replace(")", "", $latlng);
-					$latlng = explode(", " $latlng);
+					$latlng = explode(", ", $latlng);
 					$position->set_latitude($latlng[0]);
 					$position->set_longitude($latlng[1]);
 					$position->insert();
