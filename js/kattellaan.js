@@ -618,6 +618,7 @@ $("#home-button").click(function(evt) {
 $("#logout-button").click(function(evt) {
 	evt.preventDefault();
 	close_session();
+	load_home_page();
 });
 
 
@@ -634,7 +635,8 @@ $("#authentication-form").submit(function(evt) {
 	open_session($("#authentication-form-username-input").val(), $("#authentication-form-password-input").val());
 	if(check_session() === true) {
 		$("#authentication-form").hide();
-		$("#register-information-jumbotron").hide();
+		$("#home-page-register").hide();
+		$("#home-page-features").hide();
 		$("#authentication-error-page").hide();
 		$("#user-menu").show();
 	} else {
