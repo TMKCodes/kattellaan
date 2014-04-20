@@ -11,7 +11,7 @@ require_once("session.php");
 require_once("invite.php");
 require_once("file.php");
 require_once("profile.php");
-
+require_once("position.php");
 
 $passwd = explode(":", base64_decode(file_get_contents("/home/temek/kattellaan/.passwd")));
 $database = new db("mysqli");
