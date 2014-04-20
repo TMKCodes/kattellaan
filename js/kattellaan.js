@@ -195,9 +195,11 @@ function load_home_page() {
 	$("#home-page").show();
 	if(check_session() === true) {
 		// disable register jumbotron
-		$("#register-information-jumbotron").hide();
+		$("#home-page-register").hide();
+		$("#home-page-features").hide();
 	} else {
-		$("#register-information-jumbotron").show();
+		$("#home-page-register").show();
+		$("#home-page-features").show();
 	}
 	history.pushState(null, "home-page", hostname);
 }
