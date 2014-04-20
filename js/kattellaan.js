@@ -447,7 +447,7 @@ function load_profile_page(uid) {
 	var profile = get_profile(uid);
 	$.cookie("last-viewed-profile", profile.identifier);
 	var username = get_username(uid);
-	$("#profile-page-top-bar-username").html("<h1>" + username + "</h1>");
+	$("#profile-page-top-bar-username").html("<h1><b class=\"glyphicon glyphicon-user\"></b> " + username + "</h1>");
 	
 	$("#profile-page-main-picture").children("img").attr("src", "uploads/" + profile.picture);
 
