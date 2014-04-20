@@ -2,7 +2,7 @@
 
 class position {
 
-	private $identifier
+	private $identifier;
 	private $latitude;
 	private $longitude;
 	private $database;
