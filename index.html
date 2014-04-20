@@ -77,11 +77,24 @@
 
 	<!-- Home page html code -->
 	<div class="container" id="home-page" style="display: none;">
-		<div class="jumpotron" id="register-information-jumbotron" style="display: none;">
-			<h1>Tervetuloa treffisivustollemme.</h1>
-			<p>Kattellaan kehitysvaiheessa oleva treffisivusto sinkuille</p>
-			<p>Rekisteröitymällä saat tiedotteita kehityksestä ja voit käyttää sivustoamme samalla kun kehitämme sitä.</p>
-			<button type="button" class="btn btn-default btn-lg" id="start-registeration-button">Rekisteröidy käyttäjäksi</button>
+		<div class="row panel panel-default" id="home-page-register">
+			<div class="panel-body" id="register-information-jumbotron" style="display: none;">
+				<h1>Tervetuloa treffisivustollemme.</h1>
+				<p>Kattellaan kehitysvaiheessa oleva treffisivusto sinkuille</p>
+				<p>Rekisteröitymällä saat tiedotteita kehityksestä ja voit käyttää sivustoamme samalla kun kehitämme sitä.</p>
+				<button type="button" class="btn btn-default btn-lg" id="start-registeration-button">Rekisteröidy käyttäjäksi</button>
+			</div>
+		</div>
+		<div class="row" id="home-page-features">
+			<div class="col-xs-4 panel panel-default" id="home-page-features-messages" style="display: none;">
+				<div class="panel-heading">
+					#1 Rajoittamaton määrä viestejä
+				</div>
+				<div class="panel-body">
+					Lähetä viestejä kenellä tahansa käyttäjälle silloin kun haluat niin monta kertaa kuin haluat.
+					<button type="button" id="features-more-messages-information-button" class="btn btn-info" >Lisätietoa</button>
+				</div>
+			</div>
 		</div>
 	</div>
 
