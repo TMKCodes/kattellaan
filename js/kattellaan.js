@@ -518,14 +518,14 @@ $("document").ready(function() {
 		// disable login form and show user buttons
 		$("#authentication-form").hide();
 		$("#home-page-register").hide();
-		$("#home-page-features-messages").hide();
+		$("#home-page-features").hide();
 		$("#authentication-error-page").hide();
 		$("#user-menu").show();
 	} else {
 		$("#user-menu").hide();
 		$("#authentication-form").show();
 		$("#home-page-register").show();
-		$("#home-page-features-messages").show();
+		$("#home-page-features").show();
 	}
 
 	setInterval(function() {
