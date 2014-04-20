@@ -1,0 +1,14 @@
+{
+	"manifest_version": 2,
+	"name": "Kattellaan treffipalsta",
+	"description": "Suomalaisille yli 18 vuotiaille tarkoitettu seuranhaku sivusto",
+	"version": "0.1",
+	"author": "Toni Korpela",
+	"permissions": [ "background" ],
+	"app": {
+		"urls": [ "http://kattellaan.com" ],
+		"launch": {
+			"web_url": "http://kattellaan.com"
+		}
+	}
+}
