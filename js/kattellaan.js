@@ -525,6 +525,7 @@ $("document").ready(function() {
 		$("#user-menu").hide();
 		$("#authentication-form").show();
 		$("#home-page-register").show();
+		$("#home-page-features-messages").show();
 	}
 
 	setInterval(function() {
