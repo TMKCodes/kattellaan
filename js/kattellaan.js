@@ -517,13 +517,14 @@ $("document").ready(function() {
 	if(check_session() === true) {
 		// disable login form and show user buttons
 		$("#authentication-form").hide();
-		$("#register-information-jumbotron").hide();
+		$("#home-page-register").hide();
+		$("#home-page-features-messages").hide();
 		$("#authentication-error-page").hide();
 		$("#user-menu").show();
 	} else {
 		$("#user-menu").hide();
 		$("#authentication-form").show();
-		$("#register-information-jumbotron").show();
+		$("#home-page-register").show();
 	}
 
 	setInterval(function() {
