@@ -51,7 +51,7 @@ class position {
 				"latitude INT NOT NULL," .
 				"longitude INT NOT NULL);";
 		$statement = $this->database->prepare($table);
-		$result = $statment->execute();
+		$result = $statement->execute();
 		return $result->success();
 	}
 
