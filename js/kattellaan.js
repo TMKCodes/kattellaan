@@ -499,7 +499,7 @@ function load_profile_page(uid) {
 	$.cookie("last-viewed-profile", profile.identifier);
 	var username = get_username(uid);
 	$("#profile-page-top-bar-username").html("<h1><b class=\"glyphicon glyphicon-user\"></b> " + username + "</h1>");
-	if(profile.picture != undefined) {	
+	if(profile.picture != "") {	
 		$("#profile-page-main-picture").children("img").attr("src", "uploads/" + profile.picture);
 	} else {
 		$("#profile-page-main-picture").children("img").attr("src", "uploads/default.jpg");
