@@ -499,9 +499,11 @@ function load_profile_page(uid) {
 	$.cookie("last-viewed-profile", profile.identifier);
 	var username = get_username(uid);
 	$("#profile-page-top-bar-username").html("<h1><b class=\"glyphicon glyphicon-user\"></b> " + username + "</h1>");
-	
-	$("#profile-page-main-picture").children("img").attr("src", "uploads/" + profile.picture);
-
+	if(profile.picture != undefined) {	
+		$("#profile-page-main-picture").children("img").attr("src", "uploads/" + profile.picture);
+	} else {
+		$("#profile-page-main-picture").children("img").attr("src", "uploads/default.jpg");
+	}
 	var cTime = new Date();
 	var cYear = cTime.getFullYear();
 	var birthday = profile.birthday.split("-");
@@ -517,10 +519,14 @@ function load_profile_page(uid) {
 	var lookingForArr = lookingFor.split(",");
 	lookingFor = lookingForArr.join(", ");
 	lookingFor = lookingFor.replace(/,\s([^,]+)$/, " ja $1");
-	
+		
 	var asl = "<h2> Olen " + age + " vuotias " +
 		relationshipStatus + " " + sGender.toLowerCase() + " " + town
-		+ " joka etsii " + lookingFor.toLowerCase() + ".</h2>";
+	if(lookingFor != undefined) {
+		asl = asl + " joka etsii " + lookingFor.toLowerCase() + ".</h2>";
+	} else {
+		asl = asl + ".</h2>";
+	}
 
 	$("#profile-page-basic-information-asl").html(asl);
 	
