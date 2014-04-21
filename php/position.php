@@ -113,7 +113,7 @@ class position {
 		$statement->bind("i", $this->latitude);
 		$statement->bind("i", $this->longitude);
 		$result = $statement->execute();
-		if($result->success() == true) {
+		if($result->success() == false) {
 			if($result->rows() == 0) {
 				$statement = $this->database->prepare("INSERT INTO `position` (`latitude`, `longitude`) VALUES (?, ?);");
 				$statement->bind("i", $this->latitude);
@@ -128,7 +128,7 @@ class position {
 				throw new Exception("Position already exists.");
 			}
 		} else {
-			throw new Exception("Database query failed!");
+			throw new Exception("Position already exists.");
 		}
 		return false;
 	}
