@@ -78,7 +78,6 @@ class distance {
 				$this->distance = $data->distance;
 				$this->start = $data->start;
 				$this->end = $data->end;
-				printf("Success: %s, %s, %s, %s", $data->id, $data->distance, $data->start, $data->end);
 				return true;
 			} else {
 				return false;

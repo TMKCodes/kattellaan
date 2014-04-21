@@ -29,7 +29,9 @@ function do_distance_work() {
 			var R = 6378137;
 			var dLat = rad(data.work.end.latitude - data.work.start.latitude);
 			var dLong = rad(data.work.end.longitude - data.work.start.longitude);
-			var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(rad(data.work.start.latitude)) * Math.cos(rad(data.work.end.latitude)) * Math.sin(dLong / 2) * Math.sin(dLong / 2);
+			var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + 
+				Math.cos(rad(data.work.start.latitude)) * Math.cos(rad(data.work.end.latitude)) * 
+				Math.sin(dLong / 2) * Math.sin(dLong / 2);
 			var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 			var d = R * c;
 			console.log("Distance in meters: " + d);
