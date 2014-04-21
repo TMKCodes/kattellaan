@@ -259,7 +259,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				try {
 					$distance = new distance($database);
 					if($distance_work = $distance->get_uncalculated() != false) {
-						printf('{ "success": true, "work_type": "distance", "work": %s }', json_decode($distance_work));
+						printf('{ "success": true, "work_type": "distance", "work": %s }', json_encode($distance_work));
 					}
 				} catch (Exception $e) {
 					printf('{ "success": false, "error": "%s" }', $e->getMessage());
