@@ -129,7 +129,7 @@ class distance {
 			for($start = 0; $start <= $count; $start++) {
 				$this->start = $start;
 				for($end = 0; $end <= $count; $end++) {
-					if($i == $x) continue;
+					if($start == $end) continue;
 					$this->end = $end;
 					if($this->select() == true) {
 						if(empty($this->distance)) {
