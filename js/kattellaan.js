@@ -10,6 +10,53 @@ function get_url_parameter(param) {
 	return undefined;
 }
 
+function rad(x) {
+	return x * Math.PI / 180;
+}
+
+function do_distance_work() {
+	var session = $.cookie("session");
+	var success;
+	$.ajax({
+		url: "php/api.php",
+		type: "POST",
+		async: false,
+		data: { call : "get_work", work_type : "distance", session : session }
+	}).done(function(data) {
+		console.log(data);
+		data = $.parseJSON(data);
+		if(data.success === true) {
+			var R = 6378137;
+			var dLat = rad(data.work.end.latitude - data.work.start.latitude);
+			var dLong = rad(data.work.end.longitude - data.work.start.longitude);
+			var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(rad(data.work.start.latitude)) * Math.cos(rad(data.work.end.latitude)) * Math.sin(dLong / 2) * Math.sin(dLong / 2);
+			var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+			var d = R * c;
+			$.ajax({
+				url: "php/api.php",
+				type: "POST",
+				async: false,
+				data: { call : "set_work", work_type : "distance", session : session,
+					start : data.work.start.identifier, end : data.work.end.identifier,
+					distance : d }
+			}).done(function(data) {
+				console.log(data);
+				data = $.parseJSON(data);
+				if(data.success === true) {
+					success = true;
+				} else {
+					console.log(data.error);
+					success = false;
+				}
+			});
+		} else {
+			console.log(data.error);
+			success = false;
+		}
+	});
+	return success;
+}
+
 function open_session(username, password) {
 	$.ajax({
 		url: "php/api.php",
@@ -531,6 +578,7 @@ $("document").ready(function() {
 
 	setInterval(function() {
 		update_session();
+		do_distance_work();
 	}, 15000);
 	// ...
 	$("#register-picture-upload-form").ajaxForm({

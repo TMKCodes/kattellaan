@@ -255,9 +255,15 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				printf('{ "success": false, "error": "Failed to confirm session." }');
 				die;
 			}
-			$distance = new distance($database);
-			if($distance_work = $this->get_uncalculated() != false) {
-				printf('{ "success": true, "work_type": "distance", "work": %s }', json_decode($distance_work));
+			if(!empty($_POST['work_type']) && $_POST['work_type'] == "distance") {
+				try {
+					$distance = new distance($database);
+					if($distance_work = $this->get_uncalculated() != false) {
+						printf('{ "success": true, "work_type": "distance", "work": %s }', json_decode($distance_work));
+					}
+				} catch (Exception $e) {
+					printf('{ "success": false, "error": "%s" }', $e->getMessage());
+				}
 			}
 		} else {
 			printf('{ "success": false, "error": "Not authenticated." }');
@@ -270,10 +276,19 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				die;
 			}
 			if(!empty($_POST['work_type']) && $_POST['work_type'] == "distance") {
-				$distance = new distance($database);
-				$distance->set_start($_POST['start']);
-				$distance->set_end($_POST['end']);
-				$distance->set_distance($_POST['distance']);
+				try {
+					$distance = new distance($database);
+					$distance->set_start($_POST['start']);
+					$distance->set_end($_POST['end']);
+					$distance->set_distance($_POST['distance']);
+					if($distance->insert() == true) {
+						printf('{ "success": true }');
+					} else {
+						printf('{ "success": false, "error": "Could not insert new distance." }');
+					}
+				} catch (Exception $e) {
+					printf('{ "success": false, "error": "%s"}', $e->getMessage());
+				}
 			}
 		} else {
 			printf('{ "success": false, "error": "Not authenticated." }');
