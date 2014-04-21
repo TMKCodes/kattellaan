@@ -15,10 +15,10 @@ class distance {
 	
 	function create_table() {
 		$table = "CREATE TABLE IF NOT EXISTS `distance` (" .
-				"id INT NOT NULL AUTO_INCREMENT PRIMARY_KEY," .
+				"id INT NOT NULL AUTO_INCREMENT PRIMARY KEY," .
 				"distance INT NOT NULL," .
 				"start INT NOT NULL," .
-				"end INT NOT NULL)";
+				"end INT NOT NULL);";
 		$statement = $this->database->prepare($table);
 		$result = $statement->execute();
 		return $result->success();
