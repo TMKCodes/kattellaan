@@ -139,12 +139,7 @@ class distance {
 						$startp->select();
 						$endp->select();
 						return array("start" => $startp->get(), "end" => $endp->get());
-					} else {
-						$this->identifier = null;
-						$this->distance = null;
-						$this->start = null;
-						$this->end = null;	
-					}
+					} 
 				}
 			}
 		} else {
