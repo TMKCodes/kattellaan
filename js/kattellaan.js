@@ -32,6 +32,7 @@ function do_distance_work() {
 			var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(rad(data.work.start.latitude)) * Math.cos(rad(data.work.end.latitude)) * Math.sin(dLong / 2) * Math.sin(dLong / 2);
 			var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 			var d = R * c;
+			console.log("Distance in meters: " + d);
 			$.ajax({
 				url: "php/api.php",
 				type: "POST",
