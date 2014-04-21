@@ -48,8 +48,8 @@ class position {
 	public function create_table() {
 		$table = "CREATE TABLE IF NOT EXISTS `position` (" .
 				"id INT NOT NULL AUTO_INCREMENT PRIMARY KEY," .
-				"latitude INT NOT NULL," .
-				"longitude INT NOT NULL);";
+				"latitude DOUBLE NOT NULL," .
+				"longitude DOUBLE NOT NULL);";
 		$statement = $this->database->prepare($table);
 		$result = $statement->execute();
 		return $result->success();
@@ -73,8 +73,8 @@ class position {
 			$statement->bind("i", $this->identifier);
 		} else if(!empty($this->latitude) && !empty($this->longitude)) {
 			$statement = $this->database->prepare("SELECT * FROM `position` WHERE `latitude` = ? AND `longitude` = ?;");
-			$statement->bind("i", $this->latitude);
-			$statement->bind("i", $this->longitude);
+			$statement->bind("d", $this->latitude);
+			$statement->bind("d", $this->longitude);
 		} else {
 			throw new Exception("No identifying data specified. Give latitude and longitude or identifier");
 		}
@@ -110,14 +110,14 @@ class position {
 			return false;
 		}
 		$statement = $this->database->prepare("SELECT * FROM `position` WHERE `latitude` = ? AND `longitude = ?;");
-		$statement->bind("i", $this->latitude);
-		$statement->bind("i", $this->longitude);
+		$statement->bind("d", $this->latitude);
+		$statement->bind("d", $this->longitude);
 		$result = $statement->execute();
 		if($result->success() == false) {
 			if($result->rows() == 0) {
 				$statement = $this->database->prepare("INSERT INTO `position` (`latitude`, `longitude`) VALUES (?, ?);");
-				$statement->bind("i", $this->latitude);
-				$statement->bind("i", $this->longitude);
+				$statement->bind("d", $this->latitude);
+				$statement->bind("d", $this->longitude);
 				$result = $statement->execute();
 				if($result->success() == true) {
 					return $this->select();
