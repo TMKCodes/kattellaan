@@ -518,14 +518,14 @@ function load_profile_page(uid) {
 		
 	var asl = "<h2> Olen " + age + " vuotias " +
 		relationshipStatus + " " + sGender.toLowerCase() + " " + town
-	if(profile.looking_for != undefined) {
+	if(profile.looking_for == "null") {
+		asl = asl + ".</h2>";
+	} else {
 		var lookingFor = recursive_looking_for(profile.looking_for);
 		var lookingForArr = lookingFor.split(",");
 		lookingFor = lookingForArr.join(", ");
 		lookingFor = lookingFor.replace(/,\s([^,]+)$/, " ja $1");	
 		asl = asl + " joka etsii " + lookingFor.toLowerCase() + ".</h2>";
-	} else {
-		asl = asl + ".</h2>";
 	}
 
 	$("#profile-page-basic-information-asl").html(asl);
