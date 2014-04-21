@@ -25,7 +25,7 @@ class distance {
 	}
 	
 	function select() {
-		if(!empty($this->identifier) {
+		if(!empty($this->identifier)) {
 			$statement = $this->database->prepare("SELECT * FROM `distance` WHERE `id` = ?;");
 			$statement->bind("i", $this->distance);
 		} else if(!empty($this->start) && !empty($this->end)) {
