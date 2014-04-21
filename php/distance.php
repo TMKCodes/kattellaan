@@ -24,6 +24,38 @@ class distance {
 		return $result->success();
 	}
 	
+	function set_identifier($identifier) { 
+		$this->identifier = $identifier;
+	}
+
+	function set_distance($distance) {
+		$this->distance = $distance;
+	}
+
+	function set_start($start) {
+		$this->start = $start;
+	}
+
+	function set_end($end) {
+		$this->end = $end;
+	}
+
+	function get_identifier() {
+		return $this->identifier;
+	}
+	
+	function get_distance() {
+		return $this->distance;
+	}
+	
+	function get_start() {
+		return $this->start;
+	}
+
+	function get_end() {
+		return $this->end;
+	}
+	
 	function select() {
 		if(!empty($this->identifier)) {
 			$statement = $this->database->prepare("SELECT * FROM `distance` WHERE `id` = ?;");
@@ -114,7 +146,8 @@ class distance {
 			}
 		} else {
 			throw new Exception("Not enough positions in database to do calculations.");
-		}	
+		}
+		return false;
 	}
 }
 

@@ -12,6 +12,8 @@ require_once("invite.php");
 require_once("file.php");
 require_once("profile.php");
 require_once("position.php");
+require_once("distance.php");
+
 
 $passwd = explode(":", base64_decode(file_get_contents("/home/temek/kattellaan/.passwd")));
 $database = new db("mysqli");
@@ -245,6 +247,36 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			}
 		} else {
 			printf('{ "success": false, "error": "Not auhtenticated." }');
+		}
+	} else if(!empty($_POST['call']) && $_POST['call'] == "get_work") {
+		if(!empty($_POST['session']) {
+			$session = new session($database, "sha512");
+			if($session->confirm($_POST['session']) == false) {
+				printf('{ "success": false, "error": "Failed to confirm session." }');
+				die;
+			}
+			$distance = new distance($database);
+			if($distance_work = $this->get_uncalculated() != false) {
+				printf('{ "success": true, "work_type": "distance", "work": %s }', json_decode($distance_work));
+			}
+		} else {
+			printf('{ "success": false, "error": "Not authenticated." }');
+		}
+	} else if(!empty($_POST['call']) && $_POST['call'] == "set_work") {
+		if(!empty($_POST['session']) {
+			$session = new session($database, "sha512");
+			if($session->confirm($_POST['session']) == false) {
+				printf('{ "success": false, "error": "Failed to confirm session." }');
+				die;
+			}
+			if(!empty($_POST['work_type']) && $_POST['work_type'] == "distance") {
+				$distance = new distance($database);
+				$distance->set_start($_POST['start']);
+				$distance->set_end($_POST['end']);
+				$distance->set_distance($_POST['distance']);
+			}
+		} else {
+			printf('{ "success": false, "error": "Not authenticated." }');
 		}
 	}
 }
