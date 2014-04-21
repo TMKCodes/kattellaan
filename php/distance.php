@@ -106,7 +106,7 @@ class distance {
 			return false;
 		}
 		if($this->select() == false) {
-			$statement = $this->database("INSERT INTO `distance` (`distance`, `start`, `end`) VALUES (?, ?, ?);");
+			$statement = $this->database->prepare("INSERT INTO `distance` (`distance`, `start`, `end`) VALUES (?, ?, ?);");
 			$statement->bind("i", $this->distance);
 			$statement->bind("i", $this->start);
 			$statement->bind("i", $this->end);
