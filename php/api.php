@@ -258,7 +258,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			if(!empty($_POST['work_type']) && $_POST['work_type'] == "distance") {
 				try {
 					$distance = new distance($database);
-					if($distance_work = $this->get_uncalculated() != false) {
+					if($distance_work = $distance->get_uncalculated() != false) {
 						printf('{ "success": true, "work_type": "distance", "work": %s }', json_decode($distance_work));
 					}
 				} catch (Exception $e) {
