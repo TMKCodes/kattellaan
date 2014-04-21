@@ -1,0 +1,121 @@
+<?php
+
+require_once("position.php");
+
+class distance {
+	private $database;
+	private $identifier;
+	private $distance;
+	private $start;
+	private $end;
+	
+	function __construct($database) {
+		$this->database = $database;
+	}
+	
+	function create_table() {
+		$table = "CREATE TABLE IF NOT EXISTS `distance` (" .
+				"id INT NOT NULL AUTO_INCREMENT PRIMARY_KEY," .
+				"distance INT NOT NULL," .
+				"start INT NOT NULL," .
+				"end INT NOT NULL)";
+		$statement = $this->database->prepare($table);
+		$result = $statement->execute();
+		return $result->success();
+	}
+	
+	function select() {
+		if(!empty($this->identifier) {
+			$statement = $this->database->prepare("SELECT * FROM `distance` WHERE `id` = ?;");
+			$statement->bind("i", $this->distance);
+		} else if(!empty($this->start) && !empty($this->end)) {
+			$statement = $this->database->prepare("SELECT * FROM `distance` WHERE (`start` = ? AND `end` = ?) OR (`start` = ? AND `end` = ?);");
+			$statement->bind("i", $this->start);
+			$statement->bind("i", $this->end);
+			$statement->bind("i", $this->end);
+			$statement->bind("i", $this->start);
+		} else {
+			throw new Exception("No identifying data specified. Give distance identifier or position identifiers."); 
+		}
+		$result = $statement->execute();
+		if($result->success() == true) {
+			if($result->rows() == 1) {
+				$data = $result->fetch_object();
+				if(empty($data)) throw new Exception("Failed to fetch object!");
+				$this->identifier = $data->id;
+				$this->distance = $data->distance;
+				$this->start = $data->start;
+				$this->end = $data->end;
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			throw new Exception("Database query failed!");
+		}
+		return false;
+	}
+	
+	function insert() {
+		if(!empty($this->identifier) {
+			throw new Exception("Identifier already set.");
+			return false;
+		}
+		if(!empty($this->distance) {
+			throw new Exception("Distance is not set.");
+			return false;
+		}
+		if(!empty($this->start) {
+			throw new Exception("Start position is not set.");
+			return false;
+		}
+		if(!empty($this->end) {
+			throw new Exception("End position is not set.");
+			return false;
+		}
+		if($this->select() == false) {
+			$statement = $this->database("INSERT INTO `distance` (`distance`, `start`, `end`) VALUES (?, ?, ?);");
+			$statement->bind("i", $this->distance);
+			$statement->bind("i", $this->start);
+			$statement->bind("i", $this->end);
+			$result = $statement->execute();
+			if($result->success() == true) {
+				return $this->select();
+			} else {
+				throw new Exception("Database query failed!");
+			}
+		} else {
+			throw new Exception("Distance already exists for these positions");
+		}
+		return false;
+	}
+	
+	function get_uncalculated() {
+		$count = new position($this->database);
+		$count = $count->amount();
+		if($count >= 2) {
+			for($start = 0; $start <= $count; $start++) {
+				$this->start = $start;
+				for($end = 0; $end <= $count; $end++) {
+					if($i == $x) continue;
+					$this->end = $end;
+					if($this->select() == true) {
+						if(empty($this->distance)) {
+							$startp = new position($this->database);
+							$endp = new position($this->database);
+							$startp->set_identifier($start);
+							$endp->set_identifier($end);
+							$startp->select();
+							$endp->select();
+							return array("start" => $startp->get(), "end" => $endp->get());
+						} 
+					}
+				}
+			}
+		} else {
+			throw new Exception("Not enough positions in database to do calculations.");
+		}	
+	}
+}
+
+?>

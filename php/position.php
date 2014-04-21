@@ -55,6 +55,18 @@ class position {
 		return $result->success();
 	}
 
+	public function amount() {
+		$statement = $this->database->prepare("SELECT COUNT(*) AS amount FROM `position`;");
+		$result = $statement->execute();
+		if($result->success() == true) {
+			$data = $result->fetch_array(RASSOC);
+			return $data['amount'];
+		} else {
+			throw new Exception("Failed to query database.");
+		}
+		return false;
+	}
+
 	public function select() {
 		if(!empty($this->identifier)) {
 			$statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ?;");
@@ -87,12 +99,15 @@ class position {
 	public function insert() {
 		if(!empty($this->identifier)) {
 			throw new Exception("Identifier already set.");
+			return false;
 		}
 		if(empty($this->latitude)) {
 			throw new Exception("Latitude is not set.");
+			return false;
 		}
 		if(empty($this->longitude)) {
 			throw new Exception("Longitude is not set.");
+			return false;
 		}
 		$statement = $this->database->prepare("SELECT * FROM `position` WHERE `latitude` = ? AND `longitude = ?;");
 		$statement->bind("i", $this->latitude);
@@ -100,12 +115,12 @@ class position {
 		$result = $statement->execute();
 		if($result->success() == true) {
 			if($result->rows() == 0) {
-				$statement = $this->database->prepare("INSERT INTO (`latitude`, `longitude`) VALUES (?, ?);");
+				$statement = $this->database->prepare("INSERT INTO `position` (`latitude`, `longitude`) VALUES (?, ?);");
 				$statement->bind("i", $this->latitude);
 				$statement->bind("i", $this->longitude);
 				$result = $statement->execute();
 				if($result->success() == true) {
-					$this->select();
+					return $this->select();
 				} else {
 					throw new Exception("Database query failed!");
 				}
