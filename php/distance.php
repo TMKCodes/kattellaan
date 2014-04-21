@@ -126,9 +126,9 @@ class distance {
 		$count = new position($this->database);
 		$count = $count->amount();
 		if($count >= 2) {
-			for($start = 0; $start <= $count; $start++) {
+			for($start = 1; $start <= $count; $start++) {
 				$this->start = $start;
-				for($end = 0; $end <= $count; $end++) {
+				for($end = 1; $end <= $count; $end++) {
 					if($start == $end) continue;
 					$this->end = $end;
 					if($this->select() == true) {
