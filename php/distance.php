@@ -125,13 +125,21 @@ class distance {
 	function get_uncalculated() {
 		$count = new position($this->database);
 		$count = $count->amount();
+		/*if($count >= 2) {
+			for($start = 1; $start <= $count; $start++) {
+				for($end = 1; $end <= $count; $end++) {
+					$this->start = $start
+					
+				}
+			}
+		}*/
 		if($count >= 2) {
 			for($start = 1; $start <= $count; $start++) {
-				$this->start = $start;
+
 				for($end = 1; $end <= $count; $end++) {
 					if($start == $end) continue;
 					$this->end = $end;
-					unset($this->identifier);
+					$this->start = $start;
 					if($this->select() == false) {
 						$startp = new position($this->database);
 						$endp = new position($this->database);
