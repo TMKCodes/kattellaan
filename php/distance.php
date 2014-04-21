@@ -57,19 +57,19 @@ class distance {
 	}
 	
 	function insert() {
-		if(!empty($this->identifier) {
+		if(!empty($this->identifier)) {
 			throw new Exception("Identifier already set.");
 			return false;
 		}
-		if(!empty($this->distance) {
+		if(!empty($this->distance)) {
 			throw new Exception("Distance is not set.");
 			return false;
 		}
-		if(!empty($this->start) {
+		if(!empty($this->start)) {
 			throw new Exception("Start position is not set.");
 			return false;
 		}
-		if(!empty($this->end) {
+		if(!empty($this->end)) {
 			throw new Exception("End position is not set.");
 			return false;
 		}
