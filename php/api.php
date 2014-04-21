@@ -249,7 +249,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			printf('{ "success": false, "error": "Not auhtenticated." }');
 		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "get_work") {
-		if(!empty($_POST['session']) {
+		if(!empty($_POST['session'])) {
 			$session = new session($database, "sha512");
 			if($session->confirm($_POST['session']) == false) {
 				printf('{ "success": false, "error": "Failed to confirm session." }');
@@ -263,7 +263,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			printf('{ "success": false, "error": "Not authenticated." }');
 		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "set_work") {
-		if(!empty($_POST['session']) {
+		if(!empty($_POST['session'])) {
 			$session = new session($database, "sha512");
 			if($session->confirm($_POST['session']) == false) {
 				printf('{ "success": false, "error": "Failed to confirm session." }');
