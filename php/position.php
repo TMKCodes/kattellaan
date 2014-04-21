@@ -83,9 +83,9 @@ class position {
 			if($result->rows() == 1) {
 				$data = $result->fetch_object();
 				if(empty($data)) throw new Exception("Failed to fetch object!");
-				$this->identifier = $this->id;
-				$this->latitude = $this->latitude;
-				$this->longitude = $this->longitude;
+				$this->identifier = $data->id;
+				$this->latitude = $data->latitude;
+				$this->longitude = $data->longitude;
 				return true;
 			} else {
 				return false;
