@@ -131,16 +131,14 @@ class distance {
 				for($end = 1; $end <= $count; $end++) {
 					if($start == $end) continue;
 					$this->end = $end;
-					if($this->select() == true) {
-						if(empty($this->distance)) {
-							$startp = new position($this->database);
-							$endp = new position($this->database);
-							$startp->set_identifier($start);
-							$endp->set_identifier($end);
-							$startp->select();
-							$endp->select();
-							return array("start" => $startp->get(), "end" => $endp->get());
-						} 
+					if($this->select() == false) {
+						$startp = new position($this->database);
+						$endp = new position($this->database);
+						$startp->set_identifier($start);
+						$endp->set_identifier($end);
+						$startp->select();
+						$endp->select();
+						return array("start" => $startp->get(), "end" => $endp->get());
 					}
 				}
 			}
