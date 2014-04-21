@@ -77,7 +77,11 @@ class profile {
 		$this->looking_for = $profile['looking_for'];
 		$this->not_exciting = $profile['not_exciting'];
 		$this->pets = $profile['pets'];
-		$this->picture = $profile['picture'];
+		if(!empty($profile['picture']) {
+			$this->picture = $profile['picture'];
+		} else {
+			$this->picture = "";
+		}
 		$this->political_importance = $profile['political_importance'];
 		$this->relationship_status = $profile['relationship_status'];
 		$this->religion = $profile['religion'];
