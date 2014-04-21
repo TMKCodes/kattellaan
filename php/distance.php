@@ -131,7 +131,7 @@ class distance {
 				for($end = 1; $end <= $count; $end++) {
 					if($start == $end) continue;
 					$this->end = $end;
-					$this->identifier = null;
+					unset($this->identifier);
 					if($this->select() == false) {
 						$startp = new position($this->database);
 						$endp = new position($this->database);
