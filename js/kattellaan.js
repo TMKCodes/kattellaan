@@ -502,7 +502,7 @@ function load_profile_page(uid) {
 		var session = window.atob($.cookie("session"));
 		var rsession = session.split("||");
 		vuid = rsession[1];
-		if(rsession[1] === uid) {
+		if(vuid === uid) {
 			$("#profile-page-top-bar-menu-send-msg").hide();
 			$("#profile-page-top-bar-menu-add-friend").hide();
 			$("#profile-page-top-bar-menu-request-date").hide();
@@ -587,27 +587,28 @@ $("document").ready(function() {
 	hostname = location.protocol + '//' + location.hostname + location.pathname;
 	var page = get_url_parameter("page");
 	if(page !== undefined) {
-		load_page(page);
+		if(page === "profile-page") {
+			var uid = get_url_parameter("uid");
+			if(uid != undefined) {
+				load_profile_page(uid);
+			} else if($.cookie("last-viewed-profile") != undefined) {
+				load_profile_page($.cookie("last-viewed-profile"));
+			} else {
+				if($.cookie("session") != undefined) {
+					var session = window.atob($.cookie("session"));
+					var rsession = session.split("||");
+					load_profile_page(rsession[1]);
+				} else {
+					load_home_page();
+				}
+			}
+		} else {
+			load_page(page);
+		}
 	} else {
 		$("#home-page").show();
 	}
 
-	if(page === "profile-page") {
-		var uid = get_url_parameter("uid");
-		if(uid != undefined) {
-			load_profile_page(uid);
-		} else if($.cookie("last-viewed-profile") != undefined) {
-			load_profile_page($.cookie("last-viewed-profile"));
-		} else {
-			if($.cookie("session") != undefined) {
-				var session = window.atob($.cookie("session"));
-				var rsession = session.split("||");
-				load_profile_page(rsession[1]);
-			} else {
-				load_home_page();
-			}
-		}
-	}
 
 	if(check_session() === true) {
 		// disable login form and show user buttons
