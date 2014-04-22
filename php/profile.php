@@ -48,6 +48,17 @@ class profile {
 		$this->database = $database;
 	}	
 
+	public function strip_latlng($latlng) {
+		$latlng = str_replace("(", "", $latlng);
+		$latlng = str_replace(")", "", $latlng);
+		$latlng = explode(", ", $latlng);
+		return $latlng;
+	}
+	
+	public function get_latlng() {
+		return $this->latlng;
+	}
+
 	public function set($profile) {
 		$this->accomodation = $profile['accomodation'];
 		$this->address = $profile['address'];

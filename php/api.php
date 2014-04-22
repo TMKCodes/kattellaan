@@ -220,10 +220,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			if($profile->select($identifier) == false) {	
 				if($profile->insert() == true) {
 					$position = new position($database);
-					$latlng = $_POST['latlng'];
-					$latlng = str_replace("(", "", $latlng);
-					$latlng = str_replace(")", "", $latlng);
-					$latlng = explode(", ", $latlng);
+					$profile->strip_latlng($_POST['latlng']);
 					$position->set_latitude($latlng[0]);
 					$position->set_longitude($latlng[1]);
 					$position->insert();
@@ -281,6 +278,47 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				} catch (Exception $e) {
 					printf('{ "success": false, "error": "%s" }', $e->getMessage());
 				}
+			}
+		} else {
+			printf('{ "success": false, "error": "Not authenticated." }');
+		}
+	} else if(!empty($_POST['call']) && $_POST['call'] == "get_distance") {
+		if(!empty($_COOKIE['SESSION']) {
+			$session = new session($database, "sha512");
+			if($session->confirm($_COOKIE['session']) == false) {
+				printf('{ "success": false, "error": "Failed to confirm session." }');
+				die;
+			} 
+			if(!empty($_POST['my_uid']) && !empty($_POST['his_uid']) {
+				try {
+					$my_profile = new profile($database);
+					$his_profile = new profile($database);
+					$my_profile->select($_POST['my_uid']);
+					$his_profile->select($_POST['his_uid']);
+					$my_latlng = $my_profile->strip_latlng($my_profile->get_latlng());
+					$his_latlng = $his_profile->strip_latlng($his_profile->get_latlng());
+					$my_position = new position($database);
+					$his_position = new position($database);
+					$my_position->set_latitude($my_latlng[0]);
+					$my_position->set_longitude($my_latlng[1]);
+					$his_position->set_latitude($his_latlng[0]);
+					$his_position->set_longitude($his_latlng[1]);
+					$my_position->select();
+					$his_position->select();
+					$distance = new distance($database);
+					$distance->set_start($my_position->get_identifier());
+					$distance->set_end($his_position->get_identifier());
+					if($distance->select() == true) {
+						printf('{ "success": true, "distance": "%s" }', $distance->get_distance());
+					} else {
+						printf('{ "success": true, "distance": "Unknown" }');
+					}
+					
+				} catch (Exception $e) {
+					printf('{ "success": false, "error": %s}', $e->getMessage());
+				}
+			} else {
+				printf('{ "success": false, "error": "User identifiers were not give." }');
 			}
 		} else {
 			printf('{ "success": false, "error": "Not authenticated." }');
