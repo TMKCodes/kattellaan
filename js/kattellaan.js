@@ -594,12 +594,12 @@ $("document").ready(function() {
 
 	if(page === "profile-page") {
 		var uid = get_url_parameter("uid");
-		if(uid !== undefined) {
+		if(uid != undefined) {
 			load_profile_page(uid);
-		} else if($.cookie("last-viewed-profile") !== undefined) {
+		} else if($.cookie("last-viewed-profile") != undefined) {
 			load_profile_page($.cookie("last-viewed-profile"));
 		} else {
-			if($.cookie("session") !== undefined) {
+			if($.cookie("session") != undefined) {
 				var session = window.atob($.cookie("session"));
 				var rsession = session.split("||");
 				load_profile_page(rsession[1]);
