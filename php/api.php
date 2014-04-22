@@ -178,31 +178,20 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				for($i = 0; $i < count($_FILES['file']['name']); $i++) {
 					$ufile->set_name(strtolower($_FILES['file']['name'][$i]));
 					$ufile->set_owner($account_identifier);
-					$dont_save = false;
-					if($_POST['type'] == "picture") {
-						$finfo = new finfo(FILEINFO_MIME_TYPE);
-						if(false === $ext = array_search($finfo->file($_FILES['file']['tmp_name'][$i]), array('jpg' => 'image/jpeg', 'jpeg' => 'image/jpeg', 'png' => 'image/png', 'gif' => 'image/gif'), true)) {
-							$dont_save = true;
-						}
-					}
-					if($dont_save == false) {
-						try { if($ufile->insert() == true) {
-								if(move_uploaded_file($_FILES['file']['tmp_name'][$i], $upload_directory . $ufile->get_name())) {	
-									array_push($uploaded_files, $ufile->get_name());
-								} else {
-									$file->delete();
-									array_push($failed_files, $_FILES['file']['name'][$i]);
-								}
+					try { if($ufile->insert() == true) {
+							if(move_uploaded_file($_FILES['file']['tmp_name'][$i], $upload_directory . $ufile->get_name())) {	
+								array_push($uploaded_files, $ufile->get_name());
 							} else {
-								printf('{ "success": false, "error": "Failed to store filename in database" }');
-								die();
+								$file->delete();
+								array_push($failed_files, $_FILES['file']['name'][$i]);
 							}
-						} catch (Exception $e) {
-							printf('{ "success": false, "error": "%s" }', $e->getMessage());
+						} else {
+							printf('{ "success": false, "error": "Failed to store filename in database" }');
 							die();
 						}
-					} else {
-						array_push($failed_files, $_FILES['file']['name'][$i]);
+					} catch (Exception $e) {
+						printf('{ "success": false, "error": "%s" }', $e->getMessage());
+						die();
 					}
 				}
 				if(empty($failed_files)) {
