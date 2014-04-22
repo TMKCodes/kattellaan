@@ -331,8 +331,18 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				die;
 			}
 			$search_results = array();
-			if(!empty($_POST['max_distance'])) {
+			if(!empty($_POST['min_age'] && !empty($_POST['max_age']) {
+				$profiles = select_by_age($_POST['min_age'], $_POST['max_age']);
+				if($profiles != false) {
+					foreach($profiles as $profile) {
+						array_push($search_results, $profile->get());
+					}
+				} else {
+					printf('{ "success": error, "error": "No results found." }');
+				}
+			} else if(!empty($_POST['max_distance'])) {
 				try {
+					$search_results_i = count($search_results);
 					$my_profile = new profile($database);
 					$my_profile->select($_POST['my_uid']);
 					$my_latlng = $my_profile->strip_latlng($my_profile->get_latlng());
@@ -340,26 +350,21 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					$my_position->set_latitude($my_latlng[0]);
 					$my_position->set_longitude($my_latlng[1]);
 					$my_position->select();
-					$distance = new distance($database);
-					$result = $distance->find($_POST['max_distance'], $my_position->get_identifier());
-					if($result != false) {
-						$result_i = count($result);
-						for($i = 0; $i < $result_i; $i++) {
-							$position = new position($database);
-							$position->set_identifier($result[$i]['identifier']);
-							$position->select();
-							$profile = new profile($database);
-							$profiles = $profile->select_by_position($position->get());
-							if($profiles != false) {
-								$profiles_i = count($profiles);
-								for($i = 0; $i < $profiles_i; $i++) {
-									array_push($search_results, $profiles[$i]->get());
-								}
-							}
-						}
-					} else {
-						printf('{ "success": error, "error": "No results found"}');
+					for($i = 0; $i <= $search_results_i; $i++) {
+						$his_latlng = $my_profile->strip_latlng($search_results[$i]['latlng']);
+						$his_position = new position($database);
+						$his_position->set_latitude($his_latlng[0]);
+						$his_position->set_longitude($his_latlng[1]);
+						$his_position->select();
+						$position = new position($database);
+						$position->set_start($my_position->get_identifier());
+						$position->set_end($his_position->get_identifier());
+						$position->select();
+						if($position->get_distance() > $_POST['max_distance']) {
+							unset($search_results[$i]);
+						}		
 					}
+					$search_results = array_values($search_results);
 				} catch (Exception $e) {
 					printf('{ "success": false, "error": "%s" }', $e->getMessage());
 				}

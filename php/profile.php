@@ -195,9 +195,7 @@ class profile {
 			
 	}
 
-	public function select_by_position($position) {
-		$statment = $this->database->prepare("SELECT * FROM `profile` WHERE `latlng` = ?;");
-		$statement->bind('s', "(" . $position['latitude'] . ", " . $position['longitude'] . ")");	
+	private function execute_select($statement) {
 		$result = $statement->execute();
 		if($result->success() == true) {
 			if($result->rows() > 0) {
@@ -214,6 +212,24 @@ class profile {
 		} else {
 			return false;
 		}
+	}
+
+	public function select_by_position($position) {
+		$statment = $this->database->prepare("SELECT * FROM `profile` WHERE `latlng` = ?;");
+		$statement->bind('s', "(" . $position['latitude'] . ", " . $position['longitude'] . ")");	
+		return $this->execute_select($statement);
+	}
+	
+	public function select_by_age($min, $max) {
+		$this_year = date("Y");
+		$min_birthday_year = $this_year - $min;
+		$max_birthday_year = $this_year - $max;
+		$min_birthday = $min_birthday_year . "-12-31";
+		$max_birthday = $max_birthday_year . "-01-01";
+		$statment = $this->database->prepare("SELECT * FROM `profile` WHERE `birthday` >= ? AND `birthday` <= ?;");
+		$statement->bind('s', $max_birthday);
+		$statement->bind('s', $min_birthday);	
+		return $this->execute_select($statement);
 	}
 
 	public function select($identifier) {
