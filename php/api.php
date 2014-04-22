@@ -289,7 +289,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				printf('{ "success": false, "error": "Failed to confirm session." }');
 				die;
 			} 
-			if(!empty($_POST['my_uid']) && !empty($_POST['his_uid']) {
+			if(!empty($_POST['my_uid']) && !empty($_POST['his_uid'])) {
 				try {
 					$my_profile = new profile($database);
 					$his_profile = new profile($database);
