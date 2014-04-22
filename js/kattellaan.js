@@ -528,7 +528,7 @@ function load_profile_page(uid) {
 		if(distance < 1000) {
 			profile_text += " asuu " + distance + " metrin päässä.";
 		} else {
-			profile_text += " asuu " + distance + " kilometrin päässä.";
+			profile_text += " asuu " + distance / 1000 + " kilometrin päässä.";
 		} 
 	}
 		
