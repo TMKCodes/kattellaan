@@ -36,8 +36,15 @@ for($i = 0; $i < $usernames_count; $i++) {
 	printf("Latitude: %s\r\nLongitude: %s\r\n", $latitude, $longitude);
 	
 	$google_geocode_reply = file_get_contents("http://maps.googleapis.com/maps/api/geocode/json?latlng=" . $latitude . "," . $longitude . "&sensor=true");
-	printf("geocode: %s\r\n", $google_geocode_reply);
-	$google_geocode_reply = json_decode($google_geocode_reply);
+	$google_geocode_reply = json_decode($google_geocode_reply, true);
+	if($google_geocode_reply['status'] == "OK") {
+		$address = $google_geocode_reply['results'][0]['formatted_address'];
+		printf("Address: %s\r\n", $address);		
+	} else {
+		$i--;
+		continue;
+	}
+	
 
 	sleep(35);
 }
