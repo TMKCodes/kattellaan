@@ -372,7 +372,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				}
 				$search_results = array_values($search_results);
 			} else if(!empty($_POST['looking_for']) {
-				$post_looking_for = explode(",", $_POST['looking_for'];
+				$post_looking_for = explode(",", $_POST['looking_for']);
 				$search_results_i = count($search_results);	
 				for($i = 0; $i < $search_results_i; $i++) {
 					$looking_for = explode(",", $search_results[$i]['looking_for']);
