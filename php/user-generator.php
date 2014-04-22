@@ -1,11 +1,11 @@
 <?php
 	
-$usernames = explode("\r\n", file_get_contents("../lists/random-usernames.txt"));
-$male_names = explode("\r\n", file_get_contents("../lists/male-names.txt"));
-$female_names = explode("\r\n", file_get_contents("../lists/female-names.txt"));
-$lastnames = explode("\r\n", file_get_contents("../lists/lastnames.txt"));
+$usernames = explode("\r\n", file_get_contents(__DIR__."../lists/random-usernames.txt"));
+$male_names = explode("\r\n", file_get_contents(__DIR__."../lists/male-names.txt"));
+$female_names = explode("\r\n", file_get_contents(__DIR__."../lists/female-names.txt"));
+$lastnames = explode("\r\n", file_get_contents(__DIR__."../lists/lastnames.txt"));
 
-$username_count = count($usernames);
+$usernames_count = count($usernames);
 $male_names_count = count($male_names);
 $female_names_count = count($female_names);
 $lastnames_count = count($lastnames);
