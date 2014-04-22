@@ -521,7 +521,7 @@ function load_profile_page(uid) {
 	
 	var username = get_username(uid);
 	
-	var profile_text = "<h1><b class=\"glyphicon glyphicon-user\"></b> " + username "
+	var profile_text = "<h1><b class=\"glyphicon glyphicon-user\"></b> " + username;
 
 	if(uid !== vuid) {
 		var distance = parseInt(get_distance(vuid, uid));
