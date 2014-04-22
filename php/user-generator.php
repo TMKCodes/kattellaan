@@ -28,7 +28,7 @@ for($i = 0; $i < $usernames_count; $i++) {
 	
 	$rlastname = mt_rand(0, $lastnames_count-1);
 	$lastname = $lastnames[$rlastname];
-	$name = $name . " " $lastname;
+	$name = $name . " " . $lastname;
 	printf("Name: %s\r\n", $name;
 	
 	$latitude = mt_rand(600000000, 700000000) / 10000000;
