@@ -1,0 +1,110 @@
+Akaa			Ackas		2007	17129
+Alajärvi				1986	10277
+Alavus			Alavo		1977	12354
+Espoo			Esbo		1972	260981
+Forssa					1964	17724
+Haapajärvi		Aspsjö		1977	7640
+Haapavesi				1996	7287
+Hämeenlinna		Tavastehus	1639	67766
+Hamina			Fredrikshamn	1653	21249
+Hanko			Hangö		1874	9270
+Harjavalta				1977	7494
+Haukipudas				1866	19053
+Heinola					1839	20013
+Helsinki		Helsingfors	1550	614074
+Huittinen		Vittis		1977	10618
+Hyvinkää		Hyvinge		1960	45749
+Iisalmi			Idensalmi	1891	22130
+Ikaalinen		Ikalis		1977	7353
+Imatra					1971	28313
+Pietarsaari		Jakobstad	1652	19637
+Joensuu					1848	74475
+Juankoski		Strömsdal	1998	5108
+Jyväskylä				1837	134802
+Jämsä					1977	22392
+Järvenpää		Träskända	1967	39631
+Kaarina			Sankt Karins	1993	31269
+Kajaani			Kajana		1651	38005
+Kalajoki				1865	12589
+Kankaanpää				1972	11979
+Kannus					1986	5733
+Karkkila		Högfors		1977	9125
+Kaskinen		Kaskö		1785	1374
+Kauhajoki				2001	14176
+Kauhava					1986	17206
+Kauniainen		Grankulla	1972	9039
+Kemi					1869	22285
+Kemijärvi		Kemiträsk	1973	8145
+Kerava			Kervo		1970	34974
+Keuruu			Keuru		1986	10522
+Kitee			Kides		1992	9083
+Kiuruvesi				1993	8987
+Kokemäki		Kumo		1977	7923
+Kokkola			Karleby		1620	46714
+Kotka					1878	54849
+Kouvola					1960	86943
+Kristiinankaupunki	Kristinestad	1649	7077
+Kuhmo					1986	9271
+Kuopio					1775	106451
+Kurikka					1977	14370
+Kuusamo					2000	16177
+Lahti			Lahtis		1905	103352
+Laitila			Letala		1986	8462
+Lappeenranta		Villmanstrand	1649	72678
+Lapua			Lappo		1977	14698
+Lieksa					1973	12568
+Lohja			Lojo		1969	39748
+Loimaa					1969	16840
+Loviisa			Lovisa		1745	15556
+Mänttä-Vilppula		Mänttä-Filpula	2009	11306
+Maarianhamina		Mariehamn	1861	11286
+Mikkeli			Sankt Michel	1838	48970
+Naantali		Nådendal	1443	18834
+Närpiö			Närpes		1993	9383
+Nilsiä					1998	6507
+Nivala					1992	11053
+Nokia					1977	32402
+Nurmes					1974	8358
+Uusikaarlepyy		Nykarleby	1620	7513
+Orimattila				1992	16352
+Orivesi					1986	9582
+Oulainen		Oulais		1977	7912
+Oulu			Uleåborg	1605	193902
+Outokumpu				1977	7396
+Paimio			Pemar		1997	10479
+Parainen		Pargas		1977	15511
+Parkano					1977	6975
+Pieksämäki				1962	19672
+Pori			Björneborg	1558	83487
+Porvoo			Borgå		1346	49538
+Pudasjärvi				2004	8717
+Pyhäjärvi				1993	5879
+Raahe			Brahestad	1649	22606
+Raasepori		Raseborg	2009	29014
+Rauma			Raumo		1442	39870
+Raisio			Reso		1974	24564
+Riihimäki				1960	29053
+Rovaniemi				1960	60896
+Saarijärvi				1986	10373
+Salo					1960	55231
+Sastamala				2009	24474
+Savonlinna		Nyslott		1639	27420
+Seinäjoki		Östermyra	1960	60472
+Siuntio			Sjundeå		1382	6160
+Somero					1993	9268
+Suonenjoki				1977	7561
+Tampere			Tammerfors	1779	220609
+Tornio			Torneå		1621	22525
+Turku			Åbo		1200	182281
+Ulvila			Ulvsby		1365	13531
+Uusikaupunki		Nystad		1617	15687
+Vaasa			Vasa		1606	66405
+Valkeakoski				1963	21175
+Vantaa			Vanda		1974	208310
+Varkaus					1962	22587
+Viitasaari				1996	6988
+Virrat			Virdois		1977	7453
+Ylivieska				1971	14307
+Ylöjärvi				2004	31521
+Äänekoski				1973	20282
+Ähtäri			Etseri		1986	6394
