@@ -284,11 +284,11 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "get_distance") {
 		if(!empty($_COOKIE['session'])) {
-			$session = new session($database, "sha512");
+ 			$session = new session($database, "sha512");
 			if($session->confirm($_COOKIE['session']) == false) {
 				printf('{ "success": false, "error": "Failed to confirm session." }');
 				die;
-			} 
+			}
 			if(!empty($_POST['my_uid']) && !empty($_POST['his_uid'])) {
 				try {
 					$my_profile = new profile($database);
@@ -322,6 +322,76 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			}
 		} else {
 			printf('{ "success": false, "error": "Not authenticated." }');
+		}
+	} else if(!empty($_POST['call']) && $_POST['call'] == "search_users") {
+		if(!empty($_COOKIE['session'])) {
+			$session = new session($database, "sha512");
+			if($session->confirm($_COOKIE['session']) == false) {
+				printf('{ "success": false, "error": "Failed to confirm session." }');
+				die;
+			}
+			$search_results = array();
+			if(!empty($_POST['max_distance'])) {
+				try {
+					$my_profile = new profile($database);
+					$my_profile->select($_POST['my_uid']);
+					$my_latlng = $my_profile->strip_latlng($my_profile->get_latlng());
+					$my_position = new position($database);
+					$my_position->set_latitude($my_latlng[0]);
+					$my_position->set_longitude($my_latlng[1]);
+					$my_position->select();
+					$distance = new distance($database);
+					$result = $distance->find($_POST['max_distance'], $my_position->get_identifier());
+					if($result != false) {
+						$result_i = count($result);
+						for($i = 0; $i < $result_i; $i++) {
+							$position = new position($database);
+							$position->set_identifier($result[$i]['identifier']);
+							$position->select();
+							$profile = new profile($database);
+							$profiles = $profile->select_by_position($position->get());
+							if($profiles != false) {
+								$profiles_i = count($profiles);
+								for($i = 0; $i < $profiles_i; $i++) {
+									array_push($search_results, $profiles[$i]->get());
+								}
+							}
+						}
+					} else {
+						printf('{ "success": error, "error": "No results found"}');
+					}
+				} catch (Exception $e) {
+					printf('{ "success": false, "error": "%s" }', $e->getMessage());
+				}
+			} else if(!empty($_POST['gender'])) {
+				$search_results_i = count($search_results);
+				for($i = 0; $i < $search_results_i; $i++) {
+					if($search_results[$i]['gender'] != $_POST['gender']) {
+						unset($search_results[$i]);
+					}
+				}
+				$search_results = array_values($search_results);
+			} else if(!empty($_POST['looking_for']) {
+				$post_looking_for = explode(",", $_POST['looking_for'];
+				$search_results_i = count($search_results);	
+				for($i = 0; $i < $search_results_i; $i++) {
+					$looking_for = explode(",", $search_results[$i]['looking_for']);
+					$match_found = false;
+					foreach($post_looking_for as $p_value) {
+						foreach($looking_for as $d_value) {
+							if($p_value == $d_value) {
+								$match_found = true;
+							}
+						}
+					}
+					if($match_found == false) {
+						unset($search_results[$i]);
+					}
+				}
+				$search_results = array_values($search_results);
+			}
+		} else {
+			printf('{ "success": false, "error": "Not authenticated."}');
 		}
 	}
 }

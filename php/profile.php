@@ -195,10 +195,31 @@ class profile {
 			
 	}
 
+	public function select_by_position($position) {
+		$statment = $this->database->prepare("SELECT * FROM `profile` WHERE `latlng` = ?;");
+		$statement->bind('s', "(" . $position['latitude'] . ", " . $position['longitude'] . ")");	
+		$result = $statement->execute();
+		if($result->success() == true) {
+			if($result->rows() > 0) {
+				$data = array();
+				for($i = 0; $i <= $result->rows(); $i++) {
+					$profile = new profile($this->database);
+					$profile->set($result->fetch_array(RASSOC));
+					array_push($data, $profile);
+				}
+				return $data;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+
 	public function select($identifier) {
 		$statement = $this->database->prepare("SELECT * FROM `profile` WHERE `identifier` = ?;");
 		$statement->bind('i', $identifier);
-		$result = $statement->execute();
+ 		$result = $statement->execute();
 		if($result->success() == true) {
 			if($result->rows() > 0) {
 				$data = $result->fetch_array(RASSOC);
@@ -209,7 +230,7 @@ class profile {
 			}
 		} else {
 			return false;
-		} 
+		}
 	}
 
 	private function sbind($statement, $with_identifier) {

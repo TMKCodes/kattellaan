@@ -56,6 +56,29 @@ class distance {
 		return $this->end;
 	}
 	
+	function find($distance, $position) {
+		$statement = $this->database->prepare("SELECT * FROM `distance` WHERE `distance` <= ? AND (`start` = ? OR `end` = ?);");
+		$statement->bind("i", $this->distance);
+		$statement->bind("i", $this->position);
+		$statement->bind("i", $this->position);
+		$result = $statement->execute();
+		if($result->success() == true) {
+			if($result->rows() > 0) {
+				$data = array();
+				for($i = 0; $i < $result->rows(); $i++) {
+					array_push($data, $result->fetch_array(RASSOC));
+				}
+				return $data;
+			} else {
+				throw new Exception("Did not find any positions.");
+			}
+		} else {
+			throw new Exception("Database query failed!");
+		}
+		return false;
+	}
+
+	
 	function select() {
 		if(!empty($this->identifier)) {
 			$statement = $this->database->prepare("SELECT * FROM `distance` WHERE `id` = ?;");
