@@ -477,10 +477,31 @@ function from_town(town) {
 }
 
 
+function get_distance(my_uid, his_uid) {
+	var distance;
+	$.ajax({
+		url: "php/api.php",
+		type: "POST",
+		async: false,
+		data: { call : 'get_distance', my_uid : my_uid, his_uid : his_uid }
+	}).done(function(data) {
+		console.log(data);
+		data = $.parseJSON(data);
+		if(data.success === true) {
+			distance = data.distance;
+		} else {
+			console.log(data.error);
+		}
+	});
+	return distance;
+}
+
 function load_profile_page(uid) {
+	var vuid;
 	if($.cookie("session") !== undefined) {
 		var session = window.atob($.cookie("session"));
 		var rsession = session.split("||");
+		vuid = rsession[1];
 		if(rsession[1] === uid) {
 			$("#profile-page-top-bar-menu-send-msg").hide();
 			$("#profile-page-top-bar-menu-add-friend").hide();
@@ -497,13 +518,30 @@ function load_profile_page(uid) {
 	}
 	var profile = get_profile(uid);
 	$.cookie("last-viewed-profile", profile.identifier);
+	
 	var username = get_username(uid);
-	$("#profile-page-top-bar-username").html("<h1><b class=\"glyphicon glyphicon-user\"></b> " + username + "</h1>");
+	
+	var profile_text = "<h1><b class=\"glyphicon glyphicon-user\"></b> " + username "
+
+	if(uid !== vuid) {
+		var distance = parseInt(get_distance(vuid, uid));
+		if(distance < 1000) {
+			profile_text += " asuu " + distance + " metrin päässä.";
+		} else {
+			profile_text += " asuu " + distance + " kilometrin päässä.";
+		} 
+	}
+		
+	profile_text += "</h1>";
+	
+	$("#profile-page-top-bar-username").html(profile_text);
+	
 	if(profile.picture != "") {	
 		$("#profile-page-main-picture").children("img").attr("src", "uploads/" + profile.picture);
 	} else {
 		$("#profile-page-main-picture").children("img").attr("src", "uploads/default.jpg");
 	}
+	
 	var cTime = new Date();
 	var cYear = cTime.getFullYear();
 	var birthday = profile.birthday.split("-");
