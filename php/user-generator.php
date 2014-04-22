@@ -1,6 +1,6 @@
 <?php
 	
-$usernames = explode("\r\n", file_get_contents(__DIR__."/../lists/random-usernames.txt"));
+$usernames = explode("\n", file_get_contents(__DIR__."/../lists/random-usernames.txt"));
 $male_names = explode("\r\n", file_get_contents(__DIR__."/../lists/male-names.txt"));
 $female_names = explode("\r\n", file_get_contents(__DIR__."/../lists/female-names.txt"));
 $lastnames = explode("\r\n", file_get_contents(__DIR__."/../lists/lastnames.txt"));
