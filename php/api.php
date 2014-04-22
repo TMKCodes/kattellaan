@@ -331,7 +331,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				die;
 			}
 			$search_results = array();
-			if(!empty($_POST['min_age'] && !empty($_POST['max_age']) {
+			if(!empty($_POST['min_age']) && !empty($_POST['max_age']) {
 				$profiles = select_by_age($_POST['min_age'], $_POST['max_age']);
 				if($profiles != false) {
 					foreach($profiles as $profile) {
