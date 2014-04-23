@@ -232,25 +232,25 @@
 	<div class="container" id="register-account-page" style="display: none;">
 		<h1>2. Registeröi itsellesi käyttäjätunnus sivustolle.</h1>
 		<form role="form" id="register-account-form" method="GET" action="php/api.php">
-			<div class="input-group col-xs-6" style="margin-bottom: 5px;">
+			<div class="input-group col-xs-12 col-sm-6" style="margin-bottom: 5px;">
 				<label class="input-group-addon" for="register-account-username-input">Käyttäjätunnus:</label>
 				<input type="text" class="form-control" id="register-account-username-input" name="username" placeholder="Syötä haluamasi käyttäjätunnus." />
 			</div>
 			<div id="register-account-username-empty-error" class="alert alert-danger" style="display: none;">
 				<p>Sinun tarvitsee syöttää käyttäjätunnus.</p>
 			</div>
-			<div class="input-group col-xs-6" style="margin-bottom: 5px;">
+			<div class="input-group col-xs-12 col-sm-6" style="margin-bottom: 5px;">
 				<label class="input-group-addon" for="register-account-address-input">Sähköposti:</label>
 				<input type="email" class="form-control" id="register-account-address-input" name="address" placeholder="Syötä sähköposti osoitteesi." />
 			</div>
 			<div id="register-account-address-empty-error" class="alert alert-danger" style="display: none;">
 				<p>Sinun tarvitsee syöttää sähköposti osoitteesi.</p>
 			</div>
-			<div class="input-group col-xs-6" style="margin-bottom: 5px;">
+			<div class="input-group col-xs-12 col-sm-6" style="margin-bottom: 5px;">
 				<label class="input-group-addon" for="register-account-password-input">Salasana:</label>
 				<input type="password" class="form-control" id="register-account-password-input" name="password" />
 			</div>
-			<div class="input-group col-xs-6" style="margin-bottom: 5px;">
+			<div class="input-group col-xs-12 col-sm-6" style="margin-bottom: 5px;">
 				<label class="input-group-addon" for="register-account-password-confirm-input">Salasana varmistus:</label>
 				<input type="password" class="form-control" id="register-account-password-confirm-input" name="password-confirm" />
 			</div>
@@ -277,23 +277,23 @@
 		<form role="form" id="register-invite-form" method="GET" action="php/api.php">
 			<input type="hidden" name="friend-count" id="register-invite-friend-count" value="4" />
 			<div id="register-invite-friend-addresses">
-				<div class="input-group col-xs-6" style="margin-bottom: 5px;">
+				<div class="input-group col-xs-12 col-sm-6" style="margin-bottom: 5px;">
 					<label class="input-group-addon"for="register-invite-friend-address-input-0">Ystävän 1 sähköposti osoite:</label>
 					<input type="email" class="form-control" id="register-invite-friend-address-input-0" name="friend-address-0" placeholder="Ystäväsi sähköposti osoite." />
 				</div>
-				<div class="input-group col-xs-6" style="margin-bottom: 5px;">
+				<div class="input-group col-xs-12 col-sm-6" style="margin-bottom: 5px;">
 					<label class="input-group-addon" for="register-invite-friend-address-input-1">Ystävän 2 sähköposti osoite:</label>
 					<input type="email" class="form-control" id="register-invite-friend-address-input-1" name="friend-address-1" placeholder="Ystäväsi sähköposti osoite." />
 				</div>
-				<div class="input-group col-xs-6" style="margin-bottom: 5px;">
+				<div class="input-group col-xs-12 col-sm-6" style="margin-bottom: 5px;">
 					<label class="input-group-addon" for="register-invite-friend-address-input-2">Ystävän 3 sähköposti osoite:</label>
 					<input type="email" class="form-control" id="register-invite-friend-address-input-2" name="friend-address-2" placeholder="Ystäväsi sähköposti osoite." />
 				</div>
-				<div class="input-group col-xs-6" style="margin-bottom: 5px;">
+				<div class="input-group col-xs-12 col-sm-6" style="margin-bottom: 5px;">
 					<label class="input-group-addon" for="register-invite-friend-address-input-3">Ystävän 4 sähköposti osoite:</label>
 					<input type="email" class="form-control" id="register-invite-friend-address-input-3" name="friend-address-3" placeholder="Ystäväsi sähköposti osoite." />
 				</div>
-				<div class="input-group col-xs-6" style="margin-bottom: 5px;">
+				<div class="input-group col-xs-12 col-sm-6" style="margin-bottom: 5px;">
 					<label class="input-group-addon" for="register-invite-friend-address-input-4">Ystävän 5 sähköposti osoite:</label>
 					<input type="email" class="form-control" id="register-invite-friend-address-input-4" name="friend-address-4" placeholder="Ystäväsi sähköposti osoite." />
 				</div>
@@ -310,10 +310,10 @@
 	<div id="register-select-location-page" class="container" style="display: none;">
 		<div class="row">
 			<h1>4. Valitse kotiosoitteesi</h1>
-			<div class="col-xs-6">
+			<div class="col-xs-12 col-sm-6">
 				<div id="google_map_canvas" style="width: 500px; height: 400px;"></div>
 			</div>
-			<div class="col-xs-6">
+			<div class="col-xs-12 col-sm-6">
 				<form role="form" id="register-select-location-form" action="php/api.php" method="POST">
 					<div class="input-group" style="margin-bottom: 5px;">
 						<label class="input-group-addon" for="register-select-street-address-input">Katuosoite:</label>
@@ -424,7 +424,7 @@
 	<div id="register-select-sexual-orientation-page" class="container" style="display: none;">
 		<h1>9. Seksuaalinen suuntautumisesi?</h1>
 		<form id="register-select-sexual-orientation-form" role="form" method="POST" action="php/api.php">
-			<div class="input-group col-xs-6">
+			<div class="input-group col-xs-12 col-sm-6">
 				<label class="input-group-addon" for="register-select-sexual-orientation-input">Seksuaalinen suuntautuminen:</label>
 				<select id="register-select-sexual-orientation-input" class="form-control" name="sexual-orientation">
 					<option value="hetero">Heteroseksuaali</option>
@@ -443,7 +443,7 @@
 	<div id="register-select-looking-for-page" class="container" style="display: none;">
 		<h1>10. Mitä sinä etsit?</h1>
 		<form id="register-select-looking-for-form" role="form" method="POST" action="php/api.php">
-			<div class="btn-group col-xs-6">
+			<div class="btn-group col-xs-12 col-sm-6">
 				<label class="btn btn-default" for="register-select-looking-for-input">Kiikarissa:</label>
 				<select id="register-select-looking-for-input" class="multiselect form-control" name="looking-for" multiple="multiple">
 					<option value="friends">Ystävyys</option>
@@ -495,7 +495,7 @@
 	<div id="register-select-body-type-page" class="container" style="display: none;">
 		<h1>13. Mikä on ruumiinrakenteesi?</h1>
 		<form id="register-select-body-type-form" role="form" method="POST" action="php/api.php">
-			<div class="btn-group col-xs-6">
+			<div class="btn-group col-xs-12 col-sm-6">
 				<label class="btn btn-default" for="register-select-body-type-input">Ruumiinrakenne:</label>
 				<select id="register-select-body-type-input" class="multiselect form-control" name="body-type" required="required">
 					<option value="slender">Siro</option>
@@ -518,7 +518,7 @@
 	<div id="register-select-eye-color-page" class="container" style="display: none;">
 		<h1>14. Sinun silmiesi väri?</h1>
 		<form id="register-select-eye-color-form" role="form" method="POST" action="php/api.php">
-			<div class="btn-group col-xs-6">
+			<div class="btn-group col-xs-12 col-sm-6">
 				<label class="btn btn-default" for="register-select-eye-color-input">Silmienväri:</label>
 				<select id="register-select-eye-color-input" class="multiselect form-control" name="eye-color" required="required">
 					<option value="blue">Sininen</option>
@@ -542,7 +542,7 @@
 	<div id="register-select-hair-length-page" class="container" style="display: none;">
 		<h1>15. Kuinka pitkät hiukset sinulla on?</h1>
 		<form id="register-select-hair-length-form" role="form" method="POST" action="php/api.php">
-			<div class="btn-group col-xs-6">
+			<div class="btn-group col-xs-12 col-sm-6">
 				<label class="btn btn-default" for="register-select-hair-length-input">Hiusten pituus:</label>
 				<select id="register-select-hair-length-input" class="multiselect form-control" name="hair-length" required="required">
 					<option value="bald">Kalju</option>
@@ -562,7 +562,7 @@
 	<div id="register-select-hair-color-page" class="container" style="display: none;">
 		<h1>16. Minkä väriset hiuksesi on?</h1>
 		<form id="register-select-hair-color-form" role="form" method="POST" action="php/api.php">
-			<div class="btn-group col-xs-6">
+			<div class="btn-group col-xs-12 col-sm-6">
 				<label class="btn btn-default" for="register-select-hair-color-input">Hiusten väri:</label>
 				<select id="register-select-hair-color-input" class="multiselect form-control" name="hair-color" required="required">
 					<option value="verylight">Hyvin vaalea</option>
@@ -618,7 +618,7 @@
 	<div id="register-select-accomodation-page" class="container" style="display: none;">
 		<h1>18. Millainen on asumis tilanteesi?</h1>
 		<form id="register-select-accomodation-form" role="form" method="POST" action="php/api.php">
-			<div class="btn-group col-xs-6">
+			<div class="btn-group col-xs-12 col-sm-6">
 				<label class="btn btn-default" for="register-select-accomodation-input">Asumismuoto:</label>
 				<select id="register-select-accomodation-input" class="multiselect form-control" name="accomodation" required="required">
 					<option value="alone">Yksin</option>
@@ -640,7 +640,7 @@
 	<div id="register-select-ethnic-identity-page" class="container" style="display: none;">
 		<h1>19. Etninten identiteettisi?</h1>
 		<form id="register-select-ethnic-identity-form" role="form" method="POST" action="php/api.php">
-			<div class="btn-group col-xs-6">
+			<div class="btn-group col-xs-12 col-sm-6">
 				<label class="btn btn-default" for="register-select-ethnic-identity-input">Etninen identiteetti:</label>
 				<select id="register-select-ethnic-identity-input" class="multiselect form-control" name="ethnic-identity" required="required">
 					<option value="white">Valkoinen</option>
@@ -663,7 +663,7 @@
 	<div id="register-select-language-skills-page" class="container" style="display: none;">
 		<h1>20. Mitä kieliä puhut?</h1>
 		<form id="register-select-language-skills-form" role="form" method="POST" action="php/api.php">
-			<div class="btn-group col-xs-6">
+			<div class="btn-group col-xs-12 col-sm-6">
 				<label class="btn btn-default" for="register-select-language-skills-input">Kielitaito:</label>
 				<select id="register-select-language-skills-input" class="multiselect form-control" name="language-skills" multiple="multiple" required="required">
 					<option value="finnish">Suomi</option>
@@ -686,7 +686,7 @@
 	<div id="register-select-education-page" class="container" style="display: none;">
 		<h1>21. Kuinka hyvä koulutus sinulla on?</h1>
 		<form id="register-select-education-form" role="form" method="POST" action="php/api.php">
-			<div class="btn-group col-xs-6">
+			<div class="btn-group col-xs-12 col-sm-6">
 				<label class="btn btn-default" for="register-select-education-input">Koulutus:</label>
 				<select id="register-select-education-input" class="multiselect form-control" name="education" required="required">
 					<option value="untrained">Kouluttamaton</option>
@@ -712,7 +712,7 @@
 	<div id="register-select-work-page" class="container" style="display: none;">
 		<h1>22. Käytkö töissä?</h1>
 		<form id="register-select-work-form" role="form" method="POST" action="php/api.php">
-			<div class="btn-group col-xs-6">
+			<div class="btn-group col-xs-12 col-sm-6">
 				<label class="btn btn-default" for="register-select-work-input">Työssäkäynti:</label>
 				<select id="register-select-work-input" class="multiselect form-control" name="work" required="required">
 					<option value="unemployed">Työtön</option>
@@ -753,7 +753,7 @@
 	<div id="register-select-vocation-page" class="container" style="display: none;">
 		<h1>24. Millä alalla työskentelet?</h1>
 		<form id="register-select-vocation-form" role="form" method="POST" action="php/api.php">
-			<div class="btn-group col-xs-6">
+			<div class="btn-group col-xs-12 col-sm-6">
 				<label class="btn btn-default" for="register-select-vocation-input">Ammattiala</label>
 				<select id="register-select-vocation-input" name="vocation" class="multiselect form-control" required="required" >
 					<option value="administration/finance">Hallinto/talous</option>
@@ -779,7 +779,7 @@
 	<div id="register-select-dress-style-page" class="container" style="display: none;">
 		<h1>25. Millain pukeudut?</h1>
 		<form id="register-select-dress-style-form" role="form" method="POST" action="php/api.php">
-			<div class="btn-group col-xs-6">
+			<div class="btn-group col-xs-12 col-sm-6">
 				<label class="btn btn-default" for="register-select-dress-style-input">Pukeutumistyyli</label>
 				<select id="register-select-dress-style-input" name="dress-style" class="multiselect form-control" required="required" >
 					<option value="fashionable">Muodikas</option>
@@ -952,7 +952,7 @@
 	<div id="register-select-religion-importance-page" class="container" style="display: none;">
 		<h1>32. Kuinka tärkeä merkitys uskonnolla on sinulle?</h1>
 		<form id="register-select-religion-importance-form" role="form" method="POST" action="php/api.php">
-			<div class="btn-group col-xs-6">
+			<div class="btn-group col-xs-12 col-sm-6">
 				<label class="btn btn-default" for="register-select-religion-importance-input">Uskonnon merkitys:</label>
 				<select id="register-select-religion-importance-input" name="religion-importance" class="multiselect form-control" required="required">
 					<option value="insignificant">Merkityksetön</option>
@@ -973,7 +973,7 @@
 	<div id="register-select-left-right-politics-page" class="container" style="display: none;">
 		<h1>33. Oletko vasemmistolainen vai oikeistolainen?</h1>
 		<form id="register-select-left-right-politics-form" role="form" method="post" action="php/api.php">
-			<div class="btn-group col-xs-6">
+			<div class="btn-group col-xs-12 col-sm-6">
 				<label class="btn btn-default" for="register-select-left-right-politics-input">Oikeisto/Vasemmist:</label>
 				<select id="register-select-left-right-politics-input" name="left-right-politics" class="multiselect form-control" required="required">
 					<option value="left">Vasemmistolainen</option>
@@ -996,7 +996,7 @@
 	<div id="register-select-liberal-conservative-politics-page" class="container" style="display: none;">
 		<h1>34. Oletko liberaali vai konservatiivi?</h1>
 		<form id="register-select-liberal-conservative-politics-form" role="form" method="post" action="php/api.php">
-			<div class="btn-group col-xs-6">
+			<div class="btn-group col-xs-12 col-sm-6">
 				<label class="btn btn-default" for="register-select-liberal-conservative-politics-input">Liberaali/Konservatiivi</label>
 				<select id="register-select-liberal-conservative-politics-input" name="liberal-conservative-politics" class="multiselect form-control" required="required">
 					<option value="conservative">Konservatiivinen</option>
@@ -1019,7 +1019,7 @@
 	<div id="register-select-political-importance-page" class="container" style="display: none;">
 		<h1>35. Kuinka tärkeää politiikka on sinulle?</h1>
 		<form id="register-select-political-importance-form" role="form" method="POST" action="php/api.php">
-			<div class="btn-group col-xs-6">
+			<div class="btn-group col-xs-12 col-sm-6">
 				<label class="btn btn-default" for="register-select-political-importance-input">Politiikan tärkeys:</label>
 				<select id="register-select-political-importance-input" name="political-importance" class="multiselect form-control" required="required">
 					<option value="dontcare">Aivan sama</option>
@@ -1040,7 +1040,7 @@
 	<div id="register-select-favorite-television-series-page" class="container" style="display: none;">
 		<h1>36. Pidätkö joistain televisio sarjoista?</h1>
 		<form id="register-select-favorite-television-series-form" role="form" method="POST" action="php/api.php">
-			<div class="input-group col-xs-6">
+			<div class="input-group col-xs-12 col-sm-6">
 				<label class="input-group-addon" for="register-select-favorite-television-series-input">Televisio sarjat:</label>
 				<input type="text" id="register-select-favorite-television-series-input" class="form-control" name="favorite-television-series" placeholder="Erittele televisio sarjat pilkulla."/>
 				<div class="input-group-btn">
@@ -1053,7 +1053,7 @@
 	<div id="register-select-favorite-radio-shows-page" class="container" style="display: none;">
 		<h1>37. Pidätkö joistain radio ohjelmista?</h1>
 		<form id="register-select-favorite-radio-shows-form" role="form" method="POST" action="php/api.php">
-			<div class="input-group col-xs-6">
+			<div class="input-group col-xs-12 col-sm-6">
 				<label class="input-group-addon" for="register-select-favorite-radio-shows-input">Radio ohjelmat:</label>
 				<input type="text" id="register-select-favorite-radio-shows-input" class="form-control" name="favorite-radio-shows" placeholder="Erittele radio ohjelmat pilkulla." />
 				<div class="input-group-btn">
@@ -1066,7 +1066,7 @@
 	<div id="register-select-favorite-bands-page" class="container" style="display: none;">
 		<h1>38. Pidätkö joistain bändeistä?</h1>
 		<form id="register-select-favorite-bands-form" role="form" method="POST" action="php/api.php">
-			<div class="input-group col-xs-6">
+			<div class="input-group col-xs-12 col-sm-6">
 				<label class="input-group-addon" for="register-select-favorite-bands-input">Bändit:</label>
 				<input type="text" id="register-select-favorite-bands-input" class="form-control" name="favorite-bands" placeholder="Erittele bändit pilkulla." />
 				<div class="input-group-btn">
@@ -1079,7 +1079,7 @@
 	<div id="register-select-favorite-movies-page" class="container" style="display: none;">
 		<h1>39. Pidätkö joistan elokuvista?</h1>
 		<form id="register-select-favorite-movies-form" role="form" method="POST" action="php/api.php">
-			<div class="input-group col-xs-6">
+			<div class="input-group col-xs-12 col-sm-6">
 				<label class="input-group-addon" for="register-select-favorite-movies-input">Elokuvat:</label>
 				<input type="text" id="register-select-favorite-movies-input" class="form-control" name="favorite-movies" placeholder="Erittele elokuvat pilkulla." />
 				<div class="input-group-btn">
@@ -1092,7 +1092,7 @@
 	<div id="register-select-best-things-in-the-world-page" class="container" style="display: none;">
 		<h1>40. Sinun maailman parhaat asiat?</h1>
 		<form id="register-select-best-things-in-the-world-form" role="form" method="POST" action="php/api.php">
-			<div class="input-group col-xs-6">
+			<div class="input-group col-xs-12 col-sm-6">
 				<label class="input-group-addon" for="register-select-best-things-in-the-world-input">Parasta maailmassa:</label>
 				<input type="text" id="register-select-best-things-in-the-world-input" class="form-control" name="best-things-in-the-world" placeholder="Erittele maailman parhaat asiasi pilkulla." />
 				<div class="input-group-btn">
@@ -1105,7 +1105,7 @@
 	<div id="register-select-ignite-me-page" class="container" style="display: none;">
 		<h1>41. Asiat jotka sytyttää sinut?</h1>
 		<form id="register-select-ignite-me-form" role="form" method="POST" action="php/api.php">
-			<div class="input-group col-xs-6">
+			<div class="input-group col-xs-12 col-sm-6">
 				<label class="input-group-addon" for="register-select-ignite-me-input">Sytyttää minut:</label>
 				<input type="text" id="register-select-ignite-me-input" class="form-control" name="ignite-me" placeholder="Erittele asiat jotka sytyttävät sinut pilkulla." />
 				<div class="input-group-btn">
@@ -1118,7 +1118,7 @@
 	<div id="register-select-not-exciting-page" class="container" style="display: none;">
 		<h1>42. Asiat jotka eivät sinua innosta?</h1>
 		<form id="register-select-not-exciting-form" role="form" method="POST" action="php/api.php">
-			<div class="input-group col-xs-6">
+			<div class="input-group col-xs-12 col-sm-6">
 				<label class="input-group-addon" for="register-select-not-exciting-input">Ei innosta:</label>
 				<input type="text" id="register-select-not-exciting-input" class="form-control" name="not-exciting" placeholder="Erittele asiat jotka eivät sinua innosta pilkulla." />
 				<div class="input-group-btn">
