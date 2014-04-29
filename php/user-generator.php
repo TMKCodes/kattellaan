@@ -45,7 +45,15 @@ for($i = 0; $i < $usernames_count; $i++) {
 		continue;
 	}
 	
-
+	$age_min = 18;
+	$age_max = 200;
+	$day = mt_rand(0,31);
+	$month = mt_rand(0,12);
+	$year = 2014 - mt_rand($age_min, $age_max);
+	$age = $year . $day . $month;	
+	printf("Age %s\r\n", $age);
+	
+	
 	sleep(35);
 }
 
