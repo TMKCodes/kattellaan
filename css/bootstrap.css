@@ -505,7 +505,7 @@ p {
   line-height: 1.4;
 }
 
-@media (min-width: 1145px) {
+@media (min-width: 768px) {
   .lead {
     font-size: 21px;
   }
@@ -633,7 +633,7 @@ dd {
   margin-left: 0;
 }
 
-@media (min-width: 1145px) {
+@media (min-width: 768px) {
   .dl-horizontal dt {
     float: left;
     width: 160px;
@@ -1124,7 +1124,7 @@ pre code {
   margin-left: 0;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1145px) {
   .col-sm-1,
   .col-sm-2,
   .col-sm-3,
