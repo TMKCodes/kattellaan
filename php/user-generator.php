@@ -50,10 +50,21 @@ for($i = 0; $i < $usernames_count; $i++) {
 	$day = mt_rand(0,31);
 	$month = mt_rand(0,12);
 	$year = 2014 - mt_rand($age_min, $age_max);
-	$age = $year . $day . $month;	
+	$age = $year . "-" . $month . "-" . $day;	
 	printf("Age %s\r\n", $age);
 	
-	
+	$rsr = mt_rand(0, 8);
+	switch($rsr) {
+		case 0: $relstatus = "single"; break;
+		case 1: $relstatus = "relationship"; break;
+		case 2: $relstatus = "cohabitation"; break;
+		case 3: $relstatus = "marriage"; break;
+		case 4: $relstatus = "divorce"; break;
+		case 5: $relstatus = "seperation"; break;
+		case 6: $relstatus = "widow"; break;
+		case 7: $relstatus = "none"; break;
+	}
+	printf("Relationship status %s\r\n", $relstatus);
 	sleep(35);
 }
 
