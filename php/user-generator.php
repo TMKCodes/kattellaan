@@ -71,6 +71,15 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 7: $relstatus = "none"; break;
 	}
 	printf("Relationship status %s\r\n", $relstatus);
+
+	$sxor = mt_rand(0, 4);
+	switch($sxor) {
+		case 0: $sxo = "hetero"; break;
+		case 1: $sxo = "gay"; break;
+		case 2: $sxo = "bi"; break;
+		case 3: $sxo = "ase"; break;
+	}
+	printf("Sexual orientation %s\r\n", $sxo);
 	sleep(35);
 }
 
