@@ -93,6 +93,7 @@ for($i = 0; $i < $usernames_count; $i++) {
 			case 6: $lf[$i] = "none"; break;
 		}
 	}
+	$none_found = false;
 	for($i = 0; $i <= $lfrc; $i++) {
 		if($lfr[$i] == "none") {
 			$none_found = true;
