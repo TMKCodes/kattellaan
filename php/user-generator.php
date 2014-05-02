@@ -59,7 +59,7 @@ for($i = 0; $i < $usernames_count; $i++) {
 	$age = $year . "-" . $month . "-" . $day;	
 	printf("Age %s\r\n", $age);
 	
-	$rsr = mt_rand(0, 8);
+	$rsr = mt_rand(0, 7);
 	switch($rsr) {
 		case 0: $relstatus = "single"; break;
 		case 1: $relstatus = "relationship"; break;
@@ -72,7 +72,7 @@ for($i = 0; $i < $usernames_count; $i++) {
 	}
 	printf("Relationship status %s\r\n", $relstatus);
 
-	$sxor = mt_rand(0, 4);
+	$sxor = mt_rand(0, 3);
 	switch($sxor) {
 		case 0: $sxo = "hetero"; break;
 		case 1: $sxo = "gay"; break;
@@ -81,9 +81,9 @@ for($i = 0; $i < $usernames_count; $i++) {
 	}
 	printf("Sexual orientation %s\r\n", $sxo);
 
-	$lfrc = mt_rand(1, 6);
+	$lfrc = mt_rand(1, 5);
 	for($i = 0; $i < $lfrc; $i++) {	
-		$lfr = mt_rand(0, 6);
+		$lfr = mt_rand(0, 5);
 		switch($lfr) {
 			case 0: $lf[$i] = "friends"; break;
 			case 1: $lf[$i] = "love"; break;
@@ -93,12 +93,10 @@ for($i = 0; $i < $usernames_count; $i++) {
 			case 6: $lf[$i] = "none"; break;
 		}
 	}
-
-	if($lfrc == 1) {
-		$rlf = $lf[0];
-	} else {
+	$rlf = $lfr[0];
+	if($lfrc > 1) {
 		for($i = 0; $i < $lfrc - 1; $i++) {
-			$rlf .= $lf[$i] + ", ";
+			$rlf .= $lf[$i] . ", ";
 		}
 		$rlf .= $lf[$lfrc];
 	}
