@@ -80,6 +80,30 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 3: $sxo = "ase"; break;
 	}
 	printf("Sexual orientation %s\r\n", $sxo);
+
+	$lfrc = mt_rand(1, 6);
+	for($i = 0; $i < $lfrc; $i++) {	
+		$lfr = mt_rand(0, 6);
+		switch($lfr) {
+			case 0: $lf[$i] = "friends"; break;
+			case 1: $lf[$i] = "love"; break;
+			case 2: $lf[$i] = "date"; break;
+			case 3: $lf[$i] = "sex"; break;
+			case 4: $lf[$i] = "other"; break;
+			case 6: $lf[$i] = "none"; break;
+		}
+	}
+
+	if($lfrc == 1) {
+		$lf = $lf[0];
+	} else {
+		for($i = 0; $i < $lfrc - 1; $i++) {
+			$lf .= $lf[$i] + ", ";
+		}
+		$lf .= $lf[$lfrc];
+	}
+	printf("Looking for %s\r\n", $lf);
+
 	sleep(35);
 }
 
