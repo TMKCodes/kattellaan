@@ -95,14 +95,14 @@ for($i = 0; $i < $usernames_count; $i++) {
 	}
 
 	if($lfrc == 1) {
-		$lf = $lf[0];
+		$rlf = $lf[0];
 	} else {
 		for($i = 0; $i < $lfrc - 1; $i++) {
-			$lf .= $lf[$i] + ", ";
+			$rlf .= $lf[$i] + ", ";
 		}
-		$lf .= $lf[$lfrc];
+		$rlf .= $lf[$lfrc];
 	}
-	printf("Looking for %s\r\n", $lf);
+	printf("Looking for %s\r\n", $rlf);
 
 	sleep(35);
 }
