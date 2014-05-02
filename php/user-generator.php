@@ -82,8 +82,8 @@ for($i = 0; $i < $usernames_count; $i++) {
 	printf("Sexual orientation %s\r\n", $sxo);
 
 	$lfrc = mt_rand(1, 5);
-	for($i = 0; $i < $lfrc; $i++) {	
-		$lfr = mt_rand(0, 5);
+	for($i = 0; $i <= $lfrc; $i++) {	
+		$lfr = mt_rand(0, 6);
 		switch($lfr) {
 			case 0: $lf[$i] = "friends"; break;
 			case 1: $lf[$i] = "love"; break;
