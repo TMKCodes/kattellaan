@@ -92,13 +92,13 @@ for($i = 0; $i < $usernames_count; $i++) {
 			case 4: $lf[$i] = "other"; break;
 		}
 	}
-	
-	$rlf = $lfr[0];
-	if($lfrc > 1) {
-		for($i = 1; $i < $lfrc - 1; $i++) {
+	$lf = array_unique($lf);
+	$rlf = $lf[0];
+	if(count($lf) > 1) {
+		for($i = 1; $i < count($lf); $i++) {
 			$rlf .= $lf[$i] . ", ";
 		}
-		$rlf .= $lf[$lfrc];
+		$rlf .= $lf[count($lf) + 1];
 	}
 	printf("Looking for %s\r\n", $rlf);
 
