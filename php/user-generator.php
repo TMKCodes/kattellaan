@@ -83,30 +83,22 @@ for($i = 0; $i < $usernames_count; $i++) {
 
 	$lfrc = mt_rand(1, 5);
 	for($i = 0; $i <= $lfrc; $i++) {	
-		$lfr = mt_rand(0, 6);
+		$lfr = mt_rand(0, 5);
 		switch($lfr) {
 			case 0: $lf[$i] = "friends"; break;
 			case 1: $lf[$i] = "love"; break;
 			case 2: $lf[$i] = "date"; break;
 			case 3: $lf[$i] = "sex"; break;
 			case 4: $lf[$i] = "other"; break;
-			case 6: $lf[$i] = "none"; break;
 		}
 	}
-	$none_found = false;
-	for($i = 0; $i <= $lfrc; $i++) {
-		if($lfr[$i] == "none") {
-			$none_found = true;
+	
+	$rlf = $lfr[0];
+	if($lfrc > 1) {
+		for($i = 0; $i < $lfrc - 1; $i++) {
+			$rlf .= $lf[$i] . ", ";
 		}
-	}
-	if($none_found != true) {
-		$rlf = $lfr[0];
-		if($lfrc > 1) {
-			for($i = 0; $i < $lfrc - 1; $i++) {
-				$rlf .= $lf[$i] . ", ";
-			}
-			$rlf .= $lf[$lfrc];
-		}
+		$rlf .= $lf[$lfrc];
 	}
 	printf("Looking for %s\r\n", $rlf);
 
