@@ -81,7 +81,7 @@ for($i = 0; $i < $usernames_count; $i++) {
 	}
 	printf("Sexual orientation %s\r\n", $sxo);
 
-	$lfrc = mt_rand(1, 5);
+	$lfrc = mt_rand(1, 4);
 	for($i = 0; $i <= $lfrc; $i++) {	
 		$lfr = mt_rand(0, 4);
 		switch($lfr) {
@@ -95,7 +95,7 @@ for($i = 0; $i < $usernames_count; $i++) {
 	
 	$rlf = $lfr[0];
 	if($lfrc > 1) {
-		for($i = 0; $i < $lfrc - 1; $i++) {
+		for($i = 1; $i < $lfrc - 1; $i++) {
 			$rlf .= $lf[$i] . ", ";
 		}
 		$rlf .= $lf[$lfrc];
