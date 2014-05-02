@@ -83,7 +83,7 @@ for($i = 0; $i < $usernames_count; $i++) {
 
 	$lfrc = mt_rand(1, 5);
 	for($i = 0; $i <= $lfrc; $i++) {	
-		$lfr = mt_rand(0, 5);
+		$lfr = mt_rand(0, 4);
 		switch($lfr) {
 			case 0: $lf[$i] = "friends"; break;
 			case 1: $lf[$i] = "love"; break;
