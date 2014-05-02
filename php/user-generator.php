@@ -92,7 +92,7 @@ for($i = 0; $i < $usernames_count; $i++) {
 			case 4: $lf[$i] = "other"; break;
 		}
 	}
-	$lf = array_values(array_unique($lf);
+	$lf = array_values(array_unique($lf));
 	$rlf = $lf[0];
 	if(count($lf) > 1) {
 		for($i = 1; $i < count($lf) + 1; $i++) {
