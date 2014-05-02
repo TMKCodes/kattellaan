@@ -46,10 +46,16 @@ for($i = 0; $i < $usernames_count; $i++) {
 	}
 	
 	$age_min = 18;
-	$age_max = 200;
+	$age_max = 100;
 	$day = mt_rand(0,31);
 	$month = mt_rand(0,12);
 	$year = 2014 - mt_rand($age_min, $age_max);
+	if($month < 10) {
+		$month = "0" . $month;
+	}
+	if($day < 10) {
+		$day = "0" . $day;
+	}
 	$age = $year . "-" . $month . "-" . $day;	
 	printf("Age %s\r\n", $age);
 	
