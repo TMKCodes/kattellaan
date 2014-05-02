@@ -93,12 +93,19 @@ for($i = 0; $i < $usernames_count; $i++) {
 			case 6: $lf[$i] = "none"; break;
 		}
 	}
-	$rlf = $lfr[0];
-	if($lfrc > 1) {
-		for($i = 0; $i < $lfrc - 1; $i++) {
-			$rlf .= $lf[$i] . ", ";
+	for($i = 0; $i <= $lfrc; $i++) {
+		if($lfr[$i] == "none") {
+			$none_found = true;
 		}
-		$rlf .= $lf[$lfrc];
+	}
+	if($none_found != true) {
+		$rlf = $lfr[0];
+		if($lfrc > 1) {
+			for($i = 0; $i < $lfrc - 1; $i++) {
+				$rlf .= $lf[$i] . ", ";
+			}
+			$rlf .= $lf[$lfrc];
+		}
 	}
 	printf("Looking for %s\r\n", $rlf);
 
