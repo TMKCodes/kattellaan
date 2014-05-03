@@ -101,6 +101,27 @@ for($i = 0; $i < $usernames_count; $i++) {
 	}
 	printf("Looking for %s\r\n", $rlf);
 
+	$height = mt_rand(130, 220);
+	printf("Height %s\r\n", $height);
+	
+	$weight = mt_rand(30, 160);
+	printf("Weight %s\r\n", $weight);
+
+	$btyper = mt_rand(0, 7);
+	switch($btyper) {
+		case 0: $btype = "slender"; break;
+		case 1: $btype = "slim"; break;
+		case 2: $btype = "low-fat"; break;
+		case 3: $btype = "sporty"; break;
+		case 4: $btype = "muscular"; break;
+		case 5: $btype = "roundish"; break;
+		case 6: $btype = "overweight"; break;
+		case 7: $btype = "none"; break;
+	}
+	printf("Body type %s\r\n", $btype);
+
+	
+
 	sleep(35);
 }
 
