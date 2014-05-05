@@ -121,6 +121,67 @@ for($i = 0; $i < $usernames_count; $i++) {
 	printf("Body type %s\r\n", $btype);
 
 	
+	$ecr = mt_rand(0, 8);
+	switch($ecr) {
+		case 0: $eyecolor = "blue"; break;
+		case 1: $eyecolor = "brown"; break;
+		case 2: $eyecolor = "green"; break;
+		case 3: $eyecolor = "gray"; break;
+		case 4: $eyecolor = "amber"; break;
+		case 5: $eyecolor = "hazel"; break;
+		case 6: $eyecolor = "red"; break;
+		case 7: $eyecolor = "violet"; break;
+		case 8: $eyecolor = "none"; break;
+	}
+	printf("Eye color %s\r\n", $eyecolor);
+
+	$hlr = mt_rand(0, 4);
+	switch($hlr) {
+		case 0: $hairlength = "bald"; break;
+		case 1: $hairlength = "hedgehog"; break;
+		case 2: $hairlength = "short"; break;
+		case 3: $hairlength = "long"; break;
+		case 4: $hairlength = "none"; break;
+	}
+	printf("Hair length %s\r\n", $hairlength);
+
+	$hcr = mt_rand(0, 11);
+	switch($hcr) {
+		case 0: $haircolor = "verylight"; break;
+		case 1: $haircolor = "light"; break;
+		case 2: $haircolor = "lightbrown"; break;
+		case 3: $haircolor = "brown"; break;
+		case 4: $haircolor = "black"; break;
+		case 5: $haircolor = "gray"; break;
+		case 6: $haircolor = "red"; break;
+		case 7: $haircolor = "pink"; break;
+		case 8: $haircolor = "white"; break;
+		case 9: $haircolor = "colorful"; break;
+		case 10: $haircolor = "changeable"; break;
+		case 11: $haircolor = "none"; break;
+	}
+	printf("Hair color %s\r\n", $haircolor);
+
+	$kr = mt_rand(0, 13);
+	switch($kr) {
+		case 0: $kids = "yes"; break;
+		case 1: $kids = "no"; break;
+		case 2: $kids = "athome"; break;
+		case 3: $kids = "somewhereelse"; break;
+		case 4: $kids = "jointcustody"; break;
+		case 5: $kids = "solecustody"; break;
+		case 6: $kids = "iwantkids"; break;
+		case 7: $kids = "idontwantkids"; break;
+		case 8: $kids = "idontknowifiwantkids"; break;
+		case 9: $kids = "kidsdonotmatter"; break;
+		case 10: $kids = "weekendparent"; break;
+		case 11: $kids = "secondweekendparent"; break;
+		case 12: $kids = "monthlyparent"; break;
+		case 13: $kids = "none"; break;
+	}
+	printf("Kids %s\r\n", $kids);
+
+
 
 	sleep(35);
 }
