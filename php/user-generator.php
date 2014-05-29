@@ -181,8 +181,19 @@ for($i = 0; $i < $usernames_count; $i++) {
 	}
 	printf("Kids %s\r\n", $kids);
 
+	$acr = mt_rand(0, 6);
+	switch($acr) {
+		case 0: $ac = "alone"; break;
+		case 1: $ac = "withfriend"; break;
+		case 2: $ac = "withparents"; break;
+		case 3: $ac = "sharedflat"; break;
+		case 4: $ac = "withparent"; break;
+		case 5: $ac = "homeless"; break;
+		case 6: $ac = "none"; break;
+	}
+	printf("Accomodation %s\r\n", $ac);
 
-
+	
 	sleep(35);
 }
 
