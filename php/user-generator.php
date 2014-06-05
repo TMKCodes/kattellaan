@@ -20,7 +20,30 @@ for($i = 0; $i < $usernames_count; $i++) {
 	$account['password-confirm'] = "ikaros123";
 	
 	// submit account form with GET to php/api.php
+
+	$profile = array();
 	
+	$rlastname = mt_rand(0, $lastnames_count-1);
+	$lastname = $lastnames[$rlastname];
+	$name = $name . " " . $lastname;
+	printf("Name: %s\r\n", $name);
+	$profile['name'] = $name;
+	
+	$latitude = mt_rand(600000000, 700000000) / 10000000;
+	$longitude = mt_rand(200000000, 320000000) / 10000000;
+	printf("Latitude: %s\r\nLongitude: %s\r\n", $latitude, $longitude);
+	
+	$google_geocode_reply = file_get_contents("http://maps.googleapis.com/maps/api/geocode/json?latlng=" . $latitude . "," . $longitude . "&sensor=true");
+	$google_geocode_reply = json_decode($google_geocode_reply, true);
+	if($google_geocode_reply['status'] == "OK") {
+		$address = $google_geocode_reply['results'][0]['formatted_address'];
+		printf("Address: %s\r\n", $address);		
+		$profile['address'] = $address;
+	} else {
+		$i--;
+		continue;
+	}
+
 	$rgender = mt_rand(0, 1);
 	if($rgender == 0) {
 		$gender = "man";
@@ -32,26 +55,8 @@ for($i = 0; $i < $usernames_count; $i++) {
 		$name = $female_names[$rname];
 	}
 	printf("Gender: %s\r\n", $gender);
+	$profile['gender'] = $gender;
 	
-	$rlastname = mt_rand(0, $lastnames_count-1);
-	$lastname = $lastnames[$rlastname];
-	$name = $name . " " . $lastname;
-	printf("Name: %s\r\n", $name);
-	
-	$latitude = mt_rand(600000000, 700000000) / 10000000;
-	$longitude = mt_rand(200000000, 320000000) / 10000000;
-	printf("Latitude: %s\r\nLongitude: %s\r\n", $latitude, $longitude);
-	
-	$google_geocode_reply = file_get_contents("http://maps.googleapis.com/maps/api/geocode/json?latlng=" . $latitude . "," . $longitude . "&sensor=true");
-	$google_geocode_reply = json_decode($google_geocode_reply, true);
-	if($google_geocode_reply['status'] == "OK") {
-		$address = $google_geocode_reply['results'][0]['formatted_address'];
-		printf("Address: %s\r\n", $address);		
-	} else {
-		$i--;
-		continue;
-	}
-
 	$age_min = 18;
 	$age_max = 100;
 	$day = mt_rand(0,31);
@@ -65,6 +70,7 @@ for($i = 0; $i < $usernames_count; $i++) {
 	}
 	$age = $year . "-" . $month . "-" . $day;	
 	printf("Age %s\r\n", $age);
+	$profile['birthday'] = $age;
 	
 	$rsr = mt_rand(0, 7);
 	switch($rsr) {
@@ -78,6 +84,7 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 7: $relstatus = "none"; break;
 	}
 	printf("Relationship status %s\r\n", $relstatus);
+	$profile['relationship-status'] = $relstatus;
 
 	$sxor = mt_rand(0, 3);
 	switch($sxor) {
@@ -87,6 +94,7 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 3: $sxo = "ase"; break;
 	}
 	printf("Sexual orientation %s\r\n", $sxo);
+	$profile['sexual-orientation'] = $sxo);
 
 	$lfrc = mt_rand(1, 4);
 	for($i = 0; $i <= $lfrc; $i++) {	
@@ -107,12 +115,15 @@ for($i = 0; $i < $usernames_count; $i++) {
 		}
 	}
 	printf("Looking for %s\r\n", $rlf);
+	$profile['looking-for'] = $rlf;
 
 	$height = mt_rand(130, 220);
 	printf("Height %s\r\n", $height);
-	
+	$profile['height'] = $height;
+
 	$weight = mt_rand(30, 160);
 	printf("Weight %s\r\n", $weight);
+	$profile['weight'] = $weight;
 
 	$btyper = mt_rand(0, 7);
 	switch($btyper) {
@@ -126,7 +137,7 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 7: $btype = "none"; break;
 	}
 	printf("Body type %s\r\n", $btype);
-
+	$profile['body-type'] = $btype;
 	
 	$ecr = mt_rand(0, 8);
 	switch($ecr) {
@@ -141,6 +152,7 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 8: $eyecolor = "none"; break;
 	}
 	printf("Eye color %s\r\n", $eyecolor);
+	$profile['eye-color'] = $eyecolor;
 
 	$hlr = mt_rand(0, 4);
 	switch($hlr) {
@@ -151,6 +163,7 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 4: $hairlength = "none"; break;
 	}
 	printf("Hair length %s\r\n", $hairlength);
+	$profile['hair-length'] = $hairlength;
 
 	$hcr = mt_rand(0, 11);
 	switch($hcr) {
@@ -168,6 +181,7 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 11: $haircolor = "none"; break;
 	}
 	printf("Hair color %s\r\n", $haircolor);
+	$profile['hair-color'] = $haircolor;
 
 	$kr = mt_rand(0, 13);
 	switch($kr) {
@@ -187,6 +201,7 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 13: $kids = "none"; break;
 	}
 	printf("Kids %s\r\n", $kids);
+	$profile['kids'] = $kids;
 
 	$acr = mt_rand(0, 6);
 	switch($acr) {
@@ -199,7 +214,7 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 6: $ac = "none"; break;
 	}
 	printf("Accomodation %s\r\n", $ac);
-
+	$profile['accomodation'] = $ac;
 
 	$ethr = mt_rand(0, 7);
 	switch($ethr) {
@@ -213,7 +228,8 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 7: $eth = "none"; break;
 	}
 	printf("Ethnic identity %s\r\n", $eth);
-	
+	$profile['ethnic-identity'] = $eth;
+
 	$langr = mt_rand(0, 7);
 	switch($langr) {
 		case 0: $lang = "finnish"; break;
@@ -226,7 +242,7 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 7: $lang = "none"; break;
 	}
 	printf("Language skill %s\r\n", $lang);
-
+	$profile['language-skills'] = $lang;
 	
 	sleep(35);
 }
