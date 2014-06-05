@@ -11,9 +11,16 @@ $female_names_count = count($female_names);
 $lastnames_count = count($lastnames);
 
 for($i = 0; $i < $usernames_count; $i++) {
+	$account = array();
 	$username = $usernames[$i];
 	printf("Username: %s\r\n", $username);
-		
+	$account['username'] = $username;
+	$account['address'] = "tmkcodes@gmx.com";
+	$account['password'] = "ikaros123";
+	$account['password-confirm'] = "ikaros123";
+	
+	// submit account form with GET to php/api.php
+	
 	$rgender = mt_rand(0, 1);
 	if($rgender == 0) {
 		$gender = "man";
@@ -44,7 +51,7 @@ for($i = 0; $i < $usernames_count; $i++) {
 		$i--;
 		continue;
 	}
-	
+
 	$age_min = 18;
 	$age_max = 100;
 	$day = mt_rand(0,31);
@@ -192,6 +199,33 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 6: $ac = "none"; break;
 	}
 	printf("Accomodation %s\r\n", $ac);
+
+
+	$ethr = mt_rand(0, 7);
+	switch($ethr) {
+		case 0: $eth = "white"; break;
+		case 1: $eth = "black"; break;
+		case 2: $eth = "indian"; break;
+		case 3: $eth = "latino"; break;
+		case 4: $eth = "arab"; break;
+		case 5: $eth = "asian"; break;
+		case 6: $eth = "midget"; break;
+		case 7: $eth = "none"; break;
+	}
+	printf("Ethnic identity %s\r\n", $eth);
+	
+	$langr = mt_rand(0, 7);
+	switch($langr) {
+		case 0: $lang = "finnish"; break;
+		case 1: $lang = "swedish"; break;
+		case 2: $lang = "english"; break;
+		case 3: $lang = "russian"; break;
+		case 4: $lang = "german"; break;
+		case 5: $lang = "japanese"; break;
+		case 6: $lang = "others"; break;
+		case 7: $lang = "none"; break;
+	}
+	printf("Language skill %s\r\n", $lang);
 
 	
 	sleep(35);
