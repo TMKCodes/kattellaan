@@ -260,7 +260,22 @@ for($i = 0; $i < $usernames_count; $i++) {
 	printf("Education %s\r\n", $edu);
 	$profile['education'] = $edu;
 
-	
+	$worr = mt_rand(0, 9);
+	switch($worr) {
+		case 0: $work = "unemployed"; break;
+		case 1: $work = "student"; break;
+		case 2: $work = "part-time"; break;
+		case 3: $work = "morning"; break;
+		case 4: $work = "day"; break;
+		case 5: $work = "evening"; break;
+		case 6: $work = "night"; break;
+		case 7: $work = "workaholic"; break;
+		case 8: $work = "pension"; break;
+		case 9: $work = "none"; break;
+	}	
+	printf("Work %s\r\n", $work);
+	$profile['work'] = $work;
+
 	sleep(35);
 }
 
