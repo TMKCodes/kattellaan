@@ -244,6 +244,23 @@ for($i = 0; $i < $usernames_count; $i++) {
 	printf("Language skill %s\r\n", $lang);
 	$profile['language-skills'] = $lang;
 	
+	$edur = mt_rand(0, 9);
+	switch($edur) {
+		case 0: $edu = "untrained"; break;
+		case 1: $edu = "lifeschool"; break;
+		case 2: $edu = "school"; break;
+		case 3: $edu = "vocational"; break;
+		case 4: $edu = "high"; break;
+		case 5: $edu = "applied"; break;
+		case 6: $edu = "colloege"; break;
+		case 7: $edu = "masters"; break;
+		case 8: $edu = "doctor"; break;
+		case 9: $edu = "none"; break;
+	}
+	printf("Education %s\r\n", $edu);
+	$profile['education'] = $edu;
+
+	
 	sleep(35);
 }
 
