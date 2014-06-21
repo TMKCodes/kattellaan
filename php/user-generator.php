@@ -317,6 +317,17 @@ for($i = 0; $i < $usernames_count; $i++) {
 	printf("dress style: %s\r\n", $dress_style);
 	$profile['dress-style'] = $dress_style;
 	
+	$smoking_r = mt_rand(0, 5);
+	switch($smoking_r) {
+		case 0: $smoking = "smokeless"; break;
+		case 1: $smoking = "company"; break;
+		case 2: $smoking = "drunken"; break;
+		case 3: $smoking = "regular"; break;
+		case 4: $smoking = "chimney"; break;
+		case 5: $smoking = "none"; break;
+	}
+	printf("smoking: %s\r\n", $smoking);
+	$profile['smoking'] = $smoking;
 	
 	sleep(35);
 }
