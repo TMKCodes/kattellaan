@@ -276,6 +276,28 @@ for($i = 0; $i < $usernames_count; $i++) {
 	printf("Work %s\r\n", $work);
 	$profile['work'] = $work;
 
+	$income = mt_rand(0, 1000000);
+	printf("Income %s\r\n", $income);
+	$profile['income'] = $income;
+
+
+	$vocationr = mt_rand(0, 10);
+	switch($vocationr) {
+		case 0: $vocation = "administration/finance"; break;
+		case 1: $vocation = "information-technology"; break;
+		case 2: $vocation = "social/health"; break;
+		case 3: $vocation = "communications/media/culture"; break;
+		case 4: $vocation = "marketing/sales"; break;
+		case 5: $vocation = "science/technology"; break;
+		case 6: $vocation = "education"; break;
+		case 7: $vocation = "housewife/-husband"; break;
+		case 8: $vocation = "agriculture-forestry"; break;
+		case 9: $vocation = "entrepreneur"; break;
+		case 10: $vocation = "none"; break;
+	}
+	printf("Vocation: %s\r\n", $vocation);
+	$profile['vocation'] = $vocation;
+
 	sleep(35);
 }
 
