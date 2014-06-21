@@ -314,7 +314,10 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 12: $dress_style = "nudist"; break;
 		case 0: $dress_style = "none"; break;
 	}
-
+	printf("dress style: %s\r\n", $dress_style);
+	$profile['dress-style'] = $dress_style;
+	
+	
 	sleep(35);
 }
 
