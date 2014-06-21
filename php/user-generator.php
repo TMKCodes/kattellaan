@@ -298,6 +298,23 @@ for($i = 0; $i < $usernames_count; $i++) {
 	printf("Vocation: %s\r\n", $vocation);
 	$profile['vocation'] = $vocation;
 
+	$dress_style_r = mt_rand(0, 12);
+	switch($dress_style_r) {
+		case 1: $dress_style = "fashionable"; break;
+		case 2: $dress_style = "business"; break;
+		case 3: $dress_style = "sporty"; break
+		case 4: $dress_style = "classic"; break;
+		case 5: $dress_style = "fleamarket"; break;
+		case 6: $dress_style = "self-indulgent"; break;
+		case 7: $dress_style = "regular"; break;
+		case 8: $dress_style = "hoppers"; break;
+		case 9: $dress_style = "rocker"; break;
+		case 10: $dress_style = "goth"; break;
+		case 11: $dress_style = "allthesame"; break;
+		case 12: $dress_style = "nudist"; break;
+		case 0: $dress_style = "none"; break;
+	}
+
 	sleep(35);
 }
 
