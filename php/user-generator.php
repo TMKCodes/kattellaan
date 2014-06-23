@@ -328,6 +328,24 @@ for($i = 0; $i < $usernames_count; $i++) {
 	}
 	printf("smoking: %s\r\n", $smoking);
 	$profile['smoking'] = $smoking;
+
+	$alcohol_r = mt_rand(0, 10);
+	switch($alcohol_r) {
+		case 0: $alcohol = "alcohol-free"; break;
+		case 1: $alcohol = "holidays"; break;
+		case 2: $alcohol = "company"; break;
+		case 3: $alcohol = "withfood"; break;
+		case 4: $alcohol = "occasionally"; break;
+		case 5: $alcohol = "everyday"; break;
+		case 6: $alcohol = "weekly"; break;
+		case 7: $alcohol = "monthly"; break;
+		case 8: $alcohol = "yearly"; break;
+		case 9: $alcohol = "alcoholic"; break;
+		case 10: $alcohol = "none"; break;
+	}
+	printf("Alcohol: %s\r\n", $alcohol);
+	$profile['alcohol'] = $alcohol;
+	
 	
 	sleep(35);
 }
