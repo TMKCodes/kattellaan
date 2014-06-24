@@ -367,6 +367,18 @@ for($i = 0; $i < $usernames_count; $i++) {
 	printf("Pet: %s\r\n", $pet);
 	$profile['pets'] = $pet;
 	
+
+	$exercise_r = mt_rand(0, 5);
+	switch($exercise_r) {
+		case 0: $exercise = "idont"; break;
+		case 1: $exercise = "casually"; break;
+		case 2: $exercise = "regularly"; break;
+		case 3: $exercise = "daily"; break;
+		case 4: $exercise = "none"; break;
+	}
+	printf("exercise: %s\r\n", $exercise);
+	$profile['exercise'] = $exercise;
+
 	
 
 	sleep(35);
