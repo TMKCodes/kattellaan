@@ -394,6 +394,21 @@ for($i = 0; $i < $usernames_count; $i++) {
 	printf("travel: %s\r\n", $travel);
 	$profile['travel'] = $travel;
 	
+	$religion_r = mt_rand(0, 8);
+	switch($religion_r) {
+		case 0: $religion = "atheist"; break;
+		case 1: $religion = "agnostic"; break;
+		case 2: $religion = "buddhism"; break;
+		case 3: $religion = "christian"; break;
+		case 4: $religion = "hinduism"; break;
+		case 5: $religion = "muslism"; break;
+		case 6: $religion = "jewish"; break;
+		case 7: $religion = "newage"; break;
+		case 8: $religion = "none"; break;
+	}
+	printf("religion: %s\r\n", $religion);
+	$profile['religion'] = $religion;
+	
 	
 
 	sleep(35);
