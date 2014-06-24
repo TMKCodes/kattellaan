@@ -347,6 +347,28 @@ for($i = 0; $i < $usernames_count; $i++) {
 	$profile['alcohol'] = $alcohol;
 	
 	
+	$pet_r = mt_rand(0, 13);
+	switch($pet_r) {
+		case 0: $pet = "horse"; break;
+		case 1: $pet = "pony"; break;
+		case 2: $pet = "spider"; break;
+		case 3: $pet = "fish"; break;
+		case 4: $pet = "rodent"; break;
+		case 5: $pet = "turtle"; break;
+		case 6: $pet = "dog"; break;
+		case 7: $pet = "cat"; break;
+		case 8: $pet = "snake"; break;
+		case 9: $pet = "bird"; break;
+		case 10: $pet = "stuffed-animal"; break;
+		case 11: $pet = "nopets"; break;
+		case 12: $pet = "likepets"; break;
+		case 13: $pet = "none"; break;
+	}
+	printf("Pet: %s\r\n", $pet);
+	$profile['pets'] = $pet;
+	
+	
+
 	sleep(35);
 }
 
