@@ -421,8 +421,21 @@ for($i = 0; $i < $usernames_count; $i++) {
 	printf("religion importance: %s\r\n", $relimp);
 	$profile['religion-importance'] = $relimp;
 	
-	
+	$lrpol_r = mt_rand(0, 7);
+	switch($lrpol_r) {
+		case 0: $lr = "left"; break;
+		case 1: $lr = "moderateleft"; break;
+		case 2: $lr = "inbetween"; break;
+		case 3: $lr = "moderateright"; break;
+		case 4: $lr = "right"; break;
+		case 5: $lr = "dontknow"; break;
+		case 6: $lr = "dontcare"; break;
+		case 7: $lr = "none"; break;
+	}
+	printf("left-right-politics: %s\r\n", $lr);
+	$profile['left-right-politics'] = $lr;
 
+	
 	sleep(35);
 }
 
