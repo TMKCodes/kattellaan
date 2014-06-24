@@ -449,7 +449,16 @@ for($i = 0; $i < $usernames_count; $i++) {
 	printf("liberal-conservative-politics: %s\r\n", $cp);
 	$profile['liberal-conservative-politics'] = $cp;
 	
-	
+	$pi_r = mt_rand(0, 4);
+	switch($pi_r) {
+		case 0: $pi = "dontcare"; break;
+		case 1: $pi = "title-follow"; break;
+		case 2: $pi = "active-follow"; break;
+		case 3: $pi = "involved"; break;
+		case 4: $pi = "none"; break;
+	}
+	printf("political-importance: %s\r\n", $pi);
+	$profile['political-importance'] = $pi;
 	
 	sleep(35);
 }
