@@ -379,6 +379,21 @@ for($i = 0; $i < $usernames_count; $i++) {
 	printf("exercise: %s\r\n", $exercise);
 	$profile['exercise'] = $exercise;
 
+	$travel_r = mt_rand(0, 8);
+	switch($travel_r) {
+		case 0: $travel = "cottagebatty"; break;
+		case 1: $travel = "neighboring-areas"; break;
+		case 2: $travel = "occasionally"; break;
+		case 3: $travel = "few-times-a-year"; break;
+		case 4: $travel = "monthly"; break;
+		case 5: $travel = "weekly"; break;
+		case 6: $travel = "daily"; break;
+		case 7: $travel = "allthetime"; break;
+		case 9: $travel = "none"; break;
+	}
+	printf("travel: %s\r\n", $travel);
+	$profile['travel'] = $travel;
+	
 	
 
 	sleep(35);
