@@ -409,6 +409,18 @@ for($i = 0; $i < $usernames_count; $i++) {
 	printf("religion: %s\r\n", $religion);
 	$profile['religion'] = $religion;
 	
+	$relimp_r = mt_rand(0, 5);
+	switch($relimp_r) {
+		case 0: $relimp = "insignificant"; break;
+		case 1: $relimp = "low"; break;
+		case 2: $relimp = "normal"; break;
+		case 3: $relimp = "important"; break;
+		case 4: $relimp = "true-blue"; break;
+		case 5: $relimp = "none"; break;
+	}
+	printf("religion importance: %s\r\n", $relimp);
+	$profile['religion-importance'] = $relimp;
+	
 	
 
 	sleep(35);
