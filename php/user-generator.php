@@ -435,6 +435,21 @@ for($i = 0; $i < $usernames_count; $i++) {
 	printf("left-right-politics: %s\r\n", $lr);
 	$profile['left-right-politics'] = $lr;
 
+	$cp_r = mt_rand(0, 7);
+	switch($cp_r) {
+		case 0: $cp = "conservative"; break;
+		case 1: $cp = "ratherconservative"; break;
+		case 2: $cp = "inbetween"; break;
+		case 3: $cp = "ratherliberal"; break;
+		case 4: $cp = "liberal"; break;
+		case 5: $cp = "dontknow"; break;
+		case 6: $cp = "dontcare"; break;
+		case 7: $cp = "none"; break;
+	}
+	printf("liberal-conservative-politics: %s\r\n", $cp);
+	$profile['liberal-conservative-politics'] = $cp;
+	
+	
 	
 	sleep(35);
 }
