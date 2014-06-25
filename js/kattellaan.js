@@ -546,8 +546,12 @@ function load_profile_page(uid) {
 	
 	var cTime = new Date();
 	var cYear = cTime.getFullYear();
-	var birthday = profile.birthday.split("-");
-	var age = cYear - birthday[0];
+	if(profile.birthday != "0000-00-00") {
+		var birthday = profile.birthday.split("-");
+		var age = cYear - birthday[0];
+	} else {
+		var age = "";
+	}
 
 	var relationshipStatus = odd_relationship_status(relationship_status(profile.relationship_status));
 	if(relationshipStatus == undefined) {
