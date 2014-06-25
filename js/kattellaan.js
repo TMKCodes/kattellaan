@@ -262,8 +262,7 @@ function load_page(page) {
 function load_custom_page(page, addons) {
 	$("body > .container").hide();
 	$("#" + page).show
-	page += addons;
-	history.pushState(null, page, hostname + "?page=" + page);
+	history.pushState(null, page, hostname + "?page=" + page + addons);
 }
 
 function gender(g) {
