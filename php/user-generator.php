@@ -348,7 +348,7 @@ for($i = 0; $i < $usernames_count; $i++) {
 	}
 	$profile['pets'] = $pet;
 
-	$exercise_r = mt_rand(0, 5);
+	$exercise_r = mt_rand(0, 4);
 	switch($exercise_r) {
 		case 0: $exercise = "idont"; break;
 		case 1: $exercise = "casually"; break;
@@ -368,7 +368,7 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 5: $travel = "weekly"; break;
 		case 6: $travel = "daily"; break;
 		case 7: $travel = "allthetime"; break;
-		case 9: $travel = "none"; break;
+		case 8: $travel = "none"; break;
 	}
 	$profile['travel'] = $travel;
 	
