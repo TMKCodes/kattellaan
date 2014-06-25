@@ -525,11 +525,13 @@ function load_profile_page(uid) {
 
 	if(uid !== vuid) {
 		var distance = parseInt(get_distance(vuid, uid));
-		if(distance < 1000) {
-			profile_text += " asuu " + distance + " metrin päässä.";
-		} else {
-			profile_text += " asuu " + distance / 1000 + " kilometrin päässä.";
-		} 
+		if(distance != undefined) {
+			if(distance < 1000) {
+				profile_text += " asuu " + distance + " metrin päässä.";
+			} else {
+				profile_text += " asuu " + distance / 1000 + " kilometrin päässä.";
+			} 
+		}
 	}
 		
 	profile_text += "</h1>";
