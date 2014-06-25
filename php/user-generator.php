@@ -43,8 +43,6 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			$address = $google_geocode_reply['results'][0]['formatted_address'];
 			$profile['address'] = $address;
 		} else {
-			$i--;
-			continue;
 		}
 
 		$rgender = mt_rand(0, 1);
