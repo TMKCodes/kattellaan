@@ -19,7 +19,7 @@ $lastnames_count = count($lastnames);
 $passwd = explode(":", base64_decode(file_get_contents("/home/temek/kattellaan/.passwd")));
 $database = new db("mysqli");
 if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true) {
-	for($i = 375; $i < $usernames_count; $i++) {
+	for($i = 390; $i < $usernames_count; $i++) {
 		$account = array();
 		$username = $usernames[$i];
 		$account['username'] = $username;
