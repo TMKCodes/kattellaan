@@ -87,7 +87,7 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 2: $sxo = "bi"; break;
 		case 3: $sxo = "ase"; break;
 	}
-	$profile['sexual-orientation'] = $sxo);
+	$profile['sexual-orientation'] = $sxo;
 
 	$lfrc = mt_rand(1, 4);
 	for($i = 0; $i <= $lfrc; $i++) {	
