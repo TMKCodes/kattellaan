@@ -162,16 +162,80 @@ class message {
 			throw new Exception("Database query failed.");
 		}
 	}
+
+	public function read() {
+		$this->read = 1;
+		$this->update();
+	}
+
+	public function update() {
+		if(!empty($this->identifier) && !empty($this->sender) && !empty($this->receiver) && !empty($this->timestamp) && !empty($this->read) && !empty($this->type) && !empty($this->message)) {
+			$query = "UPDATE `message` SET `sender` = ?, `receiver` = ?, `timestamp` = ?, ".
+					"`read` = ?, `type` = ?, `message` = ? WHERE `id` = ?;";
+			$statement = $this->database->prepare($query);
+			$statement->bind("i", $this->sender);
+			$statement->bind("i", $this->receiver);
+			$statement->bind("s", $this->timestamp);
+			$statement->bind("i", $this->read);
+			$statement->bind("s", $this->type);
+			$statement->bind("s", $this->message);
+			$statement->bind("i", $this->identifier);
+			$result = $statement->execute();
+			return $result->success();
+		} else {
+			return false;
+		}
+	}
 }
 
 class messages {
 	private $database;
+	private $messages;
+
 	public function __construct($database) {
 		$this->database = $database;
 	}
 	
-	public function get_messages($receiver) {
+	private function get_messages($statement) {
+		$result = $statement->execute();
+		if($result->success() == true) {
+			if($result->rows() > 0) {
+				for($i = 0; $i < $result->rows(); $i++) {
+					$data = $result->fetch_object();
+					$msg = new message($this->database);
+					$msg->set_identifier($data->id);
+					$msg->set_sender($data->sender);
+					$msg->set_receiver($data->receiver);
+					$msg->set_timestamp($data->timestamp);
+					$msg->set_read($data->read);
+					$msg->set_type($data->type);
+					$msg->set_message($data->message);
+					array_push($messages, $msg);
+				}
+				return true;
+			} else {
+				throw new Exception("No results found.");
+				return false;
+			}
+		} else {
+			throw new Exception("Database query failed.");
+		}
+	}
 		
+	public function get_latest($receiver, $limit) {
+		$query = "SELECT * FROM `message` WHERE `receiver` = ? ORDER BY `timestamp` ASC LIMIT ?;"; 
+		$statement = $this->database->prepare($query);
+		$statement->bind("i", $receiver);
+		$statement->bind("i", $limit);
+		return $this->get_messages($statement);
+	}
+	
+	public function get_sender($sender, $receiver) {
+		$query = "SELECT * FROM `message` WHERE `sender` = ? AND `receiver` = ? ORDER BY `timestamp` ASC;";
+		$statement = $this->database->prepare($query);
+		$statement->bind("i", $sender);
+		$statement->bind("i", $receiver);
+		return $this->get_messages($statement);
 	}
 
 }
