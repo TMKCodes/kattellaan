@@ -468,15 +468,17 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				if($position->insert() == true) {
 					printf("Successfully generated user %s.\r\n", $account['username']);
 				} else {
-					printf("Failed to save position to database.\r\n");
+					printf("Failed to save position %s to database.\r\n", $account['username']);
 				}		
 			} else {
-				printf("Failed to save profile to database.\r\n");
+				printf("Failed to save profile %s to database.\r\n", $account['username']);
 			}
 		} else {
-			printf("Failed to save account to database.\r\n");
+			printf("Failed to save account %s to database.\r\n", $account['username']);
 		}
-		
+		unset($dbaccount);
+		unset($dbprofile);
+		unset($position);	
 		sleep(35);
 	}
 }
