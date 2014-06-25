@@ -259,6 +259,13 @@ function load_page(page) {
 	history.pushState(null, page, hostname + "?page=" + page);
 }
 
+function load_custom_page(page, addons) {
+	$("body > .container").hide();
+	page += addons;
+	$("#" + page).show
+	history.pushState(null, page, hostname + "?page=" + page);
+}
+
 function gender(g) {
 	switch(g) {
 		case 'man':
@@ -583,8 +590,11 @@ function load_profile_page(uid) {
 	}
 
 	$("#profile-page-basic-information-asl").html(asl);
-	
-	load_page("profile-page");
+	if(vuid !== uid) {
+		load_custom_page("profile-page", "&uid=" + uid);
+	} else {
+		load_page("profile-page");
+	}
 }
 
 window.onpopstate = function(event) {
