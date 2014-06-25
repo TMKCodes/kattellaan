@@ -49,13 +49,13 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 	if($position->create_table() == true) {
 		printf("Created position database table.\r\n");
 	} else {
-		printf("Failed to create position database table.\r\n";
+		printf("Failed to create position database table.\r\n");
 	}
 	$distance = new distance($database);
 	if($distance->create_table() == true) {
 		printf("Created distance database table.\r\n");
 	} else {
-		printf("Failed to create distance database table.\r\n";
+		printf("Failed to create distance database table.\r\n");
 	}
 }
 
