@@ -456,7 +456,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		$dbaccount->set_address($account['address']);
 		$dbaccount->set_password(hash("sha512", $account['password']));
 		if($dbaccount->insert() == true) {
-			$profile['identifier'] = $account->get_identifier();
+			$profile['identifier'] = $dbaccount->get_identifier();
 			$dbprofile = new profile($database);
 			$dbprofile->set($profile);
 			if($dbprofile->insert() == true) {
