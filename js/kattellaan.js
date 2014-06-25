@@ -261,7 +261,7 @@ function load_page(page) {
 
 function load_custom_page(page, addons) {
 	$("body > .container").hide();
-	$("#" + page).show
+	$("#" + page).show();
 	history.pushState(null, page, hostname + "?page=" + page + addons);
 }
 
