@@ -2609,7 +2609,7 @@ $("#register-confirm-profile-information-form").submit(function(evt) {
 			favorite_television_series : $.cookie("favorite-television-series"),
 			gender : $.cookie("gender"),
 			hair_color : $.cookie("hair-color"),
-			hair_length : $.cookie("hair-length"),
+			hair_length : $.cookie("hair-lenght"),
 			height : $.cookie("height"),
 			ignite_me : $.cookie("ignite-me"),
 			income : $.cookie("income"),
