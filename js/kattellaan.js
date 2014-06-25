@@ -525,7 +525,7 @@ function load_profile_page(uid) {
 
 	if(uid !== vuid) {
 		var distance = parseInt(get_distance(vuid, uid));
-		if(distance != undefined) {
+		if(distance != NaN) {
 			if(distance < 1000) {
 				profile_text += " asuu " + distance + " metrin päässä.";
 			} else {
