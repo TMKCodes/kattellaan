@@ -607,8 +607,6 @@ $("document").ready(function() {
 			var uid = get_url_parameter("uid");
 			if(uid != undefined) {
 				load_profile_page(uid);
-			} else if($.cookie("last-viewed-profile") != undefined) {
-				load_profile_page($.cookie("last-viewed-profile"));
 			} else {
 				if($.cookie("session") != undefined) {
 					var session = window.atob($.cookie("session"));
