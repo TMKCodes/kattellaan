@@ -9,7 +9,8 @@ require_once("session.php");
 require_once("invite.php");
 require_once("file.php");
 require_once("profile.php");
-
+require_once("position.php");
+require_once("distance.php");
 
 $passwd = explode(":", base64_decode(file_get_contents("/home/temek/kattellaan/.passwd")));
 $database = new db("mysqli");
@@ -43,6 +44,18 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		printf("Created profile database table.\r\n");
 	} else {
 		printf("Failed to create profile database table.\r\n");
+	}
+	$position = new position($database);
+	if($position->create_table() == true) {
+		printf("Created position database table.\r\n");
+	} else {
+		printf("Failed to create position database table.\r\n";
+	}
+	$distance = new distance($database);
+	if($distance->create_table() == true) {
+		printf("Created distance database table.\r\n");
+	} else {
+		printf("Failed to create distance database table.\r\n";
 	}
 }
 

@@ -94,7 +94,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			case 6: $relstatus = "widow"; break;
 			case 7: $relstatus = "none"; break;
 		}
-		$profile['relationship-status'] = $relstatus;
+		$profile['relationship_status'] = $relstatus;
 
 		$sxor = mt_rand(0, 3);
 		switch($sxor) {
@@ -103,7 +103,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			case 2: $sxo = "bi"; break;
 			case 3: $sxo = "ase"; break;
 		}
-		$profile['sexual-orientation'] = $sxo;
+		$profile['sexual_orientation'] = $sxo;
 
 		$lfrc = mt_rand(1, 4);
 		for($i = 0; $i <= $lfrc; $i++) {	
@@ -123,7 +123,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				$rlf .= ", " . $lf[$i];
 			}
 		}
-		$profile['looking-for'] = $rlf;
+		$profile['looking_for'] = $rlf;
 
 		$height = mt_rand(130, 220);
 		$profile['height'] = $height;
@@ -142,7 +142,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			case 6: $btype = "overweight"; break;
 			case 7: $btype = "none"; break;
 		}
-		$profile['body-type'] = $btype;
+		$profile['body_type'] = $btype;
 		
 		$ecr = mt_rand(0, 8);
 		switch($ecr) {
@@ -156,7 +156,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			case 7: $eyecolor = "violet"; break;
 			case 8: $eyecolor = "none"; break;
 		}
-		$profile['eye-color'] = $eyecolor;
+		$profile['eye_color'] = $eyecolor;
 
 		$hlr = mt_rand(0, 4);
 		switch($hlr) {
