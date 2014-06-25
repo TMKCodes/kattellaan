@@ -313,7 +313,9 @@ function looking_for(lookingFor) {
 
 function recursive_looking_for(lookingFor) {
 	var lookingForArr = lookingFor.split(",");
-	console.log(lookingForArr);
+	if(lookingForArr.length == 1) {
+		lookingFOrArr = lookingFor.split(", ");
+	}
 	for(var i = 0; i < lookingForArr.length; i++) {
 		lookingForArr[i] = looking_for(lookingForArr[i]);
 	}
