@@ -24,9 +24,7 @@ for($i = 0; $i < $usernames_count; $i++) {
 	
 	$rlastname = mt_rand(0, $lastnames_count-1);
 	$lastname = $lastnames[$rlastname];
-	$name = $name . " " . $lastname;
-	$profile['name'] = $name;
-	
+
 	$latitude = mt_rand(600000000, 700000000) / 10000000;
 	$longitude = mt_rand(200000000, 320000000) / 10000000;
 	
@@ -52,6 +50,17 @@ for($i = 0; $i < $usernames_count; $i++) {
 		$name = $female_names[$rname];
 	}
 	$profile['gender'] = $gender;
+	
+	if($gender == "woman") {
+		$rfemale_name = mt_rand(0, $female_names_count-1);
+		$name = $female_names[$rfemale_name];
+	} else {
+		$rmale_name = mt_rand(0, $male_names_count-1);
+		$name = $male_names[$rmale_name];
+	}
+	$name = $name . " " . $lastname;
+	$profile['name'] = $name;
+	
 	
 	$age_min = 18;
 	$age_max = 100;
