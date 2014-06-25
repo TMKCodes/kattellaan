@@ -550,6 +550,9 @@ function load_profile_page(uid) {
 	var age = cYear - birthday[0];
 
 	var relationshipStatus = odd_relationship_status(relationship_status(profile.relationship_status));
+	if(relationshipStatus == undefined) {
+		relationshipStatus = "";
+	}
 	
 	var sGender = gender(profile.gender);
 
