@@ -554,7 +554,9 @@ function load_profile_page(uid) {
 	var sGender = gender(profile.gender);
 
 	var town = from_town(get_town(profile.latlng));
-
+	if(town == undefined) {
+		town = "";
+	}
 		
 	var asl = "<h2> Olen " + age + " vuotias " +
 		relationshipStatus + " " + sGender.toLowerCase() + " " + town
