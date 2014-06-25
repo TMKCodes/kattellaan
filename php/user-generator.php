@@ -13,7 +13,6 @@ $lastnames_count = count($lastnames);
 for($i = 0; $i < $usernames_count; $i++) {
 	$account = array();
 	$username = $usernames[$i];
-	printf("Username: %s\r\n", $username);
 	$account['username'] = $username;
 	$account['address'] = "tmkcodes@gmx.com";
 	$account['password'] = "ikaros123";
@@ -26,12 +25,10 @@ for($i = 0; $i < $usernames_count; $i++) {
 	$rlastname = mt_rand(0, $lastnames_count-1);
 	$lastname = $lastnames[$rlastname];
 	$name = $name . " " . $lastname;
-	printf("Name: %s\r\n", $name);
 	$profile['name'] = $name;
 	
 	$latitude = mt_rand(600000000, 700000000) / 10000000;
 	$longitude = mt_rand(200000000, 320000000) / 10000000;
-	printf("Latitude: %s\r\nLongitude: %s\r\n", $latitude, $longitude);
 	
 	$google_geocode_reply = file_get_contents("http://maps.googleapis.com/maps/api/geocode/json?latlng=" . $latitude . "," . $longitude . "&sensor=true");
 	$google_geocode_reply = json_decode($google_geocode_reply, true);
@@ -54,7 +51,6 @@ for($i = 0; $i < $usernames_count; $i++) {
 		$rname = mt_rand(0, $female_names_count-1);
 		$name = $female_names[$rname];
 	}
-	printf("Gender: %s\r\n", $gender);
 	$profile['gender'] = $gender;
 	
 	$age_min = 18;
@@ -69,7 +65,6 @@ for($i = 0; $i < $usernames_count; $i++) {
 		$day = "0" . $day;
 	}
 	$age = $year . "-" . $month . "-" . $day;	
-	printf("Age %s\r\n", $age);
 	$profile['birthday'] = $age;
 	
 	$rsr = mt_rand(0, 7);
@@ -83,7 +78,6 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 6: $relstatus = "widow"; break;
 		case 7: $relstatus = "none"; break;
 	}
-	printf("Relationship status %s\r\n", $relstatus);
 	$profile['relationship-status'] = $relstatus;
 
 	$sxor = mt_rand(0, 3);
@@ -93,7 +87,6 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 2: $sxo = "bi"; break;
 		case 3: $sxo = "ase"; break;
 	}
-	printf("Sexual orientation %s\r\n", $sxo);
 	$profile['sexual-orientation'] = $sxo);
 
 	$lfrc = mt_rand(1, 4);
@@ -114,15 +107,12 @@ for($i = 0; $i < $usernames_count; $i++) {
 			$rlf .= ", " . $lf[$i];
 		}
 	}
-	printf("Looking for %s\r\n", $rlf);
 	$profile['looking-for'] = $rlf;
 
 	$height = mt_rand(130, 220);
-	printf("Height %s\r\n", $height);
 	$profile['height'] = $height;
 
 	$weight = mt_rand(30, 160);
-	printf("Weight %s\r\n", $weight);
 	$profile['weight'] = $weight;
 
 	$btyper = mt_rand(0, 7);
@@ -136,7 +126,6 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 6: $btype = "overweight"; break;
 		case 7: $btype = "none"; break;
 	}
-	printf("Body type %s\r\n", $btype);
 	$profile['body-type'] = $btype;
 	
 	$ecr = mt_rand(0, 8);
@@ -151,7 +140,6 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 7: $eyecolor = "violet"; break;
 		case 8: $eyecolor = "none"; break;
 	}
-	printf("Eye color %s\r\n", $eyecolor);
 	$profile['eye-color'] = $eyecolor;
 
 	$hlr = mt_rand(0, 4);
@@ -162,7 +150,6 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 3: $hairlength = "long"; break;
 		case 4: $hairlength = "none"; break;
 	}
-	printf("Hair length %s\r\n", $hairlength);
 	$profile['hair-length'] = $hairlength;
 
 	$hcr = mt_rand(0, 11);
@@ -180,7 +167,6 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 10: $haircolor = "changeable"; break;
 		case 11: $haircolor = "none"; break;
 	}
-	printf("Hair color %s\r\n", $haircolor);
 	$profile['hair-color'] = $haircolor;
 
 	$kr = mt_rand(0, 13);
@@ -200,7 +186,6 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 12: $kids = "monthlyparent"; break;
 		case 13: $kids = "none"; break;
 	}
-	printf("Kids %s\r\n", $kids);
 	$profile['kids'] = $kids;
 
 	$acr = mt_rand(0, 6);
@@ -213,7 +198,6 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 5: $ac = "homeless"; break;
 		case 6: $ac = "none"; break;
 	}
-	printf("Accomodation %s\r\n", $ac);
 	$profile['accomodation'] = $ac;
 
 	$ethr = mt_rand(0, 7);
@@ -227,7 +211,6 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 6: $eth = "midget"; break;
 		case 7: $eth = "none"; break;
 	}
-	printf("Ethnic identity %s\r\n", $eth);
 	$profile['ethnic-identity'] = $eth;
 
 	$langr = mt_rand(0, 7);
@@ -241,7 +224,6 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 6: $lang = "others"; break;
 		case 7: $lang = "none"; break;
 	}
-	printf("Language skill %s\r\n", $lang);
 	$profile['language-skills'] = $lang;
 	
 	$edur = mt_rand(0, 9);
@@ -257,7 +239,6 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 8: $edu = "doctor"; break;
 		case 9: $edu = "none"; break;
 	}
-	printf("Education %s\r\n", $edu);
 	$profile['education'] = $edu;
 
 	$worr = mt_rand(0, 9);
@@ -273,13 +254,10 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 8: $work = "pension"; break;
 		case 9: $work = "none"; break;
 	}	
-	printf("Work %s\r\n", $work);
 	$profile['work'] = $work;
 
 	$income = mt_rand(0, 1000000);
-	printf("Income %s\r\n", $income);
 	$profile['income'] = $income;
-
 
 	$vocationr = mt_rand(0, 10);
 	switch($vocationr) {
@@ -295,7 +273,6 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 9: $vocation = "entrepreneur"; break;
 		case 10: $vocation = "none"; break;
 	}
-	printf("Vocation: %s\r\n", $vocation);
 	$profile['vocation'] = $vocation;
 
 	$dress_style_r = mt_rand(0, 12);
@@ -314,7 +291,6 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 12: $dress_style = "nudist"; break;
 		case 0: $dress_style = "none"; break;
 	}
-	printf("dress style: %s\r\n", $dress_style);
 	$profile['dress-style'] = $dress_style;
 	
 	$smoking_r = mt_rand(0, 5);
@@ -326,7 +302,6 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 4: $smoking = "chimney"; break;
 		case 5: $smoking = "none"; break;
 	}
-	printf("smoking: %s\r\n", $smoking);
 	$profile['smoking'] = $smoking;
 
 	$alcohol_r = mt_rand(0, 10);
@@ -343,9 +318,7 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 9: $alcohol = "alcoholic"; break;
 		case 10: $alcohol = "none"; break;
 	}
-	printf("Alcohol: %s\r\n", $alcohol);
 	$profile['alcohol'] = $alcohol;
-	
 	
 	$pet_r = mt_rand(0, 13);
 	switch($pet_r) {
@@ -364,9 +337,7 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 12: $pet = "likepets"; break;
 		case 13: $pet = "none"; break;
 	}
-	printf("Pet: %s\r\n", $pet);
 	$profile['pets'] = $pet;
-	
 
 	$exercise_r = mt_rand(0, 5);
 	switch($exercise_r) {
@@ -376,7 +347,6 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 3: $exercise = "daily"; break;
 		case 4: $exercise = "none"; break;
 	}
-	printf("exercise: %s\r\n", $exercise);
 	$profile['exercise'] = $exercise;
 
 	$travel_r = mt_rand(0, 8);
@@ -391,7 +361,6 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 7: $travel = "allthetime"; break;
 		case 9: $travel = "none"; break;
 	}
-	printf("travel: %s\r\n", $travel);
 	$profile['travel'] = $travel;
 	
 	$religion_r = mt_rand(0, 8);
@@ -406,7 +375,6 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 7: $religion = "newage"; break;
 		case 8: $religion = "none"; break;
 	}
-	printf("religion: %s\r\n", $religion);
 	$profile['religion'] = $religion;
 	
 	$relimp_r = mt_rand(0, 5);
@@ -418,7 +386,6 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 4: $relimp = "true-blue"; break;
 		case 5: $relimp = "none"; break;
 	}
-	printf("religion importance: %s\r\n", $relimp);
 	$profile['religion-importance'] = $relimp;
 	
 	$lrpol_r = mt_rand(0, 7);
@@ -432,7 +399,6 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 6: $lr = "dontcare"; break;
 		case 7: $lr = "none"; break;
 	}
-	printf("left-right-politics: %s\r\n", $lr);
 	$profile['left-right-politics'] = $lr;
 
 	$cp_r = mt_rand(0, 7);
@@ -446,7 +412,6 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 6: $cp = "dontcare"; break;
 		case 7: $cp = "none"; break;
 	}
-	printf("liberal-conservative-politics: %s\r\n", $cp);
 	$profile['liberal-conservative-politics'] = $cp;
 	
 	$pi_r = mt_rand(0, 4);
@@ -457,8 +422,18 @@ for($i = 0; $i < $usernames_count; $i++) {
 		case 3: $pi = "involved"; break;
 		case 4: $pi = "none"; break;
 	}
-	printf("political-importance: %s\r\n", $pi);
 	$profile['political-importance'] = $pi;
+
+	$profile['favorite-television-series'] = "";
+	$profile['favorite-radio-shows'] = "";
+	$profile['favorite-bands'] = "";
+	$profile['favorite-movies'] = "";
+	$profile['best-things-in-the-world'] = "";
+	$profile['ignite-me'] = "";
+	$profile['not-exciting'] = "";
+		
+	print_r($account);
+	print_r($profile);
 	
 	sleep(35);
 }
