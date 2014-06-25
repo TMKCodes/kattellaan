@@ -312,10 +312,10 @@ function looking_for(lookingFor) {
 }
 
 function recursive_looking_for(lookingFor) {
-	var lookingForArr = lookingFor.split(",");
+	var lookingForArr = lookingFor.split(", ");
 	console.log(lookingForArr);
 	if(lookingForArr.length == 1) {
-		lookingForArr = lookingFor.split(", ");
+		lookingForArr = lookingFor.split(",");
 	}
 	console.log(lookingForArr);
 	for(var i = 0; i < lookingForArr.length; i++) {
