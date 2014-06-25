@@ -302,12 +302,12 @@ class profile {
 			$query = "INSERT INTO `profile` (`accomodation`, `address`, `alcohol`, " . 
 				"`best_things_in_the_world`, `birthday`, `body_type`, `dress_style`, " .
 				"`education`, `ethnic_identity`, `exercise`, `eye_color`, `favorite_bands`, " .
-				"`favorite_movies`, `favorite_radio_shows`, `gender`, `hair_color`, `height`, " .
-				"`identifier`, `ignite_me`, `income`, `kids`, `language_skills`, `latlng`, " .
-				"`left_right_politics`, `liberal_conservative_politics`, `looking_for`, " .
-				"`not_exciting`, `pets`, `picture`, `political_importance`, `relationship_status`, " .
-				"`religion`, `religion_importance`, `sexual_orientation`, `smoking`, " . 
-				"`travel`, `vocation`, `weight`) " . 
+				"`favorite_movies`, `favorite_radio_shows`, `gender`, `hair_length`,  `hair_color`,".
+				"`height`, `identifier`, `ignite_me`, `income`, `kids`, `language_skills`,".
+				"`latlng`, `left_right_politics`, `liberal_conservative_politics`,".
+				"`looking_for`, `not_exciting`, `pets`, `picture`, `political_importance`,".
+				"`relationship_status`, `religion`, `religion_importance`, `sexual_orientation`,".
+				"`smoking`, `travel`, `vocation`, `weight`) " . 
 				"VALUES (".	
 				"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " . // 10
 				"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " . // 20
