@@ -75,6 +75,7 @@ class profile {
 		$this->favorite_movies = $profile['favorite_movies'];
 		$this->favorite_radio_shows = $profile['favorite_radio_shows'];
 		$this->gender = $profile['gender'];
+		$this->hair_length = $profile['hair_length'];
 		$this->hair_color = $profile['hair_color'];
 		$this->height = $profile['height'];
 		$this->identifier = $profile['identifier'];
@@ -120,6 +121,7 @@ class profile {
 		$profile['favorite_movies'] = $this->favorite_movies;
 		$profile['favorite_radio_shows'] = $this->favorite_radio_shows;
 		$profile['gender'] = $this->gender;
+		$profile['hair_length'] = $this->hair_length;
 		$profile['hair_color'] = $this->hair_color;
 		$profile['height'] = $this->height;
 		$profile['identifier'] = $this->identifier;
@@ -162,6 +164,7 @@ class profile {
 			"favorite_movies TEXT," .
 			"favorite_radio_shows TEXT," .
 			"gender TEXT," .
+			"hair_length TEXT," .
 			"hair_color TEXT," .
 			"height TEXT," .
 			"identifier INT NOT NULL," .
@@ -265,6 +268,7 @@ class profile {
 		$statement->bind('s', $this->favorite_movies);
 		$statement->bind('s', $this->favorite_radio_shows);
 		$statement->bind('s', $this->gender);
+		$statement->bind('s', $this->hair_length);
 		$statement->bind('s', $this->hair_color);
 		$statement->bind('s', $this->height);
 		if($with_identifier == true) {
