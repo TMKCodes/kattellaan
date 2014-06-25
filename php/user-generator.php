@@ -107,21 +107,21 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		$profile['sexual_orientation'] = $sxo;
 
 		$lfrc = mt_rand(1, 4);
-		for($i = 0; $i <= $lfrc; $i++) {	
+		for($x = 0; $x <= $lfrc; $x++) {	
 			$lfr = mt_rand(0, 4);
 			switch($lfr) {
-				case 0: $lf[$i] = "friends"; break;
-				case 1: $lf[$i] = "love"; break;
-				case 2: $lf[$i] = "date"; break;
-				case 3: $lf[$i] = "sex"; break;
-				case 4: $lf[$i] = "other"; break;
+				case 0: $lf[$x] = "friends"; break;
+				case 1: $lf[$x] = "love"; break;
+				case 2: $lf[$x] = "date"; break;
+				case 3: $lf[$x] = "sex"; break;
+				case 4: $lf[$x] = "other"; break;
 			}
 		}
 		$lf = array_values(array_unique($lf));
 		$rlf = $lf[0];
 		if(count($lf) > 1) {
-			for($i = 1; $i < count($lf); $i++) {
-				$rlf .= ", " . $lf[$i];
+			for($x = 1; $x < count($lf); $x++) {
+				$rlf .= ", " . $lf[$x];
 			}
 		}
 		$profile['looking_for'] = $rlf;
@@ -482,4 +482,5 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		sleep(35);
 	}
 }
+
 ?>
