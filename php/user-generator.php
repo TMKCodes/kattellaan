@@ -449,8 +449,8 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		$profile['ignite_me'] = "";
 		$profile['not_exciting'] = "";
 			
-		print_r($account);
-		print_r($profile);
+		//print_r($account);
+		//print_r($profile);
 
 		$dbaccount = new account($database);
 		$dbaccount->set_username($account['username']);
