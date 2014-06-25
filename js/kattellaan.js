@@ -576,8 +576,14 @@ function load_profile_page(uid) {
 		town = "";
 	}
 		
-	var asl = "<h2> Olen " + age + " vuotias " +
-		relationshipStatus + " " + sGender.toLowerCase() + " " + town
+	var asl = "<h2> Olen ";
+
+	if(age != "") {
+		asl += age + " vuotias ";
+	}
+	
+	asl += relationshipStatus + " " + sGender.toLowerCase() + " " + town
+	
 	if(profile.looking_for == "null") {
 		asl = asl + ".</h2>";
 	} else {
