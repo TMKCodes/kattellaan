@@ -3,7 +3,8 @@
 require_once("dbwrapper/db.php");
 require_once("account.php");
 require_once("profile.php");
-
+require_once("position.php");
+require_once("distance.php");
 
 $usernames = explode("\n", file_get_contents(__DIR__."/../lists/random-usernames.txt"));
 $male_names = explode("\n", file_get_contents(__DIR__."/../lists/male-names.txt"));
