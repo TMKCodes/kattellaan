@@ -40,8 +40,12 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		$google_geocode_reply = file_get_contents("http://maps.googleapis.com/maps/api/geocode/json?latlng=" . $latitude . "," . $longitude . "&sensor=true");
 		$google_geocode_reply = json_decode($google_geocode_reply, true);
 		if($google_geocode_reply['status'] == "OK") {
-			$address = $google_geocode_reply['results'][0]['formatted_address'];
-			$profile['address'] = $address;
+			if(!empty($google_geocode_reply['results'][0]['formatted_address'])) {
+				$address = $google_geocode_reply['results'][0]['formatted_address'];
+				$profile['address'] = $address;
+			} else {
+				$profile['address'] = "";
+			}
 		} else {
 		}
 
