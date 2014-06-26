@@ -58,10 +58,10 @@
 					<li class="dropdown" id="user-menu-settings">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="glyphicon glyphicon-wrench"></b> Asetukset <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="#"><b class="glyphicon glyphicon-user"></b> Muokkaa profiilia</a></li>
-							<li><a href="#"><b class="glyphicon glyphicon-home"></b> Muokkaa tiliä</a></li>
-							<li><a href="#"><b class="glyphicon glyphicon-search"></b> Tallennetut haut</a></li>
-							<li><a href="#"><b class="glyphicon glyphicon-tasks"></b> Aktiviteettiloki</a></li> 
+							<li><a href=""><b class="glyphicon glyphicon-user"></b> Muokkaa profiilia</a></li>
+							<li><a href=""><b class="glyphicon glyphicon-home"></b> Muokkaa tiliä</a></li>
+							<li><a href=""><b class="glyphicon glyphicon-search"></b> Tallennetut haut</a></li>
+							<li><a href=""><b class="glyphicon glyphicon-tasks"></b> Aktiviteettiloki</a></li> 
 							<li><a id="logout-button" href="#"><b class="glyphicon glyphicon-log-out"></b> Kirjaudu ulos</a></li>
 						</ul>
 					</li>
@@ -129,6 +129,7 @@
 		</div>
 	</div>
 
+	<!-- profile page -->
 	<div class="container" id="profile-page" style="display: none; height: 69px;">
 		<div class="row panel panel-default" id="profile-page-top-bar">
 			<div class="col-xs-12 col-sm-4 panel-body" id="profile-page-top-bar-username">
@@ -156,6 +157,28 @@
 		</div>
 	</div>
 
+	<!-- messages page -->
+	<div class="container" id="messages-page" style="display: none;">
+		<div class="row">
+			<div class="col-xs-6 col-sm-2 panel-default" id="messages-page-conversations">
+				<div class="row panel-heading">
+					Keskustelut	
+				</div>
+				<div class="row panel-body" id="messages-page-conversations-list">
+		
+				</div>
+				<div class="row panel-footer" id="messages-page-conversations-search">
+					<form method="POST" action="php/api.php">
+						<input type="text" name="conversations-search" />
+						<input type="submit" value="search-icon" />
+					</form>
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-4" id="messages-page-conversation">
+
+			</div>
+		</div>
+	</div>
 
 	<!-- terms of servcice page html code -->
 	<div id="register-terms-of-service-page" class="container" style="display: none;">
