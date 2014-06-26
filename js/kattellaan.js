@@ -684,12 +684,15 @@ $("document").ready(function() {
 		uploadProgress: function(evt, position, total, percentComplete) {
 			$("#register-picture-upload-progress-bar").width(percentComplete + "%");
 			$("#register-picture-upload-progress-percent").html(percentComplete + "%");
+			console.log("Sending: " + percentComplete + "%");
 			if(percentComplete === 100) {
 				$("#register-picture-upload-progress-percent").html("Odota.");
 			}
 		},
 		success: function(responseText, statusText, xhr, $form) {
+			console.log("File sent.");
 			if(statusText === "success") {
+				console.log("File sent successfully.");
 				if(responseText.success === true) {
 					$("#register-picture-upload-progress-bar").width("100%");
 					$("#register-picture-upload-progress-percent").html("Lähetetty.");
