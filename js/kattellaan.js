@@ -652,7 +652,7 @@ $("document").ready(function() {
 		$("#home-page-register").show();
 		$("#home-page-features").show();
 		if($.cookie("allow-cookies") != "true") {
-			$("#cookie-need-message-show").show();
+			$("#cookie-need-message").show();
 			console.log("cookie use is not yet allowed.");
 		} else {
 			console.log("cookie use is already allowed.");
