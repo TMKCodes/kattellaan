@@ -690,7 +690,7 @@ $("document").ready(function() {
 			}
 		},
 		error: function(jqXHR, textStatus, errorThrown) {
-			console.log("Status: " + textStatus + "\r\nError: " + errorThrown);
+			console.log("jqXHR: " + jqXHR + "\r\nStatus: " + textStatus + "\r\nError: " + errorThrown);
 		}, 
 		success: function(responseText, statusText, xhr, $form) {
 			console.log("File sent.");
