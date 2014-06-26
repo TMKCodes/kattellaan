@@ -160,29 +160,33 @@
 	<!-- messages page -->
 	<div class="container" id="messages-page" style="display: none;">
 		<div class="row">
-			<div class="col-xs-6 col-sm-2 panel panel-default" id="messages-page-conversations">
-				<div class="panel-heading">
-					Keskustelut	
-				</div>
-				<div class="panel-body" id="messages-page-conversations-list">
-					Lista keskusteluista.
-				</div>
-				<div class="panel-footer" id="messages-page-conversations-search">
-					<form method="POST" action="php/api.php">
-						<input type="text" name="conversations-search" />
-						<input type="submit" value="search-icon" />
-					</form>
+			<div class="col-xs-6 col-sm-2">
+				<div class="panel panel-default" id="messages-page-conversations">
+					<div class="panel-heading">
+						Keskustelut	
+					</div>
+					<div class="panel-body" id="messages-page-conversations-list">
+						Lista keskusteluista.
+					</div>
+					<div class="panel-footer" id="messages-page-conversations-search">
+						<form method="POST" action="php/api.php">
+							<input type="text" name="conversations-search" />
+							<input type="submit" value="search-icon" />
+						</form>
+					</div>
 				</div>
 			</div>
-			<div class="col-xs-6 col-sm-4 panel panel-default" id="messages-page-conversation">
-				<div class="panel-heading">
-					Kenen kanssa keskustelee.
-				</div>
-				<div class="panel-body" id="messages-page-conversation-messages">
-					Viestit.
-				</div>
-				<div class="panel-footer" id="messages-page-conversation-new-message">
-					Lähetä uusi viesti.
+			<div class="col-xs-6 col-sm-4">
+				<div class="panel panel-default" id="messages-page-conversation">
+					<div class="panel-heading">
+						Kenen kanssa keskustelee.
+					</div>
+					<div class="panel-body" id="messages-page-conversation-messages">
+						Viestit.
+					</div>
+					<div class="panel-footer" id="messages-page-conversation-new-message">
+						Lähetä uusi viesti.
+					</div>
 				</div>
 			</div>
 		</div>
