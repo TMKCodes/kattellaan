@@ -786,6 +786,7 @@ $("#allow-cookie-use").click(function(evt) {
 
 $("#disallow-cookie-use").click(function(evt) {
 	var cookies = document.cookie.split(";");
+	$("#cookie-need-message").hide();
 	console.log("disallowed cookie use, removing all cookies.");
 	for(var i = 0; i < cookies.length; i++) 
 		$.removeCookie(cookies[i].split("=")[0]);	
