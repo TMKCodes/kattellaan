@@ -653,6 +653,9 @@ $("document").ready(function() {
 		$("#home-page-features").show();
 		if($.cookie("allow-cookies") != "true") {
 			$("#cookie-need-message-show").show();
+			console.log("cookie use is not yet allowed.");
+		} else {
+			console.log("cookie use is already allowed.");
 		}
 	}
 
@@ -778,10 +781,12 @@ $("#hide-authentication-error-page-button").click(function(evt) {
 $("#allow-cookie-use").click(function(evt) {
 	$.cookie("allow-cookies", "true");
 	$("#cookie-need-message").hide();
+	console.log("allowed cookie use.");
 });
 
 $("#disallow-cookie-use").click(function(evt) {
 	var cookies = document.cookie.split(";");
+	console.log("disallowed cookie use, removing all cookies.");
 	for(var i = 0; i < cookies.length; i++) 
 		$.removeCookie(cookies[i].split("=")[0]);	
 });
