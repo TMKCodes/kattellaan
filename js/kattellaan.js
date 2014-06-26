@@ -689,8 +689,8 @@ $("document").ready(function() {
 				$("#register-picture-upload-progress-percent").html("Odota.");
 			}
 		},
-		error: function(msg) {
-			console.log("Error: " + msg);
+		error: function(jqXHR, textStatus, errorThrown) {
+			console.log("Status: " + textStatus + "\r\nError: " + errorThrown);
 		}, 
 		success: function(responseText, statusText, xhr, $form) {
 			console.log("File sent.");
