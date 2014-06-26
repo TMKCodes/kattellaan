@@ -669,6 +669,7 @@ $("document").ready(function() {
 		data: { session: $.cookie("session") },
 		beforeSubmit: function(formData, jqForm, options) {
 			console.log("About to submit: \r\n" + $.param(formData));
+			console.log($.cookie("session"));
 			$("#register-picture-upload-progress").show();
 			$("#register-picture-upload-progress-bar").width("0%");
 			$("#register-picture-upload-progress-percent").html("0%");
