@@ -651,6 +651,9 @@ $("document").ready(function() {
 		$("#authentication-form").show();
 		$("#home-page-register").show();
 		$("#home-page-features").show();
+		if($.cookie("allow-cookies") != "true") {
+			$("#cookie-need-message-show").show();
+		}
 	}
 
 	setInterval(function() {
@@ -770,6 +773,17 @@ $("#authentication-form").submit(function(evt) {
 
 $("#hide-authentication-error-page-button").click(function(evt) {
 	$("#authentication-error-page").hide();
+});
+
+$("#allow-cookie-use").click(function(evt) {
+	$.cookie("allow-cookies", "true");
+	$("#cookie-need-message").hide();
+});
+
+$("#disallow-cookie-use").click(function(evt) {
+	var cookies = document.cookie.split(";");
+	for(var i = 0; i < cookies.length; i++) 
+		$.removeCookie(cookies[i].split("=")[0]);	
 });
 
 $("#register-select-profile-picture-skip-button").click(function(evt) {
