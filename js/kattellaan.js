@@ -641,7 +641,7 @@ function get_discussions(uid) {
 }
 
 function load_messages_page(uid, duid) {
-	var discussions = get_discussions(uid);
+/*	var discussions = get_discussions(uid);
 	var discussion_list = "<ul>";
 	var d;
 	for (d in discussions) {
@@ -653,7 +653,7 @@ function load_messages_page(uid, duid) {
 	} else {
 
 	}
-	
+*/	
 }
 
 window.onpopstate = function(event) {
