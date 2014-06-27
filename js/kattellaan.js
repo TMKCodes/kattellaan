@@ -602,6 +602,60 @@ function load_profile_page(uid) {
 	}
 }
 
+function get_discussion(suid, ruid) {
+	var discussion;
+	$.ajax({
+		url: "php/api.php",
+		type: "POST",
+		async: false,
+		data: { call : 'get_discussion', suid : suid, ruid : ruid }
+	}).done(function(data) {
+		console.log(data);
+		data = $.parseJSON(data);
+		if(data.success === true) {
+			discussion = data.discussion;
+		} else {
+			console.log(data.error);
+		}
+	});
+	return discussion;
+}
+
+function get_discussions(uid) {
+	var discussions;
+	$.ajax({
+		url: "php/api.php",
+		type: "POST",
+		async: false,
+		data: { call : 'get_discussions', uid : uid }
+	}).done(function(data) {
+		console.log(data);
+		data = $.parseJSON(data);
+		if(data.success === true) {
+			discussions = data.discussions;
+		} else {
+			console.log(data.error);
+		}
+	});
+	return discussions;
+}
+
+function load_messages_page(uid, duid) {
+	var discussions = get_discussions(uid);
+	var discussion_list = "<ul>";
+	var d;
+	for (d in discussions) {
+		discussion_list += "<li><a href=\"?messages-page&duid=" + d.uid + "\">" + d.username + "</a></li>";
+	}
+	discussion_list += "</ul>";
+	if(duid != 0) {
+		var discussion = get_discussion(uid, duid);
+	} else {
+
+	}
+	
+}
+
 window.onpopstate = function(event) {
 	$("body > .container").hide();
 	var page = get_url_parameter("page");
@@ -635,7 +689,7 @@ $("document").ready(function() {
 			if($.cookie("session") != undefined) {
 				var session = window.atob($.cookie("session"));
 				session = session.split("||");
-				load_messages_page(session[1]);
+				load_messages_page(session[1], 0);
 			} else {
 				load_home_page();
 			}
