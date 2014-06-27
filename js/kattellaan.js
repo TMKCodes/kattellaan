@@ -631,6 +631,14 @@ $("document").ready(function() {
 					load_home_page();
 				}
 			}
+		} if(page === "messages-page") {
+			if($.cookie("session") != undefined) {
+				var session = window.atob($.cookie("session"));
+				session = session.split("||");
+				load_messages_page(session[1]);
+			} else {
+				load_home_page();
+			}
 		} else {
 			load_page(page);
 		}
