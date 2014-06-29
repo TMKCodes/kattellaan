@@ -398,6 +398,8 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		} else {
 			printf('{ "success": false, "error": "Not authenticated."}');
 		}
+	} else {
+		printf('{ "success": false, "error": "api call does not exist."}');
 	}
 }
 
