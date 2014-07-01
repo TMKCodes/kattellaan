@@ -651,7 +651,7 @@ function load_messages_page(uid, duid) {
 				"<input type=\"hidden\" name=\"sender\" value=\"" + uid + "\" />" +
 				"<input type=\"submit\" value=\"Lähetä\" />" +
 				"</form>";
-		$("#messages-page-new-message").html(newMsg);	
+		$("#messages-page-conversation-new-message").html(newMsg);	
 	} else {
 
 	}
