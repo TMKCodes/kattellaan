@@ -239,7 +239,12 @@ class messages {
 		$statement = $this->database->prepare($query);
 		$statement->bind("i", $sender);
 		$statement->bind("i", $receiver);
-
+		try {
+			return $this->get_messages($statement);
+		} catch (Exception $e) {
+			throw new Exception("Database query failed.");
+		}
+	}
 
 	public function get_discussions($uid) {
 		$query = "SELECT `sender`, `receiver` FROM `message` WHERE `sender` = ? OR `receiver` = ? ORDER BY `timestamp`;";
