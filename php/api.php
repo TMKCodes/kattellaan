@@ -324,7 +324,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			printf('{ "success": false, "error": "Not authenticated." }');
 		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "get_discussion") {
-		if(!empty($_COOKIE['session']) {
+		if(!empty($_COOKIE['session'])) {
 			$session = new session($database, "sha512");
 			if($session->confirm($_COOKIE['session']) == false) {
 				printf('{ "success": false, "error": "Failed to confirm session." }');
