@@ -117,7 +117,7 @@ class message {
 				return false;
 			}
 		} else {
-			throw new Exception("Database query failed.");
+			throw new Exception("Database query failed in message->select().");
 			return false;
 		}
 	}
@@ -160,7 +160,7 @@ class message {
 		if($result->success() == true) {
 			return $this->select();
 		} else {
-			throw new Exception("Database query failed.");
+			throw new Exception("Database query failed in message->insert().");
 		}
 	}
 
