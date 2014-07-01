@@ -366,7 +366,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					$result['receiver_uid'] = $racc->get_identifier();
 				}
 				$result['timestamp'] = $message->timestamp;
-				$result['read'] = $message->read;
+				$result['seen'] = $message->seen;
 				$result['type'] = $message->type;
 				$result['message'] = $message->message;
 				array_push($results, $result);

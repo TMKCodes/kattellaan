@@ -7,7 +7,7 @@ class message {
 	private $sender;
 	private $receiver;
 	private $timestamp;
-	private $read;
+	private $seen;
 	private $type;
 	private $message;
 
@@ -31,8 +31,8 @@ class message {
 		$this->timestamp = $timestamp;
 	}
 
-	public function set_read($read) {
-		$this->read = $read;
+	public function set_seen($seen) {
+		$this->seen = $seen;
 	}
 
 	public function set_type($type) {
@@ -59,8 +59,8 @@ class message {
 		return $this->timestamp;
 	}
 	
-	public function get_read() {
-		return $this->read;
+	public function get_seen() {
+		return $this->seen;
 	}
 
 	public function get_type() {
@@ -77,7 +77,7 @@ class message {
 				"sender INT NOT NULL," .
 				"receiver INT NOT NULL," .
 				"timestamp DATETIME NOT NULL," .
-				"read TINYINT(1)," .
+				"seen TINYINT(1)," .
 				"type TEXT," .
 				"message LONGBLOB);";
 		printf("%s\r\n", $table);
@@ -91,15 +91,15 @@ class message {
 			$statement = $this->database->prepare("SELECT * FROM `message` WHERE `id` = ?;");
 			$statement->bind("i", $this->identifier);
 		} else if(!empty($this->sender) && !empty($this->receiver) && !empty($this->timestamp) 
-				&& !empty($this->read) && !empty($this->type) && !empty($this->message)) {
+				&& !empty($this->seen) && !empty($this->type) && !empty($this->message)) {
 			$query = "SELECT * FROM `message` " .
 					"WHERE `sender` = ? AND `receiver` = ? " .
-					"AND `timestamp` = ? AND `read` = ? AND `message` = ?";
+					"AND `timestamp` = ? AND `seen` = ? AND `message` = ?";
 			$statement = $this->database->prepare($query);
 			$statement->bind("i", $this->sender);
 			$statement->bind("i", $this->receiver);
 			$statement->bind("s", $this->timestamp);
-			$statement->bind("i", $this->read);
+			$statement->bind("i", $this->);
 			$statement->bind("s", $this->type);
 			$statement->bind("s", $this->message);
 		} else {
@@ -124,7 +124,7 @@ class message {
 
 	public function insert() {
 		if(!empty($this->identifier)) {
-			throw new Exception("Identifier is already set.");
+			throw new Exception("Identifier is alseeny set.");
 			return false;
 		}
 		if(empty($this->sender)) {
@@ -138,8 +138,8 @@ class message {
 		if(empty($this->timestamp)) {
 			$this->timestamp = gmdate("Y-m-d h:i:s");
 		}
-		if(empty($this->read)) {
-			$this->read = 0;
+		if(empty($this->seen)) {
+			$this->seen = 0;
 		}
 		if(empty($this->type)) {
 			$this->type = "";
@@ -147,13 +147,13 @@ class message {
 		if(empty($this->message)) {
 			$this->message = "";
 		}
-		$query = "INSERT INTO `message` (`sender`, `receiver`, `timestamp`, `read`, `type`, `message`) " .
+		$query = "INSERT INTO `message` (`sender`, `receiver`, `timestamp`, `seen`, `type`, `message`) " .
 				"VALUES (?, ?, ?, ?, ?, ?);";
 		$statement = $this->database->prepare($query);
 		$statement->bind("i", $this->sender);
 		$statement->bind("i", $this->receiver);
 		$statement->bind("s", $this->timestamp);
-		$statement->bind("i", $this->read);
+		$statement->bind("i", $this->seen);
 		$statement->bind("s", $this->type);
 		$statement->bind("s", $this->message);
 		$result = $statement->execute();
@@ -164,20 +164,20 @@ class message {
 		}
 	}
 
-	public function read() {
-		$this->read = 1;
+	public function seen() {
+		$this->seen = 1;
 		$this->update();
 	}
 
 	public function update() {
-		if(!empty($this->identifier) && !empty($this->sender) && !empty($this->receiver) && !empty($this->timestamp) && !empty($this->read) && !empty($this->type) && !empty($this->message)) {
+		if(!empty($this->identifier) && !empty($this->sender) && !empty($this->receiver) && !empty($this->timestamp) && !empty($this->seen) && !empty($this->type) && !empty($this->message)) {
 			$query = "UPDATE `message` SET `sender` = ?, `receiver` = ?, `timestamp` = ?, ".
-					"`read` = ?, `type` = ?, `message` = ? WHERE `id` = ?;";
+					"`seen` = ?, `type` = ?, `message` = ? WHERE `id` = ?;";
 			$statement = $this->database->prepare($query);
 			$statement->bind("i", $this->sender);
 			$statement->bind("i", $this->receiver);
 			$statement->bind("s", $this->timestamp);
-			$statement->bind("i", $this->read);
+			$statement->bind("i", $this->seen);
 			$statement->bind("s", $this->type);
 			$statement->bind("s", $this->message);
 			$statement->bind("i", $this->identifier);
@@ -208,7 +208,7 @@ class messages {
 					$msg->set_sender($data->sender);
 					$msg->set_receiver($data->receiver);
 					$msg->set_timestamp($data->timestamp);
-					$msg->set_read($data->read);
+					$msg->set_seen($data->seen);
 					$msg->set_type($data->type);
 					$msg->set_message($data->message);
 					array_push($messages, $msg);
