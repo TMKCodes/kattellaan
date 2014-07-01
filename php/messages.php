@@ -160,7 +160,7 @@ class message {
 		if($result->success() == true) {
 			return $this->select();
 		} else {
-			throw new Exception("Database query failed in message->insert().");
+			throw new Exception("Database query failed in message->insert(). Query = %s", $query);
 		}
 	}
 
