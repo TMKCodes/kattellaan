@@ -644,7 +644,14 @@ function load_messages_page(uid, duid) {
 	if(duid != 0) {
 		var receiver_name = get_username(duid);
 		$("#messages-page-conversation-who").html(receiver_name);
-		
+	
+		var newMsg = "<form method=\"POST\" action=\"php/api.php\">" +
+				"<input type=\"text\" name=\"msg\" />" +
+				"<input type=\"hidden\" name=\"receiver\" value=\"" + duid + "\" />" +
+				"<input type=\"hidden\" name=\"sender\" value=\"" + uid + "\" />" +
+				"<input type=\"submit\" value=\"Lähetä\" />" +
+				"</form>";
+		$("#messages-page-new-message").html(newMsg);	
 	} else {
 
 	}
