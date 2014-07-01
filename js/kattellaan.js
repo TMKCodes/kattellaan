@@ -641,22 +641,7 @@ function get_discussions(uid) {
 }
 
 function load_messages_page(uid, duid) {
-	var discussions = get_discussions(uid);
-	var discussion_list = "<ul>";
-	var d;
-	for (d in discussions) {
-		discussion_list += "<li><a href=\"?messages-page&duid=" + d.uid + "\">" + d.username + "</a></li>";
-	}
-	discussion_list += "</ul>";
-	$("#messages-page-conversations-list").html(discussion_list);
-	if(duid != 0) {
-		var discussion = get_discussion(uid, duid);
-		$("#messages-page-conversation-who").html(discussion.receiver_name);	
-	} else {
-		$("#messages-page-conversation-who").html("Avaa keskustelu.");
-		$("#messages-page-conversation-messages").html("");
-		$("#messages-page-conversation-send").html("");
-	}
+	
 	if(duid != 0) {
 		load_custom_page("messages-page", "&duid=" + duid);
 	} else {
