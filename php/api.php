@@ -388,13 +388,30 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			if(!empty($_POST['uid']) && $_POST['uid'] != 0) {
 				$messages = new messages($database);
 				$discussions = $messages->get_discussions($_POST['uid']);
+				$results = array();
 				foreach($discussions as $discussion) {
+					$sacc = new account($database);
+					$racc = new account($database);
 					if($discussion->sender == $_POST['uid']) {
-							
-					} else {
-	
+						$sacc->set_identifier($discussion->sender);
+						$racc->set_identifier($discussion->receiver);		
+					} else if($discussion->receiver == $_POST['uid']) {
+						$sacc->set_identifier($discussion->receiver);
+						$racc->set_identifier($discussion->sender);
 					}
+					$result['sender_name'] = $sacc->get_username();
+					$result['receiver_name'] = $racc->get_username();
+					$result['sender_uid'] = $sacc->get_identifier();
+					$result['receiver_uid'] = $racc->get_identifier();
+					array_push($results, $result);
+					unset($sacc);
+					unset($racc);
 				}
+				$results = array_unique($results);
+				$jsonthis = array("success" => "true", "discussions" => $results);
+				printf("%s", json_encode($jsonthis);
+			} else {
+				printf('{ "success": false, "error": "User identifier was not given."}');
 			}
 		} else {
 			printf('{ "success": false, "error": "Session does not exist." }');
