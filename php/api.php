@@ -323,6 +323,30 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		} else {
 			printf('{ "success": false, "error": "Not authenticated." }');
 		}
+	} else if(!empty($_POST['call']) && $_POST['call'] == "send_message") {
+		if(!empty($_COOKIE['session'])) {
+			if($session->confirm($_COOKIE['session']) == false) {
+				printf('{"success": false, "error": "%s" }', $e->getMessage());
+				die();	
+			}
+			$message = new message($database);
+			$message->set_receiver($_POST['receiver']);
+			$message->set_sender($_POST['sender']);
+			$message->set_type($_POST['type']);
+			$message->set_message($_POST['msg']);
+			$message->set_seen(0);
+			try {
+				if($message->insert() == true) {
+					printf('{ "success": true }');
+				} else {
+					printf('{ "success": false, "error": "Failed to insert message to database."}');
+				}
+			} catch (Exception $e) {
+				printf('{"success": false, "error": "%s"}', $e->getMessage());
+			}
+		} else {
+			printf('{ "success": false, "error": "Not authenticated."}');
+		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "get_discussion") {
 		if(!empty($_COOKIE['session'])) {
 			$session = new session($database, "sha512");

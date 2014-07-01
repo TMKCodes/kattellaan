@@ -142,7 +142,7 @@ class message {
 			$this->seen = 0;
 		}
 		if(empty($this->type)) {
-			$this->type = "";
+			$this->type = "text";
 		}
 		if(empty($this->message)) {
 			$this->message = "";

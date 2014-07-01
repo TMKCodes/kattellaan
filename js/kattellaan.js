@@ -644,11 +644,32 @@ function load_messages_page(uid, duid) {
 	if(duid != 0) {
 		var receiver_name = get_username(duid);
 		$("#messages-page-conversation-who").html("Keskustelu " + receiver_name + ":n kanssa.");
-	
-		var newMsg = "<form method=\"POST\" action=\"php/api.php\">" +
+
+		var discussion = get_discussion(uid, duid);
+		if(discussion != undefined) {
+			var messages;
+			for(message in discussion) {
+				if(message.type == "text") {
+					if(message.sender == uid) {
+						messages += "<div class=\"panel panel-default\" style=\"width: 80%; float: right;\">";
+					} else if(message.sender == duid) {
+						messages += "<div class=\"panel panel-default\" style=\"width: 80%; float: left;\">";
+					}
+					messages += "<div class\"panel-body\">";
+					messages += message.message;
+					messages += "</div></div>";
+				}
+			}
+			$("#messages-page-conversation-messages").html(messages);
+		} else {
+			$("#messages-page-conversation-messages").html("Lähetä uusi viesti.");
+		}
+		var newMsg = "<form method=\"POST\" action=\"php/api.php\" id=\"send_message_to\">" +
 				"<input type=\"text\" name=\"msg\" />" +
 				"<input type=\"hidden\" name=\"receiver\" value=\"" + duid + "\" />" +
 				"<input type=\"hidden\" name=\"sender\" value=\"" + uid + "\" />" +
+				"<input type=\"hidden\" name=\"type\" value=\"text\" />" +
+				"<input type=\"hidden\" name=\"call\" value=\"send_message\" />" +
 				"<input type=\"submit\" value=\"Lähetä\" />" +
 				"</form>";
 		$("#messages-page-conversation-new-message").html(newMsg);	
@@ -890,6 +911,24 @@ $("#start-registeration-button").click(function(evt) {
 	evt.preventDefault();
 	load_page("register-terms-of-service-page");
 	$.removeCookie("next-page");
+});
+
+
+$("#send-message-to").submit(function(evt) {
+	evt.preventDefault();
+	$.ajax({
+		type: $(this).attr('method'),
+		url: $(this).attr('action'),
+		data: $(this).serialize()
+	}).done(function(data) {
+		console.log(data);
+		var result = $.parseJSON(data);
+		if(result.success === true) {
+			// display sent message.	
+		} else {
+			console.log(result.error);
+		}
+	});	
 });
 
 $("#register-account-form").submit(function(evt) {
