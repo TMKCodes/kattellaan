@@ -688,7 +688,12 @@ $("document").ready(function() {
 			if($.cookie("session") != undefined) {
 				var session = window.atob($.cookie("session"));
 				session = session.split("||");
-				load_messages_page(session[1], 0);
+				var duid = get_url_parameter("duid");
+				if(duid != undefined) {
+					load_messages_page(session[1], duid);
+				} else {
+					load_messages_page(session[1], 0);
+				}
 			} else {
 				load_home_page();
 			}
