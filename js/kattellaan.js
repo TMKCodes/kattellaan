@@ -641,14 +641,14 @@ function get_discussions(uid) {
 }
 
 function load_messages_page(uid, duid) {
-	if(duid != undefined) {
+	if(duid != 0) {
 		var receiver_name = get_username(duid);
 		$("#messages-page-conversation-who").html(receiver_name);
 		
 	} else {
 
 	}
-	if(duid != undefined) {
+	if(duid != 0) {
 		load_custom_page("messages-page", "&duid=" + duid);
 	} else {
 		load_page("messages-page");
@@ -688,7 +688,7 @@ $("document").ready(function() {
 			if($.cookie("session") != undefined) {
 				var session = window.atob($.cookie("session"));
 				session = session.split("||");
-				load_messages_page(session[1], undefined);
+				load_messages_page(session[1], 0);
 			} else {
 				load_home_page();
 			}
