@@ -657,6 +657,11 @@ function load_messages_page(uid, duid) {
 		$("#messages-page-conversation-messages").html("");
 		$("#messages-page-conversation-send").html("");
 	}
+	if(duid != 0) {
+		load_custom_page("messages-page", "&duid=" + duid);
+	} else {
+		load_page("messages-page");
+	}
 }
 
 window.onpopstate = function(event) {
