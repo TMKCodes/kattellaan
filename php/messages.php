@@ -227,11 +227,7 @@ class messages {
 		$statement = $this->database->prepare($query);
 		$statement->bind("i", $receiver);
 		$statement->bind("i", $limit);
-		try {
-			return $this->get_messages($statement);
-		} catch (Exception $e) {
-			throw new Exception("Database query failed.");
-		}
+		return $this->get_messages($statement);
 	}
 	
 	public function get_sender($sender, $receiver) {
@@ -239,11 +235,7 @@ class messages {
 		$statement = $this->database->prepare($query);
 		$statement->bind("i", $sender);
 		$statement->bind("i", $receiver);
-		try {
-			return $this->get_messages($statement);
-		} catch (Exception $e) {
-			throw new Exception("Database query failed.");
-		}
+		return $this->get_messages($statement);
 	}
 
 	public function get_discussions($uid) {
@@ -251,11 +243,7 @@ class messages {
 		$statement = $this->database->prepare($query);
 		$statement->bind("i", $uid);
 		$statement->bind("i", $uid);
-		try {
-			return $this->get_messages($statement);
-		} catch (Exception $e) {
-			throw new Exception("Database query failed.");
-		}
+		return $this->get_messages($statement);
 	}
 	
 	public function get_discussion($sender, $receiver, $limit) {
@@ -266,11 +254,7 @@ class messages {
 		$statement->bind("i", $receiver);
 		$statement->bind("i", $sender);
 		$statement->bind("i", $limit);
-		try {
-			return $this->get_messages($statement);
-		} catch (Exception $e) {
-			throw new Exception("Database query failed.");
-		}
+		return $this->get_messages($statement);
 	}
 
 }
