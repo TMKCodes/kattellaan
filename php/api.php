@@ -379,7 +379,26 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			die;
 		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "get_discussions") {
-		printf('{ "success": false, "error": "Not yet implemented." }');	
+		if(!empty($_COOKIE['session'])) {
+			$session = new session($database, "sha512");
+			if($session->confirm($_COOKIE['session']) == false) {
+				printf('{ "success": false, "error": "Failed to confirm session." }');
+				die;
+			}
+			if(!empty($_POST['uid']) && $_POST['uid'] != 0) {
+				$messages = new messages($database);
+				$discussions = $messages->get_discussions($_POST['uid']);
+				foreach($discussions as $discussion) {
+					if($discussion->sender == $_POST['uid']) {
+							
+					} else {
+	
+					}
+				}
+			}
+		} else {
+			printf('{ "success": false, "error": "Session does not exist." }');
+		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "search_users") {
 		if(!empty($_COOKIE['session'])) {
 			$session = new session($database, "sha512");
