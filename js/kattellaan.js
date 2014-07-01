@@ -837,6 +837,15 @@ $("#own-profile-button").click(function(evt) {
 	}
 });
 
+$("#profile-page-top-bar-menu-send-msg").click(function(evt) {
+	if($.cookie("session") !== undefined) {
+		var session = window.atob($.cookie("session"));
+		session = session.split("||");
+		var ruid = get_url_parameter("uid");
+		load_messages_page(session[1], ruid);
+	}
+});
+
 $("#authentication-form").submit(function(evt) {
 	evt.preventDefault();
 	open_session($("#authentication-form-username-input").val(), $("#authentication-form-password-input").val());
