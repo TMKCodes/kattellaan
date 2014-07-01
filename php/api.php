@@ -391,6 +391,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					$discussions = $messages->get_discussions($_POST['uid']);
 				} catch (Exception $e) {
 					printf('{ "success": false, "error": "%s" }', $e->getMessage());
+					die();
 				}
 				$results = array();
 				foreach($discussions as $discussion) {
