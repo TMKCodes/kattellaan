@@ -413,7 +413,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				}
 				$results = array_unique($results);
 				$jsonthis = array("success" => "true", "discussions" => $results);
-				printf("%s", json_encode($jsonthis)));
+				printf("%s", json_encode($jsonthis));
 			} else {
 				printf('{ "success": false, "error": "User identifier was not given."}');
 			}
