@@ -387,7 +387,11 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			}
 			if(!empty($_POST['uid']) && $_POST['uid'] != 0) {
 				$messages = new messages($database);
-				$discussions = $messages->get_discussions($_POST['uid']);
+				try {
+					$discussions = $messages->get_discussions($_POST['uid']);
+				} catch (Exception $e) {
+					printf('{ "success": false, "error": "%s" }', $e->getMessage());
+				}
 				$results = array();
 				foreach($discussions as $discussion) {
 					$sacc = new account($database);
@@ -409,7 +413,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				}
 				$results = array_unique($results);
 				$jsonthis = array("success" => "true", "discussions" => $results);
-				printf("%s", json_encode($jsonthis));
+				printf("%s", json_encode($jsonthis)));
 			} else {
 				printf('{ "success": false, "error": "User identifier was not given."}');
 			}
