@@ -378,7 +378,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			die;
 		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "get_discussions") {
-	
+		printf('{ "success": false, "error": "Not yet implemented." }');	
 	} else if(!empty($_POST['call']) && $_POST['call'] == "search_users") {
 		if(!empty($_COOKIE['session'])) {
 			$session = new session($database, "sha512");
