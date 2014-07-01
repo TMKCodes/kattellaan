@@ -11,6 +11,7 @@ require_once("file.php");
 require_once("profile.php");
 require_once("position.php");
 require_once("distance.php");
+require_once("messages.php");
 
 $passwd = explode(":", base64_decode(file_get_contents("/home/temek/kattellaan/.passwd")));
 $database = new db("mysqli");
@@ -56,6 +57,12 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		printf("Created distance database table.\r\n");
 	} else {
 		printf("Failed to create distance database table.\r\n");
+	}
+	$message = new message($database);
+	if($message->create_table() == true) {
+		printf("Created message database table.\r\n");
+	} else {
+		printf("Failed to create message database table.\r\n");
 	}
 }
 
