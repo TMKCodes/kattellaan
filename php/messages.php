@@ -80,6 +80,7 @@ class message {
 				"read TINYINT(1)," .
 				"type TEXT," .
 				"message LONGBLOB);";
+		printf("%s\r\n", $table);
 		$statement = $this->database->prepare($table);
 		$result = $statement->execute();
 		return $result->success();
