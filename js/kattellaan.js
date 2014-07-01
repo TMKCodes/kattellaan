@@ -643,7 +643,7 @@ function get_discussions(uid) {
 function load_messages_page(uid, duid) {
 	if(duid != 0) {
 		var receiver_name = get_username(duid);
-		$("#messages-page-conversation-who").html("Keskustelu " + receiver_name + "n kanssa.");
+		$("#messages-page-conversation-who").html("Keskustelu " + receiver_name + ":n kanssa.");
 	
 		var newMsg = "<form method=\"POST\" action=\"php/api.php\">" +
 				"<input type=\"text\" name=\"msg\" />" +
