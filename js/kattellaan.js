@@ -603,7 +603,7 @@ function load_profile_page(uid) {
 }
 
 function get_discussion(suid, ruid) {
-	var discussion;
+	var discussion = undefined;
 	$.ajax({
 		url: "php/api.php",
 		type: "POST",
@@ -622,7 +622,7 @@ function get_discussion(suid, ruid) {
 }
 
 function get_discussions(uid) {
-	var discussions;
+	var discussions = undefined;
 	$.ajax({
 		url: "php/api.php",
 		type: "POST",
@@ -641,8 +641,14 @@ function get_discussions(uid) {
 }
 
 function load_messages_page(uid, duid) {
-	
-	if(duid != 0) {
+	if(duid != undefined) {
+		var receiver_name = get_username(duid);
+		$("#messages-page-conversation-who").html(receiver_name);
+		
+	} else {
+
+	}
+	if(duid != undefined) {
 		load_custom_page("messages-page", "&duid=" + duid);
 	} else {
 		load_page("messages-page");
@@ -682,7 +688,7 @@ $("document").ready(function() {
 			if($.cookie("session") != undefined) {
 				var session = window.atob($.cookie("session"));
 				session = session.split("||");
-				load_messages_page(session[1], 0);
+				load_messages_page(session[1], undefined);
 			} else {
 				load_home_page();
 			}
