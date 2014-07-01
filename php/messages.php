@@ -91,7 +91,7 @@ class message {
 			$statement = $this->database->prepare("SELECT * FROM `message` WHERE `id` = ?;");
 			$statement->bind("i", $this->identifier);
 		} else if(!empty($this->sender) && !empty($this->receiver) && !empty($this->timestamp) 
-				&& !empty($this->seen) && !empty($this->type) && !empty($this->message)) {
+				 && !empty($this->type) && !empty($this->message)) {
 			$query = "SELECT * FROM `message` " .
 					"WHERE `sender` = ? AND `receiver` = ? " .
 					"AND `timestamp` = ? AND `seen` = ? AND `message` = ?";
@@ -106,7 +106,7 @@ class message {
 			throw new Exception("No identifying data specified. Give identifier.");
 			return false;
 		}
-		$result = $statement->execut();
+		$result = $statement->execute();
 		if($result->success() == true) {
 			if($result->rows() == 1) {
 				$data = $result->fetch_object();
