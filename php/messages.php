@@ -102,14 +102,15 @@ class message {
 			$statement->bind("i", $this->seen);
 			$statement->bind("s", $this->type);
 			$statement->bind("s", $this->message);
-			printf("Fuck you once!");
+			printf("Fuck you once!\r\n");
 		} else {
 			throw new Exception("No identifying data specified. Give identifier.");
 			return false;
 		}
 		$result = $statement->execute();
 		if($result->success() == true) {
-			printf("Fuck you twice!");
+			printf("Fuck you twice!\r\n");
+			printf("query = %s\r\n", $statement->get());
 			if($result->rows() > 0) {
 				$data = $result->fetch_object();
 				if(empty($data)) throw new Exception("Failed to fetch object.");
