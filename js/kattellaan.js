@@ -608,7 +608,7 @@ function get_discussion(suid, ruid) {
 		url: "php/api.php",
 		type: "POST",
 		async: false,
-		data: { call : 'get_discussion', suid : suid, ruid : ruid, limit 30 }
+		data: { call : 'get_discussion', suid : suid, ruid : ruid, limit : 30 }
 	}).done(function(data) {
 		console.log(data);
 		data = $.parseJSON(data);
