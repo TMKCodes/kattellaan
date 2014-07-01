@@ -99,7 +99,7 @@ class message {
 			$statement->bind("i", $this->sender);
 			$statement->bind("i", $this->receiver);
 			$statement->bind("s", $this->timestamp);
-			$statement->bind("i", $this->);
+			$statement->bind("i", $this->seen);
 			$statement->bind("s", $this->type);
 			$statement->bind("s", $this->message);
 		} else {
