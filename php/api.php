@@ -13,7 +13,7 @@ require_once("file.php");
 require_once("profile.php");
 require_once("position.php");
 require_once("distance.php");
-
+require_once("messages.php");
 
 $passwd = explode(":", base64_decode(file_get_contents("/home/temek/kattellaan/.passwd")));
 $database = new db("mysqli");
@@ -323,6 +323,62 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		} else {
 			printf('{ "success": false, "error": "Not authenticated." }');
 		}
+	} else if(!empty($_POST['call']) && $_POST['call'] == "get_discussion") {
+		if(!empty($_COOKIE['session']) {
+			$session = new session($database, "sha512");
+			if($session->confirm($_COOKIE['session']) == false) {
+				printf('{ "success": false, "error": "Failed to confirm session." }');
+				die;
+			}
+			$messages = new messages($database);
+			try {
+				$discussions = $messages->get_discussion($_POST['suid'], $_POST['ruid']);
+			} catch (Exception $e) {
+				printf('{ "success": false, "error": "%s" }', $e->getMessage());
+				die;	
+			}
+			$sacc = new account($database);
+			$racc = new account($database);
+			$sacc->set_identifier($_POST['suid']);
+			$racc->set_identifier($_POST['ruid']);
+			try {
+				$sacc->select();
+				$racc->select();
+			} catch (Exception $e) {
+				printf('{ "success": false, "error": "%s" }', $e->getMessage());
+				die;
+			}
+			$results = array();
+			foreach($discussion as $message) {
+				if($message->sender == $sacc->get_identifier()) {
+					$result['sender_name'] = $sacc->get_username();
+					$result['sender_uid'] = $sacc->get_identifier(); 
+				} else if($message->sender == $racc->get_identifier()) {
+					$result['sender_name'] = $racc->get_username();
+					$result['sender_uid'] = $racc->get_identifier();
+				}
+				if($message->receiver == $sacc->get_identifier()) {
+					$result['receiver_name'] = $sacc->get_username();
+					$result['receiver_uid'] = $sacc->get_identifier();
+				} else if($message->receiver == $racc->get_identifier()) {
+					$result['receiver_name'] = $racc->get_username();
+					$result['receiver_uid'] = $racc->get_identifier();
+				}
+				$result['timestamp'] = $message->timestamp;
+				$result['read'] = $message->read;
+				$result['type'] = $message->type;
+				$result['message'] = $message->message;
+				array_push($results, $result);
+			}
+			$jsonthis = array("success" => "true", "discussion" => $results);
+			$json = json_encode($jsonthis);
+			printf("%s", $json);
+		} else {
+			printf('{ "success": false, "error": "Session does not exist." }');
+			die;
+		}
+	} else if(!empty($_POST['call']) && $_POST['call'] == "get_discussions") {
+	
 	} else if(!empty($_POST['call']) && $_POST['call'] == "search_users") {
 		if(!empty($_COOKIE['session'])) {
 			$session = new session($database, "sha512");
