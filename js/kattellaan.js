@@ -651,7 +651,7 @@ function load_messages_page(uid, duid) {
 	$("#messages-page-conversations-list").html(discussion_list);
 	if(duid != 0) {
 		var discussion = get_discussion(uid, duid);
-		$("#messages-page-conversation-who").html(discussion.who);	
+		$("#messages-page-conversation-who").html(discussion.receiver_name);	
 	} else {
 		$("#messages-page-conversation-who").html("Avaa keskustelu.");
 		$("#messages-page-conversation-messages").html("");
