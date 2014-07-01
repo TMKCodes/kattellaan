@@ -237,6 +237,14 @@ class messages {
 		$statement->bind("i", $receiver);
 		return $this->get_messages($statement);
 	}
+
+	public function get_discussions($uid) {
+		$query = "SELECT `sender`, `receiver` FROM `message` WHERE `sender` = ? OR `receiver` = ? ORDER BY `timestamp`;";
+		$statement = $this->database->prepare($query);
+		$statement->bind("i", $uid);
+		$statement->bind("i", $uid);
+		return $this->get_messages($statement);
+	}
 	
 	public function get_discussion($sender, $receiver, $limit) {
 		$query = "SELECT * FROM `message` WHERE (`sender` = ? AND `recever` = ?) OR (`sender` = ? AND `receiver` = ?) ORDER BY `timestamp` ASC LIMIT ?;";
