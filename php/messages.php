@@ -112,7 +112,7 @@ class message {
 				$data = $result->fetch_object();
 				if(empty($data)) throw new Exception("Failed to fetch object.");
 				$this->identifier = $data->id;
-				return $true;
+				return true;
 			} else {
 				return false;
 			}
