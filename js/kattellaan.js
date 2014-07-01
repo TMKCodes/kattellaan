@@ -693,7 +693,7 @@ $("document").ready(function() {
 					load_home_page();
 				}
 			}
-		} if(page === "messages-page") {
+		} else if(page === "messages-page") {
 			if($.cookie("session") != undefined) {
 				var session = window.atob($.cookie("session"));
 				session = session.split("||");
