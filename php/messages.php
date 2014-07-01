@@ -227,7 +227,11 @@ class messages {
 		$statement = $this->database->prepare($query);
 		$statement->bind("i", $receiver);
 		$statement->bind("i", $limit);
-		return $this->get_messages($statement);
+		try {
+			return $this->get_messages($statement);
+		} catch (Exception $e) {
+			throw new Exception("Database query failed.");
+		}
 	}
 	
 	public function get_sender($sender, $receiver) {
@@ -235,15 +239,18 @@ class messages {
 		$statement = $this->database->prepare($query);
 		$statement->bind("i", $sender);
 		$statement->bind("i", $receiver);
-		return $this->get_messages($statement);
-	}
+
 
 	public function get_discussions($uid) {
 		$query = "SELECT `sender`, `receiver` FROM `message` WHERE `sender` = ? OR `receiver` = ? ORDER BY `timestamp`;";
 		$statement = $this->database->prepare($query);
 		$statement->bind("i", $uid);
 		$statement->bind("i", $uid);
-		return $this->get_messages($statement);
+		try {
+			return $this->get_messages($statement);
+		} catch (Exception $e) {
+			throw new Exception("Database query failed.");
+		}
 	}
 	
 	public function get_discussion($sender, $receiver, $limit) {
@@ -254,7 +261,11 @@ class messages {
 		$statement->bind("i", $receiver);
 		$statement->bind("i", $sender);
 		$statement->bind("i", $limit);
-		return $this->get_messages($statement);
+		try {
+			return $this->get_messages($statement);
+		} catch (Exception $e) {
+			throw new Exception("Database query failed.");
+		}
 	}
 
 }
