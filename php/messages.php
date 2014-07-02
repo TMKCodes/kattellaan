@@ -201,9 +201,10 @@ class messages {
 		$result = $statement->execute();
 		if($result->success() == true) {
 			if($result->rows() > 0) {
+				$messages = array();
 				for($i = 0; $i < $result->rows(); $i++) {
 					$data = $result->fetch_object();
-					$msg = new message($this->database);
+					$msg = message($this->database);
 					$msg->set_identifier($data->id);
 					$msg->set_sender($data->sender);
 					$msg->set_receiver($data->receiver);
@@ -213,7 +214,7 @@ class messages {
 					$msg->set_message($data->message);
 					array_push($messages, $msg);
 				}
-				return true;
+				return $messages;
 			} else {
 				throw new Exception("No results found.");
 				return false;
