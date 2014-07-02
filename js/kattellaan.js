@@ -651,7 +651,7 @@ function load_messages_page(uid, duid) {
 			for(var i = 0; i < discussion.length; i++) {
 				if(discussion[i].type == "text") {
 					if(discussion[i].sender_uid == uid) {
-						messages += "<div class=\"panel panel-default\" style=\"width: 80%; float: right; text-align: right;\">";
+						messages += "<div class=\"panel panel-success\" style=\"width: 80%; float: right; text-align: right;\">";
 					} else if(discussion[i].sender_uid == duid) {
 						messages += "<div class=\"panel panel-default\" style=\"width: 80%; float: left; text-align: left;\">";
 					}
@@ -684,7 +684,7 @@ function load_messages_page(uid, duid) {
 				console.log(data);
 				var result = $.parseJSON(data);
 				if(result.success === true) {
-					var newMsg = "<div class=\"panel panel-default\" style=\"width: 80%; float: right; text-align: right;\">";
+					var newMsg = "<div class=\"panel panel-success\" style=\"width: 80%; float: right; text-align: right;\">";
 					newMsg += "<div class=\"pane-body\">";
 					newMsg += "<p style=\"padding: 5px; margin: 0px;\">" + result.message + "</p>";
 					newMsg += "</div></div>";
