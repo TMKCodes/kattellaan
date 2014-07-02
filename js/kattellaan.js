@@ -656,7 +656,7 @@ function load_messages_page(uid, duid) {
 						messages += "<div class=\"panel panel-default\" style=\"width: 80%; float: left;\">";
 					}
 					messages += "<div class\"panel-body\">";
-					messages += message.message;
+					messages += "<p>" + message.message + "</p>";
 					messages += "</div></div>";
 				}
 			}
@@ -685,7 +685,7 @@ function load_messages_page(uid, duid) {
 				if(result.success === true) {
 					var newMsg = "<div class=\"panel panel-default\" style=\"width: 80%; float: right;\">";
 					newMsg += "<div class=\"pane-body\">";
-					newMsg += result.message;
+					newMsg += "<p>" + result.message + "</p>";
 					newMsg += "</div></div>";
 					if($("#messages-page-conversation-messages").html() == "Lähetä uusi viesti.") {
 						$("#messages-page-conversation-messages").html(newMsg);
