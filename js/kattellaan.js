@@ -603,7 +603,7 @@ function load_profile_page(uid) {
 }
 
 function get_discussion(suid, ruid) {
-	var discussion = undefined;
+	var discussion;
 	$.ajax({
 		url: "php/api.php",
 		type: "POST",
@@ -622,7 +622,7 @@ function get_discussion(suid, ruid) {
 }
 
 function get_discussions(uid) {
-	var discussions = undefined;
+	var discussions;
 	$.ajax({
 		url: "php/api.php",
 		type: "POST",
