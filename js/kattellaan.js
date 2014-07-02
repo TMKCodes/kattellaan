@@ -650,9 +650,9 @@ function load_messages_page(uid, duid) {
 			var messages;
 			for(var i = 0; i < discussion.length; i++) {
 				if(discussion[i].type == "text") {
-					if(discussion[i].sender == uid) {
+					if(discussion[i].sender_uid == uid) {
 						messages += "<div class=\"panel panel-default\" style=\"width: 80%; float: right;\">";
-					} else if(discussion[i].sender == duid) {
+					} else if(discussion[i].sender_uid == duid) {
 						messages += "<div class=\"panel panel-default\" style=\"width: 80%; float: left;\">";
 					}
 					messages += "<div class\"panel-body\">";
