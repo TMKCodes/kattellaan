@@ -661,7 +661,7 @@ function load_messages_page(uid, duid) {
 				}
 			}
 			$("#messages-page-conversation-messages").html(messages);
-			$("#messages-page-conversation-messages").attr({ scrollTop: $("#messages-page-conversation-messages").attr("scrollHeight")});
+			$("#messages-page-conversation-messages").attr({ scrollTop: $("#messages-page-conversation-messages").attr("height")});
 		} else {
 			$("#messages-page-conversation-messages").html("Lähetä uusi viesti.");
 		}
