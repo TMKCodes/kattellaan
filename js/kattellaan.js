@@ -647,7 +647,7 @@ function load_messages_page(uid, duid) {
 
 		var discussion = get_discussion(uid, duid);
 		if(discussion != undefined) {
-			var messages;
+			var messages = "";
 			for(var i = 0; i < discussion.length; i++) {
 				if(discussion[i].type == "text") {
 					if(discussion[i].sender_uid == uid) {
