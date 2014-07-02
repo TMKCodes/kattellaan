@@ -94,7 +94,7 @@ class message {
 				 && !empty($this->type) && !empty($this->message)) {
 			$query = "SELECT * FROM `message` " .
 					"WHERE `sender` = ? AND `receiver` = ? " .
-					"AND `timestamp` = ? AND `seen` = ? AND `message` = ?";
+					"AND `timestamp` = ? AND `seen` = ? AND `type` = ? AND `message` = ?";
 			$statement = $this->database->prepare($query);
 			$statement->bind("i", $this->sender);
 			$statement->bind("i", $this->receiver);
