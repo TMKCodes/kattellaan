@@ -651,9 +651,9 @@ function load_messages_page(uid, duid) {
 			for(var i = 0; i < discussion.length; i++) {
 				if(discussion[i].type == "text") {
 					if(discussion[i].sender_uid == uid) {
-						messages += "<div class=\"panel panel-default\" style=\"width: 80%; float: right;\">";
+						messages += "<div class=\"panel panel-default\" style=\"width: 80%; float: right; text-align: right;\">";
 					} else if(discussion[i].sender_uid == duid) {
-						messages += "<div class=\"panel panel-default\" style=\"width: 80%; float: left;\">";
+						messages += "<div class=\"panel panel-default\" style=\"width: 80%; float: left; text-align: left;\">";
 					}
 					messages += "<div class\"panel-body\">";
 					messages += "<p style=\"padding: 5px; margin: 0px;\">" + discussion[i].message + "</p>";
@@ -665,7 +665,7 @@ function load_messages_page(uid, duid) {
 			$("#messages-page-conversation-messages").html("Lähetä uusi viesti.");
 		}
 		var newMsg = "<form method=\"POST\" action=\"php/api.php\" id=\"send-message-to\">" +
-				"<input type=\"text\" name=\"msg\" />" +
+				"<input id=\"message\"type=\"text\" name=\"msg\" />" +
 				"<input type=\"hidden\" name=\"receiver\" value=\"" + duid + "\" />" +
 				"<input type=\"hidden\" name=\"sender\" value=\"" + uid + "\" />" +
 				"<input type=\"hidden\" name=\"type\" value=\"text\" />" +
@@ -683,10 +683,11 @@ function load_messages_page(uid, duid) {
 				console.log(data);
 				var result = $.parseJSON(data);
 				if(result.success === true) {
-					var newMsg = "<div class=\"panel panel-default\" style=\"width: 80%; float: right;\">";
+					var newMsg = "<div class=\"panel panel-default\" style=\"width: 80%; float: right; text-align: right;\">";
 					newMsg += "<div class=\"pane-body\">";
 					newMsg += "<p style=\"padding: 5px; margin: 0px;\">" + result.message + "</p>";
 					newMsg += "</div></div>";
+					$("#send-message-to > #message").val("");
 					if($("#messages-page-conversation-messages").html() == "Lähetä uusi viesti.") {
 						$("#messages-page-conversation-messages").html(newMsg);
 					} else {
