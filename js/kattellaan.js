@@ -648,7 +648,7 @@ function load_messages_page(uid, duid) {
 		var discussion = get_discussion(uid, duid);
 		console.log("get_discussion() = " + discussion);
 		console.log("discussion[0].mid = " + discussion[0].mid);
-		console.log("discussion[0].type = " + discussin[0].type);
+		console.log("discussion[0].type = " + discussion[0].type);
 		if(discussion != undefined) {
 			var messages;
 			for(message in discussion) {
