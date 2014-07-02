@@ -376,24 +376,24 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			$results = array();
 			foreach($discussion as $message) {
 				$result['mid'] = $message->get_identifier();
-				if($message->sender == $sacc->get_identifier()) {
+				if($message->get_sender() == $sacc->get_identifier()) {
 					$result['sender_name'] = $sacc->get_username();
 					$result['sender_uid'] = $sacc->get_identifier(); 
-				} else if($message->sender == $racc->get_identifier()) {
+				} else if($message->get_sender() == $racc->get_identifier()) {
 					$result['sender_name'] = $racc->get_username();
 					$result['sender_uid'] = $racc->get_identifier();
 				}
-				if($message->receiver == $sacc->get_identifier()) {
+				if($message->get_receiver() == $sacc->get_identifier()) {
 					$result['receiver_name'] = $sacc->get_username();
 					$result['receiver_uid'] = $sacc->get_identifier();
-				} else if($message->receiver == $racc->get_identifier()) {
+				} else if($message->get_receiver() == $racc->get_identifier()) {
 					$result['receiver_name'] = $racc->get_username();
 					$result['receiver_uid'] = $racc->get_identifier();
 				}
-				$result['timestamp'] = $message->timestamp;
-				$result['seen'] = $message->seen;
-				$result['type'] = $message->type;
-				$result['message'] = $message->message;
+				$result['timestamp'] = $message->get_timestamp();
+				$result['seen'] = $message->get_seen();
+				$result['type'] = $message->get_type();
+				$result['message'] = $message->get_message();
 				array_push($results, $result);
 			}
 			$jsonthis = array("success" => "true", "discussion" => $results);
