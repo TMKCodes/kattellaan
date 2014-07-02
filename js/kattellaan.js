@@ -651,6 +651,7 @@ function load_messages_page(uid, duid) {
 			var messages;
 			for(message in discussion) {
 				console.log("message = " + message);
+				console.log("message.type = " + message.type);
 				if(message.type == "text") {
 					if(message.sender == uid) {
 						messages += "<div class=\"panel panel-default\" style=\"width: 80%; float: right;\">";
