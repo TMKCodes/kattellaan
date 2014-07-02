@@ -357,7 +357,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			}
 			$messages = new messages($database);
 			try {
-				$discussions = $messages->get_discussion($_POST['suid'], $_POST['ruid'], $_POST['limit']);
+				$discussion = $messages->get_discussion($_POST['suid'], $_POST['ruid'], $_POST['limit']);
 			} catch (Exception $e) {
 				printf('{ "success": false, "error": "Error in get_discussion event $messages->get_discussion(): %s" }', $e->getMessage());
 				die;	
