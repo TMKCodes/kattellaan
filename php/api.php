@@ -338,7 +338,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			$message->set_seen(0);
 			try {
 				if($message->insert() == true) {
-					printf('{ "success": true }');
+					printf('{ "success": true, "message": "%s" }', $_POST['msg']);
 				} else {
 					printf('{ "success": false, "error": "Failed to insert message to database."}');
 				}

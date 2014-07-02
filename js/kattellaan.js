@@ -683,7 +683,15 @@ function load_messages_page(uid, duid) {
 				console.log(data);
 				var result = $.parseJSON(data);
 				if(result.success === true) {
-					// display sent message.	
+					var newMsg = "<div class=\"panel panel-default\" style=\"width: 80%; float: right;\">";
+					newMsg += "<div class=\"pane-body\">";
+					newMsg += result.message;
+					newMsg += "</div></div>";
+					if($("#messages-page-conversation-messages").html() == "Lähetä uusi viesti.") {
+						$("#messages-page-conversation-messages").html(newMsg);
+					} else {
+						$("#messages-page-conversation-messages").append(newMsg);
+					}	
 				} else {
 					console.log(result.error);
 				}
