@@ -641,6 +641,7 @@ function get_discussions(uid) {
 }
 
 function load_messages_page(uid, duid) {
+	$("#messages-page-conversation-messages").css("max-height: 600px; overflow-x: hidden; overflow-y: scroll;");
 	if(duid != 0) {
 		var receiver_name = get_username(duid);
 		$("#messages-page-conversation-who").html("Keskustelu " + receiver_name + ":n kanssa.");
@@ -661,7 +662,7 @@ function load_messages_page(uid, duid) {
 				}
 			}
 			$("#messages-page-conversation-messages").html(messages);
-			$("#messages-page-conversation-messages").css("max-height: 600px; overflow-x: hidden; overflow-y: scroll;");
+
 		} else {
 			$("#messages-page-conversation-messages").html("Lähetä uusi viesti.");
 		}
