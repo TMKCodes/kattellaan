@@ -249,7 +249,7 @@ class messages {
 	}
 	
 	public function get_discussion($sender, $receiver, $limit) {
-		$query = "SELECT * FROM (SELECT * FROM `messages` WHERE (`sender` = ? AND `receiver` = ?) OR (`sender` = ? AND `receiver` = ?) ORDER BY `timestamp` DESC) T1 ORDER BY `timestamp` ASC LIMIT 0, ?;";
+		$query = "SELECT * FROM (SELECT * FROM `message` WHERE (`sender` = ? AND `receiver` = ?) OR (`sender` = ? AND `receiver` = ?) ORDER BY `timestamp` DESC LIMIT 0, ?) T1 ORDER BY `timestamp` ASC;";
 		$statement = $this->database->prepare($query);
 		$statement->bind("i", $sender);
 		$statement->bind("i", $receiver);
