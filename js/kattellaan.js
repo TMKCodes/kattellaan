@@ -661,7 +661,6 @@ function load_messages_page(uid, duid) {
 				}
 			}
 			$("#messages-page-conversation-messages").html(messages);
-			$("#messages-page-conversation-messages").scrollTop($("#messages-page-conversation-messages")[0].scrollHeight);
 		} else {
 			$("#messages-page-conversation-messages").html("Lähetä uusi viesti.");
 		}
@@ -707,6 +706,7 @@ function load_messages_page(uid, duid) {
 	} else {
 		load_page("messages-page");
 	}
+	$("#messages-page-conversation-messages").scrollTop($("#messages-page-conversation-messages")[0].scrollHeight);
 }
 
 window.onpopstate = function(event) {
