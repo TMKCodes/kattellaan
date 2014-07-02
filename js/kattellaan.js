@@ -673,6 +673,22 @@ function load_messages_page(uid, duid) {
 				"<input type=\"submit\" value=\"Lähetä\" />" +
 				"</form>";
 		$("#messages-page-conversation-new-message").html(newMsg);	
+		$("#send-message-to").submit(function(evt) {
+			evt.preventDefault();
+			$.ajax({
+				type: $(this).attr('method'),
+				url: $(this).attr('action'),
+				data: $(this).serialize()
+			}).done(function(data) {
+				console.log(data);
+				var result = $.parseJSON(data);
+				if(result.success === true) {
+					// display sent message.	
+				} else {
+					console.log(result.error);
+				}
+			});	
+		});
 	} else {
 
 	}
@@ -911,24 +927,6 @@ $("#start-registeration-button").click(function(evt) {
 	evt.preventDefault();
 	load_page("register-terms-of-service-page");
 	$.removeCookie("next-page");
-});
-
-
-$("#send-message-to").submit(function(evt) {
-	evt.preventDefault();
-	$.ajax({
-		type: $(this).attr('method'),
-		url: $(this).attr('action'),
-		data: $(this).serialize()
-	}).done(function(data) {
-		console.log(data);
-		var result = $.parseJSON(data);
-		if(result.success === true) {
-			// display sent message.	
-		} else {
-			console.log(result.error);
-		}
-	});	
 });
 
 $("#register-account-form").submit(function(evt) {
