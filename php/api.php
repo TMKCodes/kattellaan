@@ -375,7 +375,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			}
 			$results = array();
 			foreach($discussion as $message) {
-				$result['mid'] = $message->identifier;
+				$result['mid'] = $message->get_identifier();
 				if($message->sender == $sacc->get_identifier()) {
 					$result['sender_name'] = $sacc->get_username();
 					$result['sender_uid'] = $sacc->get_identifier(); 
