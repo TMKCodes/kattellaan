@@ -646,22 +646,17 @@ function load_messages_page(uid, duid) {
 		$("#messages-page-conversation-who").html("Keskustelu " + receiver_name + ":n kanssa.");
 
 		var discussion = get_discussion(uid, duid);
-		console.log("get_discussion() = " + discussion);
-		console.log("discussion[0].mid = " + discussion[0].mid);
-		console.log("discussion[0].type = " + discussion[0].type);
 		if(discussion != undefined) {
 			var messages;
-			for(message in discussion) {
-				console.log("message = " + message);
-				console.log("message.type = " + message.type);
-				if(message.type == "text") {
-					if(message.sender == uid) {
+			for(var i = 0; i < discussion.length; i++) {
+				if(discussion[i].type == "text") {
+					if(discussion[i].sender == uid) {
 						messages += "<div class=\"panel panel-default\" style=\"width: 80%; float: right;\">";
-					} else if(message.sender == duid) {
+					} else if(discussion[i].sender == duid) {
 						messages += "<div class=\"panel panel-default\" style=\"width: 80%; float: left;\">";
 					}
 					messages += "<div class\"panel-body\">";
-					messages += "<p style=\"padding: 5px; margin: 0px;\">" + message.message + "</p>";
+					messages += "<p style=\"padding: 5px; margin: 0px;\">" + discussion[i].message + "</p>";
 					messages += "</div></div>";
 				}
 			}
