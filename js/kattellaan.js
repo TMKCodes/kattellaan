@@ -646,10 +646,11 @@ function load_messages_page(uid, duid) {
 		$("#messages-page-conversation-who").html("Keskustelu " + receiver_name + ":n kanssa.");
 
 		var discussion = get_discussion(uid, duid);
-		console.log(discussion);
+		console.log("get_discussion() = " + discussion);
 		if(discussion != undefined) {
 			var messages;
 			for(message in discussion) {
+				console.log("message = " + message);
 				if(message.type == "text") {
 					if(message.sender == uid) {
 						messages += "<div class=\"panel panel-default\" style=\"width: 80%; float: right;\">";
