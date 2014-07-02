@@ -396,7 +396,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				$result['message'] = $message->get_message();
 				array_push($results, $result);
 			}
-			$jsonthis = array("success" => "true", "discussion" => $results);
+			$jsonthis = array("success" => true, "discussion" => $results);
 			$json = json_encode($jsonthis);
 			printf("%s", $json);
 		} else {
@@ -438,7 +438,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					unset($racc);
 				}
 				$results = array_unique($results);
-				$jsonthis = array("success" => "true", "discussions" => $results);
+				$jsonthis = array("success" => true, "discussions" => $results);
 				printf("%s", json_encode($jsonthis));
 			} else {
 				printf('{ "success": false, "error": "User identifier was not given."}');
