@@ -204,7 +204,7 @@ class messages {
 				$messages = array();
 				for($i = 0; $i < $result->rows(); $i++) {
 					$data = $result->fetch_object();
-					$msg = message($this->database);
+					$msg = new message($this->database);
 					$msg->set_identifier($data->id);
 					$msg->set_sender($data->sender);
 					$msg->set_receiver($data->receiver);
