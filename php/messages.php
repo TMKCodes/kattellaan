@@ -219,7 +219,7 @@ class messages {
 				return false;
 			}
 		} else {
-			throw new Exception("Database query failed.");
+			throw new Exception("Failed to query: " . $statement->get());
 		}
 	}
 		

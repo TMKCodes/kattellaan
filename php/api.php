@@ -359,7 +359,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			try {
 				$discussions = $messages->get_discussion($_POST['suid'], $_POST['ruid'], $_POST['limit']);
 			} catch (Exception $e) {
-				printf('{ "success": false, "error": "Error in get_discussion event $messages->get_discussions: %s" }', $e->getMessage());
+				printf('{ "success": false, "error": "Error in get_discussion event $messages->get_discussion(): %s" }', $e->getMessage());
 				die;	
 			}
 			$sacc = new account($database);
