@@ -661,6 +661,7 @@ function load_messages_page(uid, duid) {
 				}
 			}
 			$("#messages-page-conversation-messages").html(messages);
+			$("#messages-page-conversation-messages").css("max-height: 600px; overflow-x: hidden; overflow-y: scroll;");
 		} else {
 			$("#messages-page-conversation-messages").html("Lähetä uusi viesti.");
 		}
