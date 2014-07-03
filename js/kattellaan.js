@@ -678,6 +678,11 @@ function set_message_to_seen(mid) {
 	return result;
 }
 
+function update_unread_messages() {
+	var unread = get_unread_messages("false");
+	$("#user-menu-messages > .dropdown-menu > #empty > a").html(unread.count + " uutta viestiä."); 
+}
+
 function load_messages_page(uid, duid) {
 	$("#messages-page-conversation-messages").css("max-height: 600px; overflow-x: hidden; overflow-y: scroll;");
 	if(duid != 0) {
@@ -847,6 +852,7 @@ $("document").ready(function() {
 	setInterval(function() {
 		update_session();
 		do_distance_work();
+		update_unread_messages();
 	}, 15000);
 	// ...
 	$("#register-picture-upload-form").ajaxForm({
