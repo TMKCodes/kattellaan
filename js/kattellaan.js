@@ -704,6 +704,10 @@ function load_messages_page(uid, duid) {
 	} else {
 
 	}
+	
+	var discussions = get_discussions(uid);
+	console.log("Discussions: " + discussions);
+	
 	if(duid != 0) {
 		load_custom_page("messages-page", "&duid=" + duid);
 	} else {
