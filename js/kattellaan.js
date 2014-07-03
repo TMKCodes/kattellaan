@@ -752,7 +752,7 @@ function load_messages_page(uid, duid) {
 
 	}
 	var discussions = get_discussions(uid);
-	var discussions_already;
+	var discussions_already = [];
 	if(discussions != undefined) {
 		var disc_list = "<ul class=\"list-group\">";	
 		for(var i = 0; i < discussions.length; i++) {
