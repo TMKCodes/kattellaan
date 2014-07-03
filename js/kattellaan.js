@@ -640,6 +640,25 @@ function get_discussions(uid) {
 	return discussions;
 }
 
+function get_unread_messages(only_count) {
+	var result;
+	$.ajax({
+		url: "php/api.php",
+		type: = "POST", 
+		async: false,
+		data: { call : 'get_unread_messages', only_count: only_count }
+	}).done(function(data) {
+		console.log(data);
+		data = $.parseJSON(data);
+		if(data.success == true) {
+			result = data;
+		} else {
+			result = false;
+		}
+	});
+	return result;
+}
+
 function set_message_to_seen(mid) {
 	var result;
 	$.ajax({
@@ -653,7 +672,7 @@ function set_message_to_seen(mid) {
 		if(data.success == true) {
 			result = true;
 		} else {
-			result = false;;
+			result = false;
 		}
 	});
 	return result;

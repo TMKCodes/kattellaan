@@ -323,6 +323,27 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		} else {
 			printf('{ "success": false, "error": "Not authenticated." }');
 		}
+	} else if(!empty($_POST['call']) && $_POST['call'] == "get_unread_messages") {
+		if(!empty($_COOKIE['session'])) {
+			$session = new session($database);
+			if($session->confirm($_COOKIE['session'], "sha512") == false) {
+				printf('{ "success": false, "error": "%s" }', $e->getMessage());
+				die();
+			}
+			$messages = new messages($database);
+			try {
+				$messages = $messages->get_unread($session->get_identifier());	
+				if($_POST['only_count'] == "true") {
+					printf('{ "success": true, "count": %s }', count($messages));
+				} else {
+					printf('{ "success": true, "count": %s, "messages": %s }', count($messages), json_encode($messages));
+				}
+			} catch (Exception $e) {
+				printf('{ "success": false, "error": "%s"}', $e->getMessage());
+			}
+		} else {
+			printf('{ "success": false, "error": "Not authenticated." }');
+		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "set_message_as_read") {
 		if(!empty($_COOKIE['session'])) {
 			$session = new session($database, "sha512");

@@ -230,11 +230,10 @@ class messages {
 		}
 	}
 		
-	public function get_latest($receiver, $limit) {
-		$query = "SELECT * FROM `message` WHERE `receiver` = ? ORDER BY `timestamp` ASC LIMIT ?;"; 
+	public function get_unread($receiver) {
+		$query = "SELECT * FROM `message` WHERE `receiver` = ? AND `seen` = 0 ORDER BY `timestamp` ASC;"; 
 		$statement = $this->database->prepare($query);
 		$statement->bind("i", $receiver);
-		$statement->bind("i", $limit);
 		return $this->get_messages($statement);
 	}
 	
