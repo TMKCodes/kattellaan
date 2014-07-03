@@ -323,6 +323,29 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		} else {
 			printf('{ "success": false, "error": "Not authenticated." }');
 		}
+	} else if(!empty($_POST['call']) && $_POST['call'] = "set_message_as_read") {
+		if(!empty($_COOKIE['session'])) {
+			$session = new session($database, "sha512");
+			if($session->confirm($_COOKIE['session']) == false) {
+				printf('{ "success": false, "error": "%s" }', $e->getMessage());
+				die();
+			}
+			if(!empty($_POST['mid'])) {
+				$message = new message($database);
+				$message->set_identifier($_POST['mid']);
+				try {
+					$message->select();
+					$message->seen();
+				} catch (exception $e) {
+					printf('{ "success": false, "error": "%s" }', $e->getMessage());
+					die();
+				}
+			} else {
+				printf('{ "success": false, "error": "Message id was not specified."}');
+			}
+		} else {
+			printf('{ "success": false, "error": "Not authenticated."}');
+		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "send_message") {
 		if(!empty($_COOKIE['session'])) {
 			$session = new session($database, "sha512");

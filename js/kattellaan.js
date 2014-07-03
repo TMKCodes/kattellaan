@@ -640,6 +640,25 @@ function get_discussions(uid) {
 	return discussions;
 }
 
+function set_message_to_seen(mid) {
+	var result;
+	$.ajax({
+		url: "php/api.php",
+		type: "POST",	
+		async: false,
+		data: { call : 'set_message_as_read', mid : mid }
+	}).done(function(data) {
+		console.log(data);
+		data = $.parseJSON(data);
+		if(data.success == true) {
+			result = true;
+		} else {
+			result = false;;
+		}
+	});
+	return result;
+}
+
 function load_messages_page(uid, duid) {
 	$("#messages-page-conversation-messages").css("max-height: 600px; overflow-x: hidden; overflow-y: scroll;");
 	if(duid != 0) {
@@ -651,6 +670,9 @@ function load_messages_page(uid, duid) {
 			var messages = "";
 			for(var i = 0; i < discussion.length; i++) {
 				if(discussion[i].type == "text") {
+					if(discussion[i].seen == 0) {
+						set_message_to_seen(discussion[i].mid);
+					}
 					if(discussion[i].sender_uid == uid) {
 						messages += "<div class=\"panel panel-success\" style=\"width: 80%; float: right; text-align: right;\">";
 					} else if(discussion[i].sender_uid == duid) {
