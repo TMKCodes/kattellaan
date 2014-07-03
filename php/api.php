@@ -422,10 +422,10 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				foreach($discussions as $discussion) {
 					$sacc = new account($database);
 					$racc = new account($database);
-					if($discussion->sender == $_POST['uid']) {
+					if($discussion->get_sender() == $_POST['uid']) {
 						$sacc->set_identifier($discussion->sender);
 						$racc->set_identifier($discussion->receiver);		
-					} else if($discussion->receiver == $_POST['uid']) {
+					} else if($discussion->get_receiver() == $_POST['uid']) {
 						$sacc->set_identifier($discussion->receiver);
 						$racc->set_identifier($discussion->sender);
 					}
