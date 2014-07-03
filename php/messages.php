@@ -181,6 +181,7 @@ class message {
 			$statement->bind("s", $this->type);
 			$statement->bind("s", $this->message);
 			$statement->bind("i", $this->identifier);
+			printf("Query: %s\r\n", $statement->get());
 			$result = $statement->execute();
 			return $result->success();
 		} else {
