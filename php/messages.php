@@ -189,7 +189,7 @@ class message {
 			$statement->bind("i", $this->identifier);
 			$result = $statement->execute();
 			if($result->success() == true) {
-				return false;
+				throw new Exception("Message: " . $this->get_message() . "\r\nIdentifier: " . $this->get_identifier() . "\r\nQuery " . $statement->get() . " failed.");
 			} else {
 				throw new Exception("Message: " . $this->get_message() . "\r\nIdentifier: " . $this->get_identifier() . "\r\nQuery " . $statement->get() . " failed.");
 			}
