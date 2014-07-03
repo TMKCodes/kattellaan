@@ -766,7 +766,7 @@ function load_messages_page(uid, duid) {
 				if(jQuery.inArray(discussions[i].sender_name, discussions_already) == -1) {
 					var button_press_script = "onclick=\"load_messages_page(" + discussions[i].receiver_uid + ", " + discussions[i].sender_uid +")\"";
 					disc_list += "<li class=\"list-group-item\"><a href=\"#\" " + button_press_script + ">" + discussions[i].sender_name + "</a></li>";
-					discussions_already.push(discussins[i].sender_name);
+					discussions_already.push(discussions[i].sender_name);
 				}
 			}
 		}
