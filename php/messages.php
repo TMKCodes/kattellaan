@@ -183,7 +183,7 @@ class message {
 			$statement->bind("i", $this->identifier);
 			throw new Exception("Query: " . $statement->get() . "\r\n");
 			$result = $statement->execute();
-			return $result->success();
+			//return $result->success();
 		} else {
 			return false;
 		}
