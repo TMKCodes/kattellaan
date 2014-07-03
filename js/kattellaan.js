@@ -705,14 +705,14 @@ function load_messages_page(uid, duid) {
 
 	}
 
-	var disc_list = "<ul>";	
+	var disc_list = "<ul class=\"list-group\">";	
 	var discussions = get_discussions(uid);
 	console.log("Discussions: " + discussions);
 	for(var i = 0; i < discussions.length; i++) {
 		if(discussions[i].sender_uid == uid) {
-			disc_list += "<li><a href=\"#\">" + discussions[i].receiver_name + "</a></li>";
+			disc_list += "<li class=\"list-group-item\"><a href=\"#\">" + discussions[i].receiver_name + "</a></li>";
 		} else {
-			disc_list += "<li><a href=\"#\">" + discussions[i].sender_name + "</a></li>";
+			disc_list += "<li class=\"list-group-item\"><a href=\"#\">" + discussions[i].sender_name + "</a></li>";
 		}
 	}
 	disc_list += "</ul>";
