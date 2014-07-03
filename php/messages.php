@@ -191,7 +191,7 @@ class message {
 			if($result->success() == true) {
 				return false;
 			} else {
-				throw new Exception("Query " . $statement->get() . " failed.");
+				throw new Exception("Data: " + get_object_vars($this) + "\r\nQuery " . $statement->get() . " failed.");
 			}
 		} else {
 			return false;
