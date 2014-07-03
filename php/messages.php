@@ -142,7 +142,7 @@ class message {
 			return false;
 		}
 		if(empty($this->timestamp)) {
-			$this->timestamp = gmdate("Y-m-d h:i:s");
+			$this->timestamp = gmdate("Y-m-d H:i:s");
 		}
 		if(empty($this->seen)) {
 			$this->seen = 0;
