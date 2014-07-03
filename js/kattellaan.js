@@ -639,7 +639,7 @@ function get_discussions(uid) {
 	});
 	return discussions;
 }
-
+/*
 function set_message_to_seen(mid) {
 	var result;
 	$.ajax({
@@ -657,7 +657,7 @@ function set_message_to_seen(mid) {
 		}
 	});
 	return result;
-}
+}*/
 
 function load_messages_page(uid, duid) {
 	$("#messages-page-conversation-messages").css("max-height: 600px; overflow-x: hidden; overflow-y: scroll;");
