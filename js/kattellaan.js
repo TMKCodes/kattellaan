@@ -680,7 +680,11 @@ function set_message_to_seen(mid) {
 
 function update_unread_messages() {
 	var unread = get_unread_messages("false");
-	$("#user-menu-messages > .dropdown-menu > #empty > a").html(unread.count + " uutta viestiä."); 
+	if(unread.count != undefined) {
+		$("#user-menu-messages > .dropdown-menu > #empty > a").html(unread.count + " uutta viestiä."); 
+	} else {
+		$("#user-menu-messages > .dropdown-menu > #empty > a").html("Ei uusia viestejä.");
+	}
 }
 
 function load_messages_page(uid, duid) {
