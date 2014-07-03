@@ -752,15 +752,22 @@ function load_messages_page(uid, duid) {
 
 	}
 	var discussions = get_discussions(uid);
+	var discussions_already;
 	if(discussions != undefined) {
 		var disc_list = "<ul class=\"list-group\">";	
 		for(var i = 0; i < discussions.length; i++) {
 			if(discussions[i].sender_uid == uid) {
-				var button_press_script = "onclick=\"load_messages_page(" + discussions[i].sender_uid + ", " + discussions[i].receiver_uid +")\"";
-				disc_list += "<li class=\"list-group-item\"><a href=\"#\" " + button_press_script + ">" + discussions[i].receiver_name + "</a></li>";
+				if(jQuery.inArray(discussions[i].receiver_name, discussions_already) == -1) {
+					var button_press_script = "onclick=\"load_messages_page(" + discussions[i].sender_uid + ", " + discussions[i].receiver_uid +")\"";
+					disc_list += "<li class=\"list-group-item\"><a href=\"#\" " + button_press_script + ">" + discussions[i].receiver_name + "</a></li>";
+					discussions_already.push(discussions[i].receiver_name);
+				}
 			} else {
-				var button_press_script = "onclick=\"load_messages_page(" + discussions[i].receiver_uid + ", " + discussions[i].sender_uid +")\"";
-				disc_list += "<li class=\"list-group-item\"><a href=\"#\" " + button_press_script + ">" + discussions[i].sender_name + "</a></li>";
+				if(jQuery.inArray(discussions[i].sender_name, discussions_already) == -1) {
+					var button_press_script = "onclick=\"load_messages_page(" + discussions[i].receiver_uid + ", " + discussions[i].sender_uid +")\"";
+					disc_list += "<li class=\"list-group-item\"><a href=\"#\" " + button_press_script + ">" + discussions[i].sender_name + "</a></li>";
+					discussions_already.push(discussins[i].sender_name);
+				}
 			}
 		}
 		disc_list += "</ul>";
