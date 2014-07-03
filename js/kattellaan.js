@@ -729,21 +729,22 @@ function load_messages_page(uid, duid) {
 
 
 
-	var disc_list = "<ul class=\"list-group\">";	
-	var discussions = get_discussions(uid);
-	console.log("Discussions: " + discussions);
-	for(var i = 0; i < discussions.length; i++) {
-		if(discussions[i].sender_uid == uid) {
-			var button_press_script = "onclick=\"load_messages_page(" + discussions[i].sender_uid + ", " + discussions[i].receiver_uid +")\"";
-			disc_list += "<li class=\"list-group-item\"><a href=\"#\" " + button_press_script + ">" + discussions[i].receiver_name + "</a></li>";
-		} else {
-			var button_press_script = "onclick=\"load_messages_page(" + discussions[i].receiver_uid + ", " + discussions[i].sender_uid +")\"";
-			disc_list += "<li class=\"list-group-item\"><a href=\"#\" " + button_press_script + ">" + discussions[i].sender_name + "</a></li>";
-		}
-	}
-	disc_list += "</ul>";
-	$("#messages-page-conversations-list").html(disc_list);
 
+	var discussions = get_discussions(uid);
+	if(discussions != undefined) {
+		var disc_list = "<ul class=\"list-group\">";	
+		for(var i = 0; i < discussions.length; i++) {
+			if(discussions[i].sender_uid == uid) {
+				var button_press_script = "onclick=\"load_messages_page(" + discussions[i].sender_uid + ", " + discussions[i].receiver_uid +")\"";
+				disc_list += "<li class=\"list-group-item\"><a href=\"#\" " + button_press_script + ">" + discussions[i].receiver_name + "</a></li>";
+			} else {
+				var button_press_script = "onclick=\"load_messages_page(" + discussions[i].receiver_uid + ", " + discussions[i].sender_uid +")\"";
+				disc_list += "<li class=\"list-group-item\"><a href=\"#\" " + button_press_script + ">" + discussions[i].sender_name + "</a></li>";
+			}
+		}
+		disc_list += "</ul>";
+		$("#messages-page-conversations-list").html(disc_list);
+	}
 
 	if(duid != 0) {
 		load_custom_page("messages-page", "&duid=" + duid);
