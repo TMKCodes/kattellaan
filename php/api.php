@@ -423,11 +423,11 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					$sacc = new account($database);
 					$racc = new account($database);
 					if($discussion->get_sender() == $_POST['uid']) {
-						$sacc->set_identifier($discussion->sender);
-						$racc->set_identifier($discussion->receiver);		
+						$sacc->set_identifier($discussion->get_sender());
+						$racc->set_identifier($discussion->get_receiver());		
 					} else if($discussion->get_receiver() == $_POST['uid']) {
-						$sacc->set_identifier($discussion->receiver);
-						$racc->set_identifier($discussion->sender);
+						$sacc->set_identifier($discussion->get_receiver());
+						$racc->set_identifier($discussion->get_sender());
 					}
 					$result['sender_name'] = $sacc->get_username();
 					$result['receiver_name'] = $racc->get_username();
