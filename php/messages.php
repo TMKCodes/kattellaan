@@ -112,6 +112,11 @@ class message {
 				$data = $result->fetch_object();
 				if(empty($data)) throw new Exception("Failed to fetch object.");
 				$this->identifier = $data->id;
+				$this->sender = $data->sender;
+				$this->receiver = $data->receiver;
+				$this->timestamp = $data->timestamp;
+				$this->seen = $data->seen;
+				$this->message = $data->message;
 				return true;
 			} else {
 				return false;
