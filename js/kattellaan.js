@@ -836,6 +836,14 @@ $("document").ready(function() {
 		$("#home-page-features").hide();
 		$("#authentication-error-page").hide();
 		$("#user-menu").show();
+		
+		update_unread_messages();
+		setInterval(function() {
+			update_session();
+			do_distance_work();
+			update_unread_messages();
+		}, 15000);
+
 	} else {
 		$("#user-menu").hide();
 		$("#authentication-form").show();
@@ -848,12 +856,6 @@ $("document").ready(function() {
 			console.log("cookie use is already allowed.");
 		}
 	}
-
-	setInterval(function() {
-		update_session();
-		do_distance_work();
-		update_unread_messages();
-	}, 15000);
 	// ...
 	$("#register-picture-upload-form").ajaxForm({
 		dataType: "json",
