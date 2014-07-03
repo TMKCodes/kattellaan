@@ -116,6 +116,7 @@ class message {
 				$this->receiver = $data->receiver;
 				$this->timestamp = $data->timestamp;
 				$this->seen = $data->seen;
+				$this->type = $data->type;
 				$this->message = $data->message;
 				return true;
 			} else {
