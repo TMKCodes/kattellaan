@@ -323,7 +323,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		} else {
 			printf('{ "success": false, "error": "Not authenticated." }');
 		}
-	} else if(!empty($_POST['call']) && $_POST['call'] = "set_message_as_read") {
+	} else if(!empty($_POST['call']) && $_POST['call'] == "set_message_as_read") {
 		if(!empty($_COOKIE['session'])) {
 			$session = new session($database, "sha512");
 			if($session->confirm($_COOKIE['session']) == false) {
