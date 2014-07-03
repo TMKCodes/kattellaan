@@ -434,8 +434,6 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					$result['sender_uid'] = $sacc->get_identifier();
 					$result['receiver_uid'] = $racc->get_identifier();
 					array_push($results, $result);
-					unset($sacc);
-					unset($racc);
 				}
 				$results = array_unique($results);
 				$jsonthis = array("success" => true, "discussions" => $results);
