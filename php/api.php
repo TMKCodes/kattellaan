@@ -500,9 +500,17 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					if($discussion->get_sender() == $_POST['uid']) {
 						$sacc->set_identifier($discussion->get_sender());
 						$racc->set_identifier($discussion->get_receiver());		
+						$result['sender_name'] = $sacc->get_username();
+						$result['receiver_name'] = $racc->get_username();
+						$result['sender_uid'] = $sacc->get_identifier();
+						$result['receiver_uid'] = $racc->get_identifier();
 					} else if($discussion->get_receiver() == $_POST['uid']) {
 						$sacc->set_identifier($discussion->get_receiver());
 						$racc->set_identifier($discussion->get_sender());
+						$result['sender_name'] = $racc->get_username();
+						$result['receiver_name'] = $sacc->get_username();
+						$result['sender_uid'] = $racc->get_identifier();
+						$result['receiver_uid'] = $sacc->get_identifier();
 					}
 					try {
 						$sacc->select();
@@ -511,10 +519,6 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 						printf('{ "success": false, "error": "%s"}', $e->getMessage());
 						die();
 					}
-					$result['sender_name'] = $sacc->get_username();
-					$result['receiver_name'] = $racc->get_username();
-					$result['sender_uid'] = $sacc->get_identifier();
-					$result['receiver_uid'] = $racc->get_identifier();
 					array_push($results, $result);
 				}
 				//$results = array_unique($results);
