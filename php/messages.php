@@ -246,7 +246,6 @@ class messages {
 		$statement = $this->database->prepare($query);
 		$statement->bind("i", $uid);
 		$statement->bind("i", $uid);
-		printf("Query: %s\r\n", $statement->get());
 		return $this->get_messages($statement);
 	}
 	
