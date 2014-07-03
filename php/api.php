@@ -429,6 +429,8 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 						$sacc->set_identifier($discussion->get_receiver());
 						$racc->set_identifier($discussion->get_sender());
 					}
+					$sacc->select();
+					$racc->select();
 					$result['sender_name'] = $sacc->get_username();
 					$result['receiver_name'] = $racc->get_username();
 					$result['sender_uid'] = $sacc->get_identifier();
