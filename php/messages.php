@@ -166,7 +166,7 @@ class message {
 
 	public function seen() {
 		$this->seen = 1;
-		$this->update();
+		return $this->update();
 	}
 
 	public function update() {

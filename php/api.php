@@ -335,8 +335,11 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				$message->set_identifier($_POST['mid']);
 				try {
 					$message->select();
-					$message->seen();
-					printf('{ "success": true }');
+					if($message->seen() == true) {
+						printf('{ "success": true }');
+					} else {
+						printf('{ "success": false }');
+					}
 				} catch (exception $e) {
 					printf('{ "success": false, "error": "%s" }', $e->getMessage());
 					die();
