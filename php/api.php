@@ -332,7 +332,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			}
 			$messages = new messages($database);
 			try {
-				$messages = $messages->get_unread($session->get_identifer($_COOKIE['session']));	
+				$messages = $messages->get_unread($session->get_identifier($_COOKIE['session']));	
 				if($_POST['only_count'] == "true") {
 					
 					printf('{ "success": true, "count": %s }', count($messages));
