@@ -336,6 +336,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				try {
 					$message->select();
 					$message->seen();
+					printf('{ "success": true }');
 				} catch (exception $e) {
 					printf('{ "success": false, "error": "%s" }', $e->getMessage());
 					die();
