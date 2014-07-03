@@ -644,7 +644,7 @@ function get_unread_messages(only_count) {
 	var result;
 	$.ajax({
 		url: "php/api.php",
-		type: = "POST", 
+		type:  "POST", 
 		async: false,
 		data: { call : 'get_unread_messages', only_count: only_count }
 	}).done(function(data) {
