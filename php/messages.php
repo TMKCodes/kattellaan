@@ -170,7 +170,7 @@ class message {
 	}
 
 	public function update() {
-		if(!empty($this->identifier) && !empty($this->sender) && !empty($this->receiver) && !empty($this->timestamp) && !empty($this->seen) && !empty($this->type) && !empty($this->message)) {
+		if(!empty($this->identifier) && !empty($this->sender) && !empty($this->receiver) && !empty($this->timestamp) && !empty($this->type) && !empty($this->message)) {
 			$query = "UPDATE `message` SET `sender` = ?, `receiver` = ?, `timestamp` = ?, ".
 					"`seen` = ?, `type` = ?, `message` = ? WHERE `id` = ?;";
 			$statement = $this->database->prepare($query);
