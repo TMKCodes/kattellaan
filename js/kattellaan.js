@@ -716,7 +716,7 @@ function load_messages_page(uid, duid) {
 		}
 	}
 	disc_list += "</ul>";
-	$("#messages-page-conversation-list").html(disc_list);
+	$("#messages-page-conversations-list").html(disc_list);
 
 
 	if(duid != 0) {
