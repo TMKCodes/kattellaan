@@ -361,7 +361,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 						$result['message'] = $message->get_message();
 						array_push($results, $result);
 					}
-					$jsonthis = array("success" => true, "messages" => $results);
+					$jsonthis = array("success" => true, "count" => count($messages), "messages" => $results);
 					$json = json_encode($jsonthis);
 					printf("%s", $json);
 				}
