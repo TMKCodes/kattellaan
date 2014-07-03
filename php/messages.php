@@ -241,7 +241,7 @@ class messages {
 	}
 
 	public function get_discussions($uid) {
-		$query = "SELECT `sender`, `receiver` FROM `message` WHERE `sender` = ? OR `receiver` = ? ORDER BY `timestamp`;";
+		$query = "SELECT * FROM `message` WHERE `sender` = ? OR `receiver` = ? ORDER BY `timestamp`;";
 		
 		$statement = $this->database->prepare($query);
 		$statement->bind("i", $uid);
