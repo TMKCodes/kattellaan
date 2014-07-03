@@ -429,13 +429,20 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 						$sacc->set_identifier($discussion->get_receiver());
 						$racc->set_identifier($discussion->get_sender());
 					}
-					$sacc->select();
-					$racc->select();
+					try {
+						$sacc->select();
+						$racc->select();
+					} catch (Exception $e) {
+						printf('{ "success": false, "error": "%s"}', $e->getMessage());
+						die();
+					}
 					$result['sender_name'] = $sacc->get_username();
 					$result['receiver_name'] = $racc->get_username();
 					$result['sender_uid'] = $sacc->get_identifier();
 					$result['receiver_uid'] = $racc->get_identifier();
 					array_push($results, $result);
+					unset($sacc);
+					unset($racc);
 				}
 				$results = array_unique($results);
 				$jsonthis = array("success" => true, "discussions" => $results);
