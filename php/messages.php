@@ -187,9 +187,8 @@ class message {
 			$statement->bind("s", $this->type);
 			$statement->bind("s", $this->message);
 			$statement->bind("i", $this->identifier);
-			throw new Exception("Query: " . $statement->get() . "\r\n");
 			$result = $statement->execute();
-			//return $result->success();
+			return $result->success();
 		} else {
 			return false;
 		}
