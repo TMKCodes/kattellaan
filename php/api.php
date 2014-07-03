@@ -529,7 +529,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					array_push($results, $result);
 				}
 				$results = array_unique($results, SORT_REGULAR);
-				$results = array_keys($results);
+				$results = array_keys(array_filter($results));
 				$jsonthis = array("success" => true, "discussions" => $results);
 				printf("%s", json_encode($jsonthis));
 			} else {

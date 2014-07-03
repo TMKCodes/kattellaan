@@ -751,7 +751,6 @@ function load_messages_page(uid, duid) {
 	} else {
 
 	}
-
 	var discussions = get_discussions(uid);
 	if(discussions != undefined) {
 		var disc_list = "<ul class=\"list-group\">";	
