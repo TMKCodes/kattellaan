@@ -180,19 +180,15 @@ class message {
 			$query = "UPDATE `message` SET `sender` = ?, `receiver` = ?, `timestamp` = ?, ".
 					"`seen` = ?, `type` = ?, `message` = ? WHERE `id` = ?;";
 			$statement = $this->database->prepare($query);
-			$statement->bind("i", $this->sender);
-			$statement->bind("i", $this->receiver);
-			$statement->bind("s", $this->timestamp);
-			$statement->bind("i", $this->seen);
-			$statement->bind("s", $this->type);
-			$statement->bind("s", $this->message);
-			$statement->bind("i", $this->identifier);
+			$statement->bind("i", $this->get_sender());
+			$statement->bind("i", $this->get_receiver());
+			$statement->bind("s", $this->get_timestamp());
+			$statement->bind("i", $this->get_seen());
+			$statement->bind("s", $this->get_type());
+			$statement->bind("s", $this->get_message());
+			$statement->bind("i", $this->get_identifier());
 			$result = $statement->execute();
-			if($result->success() == true) {
-				throw new Exception("Message: " . $this->get_message() . " Identifier: " . $this->get_identifier() . " Query " . $statement->get() . " failed.");
-			} else {
-				throw new Exception("Message: " . $this->get_message() . " Identifier: " . $this->get_identifier() . " Query " . $statement->get() . " failed.");
-			}
+			return $result->success();
 		} else {
 			return false;
 		}
