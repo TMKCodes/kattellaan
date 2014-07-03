@@ -964,11 +964,21 @@ $("#own-profile-button").click(function(evt) {
 });
 
 $("#profile-page-top-bar-menu-send-msg").click(function(evt) {
+	evt.preventDefault();
 	if($.cookie("session") !== undefined) {
 		var session = window.atob($.cookie("session"));
 		session = session.split("||");
 		var ruid = get_url_parameter("uid");
 		load_messages_page(session[1], ruid);
+	}
+});
+
+$("#user-menu-messages > .dropdown-menu > #empty > a").click(function(evt) {
+	evt.preventDefault();
+	if($.cookie("session") !== undefined) {
+		var session = window.atob($.cookie("session"));
+		session = session.split("||");
+		load_messages_page(session[1], 0);
 	}
 });
 
