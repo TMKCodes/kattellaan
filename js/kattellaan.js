@@ -670,9 +670,9 @@ function load_messages_page(uid, duid) {
 			var messages = "";
 			for(var i = 0; i < discussion.length; i++) {
 				if(discussion[i].type == "text") {
-					if(discussion[i].seen == 0) {
-						set_message_to_seen(discussion[i].mid);
-					}
+				//	if(discussion[i].seen == 0) {
+				//		set_message_to_seen(discussion[i].mid);
+				//	}
 					if(discussion[i].sender_uid == uid) {
 						messages += "<div class=\"panel panel-success\" style=\"width: 80%; float: right; text-align: right;\">";
 					} else if(discussion[i].sender_uid == duid) {
