@@ -188,7 +188,11 @@ class message {
 			$statement->bind("s", $this->message);
 			$statement->bind("i", $this->identifier);
 			$result = $statement->execute();
-			return $result->success();
+			if($result->success() == true) {
+				return false;
+			} else {
+				throw new Exception("Query " . $statement->get() . " failed.");
+			}
 		} else {
 			return false;
 		}
