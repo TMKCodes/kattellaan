@@ -339,7 +339,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			try {
 				$message = false;
 				$time = time() + 30;
-				while($message != false) {
+				while($message == false) {
 					$msgs = $messages->get_unread($session->get_identifier($_COOKIE['session']));
 					foreach($msgs as $msg) {
 						if($msg->get_sender() == $_POST['suid']) {
