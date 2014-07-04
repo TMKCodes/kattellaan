@@ -388,8 +388,8 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				die();
 			}
 			$messages = new messages($database);
-			try {
-				$messages = $messages->get_unread($session->get_identifier($_COOKIE['session']));	
+			$messages = $messages->get_unread($session->get_identifier($_COOKIE['session']));
+			if($messages != false) {	
 				if($_POST['only_count'] == "true") {
 					
 					printf('{ "success": true, "count": %s }', count($messages));
@@ -422,8 +422,8 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					$json = json_encode($jsonthis);
 					printf("%s", $json);
 				}
-			} catch (Exception $e) {
-				printf('{ "success": false, "error": "%s"}', $e->getMessage());
+			} else {
+				printf('{ "success": false, "error": "No new messages."}');
 			}
 		} else {
 			printf('{ "success": false, "error": "Not authenticated." }');
