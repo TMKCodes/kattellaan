@@ -812,7 +812,7 @@ function load_messages_page(uid, duid) {
 	$("#messages-page-conversation-messages").scrollTop($("#messages-page-conversation-messages")[0].scrollHeight);
 	if(duid != 0) {
 		while(true) {
-			msg = long_pull_message(duid);
+			msg = long_pull_messages(duid);
 			if(msg == false) {
 				break;
 			} else {
