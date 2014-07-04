@@ -365,6 +365,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					} catch (Exception $e) {
 						printf('{ "success": false, "error": "%s"}', $e->getMessage());
 					}
+					$rmsg = array();
 					$rmsg['mid'] == $message->get_identifier();
 					$rmsg['sender_name'] == $sacc->get_username();
 					$rmsg['sender_uid'] == $message->get_sender();
