@@ -660,29 +660,26 @@ function get_unread_messages(only_count) {
 }
 
 function long_pull_messages(suid) {
-	var result;
 	$.ajax({
 		url: "php/api.php",
 		type: "POST", 
-		async: false,
+		async: true,
 		data: { call : 'long_pull_messages', suid : suid }
 	}).done(function(data) {
 		console.log(data);
 		data = $.parseJSON(data);
 		if(data.success == true) {
-			if(data.reason != undefined) {
-				result = true;
-			} else {
-				result = data.message;
+			if(data.message != undefined) {
+				var newMsg = "<div class=\"panel panel-default\" style=\"width: 80%; float: left; text-align: left;\">";
+				newMsg += "<div class=\"panel-body\">";
+				newMsg += "<p style=\"padding: 5px; margin: 0px;\">" + data.message.message + "</p>";
+				newMsg += "</div></div>";
+				$("#messages-page-conversation-messages").append(newMsg);
+				$("#messages-page-conversation-messages").scrollTop($("#messages-page-conversation-messages")[0].scrollHeight);
 			}
-		} else {
-			result = false;
+			long_pull_messages(suid);
 		}
 	});
-	if(result == true) {
-		result = long_pull_messages(suid);
-	}
-	return result;
 }
 
 function set_message_to_seen(mid) {
@@ -811,19 +808,7 @@ function load_messages_page(uid, duid) {
 	}
 	$("#messages-page-conversation-messages").scrollTop($("#messages-page-conversation-messages")[0].scrollHeight);
 	if(duid != 0) {
-		while(true) {
-			msg = long_pull_messages(duid);
-			if(msg == false) {
-				break;
-			} else {
-				var newMsg = "<div class=\"panel panel-default\" style=\"width: 80%; float: left; text-align: left;\">";
-				newMsg += "<div class=\"panel-body\">";
-				newMsg += "<p style=\"padding: 5px; margin: 0px;\">" + msg.message + "</p>";
-				newMsg += "</div></div>";
-				$("#messages-page-conversation-messages").append(newMsg);
-				$("#messages-page-conversation-messages").scrollTop($("#messages-page-conversation-messages")[0].scrollHeight);
-			}
-		}
+		long_pull_messages(duid);
 	}
 }
 
