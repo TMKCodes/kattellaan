@@ -375,7 +375,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					printf('{ "success": true, "reason": "long pull ended."}');
 				}
 			} catch (Exception $e) {
-				printf('{ "success": false, "error": "%s"', $e->getMessage());
+				printf('{ "success": false, "error": "%s" }', $e->getMessage());
 			}
 		} else {
 			printf('{ "success": false, "error": Not authenticated." }');

@@ -222,7 +222,6 @@ class messages {
 				}
 				return $messages;
 			} else {
-				throw new Exception("No results found.");
 				return false;
 			}
 		} else {
