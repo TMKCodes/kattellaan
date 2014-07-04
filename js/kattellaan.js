@@ -670,7 +670,7 @@ function long_pull_messages(suid) {
 		data = $.parseJSON(data);
 		if(data.success == true) {
 			var newMsg = "<div class=\"panel panel-default\" style=\"width: 80%; float: left; text-align: left;\">";
-			newMsg += "<div class=\"panel-body\">";
+			newMsg += "<div class=\"panel-body\" style=\"padding: 0px;\">";
 			newMsg += "<p style=\"padding: 5px; margin: 0px;\">" + data.message.message + "</p>";
 			newMsg += "</div></div>";
 			$("#messages-page-conversation-messages").append(newMsg);
