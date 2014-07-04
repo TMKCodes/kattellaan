@@ -366,15 +366,15 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 						printf('{ "success": false, "error": "%s"}', $e->getMessage());
 					}
 					$rmsg = array();
-					$rmsg['mid'] == $message->get_identifier();
-					$rmsg['sender_name'] == $sacc->get_username();
-					$rmsg['sender_uid'] == $message->get_sender();
-					$rmsg['receiver_name'] == $racc->get_username();
-					$rmsg['receiver_uid'] == $message->get_receiver();
-					$rmsg['timestamp'] == $message->get_timestamp();
-					$rmsg['seen'] == $message->get_seen();
-					$rmsg['type'] == $message->get_type();
-					$rmsg['message'] == $message->get_message();
+					$rmsg['mid'] = $message->get_identifier();
+					$rmsg['sender_name'] = $sacc->get_username();
+					$rmsg['sender_uid'] = $message->get_sender();
+					$rmsg['receiver_name'] = $racc->get_username();
+					$rmsg['receiver_uid'] = $message->get_receiver();
+					$rmsg['timestamp'] = $message->get_timestamp();
+					$rmsg['seen'] = $message->get_seen();
+					$rmsg['type'] = $message->get_type();
+					$rmsg['message'] = $message->get_message();
 					printf("%s", json_encode(array("success" => "true", "message" => $rmsg)));
 				} else {
 					printf('{ "success": true, "reason": "long pull ended."}');
