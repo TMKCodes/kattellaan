@@ -383,7 +383,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 	} else if(!empty($_POST['call']) && $_POST['call'] == "get_unread_messages") {
 		if(!empty($_COOKIE['session'])) {
 			$session = new session($database, "sha512");
-			if($session->confirm($_COOKIE['session']) == false)
+			if($session->confirm($_COOKIE['session']) == false) {
 				printf('{ "success": false, "error": "Failed to confirm session." }');
 				die();
 			}
