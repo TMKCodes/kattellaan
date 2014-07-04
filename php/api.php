@@ -4,6 +4,7 @@ header("Access-Control-Allow-Origin: *");
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
+ignore_user_abort(false);
 
 require_once("dbwrapper/db.php");
 require_once("account.php");
@@ -323,11 +324,67 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		} else {
 			printf('{ "success": false, "error": "Not authenticated." }');
 		}
-	} else if(!empty($_POST['call']) && $_POST['call'] == "get_unread_messages") {
+	} else if(!empty($_POST['call']) && $_POST['call'] == "long_pull_messages") {
 		if(!empty($_COOKIE['session'])) {
 			$session = new session($database, "sha512");
 			if($session->confirm($_COOKIE['session']) == false) {
-				printf('{ "success": false, "error": "%s" }', $e->getMessage());
+				printf('{ "success": false, "error": "Failed to confirm session." }');
+				die();	
+			}
+			if(empty($_POST['suid'])) {
+				printf('{ "success": false, "error": "Sender user identifier not specified." }');
+				die();
+			}
+			$messages = new messages($database);
+			try {
+				$message == false;
+				$time = time() + 30;
+				while($message != false) {
+					$msgs = $messages->get_unread($session->get_identifier($_COOKIE['session']));
+					foreach($msgs as $msg) {
+						if($msg->get_sender() == $_POST['suid']) {
+							$message = $msg;
+						}
+					}
+					if($time < time()) {
+						$message = "end";
+					}
+				}
+				if($message != "end") {
+					$sacc = new account($database);
+					$sacc->set_identifier($message->get_sender());
+					$racc = new account($database);
+					$racc->set_identifier($message->get_receiver());
+					try {
+						$sacc->select();
+						$racc->select();
+					} catch (Exception $e) {
+						printf('{ "success": false, "error": "%s"}', $e->getMessage());
+					}
+					$msg['mid'] == $message->get_identifier();
+					$msg['sender_name'] == $sacc->get_username();
+					$msg['sender_uid'] == $message->get_sender();
+					$msg['receiver_name'] == $racc->get_username();
+					$msg['receiver_uid'] == $message->get_receiver();
+					$msg['timestamp'] == $message->get_timestamp();
+					$msg['seen'] == $message->get_seen();
+					$msg['type'] == $message->get_type();
+					$msg['message'] == $message->get_message();
+					printf("%s", json_encode(array("success" => "true", "message" => $msg)));
+				} else {
+					printf('{ "success": true, "reason": "long pull ended."}');
+				}
+			} catch (Exception $e) {
+				printf('{ "success": false, "error": "%s"', $e->getMessage());
+			}
+		} else {
+			printf('{ "success": false, "error": Not authenticated." }');
+		}
+	} else if(!empty($_POST['call']) && $_POST['call'] == "get_unread_messages") {
+		if(!empty($_COOKIE['session'])) {
+			$session = new session($database, "sha512");
+			if($session->confirm($_COOKIE['session']) == false)
+				printf('{ "success": false, "error": "Failed to confirm session." }');
 				die();
 			}
 			$messages = new messages($database);
@@ -375,7 +432,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		if(!empty($_COOKIE['session'])) {
 			$session = new session($database, "sha512");
 			if($session->confirm($_COOKIE['session']) == false) {
-				printf('{ "success": false, "error": "%s" }', $e->getMessage());
+				printf('{ "success": false, "error": "Failed to confirm session." }');
 				die();
 			}
 			if(!empty($_POST['mid'])) {
@@ -402,7 +459,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		if(!empty($_COOKIE['session'])) {
 			$session = new session($database, "sha512");
 			if($session->confirm($_COOKIE['session']) == false) {
-				printf('{"success": false, "error": "%s" }', $e->getMessage());
+				printf('{"success": false, "error": "Failed to confirm session" }');
 				die();	
 			}
 			$message = new message($database);
