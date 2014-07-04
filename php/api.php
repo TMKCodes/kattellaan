@@ -375,7 +375,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					$rmsg['seen'] = $message->get_seen();
 					$rmsg['type'] = $message->get_type();
 					$rmsg['message'] = $message->get_message();
-					printf("%s", json_encode(array("success" => "true", "message" => $rmsg)));
+					printf("%s", json_encode(array("success" => true, "message" => $rmsg)));
 				} else {
 					printf('{ "success": true, "reason": "long pull ended."}');
 				}
