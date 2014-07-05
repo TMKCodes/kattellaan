@@ -152,6 +152,9 @@ function get_username(uid) {
 			username = result.username;
 		} else {
 			console.log(result.error);
+			if(result.error == "Failed to confirm session") {
+				close_session();
+			}
 		}
 	});
 	return username;
@@ -172,6 +175,9 @@ function get_profile(uid) {
 		} else {
 			console.log(result.error);
 			profile = result.error;
+			if(result.error = "Failed to confirm session") {
+				close_session();
+			}	
 		}
 	});
 	return profile;
@@ -502,6 +508,9 @@ function get_distance(my_uid, his_uid) {
 			distance = data.distance;
 		} else {
 			console.log(data.error);
+			if(data.error == "Failed to confirm session") {
+				close_session();
+			}
 		}
 	});
 	return distance;
@@ -616,6 +625,9 @@ function get_discussion(suid, ruid) {
 			discussion = data.discussion;
 		} else {
 			console.log(data.error);
+			if(data.error == "Failed to confirm session") {
+				close_session();
+			}
 		}
 	});
 	return discussion;
@@ -635,6 +647,9 @@ function get_discussions(uid) {
 			discussions = data.discussions;
 		} else {
 			console.log(data.error);
+			if(data.error == "Failed to confirm session") {
+				close_session();
+			}
 		}
 	});
 	return discussions;
