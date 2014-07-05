@@ -93,7 +93,7 @@ function close_session() {
 			if($.cookie("session") !== undefined) {
 				$.removeCookie("session");
 			}
-			$("#user-menu").hide();
+			$(".container").hide();
 			$("#authentication-form").show();
 			load_home_page();
 		} else {
