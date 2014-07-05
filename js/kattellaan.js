@@ -996,14 +996,14 @@ $("document").ready(function() {
 $("#navigation-left > li").click(function(evt) {
 	evt.preventDefault();
 	$("#navigation-left").children().removeClass("active");
-	$("#usermenu-left").children().removeClass("active");
+	$("#user-menu").children().removeClass("active");
 	$(this).addClass("active");
 });
 
 $("#user-menu > li").click(function(evt) {
 	evt.preventDefault();
 	$("#navigation-left").children().removeClass("active");
-	$("#usermenu-left").children().removeClass("active");
+	$("#user-menu").children().removeClass("active");
 	$(this).addClass("active");
 });
 
