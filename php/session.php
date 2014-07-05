@@ -45,7 +45,7 @@ class session {
 			"uid INT NOT NULL," .
 			"secret TEXT NOT NULL," .
 			"client TEXT NOT NULL," .
-			"timestamp DATE);";
+			"timestamp DATETIME NOT NULL);";
 		$statement = $this->database->prepare($table_statement);
 		$result = $statement->execute();
 		return $result->success();
