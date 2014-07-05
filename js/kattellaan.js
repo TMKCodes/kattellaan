@@ -155,6 +155,7 @@ function get_username(uid) {
 			if(result.error == "Failed to confirm session") {
 				close_session();
 			}
+			return false;
 		}
 	});
 	return username;
@@ -540,7 +541,9 @@ function load_profile_page(uid) {
 	$.cookie("last-viewed-profile", profile.identifier);
 	
 	var username = get_username(uid);
-	
+	if(username == false) {
+		return false;
+	}	
 	var profile_text = "<h1><b class=\"glyphicon glyphicon-user\"></b> " + username;
 
 	if(uid !== vuid) {
