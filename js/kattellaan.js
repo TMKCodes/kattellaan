@@ -647,7 +647,7 @@ function get_discussions(uid) {
 			discussions = data.discussions;
 		} else {
 			console.log(data.error);
-			if(data.error == "Failed to confirm session") {
+			if(data.error == "Failed to confirm session.") {
 				close_session();
 			}
 		}
