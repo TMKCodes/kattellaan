@@ -93,7 +93,7 @@ function close_session() {
 			if($.cookie("session") !== undefined) {
 				$.removeCookie("session");
 			}
-			$(".container").hide();
+			$("#user-menu").hide();
 			$("#authentication-form").show();
 			load_home_page();
 		} else {
@@ -628,6 +628,7 @@ function get_discussion(suid, ruid) {
 			if(data.error == "Failed to confirm session") {
 				close_session();
 			}
+			discussion = false;
 		}
 	});
 	return discussion;
@@ -650,6 +651,7 @@ function get_discussions(uid) {
 			if(data.error == "Failed to confirm session.") {
 				close_session();
 			}
+			discussions = false;
 		}
 	});
 	return discussions;
@@ -733,6 +735,9 @@ function load_messages_page(uid, duid) {
 		$("#messages-page-conversation-who").html("Keskustelu " + receiver_name + ":n kanssa.");
 
 		var discussion = get_discussion(uid, duid);
+		if(discussion == false) {
+			return false;
+		}
 		if(discussion != undefined) {
 			var messages = "";
 			for(var i = 0; i < discussion.length; i++) {
@@ -795,6 +800,9 @@ function load_messages_page(uid, duid) {
 
 	}
 	var discussions = get_discussions(uid);
+	if(discussions == false) {
+		return false;
+	}
 	var discussions_already = [];
 	if(discussions != undefined) {
 		var disc_list = "<ul class=\"list-group\">";	
