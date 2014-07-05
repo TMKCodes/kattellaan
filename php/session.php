@@ -44,7 +44,8 @@ class session {
 			"id INT NOT NULL AUTO_INCREMENT PRIMARY KEY," .
 			"uid INT NOT NULL," .
 			"secret TEXT NOT NULL," .
-			"client TEXT NOT NULL);";
+			"client TEXT NOT NULL," .
+			"timestamp DATE);";
 		$statement = $this->database->prepare($table_statement);
 		$result = $statement->execute();
 		return $result->success();
@@ -58,10 +59,11 @@ class session {
 			if($account->select() == true) {
 				$session_key = $this->generate($this->session_hash, 256);
 				$client = $this->client();
-				$statement = $this->database->prepare("INSERT INTO `session` (`uid`, `secret`, `client`) VALUES (?, ?, ?);");
+				$statement = $this->database->prepare("INSERT INTO `session` (`uid`, `secret`, `client`, `timestamp`) VALUES (?, ?, ?, ?);");
 				$statement->bind("i", $account->get_identifier());
 				$statement->bind("s", $session_key);
 				$statement->bind("s", $client);
+				$statement->bind("s", gmdate("Y-m-d H:i:s"));
 				$result = $statement->execute();
 				if($result->success() == true) {
 					$statement = $this->database->prepare("SELECT * FROM `session` WHERE `uid` = ? AND `secret` = ? AND `client` = ?;");
@@ -96,8 +98,9 @@ class session {
 			if($this->confirm($data) == true) {
 				$data = explode("||", base64_decode($data));
 				$session_key = $this->generate($this->session_hash, 256);
-				$statement = $this->database->prepare("UPDATE `session` SET `secret` = ? WHERE `id` = ?");
+				$statement = $this->database->prepare("UPDATE `session` SET `secret` = ?, `timestamp` = ? WHERE `id` = ?");
 				$statement->bind("s", $session_key);
+				$statement->bind("s", gmdate("Y-m-d H:i:s"));
 				$statement->bind("i", $data[0]);
 				$result = $statement->execute();
 				if($result->success() == true) {
