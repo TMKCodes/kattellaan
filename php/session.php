@@ -126,7 +126,15 @@ class session {
 			$statement->bind("s", $data[2]);
 			$statement->bind("s", $this->client());
 			$result = $statement->execute();
-			return $result->success();
+			if($result->success() == true) {
+				if($result->rows() >= 1) {
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
 		} else {
 			throw new Exception("Session data was not given.");
 		}
