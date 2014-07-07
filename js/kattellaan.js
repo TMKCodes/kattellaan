@@ -10,6 +10,12 @@ function get_url_parameter(param) {
 	return undefined;
 }
 
+function sleep(millis, callback) {
+	setTimeout(function() {
+		callback();
+	}, millis);
+}
+
 function rad(x) {
 	return x * Math.PI / 180;
 }
@@ -680,27 +686,31 @@ function get_unread_messages(only_count) {
 }
 
 function long_pull_messages(suid) {
-	$.ajax({
-		url: "php/api.php",
-		type: "POST", 
-		async: true,
-		data: { call : 'long_pull_messages', suid : suid }
-	}).done(function(data) {
-		console.log(data);
-		data = $.parseJSON(data);
-		if(data.success == true) {
-			if(data.message != undefined) {
-				var newMsg = "<div class=\"panel panel-default\" style=\"width: 80%; float: left; text-align: left;\">";
-				newMsg += "<div class=\"panel-body\" style=\"padding: 0px;\">";
-				newMsg += "<p style=\"padding: 5px; margin: 0px;\">" + data.message.message + "</p>";
-				newMsg += "</div></div>";
-				$("#messages-page-conversation-messages").append(newMsg);
-				$("#messages-page-conversation-messages").scrollTop($("#messages-page-conversation-messages")[0].scrollHeight);		
-				set_message_to_seen(data.message.mid);
+	if($("#messages-page").is(":visible")) {
+		$.ajax({
+			url: "php/api.php",
+			type: "POST", 
+			async: true,
+			data: { call : 'long_pull_messages', suid : suid }
+		}).done(function(data) {
+			console.log(data);
+			data = $.parseJSON(data);
+			if(data.success == true) {
+				if(data.message != undefined) {
+					var newMsg = "<div class=\"panel panel-default\" style=\"width: 80%; float: left; text-align: left;\">";
+					newMsg += "<div class=\"panel-body\" style=\"padding: 0px;\">";
+					newMsg += "<p style=\"padding: 5px; margin: 0px;\">" + data.message.message + "</p>";
+					newMsg += "</div></div>";
+					$("#messages-page-conversation-messages").append(newMsg);
+					$("#messages-page-conversation-messages").scrollTop($("#messages-page-conversation-messages")[0].scrollHeight);		
+					set_message_to_seen(data.message.mid);
+				}
+				long_pull_messages(suid);
 			}
-			long_pull_messages(suid);
-		}
-	});
+		});
+	} else {
+		return true;
+	}
 }
 
 function set_message_to_seen(mid) {
