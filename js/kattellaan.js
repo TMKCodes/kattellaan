@@ -1077,15 +1077,6 @@ $("#profile-page-top-bar-menu-send-msg").click(function(evt) {
 
 $(".notification > a").click(function() {
 	console.log($(this));
-	console.log($(this).children("#id"));
-	console.log($(this).children("#id").html());
-	if($.cookie("session") !== undefined) {
-		var session = window.atob($.cookie("session"));
-		session = session.split("||");
-		var suid = $(this).children("#id").html();
-		console.log(suid);
-		load_messages_page(session[1], suid);
-	}
 });	
 
 $("#user-menu-messages > .dropdown-menu > #empty > a").click(function(evt) {
