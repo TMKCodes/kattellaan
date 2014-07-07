@@ -1062,6 +1062,7 @@ $("#user-menu-messages > .dropdown-menu > ul > a").click(function(evt) {
 		var session = window.atob($.cookie("session"));
 		session = session.split("||");
 		var suid = $(this).children("b").html();
+		console.log(suid);
 		load_messages_page(session[1], suid);
 	}
 });	
