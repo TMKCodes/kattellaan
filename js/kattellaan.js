@@ -763,6 +763,9 @@ function update_unread_messages() {
 			}
 		}
 		$("#user-menu-messages > .dropdown-menu").prepend(list);
+		$(".notification > a").click(function() {
+			console.log($(this));
+		});
 	} else {
 		$("#user-menu-messages > .dropdown-menu > #empty > a").html("<i id=\"count\" style=\"display: none;\">0</i>Ei uusia viestejä.");
 	}
@@ -1074,10 +1077,6 @@ $("#profile-page-top-bar-menu-send-msg").click(function(evt) {
 		load_messages_page(session[1], ruid);
 	}
 });
-
-$(".notification > a").click(function() {
-	console.log($(this));
-});	
 
 $("#user-menu-messages > .dropdown-menu > #empty > a").click(function(evt) {
 	evt.preventDefault();
