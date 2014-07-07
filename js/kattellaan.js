@@ -1075,7 +1075,7 @@ $("#profile-page-top-bar-menu-send-msg").click(function(evt) {
 	}
 });
 
-$("#user-menu-messages > .dropdown-menu > ul > a").click(function(evt) {
+$("#user-menu-messages > .dropdown-menu > li > a").click(function(evt) {
 	evt.preventDefault();
 	if($.cookie("session") !== undefined) {
 		var session = window.atob($.cookie("session"));
