@@ -1075,7 +1075,7 @@ $("#profile-page-top-bar-menu-send-msg").click(function(evt) {
 	}
 });
 
-$(".notification").click(function(evt) {
+$(".notification > a").click(function(evt) {
 	evt.preventDefault();
 	console.log($(this));
 	console.log($(this).children("#id"));
