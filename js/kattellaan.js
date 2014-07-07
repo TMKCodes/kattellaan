@@ -764,7 +764,12 @@ function update_unread_messages() {
 		}
 		$("#user-menu-messages > .dropdown-menu").prepend(list);
 		$(".notification > a").click(function() {
-			console.log($(this).html());
+			var suid = $(this).children(".unread_message_id").html();
+			if($.cookie("session") !== undefined) {
+				var session = window.atob($.cookie("session"));
+				session = session.split("||");
+				load_messages_page(session[1], suid);
+			}			
 		});
 	} else {
 		$("#user-menu-messages > .dropdown-menu > #empty > a").html("<i id=\"count\" style=\"display: none;\">0</i>Ei uusia viestejä.");
