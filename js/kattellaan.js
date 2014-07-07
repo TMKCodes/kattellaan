@@ -736,8 +736,14 @@ function set_message_to_seen(mid) {
 
 function update_unread_messages() {
 	var unread = get_unread_messages("false");
+	// "{"success":true,"count":1,"messages":[{"mid":"125","sender_name":"TMKCodes","sender_uid":"214","receiver_name":"aa","receiver_uid":"189","timestamp":"2014-07-07 15:19:50","seen":"0","type":"text","message":"uusi viesti!"}]}"
 	if(unread.count != undefined) {
 		$("#user-menu-messages > .dropdown-menu > #empty > a").html(unread.count + " uutta viestiä."); 
+		var list = "";
+		for(messages in unread.messages) {
+			list += "<li><a href=\"#\"><b id=\"" + messages.sender_uid + "></b>" + messages.sender_name + " lähetti sinulle uuden viestin.</a></li>";
+		}
+		$("#user-menu-messages > .dropdown-menu").prepend(list);
 	} else {
 		$("#user-menu-messages > .dropdown-menu > #empty > a").html("Ei uusia viestejä.");
 	}
