@@ -1077,6 +1077,9 @@ $("#profile-page-top-bar-menu-send-msg").click(function(evt) {
 
 $("#user-menu-messages > .dropdown-menu > li > a").click(function(evt) {
 	evt.preventDefault();
+	console.log($(this));
+	console.log($(this).children("#id"));
+	console.log($(this).children("#id").html());
 	if($.cookie("session") !== undefined) {
 		var session = window.atob($.cookie("session"));
 		session = session.split("||");
