@@ -726,7 +726,7 @@ function set_message_to_seen(mid) {
 		console.log(data);
 		data = $.parseJSON(data);
 		if(data.success == true) {
-			$(".unread_message_id").each(function(i, obj) { if($(obj).html() == mid) { $(obj).parent().parent().remove() } }
+			$(".unread_message_id").each(function(i, obj) { if($(obj).html() == mid) { $(obj).parent().parent().remove(); } });
 			result = true;
 		} else {
 			result = false;
