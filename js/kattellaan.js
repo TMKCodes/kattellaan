@@ -696,20 +696,22 @@ function long_pull_messages(suid) {
 			console.log(data);
 			data = $.parseJSON(data);
 			if(data.success == true) {
-				if(data.message != undefined) {
-					var newMsg = "<div class=\"panel panel-default\" style=\"width: 80%; float: left; text-align: left;\">";
-					newMsg += "<div class=\"panel-body\" style=\"padding: 0px;\">";
-					newMsg += "<p style=\"padding: 5px; margin: 0px;\">" + data.message.message + "</p>";
-					newMsg += "</div></div>";
-					$("#messages-page-conversation-messages").append(newMsg);
-					$("#messages-page-conversation-messages").scrollTop($("#messages-page-conversation-messages")[0].scrollHeight);		
-					set_message_to_seen(data.message.mid);
+				if($("#messages-page").is(":visible")) {	
+					if(data.message != undefined) {
+						var newMsg = "<div class=\"panel panel-default\" style=\"width: 80%; float: left; text-align: left;\">";
+						newMsg += "<div class=\"panel-body\" style=\"padding: 0px;\">";
+						newMsg += "<p style=\"padding: 5px; margin: 0px;\">" + data.message.message + "</p>";
+						newMsg += "</div></div>";
+						$("#messages-page-conversation-messages").append(newMsg);
+						$("#messages-page-conversation-messages").scrollTop($("#messages-page-conversation-messages")[0].scrollHeight);		
+						set_message_to_seen(data.message.mid);
+					}
+					long_pull_messages(suid);
 				}
-				long_pull_messages(suid);
 			}
 		});
 	} else {
-		return true;
+		return false;
 	}
 }
 
