@@ -756,7 +756,7 @@ function update_unread_messages() {
 		$(".unread_message_id").each(function(i, obj) { shown.push($(obj).html()); } );
 		for(var i = 0; i < unread.count; i++) {
 			if(jQuery.inArray(unread.messages[i].mid, shown) == -1) {
-				list += "<li><a href=\"#\">";
+				list += "<li class=\"notification\"><a href=\"#\">";
 				list += "<i class=\"unread_message_id\" style=\"display: none;\">" + unread.messages[i].mid + "</i>";
 				list += "<i class=\"unread_sender_uid\" style=\"display: none;\">" + unread.messages[i].sender_uid + "</i>";
 				list += unread.messages[i].sender_name + " lähetti sinulle uuden viestin.</a></li>";
@@ -1075,7 +1075,7 @@ $("#profile-page-top-bar-menu-send-msg").click(function(evt) {
 	}
 });
 
-$("#user-menu-messages > .dropdown-menu > li > a").click(function(evt) {
+$("#user-menu-messages > .dropdown-menu > .notification > a").click(function(evt) {
 	evt.preventDefault();
 	console.log($(this));
 	console.log($(this).children("#id"));
