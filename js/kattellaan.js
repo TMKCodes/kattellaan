@@ -726,6 +726,7 @@ function set_message_to_seen(mid) {
 		console.log(data);
 		data = $.parseJSON(data);
 		if(data.success == true) {
+			$(".unread_message_id").each(function(i, obj) { if($(obj).html() == mid) { $(obj).parent().parent().remove() } }
 			result = true;
 		} else {
 			result = false;
@@ -741,7 +742,7 @@ function update_unread_messages() {
 		$("#user-menu-messages > .dropdown-menu > #empty > a").html(unread.count + " uutta viestiä."); 
 		var list = "";
 		var shown = new Array();
-		$(".unread_message_id").each(function(i, obj) { shown.push((obj).html()); } );
+		$(".unread_message_id").each(function(i, obj) { shown.push($(obj).html()); } );
 		for(var i = 0; i < unread.count; i++) {
 			if(jQuery.inArray(unread.messages[i].mid, shown) == -1) {
 				list += "<li><a href=\"#\">";
