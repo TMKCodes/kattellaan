@@ -1056,6 +1056,16 @@ $("#profile-page-top-bar-menu-send-msg").click(function(evt) {
 	}
 });
 
+$("#user-menu-messages > .dropdown-menu > ul > a").click(function(evt) {
+	evt.preventDefault();
+	if($.cookie("session") !== undefined) {
+		var session = window.atob($.cookie("session"));
+		session = session.split("||");
+		var suid = $(this).children("b").html();
+		load_messages_page(session[1], suid);
+	}
+});	
+
 $("#user-menu-messages > .dropdown-menu > #empty > a").click(function(evt) {
 	evt.preventDefault();
 	if($.cookie("session") !== undefined) {
