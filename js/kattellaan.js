@@ -740,11 +740,15 @@ function update_unread_messages() {
 	if(unread.count != undefined) {
 		$("#user-menu-messages > .dropdown-menu > #empty > a").html(unread.count + " uutta viestiä."); 
 		var list = "";
+		var shown = new Array();
+		$(".unread_message_id").each(function(i, obj) { shown.push((obj).html()); } );
 		for(var i = 0; i < unread.count; i++) {
-			list += "<li><a href=\"#\">";
-			list += "<i class=\"unread_message_id\" style=\"display: none;\">" + unread.messages[i].mid + "</i>";
-			list += "<i class=\"unread_sender_uid\" style=\"display: none;\">" + unread.messages[i].sender_uid + "</i>";
-			list += unread.messages[i].sender_name + " lähetti sinulle uuden viestin.</a></li>";
+			if(jQuery.inArray(unread.messages[i].mid, shown) == -1) {
+				list += "<li><a href=\"#\">";
+				list += "<i class=\"unread_message_id\" style=\"display: none;\">" + unread.messages[i].mid + "</i>";
+				list += "<i class=\"unread_sender_uid\" style=\"display: none;\">" + unread.messages[i].sender_uid + "</i>";
+				list += unread.messages[i].sender_name + " lähetti sinulle uuden viestin.</a></li>";
+			}
 		}
 		$("#user-menu-messages > .dropdown-menu").prepend(list);
 	} else {
