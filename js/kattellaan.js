@@ -764,7 +764,7 @@ function update_unread_messages() {
 		}
 		$("#user-menu-messages > .dropdown-menu").prepend(list);
 		$(".notification > a").click(function() {
-			var suid = $(this).children(".unread_message_id").html();
+			var suid = parseInt($(this).children(".unread_sender_uid").html());
 			if($.cookie("session") !== undefined) {
 				var session = window.atob($.cookie("session"));
 				session = session.split("||");
