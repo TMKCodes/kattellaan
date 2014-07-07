@@ -742,7 +742,7 @@ function update_unread_messages() {
 		var list = "";
 		for(var i = 0; i < unread.count; i++) {
 			list += "<li><a href=\"#\">";
-			list += "<b id=\"id\" style=\"display: hidden;\">" + unread.messages[i].sender_uid + "</b>
+			list += "<b id=\"id\" style=\"display: hidden;\">" + unread.messages[i].sender_uid + "</b>";
 			list += unread.messages[i].sender_name + " lähetti sinulle uuden viestin.</a></li>";
 		}
 		$("#user-menu-messages > .dropdown-menu").prepend(list);
