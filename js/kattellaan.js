@@ -810,7 +810,7 @@ function load_messages_page(uid, duid) {
 			$("#messages-page-conversation-messages").html("Lähetä uusi viesti.");
 		}
 		var newMsg = "<form method=\"POST\" action=\"php/api.php\" id=\"send-message-to\">" +
-				"<input id=\"message\"type=\"text\" name=\"msg\" />" +
+				"<textarea style=\"width: auto; height: 50px;\" id=\"message\" name=\"msg\"></textarea>" +
 				"<input type=\"hidden\" name=\"receiver\" value=\"" + duid + "\" />" +
 				"<input type=\"hidden\" name=\"sender\" value=\"" + uid + "\" />" +
 				"<input type=\"hidden\" name=\"type\" value=\"text\" />" +
