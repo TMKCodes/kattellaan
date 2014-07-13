@@ -624,10 +624,10 @@ function load_profile_page(uid) {
 }
 
 function resize_profile_picture() {
-	var width = $("#profile-page-main-picture > img").width();
-	width = width + 30;
-	$("#profile-page-main-picture > img").attr("width", width + "px");
-	$("#profile-page-main-picture > img").attr("height", width + "px");
+	var width = $("#profile-page-main-picture").width();
+	width = width;
+	$("#profile-page-main-picture").attr("width", width + "px");
+	$("#profile-page-main-picture").attr("height", width + "px");
 }
 
 function get_discussion(suid, ruid) {
