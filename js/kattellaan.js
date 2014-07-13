@@ -1078,6 +1078,7 @@ $("#logout-button").click(function(evt) {
 
 
 $("#own-profile-button").click(function(evt) {
+	$("#menu").collapse('hide');
 	if($.cookie("session") !== undefined) {
 		var session = window.atob($.cookie("session"));
 		var rsession = session.split("||");
