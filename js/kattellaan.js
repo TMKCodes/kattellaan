@@ -1067,6 +1067,8 @@ $("#user-menu-requests > ul > li").click(function() {
 $("#home-button").click(function(evt) {
 	evt.preventDefault();
 	$("#menu").collapse("hide");
+	$("#navigation-left").children().removeClass("active");
+	$("#user-menu").children().removeClass("active");
 	load_home_page();
 });
 
