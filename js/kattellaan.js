@@ -1053,11 +1053,11 @@ $("#user-menu > li").click(function(evt) {
 });
 
 $("#user-menu-settings").click(function() {
-	$(".navbar-collapse").scrollTop($(".navbar-collapse")[0].scrollHeight);	
+	$("#menu").collapse('hide');
 });
 
 $("#user-menu-messages").click(function() {
-	$(".navbar-collapse").scrollTop($(".navbar-collapse")[0].scrollHeight);
+	$("#menu").collapse('hide');
 });
 
 $("#user-menu-requests > ul > li").click(function() {
