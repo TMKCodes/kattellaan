@@ -1060,8 +1060,8 @@ $("#user-menu-messages").click(function() {
 	$(".navbar-collapse").scrollTop($(".navbar-collapse")[0].scrollHeight);
 });
 
-$("#user-menu-requests").click(function() {
-	$(".navbar-collapse").scrollTop($(".navbar-collapse")[0].scrollHeight);
+$("#user-menu-requests > ul > li").click(function() {
+	$("#menu").collapse('hide');
 });
 
 $("#home-button").click(function(evt) {
