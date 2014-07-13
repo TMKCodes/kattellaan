@@ -832,7 +832,7 @@ function load_messages_page(uid, duid) {
 					newMsg += "<div class=\"pane-body\">";
 					newMsg += "<p style=\"padding: 5px; margin: 0px;\">" + result.message + "</p>";
 					newMsg += "</div></div>";
-					$("#send-message-to > #message").html("");
+					$("#send-message-to > div > #message").val("");
 					if($("#messages-page-conversation-messages").html() == "Lähetä uusi viesti.") {
 						$("#messages-page-conversation-messages").html(newMsg);
 					} else {
