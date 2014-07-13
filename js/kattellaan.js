@@ -1066,7 +1066,7 @@ $("#user-menu-requests > ul > li").click(function() {
 
 $("#home-button").click(function(evt) {
 	evt.preventDefault();
-	// Check if user has already logged, do not show the registeration.
+	$("#menu").collapse("hide");
 	load_home_page();
 });
 
