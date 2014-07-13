@@ -626,8 +626,8 @@ function load_profile_page(uid) {
 function resize_profile_picture() {
 	var width = $("#profile-page-main-picture").width();
 	width = width;
-	$("#profile-page-main-picture").css("width", width + "px");
-	$("#profile-page-main-picture").css("height", width + "px");
+	$("#profile-page-main-picture").attr("width", width + "px");
+	$("#profile-page-main-picture").attr("height", width + "px");
 }
 
 function get_discussion(suid, ruid) {
