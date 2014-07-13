@@ -618,6 +618,16 @@ function load_profile_page(uid) {
 	} else {
 		load_page("profile-page");
 	}
+	$(window).resize(function() {
+		resize_profile_picture();
+	});
+}
+
+function resize_profile_picture() {
+	var width = $("#profile-page-main-picture > img").width();
+	width = width + 30;
+	$("#profile-page-main-picture > img").attr("width", width + "px");
+	$("#profile-page-main-picture > img").attr("height", width + "px");
 }
 
 function get_discussion(suid, ruid) {
