@@ -1052,6 +1052,18 @@ $("#user-menu > li").click(function(evt) {
 	$(this).addClass("active");
 });
 
+$("#user-menu-settings").click(function() {
+	$(".navbar-collapse").scrollTop($(".navbar-collapse")[0].scrollHeight);	
+});
+
+$("#user-menu-messages").click(function() {
+	$(".navbar-collapse").scrollTop($(".navbar-collapse")[0].scrollHeight);
+});
+
+$("#user-menu-requests").click(function() {
+	$(".navbar-collapse").scrollTop($(".navbar-collapse")[0].scrollHeight);
+});
+
 $("#home-button").click(function(evt) {
 	evt.preventDefault();
 	// Check if user has already logged, do not show the registeration.
