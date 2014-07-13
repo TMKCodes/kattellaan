@@ -884,6 +884,10 @@ function load_messages_page(uid, duid) {
 	}
 }
 
+function load_search_page() {
+	console.log("search page opened.");
+}
+
 window.onpopstate = function(event) {
 	$("body > .container").hide();
 	var page = get_url_parameter("page");
@@ -1070,6 +1074,12 @@ $("#home-button").click(function(evt) {
 	$("#navigation-left").children().removeClass("active");
 	$("#user-menu").children().removeClass("active");
 	load_home_page();
+});
+
+$("#search").click(function(evt) {
+	evt.preventDefault();
+	$("#menu").collapse("hide");
+	load_search_page();
 });
 
 $("#logout-button").click(function(evt) {
