@@ -884,8 +884,14 @@ function load_messages_page(uid, duid) {
 	}
 }
 
-function load_search_page() {
+function load_search_page(ssid) {
 	console.log("search page opened.");
+
+	if(ssid != 0) {
+		load_custom_page("search-page", "&ssid=" + ssid);
+	} else {
+		load_page("search-page");
+	};
 }
 
 window.onpopstate = function(event) {
@@ -929,6 +935,15 @@ $("document").ready(function() {
 				}
 			} else {
 				load_home_page();
+			}
+		} else if(page === "search-page") {
+			if($.cookie("session") != undefined) {
+				var ssid = get_url_parameter("ssid");
+				if(ssid != undefined) {
+					load_messages_page(ssid);
+				} else {
+					load_messages_page(0);
+				}	
 			}
 		} else {
 			load_page(page);
@@ -1079,7 +1094,7 @@ $("#home-button").click(function(evt) {
 $("#search").click(function(evt) {
 	evt.preventDefault();
 	$("#menu").collapse("hide");
-	load_search_page();
+	load_search_page(0);
 });
 
 $("#logout-button").click(function(evt) {
