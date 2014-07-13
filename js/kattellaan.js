@@ -1052,11 +1052,11 @@ $("#user-menu > li").click(function(evt) {
 	$(this).addClass("active");
 });
 
-$("#user-menu-settings").click(function() {
+$("#user-menu-settings > ul > li").click(function() {
 	$("#menu").collapse('hide');
 });
 
-$("#user-menu-messages").click(function() {
+$("#user-menu-messages > ul > li").click(function() {
 	$("#menu").collapse('hide');
 });
 
