@@ -1,3 +1,17 @@
 .btn-group {
 	padding-left: 0px;
 }
+
+#profile-page-top-bar-username {
+    padding-top: 0px;
+    padding-bottom: 5px;
+}
+
+#profile-page-top-bar-menu {
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+#profile-page-top-bar-menu > button {
+    margin-bottom: 10px;
+}
