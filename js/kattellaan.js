@@ -825,7 +825,7 @@ function load_messages_page(uid, duid) {
 				"<input type=\"hidden\" name=\"sender\" value=\"" + uid + "\" />" +
 				"<input type=\"hidden\" name=\"type\" value=\"text\" />" +
 				"<input type=\"hidden\" name=\"call\" value=\"send_message\" />" +
-				"<input type=\"submit\" value=\"Lähetä\" class=\"button button-sucess\" style=\"float: left;\" />" +
+				"<input type=\"submit\" value=\"Lähetä\" class=\"btn btn-success\" style=\"text-align: right;\" />" +
 				"</form>";
 		$("#messages-page-conversation-new-message").html(newMsg);	
 		$("#send-message-to").submit(function(evt) {
