@@ -821,11 +821,11 @@ function load_messages_page(uid, duid) {
 		}
 		var newMsg = "<form method=\"POST\" action=\"php/api.php\" id=\"send-message-to\">" +
 				"<div><textarea style=\"width: 100%;\" id=\"message\" name=\"msg\"></textarea></div>" +
-				"<input type=\"hidden\" name=\"receiver\" value=\"" + duid + "\" />" +
+				"<div style=\"text-align: right;\"><input type=\"hidden\" name=\"receiver\" value=\"" + duid + "\" />" +
 				"<input type=\"hidden\" name=\"sender\" value=\"" + uid + "\" />" +
 				"<input type=\"hidden\" name=\"type\" value=\"text\" />" +
 				"<input type=\"hidden\" name=\"call\" value=\"send_message\" />" +
-				"<input type=\"submit\" value=\"Lähetä\" class=\"btn btn-success\" style=\"text-align: right;\" />" +
+				"<input type=\"submit\" value=\"Lähetä\" class=\"btn btn-success\" /></div>" +
 				"</form>";
 		$("#messages-page-conversation-new-message").html(newMsg);	
 		$("#send-message-to").submit(function(evt) {
