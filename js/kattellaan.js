@@ -815,12 +815,6 @@ function load_messages_page(uid, duid) {
 				}
 			}
 			$("#messages-page-conversation-messages").html(messages);
-
-		} else {
-			$("#messages-page-conversation-messages").html("Viestit.");
-			$("#messages-page-conversation-new-messages").html("Lähetä uusi viesti.");
-		}
-		if(discussion != undefined) {
 			var newMsg = "<form method=\"POST\" action=\"php/api.php\" id=\"send-message-to\">" +
 					"<div><textarea style=\"width: 100%;\" id=\"message\" name=\"msg\"></textarea></div>" +
 					"<div style=\"text-align: right;\"><input type=\"hidden\" name=\"receiver\" value=\"" + duid + "\" />" +
@@ -856,6 +850,8 @@ function load_messages_page(uid, duid) {
 					}
 				});	
 			});
+		} else {
+			console.log("fuck!");
 		}
 	} else {
 
