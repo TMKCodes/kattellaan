@@ -1138,7 +1138,7 @@ function toggle_search_inputs(btn, which) {
 		$(btn).html(text.replace("Näytä", "Piiloita"));
 		$(which).hide();
 	}
-})
+}
 
 $("#toggle-basic-information-inputs-button").click(function(evt) {
 	evt.preventDefault();
