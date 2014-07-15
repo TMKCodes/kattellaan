@@ -90,7 +90,7 @@ class distance {
 			$statement->bind("i", $this->end);
 			$statement->bind("i", $this->start);
 		} else {
-			throw new Exception("No identifying data specified. Give distance identifier or position identifiers."); 
+			throw new Exception("No identifying data specified. Give distance identifier or position identifiers. Query: " . $statement->get()); 
 		}
 		$result = $statement->execute();
 		if($result->success() == true) {
@@ -148,14 +148,6 @@ class distance {
 	function get_uncalculated() {
 		$count = new position($this->database);
 		$count = $count->amount();
-		/*if($count >= 2) {
-			for($start = 1; $start <= $count; $start++) {
-				for($end = 1; $end <= $count; $end++) {
-					$this->start = $start
-					
-				}
-			}
-		}*/
 		if($count >= 2) {
 			for($start = 1; $start <= $count; $start++) {
 				for($end = 1; $end <= $count; $end++) {
