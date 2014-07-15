@@ -146,28 +146,24 @@ class distance {
 	}
 	
 	function get_uncalculated() {
-		$count = new position($this->database);
-		$count = $count->amount();
-		if($count >= 2) {
-			for($start = 1; $start <= $count; $start++) {
-				for($end = 1; $end <= $count; $end++) {
-					if($start == $end) continue;
-					$this->end = $end;
-					$this->start = $start;
-					unset($this->identifier);
-					if($this->select() == false) {
-						$startp = new position($this->database);
-						$endp = new position($this->database);
-						$startp->set_identifier($start);
-						$endp->set_identifier($end);
-						$startp->select();
-						$endp->select();
-						return array("start" => $startp->get(), "end" => $endp->get());
-					} 
+		$pos = new position($this->database);
+		$positions = $pos->select_all();
+		for($i = 0; $i < count($positions); $i++) {
+			for($x = 0; $x < count($positions); $x++) {
+				if($positions[$i] == $position[$x]) continue;
+				$this->start = $positions[$i]['id'];
+				$this->end = $positions[$x]['id'];
+				unset($this->identifier);
+				if($this->select() == false) {
+					$startp = new position($this->database);
+                                        $endp = new position($this->database);
+                                        $startp->set_identifier($positions[$i]['id']);
+                                        $endp->set_identifier($positions[$x]['id']);
+                                        $startp->select();
+                                        $endp->select();
+                                        return array("start" => $startp->get(), "end" => $endp->get());
 				}
 			}
-		} else {
-			throw new Exception("Not enough positions in database to do calculations.");
 		}
 		return false;
 	}

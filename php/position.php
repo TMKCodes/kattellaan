@@ -67,6 +67,21 @@ class position {
 		return false;
 	}
 
+
+	public function select_all() {
+		$statement = $this->database->prepare("SELECT * FROM `position`;");
+		$result = $statement->execute();
+		if($result->success() == true) {
+			if($rows = $result->rows() > 0) {
+				$data = array();
+				for($i = 0; $i < $rows; $i++) {
+					array_push($data, $result->fetch_array(RASSOC));
+				}
+				return $data;
+			}
+		}
+	}
+
 	public function select() {
 		if(!empty($this->identifier)) {
 			$statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ?;");
