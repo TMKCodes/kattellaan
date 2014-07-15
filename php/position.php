@@ -72,10 +72,10 @@ class position {
 		$statement = $this->database->prepare("SELECT * FROM `position`;");
 		$result = $statement->execute();
 		if($result->success() == true) {
-			if($rows = $result->rows() > 0) {
+			if($result->rows() > 0) {
 				$data = array();
-				printf("Rows in query result: %s\r\n", $rows);
-				for($i = 0; $i < $rows; $i++) {
+				printf("Rows in query result: %s\r\n", $result->rows());
+				for($i = 0; $i < $result->rows(); $i++) {
 					array_push($data, $result->fetch_array(RASSOC));
 				}
 				return $data;
