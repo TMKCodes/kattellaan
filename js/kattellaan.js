@@ -1124,6 +1124,23 @@ $("#logout-button").click(function(evt) {
 });
 
 
+$("#toggle-basic-information-inputs-button").click(function(evt) {
+	evt.preventDefault();
+	if($(this).children("i").hasClass("glyphicon-arrow-down")) {
+		$(this).children("i").removeClass("glyphicon-arrow-down");
+		$(this).children("i").addClass("glyphicon-arrow-up");
+		var text = $(this).html();
+		$(this).html(text.replace("Piiloita", "Näytä"));
+		$("#basic-information-inputs").show();
+	} else {
+		$(this).children("i").removeClass("glyphicon-arrow-up");
+		$(this).children("i").addClass("glyphicon-arrow-down");
+		var text = $(this).html();
+		$(this).html(text.replace("Näytä", "Piiloita"));
+		$("#basic-information-inputs").hide();
+	}
+});
+
 $("#own-profile-button").click(function(evt) {
 	hide_menu_collapse();
 	if($.cookie("session") !== undefined) {
