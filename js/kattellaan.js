@@ -817,7 +817,8 @@ function load_messages_page(uid, duid) {
 			$("#messages-page-conversation-messages").html(messages);
 
 		} else {
-			$("#messages-page-conversation-messages").html("Lähetä uusi viesti.");
+			$("#messages-page-conversation-messages").html("Viestit.");
+			$("#messages-page-conversation-new-messages").html("Lähetä uusi viesti.");
 		}
 		if(discussion != undefined) {
 			var newMsg = "<form method=\"POST\" action=\"php/api.php\" id=\"send-message-to\">" +
