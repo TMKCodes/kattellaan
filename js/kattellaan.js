@@ -953,9 +953,9 @@ $("document").ready(function() {
 			if($.cookie("session") != undefined) {
 				var ssid = get_url_parameter("ssid");
 				if(ssid != undefined) {
-					load_messages_page(ssid);
+					load_search_page(ssid);
 				} else {
-					load_messages_page(0);
+					load_search_page(0);
 				}	
 			}
 		} else {
