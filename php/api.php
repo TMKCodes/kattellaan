@@ -101,10 +101,14 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "get_username") {
 	 	try {
-			$account = new account($database);
-			$account->set_identifier($_POST['uid']);
-			$account->select();
-			printf('{ "success": true, "username": "%s" }', $account->get_username());
+			if(!empty($_POST['uid']) {
+				$account = new account($database);
+				$account->set_identifier($_POST['uid']);
+				$account->select();
+				printf('{ "success": true, "username": "%s" }', $account->get_username());
+			} else {
+				printf('{ "success": false, "error": "user identifier was empty" }');
+			}
 		} catch (Exception $e) {
 			printf('{ "success": false, "error": "%s" }', $e->getMessage());
 		}
