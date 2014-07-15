@@ -819,41 +819,43 @@ function load_messages_page(uid, duid) {
 		} else {
 			$("#messages-page-conversation-messages").html("Lähetä uusi viesti.");
 		}
-		var newMsg = "<form method=\"POST\" action=\"php/api.php\" id=\"send-message-to\">" +
-				"<div><textarea style=\"width: 100%;\" id=\"message\" name=\"msg\"></textarea></div>" +
-				"<div style=\"text-align: right;\"><input type=\"hidden\" name=\"receiver\" value=\"" + duid + "\" />" +
-				"<input type=\"hidden\" name=\"sender\" value=\"" + uid + "\" />" +
-				"<input type=\"hidden\" name=\"type\" value=\"text\" />" +
-				"<input type=\"hidden\" name=\"call\" value=\"send_message\" />" +
-				"<input type=\"submit\" value=\"Lähetä\" class=\"btn btn-success\" /></div>" +
-				"</form>";
-		$("#messages-page-conversation-new-message").html(newMsg);	
-		$("#send-message-to").submit(function(evt) {
-			evt.preventDefault();
-			$.ajax({
-				type: $(this).attr('method'),
-				url: $(this).attr('action'),
-				data: $(this).serialize()
-			}).done(function(data) {
-				console.log(data);
-				var result = $.parseJSON(data);
-				if(result.success === true) {
-					var newMsg = "<div class=\"panel panel-success\" style=\"width: 80%; float: right; text-align: right;\">";
-					newMsg += "<div class=\"pane-body\">";
-					newMsg += "<p style=\"padding: 5px; margin: 0px;\">" + result.message + "</p>";
-					newMsg += "</div></div>";
-					$("#send-message-to > div > #message").val("");
-					if($("#messages-page-conversation-messages").html() == "Lähetä uusi viesti.") {
-						$("#messages-page-conversation-messages").html(newMsg);
+		if(discussion != undefined) {
+			var newMsg = "<form method=\"POST\" action=\"php/api.php\" id=\"send-message-to\">" +
+					"<div><textarea style=\"width: 100%;\" id=\"message\" name=\"msg\"></textarea></div>" +
+					"<div style=\"text-align: right;\"><input type=\"hidden\" name=\"receiver\" value=\"" + duid + "\" />" +
+					"<input type=\"hidden\" name=\"sender\" value=\"" + uid + "\" />" +
+					"<input type=\"hidden\" name=\"type\" value=\"text\" />" +
+					"<input type=\"hidden\" name=\"call\" value=\"send_message\" />" +
+					"<input type=\"submit\" value=\"Lähetä\" class=\"btn btn-success\" /></div>" +
+					"</form>";
+			$("#messages-page-conversation-new-message").html(newMsg);	
+			$("#send-message-to").submit(function(evt) {
+				evt.preventDefault();
+				$.ajax({
+					type: $(this).attr('method'),
+					url: $(this).attr('action'),
+					data: $(this).serialize()
+				}).done(function(data) {
+					console.log(data);
+					var result = $.parseJSON(data);
+					if(result.success === true) {
+						var newMsg = "<div class=\"panel panel-success\" style=\"width: 80%; float: right; text-align: right;\">";
+						newMsg += "<div class=\"pane-body\">";
+						newMsg += "<p style=\"padding: 5px; margin: 0px;\">" + result.message + "</p>";
+						newMsg += "</div></div>";
+						$("#send-message-to > div > #message").val("");
+						if($("#messages-page-conversation-messages").html() == "Lähetä uusi viesti.") {
+							$("#messages-page-conversation-messages").html(newMsg);
+						} else {
+							$("#messages-page-conversation-messages").append(newMsg);
+						}
+						$("#messages-page-conversation-messages").scrollTop($("#messages-page-conversation-messages")[0].scrollHeight);
 					} else {
-						$("#messages-page-conversation-messages").append(newMsg);
+						console.log(result.error);
 					}
-					$("#messages-page-conversation-messages").scrollTop($("#messages-page-conversation-messages")[0].scrollHeight);
-				} else {
-					console.log(result.error);
-				}
-			});	
-		});
+				});	
+			});
+		}
 	} else {
 
 	}
