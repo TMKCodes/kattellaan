@@ -826,6 +826,8 @@ function load_messages_page(uid, duid) {
 			$("#messages-page-conversation-new-message").html(newMsg);	
 			$("#send-message-to").submit(function(evt) {
 				evt.preventDefault();
+				var message = $("#send-message-to > div > #message").val();
+				$("#send-message-to > div > #message").val(message.replace("\n", "<br />"));
 				$.ajax({
 					type: $(this).attr('method'),
 					url: $(this).attr('action'),
