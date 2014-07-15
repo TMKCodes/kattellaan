@@ -854,7 +854,7 @@ function load_messages_page(uid, duid) {
 			console.log("fuck!");
 		}
 	} else {
-
+		$("#messages-page-conversation-new-message").html("Lähetä uusi viesti.");
 	}
 	var discussions = get_discussions(uid);
 	if(discussions == false) {
