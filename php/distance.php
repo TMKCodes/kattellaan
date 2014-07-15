@@ -90,7 +90,7 @@ class distance {
 			$statement->bind("i", $this->end);
 			$statement->bind("i", $this->start);
 		} else {
-			throw new Exception("No identifying data specified. Give distance identifier or position identifiers. Query: " . $statement->get()); 
+			throw new Exception("No identifying data specified. Give distance identifier or position identifiers. identifier: " . $this->identifier . " start: " . $this->start . " end: " . $this->end); 
 		}
 		$result = $statement->execute();
 		if($result->success() == true) {
