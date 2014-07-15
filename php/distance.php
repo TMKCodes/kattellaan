@@ -150,6 +150,7 @@ class distance {
 		$positions = $pos->select_all();
 		for($i = 0; $i < count($positions); $i++) {
 			for($x = 0; $x < count($positions); $x++) {
+				printf("positions[$i]['id'] = %s\r\n", $positions[$i]['id']);
 				if($positions[$i]['id'] == $positions[$x]['id']) continue;
 				$this->start = $positions[$i]['id'];
 				$this->end = $positions[$x]['id'];
