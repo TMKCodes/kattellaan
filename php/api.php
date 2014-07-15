@@ -101,7 +101,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "get_username") {
 	 	try {
-			if(!empty($_POST['uid']) {
+			if(!empty($_POST['uid'])) {
 				$account = new account($database);
 				$account->set_identifier($_POST['uid']);
 				$account->select();
