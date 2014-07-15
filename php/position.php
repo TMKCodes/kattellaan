@@ -74,6 +74,7 @@ class position {
 		if($result->success() == true) {
 			if($rows = $result->rows() > 0) {
 				$data = array();
+				printf("Rows in query result: %s\r\n", $rows);
 				for($i = 0; $i < $rows; $i++) {
 					array_push($data, $result->fetch_array(RASSOC));
 				}
