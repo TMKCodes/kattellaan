@@ -816,8 +816,10 @@ function load_messages_page(uid, duid) {
 			}
 			$("#messages-page-conversation-messages").html(messages);
 			var newMsg = "<form method=\"POST\" action=\"php/api.php\" id=\"send-message-to\">" +
-					"<div><textarea style=\"width: 100%;\" id=\"message\" name=\"msg\"></textarea></div>" +
-					"<div style=\"text-align: right;\"><input type=\"hidden\" name=\"receiver\" value=\"" + duid + "\" />" +
+					"<div><textarea style=\"width: 100%;\" id=\"message\" ></textarea></div>" +
+					"<div style=\"text-align: right;\">" +
+					"<input type=\"hidden\" name=\"msg\" id=\"real-message\" value=\"\" />" +
+					"<input type=\"hidden\" name=\"receiver\" value=\"" + duid + "\" />" +
 					"<input type=\"hidden\" name=\"sender\" value=\"" + uid + "\" />" +
 					"<input type=\"hidden\" name=\"type\" value=\"text\" />" +
 					"<input type=\"hidden\" name=\"call\" value=\"send_message\" />" +
@@ -827,7 +829,7 @@ function load_messages_page(uid, duid) {
 			$("#send-message-to").submit(function(evt) {
 				evt.preventDefault();
 				var message = $("#send-message-to > div > #message").val();
-				$("#send-message-to > div > #message").val(message.replace(/\n/g, "<br />"));
+				$("#send-message-to > div > #real-message").val(message.replace(/\n/g, "<br />"));
 				$.ajax({
 					type: $(this).attr('method'),
 					url: $(this).attr('action'),
