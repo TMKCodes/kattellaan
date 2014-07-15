@@ -1124,21 +1124,40 @@ $("#logout-button").click(function(evt) {
 });
 
 
+function toggle_search_inputs(btn, which) {
+	if($(btn).children("i").hasClass("glyphicon-arrow-down")) {
+		$(btn).children("i").removeClass("glyphicon-arrow-down");
+		$(btn).children("i").addClass("glyphicon-arrow-up");
+		var text = $(btn).html();
+		$(btn).html(text.replace("Piiloita", "Näytä"));
+		$(which).show();
+	} else {
+		$(btn).children("i").removeClass("glyphicon-arrow-up");
+		$(btn).children("i").addClass("glyphicon-arrow-down");
+		var text = $(btn).html();
+		$(btn).html(text.replace("Näytä", "Piiloita"));
+		$(which).hide();
+	}
+})
+
 $("#toggle-basic-information-inputs-button").click(function(evt) {
 	evt.preventDefault();
-	if($(this).children("i").hasClass("glyphicon-arrow-down")) {
-		$(this).children("i").removeClass("glyphicon-arrow-down");
-		$(this).children("i").addClass("glyphicon-arrow-up");
-		var text = $(this).html();
-		$(this).html(text.replace("Piiloita", "Näytä"));
-		$("#basic-information-inputs").show();
-	} else {
-		$(this).children("i").removeClass("glyphicon-arrow-up");
-		$(this).children("i").addClass("glyphicon-arrow-down");
-		var text = $(this).html();
-		$(this).html(text.replace("Näytä", "Piiloita"));
-		$("#basic-information-inputs").hide();
-	}
+	toggle_search_inputs(this, "#basic-information-inputs");
+});
+
+$("#toggle-outlook-inputs-button").click(function(evt) {
+	evt.preventDefault();
+	toggle_search_inputs(this, "#outlook-inputs");
+});
+
+$("#toggle-background-inputs-button").click(function(evt) {
+	evt.preventDefault();
+	toggle_search_inputs(this, "#background-inputs");
+});
+
+$("#toggle-lifestyle-inputs-button").click(function(evt) {
+	evt.preventDefault();
+	toggle_search_inputs(this, "#lifestyle-inputs");
 });
 
 $("#own-profile-button").click(function(evt) {
