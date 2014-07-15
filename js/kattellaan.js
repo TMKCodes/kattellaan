@@ -1094,7 +1094,9 @@ $("#user-menu-requests > ul > li").click(function() {
 
 $("#home-button").click(function(evt) {
 	evt.preventDefault();
-	$("#menu").collapse("hide");
+	if($(window).width() < 1200) {
+		$("#menu").collapse("hide");
+	}
 	$("#navigation-left").children().removeClass("active");
 	$("#user-menu").children().removeClass("active");
 	load_home_page();
@@ -1102,7 +1104,9 @@ $("#home-button").click(function(evt) {
 
 $("#search").click(function(evt) {
 	evt.preventDefault();
-	$("#menu").collapse("hide");
+	if($(window).width() < 1200) {
+		$("#menu").collapse("hide");
+	}
 	load_search_page(0);
 });
 
