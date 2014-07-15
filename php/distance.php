@@ -148,7 +148,6 @@ class distance {
 	function get_uncalculated() {
 		$pos = new position($this->database);
 		$positions = $pos->select_all();
-		printf("count of positions: %s\r\n", count($positions));
 		for($i = 0; $i < count($positions); $i++) {
 			for($x = 0; $x < count($positions); $x++) {
 				if($i == $x) { continue; }
