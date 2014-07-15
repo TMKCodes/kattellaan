@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 ignore_user_abort(false);
-ini_set('max_execution_time', 300);
+ini_set('max_execution_time', 120);
 
 require_once("dbwrapper/db.php");
 require_once("account.php");
