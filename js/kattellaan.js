@@ -1066,6 +1066,12 @@ $("document").ready(function() {
 	});
 });
 
+function hide_menu_collapse() {
+	if($(window).width() < 1200) {
+		$("#menu").collapse("hide");
+	}
+}
+
 $("#navigation-left > li").click(function(evt) {
 	evt.preventDefault();
 	$("#navigation-left").children().removeClass("active");
@@ -1081,22 +1087,20 @@ $("#user-menu > li").click(function(evt) {
 });
 
 $("#user-menu-settings > ul > li").click(function() {
-	$("#menu").collapse('hide');
+	hide_menu_collapse();
 });
 
 $("#user-menu-messages > ul > li").click(function() {
-	$("#menu").collapse('hide');
+	hide_menu_collapse();
 });
 
 $("#user-menu-requests > ul > li").click(function() {
-	$("#menu").collapse('hide');
+	hide_menu_collapse();
 });
 
 $("#home-button").click(function(evt) {
 	evt.preventDefault();
-	if($(window).width() < 1200) {
-		$("#menu").collapse("hide");
-	}
+	hide_menu_collapse();
 	$("#navigation-left").children().removeClass("active");
 	$("#user-menu").children().removeClass("active");
 	load_home_page();
@@ -1104,14 +1108,13 @@ $("#home-button").click(function(evt) {
 
 $("#search").click(function(evt) {
 	evt.preventDefault();
-	if($(window).width() < 1200) {
-		$("#menu").collapse("hide");
-	}
+	hide_menu_collapse();
 	load_search_page(0);
 });
 
 $("#logout-button").click(function(evt) {
 	evt.preventDefault();
+	hide_menu_collapse();
 	close_session();
 	load_home_page();
 });
