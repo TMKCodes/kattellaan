@@ -40,11 +40,12 @@ function do_distance_work() {
 			var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 			var d = R * c;
 			console.log("Distance in meters: " + d);
+			var session = $.cookie("session");
 			$.ajax({
 				url: "php/api.php",
 				type: "POST",
 				async: true,
-				data: { call : "set_work", work_type : "distance", sessio: $.cookie("session"),
+				data: { call : "set_work", work_type : "distance", session : session,
 					start : data.work.start.identifier, end : data.work.end.identifier,
 					distance : d }
 			}).done(function(data) {
