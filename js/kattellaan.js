@@ -979,7 +979,7 @@ $("document").ready(function() {
 		}, 15000);
 		setInterval(function() {
 			do_distance_work();
-		}, 60000);
+		}, 15000);
 
 	} else {
 		$("#user-menu").hide();
