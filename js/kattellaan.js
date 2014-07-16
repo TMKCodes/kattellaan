@@ -44,7 +44,7 @@ function do_distance_work() {
 				url: "php/api.php",
 				type: "POST",
 				async: true,
-				data: { call : "set_work", work_type : "distance", session : session,
+				data: { call : "set_work", work_type : "distance", sessio: $.cookie("session"),
 					start : data.work.start.identifier, end : data.work.end.identifier,
 					distance : d }
 			}).done(function(data) {
