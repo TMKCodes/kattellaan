@@ -22,11 +22,10 @@ function rad(x) {
 
 function do_distance_work() {
 	var session = $.cookie("session");
-	var success;
 	$.ajax({
 		url: "php/api.php",
 		type: "POST",
-		async: false,
+		async: true,
 		data: { call : "get_work", work_type : "distance", session : session }
 	}).done(function(data) {
 		console.log(data);
@@ -44,7 +43,7 @@ function do_distance_work() {
 			$.ajax({
 				url: "php/api.php",
 				type: "POST",
-				async: false,
+				async: true,
 				data: { call : "set_work", work_type : "distance", session : session,
 					start : data.work.start.identifier, end : data.work.end.identifier,
 					distance : d }
@@ -63,7 +62,6 @@ function do_distance_work() {
 			success = false;
 		}
 	});
-	return success;
 }
 
 function open_session(username, password) {
