@@ -977,9 +977,11 @@ $("document").ready(function() {
 		update_unread_messages();
 		setInterval(function() {
 			update_session();
-			do_distance_work();
 			update_unread_messages();
 		}, 15000);
+		setInterval(function() {
+			do_distance_work();
+		}, 60000);
 
 	} else {
 		$("#user-menu").hide();
