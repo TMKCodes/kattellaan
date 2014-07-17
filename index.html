@@ -197,6 +197,26 @@
 											Sukupuolettomia
 										</label>
 									</div>
+									<select class="multiselect form-control" name="gender" multiple="multiple">
+										<option value="men">Miehiä</option>
+										<option value="women">Naisia</option>
+										<option value="transmen">Transumiehiä</option>
+										<option value="transwomen">Transunaisia</option>
+										<option value="genderless">Sukupuolettomia</option>
+									</select>
+									<div class="btn-group">
+                                						<label class="btn btn-default" for="register-select-looking-for-input">Kiikarissa:</label>
+                                							<select id="register-select-looking-for-input" class="multiselect form-control" name="looking-for" multiple="multiple">
+                                       								<option value="friends">Ystävyys</option>
+                                        							<option value="love">Rakkaus</option>
+							                                        <option value="date">Tapaaminen</option>
+							                                        <option value="sex">Seksi</option>
+							                                        <option value="other">Jotain muuta</option>
+							                                        <option value="none">En halua kertoa</option>
+							                                </select>
+						                                <input type="submit" id="register-select-looking-for-done-button" class="btn btn-default" value="Jatka" />
+							                </div>
+
 								</div>
 							</div>
 							<button id="toggle-outlook-inputs-button" class="btn btn-success btn-block" style="text-align: left; padding-left: 10px; margin-bottom: 10px;">
