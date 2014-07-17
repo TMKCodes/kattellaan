@@ -709,6 +709,8 @@ function long_pull_messages(suid) {
 					if(data.message != undefined) {
 						var newMsg = "<div class=\"panel panel-default\" style=\"width: 80%; float: left; text-align: left;\">";
 						newMsg += "<div class=\"panel-body\" style=\"padding: 0px;\">";
+						var username = get_username(suid);
+						newMsg += "<p style=\"padding: 5px; margin: 0px;\"><b>" + username + ":</b></p>";
 						newMsg += "<p style=\"padding: 5px; margin: 0px;\">" + data.message.message + "</p>";
 						newMsg += "</div></div>";
 						$("#messages-page-conversation-messages").append(newMsg);
@@ -808,7 +810,7 @@ function load_messages_page(uid, duid) {
 						}
 					}
 					messages += "<div class\"panel-body\">";
-					messages += "<p style=\"padding: 5px; margin: 0px;\">" + discussion[i].sender_name + "</p>";
+					messages += "<p style=\"padding: 5px; margin: 0px;\"><b>" + discussion[i].sender_name + ":</b></p>";
 					messages += "<p style=\"padding: 5px; margin: 0px;\">" + discussion[i].message + "</p>";
 					messages += "</div></div>";
 				}
@@ -839,6 +841,8 @@ function load_messages_page(uid, duid) {
 					if(result.success === true) {
 						var newMsg = "<div class=\"panel panel-success\" style=\"width: 80%; float: right; text-align: right;\">";
 						newMsg += "<div class=\"pane-body\">";
+						var username = get_username(uid);
+						newMsg += "<p style=\"padding: 5px; margin: 0px;\"><b>" + username + ":</b></p>";
 						newMsg += "<p style=\"padding: 5px; margin: 0px;\">" + result.message + "</p>";
 						newMsg += "</div></div>";
 						$("#send-message-to > div > #message").val("");
