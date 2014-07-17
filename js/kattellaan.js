@@ -799,7 +799,6 @@ function load_messages_page(uid, duid) {
 			var messages = "";
 			for(var i = 0; i < discussion.length; i++) {
 				if(discussion[i].type == "text") {
-
 					if(discussion[i].sender_uid == uid) {
 						messages += "<div class=\"panel panel-success\" style=\"width: 80%; float: right; text-align: right;\">";
 					} else if(discussion[i].sender_uid == duid) {
@@ -809,6 +808,7 @@ function load_messages_page(uid, duid) {
 						}
 					}
 					messages += "<div class\"panel-body\">";
+					messages += "<p style=\"padding: 5px; margin: 0px;\">" + discussion[i].sender_name + "</p>";
 					messages += "<p style=\"padding: 5px; margin: 0px;\">" + discussion[i].message + "</p>";
 					messages += "</div></div>";
 				}
