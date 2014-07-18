@@ -633,7 +633,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				if(count($_POST['gender']) > 1) {
 					$query .= " AND `gender` = '" . $_POST['gender'][0] . "'";
 					for($i = 1; $i < count($_POST['gender']); $i++) {
-						$query += " OR `gender` = '" . $_POST['gender'][$i] . "'";
+						$query .= " OR `gender` = '" . $_POST['gender'][$i] . "'";
 					}
 				} else {
 					$query .= " AND `gender` = '" . $_POST['gender'] ."'";		
