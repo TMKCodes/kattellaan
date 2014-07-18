@@ -1085,6 +1085,7 @@ function hide_menu_collapse() {
 $("#search-submit").click(function(evt) {
 	evt.preventDefault();
 	var form_data = $(this).serialize();
+	console.log(form_data);
 	if(check_session() === true) {
 		form_data = form_data + "&call=search";
 	}
