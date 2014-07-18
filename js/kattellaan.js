@@ -1096,7 +1096,7 @@ $("#search-submit").click(function(evt) {
         }).done(function(data) {
 		console.log(data);
 	});
-}
+});
 
 $("#navigation-left > li").click(function(evt) {
 	evt.preventDefault();
