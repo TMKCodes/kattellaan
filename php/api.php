@@ -605,78 +605,14 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		} else {
 			printf('{ "success": false, "error": "Session does not exist." }');
 		}
-	} else if(!empty($_POST['call']) && $_POST['call'] == "search_users") {
+	} else if(!empty($_POST['call']) && $_POST['call'] == "search") {
 		if(!empty($_COOKIE['session'])) {
 			$session = new session($database, "sha512");
 			if($session->confirm($_COOKIE['session']) == false) {
 				printf('{ "success": false, "error": "Failed to confirm session." }');
 				die;
 			}
-			$search_results = array();
-			if(!empty($_POST['min_age']) && !empty($_POST['max_age'])) {
-				$profiles = select_by_age($_POST['min_age'], $_POST['max_age']);
-				if($profiles != false) {
-					foreach($profiles as $profile) {
-						array_push($search_results, $profile->get());
-					}
-				} else {
-					printf('{ "success": error, "error": "No results found." }');
-				}
-			} else if(!empty($_POST['max_distance'])) {
-				try {
-					$search_results_i = count($search_results);
-					$my_profile = new profile($database);
-					$my_profile->select($_POST['my_uid']);
-					$my_latlng = $my_profile->strip_latlng($my_profile->get_latlng());
-					$my_position = new position($database);
-					$my_position->set_latitude($my_latlng[0]);
-					$my_position->set_longitude($my_latlng[1]);
-					$my_position->select();
-					for($i = 0; $i <= $search_results_i; $i++) {
-						$his_latlng = $my_profile->strip_latlng($search_results[$i]['latlng']);
-						$his_position = new position($database);
-						$his_position->set_latitude($his_latlng[0]);
-						$his_position->set_longitude($his_latlng[1]);
-						$his_position->select();
-						$position = new position($database);
-						$position->set_start($my_position->get_identifier());
-						$position->set_end($his_position->get_identifier());
-						$position->select();
-						if($position->get_distance() > $_POST['max_distance']) {
-							unset($search_results[$i]);
-						}		
-					}
-					$search_results = array_values($search_results);
-				} catch (Exception $e) {
-					printf('{ "success": false, "error": "%s" }', $e->getMessage());
-				}
-			} else if(!empty($_POST['gender'])) {
-				$search_results_i = count($search_results);
-				for($i = 0; $i < $search_results_i; $i++) {
-					if($search_results[$i]['gender'] != $_POST['gender']) {
-						unset($search_results[$i]);
-					}
-				}
-				$search_results = array_values($search_results);
-			} else if(!empty($_POST['looking_for'])) {
-				$post_looking_for = explode(",", $_POST['looking_for']);
-				$search_results_i = count($search_results);	
-				for($i = 0; $i < $search_results_i; $i++) {
-					$looking_for = explode(",", $search_results[$i]['looking_for']);
-					$match_found = false;
-					foreach($post_looking_for as $p_value) {
-						foreach($looking_for as $d_value) {
-							if($p_value == $d_value) {
-								$match_found = true;
-							}
-						}
-					}
-					if($match_found == false) {
-						unset($search_results[$i]);
-					}
-				}
-				$search_results = array_values($search_results);
-			}
+			printf('{ "success": false, "error": "no search implemented." }');
 		} else {
 			printf('{ "success": false, "error": "Not authenticated."}');
 		}

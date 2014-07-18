@@ -1088,6 +1088,7 @@ $("#search-submit").click(function(evt) {
 	if(check_session() === true) {
 		form_data = form_data + "&call=search";
 	}
+	console.log(form_data);
 	$.ajax({
                 url: "php/api.php",
                 type: "POST",
