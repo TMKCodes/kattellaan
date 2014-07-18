@@ -612,7 +612,36 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				printf('{ "success": false, "error": "Failed to confirm session." }');
 				die;
 			}
-			printf('{ "success": false, "error": "no search implemented." }');
+
+			$query = "SELECT * FROM `account` INNER JOIN `profile` ON `id` = `identifier` WHERE ";
+			$ap_search_results = array();
+			if(!empty($_POST['username'])) {
+				$query += " `username` LIKE '%" . $_POST['username'] . "%'";
+			} else {
+				$query += " `username` LIKE '%%'";
+			}
+
+			if(!empty($_POST['age-min']) && !empty($_POST['age-max'])) {
+				$current_year = gmdate("Y");
+				$minimum_year = $current_year - $_POST['age-min'];
+				$query += " AND `birthday` < '" . $minimum_year . "-12-31'";
+				$maximum_year = $current_year - $_POST['age-max'];
+				$query += " AND `birthday` > '" . $maximum_year . "-00-00'";
+			}
+
+			if(!empty($_POST['gender'])) {
+				if(count($_POST['gender']) > 1) {
+					$query += " AND `gender` = '" . $_POST['gender'][0] . "'";
+					for($i = 1; $i < count($_POST['gender'); $i++) {
+						$query += " OR `gender` = '" . $_POST['gender'][$i] . "'";
+					}
+				} else {
+					$query += " AND `gender` = '" . $_POST['gender'] ."'";		
+				}
+			}
+
+			// username=&age-min=16&age-max=40&location=&max-distance=50&gender=women&relationship-status=single&relationship-status=relationship&sexual-orientation=hetero&sexual-orientation=gay&looking-for=love&search-save-name=&saved-search=none&call=search
+			printf('{ "success": false, "error": "Search has not been implemented yet.\r\n This is the current sql query:\r\n %s" }', $query);
 		} else {
 			printf('{ "success": false, "error": "Not authenticated."}');
 		}
