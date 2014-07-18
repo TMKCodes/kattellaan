@@ -1081,6 +1081,23 @@ function hide_menu_collapse() {
 	}
 }
 
+
+$("#search-submit").click(function(evt) {
+	evt.preventDefault();
+	var form_data = $(this).serialize();
+	if(check_session() === true) {
+		form_data = form_data + "&call=search";
+	}
+	$.ajax({
+                url: "php/api.php",
+                type: "POST",
+                async: false,
+                data: form_data
+        }).done(function(data) {
+		console.log(data);
+	});
+}
+
 $("#navigation-left > li").click(function(evt) {
 	evt.preventDefault();
 	$("#navigation-left").children().removeClass("active");
