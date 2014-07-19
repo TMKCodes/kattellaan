@@ -677,7 +677,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 
 			$query .= " ORDER BY `id` DESC LIMIT 0, 30;";
 
-			$statement = $database->prepare($query);
+			/*$statement = $database->prepare($query);
 			$result = $statement->execute();
 			if($result->success() == true) {
 				$rows = $result->rows();
@@ -690,8 +690,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					printf(' { "success": false, "error": "No results found." }');
 					die();
 				}
-			}
-
+			}*/
 
 			// username=&age-min=16&age-max=40&location=&max-distance=50&gender=women&relationship-status=single&relationship-status=relationship&sexual-orientation=hetero&sexual-orientation=gay&looking-for=love&search-save-name=&saved-search=none&call=search
 			printf('{ "success": false, "error": "Search has not been implemented yet.\r\n This is the current sql query:\r\n %s" }', $query);
