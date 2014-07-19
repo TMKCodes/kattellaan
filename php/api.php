@@ -671,7 +671,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				$count = count($_POST['looking-for']);
 				if($count > 1) {
 					$query .= " AND `looking_for` = '" . $_POST['looking-for'][0] . "'";
-					for($i = 1; $i < $count); $i++) {
+					for($i = 1; $i < $count; $i++) {
 						$query .= " OR `looking_for` = '" . $_POST['looking-for'][$i] . "'";
 					}
 				} else if($count == 1) {
