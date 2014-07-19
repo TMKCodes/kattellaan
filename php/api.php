@@ -634,43 +634,47 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			}
 
 			if(!empty($_POST['gender'])) {
-				if(count($_POST['gender']) > 1) {
+				$count = count($_POST['gender'];
+				if($count > 1) {
 					$query .= " AND `gender` = '" . $_POST['gender'][0] . "'";
-					for($i = 1; $i < count($_POST['gender']); $i++) {
+					for($i = 1; $i < $count; $i++) {
 						$query .= " OR `gender` = '" . $_POST['gender'][$i] . "'";
 					}
-				} else if(count($_POST['gender']) == 1) {
+				} else if($count == 1) {
 					$query .= " AND `gender` = '" . $_POST['gender'] ."'";		
 				}
 			}
 			if(!empty($_POST['relationship-status'])) {
-				if(count($_POST['relationship-status']) > 1) {
+				$count = count($_POST['relationship-status']);
+				if($count > 1) {
 					$query .= " AND `relationship_status` = '" . $_POST['relationship-status'][0] . "'";
-					for($i = 1; $i < count($_POST['relationship-status']); $i++) {
+					for($i = 1; $i < $count; $i++) {
 						$query .= " OR `relationship_status` = '" . $_POST['relationship-status'][$i] . "'";
 					}
-				} else if(count($_POST['relationship-status']) == 1) {
+				} else if($count == 1) {
 					$query .= " AND `relationship_status` = '" . $_POST['relationship-status'] . "'";
 				}
 			}
 
 			if(!empty($_POST['sexual-orientation'])) {
-				if(count($_POST['sexual-orientation']) > 1) {
+				$count = count($_POST['sexual-orientation']);
+				if($count > 1) {
 					$query .= " AND `sexual_orientation` = '" . $_POST['sexual-orientation'][0] . "'";
-					for($i = 1; $i < count($_POST['sexual_orientation']); $i++) {
+					for($i = 1; $i < $count; $i++) {
 						$query .= " OR `sexual_orientation` = '" . $_POST['sexual_orientation'][$i] . "'";
 					}
-				} else if(count($_POST['sexual-orientation']) == 1) {
+				} else if($count == 1) {
 					$query .= " AND `sexual_orientation` = '" . $_POST['sexual-orientation'] . "'";
 				}
 			}
 			if(!empty($_POST['looking-for'])) {
-				if(count($_POST['looking-for']) > 1) {
+				$count = count($_POST['looking-for']);
+				if($count > 1) {
 					$query .= " AND `looking_for` = '" . $_POST['looking-for'][0] . "'";
-					for($i = 1; $i < count($_POST['looking-for']); $i++) {
+					for($i = 1; $i < $count); $i++) {
 						$query .= " OR `looking_for` = '" . $_POST['looking-for'][$i] . "'";
 					}
-				} else if(count($_POST['looking-for']) == 1) {
+				} else if($count == 1) {
 					$query .= " AND `looking_for` = '" . $_POST['looking-for'] . "'";
 				}
 			}
