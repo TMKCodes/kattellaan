@@ -661,7 +661,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				if($count > 1) {
 					$query .= " AND `sexual_orientation` = '" . $_POST['sexual-orientation'][0] . "'";
 					for($i = 1; $i < $count; $i++) {
-						$query .= " OR `sexual_orientation` = '" . $_POST['sexual_orientation'][$i] . "'";
+						$query .= " OR `sexual_orientation` = '" . $_POST['sexual-orientation'][$i] . "'";
 					}
 				} else if($count == 1) {
 					$query .= " AND `sexual_orientation` = '" . $_POST['sexual-orientation'] . "'";
