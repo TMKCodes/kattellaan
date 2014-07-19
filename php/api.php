@@ -614,8 +614,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			}
 
 			foreach($_POST as $key => $value) {
-				//$_POST[$key] = $database->escape($value);
-				$_POST[$key] = $value;
+				$_POST[$key] = $database->escape($value);
 			}
 
 
