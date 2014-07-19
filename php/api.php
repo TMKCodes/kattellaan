@@ -613,9 +613,9 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				die;
 			}
 
-			foreach($_POST as &$p) {
-				$p = $database->escape($p);
-			}
+			//foreach($_POST as &$p) {
+			//	$p = $database->escape($p);
+			//}
 
 			$query = "SELECT * FROM `account` INNER JOIN `profile` ON `id` = `identifier` WHERE ";
 			$ap_search_results = array();
