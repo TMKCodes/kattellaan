@@ -613,6 +613,10 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				die;
 			}
 
+			foreach($_POST as &$p) {
+				$p = $database->escape($p);
+			}
+
 			$query = "SELECT * FROM `account` INNER JOIN `profile` ON `id` = `identifier` WHERE ";
 			$ap_search_results = array();
 			if(!empty($_POST['username'])) {
@@ -671,7 +675,23 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				}
 			}
 
-			$query .= ";";
+			$query .= " ORDER BY `id` DESC LIMIT 0, 30;";
+
+			$statement = $database->prepare($query);
+			$result = $statement->execute();
+			if($result->success() == true) {
+				$rows = $result->rows();
+				if($rows > 0) {
+					$for($i = 0; $i < $rows; $i++) {
+						$row = $result->fetch_array(RASSOC);
+						array_push($ap_search_results, $row);
+					}
+				} else {
+					printf(' { "success": false, "error": "No results found." }');
+					die();
+				}
+			}
+
 
 			// username=&age-min=16&age-max=40&location=&max-distance=50&gender=women&relationship-status=single&relationship-status=relationship&sexual-orientation=hetero&sexual-orientation=gay&looking-for=love&search-save-name=&saved-search=none&call=search
 			printf('{ "success": false, "error": "Search has not been implemented yet.\r\n This is the current sql query:\r\n %s" }', $query);
