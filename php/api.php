@@ -682,7 +682,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			if($result->success() == true) {
 				$rows = $result->rows();
 				if($rows > 0) {
-					$for($i = 0; $i < $rows; $i++) {
+					for($i = 0; $i < $rows; $i++) {
 						$row = $result->fetch_array(RASSOC);
 						array_push($ap_search_results, $row);
 					}
