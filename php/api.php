@@ -637,7 +637,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				$minimum_year = $current_year - $_POST['age-min'];
 				$query .= " AND `birthday` <= STR_TO_DATE('" . $minimum_year . "-12-31', '%Y-%m-%d')";
 				$maximum_year = $current_year - $_POST['age-max'];
-				$query .= " AND `birthday` >= STR_TO_DATE('" . $maximum_year . "-00-00', '%Y-%m-%d)";
+				$query .= " AND `birthday` >= STR_TO_DATE('" . $maximum_year . "-00-00', '%Y-%m-%d')";
 			}
 
 
