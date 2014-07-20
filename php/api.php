@@ -702,7 +702,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				if($count > 1) {
 					$query .= " AND `body_type` = '" . $_POST['body-type'][0] . "'";
 					for($i = 1; $i < $count; $i++) {
-						$query .= " OR `body_type` = '" . $_POST['body-type'][0] . "'";
+						$query .= " OR `body_type` = '" . $_POST['body-type'][$i] . "'";
 					}
 				} else if($count == 1) {
 					$query .= " AND `body_type` = '" . $_POST['body-type'][0] . "'";
@@ -714,7 +714,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				if($count > 1) {
 					$query .= " AND `eye_color` = '" . $_POST['eye-color'][0] . "'";
 					for($i = 1; $i < $count; $i++) {
-						$query .= " OR `eye_color` = '" . $_POST['eye-color'][0] . "'";
+						$query .= " OR `eye_color` = '" . $_POST['eye-color'][$i] . "'";
 					}
 				} else if($count == 1) {
 					$query .= " AND `eye_color` = '" . $_POST['eye-color'][0] . "'";
@@ -726,7 +726,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				if($count > 1) {
 					$query .= " AND `hair_length` = '" . $_POST['hair-length'][0] . "'";
 					for($i = 1; $i < $count; $i++) {
-						$query .= " OR `hair_length` = '" . $_POST['hair-length'][0] . "'";
+						$query .= " OR `hair_length` = '" . $_POST['hair-length'][$i] . "'";
 					}
 				} else if($count == 1) {
 					$query .= " AND `hair_length` = '" . $_POST['hair-length'][0] . "'";
@@ -738,7 +738,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				if($count > 1) {
 					$query .= " AND `hair_color` = '" . $_POST['hair-color'][0] . "'";
 					for($i = 1; $i < $count; $i++) {
-						$query .= " OR `hair_color` = '" . $_POST['hair-color'][0] . "'";
+						$query .= " OR `hair_color` = '" . $_POST['hair-color'][$i] . "'";
 					}
 				} else if($count == 1) {
 					$query .= " AND `hair_color` = '" . $_POST['hair-color'][0] . "'";
