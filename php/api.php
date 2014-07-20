@@ -688,13 +688,13 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			}
 
 			if(!empty($_POST['min-height']) && !empty($_POST['max-height'])) {
-				$query .= " AND `height` > '" . $_POST['min-height'];
-				$query .= " AND `height` < '" . $_POST['max-height'];
+				$query .= " AND `height` > " . $_POST['min-height'];
+				$query .= " AND `height` < " . $_POST['max-height'];
 			}
 
 			if(!empty($_POST['min-weight']) && !empty($_POST['max-weight'])) {
-				$query .= " AND `weight` > '" . $_POST['min-weight'];
-				$query .= " AND `weight` < '" . $_POST['max-weight'];
+				$query .= " AND `weight` > " . $_POST['min-weight'];
+				$query .= " AND `weight` < " . $_POST['max-weight'];
 			}
 
 			if(!empty($_POST['body-type'])) {
