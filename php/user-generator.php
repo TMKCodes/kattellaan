@@ -83,7 +83,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		if($day < 10) {
 			$day = "0" . $day;
 		}
-		$age = $year . "-" . $day . "-" . $month;	
+		$age = $year . "-" . $month . "-" . $day;	
 		$profile['birthday'] = $age;
 		
 		$rsr = mt_rand(0, 7);
