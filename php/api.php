@@ -648,7 +648,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 						$query .= " OR `gender` = '" . $_POST['gender'][$i] . "'";
 					}
 				} else if($count == 1) {
-					$query .= " AND `gender` = '" . $_POST['gender'] ."'";		
+					$query .= " AND `gender` = '" . $_POST['gender'][0] ."'";
 				}
 			}
 			if(!empty($_POST['relationship-status'])) {
@@ -659,7 +659,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 						$query .= " OR `relationship_status` = '" . $_POST['relationship-status'][$i] . "'";
 					}
 				} else if($count == 1) {
-					$query .= " AND `relationship_status` = '" . $_POST['relationship-status'] . "'";
+					$query .= " AND `relationship_status` = '" . $_POST['relationship-status'][0] . "'";
 				}
 			}
 
@@ -671,7 +671,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 						$query .= " OR `sexual_orientation` = '" . $_POST['sexual-orientation'][$i] . "'";
 					}
 				} else if($count == 1) {
-					$query .= " AND `sexual_orientation` = '" . $_POST['sexual-orientation'] . "'";
+					$query .= " AND `sexual_orientation` = '" . $_POST['sexual-orientation'][0] . "'";
 				}
 			}
 			if(!empty($_POST['looking-for'])) {
@@ -682,7 +682,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 						$query .= " OR `looking_for` = '" . $_POST['looking-for'][$i] . "'";
 					}
 				} else if($count == 1) {
-					$query .= " AND `looking_for` = '" . $_POST['looking-for'] . "'";
+					$query .= " AND `looking_for` = '" . $_POST['looking-for'][0] . "'";
 				}
 			}
 
