@@ -640,6 +640,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				$query .= " AND `birthday` > '" . $maximum_year . "-00-00'";
 			}
 
+
 			if(!empty($_POST['gender'])) {
 				$count = count($_POST['gender']);
 				if($count > 1) {
@@ -683,6 +684,64 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					}
 				} else if($count == 1) {
 					$query .= " AND `looking_for` = '" . $_POST['looking-for'][0] . "'";
+				}
+			}
+
+			if(!empty($_POST['min-height']) && !empty($_POST['max-height'])) {
+				$query .= " AND `height` > '" . $_POST['min-height'];
+				$query .= " AND `height` < '" . $_POST['max-height'];
+			}
+
+			if(!empty($_POST['min-weight']) && !empty($_POST['max-weight'])) {
+				$query .= " AND `weight` > '" . $_POST['min-weight'];
+				$query .= " AND `weight` < '" . $_POST['max-weight'];
+			}
+
+			if(!empty($_POST['body-type'])) {
+				$count = count($_POST['body-type']);
+				if($count > 1) {
+					$query .= " AND `body_type` = '" . $_POST['body-type'][0] . "'";
+					for($i = 1; $i < $count; $i++) {
+						$query .= " OR `body_type` = '" . $_POST['body-type'][0] . "'";
+					}
+				} else if($count == 1) {
+					$query .= " AND `body_type` = '" . $_POST['body-type'][0] . "'";
+				}
+			}
+
+			if(!empty($_POST['eye-color'])) {
+				$count = count($_POST['eye-color']);
+				if($count > 1) {
+					$query .= " AND `eye_color` = '" . $_POST['eye-color'][0] . "'";
+					for($i = 1; $i < $count; $i++) {
+						$query .= " OR `eye_color` = '" . $_POST['eye-color'][0] . "'";
+					}
+				} else if($count == 1) {
+					$query .= " AND `eye_color` = '" . $_POST['eye-color'][0] . "'";
+				}
+			}
+
+			if(!empty($_POST['hair-length'])) {
+				$count = count($_POST['hair-length']);
+				if($count > 1) {
+					$query .= " AND `hair_length` = '" . $_POST['hair-length'][0] . "'";
+					for($i = 1; $i < $count; $i++) {
+						$query .= " OR `hair_length` = '" . $_POST['hair-length'][0] . "'";
+					}
+				} else if($count == 1) {
+					$query .= " AND `hair_length` = '" . $_POST['hair-length'][0] . "'";
+				}
+			}
+
+			if(!empty($_POST['hair-color'])) {
+				$count = count($_POST['hair-color']);
+				if($count > 1) {
+					$query .= " AND `hair_color` = '" . $_POST['hair-color'][0] . "'";
+					for($i = 1; $i < $count; $i++) {
+						$query .= " OR `hair_color` = '" . $_POST['hair-color'][0] . "'";
+					}
+				} else if($count == 1) {
+					$query .= " AND `hair_color` = '" . $_POST['hair-color'][0] . "'";
 				}
 			}
 
