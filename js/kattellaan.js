@@ -1062,6 +1062,8 @@ $("document").ready(function() {
 					if(responseText.failed_files !== undefined) {
 						for(var x = 0; x < responseText.failed_files.length; x++) {
 							console.log("Failed to upload file: " + responseText.failed_files[x]);
+							$("#register-picture-upload-progress-bar").width("0%");
+							$("#register-picture-upload-progress-percent").html("Tiedoston lähetys epäonnistui!");
 						}
 					}
 				} else {
