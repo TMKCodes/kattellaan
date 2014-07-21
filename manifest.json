@@ -6,9 +6,9 @@
 	"author": "Toni Korpela",
 	"permissions": [ "background" ],
 	"app": {
-		"urls": [ "http://kattellaan.com" ],
+		"urls": [ "https://kattellaan.com" ],
 		"launch": {
-			"web_url": "http://kattellaan.com"
+			"web_url": "https://kattellaan.com"
 		}
 	}
 }
