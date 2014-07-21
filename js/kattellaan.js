@@ -254,6 +254,7 @@ function register_select_profile_picture_done_button() {
 function load_home_page() {
 	$("body > .container").hide();
 	$("#home-page").show();
+	$("#web-advertisement").show();
 	if(check_session() === true) {
 		// disable register jumbotron
 		$("#home-page-register").hide();
@@ -268,12 +269,14 @@ function load_home_page() {
 function load_page(page) {
 	$("body > .container").hide();
 	$("#" + page).show();
+	$("#web-advertisement").show();
 	history.pushState(null, page, hostname + "?page=" + page);
 }
 
 function load_custom_page(page, addons) {
 	$("body > .container").hide();
 	$("#" + page).show();
+	$("#web-advertisement").show();
 	history.pushState(null, page, hostname + "?page=" + page + addons);
 }
 
