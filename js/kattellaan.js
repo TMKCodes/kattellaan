@@ -1031,6 +1031,7 @@ $("document").ready(function() {
 			console.log("jqXHR: " + jqXHR.responseText + "\r\nStatus: " + textStatus + "\r\nError: " + errorThrown);
 		}, 
 		success: function(responseText, statusText, xhr, $form) {
+			console.log(responseText);
 			console.log("File sent.");
 			if(statusText === "success") {
 				console.log("File sent successfully.");
@@ -1068,7 +1069,7 @@ $("document").ready(function() {
 					}
 				} else {
 					$("#register-picture-upload-progress-bar").width("0%");
-					$("#register-picture-upload-progress-percent").width("Epäonnistui.");
+					$("#register-picture-upload-progress-percent").width("Tiedoston lähetys epäonnistui!");
 					console.log("File uploading failed: " + responseText.error);
 				}
 			} else {
