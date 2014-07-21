@@ -86,16 +86,27 @@
 		</div>
 	</div>
 
-	<div class="container" id="advertisement">
-		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<!-- Kattellaan PC webad -->
-		<ins class="adsbygoogle"
-		     style="display:inline-block;width:728px;height:90px"
-		     data-ad-client="ca-pub-7277515136825757"
-		     data-ad-slot="6066950428"></ins>
-		<script>
-			(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>	
+	<div class="container" id="web-advertisement">
+		<div class="alert alert-success">
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<!-- Kattellaan PC webad -->
+			<ins class="adsbygoogle"
+			     style="display:inline-block;width:728px;height:90px"
+			     data-ad-client="ca-pub-7277515136825757"
+			     data-ad-slot="6066950428"></ins>
+			<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+			<script>
+				window.setTimeout(function() {
+					if(adsbygoogle instanceof Array) {
+						$("#web-advertisement > .alert").html("LOLOLOL");
+					} else {
+						// adsense advertisements executed.
+					}
+				}, 120000);
+			</script>
+		</div>
 	</div>
 
 	<!-- Home page html code -->
