@@ -402,7 +402,21 @@
 									<input type="number" class="form-control" id="income-search-input" name="min-income" min="0" max="600" />&nbsp;-&nbsp;
 									<input type="number" class="form-control" name="max-income" min="0" max="300" />
 								</div>
-								
+								<div class="form-group">
+									<label for="vocation-search-input">Ammattiala:</label>
+									<select class="multiselect form-control" id="vocation-search-input" name="vocation[]" multiple="multiple">
+										<option value="administrator/finance">Hallinto/talous</option>
+										<option value="information-technology">Information-technology</option>
+										<option value="social/health">Sosiaaly-/terveysala</option>
+										<option value="communications/media/culture">Viestintä/media/kulttuuri</option>
+										<option value="marketing/sales">Markkinointi/myynti</option>
+										<option value="science/technology">Tiede/teknologia</option>
+										<option value="education">Koulutus</option>
+										<option value="housewife/-husband">Kotiäiti/-isä</option>
+										<option value="agriculture-forestry">Maa- ja metsätalous</option>
+										<option value="entrepreneur">Yrittäjä</option>
+									</select>
+								</div>
 							</div>
 							<button id="toggle-lifestyle-inputs-button" class="btn btn-success btn-block" style="text-align: left; padding-left: 10px; margin-bottom: 10px;">
 								<i class="glyphicon glyphicon-arrow-down"></i>&nbsp;Näytä elämäntyyli valinnat.
