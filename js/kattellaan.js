@@ -905,7 +905,6 @@ function load_messages_page(uid, duid) {
 
 function load_search_page(ssid) {
 	console.log("search page opened.");
-
 	if(ssid != 0) {
 		load_custom_page("search-page", "&ssid=" + ssid);
 	} else {
@@ -1293,6 +1292,14 @@ $("#register-account-form").submit(function(evt) {
 			if(result.success === true) {
 				open_session(result.account.username, result.account.password);
 				if($.cookie("session") !== undefined) {
+					if(check_session() === true) {
+						// disable register jumbotron
+						$("#home-page-register").hide();
+						$("#home-page-features").hide();
+					} else {
+						$("#home-page-register").show();
+						$("#home-page-features").show();
+					}
 					load_page("register-invite-page");
 					$.cookie("username", result.account.username);
 				} else {
