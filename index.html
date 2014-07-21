@@ -87,7 +87,7 @@
 	</div>
 
 	<div class="container" id="web-advertisement">
-		<div class="alert alert-success" style="width: 728px; height: 90px;">
+		<div class="alert alert-success" style="width: 728px; height: 90px; display: table; margin: 0 auto;">
 			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 			<!-- Kattellaan PC webad -->
 			<ins class="adsbygoogle"
@@ -97,13 +97,17 @@
 			<script>
 				(adsbygoogle = window.adsbygoogle || []).push({});
 			</script>
+			<div id="no-ad" style="display: none;">
+				<p>Oletko ystävällinen ja estäisit mainostenesto ohjelmistojen toiminnan sivustollamme. Jos haluat mainokset piiloon sivustollamme ehdotan plus jäsenyyden hankkimista.</p>	
+			</div>
 			<script>
 				window.setInterval(function() {
 					if(adsbygoogle instanceof Array) {
-						$("#web-advertisement > .alert").append("<p>LOLOLOL</p>");
+						$("#web-advertisement > .alert > #no-ad").show();
 						$("#web-advertisement").show();
 					} else {
 						// adsense advertisements executed.
+						$("#web-advertisement > .alert > #no-ad").hide();
 						$("#web-advertisement").show();
 					}
 				}, 15000);
