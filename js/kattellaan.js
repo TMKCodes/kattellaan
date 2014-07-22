@@ -931,7 +931,7 @@ $("document").ready(function() {
 				if(options.length > this.numberDisplayed) {
 					return options.length + ' ' + this.nSelectedText + '<b class="caret"></b>';
 				} else {
-					var selected '';
+					var selected = '';
 					options.each(function() {
 						var label = ($(this).attr('label') !== undefined) ? $(this).attr('label') : $(this).html();
 						selected  += label + ', ';
