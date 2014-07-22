@@ -923,7 +923,13 @@ window.onpopstate = function(event) {
 };
 
 $("document").ready(function() {
-	$(".multiselect").multiselect();
+	$(".multiselect").multiselect({
+		buttonText : function(options, select) {
+			if(options.length == 0) {
+				return "Valitse <b class=\"caret\"></b>";
+			}
+		}
+	});
 	$("body > .container").hide();
 	hostname = location.protocol + '//' + location.hostname + location.pathname;
 	var page = get_url_parameter("page");
