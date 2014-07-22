@@ -929,7 +929,7 @@ $("document").ready(function() {
 				return "Valitse <b class=\"caret\"></b>";
 			} else {
 				if(options.length > this.numberDisplayed) {
-					return options.length + ' valittu. <b class="caret"></b>';
+					return options.length + ' valittu <b class="caret"></b>';
 				} else {
 					var selected = '';
 					options.each(function() {
