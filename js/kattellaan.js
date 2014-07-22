@@ -927,6 +927,17 @@ $("document").ready(function() {
 		buttonText : function(options, select) {
 			if(options.length == 0) {
 				return "Valitse <b class=\"caret\"></b>";
+			} else {
+				if(options.length > this.numberDisplayed) {
+					return options.length + ' ' + this.nSelectedText + '<b class="caret"></b>';
+				} else {
+					var selected '';
+					options.each(function() {
+						var label = ($(this).attr('label') !== undefined) ? $(this).attr('label') : $(this).html();
+						selected  += label + ', ';
+					});
+					return selected.substr(0, selected.length -2) + '<b class="caret"></b>';
+				}
 			}
 		}
 	});
