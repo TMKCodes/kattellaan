@@ -208,7 +208,7 @@ function get_town(latlng) {
 	latlng = latlng.replace(/\ /g, '');
 	console.log(latlng);
 	$.ajax({
-		url: "http://maps.googleapis.com/maps/api/geocode/json",
+		url: "https://maps.googleapis.com/maps/api/geocode/json",
 		type: "GET",
 		dataType: 'json',
 		async: false,
@@ -3213,7 +3213,7 @@ $("#register-select-location-show-on-map").click(function(evt) {
 	var jaddress = street_address_replaced + "+" + municipality_replaced + "+" + country_replaced;
 	console.log(jaddress);
 	$.ajax({
-		url: "http://maps.googleapis.com/maps/api/geocode/json",
+		url: "https://maps.googleapis.com/maps/api/geocode/json",
 		type: "GET",
 		data: { address : jaddress, sensor: false }
 	}).done(function(data) {
@@ -3242,7 +3242,7 @@ $("#register-select-location-done-button").click(function(evt) {
 	var jaddress = street_address_replaced + "+" + municipality_replaced + "+" + country_replaced;
 	$.cookie("address", jaddress);
 	$.ajax({
-		url: "http://maps.googleapis.com/maps/api/geocode/json",
+		url: "https://maps.googleapis.com/maps/api/geocode/json",
 		type: "GET",
 		data: { address : jaddress, sensor: false }
 	}).done(function(data) {
