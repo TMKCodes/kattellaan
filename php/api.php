@@ -997,7 +997,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			
 			$query .= " ORDER BY `id` DESC LIMIT 0, 30;";
 
-			/*$statement = $database->prepare($query);
+			$statement = $database->prepare($query);
 			$result = $statement->execute();
 			if($result->success() == true) {
 				$rows = $result->rows();
@@ -1010,11 +1010,9 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					printf(' { "success": false, "error": "No results found." }');
 					die();
 				}
-			}*/
-
-
-			
-			printf('{ "success": false, "error": "Search has not been implemented yet.\r\n This is the current sql query:\r\n %s" }', $query);
+			}
+			printf('{ "success": true, "result" : %s }', json_encode($ap_search_results));
+			//printf('{ "success": false, "error": "Search has not been implemented yet.\r\n This is the current sql query:\r\n %s" }', $query);
 		} else {
 			printf('{ "success": false, "error": "Not authenticated."}');
 		}
