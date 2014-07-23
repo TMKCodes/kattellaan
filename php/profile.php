@@ -43,6 +43,7 @@ class profile {
 	private $travel;
 	private $vocation;
 	private $weight;
+	private $work;
 
 	public function __construct($database) {
 		$this->database = $database;
@@ -103,6 +104,7 @@ class profile {
 		$this->travel = $profile['travel'];
 		$this->vocation = $profile['vocation'];
 		$this->weight = $profile['weight'];
+		$this->work = $profile['work'];	
 	}
 	
 	public function get() {
@@ -144,6 +146,7 @@ class profile {
 		$profile['smoking'] = $this->smoking;
 		$profile['travel'] = $this->travel;
 		$profile['weight'] = $this->weight;
+		$profile['work'] = $this->work;
 		return $profile;
 	}
 
@@ -187,7 +190,8 @@ class profile {
 			"smoking TEXT," .
 			"travel TEXT," .
 			"vocation TEXT," . 
-			"weight TEXT);";
+			"weight TEXT," .
+			"work TEXT);";
 		$statement = $this->database->prepare($table_query);
 		$result = $statement->execute();
 		if($result->success() == true) {
@@ -294,6 +298,7 @@ class profile {
 		$statement->bind('s', $this->travel);
 		$statement->bind('s', $this->vocation);
 		$statement->bind('s', $this->weight);
+		$statement->bind('s', $this->work);
 		return $statement;	
 	}
 
@@ -307,12 +312,12 @@ class profile {
 				"`latlng`, `left_right_politics`, `liberal_conservative_politics`,".
 				"`looking_for`, `not_exciting`, `pets`, `picture`, `political_importance`,".
 				"`relationship_status`, `religion`, `religion_importance`, `sexual_orientation`,".
-				"`smoking`, `travel`, `vocation`, `weight`) " . 
+				"`smoking`, `travel`, `vocation`, `weight`, `work`) " . 
 				"VALUES (".	
 				"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " . // 10
 				"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " . // 20
 				"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " . // 30
-				"?, ?, ?, ?, ?, ?, ?, ?, ?);"; // 38
+				"?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"; // 38
 			$statement = $this->database->prepare($query);
 			$statement = $this->sbind($statement, true);
 			$result = $statement->execute();
@@ -336,7 +341,7 @@ class profile {
 				"`looking_for` = ?, `not_exciting` = ?, `pets` = ?, `picture` = ?, " .
 				"`political_importance` = ?, `relationship_status` = ?, `religion` = ?, " .
 				"`religion_importance` = ?, `sexual_orientation` = ?, `smoking` = ?, " .
-				"`travel` = ?, `vocation` = ?, `weight` = ? " .
+				"`travel` = ?, `vocation` = ?, `weight` = ?, `work` = ? " .
 				"WHERE `identifier` = ?;";
 			$statement = $this->database->prepare($query);
 			$statement = $this->sbind($statement, false);

@@ -753,6 +753,88 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				}
 			}
 
+
+			if(!empty($_POST['kids'])) {
+				$count = count($_POST['kids']);
+				if($count > 1) {
+					$query .= " AND ( `kids` = '" . $_POST['kids'][0] . "'";
+					for($i = 1; $i < $count; $i++) {
+						$query .= " OR `kids` = '" . $_POST['kids'][$i] . "'";
+					}
+					$query .= " )";
+				} else if($count == 1) {
+					$query .= " AND `kids` = '" . $_POST['kids'][0] . "'";
+				}
+			}
+
+			if(!empty($_POST['accomodation'])) {
+				$count = count($_POST['accomodation']);
+				if($count > 1) {
+					$query .= " AND ( `accomodation` = '" . $_POST['accomodation'][0] . "'";
+					for($i = 1; $i < $count; $i++) {
+						$query .= " OR `accomodation` = '" . $_POST['accomodation'][$i] . "'";
+					}
+					$query .= " )";
+				} else if($count == 1) {
+					$query .= " AND `accomodation` = '" . $_POST['accomodation'][0] . "'";
+				}
+			}
+
+			if(!empty($_POST['ethnic-identity'])) {
+				$count = count($_POST['ethnic-identity']);
+				if($count > 1) {
+					$query .= " AND ( `ethnic_identity` = '" . $_POST['ethnic-identity'][0] . "'";
+					for($i = 1; $i < $count; $i++) {
+						$query .= " OR `ethnic_identity` = '" . $_POST['ethnic-identity'][$i] . "'";
+					}
+					$query .= " )";
+				} else if($count == 1) {
+					$query .= " AND `ethnic_identity` = '" . $_POST['ethnic-identity'][0] . "'";
+				}
+			}
+
+			if(!empty($_POST['language-skills'])) {
+				$count = count($_POST['language-skills']);
+				if($count > 1) {
+					$query .= " AND ( `language_skills` = '" . $_POST['language-skills'][0] . "'";
+					for($i = 1; $i < $count; $i++) {
+						$query .= " OR `language_skills` = '" . $_POST['language-skills'][$i] . "'";
+					}
+					$query .= " )";
+				} else if($count == 1) {
+					$query .= " AND `language_skills` = '" . $_POST['language-skills'][0] . "'";
+				}
+			}
+
+			if(!empty($_POST['education'])) {
+				$count = count($_POST['education']);
+				if($count > 1) {
+					$query .= " AND ( `education` = '" . $_POST['education'][0] . "'";
+					for($i = 1; $i < $count; $i++) {
+						$query .= " OR `education` = '" . $_POST['education'][$i] . "'";
+					}
+					$query .= " )";
+				} else if($count == 1) {
+					$query .= " AND `education` = '" . $_POST['education'][0] . "'";
+				}
+			}
+
+			if(!empty($_POST['work'])) {
+				$count = count($_POST['work']);
+				if($count > 1) {
+					$query .= " AND ( `work` = '" . $_POST['work'][0] . "'";
+					for($i = 1; $i < $count; $i++) {
+						$query .= " OR `work` = '" . $_POST['work'][$i] . "'";
+					}
+					$query .= " )";
+				} else if($count == 1) {
+					$query .= " AND `work` = '" . $_POST['work'][0] . "'";
+				}
+			}
+
+
+			// username=&age-min=16&age-max=40&location=&max-distance=50&gender%5B%5D=man&relationship-status%5B%5D=single&sexual-orientation%5B%5D=hetero&looking-for%5B%5D=friends&min-height=150&max-height=170&min-weight=30&max-weight=60&body-type%5B%5D=slender&eye-color%5B%5D=blue&hair-length%5B%5D=bald&hair-color%5B%5D=light&kids%5B%5D=yes&accomodation%5B%5D=alone&ethnic-identity%5B%5D=white&language-skills%5B%5D=finnish&education%5B%5D=untrained&work%5B%5D=student&min-income=0&max-income=50000&vocation%5B%5D=administrator%2Ffinance&dress-style%5B%5D=fashionable&smoking%5B%5D=smokeless&alcohol%5B%5D=alcohol-free&pets%5B%5D=nopets&exercise%5B%5D=idont&travel%5B%5D=cottagebatty&religion%5B%5D=atheist&religion-importance%5B%5D=insignificant&left-right-politics%5B%5D=left&liberal-conservative-politics%5B%5D=conservative&political-importance%5B%5D=dontcare&search-save-name=&saved-search=none 
+			
 			$query .= " ORDER BY `id` DESC LIMIT 0, 30;";
 
 			/*$statement = $database->prepare($query);
@@ -770,7 +852,8 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				}
 			}*/
 
-			// username=&age-min=16&age-max=40&location=&max-distance=50&gender=women&relationship-status=single&relationship-status=relationship&sexual-orientation=hetero&sexual-orientation=gay&looking-for=love&search-save-name=&saved-search=none&call=search
+
+			
 			printf('{ "success": false, "error": "Search has not been implemented yet.\r\n This is the current sql query:\r\n %s" }', $query);
 		} else {
 			printf('{ "success": false, "error": "Not authenticated."}');

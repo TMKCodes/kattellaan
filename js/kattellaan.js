@@ -3158,7 +3158,8 @@ $("#register-confirm-profile-information-form").submit(function(evt) {
 			smoking : $.cookie("smoking"),
 			travel : $.cookie("travel"),
 			vocation : $.cookie("vocation"),
-			weight : $.cookie("weight") }
+			weight : $.cookie("weight"),
+			work : $.cookie("work") }
 	}).done(function(data) {
 		console.log(data);
 		var result = $.parseJSON(data);
