@@ -695,7 +695,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				$query .= " AND `height` > " . $_POST['min-height'];
 				$query .= " AND `height` < " . $_POST['max-height'];
 			}
-
+	
 			if(!empty($_POST['min-weight']) && !empty($_POST['max-weight'])) {
 				$query .= " AND `weight` > " . $_POST['min-weight'];
 				$query .= " AND `weight` < " . $_POST['max-weight'];
@@ -832,6 +832,166 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				}
 			}
 
+			if(!empty($_POST['min-income']) && !empty($_POST['max-income'])) {
+				$query .= " AND `income` > " . $_POST['min-income'];
+				$query .= " AND `income` < " . $_POST['max-income'];
+			}
+
+			if(!empty($_POST['vocation'])) {
+				$count = count($_POST['vocation']);
+				if($count > 1) {
+					$query .= " AND ( `vocation` = '" . $_POST['vocation'][0] . "'";
+					for($i = 1; $i < $count; $i++) {
+						$query .= " OR `vocation` = '" . $_POST['vocation'][$i] . "'";
+					}
+					$query .= " )";
+				} else if($count == 1) {
+					$query .= " AND `vocation` = '" . $_POST['vocation'][0] . "'";
+				}
+			}
+
+			if(!empty($_POST['dress-style'])) {
+				$count = count($_POST['dress-style']);
+				if($count > 1) {
+					$query .= " AND ( `dress_style` = '" . $_POST['dress-style'][0] . "'";
+					for($i = 1; $i < $count; $i++) {
+						$query .= " OR `dress_style` = '" . $_POST['dress-style'][$i] . "'";
+					}
+					$query .= " )";
+				} else if($count == 1) {
+					$query .= " AND `dress_style` = '" . $_POST['dress-style'][0] . "'";
+				}
+			}
+
+			if(!empty($_POST['smoking'])) {
+				$count = count($_POST['smoking']);
+				if($count > 1) {
+					$query .= " AND ( `smoking` = '" . $_POST['smoking'][0] . "'";
+					for($i = 1; $i < $count; $i++) {
+						$query .= " OR `smoking` = '" . $_POST['smoking'][$i] . "'";
+					}
+					$query .= " )";
+				} else if($count == 1) {
+					$query .= " AND `smoking` = '" . $_POST['smoking'][0] . "'";
+				}
+			}
+
+			if(!empty($_POST['alcohol'])) {
+				$count = count($_POST['alcohol']);
+				if($count > 1) {
+					$query .= " AND ( `alcohol` = '" . $_POST['alcohol'][0] . "'";
+					for($i = 1; $i < $count; $i++) {
+						$query .= " OR `alcohol` = '" . $_POST['alcohol'][$i] . "'";
+					}
+					$query .= " )";
+				} else if($count == 1) {
+					$query .= " AND `alcohol` = '" . $_POST['alcohol'][0] . "'";
+				}
+			}
+
+			if(!empty($_POST['pets'])) {
+				$count = count($_POST['pets']);
+				if($count > 1) {
+					$query .= " AND ( `pets` = '" . $_POST['pets'][0] . "'";
+					for($i = 1; $i < $count; $i++) {
+						$query .= " OR `pets` = '" . $_POST['pets'][$i] . "'";
+					}
+					$query .= " )";
+				} else if($count == 1) {
+					$query .= " AND `pets` = '" . $_POST['pets'][0] . "'";
+				}
+			}
+
+			if(!empty($_POST['exercise'])) {
+				$count = count($_POST['exercise']);
+				if($count > 1) {
+					$query .= " AND ( `exercise` = '" . $_POST['exercise'][0] . "'";
+					for($i = 1; $i < $count; $i++) {
+						$query .= " OR `exercise` = '" . $_POST['exercise'][$i] . "'";
+					}
+					$query .= " )";
+				} else if($count == 1) {
+					$query .= " AND `exercise` = '" . $_POST['exercise'][0] . "'";
+				}
+			}
+
+			if(!empty($_POST['travel'])) {
+				$count = count($_POST['travel']);
+				if($count > 1) {
+					$query .= " AND ( `travel` = '" . $_POST['travel'][0] . "'";
+					for($i = 1; $i < $count; $i++) {
+						$query .= " OR `travel` = '" . $_POST['travel'][$i] . "'";
+					}
+					$query .= " )";
+				} else if($count == 1) {
+					$query .= " AND `travel` = '" . $_POST['travel'][0] . "'";
+				}
+			}
+
+			if(!empty($_POST['religion'])) {
+				$count = count($_POST['religion']);
+				if($count > 1) {
+					$query .= " AND ( `religion` = '" . $_POST['religion'][0] . "'";
+					for($i = 1; $i < $count; $i++) {
+						$query .= " OR `religion` = '" . $_POST['religion'][$i] . "'";
+					}
+					$query .= " )";
+				} else if($count == 1) {
+					$query .= " AND `religion` = '" . $_POST['religion'][0] . "'";
+				}
+			}
+
+			if(!empty($_POST['religion-importance'])) {
+				$count = count($_POST['religion-importance']);
+				if($count > 1) {
+					$query .= " AND ( `religion_importance` = '" . $_POST['religion-importance'][0] . "'";
+					for($i = 1; $i < $count; $i++) {
+						$query .= " OR `religion_importance` = '" . $_POST['religion-importance'][$i] . "'";
+					}
+					$query .= " )";
+				} else if($count == 1) {
+					$query .= " AND `religion_importance` = '" . $_POST['religion-importance'][0] . "'";
+				}
+			}
+
+			if(!empty($_POST['left-right-politics'])) {
+				$count = count($_POST['left-right-politics']);
+				if($count > 1) {
+					$query .= " AND ( `left_right_politics` = '" . $_POST['left-right-politics'][0] . "'";
+					for($i = 1; $i < $count; $i++) {
+						$query .= " OR `left_right_politics` = '" . $_POST['left-right-politics'][$i] . "'";
+					}
+					$query .= " )";
+				} else if($count == 1) {
+					$query .= " AND `left_right_politics` = '" . $_POST['left-right-politics'][0] . "'";
+				}
+			}
+
+			if(!empty($_POST['liberal-conservative-politics'])) {
+				$count = count($_POST['liberal-conservative-politics']);
+				if($count > 1) {
+					$query .= " AND ( `liberal_conservative_politics` = '" . $_POST['liberal-conservative-politics'][0] . "'";
+					for($i = 1; $i < $count; $i++) {
+						$query .= " OR `liberal_conservative_politics` = '" . $_POST['liberal-conservative-politics'][$i] . "'";
+					}
+					$query .= " )";
+				} else if($count == 1) {
+					$query .= " AND `liberal_conservative_politics` = '" . $_POST['liberal-conservative-politics'][0] . "'";
+				}
+			}
+
+			if(!empty($_POST['political-importance'])) {
+				$count = count($_POST['political-importance']);
+				if($count > 1) {
+					$query .= " AND ( `political_importance` = '" . $_POST['political-importance'][0] . "'";
+					for($i = 1; $i < $count; $i++) {
+						$query .= " OR `political_importance` = '" . $_POST['political-importance'][$i] . "'";
+					}
+					$query .= " )";
+				} else if($count == 1) {
+					$query .= " AND `political_importance` = '" . $_POST['political-importance'][0] . "'";
+				}
+			}
 
 			// username=&age-min=16&age-max=40&location=&max-distance=50&gender%5B%5D=man&relationship-status%5B%5D=single&sexual-orientation%5B%5D=hetero&looking-for%5B%5D=friends&min-height=150&max-height=170&min-weight=30&max-weight=60&body-type%5B%5D=slender&eye-color%5B%5D=blue&hair-length%5B%5D=bald&hair-color%5B%5D=light&kids%5B%5D=yes&accomodation%5B%5D=alone&ethnic-identity%5B%5D=white&language-skills%5B%5D=finnish&education%5B%5D=untrained&work%5B%5D=student&min-income=0&max-income=50000&vocation%5B%5D=administrator%2Ffinance&dress-style%5B%5D=fashionable&smoking%5B%5D=smokeless&alcohol%5B%5D=alcohol-free&pets%5B%5D=nopets&exercise%5B%5D=idont&travel%5B%5D=cottagebatty&religion%5B%5D=atheist&religion-importance%5B%5D=insignificant&left-right-politics%5B%5D=left&liberal-conservative-politics%5B%5D=conservative&political-importance%5B%5D=dontcare&search-save-name=&saved-search=none 
 			
