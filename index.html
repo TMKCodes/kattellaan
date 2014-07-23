@@ -112,21 +112,10 @@
 							$("#web-advertisement").show();
 						}
 					}
-					function reload_the_advertisement() {
-						$("#web-advertisement > div > ins").after("<ins class=\"adsbygoogle2\" style=\"display:inline-block;width:728px;height:90px\" data-ad-client=\"ca-pub-7277515136825757\" data-ad-slot=\"6066950428\"></ins>");
-						$("#web-advertisement > div > .adsbygoogle").remove();
-						$("#web-advertisement > div > ins").removeClass("adsbygoogle2");
-						$("#web-advertisement > div > ins").addClass("adsbygoogle");
-						(adsbygoogle = window.adsbygoogle || []).push({});
-						console.log("Adsense advertisement reloaded.");
-					}
 					check_ad_is_shown();
 					window.setInterval(function() {
 						check_ad_is_shown();
 					}, 15000);
-					window.setInterval(function() {
-						reload_the_advertisement();
-					}, 60000);
 				};
 			</script>
 		</div>
