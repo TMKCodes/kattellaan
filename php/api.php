@@ -1019,7 +1019,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 									}
 								} else {
 									foreach($state->regions as $region) {
-										if(in_array(strtolower($_POST['location']), $region->name == true) {
+										if(in_array(strtolower($_POST['location']), $region->name) == true) {
 											foreach($region->municipalities as $municipality) {
 												if(strpos($row['location'], $municipality) !== false) {
 													$push_this = true;
