@@ -1005,8 +1005,9 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				if($rows > 0) {
 					for($i = 0; $i < $rows; $i++) {
 						$row = $result->fetch_array(RASSOC);
-						$push_this = false;
-						// do the location matching.
+						$push_this = true;
+						// do the location matching. 
+						/*
 						if(!empty($_POST['location'])) {
 							foreach($world->states as $state) {
 								if(in_array(strtolower($_POST['location']), $state->name) == true) {
@@ -1041,7 +1042,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 							if($distance_result->success() == true && $distance_result->rows() >= 1) {
 								$push_this = true;
 							}
-						}
+						}*/
 						if($push_this == true) {
 							array_push($ap_search_results, $row);
 						}
