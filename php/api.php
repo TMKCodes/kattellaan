@@ -1013,7 +1013,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 								if(in_array(strtolower($_POST['location']), $state->name) == true) {
 									foreach($state->regions as $region) {
 										foreach($region->municipalities as $municipality) {
-											printf("address %s is in municipality %s\r\n", $strtolower($row['address'], $municipality);
+											printf("address %s is in municipality %s\r\n", $strtolower($row['address']), $municipality);
 											if(strpos(strtolower($row['address']), $municipality) !== false) {
 												$push_this = true;
 											}
@@ -1023,7 +1023,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 									foreach($state->regions as $region) {
 										if(in_array(strtolower($_POST['location']), $region->name) == true) {
 											foreach($region->municipalities as $municipality) {
-												printf("address %s is in municipality %s\r\n", $strtolower($row['address'], $municipality);
+												printf("address %s is in municipality %s\r\n", $strtolower($row['address']), $municipality);
 												if(strpos(strtolower($row['address']), $municipality) !== false) {
 													$push_this = true;
 												}
