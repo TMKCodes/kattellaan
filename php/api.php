@@ -1042,7 +1042,10 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 							if($distance_result->success() == true && $distance_result->rows() >= 1) {
 								$push_this = true;
 							}
+						} else {
+							$push_this = true;
 						}
+
 						if($push_this == true) {
 							array_push($ap_search_results, $row);
 						}
