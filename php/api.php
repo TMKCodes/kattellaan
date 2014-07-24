@@ -1007,7 +1007,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 						$row = $result->fetch_array(RASSOC);
 						$push_this = false;
 						// do the location matching.
-						if(!empty($_POST['location')) {
+						if(!empty($_POST['location'])) {
 							foreach($world->states as $state) {
 								if(in_array(strtolower($_POST['location']), $state->name) == true) {
 									foreach($state->regions as $region) {
