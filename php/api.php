@@ -997,8 +997,8 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			
 			$query .= ";";
 
-			$world = json_decode(file_get_contents("lists/states-regions-municipalities.json"));
-			$statement = $database->prepare($query);
+			$world = json_decode(file_get_contents("../lists/states-regions-municipalities.json"));
+			$statement = $database->prepare($query);	
 			$result = $statement->execute();
 			if($result->success() == true) {
 				$rows = $result->rows();
