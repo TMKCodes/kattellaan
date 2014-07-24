@@ -1,0 +1,85 @@
+{
+	"states" : [
+		{ 
+			"name" : ["suomi", "finland", "finland"],
+			"regions": [
+				{ 
+					"name" : ["lappi", "lapland", "lappland" ],
+					"municipalities" : ["rovaniemi", "tornio", "kemi", "sodankylä", "keminmaa", "kemijärvi", "inari", "kittilä", "ylitornio", "ranua", "kolari", "salla", "pello", "posio", "simo", "tervola", "muonio", "enontekiö", "utsjoki", "savukoski", "pelkosenniemi" ]
+				},
+				{ 
+					"name" : ["pohjois-pohjanmaa", "norhtern ostrobothnia", "norra österbotten" ],
+					"municipalities" : ["alavieska", "haapajärvi", "haapavesi", "hailuoto", "li", "kalajoki", "kempele", "kuusamo", "kärsämäki", "liminka", "lumijoki", "merijärvi", "muhos", "nivala", "oulainen", "oulu", "pudasjärvi", "pyhäjoki", "pyhäjärvi", "pyhäntä", "raahe", "reisjärvi", "sievi", "siikajoki", "siikalatva", "taivalkoski", "tyrnävä", "utajärvi", "ylivieska" ]
+				},
+				{ 
+					"name" : ["kainuu", "kainuu", "kajaland" ],
+					"municipalities" : ["hyrynsalmi", "kuhmo", "puolanka", "suomussalmi", "kajaani", "paltamo", "ristijärvi", "sotkamo", "vaala" ]
+				},
+				{ 
+					"name" : ["pohjois-karjala", "northern karelia", "norra karelen" ],
+					"municipalities" : ["ilomantsi", "joensuu", "juuka", "kitee", "kontiolahti", "lieksa", "liperi", "nurmes", "outokumpu", "polvijärvi", "rääkkylä", "tohmajärvi", "valtimo" ]
+				},
+				{ 
+					"name" : ["pohjois-savo", "northen savonia", "norra savolax" ],
+					"municipalities" : ["iisalmi", "juankoski", "kaavi", "keitele", "kiuruvesi", "kuopio", "lapinlahti", "leppävirta", "maaninka", "pielavesi", "rautalampi", "rautavaara", "siilinjärvi", "sonkajärvi", "suonenjoki", "tervo", "tuusniemi", "varkaus", "vesanto", "vieremä" ]
+				},
+				{ 
+					"name" : ["etelä-savo", "southern savonia", "södra savolax" ],
+					"municipalities" : ["enonkoski", "heinävesi", "hirvensalmi", "joroinen", "juva", "kangasniemi", "mikkeli", "mäntyharju", "pertunmaa", "pieksämäki"]	
+				},
+				{ 
+					"name" : ["etelä-pohjanmaa", "southern ostrobothnia", "södra österbotten" ],
+					"municipalities" : ["alajärvi", "alavus", "evijärvi", "ilmajoki", "isojoki", "jalasjärvi", "kaarijoki", "kauhajoki", "kauhava", "kuortane", "kurikka", "lappajärvi" ] 	
+				},
+				{ 
+					"name" : ["keski-pohjanmaa", "central ostrobothnia", "mellersta österbotten" ],
+					"municipalities" : ["halsua", "kannus", "kaustinen", "kokkola", "lestijärvi", "perho", "toholampi", "veteli"]	
+				},
+				{ 
+					"name" : ["pohjanmaa", "ostrobothnia", "österbotten" ],
+					"municipalities" : ["isokyrö", "pietarsaari", "kaskinen", "mustasaari", "korsnäs", "kristiinankaupunki", "kruunupyy", "laihia", "luoto", "maalahti", "närpiö", "uusikaarlepyy", "pedersöre", "vaasa", "vyöri"]
+				},
+				{ 
+					"name" : ["pirkanmaa", "pirkanmaa", "birkaland" ],
+					"municipalities" : ["akaa", "hämeenkyrö", "ikaalinen", "juupajoki", "kangasala", "kihniö", "lempäälä", "mänttä-vilppula", "nokia", "orivesi", "pirkkala" ]	
+				},
+				{ 
+					"name" : ["keski-suomi", "central-finland", "mellersta finland" ],
+					"municipalities" : ["jyväskylä", "jämsä", "äänekoski", "laukaa", "keuruu", "saarijärvi", "muurame", "viitasaari", "hankasalmi", "joutsa", "pihtipudas", "karstula", "petäjävesi", "uurainen", "konnevesi", "toivakka", "kuhmoinen", "multia", "kinnula", "kannonkoski", "kyyjärvi", "kivijärvi", "luhanka" ]	
+				},
+				{ 
+					"name" : ["satakunta", "satakunta", "satakunda" ],
+					"municipalities" : ["eura", "eurajoki", "harjavalta", "honkajoki", "huittinen", "jämijärvi", "kankaanpää", "karvia", "kokemäki", "köyliö", "lavia", "luvia", "merikarvia", "nakkila", "pomarkku", "pori", "rauma", "siikainen", "säkylä", "ulvila"]
+				},
+				{ 
+					"name" : ["varsinais-suomi", "finland proper", "egentliga finland" ],
+					"municipalities" : ["turku", "salo", "raisio", "kaarina", "naantali", "uusikaupunki", "pargas", "loimaa", "paimio", "somero", "laitila", "aura", "kimitoön", "koski ti", "kustavi", "lieto", "marttila", "masku", "mynämäki", "nousiainen", "oripää", "pyhäranta", "pöytyä", "rusko", "sauvo", "taivassalo", "tervasjoki", "vehmaa"]
+				},
+				{ 
+					"name" : ["etelä-karjala", "south karelia", "södra karelen" ],
+					"municipalities" : ["imatra", "lappeenranta", "lemi", "luumäki", "parikkala", "rautjärvi", "ruokolahti", "savitaipale", "taipalsaari"]	
+				},
+				{ 
+					"name" : ["päijät-häme", "päijät-häme", "päijänne tavastland" ],
+					"municipalities" : ["asikkala", "hollola", "hämeenkoski", "kärkölä", "lahti", "nastola", "orimattila", "padasjoki" ]	
+				},
+				{ 
+					"name" : ["kanta-häme", "tavastia proper", "egentliga tavastland" ],
+					"municipalities" : ["forssa", "hämeenlinna", "hattula", "hausjärvi", "humppila", "janakkala", "jokioinen", "loppi", "riihimäki", "tammela", "ypäjä" ]	
+				},
+				{ 
+					"name" : ["uusimaa", "uusimaa", "nyland" ],
+					"municipalities" : [ "helsinki", "vantaa", "espoo", "karkkila", "kaunianien", "hyvinkää", "järvenpää", "kerava", "kirkkonummi", "lohja", "mäntsälä", "nurmijärvi", "pornainen", "sipoo", "siuntio", "tuusula", "hanko", "ingå", "raseborg", "askola", "myrskylä", "pukkila", "porvoo", "lapinjärvi", "loviisa" ]
+				},
+				{ 
+					"name" : ["kymenlaakso", "kymenlaakso", "kymmenedalen" ],
+					"municipalities" : ["litti", "kouvola", "hamina", "kotka", "miehikkälä", "pyhtää", "virolahti"]	
+				},
+				{ 
+					"name" : ["ahvenanmaa", "åland", "åland" ],
+					"municipalities" : ["brändö", "eckerö", "finström", "föglö", "geta", "hammerland", "jomala", "kumlinge", "kökar", "lemland", "lumparland", "mariehamn", "saltvik", "sottunga", "sund", "värdö"]
+				}
+			]
+		}
+	]
+}

@@ -995,8 +995,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 
 			// username=&age-min=16&age-max=40&location=&max-distance=50&gender%5B%5D=man&relationship-status%5B%5D=single&sexual-orientation%5B%5D=hetero&looking-for%5B%5D=friends&min-height=150&max-height=170&min-weight=30&max-weight=60&body-type%5B%5D=slender&eye-color%5B%5D=blue&hair-length%5B%5D=bald&hair-color%5B%5D=light&kids%5B%5D=yes&accomodation%5B%5D=alone&ethnic-identity%5B%5D=white&language-skills%5B%5D=finnish&education%5B%5D=untrained&work%5B%5D=student&min-income=0&max-income=50000&vocation%5B%5D=administrator%2Ffinance&dress-style%5B%5D=fashionable&smoking%5B%5D=smokeless&alcohol%5B%5D=alcohol-free&pets%5B%5D=nopets&exercise%5B%5D=idont&travel%5B%5D=cottagebatty&religion%5B%5D=atheist&religion-importance%5B%5D=insignificant&left-right-politics%5B%5D=left&liberal-conservative-politics%5B%5D=conservative&political-importance%5B%5D=dontcare&search-save-name=&saved-search=none 
 			
-			$query .= " LIMIT 0, 30;";
-
+			$query .= ";";
 			$statement = $database->prepare($query);
 			$result = $statement->execute();
 			if($result->success() == true) {
@@ -1004,13 +1003,33 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				if($rows > 0) {
 					for($i = 0; $i < $rows; $i++) {
 						$row = $result->fetch_array(RASSOC);
-						array_push($ap_search_results, $row);
+						$push_this = false;
+						// do the location matching.
+						if(!empty($_POST['location')) {
+							
+						} else if(!empty($_POST['max-distance'])) {
+							$searcher_identifier = $session->get_identifier($_COOKIE['session']);
+							$distance_statement = $database->prepare("SELECT * FROM `distance` WHERE `distance` = ? AND (`start` = ? OR `start = ?) AND (`end` = ? OR `end` = ?);");
+							$distance_statement->bind("s", $_POST['max-distance']);
+							$distance_statement->bind("i", $searcher_identifier);
+							$distance_statement->bind("i", $row['id']);
+							$distance_statement->bind("i", $searcher_identifier);
+							$distance_statement->bind("i", $row['id']);
+							$distance_result = $distance_statement->execute();
+							if($distance_result->success() == true && $distance_result->rows() >= 1) {
+								$push_this = true;
+							}
+						}
+						if($push_this == true) {
+							array_push($ap_search_results, $row);
+						}
 					}
 				} else {
-					printf(' { "success": false, "error": "No results found." }');
+					printf('{ "success": false, "error": "No results" }');
 					die();
 				}
 			}
+			
 			printf('{ "success": true, "result" : %s }', json_encode($ap_search_results));
 			//printf('{ "success": false, "error": "Search has not been implemented yet.\r\n This is the current sql query:\r\n %s" }', $query);
 		} else {
