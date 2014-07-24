@@ -1029,7 +1029,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 												}
 											}
 										} else {
-											if(strpos(strtolower($row['address']), strtolower($_POST['location']) !== false) {
+											if(strpos(strtolower($row['address']), strtolower($_POST['location'])) !== false) {
 												$push_this = true;
 											}
 										}
