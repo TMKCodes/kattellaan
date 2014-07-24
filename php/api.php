@@ -1007,13 +1007,13 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 						$row = $result->fetch_array(RASSOC);
 						$push_this = true;
 						// do the location matching. 
-						/*
+						
 						if(!empty($_POST['location'])) {
 							foreach($world->states as $state) {
 								if(in_array(strtolower($_POST['location']), $state->name) == true) {
 									foreach($state->regions as $region) {
 										foreach($region->municipalities as $municipality) {
-											if(strpos($row['address'], $municipality) !== false) {
+											if(strpos(strtolower($row['address']), $municipality) !== false) {
 												$push_this = true;
 											}
 										}
@@ -1022,7 +1022,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 									foreach($state->regions as $region) {
 										if(in_array(strtolower($_POST['location']), $region->name) == true) {
 											foreach($region->municipalities as $municipality) {
-												if(strpos($row['address'], $municipality) !== false) {
+												if(strpos(strtolower($row['address']), $municipality) !== false) {
 													$push_this = true;
 												}
 											}
@@ -1042,7 +1042,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 							if($distance_result->success() == true && $distance_result->rows() >= 1) {
 								$push_this = true;
 							}
-						}*/
+						}
 						if($push_this == true) {
 							array_push($ap_search_results, $row);
 						}
