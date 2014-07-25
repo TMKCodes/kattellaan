@@ -1120,7 +1120,8 @@ $("#search-submit").click(function(evt) {
 		console.log(data);
 		data = $.parseJSON(data);
 		if(data.success == true) {
-			
+			$("#display-amount-of-results").html("<b>Hakuosumia:</b><br /> " + data.result.length + " kappaletta.");
+			$("#search-result-controls").show();
 		} else {
 			$("#display-amount-of-results").html("<b>Hakuosumia:</b><br /> 0 kappaletta.");
 			$("#search-result-controls").show();	
