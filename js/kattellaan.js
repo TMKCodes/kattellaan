@@ -1149,7 +1149,6 @@ $("#search-submit").click(function(evt) {
 		console.log(data);
 		data = $.parseJSON(data);
 		if(data.success == true) {
-			$("#display-amount-of-results").html("<b>Hakuosumia:</b><br /> " + data.result.length + " kappaletta.");
 			if($("#with-picture-checkbox").is(":checked")) {
 				for(var i = 0; i < data.result.length; i++) {
 					if(data.result[i].picture == "") {
@@ -1174,6 +1173,8 @@ $("#search-submit").click(function(evt) {
 				data.result.sort(compare_birthday);
 				data.result.reverse();
 			}
+
+			$("#display-amount-of-results").html("<b>Hakuosumia:</b><br /> " + data.result.length + " kappaletta.");
 			console.log(data.result);		
 		} else {
 			$("#display-amount-of-results").html("<b>Hakuosumia:</b><br /> 0 kappaletta.");
