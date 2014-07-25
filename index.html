@@ -589,10 +589,35 @@
 			<div class="col-xs-12 col-sm-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-					
+						Hakuosumat.	
 					</div>
 					<div class="panel-body">
-	
+						<div class="col-xs-12" id="search-result-controls" style="display: none;">
+							<div class="col-xs-4">
+								
+							</div>
+							<div class="col-xs-4">
+								<b>Järjestä tulokset:</b>
+								<select class="form-control" id="select-search-result-order">
+									<option value="online">Onlinessa olevat</option>
+									<option value="offline">Offlinessa olevat</option>
+									<option value="new-logins">Uusimmat kirjautumiset</option>
+									<option value="old-logins">Vanhimmat kirjautumiset</option>
+									<option value="new-members">Uusimmat käyttäjät</option>
+									<option value="old-members">Vanhimmat käyttäjät</option>
+									<option value="young-members">Nuoremmat ensin iän mukaan</option>
+									<option value="old-members">Vanhemmat ensin iän mukaan</option>
+								</select>
+							</div>
+							<div class="col-xs-4">
+								<b>Näytä vain:</b>
+								<label for="with-picture-checkbox">Kuvalliset</label>
+								<input type="checkbox" id="with-picture-checkbox" value="with-pictures">
+							</div>
+						</div>
+						<div class="col-xs-12" id="search-results" style="display: none;">
+
+						</div>
 					</div>
 					<div class="panel-footer">
 	

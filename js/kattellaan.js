@@ -1118,6 +1118,12 @@ $("#search-submit").click(function(evt) {
                 data: form_data
         }).done(function(data) {
 		console.log(data);
+		data = $.parseJSON(data);
+		if(data.success == true) {
+
+		} else {
+			
+		}
 	});
 });
 
