@@ -94,7 +94,7 @@ class distance {
 		}
 		$result = $statement->execute();
 		if($result->success() == true) {
-			if($result->rows() == 1) {
+			if($result->rows() >= 1) {
 				$data = $result->fetch_object();
 				if(empty($data)) throw new Exception("Failed to fetch object!");
 				$this->identifier = $data->id;
