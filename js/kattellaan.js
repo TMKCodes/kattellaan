@@ -1103,6 +1103,7 @@ function hide_menu_collapse() {
 }
 
 
+
 $("#search-submit").click(function(evt) {
 	evt.preventDefault();
 	var form_data = $("#search-form").serialize();
@@ -1121,10 +1122,16 @@ $("#search-submit").click(function(evt) {
 		data = $.parseJSON(data);
 		if(data.success == true) {
 			$("#display-amount-of-results").html("<b>Hakuosumia:</b><br /> " + data.result.length + " kappaletta.");
-			$("#search-result-controls").show();
+			if($("#with-picture-checkbox").is(":checked")) {
+				for(var i = 0; i < data.result.length; i++) {
+					if(data.result[i].picture == "") {
+						data.result[i].splice(i, 1);
+					}
+				}
+			}
+				
 		} else {
 			$("#display-amount-of-results").html("<b>Hakuosumia:</b><br /> 0 kappaletta.");
-			$("#search-result-controls").show();	
 		}
 	});
 });

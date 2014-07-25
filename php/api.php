@@ -624,7 +624,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			}
 
 
-			$query = "SELECT * FROM `account` INNER JOIN `profile` ON `id` = `identifier` WHERE ";
+			$query = "SELECT `id`, `username`, `address`, `picture`, `latlng`, `relationship_status` FROM `account` INNER JOIN `profile` ON `id` = `identifier`  WHERE ";
 			$ap_search_results = array();
 			if(!empty($_POST['username'])) {
 				$query .= " `username` LIKE '%" . $_POST['username'] . "%'";

@@ -6,6 +6,7 @@ class account {
 	private $username;
 	private $address;
 	private $password;
+	private $registered;
 
 	public function __construct($database) {
 		$this->database = $database;
@@ -43,12 +44,21 @@ class account {
 		return $this->password;
 	}
 
+	public function set_registered($registered) {
+		$this->registered = $registered;
+	}
+
+	public function get_registered($registered) {
+		return $this->registered;
+	}
+
 	public function create_table() {
 		$table_query = "CREATE TABLE IF NOT EXISTS `account`(" .
 				"id INT NOT NULL AUTO_INCREMENT PRIMARY KEY," .
 				"username TEXT NOT NULL," .
 				"address TEXT NOT NULL," .
-				"password TEXT NOT NULL);"; 
+				"password TEXT NOT NULL," .
+				"registered DATETIME NOT NULL);"; 
 		$statement = $this->database->prepare($table_query);
 		$result = $statement->execute();
 		if($result->success() == true) {
@@ -81,6 +91,7 @@ class account {
 				$this->username = $data->username;
 				$this->address = $data->address;
 				$this->password = $this->password;
+				$this->registered = $this->registered;
 				return true;
 			} else {
 				return false;
@@ -94,7 +105,7 @@ class account {
 		if($this->select() == true) {
 			return false;	
 		} else {
-			$statement = $this->database->prepare("INSERT INTO `account` (`username`, `address`, `password`) VALUES (?, ?, ?);");
+			$statement = $this->database->prepare("INSERT INTO `account` (`username`, `address`, `password`, `registered`) VALUES (?, ?, ?, NOW());");
 			if(!empty($this->username)) {
 				$statement->bind("s", $this->username);	
 			} else {
