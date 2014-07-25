@@ -624,7 +624,10 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			}
 
 
-			$query = "SELECT `id`, `username`, `address`, `picture`, `latlng`, `relationship_status` FROM `account` INNER JOIN `profile` ON `id` = `identifier`  WHERE ";
+			$query = "SELECT account.id, `username`, profile.address, `picture`, `latlng`, `relationship_status`, `registered`, `timestamp`, `birthday`, `gender`" .
+					"FROM `account` " .
+					"INNER JOIN `profile` ON account.id = profile.identifier " .
+					"LEFT JOIN (SELECT * FROM `session` WHERE 1 ORDER BY `timestamp` DESC LIMIT 0, 1) s ON account.id = s.uid WHERE ";
 			$ap_search_results = array();
 			if(!empty($_POST['username'])) {
 				$query .= " `username` LIKE '%" . $_POST['username'] . "%'";
