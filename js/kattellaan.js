@@ -1154,6 +1154,7 @@ $("#search-submit").click(function(evt) {
 				for(var i = 0; i < data.result.length; i++) {
 					if(data.result[i].picture == "") {
 						data.result.splice(i, 1);
+						i--;
 					}
 				}
 			}
