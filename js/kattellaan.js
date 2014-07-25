@@ -1105,9 +1105,9 @@ function hide_menu_collapse() {
 function compare_login(a, b) {
 	var alogin = new Date(a.timestamp);
 	var blogin = new Date(b.timestamp);
-	if(alogin < blogin)
-		return -1;
 	if(alogin > blogin)
+		return -1;
+	if(alogin < blogin)
 		return 1;
 	return 0;
 }
@@ -1115,9 +1115,9 @@ function compare_login(a, b) {
 function compare_registered(a, b) {
 	var aregistered = new Date(a.registered);
 	var bregistered = new Date(b.registered);
-	if(aregistered < bregistered)
-		return -1;
 	if(aregistered > bregistered)
+		return -1;
+	if(aregistered < bregistered)
 		return 1;
 	return 0;
 }
@@ -1125,9 +1125,9 @@ function compare_registered(a, b) {
 function compare_birthday(a, b) {
 	var abirthday = new Date(a.birthday);
 	var bbirthday = new Date(b.birthday);
-	if(abirthday < bbirthday)
+	if(abirthday > bbirthday)
 		return -1;
-	if(abirthday > bbirthday) 
+	if(abirthday < bbirthday) 
 		return 1;
 	return 0;
 }
