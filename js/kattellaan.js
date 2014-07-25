@@ -1102,7 +1102,35 @@ function hide_menu_collapse() {
 	}
 }
 
+function compare_login(a, b) {
+	var alogin = new Date(a.timestamp);
+	var blogin = new Date(b.timestamp);
+	if(alogin < blogin)
+		return -1;
+	if(alogin > blogin)
+		return 1;
+	return 0;
+}
 
+function compare_registered(a, b) {
+	var aregistered = new Date(a.registered);
+	var bregistered = new Date(b.registered);
+	if(aregistered < bregistered)
+		return -1;
+	if(aregistered > bregistered)
+		return 1;
+	return 0;
+}
+
+function compare_birthday(a, b) {
+	var abirthday = new Date(a.birthday);
+	var bbirthday = new Date(b.birthday);
+	if(abirthday < bbirthday)
+		return -1;
+	if(abirthday > bbirthday) 
+		return 1;
+	return 0;
+}
 
 $("#search-submit").click(function(evt) {
 	evt.preventDefault();
@@ -1129,7 +1157,23 @@ $("#search-submit").click(function(evt) {
 					}
 				}
 			}
-				
+			if($("#select-search-result-order").find(":selected").val() == "new-logins") {
+				data.result.sort(compare_login);
+			} else if($("#select-search-result-order").find(":selected").val() == "old-logins") {
+				data.result.sort(compare_login);
+				data.result.reverse();
+			} else if($("#select-search-result-order").find(":selected").val() == "new-members") {
+				data.result.sort(compare_registered);
+			} else if($("#select-search-result-order").find(":selected").val() == "old-members") {
+				data.result.sort(compare_registered);
+				data.result.reverse();
+			} else if($("#select-search-result-order").find(":selected").val() == "young-members") {
+				data.result.sort(compare_birthday);
+			} else if($("#select-search-result-order").find(":selected").val() == "old-members") {
+				data.result.sort(compare_birthday);
+				data.result.reverse();
+			}
+			console.log(data.result);		
 		} else {
 			$("#display-amount-of-results").html("<b>Hakuosumia:</b><br /> 0 kappaletta.");
 		}
