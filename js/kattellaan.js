@@ -1122,7 +1122,7 @@ $("#search-submit").click(function(evt) {
 		if(data.success == true) {
 			
 		} else {
-			$("#display-amount-of-results").html("<p><b>Hakuosumia:</b> 0 kappaletta.</p>");
+			$("#display-amount-of-results").html("<b>Hakuosumia:</b><br /> 0 kappaletta.");
 			$("#search-result-controls").show();	
 		}
 	});
