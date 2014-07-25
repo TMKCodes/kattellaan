@@ -1120,9 +1120,10 @@ $("#search-submit").click(function(evt) {
 		console.log(data);
 		data = $.parseJSON(data);
 		if(data.success == true) {
-
-		} else {
 			
+		} else {
+			$("#display-amount-of-results").html("<p><b>Hakuosumia:</b> 0 kappaletta.</p>");
+			$("#search-result-controls").show();	
 		}
 	});
 });
