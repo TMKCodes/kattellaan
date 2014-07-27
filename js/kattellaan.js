@@ -19,7 +19,7 @@ function sleep(millis, callback) {
 function rad(x) {
 	return x * Math.PI / 180;
 }
-
+/*
 function do_distance_work() {
 	var session = $.cookie("session");
 	$.ajax({
@@ -64,7 +64,7 @@ function do_distance_work() {
 		}
 	});
 }
-
+*/
 function open_session(username, password) {
 	$.ajax({
 		url: "php/api.php",
@@ -1001,10 +1001,11 @@ $("document").ready(function() {
 			update_session();
 			update_unread_messages();
 		}, 15000);
+		/*	
 		setInterval(function() {
 			do_distance_work();
 		}, 60000);
-
+		*/
 	} else {
 		$("#user-menu").hide();
 		$("#authentication-form").show();
