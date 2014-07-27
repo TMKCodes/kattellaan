@@ -1210,7 +1210,7 @@ $("#search-submit").click(function(evt) {
 					data.result[i].picture = "default.jpg";
 				}
 
-				var result_display = '<div class="row">';
+				var result_display = '<div class="row" style="border-top: 1px solid black;" >';
 					result_display += '<div class="row">';
 						result_display += '<div class="col-xs-12">';
 							result_display += "<h1>" + data.result[i].username + "</h1>";
