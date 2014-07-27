@@ -9,8 +9,8 @@ require_once("dbwrapper/db.php");
 require_once("position.php");
 require_once("distance.php");
 
-function rad(x) {
-	return x * pi() / 180;
+function rad($x) {
+	return $x * pi() / 180;
 }
 
 $passwd = explode(":", base64_decode(file_get_contents("/home/temek/kattellaan/.passwd")));
