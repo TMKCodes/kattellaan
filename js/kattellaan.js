@@ -1199,14 +1199,11 @@ $("#search-submit").click(function(evt) {
 				var tm = today.getMonth();
 				var bm = birthday.getMonth();
 				var age = ty - by;
-				console.log(age);
 				if(tm > bm) {
 					if(td > bd) {
 						age += 1;
 					}
-				}
-				console.log(age);
-				
+				}	
 				var town = data.result[i].town.charAt(0).toUpperCase() + data.result[i].town.slice(1);
 
 				var result_display = '<div class="row">';
@@ -1216,8 +1213,12 @@ $("#search-submit").click(function(evt) {
 						result_display += '</div>';
 					result_display += '</div>';
 					result_display += '<div class="row">';
-
+						result_display += '<div class="col-xs-3">';
+							result_display += '<img src="uploads/' + data.result[i].picture + '" alt="' . data.result[i].username. '" profiilikuva" />';
+						result_display += '</div>';
+						result_display += '<div class="col-xs-9">';
 							result_display += "<p>" + age + ", " + gender + ", " +  town + "</p>";
+						result_display += '</div>';
 					result_display += '</div>';
 				result_display += '</div>';
 				$("#search-results").append(result_display);
