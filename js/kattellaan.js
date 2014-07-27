@@ -1211,8 +1211,9 @@ $("#search-submit").click(function(evt) {
 					result_display += '<div class="row">';
 					result_display += '</div>';
 				result_display += '</div>';
-				$("#search_results").append(result_display);
+				$("#search-results").append(result_display);
 			}
+			$("#search-results").show();i
 		} else {
 			$("#display-amount-of-results").html("<b>Hakuosumia:</b><br /> 0 kappaletta.");
 		}
