@@ -19,16 +19,22 @@ if($database->connect("127.0.01", $passwd[0], $passwd[1], "kattellaan") == true)
 	$distance = new distance($database);
 	$distance_work = $distance->get_uncalculated();
 	print_r($distance_work);
-	/*
+	
 	$r = 6378137;
-	$distance->set_start();
-	$distance->set_end();
-	$distance->set_distance();
+	$dLat = rad($distance_work['end']['latitude'] - $distance_work['start']['latitude']);
+	$dLong = rad($distance_work['end']['longitude'] - $distance_work['end']['longitude']);
+	$a = sin($dLat / 2) * sin($dLat / 2) + cos(rad($distance_work['start']['latitude'])) * cos(rad($distance_work['end']['latitude'])) * sin($dLong / 2) * sin($dLong / 2);
+	$c = 2 * atan2(sqrt(a), sqrt(1 - a));
+	$d = $r * $c;
+
+	$distance->set_start($distance_work['start']['identifier']);
+	$distance->set_end($distance_work['end']['identifier']);
+	$distance->set_distance($d);
 	if($distance->insert() == true) {
 		printf("Distance successfully calculated.");
 	} else {
 		printf("Distance calculation failed.");
-	}*/
+	}
 } else {
 	printf("Failed to connect to database\r\n");
 }
