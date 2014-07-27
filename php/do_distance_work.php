@@ -1,5 +1,5 @@
 <?php
-$stime = time(true);
+$stime = time();
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -39,6 +39,6 @@ if($database->connect("127.0.01", $passwd[0], $passwd[1], "kattellaan") == true)
 	printf("Failed to connect to database\r\n");
 }
 
-$etime = time(false);
+$etime = time();
 printf("Script executed in %s seconds.\r\n", $etime - $stime);
 ?>
