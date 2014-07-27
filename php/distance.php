@@ -160,6 +160,7 @@ class distance {
 			$end_statement->bind("i", $next_end);
 			$end_statement->bind("i", $start);
 			$end_result = $end_statement->execute();
+			printf("end rows: %s\r\n", $end_result->rows());
 			if($end_result->success() == true && $end_result->rows() > 1) {
 				$end = $end_result->fetch_array(RASSOC);
 				printf("end:\r\n");
