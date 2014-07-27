@@ -156,9 +156,8 @@ class distance {
 			printf("\r\n");
 			$next_end = $data['end'] + 1;
 			$next_start = $data['start'] + 1;
-			$end_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ? OR `id` = ?;");
+			$end_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ?;");
 			$end_statement->bind("i", $next_end);
-			$end_statement->bind("i", $start);
 			$end_result = $end_statement->execute();
 			printf("end rows: %s\r\n", $end_result->rows());
 			if($end_result->success() == true && $end_result->rows() > 1) {
