@@ -40,5 +40,5 @@ if($database->connect("127.0.01", $passwd[0], $passwd[1], "kattellaan") == true)
 }
 
 $etime = microtime();
-printf("Script executed in %s seconds.\r\n", $etime - $stime);
+printf("Script executed in %s seconds.\r\n", ($etime - $stime) * 1000000);
 ?>
