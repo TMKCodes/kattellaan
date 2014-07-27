@@ -1133,6 +1133,8 @@ function compare_birthday(a, b) {
 	return 0;
 }
 
+var user_search_results;
+
 $("#search-submit").click(function(evt) {
 	evt.preventDefault();
 	var form_data = $("#search-form").serialize();
@@ -1176,7 +1178,38 @@ $("#search-submit").click(function(evt) {
 			}
 
 			$("#display-amount-of-results").html("<b>Hakuosumia:</b><br /> " + data.result.length + " kappaletta.");
-			console.log(data.result);		
+			console.log(data.result);
+			window.user_search_results = data.result;
+			for(var i = 0; i < data.result.length; i++) {
+				var gender = "";
+				switch(data.result[i].gender) {
+					case 'man': gender = "mies"; break;
+					case 'woman': gender = "nainen"; break;
+					case 'transman': gender = "transumies"; break;
+					case 'transwoman': gender = "transunainen"; break;
+					case 'sexless': gender = "Sukupuoleton"; break;
+				}
+				var birthday = new Date(data.result[i]);
+				var today = new Date();
+				var age = today.getFullYear() - birthday.getFullYear();
+				if(today.getDate() < birthday.getDate()) {
+					if(today.getMonth() < birthday.getMonth()) {
+						age++;
+					}
+				}
+
+
+				var result_display = '<div class="row">';
+					result_display += '<div class="row">';
+						result_display += '<div class="col-xs-12">';
+							result_display += "<h1>" + data.result[i].username + "</h1>";
+							result_display += "<p>" + age + ", " + gender;
+						result_display += '</div>';
+					result_display += '</div>';
+					result_display += '<div class="row">';
+					result_display += '</div>
+				result_display += '</div>';
+			}
 		} else {
 			$("#display-amount-of-results").html("<b>Hakuosumia:</b><br /> 0 kappaletta.");
 		}

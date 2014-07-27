@@ -624,7 +624,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			}
 
 
-			$query = "SELECT account.id, `username`, profile.address, `picture`, `latlng`, `relationship_status`, `registered`, `timestamp`, `birthday`, `gender`" .
+			$query = "SELECT account.id, `username`, profile.address, `picture`, `relationship_status`, `registered`, `timestamp`, `birthday`, `gender`" .
 					"FROM `account` " .
 					"INNER JOIN `profile` ON account.id = profile.identifier " .
 					"LEFT JOIN (SELECT * FROM `session` WHERE 1 ORDER BY `timestamp` DESC LIMIT 0, 1) s ON account.id = s.uid WHERE ";
@@ -1018,6 +1018,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 										foreach($region->municipalities as $municipality) {
 											if(strpos(strtolower($row['address']), $municipality) !== false) {
 												$push_this = true;
+												$row['town'] = $municipality;
 											}
 										}
 									}
@@ -1027,11 +1028,13 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 											foreach($region->municipalities as $municipality) {
 												if(strpos(strtolower($row['address']), $municipality) !== false) {
 													$push_this = true;
+													$row['town'] = $municipality;
 												}
 											}
 										} else {
 											if(strpos(strtolower($row['address']), strtolower($_POST['location'])) !== false) {
 												$push_this = true;
+												$row['town'] = strtolower($_POST['location']);
 											}
 										}
 									}
