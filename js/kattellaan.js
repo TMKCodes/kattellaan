@@ -1199,11 +1199,13 @@ $("#search-submit").click(function(evt) {
 				var tm = today.getMonth();
 				var bm = birthday.getMonth();
 				var age = ty - by;
+				console.log(age);
 				if(tm > bm) {
 					if(td > bd) {
 						age += 1;
 					}
 				}
+				console.log(age);
 				
 				var town = data.result[i].town.charAt(0).toUpperCase() + data.result[i].town.slice(1);
 
