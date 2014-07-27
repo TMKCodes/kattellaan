@@ -18,7 +18,6 @@ $database = new db("mysqli");
 if($database->connect("127.0.01", $passwd[0], $passwd[1], "kattellaan") == true) {
 	$distance = new distance($database);
 	$distance_work = $distance->get_uncalculated();
-	print_r($distance_work);
 	
 	$r = 6378137;
 	$dLat = rad($distance_work['end']['latitude'] - $distance_work['start']['latitude']);
@@ -26,15 +25,14 @@ if($database->connect("127.0.01", $passwd[0], $passwd[1], "kattellaan") == true)
 	$a = sin($dLat / 2) * sin($dLat / 2) + cos(rad($distance_work['start']['latitude'])) * cos(rad($distance_work['end']['latitude'])) * sin($dLong / 2) * sin($dLong / 2);
 	$c = 2 * atan2(sqrt($a), sqrt(1 - $a));
 	$d = $r * $c;
-	printf("%s\r\n", $d);
 
 	$distance->set_start($distance_work['start']['identifier']);
 	$distance->set_end($distance_work['end']['identifier']);
 	$distance->set_distance($d);
 	if($distance->insert() == true) {
-		printf("Distance successfully calculated.");
+		printf("Distance successfully calculated.\r\n");
 	} else {
-		printf("Distance calculation failed.");
+		printf("Distance calculation failed.\r\n");
 	}
 } else {
 	printf("Failed to connect to database\r\n");
