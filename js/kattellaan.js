@@ -1190,7 +1190,7 @@ $("#search-submit").click(function(evt) {
 					case 'sexless': gender = "Sukupuoleton"; break;
 				}
 
-				var birthday = new Date(data.result[i]);
+				var birthday = new Date(data.result[i].birthday);
 				var today = new Date();
 				var ty = today.getFullYear();
 				var by = birthday.getFullYear();
