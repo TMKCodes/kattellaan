@@ -1192,10 +1192,16 @@ $("#search-submit").click(function(evt) {
 
 				var birthday = new Date(data.result[i]);
 				var today = new Date();
-				var age = today.getFullYear() - birthday.getFullYear();
-				if(today.getDate() < birthday.getDate()) {
-					if(today.getMonth() < birthday.getMonth()) {
-						age++;
+				var ty = today.getFullYear();
+				var by = birthday.getFullYear();
+				var td = today.getDate();
+				var bd = birthday.getDate();
+				var tm = today.getMonth();
+				var bm = birthday.getMonth();
+				var age = ty - by;
+				if(tm > bm) {
+					if(td > bd) {
+						age += 1;
 					}
 				}
 				
@@ -1205,10 +1211,11 @@ $("#search-submit").click(function(evt) {
 					result_display += '<div class="row">';
 						result_display += '<div class="col-xs-12">';
 							result_display += "<h1>" + data.result[i].username + "</h1>";
-							result_display += "<p>" + age + ", " + gender + ", " +  town + "</p>";
 						result_display += '</div>';
 					result_display += '</div>';
 					result_display += '<div class="row">';
+
+							result_display += "<p>" + age + ", " + gender + ", " +  town + "</p>";
 					result_display += '</div>';
 				result_display += '</div>';
 				$("#search-results").append(result_display);
