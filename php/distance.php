@@ -146,6 +146,47 @@ class distance {
 	}
 	
 	function get_uncalculated() {
+		$start = 79;
+		$statement = $this->database->prepare("SELECT * FROM `distance` ORDER BY `id` DESC LIMIT 0, 1;");
+		$result = $statement->execute();
+		if($result->success() == true) {
+			$data = $result->fetch_array(RASSOC);
+			$next_end = $data['end'] + 1;
+			$next_start = $data['start'] + 1;
+			$end_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ? OR `id` = ?;");
+			$end_statement->bind("i", $nextend);
+			$end_statement->bind("i", $start);
+			$end_result = $end_statement->execute();
+			if($end_result->success() == true && $end_result->rows() > 1) {
+				$end = $end_result->fetch_array(RASSOC);
+				$start_statement("SELECT * FROm `position` WHERE `id` = ?");
+				if($end['id'] == $nextend) {
+					$start_statement->bind("i", $data['start']);
+				} else {
+					$start_statement->bind("i", $next_start);
+				}
+				$start_result = $start_statement->execute();
+				if($start_result->success() == true && $start_result->rows() > 1) {
+					$start = $start_result->fetch_array(RASSOC);
+					return array("start" => $start, "end" => $end);
+				}
+			}
+		} else {
+			$end_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ?");
+			$end_statement->bind("i", $start + 1);
+			$end_result = $end_statement->execute();
+			if($end_result->success() == true && $end_result->rows() > 1) {
+				$end = $end_result->fetch_array(RASSOC);
+				$start_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ?");
+				$start_statement->bind("i", $start);
+				$start_result = $start_statement->execute();
+				if($start_result->success() == true && $start_result->rows() > 1) {
+					return array("start" => $start, "end" => $end);
+				}
+			}
+		}
+
+		/*
 		$pos = new position($this->database);
 		$positions = $pos->select_all();
 		for($i = 0; $i < count($positions); $i++) {
@@ -165,6 +206,7 @@ class distance {
 				}
 			}
 		}
+		*/
 		return false;
 	}
 }
