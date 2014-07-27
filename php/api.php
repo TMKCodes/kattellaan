@@ -247,7 +247,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				printf('{ "success": false, "error": "Failed to confirm session." }');
 				die;
 			}
-			if(!empty($_POST['work_type']) && $_POST['work_type'] == "distance") {
+		/*	if(!empty($_POST['work_type']) && $_POST['work_type'] == "distance") {
 				try {
 					$distance = new distance($database);
 					$distance_work = $distance->get_uncalculated();
@@ -259,7 +259,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				} catch (Exception $e) {
 					printf('{ "success": false, "error": "%s" }', $e->getMessage());
 				}
-			}
+			}*/
 		} else {
 			printf('{ "success": false, "error": "Not authenticated." }');
 		}
@@ -270,7 +270,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				printf('{ "success": false, "error": "Failed to confirm session." }');
 				die;
 			}
-			if(!empty($_POST['work_type']) && $_POST['work_type'] == "distance") {
+			/*if(!empty($_POST['work_type']) && $_POST['work_type'] == "distance") {
 				try {
 					$distance = new distance($database);
 					$distance->set_start($_POST['start']);
@@ -284,7 +284,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				} catch (Exception $e) {
 					printf('{ "success": false, "error": "%s" }', $e->getMessage());
 				}
-			}
+			}*/
 		} else {
 			printf('{ "success": false, "error": "Not authenticated." }');
 		}
