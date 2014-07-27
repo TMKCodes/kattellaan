@@ -7,5 +7,6 @@ do
 	then
 		echo $OUTPUT
 	fi
+	sleep 1s
 done
 
