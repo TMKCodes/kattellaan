@@ -1209,7 +1209,7 @@ $("#search-submit").click(function(evt) {
 						result_display += '</div>';
 					result_display += '</div>';
 					result_display += '<div class="row">';
-					result_display += '</div>
+					result_display += '</div>';
 				result_display += '</div>';
 				$("#search_results").append(result_display);
 			}
