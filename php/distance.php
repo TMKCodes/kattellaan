@@ -154,7 +154,7 @@ class distance {
 			$next_end = $data['end'] + 1;
 			$next_start = $data['start'] + 1;
 			$end_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ? OR `id` = ?;");
-			$end_statement->bind("i", $nextend);
+			$end_statement->bind("i", $next_end);
 			$end_statement->bind("i", $start);
 			$end_result = $end_statement->execute();
 			if($end_result->success() == true && $end_result->rows() > 1) {
