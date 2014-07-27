@@ -1206,6 +1206,10 @@ $("#search-submit").click(function(evt) {
 				}	
 				var town = data.result[i].town.charAt(0).toUpperCase() + data.result[i].town.slice(1);
 
+				if(data.result[i].picture == "") {
+					data.result[i].picture = "default.jpg";
+				}
+
 				var result_display = '<div class="row">';
 					result_display += '<div class="row">';
 						result_display += '<div class="col-xs-12">';
@@ -1214,7 +1218,7 @@ $("#search-submit").click(function(evt) {
 					result_display += '</div>';
 					result_display += '<div class="row">';
 						result_display += '<div class="col-xs-3">';
-							result_display += '<img src="uploads/' + data.result[i].picture + '" alt="' + data.result[i].username + '" profiilikuva" />';
+							result_display += '<img src="uploads/' + data.result[i].picture + '" alt="' + data.result[i].username + '" profiilikuva" style="width: 100%;"/>';
 						result_display += '</div>';
 						result_display += '<div class="col-xs-9">';
 							result_display += "<p>" + age + ", " + gender + ", " +  town + "</p>";
