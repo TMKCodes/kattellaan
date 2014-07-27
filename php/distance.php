@@ -156,7 +156,7 @@ class distance {
 			printf("\r\n");
 			$next_end = $data['end'] + 1;
 			$next_start = $data['start'] + 1;
-			$end_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ? OR `id` = ?;");
+			$end_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ? OR `id` = ? ORDER BY `id` DESC LIMIT 0, 1;");
 			$end_statement->bind("i", $next_end);
 			$end_statement->bind("i", $start);
 			$end_result = $end_statement->execute();
