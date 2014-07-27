@@ -1217,10 +1217,10 @@ $("#search-submit").click(function(evt) {
 						result_display += '</div>';
 					result_display += '</div>';
 					result_display += '<div class="row">';
-						result_display += '<div class="col-xs-3">';
+						result_display += '<div class="col-xs-4">';
 							result_display += '<img src="uploads/' + data.result[i].picture + '" alt="' + data.result[i].username + '" profiilikuva" style="width: 100%;"/>';
 						result_display += '</div>';
-						result_display += '<div class="col-xs-9">';
+						result_display += '<div class="col-xs-8">';
 							result_display += "<p>" + age + ", " + gender + ", " +  town + "</p>";
 						result_display += '</div>';
 					result_display += '</div>';
