@@ -168,6 +168,8 @@ class distance {
 				$start_result = $start_statement->execute();
 				if($start_result->success() == true && $start_result->rows() > 1) {
 					$start = $start_result->fetch_array(RASSOC);
+					$start['identifier'] = $start['id'];
+					$end['identifier'] = $end['id'];
 					return array("start" => $start, "end" => $end);
 				}
 			}
@@ -181,6 +183,8 @@ class distance {
 				$start_statement->bind("i", $start);
 				$start_result = $start_statement->execute();
 				if($start_result->success() == true && $start_result->rows() > 1) {
+					$start['identifier'] = $start['id'];
+					$end['identifier'] = $end['id'];
 					return array("start" => $start, "end" => $end);
 				}
 			}
