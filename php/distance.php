@@ -159,7 +159,7 @@ class distance {
 			$end_result = $end_statement->execute();
 			if($end_result->success() == true && $end_result->rows() > 1) {
 				$end = $end_result->fetch_array(RASSOC);
-				$start_statement("SELECT * FROm `position` WHERE `id` = ?");
+				$start_statement = $this->database->prepare("SELECT * FROm `position` WHERE `id` = ?");
 				if($end['id'] == $nextend) {
 					$start_statement->bind("i", $data['start']);
 				} else {
