@@ -24,8 +24,9 @@ if($database->connect("127.0.01", $passwd[0], $passwd[1], "kattellaan") == true)
 	$dLat = rad($distance_work['end']['latitude'] - $distance_work['start']['latitude']);
 	$dLong = rad($distance_work['end']['longitude'] - $distance_work['end']['longitude']);
 	$a = sin($dLat / 2) * sin($dLat / 2) + cos(rad($distance_work['start']['latitude'])) * cos(rad($distance_work['end']['latitude'])) * sin($dLong / 2) * sin($dLong / 2);
-	$c = 2 * atan2(sqrt(a), sqrt(1 - a));
+	$c = 2 * atan2(sqrt($a), sqrt(1 - $a));
 	$d = $r * $c;
+	printf("%s\r\n", $d);
 
 	$distance->set_start($distance_work['start']['identifier']);
 	$distance->set_end($distance_work['end']['identifier']);
