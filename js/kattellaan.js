@@ -1205,7 +1205,7 @@ $("#search-submit").click(function(evt) {
 					result_display += '<div class="row">';
 						result_display += '<div class="col-xs-12">';
 							result_display += "<h1>" + data.result[i].username + "</h1>";
-							result_display += "<p>" + age + ", " + gender + ", " town;
+							result_display += "<p>" + age + ", " + gender + ", " +  town + "</p>";
 						result_display += '</div>';
 					result_display += '</div>';
 					result_display += '<div class="row">';
