@@ -1384,7 +1384,7 @@ $("#disallow-cookie-use").click(function(evt) {
 
 $("#register-select-profile-picture-skip-button").click(function(evt) {
 	evt.preventDefault();
-	load_page("register-select-gender-page");
+	load_page("register-select-profile-text-page");
 });
 
 $("#start-registeration-button").click(function(evt) {
@@ -1515,6 +1515,25 @@ $("#register-invite-skip-button").click(function(evt) {
 	load_page("register-select-location-page");
 });
 
+
+$("#register-select-profile-text-done-button").click(function(evt) {
+	evt.preventDefault();
+	if(check_session() === true) {
+		var profile_text = $("#register-select-profile-text-input").val();
+		if(profile_text !== undefined) {
+			$.cookie("profile-text", profile_text);
+			var nextPage = $.cookie("next-page");
+			if(nextPage !== undefined) {
+				load_page(nextPage);
+				$.removeCookie("next-page");
+			} else {
+				load_page("register-select-profile-text-page");
+			}
+		}
+	} else {
+		load_home_page();
+	}
+});
 
 $("#register-select-gender-page").on("show", function(evt) {
 	if($.cookie("gender") !== undefined) {
@@ -2622,6 +2641,9 @@ $("#register-confirm-profile-information-page").on("show", function() {
 	$("#register-confirm-profile-picture-data-url").attr("href", hostname + "uploads/" + profilePicture);
 	$("#register-confirm-profile-picture-data-url").html(hostname + "uploads/" + profilePicture);
 	
+	var profileText = $.cookie("profile-text");
+	$("#register-confirm-profile-text-data").text(profileText);
+
 	var gender = $.cookie("gender");
 	if(gender === "man") {
 		$("#register-confirm-gender-data").val("Mies");
@@ -3263,6 +3285,7 @@ $("#register-confirm-profile-information-form").submit(function(evt) {
 			not_exciting : $.cookie("not-exciting"),
 			pets : $.cookie("pets"),
 			picture : $.cookie("picture"),
+			profile_text : $.cookie("profile-text");
 			political_importance : $.cookie("political-importance"),
 			relationship_status : $.cookie("relationship-status"),
 			religion : $.cookie("religion"),

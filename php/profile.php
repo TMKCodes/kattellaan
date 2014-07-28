@@ -34,6 +34,7 @@ class profile {
 	private $not_exciting;
 	private $pets;
 	private $picture;
+	private $profile_text;
 	private $political_importance;
 	private $relationship_status;
 	private $religion;
@@ -95,6 +96,7 @@ class profile {
 		} else {
 			$this->picture = "";
 		}
+		$this->profile_text = $profile['profile_text'];
 		$this->political_importance = $profile['political_importance'];
 		$this->relationship_status = $profile['relationship_status'];
 		$this->religion = $profile['religion'];
@@ -138,6 +140,7 @@ class profile {
 		$profile['not_exciting'] = $this->not_exciting;
 		$profile['pets'] = $this->pets;
 		$profile['picture'] = $this->picture;
+		$profile['profile_text'] = $this->profile_text;
 		$profile['political_importance'] = $this->political_importance;
 		$profile['relationship_status'] = $this->relationship_status;
 		$profile['religion'] = $this->religion;
@@ -182,6 +185,7 @@ class profile {
 			"not_exciting TEXT," .
 			"pets TEXT," .
 			"picture TEXT," .
+			"profile_text TEXT," .
 			"political_importance TEXT," .
 			"relationship_status TEXT," .
 			"religion TEXT," .
@@ -289,6 +293,7 @@ class profile {
 		$statement->bind('s', $this->not_exciting);
 		$statement->bind('s', $this->pets);
 		$statement->bind('s', $this->picture);
+		$statement->bind('s', $this->profile_text);
 		$statement->bind('s', $this->political_importance);
 		$statement->bind('s', $this->relationship_status);
 		$statement->bind('s', $this->religion);
@@ -310,14 +315,14 @@ class profile {
 				"`favorite_movies`, `favorite_radio_shows`, `gender`, `hair_length`,  `hair_color`,".
 				"`height`, `identifier`, `ignite_me`, `income`, `kids`, `language_skills`,".
 				"`latlng`, `left_right_politics`, `liberal_conservative_politics`,".
-				"`looking_for`, `not_exciting`, `pets`, `picture`, `political_importance`,".
+				"`looking_for`, `not_exciting`, `pets`, `picture`, `profile_text`, `political_importance`,".
 				"`relationship_status`, `religion`, `religion_importance`, `sexual_orientation`,".
 				"`smoking`, `travel`, `vocation`, `weight`, `work`) " . 
 				"VALUES (".	
 				"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " . // 10
 				"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " . // 20
 				"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " . // 30
-				"?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"; // 38
+				"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"; // 38
 			$statement = $this->database->prepare($query);
 			$statement = $this->sbind($statement, true);
 			$result = $statement->execute();
@@ -338,7 +343,7 @@ class profile {
 				"`gender` = ?, `hair_color` = ?, `height` = ?, `ignite_me` = ?, " . 
 				"`income` = ?, `kids` = ?, `language_skills` = ?, `latlng` = ?, " .
 				"`left_right_politics` = ?, `liberal_conservative_politics` = ?, " .	
-				"`looking_for` = ?, `not_exciting` = ?, `pets` = ?, `picture` = ?, " .
+				"`looking_for` = ?, `not_exciting` = ?, `pets` = ?, `picture` = ?, `profile_text` = ?, " .
 				"`political_importance` = ?, `relationship_status` = ?, `religion` = ?, " .
 				"`religion_importance` = ?, `sexual_orientation` = ?, `smoking` = ?, " .
 				"`travel` = ?, `vocation` = ?, `weight` = ?, `work` = ? " .

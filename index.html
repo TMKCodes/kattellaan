@@ -894,6 +894,16 @@
 	</div>
 
 
+	<!-- profile text selection register page -->
+
+	<div id="register-select-profile-text" class="container" style="display: none";>
+		<h1>6. Profiiliteksti</h1>
+		<form role="form" id="register-select-profile-text-form" action="php/api.php" method="POST">
+			<textarea name="register-select-profile-text-input"></textarea>
+			<input type="submit" class="btn btn-default" id="register-select-profile-text-button" value="Jatka" />
+		</form>
+	</div>
+
 	<!-- gender selection register page -->
 	<div id="register-select-gender-page" class="container" style="display: none;">
 		<h1>6. Oletko mies vai nainen?</h1>
@@ -1726,6 +1736,13 @@
 				</div>
 				<div class="input-group-btn">
 					<input type="button" id="register-confirm-change-profile-picture-button" class="btn btn-default" value="Vaihda profiilikuvasi" />
+				</div>
+			</div>
+			<div id="register-confirm-profile-text" class="col-xs-8" style="margin-bottom: 5px;">
+				<label for="register-confirm-profile-text-data"><b>6. Profiiliteksti:</b></label>
+				<textarea id="register-confirm-profile-text-data"></textarea>
+				<div class="input-group-btn">
+					<input type="button" id="register-confirm-change-profile-text-button" class="btn btn-default" value="Vaihda profiilitekstiä" />
 				</div>
 			</div>
 			<div id="register-confirm-gender" class="input-group col-xs-8" style="margin-bottom: 5px;">
