@@ -160,6 +160,7 @@ class distance {
 			$end_result = $end_statement->execute();
 			if($end_result->success() == true && $end_result->rows() >= 1) {
 				$end = $end_result->fetch_array(RASSOC);
+				printf("end:\r\n");
 				print_r($end);
 				$start_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ?;");
 				if($end['id'] == $next_end) {
@@ -170,6 +171,7 @@ class distance {
 				$start_result = $start_statement->execute();
 				if($start_result->success() == true && $start_result->rows() >= 1) {
 					$start = $start_result->fetch_array(RASSOC);
+					printf("start:\r\n");
 					print_r($start);
 					$start['identifier'] = $start['id'];
 					$end['identifier'] = $end['id'];
