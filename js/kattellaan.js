@@ -246,9 +246,7 @@ var hostname;
 
 
 function register_select_profile_picture_done_button() {
-	$("body > .container").hide();
-	$("#register-select-gender-page").show();
-	history.pushState(null, "register-select-gender-page", hostname + "?page=register-select-gender-page");
+	load_page("register-select-profile-text-page");
 }
 
 function load_home_page() {
