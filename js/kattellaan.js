@@ -3285,7 +3285,7 @@ $("#register-confirm-profile-information-form").submit(function(evt) {
 			not_exciting : $.cookie("not-exciting"),
 			pets : $.cookie("pets"),
 			picture : $.cookie("picture"),
-			profile_text : $.cookie("profile-text");
+			profile_text : $.cookie("profile-text"),
 			political_importance : $.cookie("political-importance"),
 			relationship_status : $.cookie("relationship-status"),
 			religion : $.cookie("religion"),
