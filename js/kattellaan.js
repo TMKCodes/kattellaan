@@ -1525,7 +1525,7 @@ $("#register-select-profile-text-done-button").click(function(evt) {
 				load_page(nextPage);
 				$.removeCookie("next-page");
 			} else {
-				load_page("register-select-profile-text-page");
+				load_page("register-select-gender-page");
 			}
 		}
 	} else {
