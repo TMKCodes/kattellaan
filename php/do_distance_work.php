@@ -38,6 +38,7 @@ if($database->connect("127.0.01", $passwd[0], $passwd[1], "kattellaan") == true)
 	} catch (exception $e) {
 		$end = $distance_work['end']['identifier'];
 		$distance->set_start($end + 1);
+		$distance->set_identifier(null);
 		if($distance->insert() == true) {
 			printf("Distance successfully calculated.\r\n");
 		} else {
