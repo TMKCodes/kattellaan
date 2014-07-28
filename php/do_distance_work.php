@@ -29,10 +29,20 @@ if($database->connect("127.0.01", $passwd[0], $passwd[1], "kattellaan") == true)
 	$distance->set_end($distance_work['end']['identifier']);
 	$distance->set_distance($d);
 	
-	if($distance->insert() == true) {
-		printf("Distance successfully calculated.\r\n");
-	} else {
-		printf("Distance calculation failed.\r\n");
+	try {
+		if($distance->insert() == true) {
+			printf("Distance successfully calculated.\r\n");
+		} else {
+			printf("Distance calculation failed.\r\n");
+		}
+	} catch (exception $e) {
+		$end = $distance_work['end']['identifier'];
+		$distance->set_start($end + 1);
+		if($distance->insert() == true) {
+			printf("Distance successfully calculated.\r\n");
+		} else {
+			printf("Distance calculation failed.\r\n");
+		}
 	}
 } else {
 	printf("Failed to connect to database\r\n");
