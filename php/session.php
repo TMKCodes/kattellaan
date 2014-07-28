@@ -45,7 +45,8 @@ class session {
 			"uid INT NOT NULL," .
 			"secret TEXT NOT NULL," .
 			"client TEXT NOT NULL," .
-			"timestamp DATETIME NOT NULL);";
+			"timestamp DATETIME NOT NULL, " .
+			"onlin INT NOT NULL );";
 		$statement = $this->database->prepare($table_statement);
 		$result = $statement->execute();
 		return $result->success();
@@ -59,7 +60,7 @@ class session {
 			if($account->select() == true) {
 				$session_key = $this->generate($this->session_hash, 256);
 				$client = $this->client();
-				$statement = $this->database->prepare("INSERT INTO `session` (`uid`, `secret`, `client`, `timestamp`) VALUES (?, ?, ?, ?);");
+				$statement = $this->database->prepare("INSERT INTO `session` (`uid`, `secret`, `client`, `timestamp`, `online`) VALUES (?, ?, ?, ?, 1);");
 				$statement->bind("i", $account->get_identifier());
 				$statement->bind("s", $session_key);
 				$statement->bind("s", $client);
@@ -98,7 +99,7 @@ class session {
 			if($this->confirm($data) == true) {
 				$data = explode("||", base64_decode($data));
 				$session_key = $this->generate($this->session_hash, 256);
-				$statement = $this->database->prepare("UPDATE `session` SET `secret` = ?, `timestamp` = ? WHERE `id` = ?");
+				$statement = $this->database->prepare("UPDATE `session` SET `secret` = ?, `timestamp` = ?, `online` = 1 WHERE `id` = ?");
 				$statement->bind("s", $session_key);
 				$statement->bind("s", gmdate("Y-m-d H:i:s"));
 				$statement->bind("i", $data[0]);

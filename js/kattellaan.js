@@ -1176,7 +1176,8 @@ $("#search-submit").click(function(evt) {
 				data.result.sort(compare_birthday);
 				data.result.reverse();
 			}
-
+			
+			$("#search-results").html("");
 			$("#display-amount-of-results").html("<b>Hakuosumia:</b><br /> " + data.result.length + " kappaletta.");
 			console.log(data.result);
 			window.user_search_results = data.result;
