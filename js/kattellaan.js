@@ -1517,7 +1517,7 @@ $("#register-invite-skip-button").click(function(evt) {
 $("#register-select-profile-text-done-button").click(function(evt) {
 	evt.preventDefault();
 	if(check_session() === true) {
-		var profile_text = $("#register-select-profile-text-input").text();
+		var profile_text = $("#register-select-profile-text-input").val();
 		if(profile_text !== undefined) {
 			$.cookie("profile-text", profile_text);
 			var nextPage = $.cookie("next-page");

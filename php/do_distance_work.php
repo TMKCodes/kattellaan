@@ -29,21 +29,22 @@ if($database->connect("127.0.01", $passwd[0], $passwd[1], "kattellaan") == true)
 	$distance->set_end($distance_work['end']['identifier']);
 	$distance->set_distance($d);
 	
-	try {
-		if($distance->insert() == true) {
-			printf("Distance successfully calculated.\r\n");
-		} else {
-			printf("Distance calculation failed.\r\n");
+	$completed = false;
+	$end = $distance_work['end']['identifier'];
+	while($completed == false) {
+		try {
+			if($distance->insert() == true) {
+				$completed = true;
+			}
+			$end++;
+			$distance->set_end($end);
+			$distance->set_identifier(null);
+		} catch(exception $e) {
+			continue;		
 		}
-	} catch (exception $e) {
-		$end = $distance_work['end']['identifier'];
-		$distance->set_start($end + 1);
-		$distance->set_identifier(null);
-		if($distance->insert() == true) {
-			printf("Distance successfully calculated.\r\n");
-		} else {
-			printf("Distance calculation failed.\r\n");
-		}
+	}
+	if($completed == true) {
+		printf("Distance successfully calculated.\r\n");
 	}
 } else {
 	printf("Failed to connect to database\r\n");
