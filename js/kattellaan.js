@@ -1237,7 +1237,27 @@ $("#search-submit").click(function(evt) {
 				result_display += '</div>';
 				$("#search-results").append(result_display);
 			}
-			$("#search-results").show();i
+			var result_pagination = '<div class="row" style="border-top: 1px solid black; margin-top: 10px;">';
+				result_pagination += '<ul class="pagination">';
+					result_pagination += '<li id="search-result-prev-pagination-button" class="disabled"><a href="#">&laquo;</a></li>';
+					var paginations = data.result.length / 30;
+					for(var i = 0; i < ((paginations > 5) ? 5 : paginations); i++) {
+						var page = i + 1;
+						if(page == 1) {
+							result_paginations += '<li><a href="#" class="active">' + page + ' <span class="sr-only">(current)</span></a></li>';
+						} else {
+							result_paginations += '<li><a href="#">' + page + '</a></li>';
+						}
+					}
+					if(paginations > 5) {
+						result_pagination += '<li id="search-result-next-pagination-button"><a href="#">&raquo;</a></li>';
+					} else {
+						result_pagination += '<li id="search-result-next-pagination-button" class="disabled"><a href="#">&raquo;</a></li>';
+					}	
+				result_pagination += '</ul>';
+			result_pagination += '</div>';
+			$("#search-results").append(result_pagination);
+			$("#search-results").show();
 		} else {
 			$("#display-amount-of-results").html("<b>Hakuosumia:</b><br /> 0 kappaletta.");
 		}
