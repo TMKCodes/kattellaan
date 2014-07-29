@@ -1256,7 +1256,7 @@ function display_pagination(index, pagemove) {
 		console.log("result page: " + page);
 		if(page.match('<span class="sr-only">(current)</span>') == null) {
 			display_results(window.user_search_results, index);
-			display_pagination(index, pagemove); 
+			display_pagination(page, pagemove); 
 		} else if(page.match("&raquo;") != null) {
 			if($("#search-result-next-pagination-button").is(":enabled")) {
 				if(paginations > pagemove) {
