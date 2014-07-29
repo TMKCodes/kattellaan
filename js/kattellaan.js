@@ -1130,6 +1130,159 @@ function compare_birthday(a, b) {
 
 var user_search_results;
 
+function display_results(results, index) {
+	index -= 1;
+	if($("#with-picture-checkbox").is(":checked")) {
+		for(var i = 0; i < results.length; i++) {
+			if(results[i].picture == "") {
+				results.splice(i, 1);
+				i--;
+			}
+		}
+	}
+	if($("#select-search-result-order").find(":selected").val() == "new-logins") {
+		results.sort(compare_login);
+	} else if($("#select-search-result-order").find(":selected").val() == "old-logins") {
+		results.sort(compare_login);
+		results.reverse();
+	} else if($("#select-search-result-order").find(":selected").val() == "new-members") {
+		results.sort(compare_registered);
+		results.reverse();
+	} else if($("#select-search-result-order").find(":selected").val() == "old-members") {
+		results.sort(compare_registered);
+	} else if($("#select-search-result-order").find(":selected").val() == "young-members") {
+		results.sort(compare_birthday);
+	} else if($("#select-search-result-order").find(":selected").val() == "aged-members") {
+		results.sort(compare_birthday);
+		results.reverse();
+	}
+	
+	$("#search-results").html("");
+	$("#display-amount-of-results").html("<b>Hakuosumia:</b><br /> " + results.length + " kappaletta.");
+	console.log(results);
+	window.user_search_results = results;
+	for(var i = (30 * index) - 30; i < ((results.length > ((30 * index) + 30)) ? ((30 * index) + 30) : results.length); i++) {
+		var gender = "";
+		switch(results[i].gender) {
+			case 'man': gender = "mies"; break;
+			case 'woman': gender = "nainen"; break;
+			case 'transman': gender = "transumies"; break;
+			case 'transwoman': gender = "transunainen"; break;
+			case 'sexless': gender = "Sukupuoleton"; break;
+		}
+
+		var birthday = new Date(results[i].birthday);
+		var today = new Date();
+		var ty = today.getFullYear();
+		var by = birthday.getFullYear();
+		var td = today.getDate();
+		var bd = birthday.getDate();
+		var tm = today.getMonth();
+		var bm = birthday.getMonth();
+		var age = ty - by;
+		if(tm > bm) {
+			if(td > bd) {
+				age += 1;
+			}
+		}
+		if(results[i].town != false) {
+			var town = results[i].town.charAt(0).toUpperCase() + results[i].town.slice(1);
+		} else {
+			var town = "";
+		}
+		
+		if(results[i].picture == "") {
+			results[i].picture = "default.jpg";
+		}
+
+		var profile_text = results[i].profile_text;
+		if(profile_text.length >= 250) {
+			profile_text = profile_text.match(/.{1,250}/g);
+			profile_text = profile_text[0] + "..";
+		}
+
+		var result_display = '<div class="row" style="border-top: 1px solid black; margin-top: 10px;" >';
+			result_display += '<div class="row">';
+				result_display += '<div class="col-xs-12">';
+					result_display += '<h1><a class="user-profile-button" href="' + results[i].id + '">' + results[i].username + "</a></h1>";
+				result_display += '</div>';
+			result_display += '</div>';
+			result_display += '<div class="row">';
+				result_display += '<div class="col-xs-4">';
+					result_display += '<img src="uploads/' + results[i].picture + '" alt="' + results[i].username + '" profiilikuva" style="width: 100%;"/>';
+				result_display += '</div>';
+				result_display += '<div class="col-xs-8">';
+					result_display += "<p>" + age + ", " + gender + ", " +  town + "</p>";
+					result_display += "<p>" + profile_text + "</p>";
+				result_display += '</div>';
+			result_display += '</div>';
+		result_display += '</div>';
+		$("#search-results").append(result_display);
+	}
+	
+	$(".user-profile-button").click(function(evt) {
+		evt.preventDefault();
+		var uid = $(this).attr("href");
+		load_profile_page(uid);
+	});
+}
+
+function display_pagination(index, pagemove) {
+	var paginations = user_search_results / 30;
+	var result_pagination = '<div class="row" style="border-top: 1px solid black; margin-top: 10px;">';
+		result_pagination += '<ul class="pagination" id="search_result_pagination">';
+			result_pagination += '<li id="search-result-prev-pagination-button" class="disabled"><a href="#">&laquo;</a></li>';
+			for(var i = 0 + pagemove; i < ((paginations > (12 + pagemove)) ? (12 + pagemove) : paginations); i++) {
+				var page = i + 1;
+				if(page == index) {
+					result_pagination += '<li class="active"><a href="#">' + page + ' <span class="sr-only">(current)</span></a></li>';
+				} else {
+					result_pagination += '<li><a href="#">' + page + '</a></li>';
+				}
+			}
+			if(paginations > 12) {
+				result_pagination += '<li id="search-result-next-pagination-button"><a href="#">&raquo;</a></li>';
+			} else {
+				result_pagination += '<li id="search-result-next-pagination-button" class="disabled"><a href="#">&raquo;</a></li>';
+			}	
+		result_pagination += '</ul>';
+	result_pagination += '</div>';
+	$("#search-results").append(result_pagination);
+
+	$("#search_result_pagination > li > a").click(function(evt) {
+		evt.preventDefault();
+		var page = $(this).text();
+		console.log("result page: " + page);
+		if(page.match('<span class="sr-only">(current)</span>') == null) {
+			display_results(user_search_results, index);
+			index = page; 
+		} else if(page.match("&raquo;") != null) {
+			if("#search-result-next-pagination-button").is(":enabled")) {
+				if(paginations > pagemove) {
+					pagemove += 1;
+					$("#search-result-prev-pagination-button").removeClass("disabled");
+					$("#search-result-prev-pagination-button").addClass("enabled");
+				} else {
+					$("#search-result-next-pagination-button").removeClass("enabled");
+					$("#search-result-prev-pagination-button").addClass("disabled");
+				}
+			}
+		} else if(page.match("&laquo;") != null) {
+			if("#search-result-prev-pagination-button").is(":enabled")) {
+				if(paginations < pagemove) {
+					pagemove -= 1;
+					$("#search-result-next-pagination-button").removeClass("disabled");
+					$("#search-result-next-pagination-button").addClass("enabled");
+				} else {
+					$("#search-result-prev-pagination-button").removeClasS("enabled");
+					$("#search-result-prev-pagination-button").addClass("disabled");
+				}
+			}
+		}
+		display_pagination(index, pagemove);
+	});
+}
+
 $("#search-submit").click(function(evt) {
 	evt.preventDefault();
 	var form_data = $("#search-form").serialize();
@@ -1147,126 +1300,8 @@ $("#search-submit").click(function(evt) {
 		console.log(data);
 		data = $.parseJSON(data);
 		if(data.success == true) {
-			if($("#with-picture-checkbox").is(":checked")) {
-				for(var i = 0; i < data.result.length; i++) {
-					if(data.result[i].picture == "") {
-						data.result.splice(i, 1);
-						i--;
-					}
-				}
-			}
-			if($("#select-search-result-order").find(":selected").val() == "new-logins") {
-				data.result.sort(compare_login);
-			} else if($("#select-search-result-order").find(":selected").val() == "old-logins") {
-				data.result.sort(compare_login);
-				data.result.reverse();
-			} else if($("#select-search-result-order").find(":selected").val() == "new-members") {
-				data.result.sort(compare_registered);
-				data.result.reverse();
-			} else if($("#select-search-result-order").find(":selected").val() == "old-members") {
-				data.result.sort(compare_registered);
-			} else if($("#select-search-result-order").find(":selected").val() == "young-members") {
-				data.result.sort(compare_birthday);
-			} else if($("#select-search-result-order").find(":selected").val() == "aged-members") {
-				data.result.sort(compare_birthday);
-				data.result.reverse();
-			}
-			
-			$("#search-results").html("");
-			$("#display-amount-of-results").html("<b>Hakuosumia:</b><br /> " + data.result.length + " kappaletta.");
-			console.log(data.result);
-			window.user_search_results = data.result;
-			for(var i = 0; i < ((data.result.length > 30) ? 30 : data.result.length); i++) {
-				var gender = "";
-				switch(data.result[i].gender) {
-					case 'man': gender = "mies"; break;
-					case 'woman': gender = "nainen"; break;
-					case 'transman': gender = "transumies"; break;
-					case 'transwoman': gender = "transunainen"; break;
-					case 'sexless': gender = "Sukupuoleton"; break;
-				}
-
-				var birthday = new Date(data.result[i].birthday);
-				var today = new Date();
-				var ty = today.getFullYear();
-				var by = birthday.getFullYear();
-				var td = today.getDate();
-				var bd = birthday.getDate();
-				var tm = today.getMonth();
-				var bm = birthday.getMonth();
-				var age = ty - by;
-				if(tm > bm) {
-					if(td > bd) {
-						age += 1;
-					}
-				}
-				if(data.result[i].town != false) {
-					var town = data.result[i].town.charAt(0).toUpperCase() + data.result[i].town.slice(1);
-				} else {
-					var town = "";
-				}
-				
-				if(data.result[i].picture == "") {
-					data.result[i].picture = "default.jpg";
-				}
-
-				var profile_text = data.result[i].profile_text;
-				if(profile_text.length >= 250) {
-					profile_text = profile_text.match(/.{1,250}/g);
-					profile_text = profile_text[0] + "..";
-				}
-
-				var result_display = '<div class="row" style="border-top: 1px solid black; margin-top: 10px;" >';
-					result_display += '<div class="row">';
-						result_display += '<div class="col-xs-12">';
-							result_display += '<h1><a class="user-profile-button" href="' + data.result[i].id + '">' + data.result[i].username + "</a></h1>";
-						result_display += '</div>';
-					result_display += '</div>';
-					result_display += '<div class="row">';
-						result_display += '<div class="col-xs-4">';
-							result_display += '<img src="uploads/' + data.result[i].picture + '" alt="' + data.result[i].username + '" profiilikuva" style="width: 100%;"/>';
-						result_display += '</div>';
-						result_display += '<div class="col-xs-8">';
-							result_display += "<p>" + age + ", " + gender + ", " +  town + "</p>";
-							result_display += "<p>" + profile_text + "</p>";
-						result_display += '</div>';
-					result_display += '</div>';
-				result_display += '</div>';
-				$("#search-results").append(result_display);
-			}
-
-			$(".user-profile-button").click(function(evt) {
-				evt.preventDefault();
-				var uid = $(this).attr("href");
-				load_profile_page(uid);
-			});
-
-			var result_pagination = '<div class="row" style="border-top: 1px solid black; margin-top: 10px;">';
-				result_pagination += '<ul class="pagination" id="search_result_pagination">';
-					result_pagination += '<li id="search-result-prev-pagination-button" class="disabled"><a href="#">&laquo;</a></li>';
-					var paginations = data.result.length / 30;
-					for(var i = 0; i < ((paginations > 12) ? 12 : paginations); i++) {
-						var page = i + 1;
-						if(page == 1) {
-							result_pagination += '<li class="active"><a href="#">' + page + ' <span class="sr-only">(current)</span></a></li>';
-						} else {
-							result_pagination += '<li><a href="#">' + page + '</a></li>';
-						}
-					}
-					if(paginations > 12) {
-						result_pagination += '<li id="search-result-next-pagination-button"><a href="#">&raquo;</a></li>';
-					} else {
-						result_pagination += '<li id="search-result-next-pagination-button" class="disabled"><a href="#">&raquo;</a></li>';
-					}	
-				result_pagination += '</ul>';
-			result_pagination += '</div>';
-			$("#search-results").append(result_pagination);
-
-			$("#search_result_pagination > li > a").click(function(evt) {
-				evt.preventDefault();
-				console.log($(this).text());
-			});
-
+			display_results(data.result, 1);	
+			display_pagination(1, 0);			
 			$("#search-results").show();
 		} else {
 			$("#display-amount-of-results").html("<b>Hakuosumia:</b><br /> 0 kappaletta.");
