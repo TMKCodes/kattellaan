@@ -1228,7 +1228,12 @@ function display_results(results, index) {
 	});
 }
 
+var index;
+var pagemove;
+
 function display_pagination(index, pagemove) {
+	window.index = index;
+	window.pagemove = pagemove;
 	var paginations = window.user_search_results.length / 30;
 	var result_pagination = '<div class="row" style="border-top: 1px solid black; margin-top: 10px;">';
 		result_pagination += '<ul class="pagination" id="search_result_pagination">';
@@ -1290,6 +1295,11 @@ function display_pagination(index, pagemove) {
 		}
 	});
 }
+
+$("#select-search-result-order").change(function(evt) {
+	display_results(window.user_search_results, window.index);
+	display_pagination(window.index, window.pagemove);
+});
 
 $("#search-submit").click(function(evt) {
 	evt.preventDefault();
