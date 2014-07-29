@@ -1203,7 +1203,9 @@ $("#search-submit").click(function(evt) {
 						age += 1;
 					}
 				}
-				var town = data.result[i].town.charAt(0).toUpperCase() + data.result[i].town.slice(1);
+				if(data.result[i].town != false) {
+					var town = data.result[i].town.charAt(0).toUpperCase() + data.result[i].town.slice(1);
+				}
 				if(data.result[i].picture == "") {
 					data.result[i].picture = "default.jpg";
 				}
