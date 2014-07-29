@@ -1225,6 +1225,7 @@ function display_results(search_results, index) {
 		var uid = $(this).attr("href");
 		load_profile_page(uid);
 	});
+	delete results;
 }
 
 var index;
