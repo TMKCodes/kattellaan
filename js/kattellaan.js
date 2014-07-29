@@ -1255,7 +1255,7 @@ function display_pagination(index, pagemove) {
 		var page = $(this).text();
 		console.log("result page: " + page);
 	
-		if(page.match("&raquo;") != null) {
+		if(page.match("»") != null) {
 			if($("#search-result-next-pagination-button").is(":enabled")) {
 				if(paginations > pagemove) {
 					pagemove += 1;
