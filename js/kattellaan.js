@@ -1221,8 +1221,8 @@ $("#search-submit").click(function(evt) {
 
 				var result_display = '<div class="row" style="border-top: 1px solid black; margin-top: 10px;" >';
 					result_display += '<div class="row">';
-						result_display += '<div class="col-xs-12">';
-							result_display += "<h1>" + data.result[i].username + "</h1>";
+						result_display += '<div class="username col-xs-12">';
+							result_display += '<h1><a href="profile-page&uid=' + data.result[i].id + '">' + data.result[i].username + "</a></h1>";
 						result_display += '</div>';
 					result_display += '</div>';
 					result_display += '<div class="row">';
@@ -1237,6 +1237,14 @@ $("#search-submit").click(function(evt) {
 				result_display += '</div>';
 				$("#search-results").append(result_display);
 			}
+
+			$("#search-results > .row > .username > h1 > a").click(function(evt) {
+				evt.preventDefault();
+				var url = $(this).attr("href");
+				url = url.split("&");
+				load_custom_page(url[0], "&" + url[1]);
+			});
+
 			var result_pagination = '<div class="row" style="border-top: 1px solid black; margin-top: 10px;">';
 				result_pagination += '<ul class="pagination" id="search_result_pagination">';
 					result_pagination += '<li id="search-result-prev-pagination-button" class="disabled"><a href="#">&laquo;</a></li>';
