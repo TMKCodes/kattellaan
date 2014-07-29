@@ -1267,6 +1267,8 @@ function display_pagination(index, pagemove) {
 					$("#search-result-next-pagination-button").removeClass("enabled");
 					$("#search-result-prev-pagination-button").addClass("disabled");
 				}
+				console.log(index);
+				console.log(pagemove);
 				display_results(window.user_search_results, index);
 				display_pagination(index, pagemove);
 			}
@@ -1280,6 +1282,8 @@ function display_pagination(index, pagemove) {
 					$("#search-result-prev-pagination-button").removeClasS("enabled");
 					$("#search-result-prev-pagination-button").addClass("disabled");
 				}
+				console.log(index);
+				console.log(pagemove);
 				display_results(window.user_search_results, index);
 				display_pagination(index, pagemove);
 			}
