@@ -1170,7 +1170,7 @@ $("#search-submit").click(function(evt) {
 				data.result.sort(compare_registered);
 			} else if($("#select-search-result-order").find(":selected").val() == "young-members") {
 				data.result.sort(compare_birthday);
-			} else if($("#select-search-result-order").find(":selected").val() == "old-members") {
+			} else if($("#select-search-result-order").find(":selected").val() == "aged-members") {
 				data.result.sort(compare_birthday);
 				//data.result.reverse();
 			}
