@@ -1205,6 +1205,8 @@ $("#search-submit").click(function(evt) {
 				}
 				if(data.result[i].town != false) {
 					var town = data.result[i].town.charAt(0).toUpperCase() + data.result[i].town.slice(1);
+				} else {
+					var town = "";
 				}
 				if(data.result[i].picture == "") {
 					data.result[i].picture = "default.jpg";
