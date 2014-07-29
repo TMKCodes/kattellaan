@@ -44,7 +44,7 @@ if($database->connect("127.0.01", $passwd[0], $passwd[1], "kattellaan") == true)
 			$a = sin($dLat / 2) * sin($dLat / 2) + cos(rad($distance_work['start']['latitude'])) * cos(rad($distance_work['end']['latitude'])) * sin($dLong / 2) * sin($dLong / 2);
 			$c = 2 * atan2(sqrt($a), sqrt(1 - $a));
 			$d = $r * $c;
-			
+			$distance = new distance($database);	
 			$distance->set_start($distance_work['start']['identifier']);
 			$distance->set_end($distance_work['end']['identifier']);
 			$distance->set_distance($d);
