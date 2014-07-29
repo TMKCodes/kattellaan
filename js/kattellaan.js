@@ -1270,7 +1270,7 @@ function display_pagination(index, pagemove) {
 				display_results(window.user_search_results, index);
 				display_pagination(index, pagemove);
 			}
-		} else if(page.match("&laquo;") != null) {
+		} else if(page.match("«") != null) {
 			if($("#search-result-prev-pagination-button").is(":enabled")) {
 				if(paginations < pagemove) {
 					pagemove -= 1;
