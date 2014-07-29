@@ -1272,7 +1272,7 @@ function display_pagination(index, pagemove) {
 			}
 		} else if(page.match("«") != null) {
 			if($("#search-result-prev-pagination-button > a").is(":disabled") == false) {
-				if(paginations < pagemove) {
+				if(pagemove > 0) {
 					pagemove -= 1;
 					$("#search-result-next-pagination-button > a").attr('disabled', 'false');
 				} else {
