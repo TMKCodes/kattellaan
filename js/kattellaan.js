@@ -1254,11 +1254,8 @@ function display_pagination(index, pagemove) {
 		evt.preventDefault();
 		var page = $(this).text();
 		console.log("result page: " + page);
-		if(page.match('<span class="sr-only">(current)</span>') == null && page.match("&raquo;") == null && page.match("&laquo;") == null) {
-			console.log("index change");
-			display_results(window.user_search_results, page);
-			display_pagination(page, pagemove); 
-		} else if(page.match("&raquo;") != null) {
+	
+		if(page.match("&raquo;") != null) {
 			if($("#search-result-next-pagination-button").is(":enabled")) {
 				if(paginations > pagemove) {
 					pagemove += 1;
@@ -1288,6 +1285,10 @@ function display_pagination(index, pagemove) {
 				display_results(window.user_search_results, index);
 				display_pagination(index, pagemove);
 			}
+		} else if(page.match('<span class="sr-only">(current)</span>') == null) {
+			console.log("index change");
+			display_results(window.user_search_results, page);
+			display_pagination(page, pagemove); 
 		}
 	});
 }
