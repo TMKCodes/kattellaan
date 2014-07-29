@@ -1130,9 +1130,8 @@ function compare_birthday(a, b) {
 
 var user_search_results;
 
-function display_results(results, index) {
-	console.log(results);
-	console.log(index);
+function display_results(search_results, index) {
+	var results = search_results;
 	index -= 1;
 	if($("#with-picture-checkbox").is(":checked")) {
 		for(var i = 0; i < results.length; i++) {
