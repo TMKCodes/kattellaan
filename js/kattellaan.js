@@ -1232,7 +1232,7 @@ function display_pagination(index, pagemove) {
 	var paginations = window.user_search_results.length / 30;
 	var result_pagination = '<div class="row" style="border-top: 1px solid black; margin-top: 10px;">';
 		result_pagination += '<ul class="pagination" id="search_result_pagination">';
-			result_pagination += '<li id="search-result-prev-pagination-button" disabled="disabled"><a href="#">&laquo;</a></li>';
+			result_pagination += '<li id="search-result-prev-pagination-button" disabled="true"><a href="#">&laquo;</a></li>';
 			for(var i = (0 + pagemove); i < ((paginations > (12 + pagemove)) ? (12 + pagemove) : paginations); i++) {
 				var page = i + 1;
 				if(page == index) {
@@ -1242,9 +1242,9 @@ function display_pagination(index, pagemove) {
 				}
 			}
 			if(paginations > 12) {
-				result_pagination += '<li id="search-result-next-pagination-button"><a href="#">&raquo;</a></li>';
+				result_pagination += '<li id="search-result-next-pagination-button" disabled="false"><a href="#">&raquo;</a></li>';
 			} else {
-				result_pagination += '<li id="search-result-next-pagination-button" disabled="disabled"><a href="#">&raquo;</a></li>';
+				result_pagination += '<li id="search-result-next-pagination-button" disabled="true"><a href="#">&raquo;</a></li>';
 			}	
 		result_pagination += '</ul>';
 	result_pagination += '</div>';
@@ -1259,9 +1259,9 @@ function display_pagination(index, pagemove) {
 			if($("#search-result-next-pagination-button").is(":disabled") == false) {
 				if(paginations > pagemove) {
 					pagemove += 1;
-					$("#search-result-prev-pagination-button").enable();
+					$("#search-result-prev-pagination-button").attr('disabled', 'false');
 				} else {
-					$("#search-result-next-pagination-button").disable();
+					$("#search-result-next-pagination-button").attr('disabled', 'true');
 				}
 				console.log("index: " + index);
 				console.log("pagemove: " + pagemove);
@@ -1274,9 +1274,9 @@ function display_pagination(index, pagemove) {
 			if($("#search-result-prev-pagination-button").is(":disabled") == false) {
 				if(paginations < pagemove) {
 					pagemove -= 1;
-					$("#search-result-next-pagination-button").enable();
+					$("#search-result-next-pagination-button").attr('disabled', 'false');
 				} else {
-					$("#search-result-prev-pagination-button").disable();
+					$("#search-result-prev-pagination-button").attr('disabled', 'true';
 				}
 				console.log(index);
 				console.log(pagemove);
