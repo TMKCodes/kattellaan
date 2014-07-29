@@ -1267,9 +1267,9 @@ function display_pagination(index, pagemove) {
 					$("#search-result-next-pagination-button").removeClass("enabled");
 					$("#search-result-prev-pagination-button").addClass("disabled");
 				}
+				display_results(window.user_search_results, index);
+				display_pagination(index, pagemove);
 			}
-			display_results(window.user_search_results, index);
-			display_pagination(index, pagemove);
 		} else if(page.match("&laquo;") != null) {
 			if($("#search-result-prev-pagination-button").is(":enabled")) {
 				if(paginations < pagemove) {
@@ -1280,9 +1280,9 @@ function display_pagination(index, pagemove) {
 					$("#search-result-prev-pagination-button").removeClasS("enabled");
 					$("#search-result-prev-pagination-button").addClass("disabled");
 				}
+				display_results(window.user_search_results, index);
+				display_pagination(index, pagemove);
 			}
-			display_results(window.user_search_results, index);
-			display_pagination(index, pagemove);
 		}
 	});
 }
