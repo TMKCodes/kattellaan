@@ -1266,7 +1266,8 @@ $("#search-submit").click(function(evt) {
 
 
 $("#search_result_pagination > li > a").click(function(evt) {
-	evt.preventDefault();	
+	evt.preventDefault();
+	console.log($(this).text());
 });
 
 
