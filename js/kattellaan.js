@@ -1165,14 +1165,14 @@ $("#search-submit").click(function(evt) {
 				data.result.reverse();
 			} else if($("#select-search-result-order").find(":selected").val() == "new-members") {
 				data.result.sort(compare_registered);
+				data.result.reverse();
 			} else if($("#select-search-result-order").find(":selected").val() == "old-members") {
 				data.result.sort(compare_registered);
-				data.result.reverse();
 			} else if($("#select-search-result-order").find(":selected").val() == "young-members") {
 				data.result.sort(compare_birthday);
 			} else if($("#select-search-result-order").find(":selected").val() == "old-members") {
 				data.result.sort(compare_birthday);
-				data.result.reverse();
+				//data.result.reverse();
 			}
 			
 			$("#search-results").html("");
