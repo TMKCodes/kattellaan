@@ -1229,7 +1229,7 @@ function display_results(results, index) {
 }
 
 function display_pagination(index, pagemove) {
-	var paginations = user_search_results / 30;
+	var paginations = window.user_search_results.length / 30;
 	var result_pagination = '<div class="row" style="border-top: 1px solid black; margin-top: 10px;">';
 		result_pagination += '<ul class="pagination" id="search_result_pagination">';
 			result_pagination += '<li id="search-result-prev-pagination-button" class="disabled"><a href="#">&laquo;</a></li>';
