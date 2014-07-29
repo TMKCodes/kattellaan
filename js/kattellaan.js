@@ -1241,15 +1241,15 @@ $("#search-submit").click(function(evt) {
 				result_pagination += '<ul class="pagination">';
 					result_pagination += '<li id="search-result-prev-pagination-button" class="disabled"><a href="#">&laquo;</a></li>';
 					var paginations = data.result.length / 30;
-					for(var i = 0; i < ((paginations > 13) ? 13 : paginations); i++) {
+					for(var i = 0; i < ((paginations > 12) ? 12 : paginations); i++) {
 						var page = i + 1;
 						if(page == 1) {
-							result_pagination += '<li><a href="#" class="active">' + page + ' <span class="sr-only">(current)</span></a></li>';
+							result_pagination += '<li class="active"><a href="#">' + page + ' <span class="sr-only">(current)</span></a></li>';
 						} else {
 							result_pagination += '<li><a href="#">' + page + '</a></li>';
 						}
 					}
-					if(paginations > 13) {
+					if(paginations > 12) {
 						result_pagination += '<li id="search-result-next-pagination-button"><a href="#">&raquo;</a></li>';
 					} else {
 						result_pagination += '<li id="search-result-next-pagination-button" class="disabled"><a href="#">&raquo;</a></li>';
