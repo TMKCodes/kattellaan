@@ -1215,7 +1215,7 @@ $("#search-submit").click(function(evt) {
 
 				var profile_text = data.result[i].profile_text;
 				if(profile_text.length >= 250) {
-					profile_text = profile_text.match(/.{1, 250}/g);
+					profile_text = profile_text.match(/.{1,250}/g);
 					profile_text = profile_text[0];
 				}
 
