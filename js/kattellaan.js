@@ -1259,11 +1259,9 @@ function display_pagination(index, pagemove) {
 			if($("#search-result-next-pagination-button").is(":disabled") == false) {
 				if(paginations > pagemove) {
 					pagemove += 1;
-					$("#search-result-prev-pagination-button").removeClass("disabled");
-					$("#search-result-prev-pagination-button").addClass("enabled");
+					$("#search-result-prev-pagination-button").enable();
 				} else {
-					$("#search-result-next-pagination-button").removeClass("enabled");
-					$("#search-result-prev-pagination-button").addClass("disabled");
+					$("#search-result-next-pagination-button").disable();
 				}
 				console.log("index: " + index);
 				console.log("pagemove: " + pagemove);
@@ -1273,14 +1271,12 @@ function display_pagination(index, pagemove) {
 				console.log("button is disabled");
 			}
 		} else if(page.match("«") != null) {
-			if($("#search-result-prev-pagination-button").is(":enabled")) {
+			if($("#search-result-prev-pagination-button").is(":disabled") == false) {
 				if(paginations < pagemove) {
 					pagemove -= 1;
-					$("#search-result-next-pagination-button").removeClass("disabled");
-					$("#search-result-next-pagination-button").addClass("enabled");
+					$("#search-result-next-pagination-button").enable();
 				} else {
-					$("#search-result-prev-pagination-button").removeClasS("enabled");
-					$("#search-result-prev-pagination-button").addClass("disabled");
+					$("#search-result-prev-pagination-button").disable();
 				}
 				console.log(index);
 				console.log(pagemove);
