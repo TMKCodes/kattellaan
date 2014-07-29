@@ -1265,7 +1265,7 @@ $("#search-submit").click(function(evt) {
 });
 
 
-$("#search_result_pagination > li").click(function(evt) {
+$("#search_result_pagination > li > a").click(function(evt) {
 	evt.preventDefault();	
 });
 
