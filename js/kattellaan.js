@@ -1131,7 +1131,7 @@ function compare_birthday(a, b) {
 var user_search_results;
 
 function display_results(search_results, index) {
-	var results = search_results;
+	var results = $.extend({}, search_results);
 	index -= 1;
 	if($("#with-picture-checkbox").is(":checked")) {
 		for(var i = 0; i < results.length; i++) {
@@ -1225,7 +1225,6 @@ function display_results(search_results, index) {
 		var uid = $(this).attr("href");
 		load_profile_page(uid);
 	});
-	delete results;
 }
 
 var index;
