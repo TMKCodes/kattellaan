@@ -33,6 +33,7 @@ if($database->connect("127.0.01", $passwd[0], $passwd[1], "kattellaan") == true)
 	$end = $distance_work['end']['identifier'];
 	while($completed == false) {
 		try {
+			printf("Distance:\r\nStart: %s\r\nEnd: %s\r\n", $distance->get_start(), $distance->get_end());
 			if($distance->insert() == true) {
 				$completed = true;
 			}
