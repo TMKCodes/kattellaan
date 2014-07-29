@@ -1222,7 +1222,7 @@ $("#search-submit").click(function(evt) {
 				var result_display = '<div class="row" style="border-top: 1px solid black; margin-top: 10px;" >';
 					result_display += '<div class="row">';
 						result_display += '<div class="col-xs-12">';
-							result_display += '<h1><a class="user-profile-button" href="profile-page&uid=' + data.result[i].id + '">' + data.result[i].username + "</a></h1>";
+							result_display += '<h1><a class="user-profile-button" href="' + data.result[i].id + '">' + data.result[i].username + "</a></h1>";
 						result_display += '</div>';
 					result_display += '</div>';
 					result_display += '<div class="row">';
@@ -1240,9 +1240,8 @@ $("#search-submit").click(function(evt) {
 
 			$(".user-profile-button").click(function(evt) {
 				evt.preventDefault();
-				var url = $(this).attr("href");
-				url = url.split("&");
-				load_custom_page(url[0], "&" + url[1]);
+				var uid = $(this).attr("href");
+				load_profile_page(uid);
 			});
 
 			var result_pagination = '<div class="row" style="border-top: 1px solid black; margin-top: 10px;">';
