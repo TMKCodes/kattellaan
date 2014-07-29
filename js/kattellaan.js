@@ -1269,6 +1269,8 @@ function display_pagination(index, pagemove) {
 				console.log("pagemove: " + pagemove);
 				display_results(window.user_search_results, index);
 				display_pagination(index, pagemove);
+			} else {
+				console.log("button is disabled");
 			}
 		} else if(page.match("«") != null) {
 			if($("#search-result-prev-pagination-button").is(":enabled")) {
