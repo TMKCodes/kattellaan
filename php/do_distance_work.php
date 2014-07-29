@@ -18,38 +18,28 @@ $database = new db("mysqli");
 if($database->connect("127.0.01", $passwd[0], $passwd[1], "kattellaan") == true) {
 	$distance = new distance($database);
 	$distance_work = $distance->get_uncalculated();
-	$r = 6378137;
-	$dLat = rad($distance_work['end']['latitude'] - $distance_work['start']['latitude']);
-	$dLong = rad($distance_work['end']['longitude'] - $distance_work['end']['longitude']);
-	$a = sin($dLat / 2) * sin($dLat / 2) + cos(rad($distance_work['start']['latitude'])) * cos(rad($distance_work['end']['latitude'])) * sin($dLong / 2) * sin($dLong / 2);
-	$c = 2 * atan2(sqrt($a), sqrt(1 - $a));
-	$d = $r * $c;
-
-	$distance->set_start($distance_work['start']['identifier']);
-	$distance->set_end($distance_work['end']['identifier']);
-	$distance->set_distance($d);
 	
 	$completed = false;
 	while($completed == false) {
+		$r = 6378137;
+		$dLat = rad($distance_work['end']['latitude'] - $distance_work['start']['latitude']);
+		$dLong = rad($distance_work['end']['longitude'] - $distance_work['end']['longitude']);
+		$a = sin($dLat / 2) * sin($dLat / 2) + cos(rad($distance_work['start']['latitude'])) * cos(rad($distance_work['end']['latitude'])) * sin($dLong / 2) * sin($dLong / 2);
+		$c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+		$d = $r * $c;
+
+		$distance->set_start($distance_work['start']['identifier']);
+		$distance->set_end($distance_work['end']['identifier']);
+		$distance->set_identifier(null);
+		$distance->set_distance($d);
+		
 		try {
 			printf("Distance:\r\nStart: %s\r\nEnd: %s\r\n", $distance->get_start(), $distance->get_end());
 			if($distance->insert() == true) {
 				$completed = true;
 			}
-			$distance_work['end']['identifier'] += 1;
-			
-			$r = 6378137;
-			$dLat = rad($distance_work['end']['latitude'] - $distance_work['start']['latitude']);
-			$dLong = rad($distance_work['end']['longitude'] - $distance_work['end']['longitude']);
-			$a = sin($dLat / 2) * sin($dLat / 2) + cos(rad($distance_work['start']['latitude'])) * cos(rad($distance_work['end']['latitude'])) * sin($dLong / 2) * sin($dLong / 2);
-			$c = 2 * atan2(sqrt($a), sqrt(1 - $a));
-			$d = $r * $c;
-			$distance = new distance($database);	
-			$distance->set_start($distance_work['start']['identifier']);
-			$distance->set_end($distance_work['end']['identifier']);
-			$distance->set_distance($d);
-			$distance->set_identifier(null);
 		} catch(exception $e) {
+			$distance_work['end']['identifier'] += 1;
 			continue;		
 		}
 	}
