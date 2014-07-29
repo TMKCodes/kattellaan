@@ -1203,11 +1203,7 @@ $("#search-submit").click(function(evt) {
 						age += 1;
 					}
 				}
-				if(data.result[i].town != undefined) {
-					var town = data.result[i].town.charAt(0).toUpperCase() + data.result[i].town.slice(1);
-				} else {
-					
-				}
+				var town = data.result[i].town.charAt(0).toUpperCase() + data.result[i].town.slice(1);
 				if(data.result[i].picture == "") {
 					data.result[i].picture = "default.jpg";
 				}
