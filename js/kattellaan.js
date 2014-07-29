@@ -1244,9 +1244,9 @@ $("#search-submit").click(function(evt) {
 					for(var i = 0; i < ((paginations > 5) ? 5 : paginations); i++) {
 						var page = i + 1;
 						if(page == 1) {
-							result_paginations += '<li><a href="#" class="active">' + page + ' <span class="sr-only">(current)</span></a></li>';
+							result_pagination += '<li><a href="#" class="active">' + page + ' <span class="sr-only">(current)</span></a></li>';
 						} else {
-							result_paginations += '<li><a href="#">' + page + '</a></li>';
+							result_pagination += '<li><a href="#">' + page + '</a></li>';
 						}
 					}
 					if(paginations > 5) {
