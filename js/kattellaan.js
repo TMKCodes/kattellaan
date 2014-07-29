@@ -1300,7 +1300,7 @@ $("#search-submit").click(function(evt) {
 		data = $.parseJSON(data);
 		if(data.success == true) {
 			window.user_search_results = data.result;
-			display_results(user_search_result, 1);	
+			display_results(window.user_search_result, 1);	
 			display_pagination(1, 0);			
 			$("#search-results").show();
 		} else {
