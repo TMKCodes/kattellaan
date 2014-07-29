@@ -1256,7 +1256,7 @@ function display_pagination(index, pagemove) {
 		console.log("result page: " + page);
 	
 		if(page.match("»") != null) {
-			if($("#search-result-next-pagination-button").is(":enabled")) {
+			if($("#search-result-next-pagination-button").is(":disabled") == false) {
 				if(paginations > pagemove) {
 					pagemove += 1;
 					$("#search-result-prev-pagination-button").removeClass("disabled");
