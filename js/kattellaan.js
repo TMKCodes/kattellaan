@@ -1233,7 +1233,7 @@ function display_pagination(index, pagemove) {
 	var result_pagination = '<div class="row" style="border-top: 1px solid black; margin-top: 10px;">';
 		result_pagination += '<ul class="pagination" id="search_result_pagination">';
 			result_pagination += '<li id="search-result-prev-pagination-button" class="disabled"><a href="#">&laquo;</a></li>';
-			for(var i = 0; i < ((paginations > 12) ? 12 : paginations); i++) {
+			for(var i = (0 + pagemove); i < ((paginations > (12 + pagemove)) ? (12 + pagemove) : paginations); i++) {
 				var page = i + 1;
 				if(page == index) {
 					result_pagination += '<li class="active"><a href="#">' + page + ' <span class="sr-only">(current)</span></a></li>';
