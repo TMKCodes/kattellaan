@@ -1264,6 +1264,12 @@ $("#search-submit").click(function(evt) {
 	});
 });
 
+
+$("#search_result_pagination > li").click(function(evt) {
+	evt.preventDefault();	
+});
+
+
 $("#navigation-left > li").click(function(evt) {
 	evt.preventDefault();
 	$("#navigation-left").children().removeClass("active");
