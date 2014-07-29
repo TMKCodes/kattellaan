@@ -1208,8 +1208,15 @@ $("#search-submit").click(function(evt) {
 				} else {
 					var town = "";
 				}
+				
 				if(data.result[i].picture == "") {
 					data.result[i].picture = "default.jpg";
+				}
+
+				var profile_text = data.result[i].profile_text;
+				if(profile_text.length >= 250) {
+					profile_text = profile_text.match(/.{1, 250}/g);
+					profile_text = profile_text[0];
 				}
 
 				var result_display = '<div class="row" style="border-top: 1px solid black; margin-top: 10px;" >';
@@ -1224,6 +1231,7 @@ $("#search-submit").click(function(evt) {
 						result_display += '</div>';
 						result_display += '<div class="col-xs-8">';
 							result_display += "<p>" + age + ", " + gender + ", " +  town + "</p>";
+							result_display += "<p>" + profile_text + "</p>";
 						result_display += '</div>';
 					result_display += '</div>';
 				result_display += '</div>';
