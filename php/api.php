@@ -1014,7 +1014,8 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 						if(empty($town)) {
 							$town = explode(", ", $row['address']);
 						}
-						$row['town'] = $town[count($town)-2];
+						end($town);
+						$row['town'] = prev($town);
 						if(!empty($_POST['location'])) {
 							foreach($world->states as $state) {
 								if(in_array(strtolower($_POST['location']), $state->name) == true) {
