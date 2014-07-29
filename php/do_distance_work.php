@@ -30,6 +30,7 @@ if($database->connect("127.0.01", $passwd[0], $passwd[1], "kattellaan") == true)
 	$distance->set_distance($d);
 	
 	$completed = false;
+	$start = $distance_work['start']['identifier'];
 	$end = $distance_work['end']['identifier'];
 	while($completed == false) {
 		try {
@@ -38,6 +39,7 @@ if($database->connect("127.0.01", $passwd[0], $passwd[1], "kattellaan") == true)
 				$completed = true;
 			}
 			$end++;
+			$distance->set_start($start);
 			$distance->set_end($end);
 			$distance->set_identifier(null);
 		} catch(exception $e) {
