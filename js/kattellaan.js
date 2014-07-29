@@ -1282,6 +1282,7 @@ function display_pagination(index, pagemove) {
 			display_results(window.user_search_results, page);
 			display_pagination(page, pagemove); 
 		}
+		window.scrollTo(0,0);
 	});
 }
 
