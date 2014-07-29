@@ -1257,17 +1257,17 @@ $("#search-submit").click(function(evt) {
 				result_pagination += '</ul>';
 			result_pagination += '</div>';
 			$("#search-results").append(result_pagination);
+
+			$("#search_result_pagination > li > a").click(function(evt) {
+				evt.preventDefault();
+				console.log($(this).text());
+			});
+
 			$("#search-results").show();
 		} else {
 			$("#display-amount-of-results").html("<b>Hakuosumia:</b><br /> 0 kappaletta.");
 		}
 	});
-});
-
-
-$("#search_result_pagination > li > a").click(function(evt) {
-	evt.preventDefault();
-	console.log($(this).text());
 });
 
 
