@@ -1135,7 +1135,7 @@ function display_results(search_results, index) {
 	index -= 1;
 	if($("#with-picture-checkbox").is(":checked")) {
 		for(var i = 0; i < results.length; i++) {
-			if(results[i].picture == "") {
+			if(results[i].picture == "" || results[i].picture == undefined) {
 				results.splice(i, 1);
 				i--;
 			}
