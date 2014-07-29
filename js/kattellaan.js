@@ -1171,7 +1171,7 @@ $("#search-submit").click(function(evt) {
 			} else if($("#select-search-result-order").find(":selected").val() == "young-members") {
 				data.result.sort(compare_birthday);
 			} else if($("#select-search-result-order").find(":selected").val() == "aged-members") {
-				data.result.sort(compare_birthdaged;
+				data.result.sort(compare_birthday);
 				data.result.reverse();
 			}
 			
