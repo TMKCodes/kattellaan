@@ -1160,7 +1160,6 @@ function display_results(results, index) {
 	$("#search-results").html("");
 	$("#display-amount-of-results").html("<b>Hakuosumia:</b><br /> " + results.length + " kappaletta.");
 	console.log(results);
-	window.user_search_results = results;
 	for(var i = (30 * index) - 30; i < ((results.length > ((30 * index) + 30)) ? ((30 * index) + 30) : results.length); i++) {
 		var gender = "";
 		switch(results[i].gender) {
@@ -1300,7 +1299,8 @@ $("#search-submit").click(function(evt) {
 		console.log(data);
 		data = $.parseJSON(data);
 		if(data.success == true) {
-			display_results(data.result, 1);	
+			window.user_search_results = data.result;
+			display_results(user_search_result, 1);	
 			display_pagination(1, 0);			
 			$("#search-results").show();
 		} else {
