@@ -1255,6 +1255,7 @@ function display_pagination(index, pagemove) {
 		var page = $(this).text();
 		console.log("result page: " + page);
 		if(page.match('<span class="sr-only">(current)</span>') == null && page.match("&raquo;") == null && page.match("&laquo;") == null) {
+			console.log("index change");
 			display_results(window.user_search_results, page);
 			display_pagination(page, pagemove); 
 		} else if(page.match("&raquo;") != null) {
