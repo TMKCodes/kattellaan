@@ -1161,8 +1161,8 @@ function display_results(results, index) {
 	
 	$("#search-results").html("");
 	$("#display-amount-of-results").html("<b>Hakuosumia:</b><br /> " + results.length + " kappaletta.");
-	console.log(results);
 	for(var i = (30 * index) - 30; i < ((results.length > ((30 * index) + 30)) ? ((30 * index) + 30) : results.length); i++) {
+		console.log(i);
 		var gender = "";
 		switch(results[i].gender) {
 			case 'man': gender = "mies"; break;
