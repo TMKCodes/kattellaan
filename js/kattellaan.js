@@ -1276,7 +1276,7 @@ function display_pagination(index, pagemove) {
 					pagemove -= 1;
 					$("#search-result-next-pagination-button").attr('disabled', 'false');
 				} else {
-					$("#search-result-prev-pagination-button").attr('disabled', 'true';
+					$("#search-result-prev-pagination-button").attr('disabled', 'true');
 				}
 				console.log(index);
 				console.log(pagemove);
