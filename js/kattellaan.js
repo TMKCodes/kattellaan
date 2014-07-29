@@ -1242,7 +1242,7 @@ function display_pagination(index, pagemove) {
 				}
 			}
 			if(paginations > 12) {
-				result_pagination += '<li id="search-result-next-pagination-button"><a href="#">&raquo;</a></li>';
+				result_pagination += '<li id="search-result-next-pagination-button" class="enabled"><a href="#">&raquo;</a></li>';
 			} else {
 				result_pagination += '<li id="search-result-next-pagination-button" class="disabled"><a href="#">&raquo;</a></li>';
 			}	
