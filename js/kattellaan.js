@@ -1297,8 +1297,8 @@ function display_pagination(index, pagemove) {
 }
 
 $("#select-search-result-order").change(function(evt) {
-	$("#select-search-result-order").find("option:selected").removeAttr("selected");
-	$(this).attr("selected", "selected");
+	$("#select-search-result-order > option:selected").removeAttr("selected");
+	console.log($(this).val());
 	display_results(window.user_search_results, window.index);
 	display_pagination(window.index, window.pagemove);
 });
