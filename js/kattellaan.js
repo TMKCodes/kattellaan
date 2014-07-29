@@ -795,9 +795,6 @@ function load_messages_page(uid, duid) {
 		$("#messages-page-conversation-who").html("Keskustelu " + receiver_name + ":n kanssa.");
 
 		var discussion = get_discussion(uid, duid);
-		if(discussion == false) {
-			return false;
-		}
 		if(discussion != undefined) {
 			var messages = "";
 			for(var i = 0; i < discussion.length; i++) {
