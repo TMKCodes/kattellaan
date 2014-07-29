@@ -1398,7 +1398,8 @@ $("#authentication-form").submit(function(evt) {
 		$("#home-page-register").hide();
 		$("#home-page-features").hide();
 		$("#authentication-error-page").hide();
-		$("#user-menu").show();
+		$("#user-menu").show();	
+		update_unread_messages();
 	} else {
 		load_page("authentication-error-page");
 	}
