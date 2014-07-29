@@ -1161,7 +1161,6 @@ function display_results(search_results, index) {
 	$("#search-results").html("");
 	$("#display-amount-of-results").html("<b>Hakuosumia:</b><br /> " + results.length + " kappaletta.");
 	for(var i = (30 * index); i < ((results.length > ((30 * index) + 30)) ? ((30 * index) + 30) : results.length); i++) {
-		console.log(i);
 		var gender = "";
 		switch(results[i].gender) {
 			case 'man': gender = "mies"; break;
@@ -1256,9 +1255,7 @@ function display_pagination(index, pagemove) {
 
 	$("#search_result_pagination > li > a").click(function(evt) {
 		evt.preventDefault();
-		var page = $(this).text();
-		console.log("result page: " + page);
-	
+		var page = $(this).text();	
 		if(page.match("»") != null) {
 			if($("#search-result-next-pagination-button > a").is(":disabled") == false) {
 				if(paginations > pagemove) {
@@ -1267,12 +1264,8 @@ function display_pagination(index, pagemove) {
 				} else {
 					$("#search-result-next-pagination-button > a").attr('disabled', 'true');
 				}
-				console.log("index: " + index);
-				console.log("pagemove: " + pagemove);
 				display_results(window.user_search_results, index);
 				display_pagination(index, pagemove);
-			} else {
-				console.log("button is disabled");
 			}
 		} else if(page.match("«") != null) {
 			if($("#search-result-prev-pagination-button > a").is(":disabled") == false) {
@@ -1282,13 +1275,10 @@ function display_pagination(index, pagemove) {
 				} else {
 					$("#search-result-prev-pagination-button > a").attr('disabled', 'true');
 				}
-				console.log(index);
-				console.log(pagemove);
 				display_results(window.user_search_results, index);
 				display_pagination(index, pagemove);
 			}
 		} else if(page.match('<span class="sr-only">(current)</span>') == null) {
-			console.log("index change");
 			display_results(window.user_search_results, page);
 			display_pagination(page, pagemove); 
 		}
