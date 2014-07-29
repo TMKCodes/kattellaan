@@ -1297,7 +1297,6 @@ function display_pagination(index, pagemove) {
 }
 
 $("#select-search-result-order").change(function(evt) {
-	$("#select-search-result-order > option:selected").prop("selected", null);
 	console.log($(this).val());
 	display_results(window.user_search_results, window.index);
 	display_pagination(window.index, window.pagemove);
