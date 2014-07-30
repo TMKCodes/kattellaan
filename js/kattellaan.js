@@ -1199,7 +1199,7 @@ function display_results(search_results, index) {
 			results[i].picture = "default.jpg";
 		}
 
-		if(results[i].looking_for != null) {
+		if(results[i].looking_for != "") {
 			var looking_for = results[i].looking_for.split(", ");
 			for(var x = 0; x < looking_for.length; x++) {
 				if(looking_for[x] === "friends") {
