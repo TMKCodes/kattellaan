@@ -632,7 +632,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			}
 			$query .= "FROM `account` INNER JOIN `profile` ON account.id = profile.identifier ";
 
-			if(!empty($_POST['max_distance'])) {
+			if(!empty($_POST['max-distance'])) {
 				$searcher_identifier = $session->get_identifier($_COOKIE['session']);
 				$query .= "LEFT JOIN (SELECT * FROM `distance` WHERE `start` = " . $searcher_identifier . ") d ON distance.end = account.id";  
 			}
