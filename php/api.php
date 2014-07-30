@@ -1049,7 +1049,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 							}
 						} else if(!empty($_POST['max-distance'])) {
 							$searcher_identifier = $session->get_identifier($_COOKIE['session']);
-							$distance_statement = $database->prepare("SELECT * FROM `distance` WHERE `distance` <= ? AND (`start` = ? AND `end` = ?) OR (`start` = ? AND `end` = ?) AND ;");
+							$distance_statement = $database->prepare("SELECT * FROM `distance` WHERE `distance` <= ? AND (`start` = ? AND `end` = ?) OR (`start` = ? AND `end` = ?);");
 							$distance_statement->bind("s", $_POST['max-distance'] * 1000);
 							$distance_statement->bind("i", $searcher_identifier);
 							$distance_statement->bind("i", $row['id']);
