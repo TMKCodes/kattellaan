@@ -1454,7 +1454,7 @@ $("#user-menu-messages > .dropdown-menu > #empty > a").click(function(evt) {
 	}
 });
 
-$("#messages > a").clickf(function(evt) {
+$("#messages > a").click(function(evt) {
 	evt.preventDefault();
 	if($.cookie("session") !== undefined) {
 		var session = window.atob($.cookie("session"));
