@@ -634,7 +634,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 
 			if(!empty($_POST['max-distance'])) {
 				$searcher_identifier = $session->get_identifier($_COOKIE['session']);
-				$query .= "LEFT JOIN (SELECT * FROM `distance` WHERE `start` = " . $searcher_identifier . ") d ON distance.end = account.id";  
+				$query .= "LEFT JOIN (SELECT * FROM `distance` WHERE `start` = " . $searcher_identifier . ") d ON distance.end = account.id ";  
 			}
 			
 			$query .= "LEFT JOIN (SELECT * FROM `session` WHERE 1 ORDER BY `timestamp` DESC LIMIT 0, 1) s ON account.id = s.uid WHERE ";
