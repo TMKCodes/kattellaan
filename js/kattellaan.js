@@ -1331,6 +1331,8 @@ $("#navigation-left > li").click(function(evt) {
 	$(this).addClass("active");
 });
 
+
+
 $("#user-menu > li").click(function(evt) {
 	evt.preventDefault();
 	$("#navigation-left").children().removeClass("active");
@@ -1362,6 +1364,13 @@ $("#search").click(function(evt) {
 	evt.preventDefault();
 	hide_menu_collapse();
 	load_search_page(0);
+});
+
+
+$("#help").click(function(evt) {
+	evt.preventDefault();
+	hide_menu_collapse();
+	load_page("help-page");
 });
 
 $("#logout-button").click(function(evt) {
