@@ -626,7 +626,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			}
 
 
-			$query = "SELECT account.id, `username`, profile.address, `profile_text` ,`picture`, `relationship_status`, `registered`, `timestamp`, `birthday`, `gender`, `looking-for`, `sexual_orientation` ";
+			$query = "SELECT account.id, `username`, profile.address, `profile_text` ,`picture`, `relationship_status`, `registered`, `timestamp`, `birthday`, `gender`, `looking_for`, `sexual_orientation` ";
 			$query .= "FROM `account` INNER JOIN `profile` ON account.id = profile.identifier ";
 			$query .= "LEFT JOIN (SELECT * FROM `session` WHERE 1 ORDER BY `timestamp` DESC LIMIT 0, 1) s ON account.id = s.uid WHERE ";
 			$ap_search_results = array();
