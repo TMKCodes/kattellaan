@@ -1199,24 +1199,27 @@ function display_results(search_results, index) {
 			results[i].picture = "default.jpg";
 		}
 
-		var looking_for = results[i].looking_for.split(", ");
-		for(var x = 0; x < looking_for.length; x++) {
-			if(looking_for[x] === "friends") {
-				looking_for[x] = "Ystävyyttä";
-			} else if(looking_for[x] === "love") {
-				looking_for[x] = "Rakkautta";
-			} else if(looking_for[x] === "date") {
-				looking_for[x] = "Tapaamisia";
-			} else if(looking_for[x] === "sex") {
-				looking_for[x] = "Seksiä";
-			} else if(looking_for[x] === "other") {
-				looking_for[x] = "Jotain muuta";
-			} else if(looking_for[x] === "none") {
-				looking_for[x] === "En halua kertoa";
+		if(results[i].looking_for != null) {
+			var looking_for = results[i].looking_for.split(", ");
+			for(var x = 0; x < looking_for.length; x++) {
+				if(looking_for[x] === "friends") {
+					looking_for[x] = "Ystävyyttä";
+				} else if(looking_for[x] === "love") {
+					looking_for[x] = "Rakkautta";
+				} else if(looking_for[x] === "date") {
+					looking_for[x] = "Tapaamisia";
+				} else if(looking_for[x] === "sex") {
+					looking_for[x] = "Seksiä";
+				} else if(looking_for[x] === "other") {
+					looking_for[x] = "Jotain muuta";
+				} else if(looking_for[x] === "none") {
+					looking_for[x] === "En halua kertoa";
+				}
 			}
+			looking_for = looking_for.join(", ");
+		} else {
+			var looking_for = "";
 		}
-		looking_for = looking_for.join(", ");
-		
 		var profile_text = results[i].profile_text;
 		if(profile_text.length >= 250) {
 			profile_text = profile_text.match(/.{1,250}/g);
