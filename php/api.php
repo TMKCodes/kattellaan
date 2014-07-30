@@ -1002,6 +1002,21 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			
 			$query .= ";";
 			$world = json_decode(file_get_contents("../lists/states-regions-municipalities.json"));
+			$distances = array();
+			if(!empty($_POST['max-distance'])) {
+				$searcher_identifier = $session->get_identifier($_COOKIE['session']);
+				$distance_statement = $database->prepare("SELECT * FROM `distance` WHERE `distance` <= ? AND (`start` = ? OR `end` = ?);");
+				$distance_statement->bind("i", $_POST['max-distance'] * 1000);
+				$distance_statement->bind("i", $searcher_identifier);
+				$distance_statement->bind("i", $searcher_identifier);
+				$distance_result = $distance_statement->execute();
+				if($distance_result->success() == true) {
+					$rows = $distance_result->rows();
+					for($i = 0; $i < $rows; $i++) {
+						array_push($distances, $distance_result->fetch_array(RASSOC));
+					}
+				}
+			}
 			$statement = $database->prepare($query);	
 			$result = $statement->execute();
 			if($result->success() == true) {
@@ -1047,6 +1062,17 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 								}
 							}
 						} else if(!empty($_POST['max-distance'])) {
+							$distances_count = count($distances);
+							if($distances_count >= 1) {
+								for($x = 0; $x < $distances_count; $x++) {
+									if($distances[$x]['end'] == $row['id'] && $distances[$x]['start'] == $searcher_identifier) {
+										$push_this = true;
+									} else if ($distances[$x]['end'] == $searcher_identifier && $distances[$x]['start'] == $row['id']) {
+										$push_this = true;
+									}
+								}
+							}
+							/*
 							$searcher_identifier = $session->get_identifier($_COOKIE['session']);
 							$distance_statement = $database->prepare("SELECT * FROM `distance` WHERE `distance` <= ? AND ((`start` = ? AND `end` = ?) OR (`start` = ? AND `end` = ?));");
 							$distance_statement->bind("i", $_POST['max-distance'] * 1000);
@@ -1058,6 +1084,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 							if($distance_result->success() == true && $distance_result->rows() >= 1) {
 								$push_this = true;
 							}
+							*/
 						} else {
 							$push_this = true;
 						}
