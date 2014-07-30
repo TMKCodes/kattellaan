@@ -1156,6 +1156,7 @@ function display_results(search_results, index) {
 		results.sort(compare_registered);
 	} else if($("#select-search-result-order").find(":selected").val() == "young-members") {
 		results.sort(compare_birthday);
+	
 	} else if($("#select-search-result-order").find(":selected").val() == "aged-members") {
 		results.sort(compare_birthday);
 		results.reverse();
@@ -1187,6 +1188,7 @@ function display_results(search_results, index) {
 				age += 1;
 			}
 		}
+
 		if(results[i].town != false) {
 			var town = results[i].town.charAt(0).toUpperCase() + results[i].town.slice(1);
 		} else {
@@ -1197,6 +1199,24 @@ function display_results(search_results, index) {
 			results[i].picture = "default.jpg";
 		}
 
+		var looking_for = results[i].looking_for.split(", ");
+		for(var x = 0; x < looking_for.length; x++) {
+			if(looking_for[x] === "friends") {
+				looking_for[x] = "Ystävyyttä";
+			} else if(looking_for[x] === "love") {
+				looking_for[x] = "Rakkautta";
+			} else if(looking_for[x] === "date") {
+				looking_for[x] = "Tapaamisia";
+			} else if(looking_for[x] === "sex") {
+				looking_for[x] = "Seksiä";
+			} else if(looking_for[x] === "other") {
+				looking_for[x] = "Jotain muuta";
+			} else if(looking_for[x] === "none") {
+				looking_for[x] === "En halua kertoa";
+			}
+		}
+		looking_for = looking_for.join(", ");
+		
 		var profile_text = results[i].profile_text;
 		if(profile_text.length >= 250) {
 			profile_text = profile_text.match(/.{1,250}/g);
@@ -1215,6 +1235,7 @@ function display_results(search_results, index) {
 				result_display += '</div>';
 				result_display += '<div class="col-xs-8">';
 					result_display += "<p>" + age + ", " + gender + ", " +  town + "</p>";
+					result_display += "<p>" + looking_for + "</p>";
 					result_display += "<p>" + profile_text + "</p>";
 				result_display += '</div>';
 			result_display += '</div>';
