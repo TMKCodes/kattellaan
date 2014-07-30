@@ -1300,8 +1300,7 @@ $("#with-picture-checkbox").change(function(evt) {
 });
 
 $("#search-reset").click(function(evt) {
-	$(".multiselect").multiselect("refresh");
-	$(".multiselect").multiselect("rebuild");
+	$("#search-form option:selected").removeAttr("selected");	
 });
 
 $("#search-submit").click(function(evt) {
