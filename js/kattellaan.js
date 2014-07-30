@@ -1198,7 +1198,8 @@ function display_results(search_results, index) {
 		if(results[i].picture == "") {
 			results[i].picture = "default.jpg";
 		}
-
+		
+		console.log(results[i].looking_for);
 		if(results[i].looking_for != "") {
 			var looking_for = results[i].looking_for.split(", ");
 			for(var x = 0; x < looking_for.length; x++) {
