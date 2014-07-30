@@ -784,7 +784,7 @@ function update_unread_messages() {
 			}			
 		});
 	} else {
-		$("#user-menu-messages > .dropdown-menu > #empty > a").html("<i id=\"count\" style=\"display: none;\">0</i>Ei uusia viestejä.");
+		$("#user-menu-messages > .dropdown-menu > #empty > a").html("<i id=\"count\" style=\"display: none;\">0</i>Ei uusia ilmoituksia.");
 	}
 }
 
