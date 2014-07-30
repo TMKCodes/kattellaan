@@ -1300,7 +1300,6 @@ $("#with-picture-checkbox").change(function(evt) {
 });
 
 $("#search-reset").click(function(evt) {
-	$("#search-form option:selected").removeAttr("selected");	
 });
 
 $("#search-submit").click(function(evt) {
