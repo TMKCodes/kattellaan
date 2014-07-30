@@ -626,9 +626,11 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			}
 
 
-			$query = "SELECT account.id, `username`, profile.address, `profile_text` ,`picture`, `relationship_status`, `registered`, `timestamp`, `birthday`, `gender`, `distance`" .
-					"FROM `account` " .
-					"INNER JOIN `profile` ON account.id = profile.identifier ";
+			$query = "SELECT account.id, `username`, profile.address, `profile_text` ,`picture`, `relationship_status`, `registered`, `timestamp`, `birthday`, `gender`";
+			if(!empty($_POST['max-distance'])) {
+				$query .= ", `distance` " .
+			}
+			$query .= "FROM `account` INNER JOIN `profile` ON account.id = profile.identifier ";
 
 			if(!empty($_POST['max_distance'])) {
 				$searcher_identifier = $session->get_identifier($_COOKIE['session']);
