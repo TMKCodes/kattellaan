@@ -900,6 +900,9 @@ function load_messages_page(uid, duid) {
 
 function load_search_page(ssid) {
 	console.log("search page opened.");
+	if(check_session() == false) {
+		$("#search-submit").prop('disabled', true);
+	}
 	if(ssid != 0) {
 		load_custom_page("search-page", "&ssid=" + ssid);
 	} else {
