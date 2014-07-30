@@ -1299,6 +1299,11 @@ $("#with-picture-checkbox").change(function(evt) {
 	display_pagination(window.index, window.pagemove);
 });
 
+$("#search-reset").click(function(evt) {
+	$(".multiselect").multiselect("clearSelection");
+	$(".multiselect").multiselect("refresh");
+});
+
 $("#search-submit").click(function(evt) {
 	evt.preventDefault();
 	var form_data = $("#search-form").serialize();
