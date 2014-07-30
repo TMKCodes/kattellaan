@@ -1454,6 +1454,18 @@ $("#user-menu-messages > .dropdown-menu > #empty > a").click(function(evt) {
 	}
 });
 
+$("#messages > a").clickf(function(evt) {
+	evt.preventDefault();
+	if($.cookie("session") !== undefined) {
+		var session = window.atob($.cookie("session"));
+		session = session.split("||");
+		$("#messages-page-conversation-who").html("Kenen kanssa keskustelee.");
+		$("#messages-page-conversation-messages").html("Avaa keskustelu niin näet viestit tässä.");
+		$("#messages-page-conversation-input").html("Lähetä uusi viesti.");
+		load_messages_page(session[1], 0);
+	}
+});
+
 $("#authentication-form").submit(function(evt) {
 	evt.preventDefault();
 	open_session($("#authentication-form-username-input").val(), $("#authentication-form-password-input").val());
