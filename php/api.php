@@ -628,7 +628,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 
 			$query = "SELECT account.id, `username`, profile.address, `profile_text` ,`picture`, `relationship_status`, `registered`, `timestamp`, `birthday`, `gender`";
 			if(!empty($_POST['max-distance'])) {
-				$query .= ", `distance` " .
+				$query .= ", `distance` ";
 			}
 			$query .= "FROM `account` INNER JOIN `profile` ON account.id = profile.identifier ";
 
