@@ -744,7 +744,7 @@ function set_message_to_seen(mid) {
 					var count = parseInt($("#user-menu-messages > .dropdown-menu > #empty > a > #count").html());
 					count -= 1;
 					if(count > 0) {
-						$("#user-menu-messages > .dropdown-menu > #empty > a").html("<i id=\"count\" style=\"display: none;\">" + count + "</i>" + count + " uutta viestiä.");
+						$("#user-menu-messages > .dropdown-menu > #empty > a").html("<i id=\"count\" style=\"display: none;\">" + count + "</i>" + count + " ilmoitus.");
 					} else {
 						$("#user-menu-messages > .dropdown-menu > #empty > a").html("<i id=\"count\" style=\"display: none;\">0</i>Ei uusia ilmoituksia.");
 					}
@@ -762,7 +762,7 @@ function update_unread_messages() {
 	var unread = get_unread_messages("false");
 	// "{"success":true,"count":1,"messages":[{"mid":"125","sender_name":"TMKCodes","sender_uid":"214","receiver_name":"aa","receiver_uid":"189","timestamp":"2014-07-07 15:19:50","seen":"0","type":"text","message":"uusi viesti!"}]}"
 	if(unread.count != undefined) {
-		$("#user-menu-messages > .dropdown-menu > #empty > a").html("<i id=\"count\" style=\"display: none;\">" + unread.count + "</i>" + unread.count + " uutta viestiä."); 
+		$("#user-menu-messages > .dropdown-menu > #empty > a").html("<i id=\"count\" style=\"display: none;\">" + unread.count + "</i>" + unread.count + " ilmoitus."); 
 		var list = "";
 		var shown = new Array();
 		$(".unread_message_id").each(function(i, obj) { shown.push($(obj).html()); } );
@@ -771,7 +771,7 @@ function update_unread_messages() {
 				list += "<li class=\"notification\"><a href=\"#\">";
 				list += "<i class=\"unread_message_id\" style=\"display: none;\">" + unread.messages[i].mid + "</i>";
 				list += "<i class=\"unread_sender_uid\" style=\"display: none;\">" + unread.messages[i].sender_uid + "</i>";
-				list += unread.messages[i].sender_name + " lähetti sinulle uuden viestin.</a></li>";
+				list += unread.messages[i].sender_name + " lähetti sinulle viestin.</a></li>";
 			}
 		}
 		$("#user-menu-messages > .dropdown-menu").prepend(list);
