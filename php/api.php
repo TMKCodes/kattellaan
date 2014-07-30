@@ -627,16 +627,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 
 
 			$query = "SELECT account.id, `username`, profile.address, `profile_text` ,`picture`, `relationship_status`, `registered`, `timestamp`, `birthday`, `gender`";
-			if(!empty($_POST['max-distance'])) {
-				$query .= ", `distance` ";
-			}
 			$query .= "FROM `account` INNER JOIN `profile` ON account.id = profile.identifier ";
-
-			if(!empty($_POST['max-distance'])) {
-				$searcher_identifier = $session->get_identifier($_COOKIE['session']);
-				$query .= "LEFT JOIN (SELECT * FROM `distance` WHERE `start` = " . $searcher_identifier . ") d ON distance.end = account.id ";  
-			}
-			
 			$query .= "LEFT JOIN (SELECT * FROM `session` WHERE 1 ORDER BY `timestamp` DESC LIMIT 0, 1) s ON account.id = s.uid WHERE ";
 			$ap_search_results = array();
 			
@@ -1057,23 +1048,17 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 								}
 							}
 						} else if(!empty($_POST['max-distance'])) {
-							if($row['distance'] < $_POST['max-distance']) {
-								$push_this = true;
-								$row['distance'] = $_POST['max-distance'];
-							}
-							/*
 							$searcher_identifier = $session->get_identifier($_COOKIE['session']);
-							$distance_statement = $database->prepare("SELECT * FROM `distance` WHERE `distance` <= ? AND (`start` = ? OR `start` = ?) AND (`end` = ? OR `end` = ?);");
+							$distance_statement = $database->prepare("SELECT * FROM `distance` WHERE `distance` <= ? AND (`start` = ? AND `end` = ?) OR (`start` = ? AND `end` = ?) AND ;");
 							$distance_statement->bind("s", $_POST['max-distance'] * 1000);
 							$distance_statement->bind("i", $searcher_identifier);
 							$distance_statement->bind("i", $row['id']);
-							$distance_statement->bind("i", $searcher_identifier);
 							$distance_statement->bind("i", $row['id']);
+							$distance_statement->bind("i", $searcher_identifier);
 							$distance_result = $distance_statement->execute();
 							if($distance_result->success() == true && $distance_result->rows() >= 1) {
 								$push_this = true;
 							}
-							*/
 						} else {
 							$push_this = true;
 						}
