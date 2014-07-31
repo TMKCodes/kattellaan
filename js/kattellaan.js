@@ -502,13 +502,13 @@ function from_town(town) {
 
 function sexual_orientation(sexor) {
 	if(sexor === "hetero") {
-		sexor = "Heteroseksuaali";
+		sexor = "heteroseksuaali";
 	} else if(sexor === "gay") {
-		sexor = "Homoseksuaali";
+		sexor = "homoseksuaali";
 	} else if(sexor === "bi") {
-		sexor = "Bisexsuaali";
+		sexor = "bisexsuaali";
 	} else if(sexor === "ase") {
-		sexor = "Aseksuaali";
+		sexor = "aseksuaali";
 	}
 	return sexor;
 }
