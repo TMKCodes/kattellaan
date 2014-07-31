@@ -794,7 +794,7 @@ function update_unread_messages() {
 				list += unread.messages[i].sender_name + " lähetti sinulle viestin.</a></li>";
 			}
 		}
-		$("#user-menu-messages > a").html('<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="badge">' + unread.count + '</span> Ilmoitukset <b class="caret"></b></a>');
+		$("#user-menu-messages > a").html('<span class="badge">' + unread.count + '</span> Ilmoitukset <b class="caret"></b>');
 		$("#user-menu-messages > .dropdown-menu").prepend(list);
 		$(".notification > a").click(function() {
 			var suid = parseInt($(this).children(".unread_sender_uid").html());
@@ -805,7 +805,7 @@ function update_unread_messages() {
 			}			
 		});
 	} else {
-		$("#user-menu-messages > a").html('<a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="glyphicon glyphicon-envelope"></b> Ilmoitukset <b class="caret"></b></a>');
+		$("#user-menu-messages > a").html('<b class="glyphicon glyphicon-envelope"></b> Ilmoitukset <b class="caret"></b>');
 		$("#user-menu-messages > .dropdown-menu > #empty > a").html("<i id=\"count\" style=\"display: none;\">0</i>Ei uusia ilmoituksia.");
 	}
 }
