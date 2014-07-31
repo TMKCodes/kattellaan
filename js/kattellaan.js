@@ -1220,6 +1220,18 @@ function display_results(search_results, index) {
 		} else {
 			var looking_for = "";
 		}
+
+		var sexual_orientation = results[i].sexual_orientation;
+		if(sexual_orientation === "hetero") {
+			sexual_orientation = "Heteroseksuaali";
+		} else if(sexual_orientation === "gay") {
+			sexual_orientation = "Homoseksuaali";
+		} else if(sexual_orientation === "bi") {
+			sexual_orientation = "Bisexsuaali";
+		} else if(sexual_orientation === "ase") {
+			sexual_orientation = "Aseksuaali";
+		}
+
 		var profile_text = results[i].profile_text;
 		if(profile_text.length >= 250) {
 			profile_text = profile_text.match(/.{1,250}/g);
@@ -1237,7 +1249,7 @@ function display_results(search_results, index) {
 					result_display += '<img src="uploads/' + results[i].picture + '" alt="' + results[i].username + '" profiilikuva" style="width: 100%;"/>';
 				result_display += '</div>';
 				result_display += '<div class="col-xs-8">';
-					result_display += "<p>" + age + ", " + gender + ", " +  town + "</p>";
+					result_display += "<p>" + age + ", " + sexual_orientation + ", " + gender + ", " +  town + "</p>";
 					result_display += "<p>" + looking_for + "</p>";
 					result_display += "<p>" + profile_text + "</p>";
 				result_display += '</div>';
