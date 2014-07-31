@@ -764,12 +764,14 @@ function set_message_to_seen(mid) {
 					var count = parseInt($("#user-menu-messages > .dropdown-menu > #empty > a > #count").html());
 					count -= 1;
 					if(count > 0) {
+						$("#user-menu-messages > a").html('<span class="badge">' + unread.count + '</span> Ilmoitukset <b class="caret"></b>');
 						if(count > 1) {
 							$("#user-menu-messages > .dropdown-menu > #empty > a").html("<i id=\"count\" style=\"display: none;\">" + count + "</i>" + count + " ilmoitusta.");
 						} else {
 							$("#user-menu-messages > .dropdown-menu > #empty > a").html("<i id=\"count\" style=\"display: none;\">" + count + "</i>" + count + " ilmoitus.");
 						}
 					} else {
+						$("#user-menu-messages > a").html('<b class="glyphicon glyphicon-envelope"></b> Ilmoitukset <b class="caret"></b>');
 						$("#user-menu-messages > .dropdown-menu > #empty > a").html("<i id=\"count\" style=\"display: none;\">0</i>Ei uusia ilmoituksia.");
 					}
 				}
