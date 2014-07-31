@@ -1200,7 +1200,8 @@ function display_results(search_results, index) {
 		}
 		
 		if(results[i].looking_for != "null") {
-			var looking_for = results[i].looking_for.split(", ");
+			results[i].looking_for.replace(" ", "");
+			var looking_for = results[i].looking_for.split(",");
 			for(var x = 0; x < looking_for.length; x++) {
 				if(looking_for[x] === "friends") {
 					looking_for[x] = "Ystävyyttä";
