@@ -764,7 +764,11 @@ function set_message_to_seen(mid) {
 					var count = parseInt($("#user-menu-messages > .dropdown-menu > #empty > a > #count").html());
 					count -= 1;
 					if(count > 0) {
-						$("#user-menu-messages > .dropdown-menu > #empty > a").html("<i id=\"count\" style=\"display: none;\">" + count + "</i>" + count + " ilmoitus.");
+						if(count > 1) {
+							$("#user-menu-messages > .dropdown-menu > #empty > a").html("<i id=\"count\" style=\"display: none;\">" + count + "</i>" + count + " ilmoitusta.");
+						} else {
+							$("#user-menu-messages > .dropdown-menu > #empty > a").html("<i id=\"count\" style=\"display: none;\">" + count + "</i>" + count + " ilmoitus.");
+						}
 					} else {
 						$("#user-menu-messages > .dropdown-menu > #empty > a").html("<i id=\"count\" style=\"display: none;\">0</i>Ei uusia ilmoituksia.");
 					}
@@ -782,7 +786,11 @@ function update_unread_messages() {
 	var unread = get_unread_messages("false");
 	// "{"success":true,"count":1,"messages":[{"mid":"125","sender_name":"TMKCodes","sender_uid":"214","receiver_name":"aa","receiver_uid":"189","timestamp":"2014-07-07 15:19:50","seen":"0","type":"text","message":"uusi viesti!"}]}"
 	if(unread.count != undefined) {
-		$("#user-menu-messages > .dropdown-menu > #empty > a").html("<i id=\"count\" style=\"display: none;\">" + unread.count + "</i>" + unread.count + " ilmoitus."); 
+		if(unread.count > 1) {
+			$("#user-menu-messages > .dropdown-menu > #empty > a").html("<i id=\"count\" style=\"display: none;\">" + unread.count + "</i>" + unread.count + " ilmoitusta."); 
+		} else {
+			$("#user-menu-messages > .dropdown-menu > #empty > a").html("<i id=\"count\" style=\"display: none;\">" + unread.count + "</i>" + unread.count + " ilmoitus."); 
+		}
 		var list = "";
 		var shown = new Array();
 		$(".unread_message_id").each(function(i, obj) { shown.push($(obj).html()); } );
