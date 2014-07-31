@@ -1264,7 +1264,17 @@ function display_results(search_results, index) {
 		result_display += '</div>';
 		$("#search-results").append(result_display);
 	}
-	
+
+	$("#search-result-send-message").click(function(evt) {
+		evt.preventDefault();
+		if($.cookie("session") !== undefined) {
+			var session = window.atob($.cookie("session"));
+			session = session.split("||");
+			var ruid = $(this).children("i").text();
+			load_messages_page(session[1], ruid);
+		}
+	});
+
 	$(".user-profile-button").click(function(evt) {
 		evt.preventDefault();
 		var uid = $(this).attr("href");
