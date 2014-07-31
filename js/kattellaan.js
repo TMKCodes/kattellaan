@@ -500,6 +500,18 @@ function from_town(town) {
 	}
 }
 
+function sexual_orientation(sexor) {
+	if(sexor === "hetero") {
+		sexor = "Heteroseksuaali";
+	} else if(sexor === "gay") {
+		sexor = "Homoseksuaali";
+	} else if(sexor === "bi") {
+		sexor = "Bisexsuaali";
+	} else if(sexor === "ase") {
+		sexor = "Aseksuaali";
+	}
+	return sexor;
+}
 
 function get_distance(my_uid, his_uid) {
 	var distance;
@@ -593,14 +605,16 @@ function load_profile_page(uid) {
 	if(town == undefined) {
 		town = "";
 	}
-		
+
+	var sexorientation = sexual_orientation(profile.sexual_orientation);
+
 	var asl = "<h2> Olen ";
 
 	if(age != "") {
 		asl += age + " vuotias ";
 	}
 	
-	asl += relationshipStatus + " " + sGender.toLowerCase() + " " + town
+	asl += sexorientation + " " + relationshipStatus + " " + sGender.toLowerCase() + " " + town
 	
 	if(profile.looking_for == "null") {
 		asl = asl + ".</h2>";
@@ -615,6 +629,8 @@ function load_profile_page(uid) {
 	var profile_text = "<p>" + profile.profile_text + "</p>";
 
 	$("#profile-page-basic-information-asl").html(asl + profile_text);
+
+
 	if(vuid !== uid) {
 		load_custom_page("profile-page", "&uid=" + uid);
 	} else {
