@@ -174,7 +174,7 @@ function get_profile(uid) {
 		async: false,
 		data: { call : 'get_profile', uid : uid }
 	}).done(function(data) {
-		console.log(data);
+	//	console.log(data);
 		var result = $.parseJSON(data);
 		if(result.success === true) {
 			profile = result.profile;
@@ -217,7 +217,7 @@ function get_town(latlng) {
 		console.log(data);
 		if(data.status === "OK") {
 			for(var i = 0; i < data.results[0].address_components.length; i++) {
-				if(data.results[0].address_components[i].types[0] === "locality") {
+				if(data.results[0].address_components[i].types[0] === "locality" || data.result[0].address_components[i].types[0] == "administrative_area_level_3") {
 					town = data.results[0].address_components[i].long_name;
 					break;
 				}
