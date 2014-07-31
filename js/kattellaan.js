@@ -612,7 +612,9 @@ function load_profile_page(uid) {
 		asl = asl + " joka etsii " + lookingFor.toLowerCase() + ".</h2>";
 	}
 
-	$("#profile-page-basic-information-asl").html(asl);
+	var profile_text = "<p>" + profile.profile_text + "</p>";
+
+	$("#profile-page-basic-information-asl").html(asl + profile_text);
 	if(vuid !== uid) {
 		load_custom_page("profile-page", "&uid=" + uid);
 	} else {
