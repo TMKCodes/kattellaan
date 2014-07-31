@@ -76,6 +76,8 @@ function open_session(username, password) {
 		var result = $.parseJSON(data);
 		if(result.success === true) {
 			$.cookie("session", result.session);
+			$("#search-submit").prop("disabled", false);
+			$("#search-submit").removeClass("disabled");
 		} else {
 			if($.cookie("session") !== undefined) {
 				$.removeCookie("session");
