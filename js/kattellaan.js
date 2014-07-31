@@ -1254,7 +1254,7 @@ function display_results(search_results, index) {
 					result_display += "<p>" + looking_for + "</p>";
 					result_display += "<p>" + profile_text + "</p>";
 					result_display += '<div>';
-						result_display += '<button class="btn btn-success" id="search-result-send-message" style="margin-left: 5px;"><i class="uid" style="display: none;">' + results[i].id + '</i>Lähetä viesti</button>';
+						result_display += '<button class="btn btn-success" id="search-result-send-message" style="margin-right: 5px;"><i class="uid" style="display: none;">' + results[i].id + '</i>Lähetä viesti</button>';
 						result_display += '<button class="btn btn-success disable" id="search-result-add-friend" disabled="disabled"><i class="uid" style="display: none;">' + results[i].id + '</i>Pyydä ystäväksi</button>';
 					
 
