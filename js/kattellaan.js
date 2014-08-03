@@ -730,7 +730,7 @@ function load_profile_page(uid) {
 	var haircolor = hair_color(profile.hair_color);
 
 	var profile_page_information_outlook = "<h3>Ulkonäkö</h3>";
-	profile_page_information_outlook += "<p><b>Paino:</b> " + weight + "</p><p><b>Pituus:</b> " + height + "</p><p><b>Ruumiinrakenne</b> " + bodytype + "</p>";
+	profile_page_information_outlook += "<p><b>Paino:</b> " + weight + " kg</p><p><b>Pituus:</b> " + height + " cm</p><p><b>Ruumiinrakenne:</b> " + bodytype + "</p>";
 	profile_page_information_outlook += "<p><b>Silmien väri:</b> " + eyecolor + "</p><p><b>Hiusten pituus:</b> " + hairlength + "</p><p><b>Hiusten väri:</b> " + haircolor + "</p>";
 	
 	$("#profile-page-information-outlook").html(profile_page_information_outlook);
