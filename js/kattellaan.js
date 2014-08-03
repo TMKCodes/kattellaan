@@ -332,6 +332,29 @@ function looking_for(lookingFor) {
 	}
 }
 
+function eye_color(eyec) {
+	if(eyec === "blue") {
+		eyec = "Sininen";
+	} else if(eyec === "brown") {
+		eyec = "Ruskea";
+	} else if(eyec === "green") {
+		eyec = "Vihreä";
+	} else if(eyec === "gray") {
+		eyec = "Harmaa";
+	} else if(eyec === "amber") {
+		eyec = "Kullanruskea";
+	} else if(eyec === "hazel") {
+		eyec = "Pähkinänruseka";
+	} else if(eyec === "red") {
+		eyec = "Punainen";
+	} else if(eyec === "violet") {
+		eyec = "Violetti";
+	} else if(eyec === "none") {
+		eyec = "En halua kertoa";
+	}
+	return eyec;
+}
+
 function recursive_looking_for(lookingFor) {
 	var lookingForArr = lookingFor.split(", ");
 	console.log(lookingForArr);
@@ -515,6 +538,72 @@ function sexual_orientation(sexor) {
 	return sexor;
 }
 
+function body_type(btype) {
+	if(btype === "slender") {
+		btype = "Siro";
+	} else if(btype === "slim") {
+		btype = "Hoikka";
+	} else if(btype === "low-fat") {
+		btype = "Vähärasvainen";
+	} else if(btype === "sporty") {
+		btype = "Sporttinen";
+	} else if(btype === "muscular") {
+		btype = "Lihaksikas";
+	} else if(btype === "roundish") {
+		btype = "Pyöreähkö";
+	} else if(btype === "overweight") {
+		btype = "Ylipainoinen";
+	} else if(btype === "none") {
+		btype = "En halua kertoa";
+	}
+	return btype;
+}
+
+
+function hair_color(hcolor) {
+	if(hcolor === "verylight") {
+		hcolor = "Hyvin vaalea";
+	} else if(hcolor === "light") {
+		hcolor = "Vaalea";
+	} else if(hcolor === "lightbrown") {
+		hcolor = "Vaaleanruskea";
+	} else if(hcolor === "brown") {
+		hcolor = "Ruskea";
+	} else if(hcolor === "black") {
+		hcolor = "Musta";
+	} else if(hcolor === "gray") {
+		hcolor = "Harmaa";
+	} else if(hcolor === "red") {
+		hcolor = "Punainen";
+	} else if(hcolor === "pink") {
+		hcolor = "Pinkki";
+	} else if(hcolor === "white") {
+		hcolor = "Valkoinen";
+	} else if(hcolor === "colorful") {
+		hcolor = "Värikäs";
+	} else if(hcolor === "changeable") {
+		hcolor = "Muuttuu usein";
+	} else if(hcolor === "none") {
+		hcolor = "En halua kertoa";
+	}
+	return hcolor;
+}
+
+function hair_length(hlength) {
+	if(hlength === "bald") {
+		hlength = "Kalju";
+	} else if(hlength === "hedgehog") {
+		hlength = "Siili";
+	} else if(hlength === "short") {
+		hlength = "Lyhyet";
+	} else if(hlength === "long") {
+		hlength = "Pitkät";
+	} else if(hlength === "none") {
+		hlength = "En halua kertoa";
+	}
+	return hlength;
+}
+
 function get_distance(my_uid, his_uid) {
 	var distance;
 	$.ajax({
@@ -632,6 +721,18 @@ function load_profile_page(uid) {
 
 	$("#profile-page-basic-information-asl").html(asl + profile_text);
 
+
+	var weight = profile.weight;
+	var height = profile.height;
+	var bodytype = body_type(profile.body_type);
+	var eyecolor = eye_color(profile.eye_color);
+	var hairlength = hair_length(profile.hair_length);
+	var haircolor = hair_color(profile.hair_color);
+
+	var profile_page_information_outlook = "<p><b>Paino:</b> " + weight + "</p><p><b>Pituus:</b> " + height + "</p><p><b>Ruumiinrakenne</b> " + bodytype + "</p>";
+	profile_page_information_outlook += "<p><b>Silmien väri:</b> " + eyecolor + "</p><p><b>Hiusten pituus:</b> " + hairlength + "</p><p><b>Hiusten väri:</b> " + haircolor + "</p>";
+	
+	$("#profile-page-information-outlook").html(profile_page_information_outlook);
 
 	if(vuid !== uid) {
 		load_custom_page("profile-page", "&uid=" + uid);
@@ -2972,6 +3073,7 @@ $("#register-confirm-profile-information-page").on("show", function() {
 	} else if(hairLength === "none") {
 		hairLength = "En halua kertoa";
 	}
+
 	$("#register-confirm-hair-length-data").val(hairLength);
 
 	var hairColor = $.cookie("hair-color");
