@@ -785,6 +785,284 @@ function vocation(vocation) {
 	return vocation;
 }
 
+function dress_style(dress) {
+	if(dress = "fashionable") {
+		dress = "Muodikas";
+	} else if(dress = "business") {
+		dress = "Bisnes";
+	} else if(dress = "sporty") {
+		dress = "Sporttinen";
+	} else if(dress = "classic") {
+		dress = "Klassinen";
+	} else if(dress = "fleamarket") {
+		dress = "Kirpputori";
+	} else if(dress = "self-indulgent") {
+		dress = "Mukavuuden haluinen";
+	} else if(dress = "regular") {
+		dress = "Normaali";
+	} else if(dress = "hoppers") {
+		dress = "Hoppari";
+	} else if(dress = "rocker") {
+		dress = "Rokkari";
+	} else if(dress = "goth") {
+		dress = "Gootti";
+	} else if(dress = "allthesame") {
+		dress = "Ihan sama";
+	} else if(dress = "nudist") {
+		dress = "Nudisti";
+	} else if(dress = "none") {
+		dress = "En halua kertoa";
+	}
+	return dress;
+}	
+
+function smoking(smoke) {
+	if(smoke === "smokeless") {
+		smoke = "Savuton";
+	} else if(smoke === "company") {
+		smoke = "Seurassa";
+	} else if(smoke === "drunken") {
+		smoke = "Humalassa";
+	} else if(smoke === "regular") {
+		smoke = "Säännöllisesti";
+	} else if(smoke === "chimney") {
+		smoke = "Korsteeni";
+	} else if(smoke === "none") {
+		smoke = "En halua kertoa";
+	}
+	return smoke;
+}
+
+function alcohol(alc) {
+	if(alc === "alcohol-free") {
+		alc = "Alkoholiton";
+	} else if(alc === "holidays") {
+		alc = "Juhlapäivinä";
+	} else if(alc === "company") {
+		alc = "Hyvässä seurassa";
+	} else if(alc === "withfood") {
+		alc = "Ruuan kanssa";
+	} else if(alc === "occasionally") {
+		alc = "Satunnaisesti";
+	} else if(alc === "everyday") {
+		alc = "Joka päivä";
+	} else if(alc === "weekly") {
+		alc = "Viikottain";
+	} else if(alc === "monthly") {
+		alc = "Kerran kuussa";
+	} else if(alc === "yearly") {
+		alc = "Kerran vuodessa";
+	} else if(alc === "alcoholic") {
+		alc = "Tapajuoppo";
+	} else if(alc === "none") {
+		alc = "En halua kertoa";
+	}
+	return alc;
+}
+
+function recursive_pets(pets) {
+	var petsArr = pets.split(",");
+        var i;
+        for(i = 0; i < petsArr.length; i++) {
+		if(petsArr[i] === "horse") {
+			petsArr[i] = "Hevonen";
+		} else if(petsArr[i] === "pony") {
+			petsArr[i] = "Poni";
+		} else if(petsArr[i] === "spider") {
+			petsArr[i] = "Hämähäkki";
+		} else if(petsArr[i] === "fish") {
+			petsArr[i] = "Kala";
+		} else if(petsArr[i] === "rodent") {
+			petsArr[i] = "Jyrsijä";
+		} else if(petsArr[i] === "turtle") {
+			petsArr[i] = "Kilpikonna";
+		} else if(petsArr[i] === "dog") {
+			petsArr[i] = "Koira";
+		} else if(petsArr[i] === "cat") {
+			petsArr[i] = "Kissa";
+		} else if(petsArr[i] === "snake") {
+			petsArr[i] = "Käärme";
+		} else if(petsArr[i] === "bird") {
+			petsArr[i] = "Lintu";
+		} else if(petsArr[i] === "stuffed-animal") {
+			petsArr[i] = "Pehmolelu";
+		} else if(petsArr[i] === "nopets") {
+			petsArr[i] = "Ei lemmikkejä";
+		} else if(petsArr[i] === "likepets") {
+			petsArr[i] = "Pidän eläimistä";
+		} else if(petsArr[i] === "none") {
+			petsArr[i] = "En halua kertoa";
+		}
+        }
+        var petsParsed = petsArr.join(", ");
+
+	return pets;
+}
+
+function exercise(ex) {
+	if(ex === "idont") {
+		ex = "En urheile";
+	} else if(ex === "casually") {
+		ex = "Satunnaisesti";
+	} else if(ex === "regularily") {
+		ex = "Säännöllisesti";
+	} else if(ex === "daily") {
+		ex = "Lähes Päivittäin";
+	} else if(ex === "lifestyle") {
+		ex = "Elämäntapa";
+	} else if(ex === "none") {
+		ex = "En halua kertoa";
+	}
+	return ex;
+}
+
+function travel(travel) {
+	if(travel === "cottagebatty") {
+		travel = "Mökkihöperö";
+	} else if(travel === "neighboring-areas") {
+		travel = "Lähialueilla";
+	} else if(travel === "occasionally") {
+		travel = "Satunnaisesti";
+	} else if(travel === "few-times-a-yer") {
+		travel = "Muutaman kertaa vuodessa";
+	} else if(travel === "monthly") {
+		travel = "Lähes joka kuukausi";
+	} else if(travel === "weekly") {
+		travel = "Lähes joka viikko";
+	} else if(travel === "daily") {
+		travel = "Lähes joka päivä";
+	} else if(travel === "allthetime") {
+		travel = "Matkalla aina johonkin";
+	} else if(travel === "none") {
+		travel = "En halua kertoa";
+	}
+	return travel;
+}
+
+function religion(religion) {
+	if(religion === "atheist") {
+		religion = "Ateisti";
+	} else if(religion === "agnostic") {
+		religion = "Agnostikko";
+	} else if(religion === "buddhism") {
+		religion = "Buddhalainen";
+	} else if(religion === "christian") {
+		religion = "Kristitty";
+	} else if(religion === "hinduism") {
+		religion = "Hindu";
+	} else if(religion === "muslism") {
+		religion = "Muslimi";
+	} else if(religion === "jewish") {
+		religion = "Juutalainen";
+	} else if(religion === "newage") {
+		religion = "New Age";
+	} else if(religion === "none") {
+		religion = "En halua kertoa";
+	}
+	return religion;
+}
+
+function religion_importance(relimp) {
+	if(relimp === "insignificant") {
+		relimp = "Merkityksetön";
+	} else if(relimp === "low") {
+		relimp = "Vähäinen";
+	} else if(relimp === "normal") {
+		relimp = "Normaali";
+	} else if(relimp === "important") {
+		relimp = "Tärkeä";
+	} else if(relimp === "true-blue") {
+		relimp = "Vakaumuksellinen";
+	} else if(relimp === "none") {
+		relimp = "En halua kertoa";
+	}
+	return relimp;
+}
+
+function left_right_politics(lrp) {
+	switch(lrp) {
+		case "left":
+			lrp = "Vasemmistolainen";
+			break;
+		case "moderateleft":
+			lrp = "Maltillisesti vasemmalla";
+			break;
+		case "inbetween":
+			lrp = "Jossain välimaastossa";
+			break;
+		case "moderateright":
+			lrp = "Maltillisesti oikealla";
+			break;
+		case "right":
+			lrp = "Oikeistolainen";
+			break;
+		case "dontknow":
+			lrp = "En tiedä";
+			break;
+		case "dontcare":
+			lrp = "En välitä";
+			break;
+		case "none":
+			lrp = "En halua kertoa";
+			break;
+	}
+	return lrp;
+}
+
+function libreal_conservative_politics(lcp) {
+	switch(lcp) {
+		case "conservative":
+			lcp = "Konservatiivinen";
+			break;
+		case "ratherconservative":
+			lcp = "Melko konservatiivinen";
+			break;
+		case "inbetween":
+			lcp = "Jossain välimaastossa";
+			break;
+		case "ratherliberal":
+			lcp = "Melko liberaalinen";
+			break;
+		case "liberal":
+			lcp = "Liberaalinen";
+			break;
+		case "dontknow":
+			lcp = "En tiedä";
+			break;
+		case "dontcare":
+			lcp = "En välitä";
+			break;
+		case "none":
+			lcp = "En halua kertoa";
+			break;
+	}
+	return lcp;
+}
+
+function political_importance(pi) {
+	switch(pi) {
+		case "dontcare":
+			pi = "Aivan sama";
+			break;
+		case "title-follow":
+			pi = "Lähinnä otsikko tasolla";
+			break;
+		case "active-follow":
+			pi = "Seuraan aktiivisesti";
+			break;
+		case "involved":
+			pi = "Mukana politiikassa";
+			break;
+		case "none":
+			pi = "En halua kertoa";
+			break;
+	}
+	return pi;
+}
+
+
+
+
 function get_distance(my_uid, his_uid) {
 	var distance;
 	$.ajax({
@@ -955,6 +1233,27 @@ function load_profile_page(uid) {
 	profile_page_information_background += "<p><b>Vuositulot:</b> ~" + income + " euroa</p><p><b>Ammatti:</b> " + voc + "</p>";
 
 	$("#profile-page-information-background").html(profile_page_information_background);
+
+
+	var dstyle = dress_style(profile.dress_style);
+	var smoke = smoking(profile.smoking);
+	var alc = alcohol(profile.alcohol);
+	var animals = recursive_pets(profile.pets);
+	var ex = exercise(profile.exercise);
+	var trav = travel(profile.travel);
+	var rel = religion(profile.religion);
+	var relimp = religion_importance(profile.religion_importance);
+	var lrpol = left_right_politics(profile.left_right_politics);
+	var lcpol = liberal_conservative_politics(profile.liberal_conservative_politics);
+	var polimp = political_importance(profile.political_importance);
+
+var profile_page_information_lifestyle = "<h3>Elämäntyyli</h3>";
+	profile_page_information_lifestyle += "<p><b>Pukeutumistyyli:</b> " + dstyle + "</p><p><b>Tupakointi:</b> " + smoke + "</p><p><b>Alkoholi:</b> " + alc + "</p>";
+	profile_page_information_lifestyle += "<p><b>Lemmikit:</b> " + animals + "</p><p><b>Liikunta:</b> " + ex + "</p><p><b>Matkustelu:</b> " + trav + "</p>";
+	profile_page_information_lifestyle += "<p><b>Uskonto:</b> " + rel + "</p><p><b>Uskonnon merkitys:</b> " + relimp + "</p><p><b>Vasemmisto/oikeisto:</b> " + lrpol + "</p>";
+	profile_page_information_lifestyle += "<p><b>Liberaali/konservatiivinen:</b> " + lcpol + "</p><p><b>Politiikan merkitys:</b> " + polimp + "</p>";
+
+	$("#profile-page-information-lifestyle").html(profile_page_information_lifestyle);
 
 	if(vuid !== uid) {
 		load_custom_page("profile-page", "&uid=" + uid);
@@ -3763,6 +4062,7 @@ $("#register-confirm-profile-information-page").on("show", function() {
 			pi = "En halua kertoa";
 			break;
 	}
+
 	$("#register-confirm-political-importance-data").val(pi);
 
 	$("#register-confirm-favorite-television-series-data").val($.cookie("favorite-television-series"));
