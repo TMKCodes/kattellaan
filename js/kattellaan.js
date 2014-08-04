@@ -922,7 +922,7 @@ function load_profile_page(uid) {
 
 
 	var kids = recursive_kids(profile.kids);
-	var accomodation = accomodation(profile.accomodation);
+	var acco = accomodation(profile.accomodation);
 	var ethnicidentity = ethnic_identity(profile.ethnic_identity);
 	var languageskills = recursive_language_skills(profile.language_skills);
 	var education = education(profile.education);
@@ -931,7 +931,7 @@ function load_profile_page(uid) {
 	var vocation = vocation(profile.vocation);
 
 	var profile_page_information_background = "<h3>Tausta</h3>";
-	profile_page_information_background += "<p><b>Lapsia:</b> " + kids + "</p><p><b>Asumismuoto:</b> " + accomodation + "</p><p><b>Etninen identiteetti:</b> " + ethnicidentity + "</p>";
+	profile_page_information_background += "<p><b>Lapsia:</b> " + kids + "</p><p><b>Asumismuoto:</b> " + acco + "</p><p><b>Etninen identiteetti:</b> " + ethnicidentity + "</p>";
 	profile_page_information_background += "<p><b>Kielitaito:</b> " + languageskills + "</p><p><b>Koulutus:</b> " + education + "</p><p><b>Työssäkäynti:</b> " + work + "</p>";
 	profile_page_information_background += "<p><b>Vuositulot:</b> ~" + income + " euroa</p><p><b>Ammatti:</b> " + vocation + "</p>";
 
