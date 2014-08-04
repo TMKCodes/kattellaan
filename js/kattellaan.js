@@ -657,11 +657,7 @@ function recursive_kids(kids) {
 			kidsArr[i] = "En halua kertoa";
 		}
 	}
-	if(kidsArr > 1) {
-		return kidsArr.join(", ");
-	} else {
-		return kidsArr[0];
-	}
+	return kidsArr.join(", ");
 }
 
 function ethnic_identity(ethnic) {
