@@ -176,7 +176,7 @@ function get_profile(uid) {
 		async: false,
 		data: { call : 'get_profile', uid : uid }
 	}).done(function(data) {
-	//	console.log(data);
+		console.log(data);
 		var result = $.parseJSON(data);
 		if(result.success === true) {
 			profile = result.profile;
