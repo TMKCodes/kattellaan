@@ -1009,7 +1009,7 @@ function left_right_politics(lrp) {
 	return lrp;
 }
 
-function libreal_conservative_politics(lcp) {
+function liberal_conservative_politics(lcp) {
 	switch(lcp) {
 		case "conservative":
 			lcp = "Konservatiivinen";
