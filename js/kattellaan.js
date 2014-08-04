@@ -624,7 +624,7 @@ function accomodation(accomodation) {
 }
 
 function recursive_kids(kids) {
-	var kidsArr = kids.split(", ");
+	var kidsArr = kids.split(",");
 	var i;
 	for(i = 0; i < kidsArr.length; i++) {
 		if(kidsArr[i] === "yes") {
