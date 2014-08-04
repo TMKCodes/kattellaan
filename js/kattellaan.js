@@ -620,6 +620,7 @@ function accomodation(accomodation) {
 	} else if(accomodation = "none") {
 		accomodation = "En halua kertoa";
 	}
+	return accomodation;
 }
 
 function recursive_kids(kids) {
