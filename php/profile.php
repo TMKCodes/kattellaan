@@ -148,6 +148,7 @@ class profile {
 		$profile['sexual_orientation'] = $this->sexual_orientation;
 		$profile['smoking'] = $this->smoking;
 		$profile['travel'] = $this->travel;
+		$profile['vocation'] = $this->vocation;
 		$profile['weight'] = $this->weight;
 		$profile['work'] = $this->work;
 		return $profile;
