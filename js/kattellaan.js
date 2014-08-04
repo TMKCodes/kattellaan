@@ -918,14 +918,37 @@ function load_profile_page(uid) {
 
 
 	var kids = recursive_kids(profile.kids);
+	if(kids == "null") {
+		kids = "";
+	}
 	var acco = accomodation(profile.accomodation);
+	if(acco == "null") {
+		acco = "";
+	}
 	var ethnicidentity = ethnic_identity(profile.ethnic_identity);
+	if(ethnicidentity == "null") {
+		ethnicidentity = "";
+	}
 	var languageskills = recursive_language_skills(profile.language_skills);
+	if(languageskills == "null") {
+		languageskills = "";
+	}
 	var edu = education(profile.education);
+	if(edu == "null") {
+		edu = "";
+	}
 	var works = work(profile.work);
+	if(works == "null") {
+		works = "";
+	}
 	var income = profile.income;
+	if(income == "null") {
+		income = "0";
+	}
 	var voc = vocation(profile.vocation);
-
+	if(voc == "null") {
+		voc = "";
+	}
 	var profile_page_information_background = "<h3>Tausta</h3>";
 	profile_page_information_background += "<p><b>Lapsia:</b> " + kids + "</p><p><b>Asumismuoto:</b> " + acco + "</p><p><b>Etninen identiteetti:</b> " + ethnicidentity + "</p>";
 	profile_page_information_background += "<p><b>Kielitaito:</b> " + languageskills + "</p><p><b>Koulutus:</b> " + edu + "</p><p><b>Työssäkäynti:</b> " + works + "</p>";
