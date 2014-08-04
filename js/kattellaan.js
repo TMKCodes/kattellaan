@@ -921,7 +921,7 @@ function load_profile_page(uid) {
 
 
 	var kids = recursive_kids(profile.kids);
-	var accomodation = accomdation(profile.accomodation);
+	var accomodation = accomodation(profile.accomodation);
 	var ethnicidentity = ethnic_identity(profile.ethnic_identity);
 	var languageskills = recursive_language_skills(profile.language_skills);
 	var education = education(profile.education);
