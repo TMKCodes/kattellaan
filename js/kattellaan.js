@@ -604,6 +604,190 @@ function hair_length(hlength) {
 	return hlength;
 }
 
+function accomodation(accomodation) {
+	if(accomodation === "alone") {
+		accomodation = "yksin";
+	} else if(accomodation = "withfriend") {
+		accomodation = "Ystävän kanssa";
+	} else if(accomodation = "withparents") {
+		accomodation = "Vanhempien luona";
+	} else if(accomodation = "sharedflat") {
+		accomodation = "Kimppakämpässä";
+	} else if(accomodation = "withpartner") {
+		accomodation = "Kumppanin kanssa";
+	} else if(accomodation = "homeless") {
+		accomodation = "Koditon";
+	} else if(accomodation = "none") {
+		accomodation = "En halua kertoa";
+	}
+}
+
+function recursive_kids(kids) {
+	var kidsArr = kids.split(", ");
+	var i;
+	for(i = 0; i < kidsArr.length; i++) {
+		if(kidsArr[i] === "yes") {
+			kidsArr[i] = "Kyllä";
+		} else if(kidsArr[i] === "no") {
+			kidsArr[i] = "Ei";
+		} else if(kidsArr[i] === "athome") {
+			kidsArr[i] = "Kotona";
+		} else if(kidsArr[i] === "somewhereelse") {
+			kidsArr[i] = "Muualla";
+		} else if(kidsArr[i] === "jointcustody") {
+			kidsArr[i] = "Yhteishuoltajuus";
+		} else if(kidsArr[i] === "solecustody") {
+			kidsArr[i] = "Yksinhuoltaja";
+		} else if(kidsArr[i] === "iwantkids") {
+			kidsArr[i] = "Haluan lapsia";
+		} else if(kidsArr[i] === "idontwantkids") {
+			kidsArr[i] = "En halua lapsia";
+		} else if(kidsArr[i] === "idontknowifiwantkids") {
+			kidsArr[i] = "En tiedä haluanko lapsia";
+		} else if(kidsArr[i] === "kidsdonotmatter") {
+			kidsArr[i] = "Lapset eivät haittaa";
+		} else if(kidsArr[i] === "weekendparent") {
+			kidsArr[i] = "Kerran viikossa lapset minulla";
+		} else if(kidsArr[i] === "secondweekendparent") {
+			kidsArr[i] = "Kaksi kertaa kuussa lapset minulla";
+		} else if(kidsArr[i] === "monthlyparent") {
+			kidsArr[i] = "Kerran kuussa lapset minulla";
+		} else if(kidsArr[i] === "none") {
+			kidsArr[i] = "En halua kertoa";
+		}
+	}
+	if(kidsArr > 1) {
+		return kidsArr.join(", ");
+	} else {
+		return kidsArr[0];
+	}
+}
+
+function ethnic_identity(ethnic) {
+	if(ethnic === "white") {
+		ethnic = "Valkoinen";
+	} else if(ethnic === "black") {
+		ethnic = "Musta";
+	} else if(ethnic === "indian") {
+		ethnic = "Intialainen";
+	} else if(ethnic === "latino") {
+		ethnic = "Latino";
+	} else if(ethnic === "arab") {
+		ethnic = "Arabi";
+	} else if(ethnic === "asian") {
+		ethnic = "Aasialainen";
+	} else if(ethnic === "midget") {
+		ethnic = "Kääpiö";
+	} else if(ethnic === "none") {
+		ethnic = "En halua kertoa";
+	}
+	return ethnic;
+}
+
+function recursive_language_skills(lang) {
+	var langArr = lang.split(",");
+        var i;
+        for(i = 0; i < langArr.length; i++) {
+		if(langArr[i] === "finnish") {
+			langArr[i] = "Suomi";
+		} else if(langArr[i] === "swedish") {
+			langArr[i] = "Ruotsi";
+		} else if(langArr[i] === "english") {
+			langArr[i] = "Englanti";
+		} else if(langArr[i] === "russian") {
+			langArr[i] = "Venäjä";
+		} else if(langArr[i] === "german") {
+			langArr[i] = "Saksa";
+		} else if(langArr[i] === "japanese") {
+			langArr[i] = "Japani";
+		} else if(langArr[i] === "others") {
+			langArr[i] = "Muita";
+		} else if(langArr[i] === "none") {
+			langArr[i] = "En halua kertoa";
+		}
+	}
+	if(langArr > 1) {
+		return langArr.join(", ");
+	} else {
+		return langArr[0];
+	}
+}
+
+function education(edu) {
+	if(edu === "untrained") {
+		edu = "Kouluttamaton";
+	} else if(edu === "lifeschool") {
+		edu = "Elämänkoulu";
+	} else if(edu === "school") {
+		edu = "Peruskoulu";
+	} else if(edu === "vocational") {
+		edu = "Ammattikoulu";
+	} else if(edu === "high") {
+		edu = "Lukio";
+	} else if(edu === "applied") {
+		edu = "Ammattikorkeakoulu";
+	} else if(edu === "college") {
+		edu = "Yliopisto/korkeakoulu";
+	} else if(edu === "masters") {
+		edu = "Maisterin tutkinto";
+	} else if(edu === "doctor") {
+		edu = "Tohtorin tutkinto";
+	} else if(edu === "none") {
+		edu = "En halua kertoa";
+	}
+	return edu;
+}
+
+function work(work) {
+	if(work === "unemployed") {
+		work = "Työtön";
+	} else if(work === "student") {
+		work = "Opiskelija";
+	} else if(work === "part-time") {
+		work = "Osa-aikatyö";
+	} else if(work === "morning") {
+		work = "Aamutyö";
+	} else if(work === "day") {
+		work = "Päivätyö";
+	} else if(work === "evening") {
+		work = "Iltatyö";
+	} else if(work === "night") {
+		work = "Yötyö";
+	} else if(work === "workaholic") {
+		work = "Työnarkomaani";
+	} else if(work === "pension") {
+		work = "Eläke";
+	} else if(work === "none") {
+		work = "En halua kertoa";
+	}
+	return work;
+}
+
+function vocation(vocation) {
+	if(vocation === "administration/finance") {
+		vocation = "Hallinto/talous";
+	} else if(vocation === "information-technology") {
+		vocation = "Atk/it/tietoliikenne";
+	} else if(vocation === "social/health") {
+		vocation = "Sosiaali-/terveysala";
+	} else if(vocation === "marketing/sales") {
+		vocation = "Markkinointi/myynti";
+	} else if(vocation === "science/technology") {
+		vocation = "Tiede/teknologia";
+	} else if(vocation === "education") {
+		vocation = "Koulutus";
+	} else if(vocation === "housewife/-husband") {
+		vocation = "Kotiäiti/-isä";
+	} else if(vocation === "agriculture-forestry") {
+		vocation = "Maa- ja metsätalous";
+	} else if(vocation === "entrepreneur") {
+		vocation = "Yrittäjä";
+	} else if(vocation === "none") {
+		vocation = "En halua kertoa!";
+	}
+	return vocation;
+}
+
 function get_distance(my_uid, his_uid) {
 	var distance;
 	$.ajax({
@@ -734,6 +918,23 @@ function load_profile_page(uid) {
 	profile_page_information_outlook += "<p><b>Silmien väri:</b> " + eyecolor + "</p><p><b>Hiusten pituus:</b> " + hairlength + "</p><p><b>Hiusten väri:</b> " + haircolor + "</p>";
 	
 	$("#profile-page-information-outlook").html(profile_page_information_outlook);
+
+
+	var kids = recursive_kids(profile.kids);
+	var accomodation = accomdation(profile.accomodation);
+	var ethnicidentity = ethnic_identity(profile.ethnic_identity);
+	var languageskills = recursive_language_skills(profile.language_skills);
+	var education = education(profile.education);
+	var work = work(profile.work);
+	var income = profile.income;
+	var vocation = vocation(profile.vocation);
+
+	var profile_page_information_background = "<h3>Tausta</h3>";
+	profile_page_information_background += "<p><b>Lapsia:</b> " + kids + "</p><p><b>Asumismuoto:</b> " + accomodation + "</p><p><b>Etninen identiteetti:</b> " + ethnicidentity + "</p>";
+	profile_page_information_background += "<p><b>Kielitaito:</b> " + languageskills + "</p><p><b>Koulutus:</b> " + education + "</p><p><b>Työssäkäynti:</b> " + work + "</p>";
+	profile_page_information_background += "<p><b>Vuositulot:</b> ~" + income + " euroa</p><p><b>Ammatti:</b> " + vocation + "</p>";
+
+	$("#profile-page-information-background").html(profile_page_information_background);
 
 	if(vuid !== uid) {
 		load_custom_page("profile-page", "&uid=" + uid);
