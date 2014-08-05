@@ -1178,7 +1178,15 @@ function load_profile_page(uid) {
 
 	var profile_text = "<p>" + profile.profile_text + "</p>";
 
-	$("#profile-page-basic-information-asl").html(asl + profile_text);
+	var favorites = "<h3>Lempiasiat</h3>";
+	favorites += "<p><b>Parasta maailmassa:</b> " + profile.best_things_in_the_world + "</p>";
+	favorites += "<p><b>Sytyttää:</b> " + profile.ignite_me + "</p>";
+	favorites += "<p><b>Elokuvati/sarjat:</b> " + profile.favorite_movies + "</p>";
+	favorites += "<p><b>Musiikki:</b> " + profile.favorite_bands + "</p>";
+	favorites += "<p><b>Radio:</b> " + profile.favorite_radio_shows + "</p>";
+	favorites += "<p><b>Huonoa maailmassa:</b> " + profile.not_exciting + "</p>";
+
+	$("#profile-page-basic-information-asl").html(asl + profile_text + favorites);
 
 
 	var weight = profile.weight;
