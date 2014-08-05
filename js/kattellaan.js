@@ -1256,7 +1256,7 @@ function load_profile_page(uid) {
 	var lcpol = liberal_conservative_politics(profile.liberal_conservative_politics);
 	var polimp = political_importance(profile.political_importance);
 
-var profile_page_information_lifestyle = "<h3>Elämäntyyli</h3>";
+	var profile_page_information_lifestyle = "<h3>Elämäntyyli</h3>";
 	profile_page_information_lifestyle += "<p><b>Pukeutumistyyli:</b> " + dstyle + "</p><p><b>Tupakointi:</b> " + smoke + "</p><p><b>Alkoholi:</b> " + alc + "</p>";
 	profile_page_information_lifestyle += "<p><b>Lemmikit:</b> " + animals + "</p><p><b>Liikunta:</b> " + ex + "</p><p><b>Matkustelu:</b> " + trav + "</p>";
 	profile_page_information_lifestyle += "<p><b>Uskonto:</b> " + rel + "</p><p><b>Uskonnon merkitys:</b> " + relimp + "</p><p><b>Vasemmisto/oikeisto:</b> " + lrpol + "</p>";
@@ -1279,6 +1279,12 @@ function resize_profile_picture() {
 	width = width;
 	$("#profile-page-main-picture").attr("width", width + "px");
 	$("#profile-page-main-picture").attr("height", width + "px");
+}
+
+
+function edit_account(uid) {
+
+	load_page("edit-account");
 }
 
 function get_discussion(suid, ruid) {
@@ -2180,6 +2186,15 @@ $("#messages > a").click(function(evt) {
 		$("#messages-page-conversation-messages").html("Avaa keskustelu niin näet viestit tässä.");
 		$("#messages-page-conversation-input").html("Lähetä uusi viesti.");
 		load_messages_page(session[1], 0);
+	}
+});
+
+$("#edit-account-button > a").click(function(evt) {
+	evt.preventDefault();
+	if($.cookie("session") !== undefined) {
+		var session = window.atob($.cookie("session"));
+		session = session.split("||");
+		load_edit_account_page(session[1]);
 	}
 });
 
