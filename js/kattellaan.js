@@ -19,6 +19,7 @@ function sleep(millis, callback) {
 function rad(x) {
 	return x * Math.PI / 180;
 }
+
 /*
 function do_distance_work() {
 	var session = $.cookie("session");
@@ -1284,7 +1285,7 @@ function resize_profile_picture() {
 
 function edit_account(uid) {
 
-	load_page("edit-account");
+	load_page("edit-account-page");
 }
 
 function get_discussion(suid, ruid) {
@@ -2189,7 +2190,7 @@ $("#messages > a").click(function(evt) {
 	}
 });
 
-$("#edit-account-button > a").click(function(evt) {
+$("#edit-account-page-button > a").click(function(evt) {
 	evt.preventDefault();
 	if($.cookie("session") !== undefined) {
 		var session = window.atob($.cookie("session"));
