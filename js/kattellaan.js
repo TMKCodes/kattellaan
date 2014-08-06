@@ -1283,7 +1283,7 @@ function resize_profile_picture() {
 }
 
 
-function edit_account(uid) {
+function load_edit_account_page(uid) {
 
 	load_page("edit-account-page");
 }
