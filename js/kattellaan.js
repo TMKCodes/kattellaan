@@ -1688,6 +1688,12 @@ $("document").ready(function() {
 					load_search_page(0);
 				}	
 			}
+		} else if(page === "edit-account-page") {
+			$($.cookie("session") != undefined) {
+				var session = window.atob($.cookie("session"));
+				session = session.split("||");
+				load_edit_account_page(session[1]);
+			}
 		} else {
 			load_page(page);
 		}
