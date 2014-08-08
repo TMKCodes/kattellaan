@@ -1308,14 +1308,14 @@ $("#edit-account-form").submit(function(evt) {
 	var nosuccess = false;
 	var uid = $("#uid-edit-account-input").val();
 	console.log(uid);
-	var username = $("#username-account-edit-input").val();
+	var username = $("#username-edit-account-input").val();
 	console.log(username);
 	if(username != "") {
 		success = change_username(uid, username);
 	}
-	var apassword = $("#apassword-account-edit-input").val();
+	var apassword = $("#apassword-edit-account-input").val();
 	console.log(apassword);
-	var bpassword = $("#bpassword-account-edit-input").val();
+	var bpassword = $("#bpassword-edit-account-input").val();
 	console.log(bpassword);
 	if(apassword != "" || bpassword != "") {
 		if(apassword == bpassword) {
