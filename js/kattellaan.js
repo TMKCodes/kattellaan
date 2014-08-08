@@ -1316,7 +1316,7 @@ $("#edit-account-form").submit(function(evt) {
 			$("#password-mismatch-account-edit-glyphicon").remove();
 		} else {
 			$("#bpassword-account-edit-input").after("<b id=\"password-mismatch-account-edit-glyphicon\" class=\"glyphicon glyphicon-remove\" style=\"color: red\"></b>");
-			success = "no-success");		
+			success = "no-success";		
 		}
 	}
 	if(success != "no-success") {
