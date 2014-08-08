@@ -1303,6 +1303,7 @@ function change_password(uid, password) {
 $("#edit-account-form").submit(function(evt) {
 	evt.preventDefault();
 	var success = false;
+	var nosuccess = false;
 	var uid = $("#uid-edit-account-input");
 	var username = $("#username-account-edit-input").val();
 	if(username != "") {
@@ -1316,10 +1317,10 @@ $("#edit-account-form").submit(function(evt) {
 			$("#password-mismatch-account-edit-glyphicon").remove();
 		} else {
 			$("#bpassword-account-edit-input").after("<b id=\"password-mismatch-account-edit-glyphicon\" class=\"glyphicon glyphicon-remove\" style=\"color: red\"></b>");
-			success = "no-success";		
+			nosuccess = true;		
 		}
 	}
-	if(success != "no-success") {
+	if(nosuccess == false) {
 		if(success == true) {
 			$("#edit-account-form").hide();
 			$("#edit-account-form").after("<p>Tilin muutos onnistui.</p>");
