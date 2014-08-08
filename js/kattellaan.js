@@ -1294,17 +1294,19 @@ function load_edit_account_page(uid) {
 
 function change_username(uid, username) {
 
+	return false;
 }
 
 function change_password(uid, password) {
 
+	return false;
 }
 
 $("#edit-account-form").submit(function(evt) {
 	evt.preventDefault();
 	var success = false;
 	var nosuccess = false;
-	var uid = $("#uid-edit-account-input");
+	var uid = $("#uid-edit-account-input").val();
 	console.log(uid);
 	var username = $("#username-account-edit-input").val();
 	console.log(username);
