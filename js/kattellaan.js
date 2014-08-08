@@ -1284,7 +1284,8 @@ function resize_profile_picture() {
 
 
 function load_edit_account_page(uid) {
-
+	var username = get_username(uid);
+	$("#username-edit-account-input").attr("placeholder", username);
 	load_page("edit-account-page");
 }
 
