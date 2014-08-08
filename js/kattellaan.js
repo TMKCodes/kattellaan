@@ -1305,12 +1305,16 @@ $("#edit-account-form").submit(function(evt) {
 	var success = false;
 	var nosuccess = false;
 	var uid = $("#uid-edit-account-input");
+	console.log(uid);
 	var username = $("#username-account-edit-input").val();
+	console.log(username);
 	if(username != "") {
 		success = change_username(uid, username);
 	}
 	var apassword = $("#apassword-account-edit-input").val();
+	console.log(apassword);
 	var bpassword = $("#bpassword-account-edit-input").val();
+	console.log(bpassword);
 	if(apassword != "" || bpassword != "") {
 		if(apassword == bpassword) {
 			success = change_password(uid, apassword);
@@ -1320,7 +1324,9 @@ $("#edit-account-form").submit(function(evt) {
 			nosuccess = true;		
 		}
 	}
+	console.log(nosuccess);
 	if(nosuccess == false) {
+		console.log(success);
 		if(success == true) {
 			$("#edit-account-form").hide();
 			$("#edit-account-form").after("<p>Tilin muutos onnistui.</p>");
