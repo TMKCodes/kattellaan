@@ -177,23 +177,25 @@
 						Tiliasetukset
 					</div>
 					<div class="panel-body">
-						<form method="POST" action="php/api.php" id="edit-account-form" role="form">
-							<div class="form-inline form-group">
-								<label for="username-edit-account-input">Käyttäjätunnus:</label>
-								<input type="text" class="form-control" id="username-edit-account-input" name="username" />
-							</div>
-							<div class="form-inline form-group">
-								<label for="apassword-edit-account-input">Uusi salasana:</label>
-								<input type="text" class="form-control" id="apassword-edit-account-input" name="apassword" />
-							</div>
-							<div class="form-inline form-group">
-								<label for="bpassword-edit-account-input">Varmista uusi salasana:</label>
-								<input type="text" class="form-control" id="bpassword-edit-account-input" name="bpassword" />
-							</div>
-							<div class="form-inline">
-								<input type="submit" class="form-control" value="Lähetä" />
-							</div>
-						</form>
+						<div class="col-sm-4"></div>
+						<div class="col-sm-4">
+							<form method="POST" action="php/api.php" id="edit-account-form" role="form">
+								<div class="form-group">
+									<label for="username-edit-account-input">Käyttäjätunnus:</label>
+									<input type="text" class="form-control" id="username-edit-account-input" name="username" />
+								</div>
+								<div class="form-group">
+									<label for="apassword-edit-account-input">Uusi salasana:</label>
+									<input type="text" class="form-control" id="apassword-edit-account-input" name="apassword" />
+								</div>
+								<div class="form-group">
+									<label for="bpassword-edit-account-input">Varmista uusi salasana:</label>
+									<input type="text" class="form-control" id="bpassword-edit-account-input" name="bpassword" />
+								</div>
+								<input type="submit" class="form-control btn btn-default" value="Lähetä" />
+							</form>
+						</div>
+						<div class="col-sm-4"></div>
 					</div>
 					<div class="panel-footer">
 						
