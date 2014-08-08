@@ -1322,7 +1322,7 @@ $("#edit-account-form").submit(function(evt) {
 			success = change_password(uid, apassword);
 			$("#password-mismatch-account-edit-glyphicon").remove();
 		} else {
-			$("#bpassword-account-edit-input").after("<b id=\"password-mismatch-account-edit-glyphicon\" class=\"glyphicon glyphicon-remove\" style=\"color: red\"></b>");
+			$("#bpassword-edit-account-input").after("<b id=\"password-mismatch-account-edit-glyphicon\" class=\"glyphicon glyphicon-remove\" style=\"color: red\"></b>");
 			nosuccess = true;		
 		}
 	}
