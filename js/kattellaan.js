@@ -1302,7 +1302,7 @@ function change_password(uid, password) {
 
 $("#edit-account-form").submit(function(evt) {
 	evt.preventDefault();
-	var success == false;
+	var success = false;
 	var uid = $("#uid-edit-account-input");
 	var username = $("#username-account-edit-input").val();
 	if(username != "") {
