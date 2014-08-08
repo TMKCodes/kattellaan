@@ -1286,8 +1286,47 @@ function resize_profile_picture() {
 function load_edit_account_page(uid) {
 	var username = get_username(uid);
 	$("#username-edit-account-input").attr("placeholder", username);
+	$("#uid-edit-account-input").val(uid);
+	$("#edit-account-form").show();
+	$("#password-mismatch-account-edit-glyphicon").remove();
 	load_page("edit-account-page");
 }
+
+function change_username(uid, username) {
+
+}
+
+function change_password(uid, password) {
+
+}
+
+$("#edit-account-form").submit(function(evt) {
+	evt.preventDefault();
+	var success == false;
+	var uid = $("#uid-edit-account-input");
+	var username = $("#username-account-edit-input").val();
+	if(username != "") {
+		success = change_username(uid, username);
+	}
+	var apassword = $("#apassword-account-edit-input").val();
+	var bpassword = $("#bpassword-account-edit-input").val();
+	if(apassword != "" || bpassword != "") {
+		if(apassword == bpassword) {
+			success = change_password(uid, apassword);
+			$("#password-mismatch-account-edit-glyphicon").remove();
+		} else {
+			$("#bpassword-account-edit-input").after("<b id=\"password-mismatch-account-edit-glyphicon\" class=\"glyphicon glyphicon-remove\" style=\"color: red\"></b>");
+		}
+	}
+	if(success == true) {
+		$("#edit-account-form").hide();
+		$("#edit-account-form").after("<p>Tilin muutos onnistui.</p>");
+	} else {
+		$("#edit-account-form").hide();
+		$("#edit-account-form").after("<p>Tilin muutos epäonnistui.</p>");
+		console.log("failed to update username or password");
+	}
+});
 
 function get_discussion(suid, ruid) {
 	var discussion;
