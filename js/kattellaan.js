@@ -1316,16 +1316,18 @@ $("#edit-account-form").submit(function(evt) {
 			$("#password-mismatch-account-edit-glyphicon").remove();
 		} else {
 			$("#bpassword-account-edit-input").after("<b id=\"password-mismatch-account-edit-glyphicon\" class=\"glyphicon glyphicon-remove\" style=\"color: red\"></b>");
-			return;
+			success = "no-success");		
 		}
 	}
-	if(success == true) {
-		$("#edit-account-form").hide();
-		$("#edit-account-form").after("<p>Tilin muutos onnistui.</p>");
-	} else {
-		$("#edit-account-form").hide();
-		$("#edit-account-form").after("<p>Tilin muutos epäonnistui.</p>");
-		console.log("failed to update username or password");
+	if(success != "no-success") {
+		if(success == true) {
+			$("#edit-account-form").hide();
+			$("#edit-account-form").after("<p>Tilin muutos onnistui.</p>");
+		} else {
+			$("#edit-account-form").hide();
+			$("#edit-account-form").after("<p>Tilin muutos epäonnistui.</p>");
+			console.log("failed to update username or password");
+		}
 	}
 });
 
