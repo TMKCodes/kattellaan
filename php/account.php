@@ -90,8 +90,8 @@ class account {
 				$this->identifier = $data->id;
 				$this->username = $data->username;
 				$this->address = $data->address;
-				$this->password = $this->password;
-				$this->registered = $this->registered;
+				$this->password = $data->password;
+				$this->registered = $data->registered;
 				return true;
 			} else {
 				return false;
