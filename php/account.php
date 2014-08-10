@@ -151,7 +151,7 @@ class account {
 		if($result->success() == true) {
 			return $this->select();
 		} else {
-			throw new Exception("Database query failed!");
+			throw new Exception("Database query failed! " . $statement->get());
 		}
 		return false;
 	}
