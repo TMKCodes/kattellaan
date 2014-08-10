@@ -661,7 +661,31 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				die();
 			}
 		}
-
+	} else if(!empty($_POSt['call']) && $_POST['call'] == "get_latest_users") {
+		if(!empty($_COOKIE['session']) {
+			$session = new session($database, "sha512");
+			if($session->confirm($_COOKIE['session']) == false) {
+				printf('{ "success": false, "error": "Failed to confirm session."}');
+				die();
+			}
+			$query = "SELECT `id`, `username`, `picture` FROM `account` INNER JOIN `profile` ON profile.identifier = account.id ORDER BY `registered` DESC LIMIT 0, 10;";
+			$statement = $database->prepare($query);
+			$result = $statement->execute();
+			if($result->success() == true) {
+				$rows = $result->rows();
+				if($rows > 0) {
+					$latest_users = array();
+					for($i = 0; $i < $rows; $i++) {
+						$row = $results->fetch_array(RASSOC);
+						array_push($latest_users, $row); 
+					}
+					printf('{ "success": true, "users" : %s }', json_encode($latest_users));
+				}
+			} else {
+				printf('{ "success": false, "error": "Failed to query database." }');
+				die();
+			}
+		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "search") {
 		if(!empty($_COOKIE['session'])) {
 			$session = new session($database, "sha512");

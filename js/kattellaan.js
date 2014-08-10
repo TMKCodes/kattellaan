@@ -252,6 +252,25 @@ function register_select_profile_picture_done_button() {
 	load_page("register-select-profile-text-page");
 }
 
+function load_latest_users_to_home_page() {
+	$.ajax({
+		url: "php/api.php",
+		type: "POST",
+		async: true,
+		data: { call : 'get_latest_users' }
+	}).done(function(data) {
+		console.log(data);
+		var result = $.parseJSON(data);
+		if(result.success === true) {
+			console.log(result.users);
+		} else {
+			console.log(result.error);
+		}
+	});
+
+}
+
+
 function load_home_page() {
 	$("body > .container").hide();
 	$("#home-page").show();
@@ -260,7 +279,10 @@ function load_home_page() {
 		// disable register jumbotron
 		$("#home-page-register").hide();
 		$("#home-page-features").hide();
+		$("#home-page-logged-in-features").show();
+		load_latest_users_to_home_page();
 	} else {
+		$("#home-page-logged-in-features").hide();
 		$("#home-page-register").show();
 		$("#home-page-features").show();
 	}
