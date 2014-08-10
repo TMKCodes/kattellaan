@@ -607,6 +607,61 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		} else {
 			printf('{ "success": false, "error": "Session does not exist." }');
 		}
+	} else if(!empty($_POST['call']) && $_POST['call'] == "change_username") {
+		if(!empty($_COOKIE['session'])) {
+			$session = new session($database, "sha512");
+			if($session->confirm($_COOKIE['session']) == false) {
+				printf('{ "success": false, "error": "Failed to confirm session."}');
+				die();
+			}
+			$account = new account($database);
+			$account->set_identifier($_POST['uid']);
+			try {
+				$account->select();
+			} catch (Exception $e) {
+				printf('{ "success": false, "error": "%s"}', $e->getMessage());
+				die();
+			}
+			$account->set_username($_POST['username']);
+			try {
+				if($account->update() != false) {
+					printf('{ "success": true }');
+				} else {
+					printf('{ "success": false, "error": "Account update method failed" }');
+				}
+			} catch (Exception $e) {
+				printf('{ "success": false, "error": "%s" }', $e->getMessage());
+				die();
+			}
+		}
+	} else if(!empty($_POST['call']) && $_POST['call'] == "change_password") {
+		if(!empty($_COOKIE['session'])) {
+			$session = new session($database, "sha512");
+			if($session->confirm($_COOKIE['session']) == false) {
+				printf('{ "success": false, "error": "Failed to confirm session."}');
+				die();
+			}
+			$account = new account($database);
+			$account->set_identifier($_POST['uid']);
+			try {
+				$account->select();
+			} catch (Exception $e) {
+				printf('{ "success": false, "error": "%s"}', $e->getMessage());
+				die();
+			}
+			$account->set_password($_POST['username']);
+			try {
+				if($account->update() != false) {
+					printf('{ "success": true }');
+				} else {
+					printf('{ "success": false, "error": "Account update method failed" }');
+				}
+			} catch (Exception $e) {
+				printf('{ "success": false, "error": "%s" }', $e->getMessage());
+				die();
+			}
+		}
+
 	} else if(!empty($_POST['call']) && $_POST['call'] == "search") {
 		if(!empty($_COOKIE['session'])) {
 			$session = new session($database, "sha512");
