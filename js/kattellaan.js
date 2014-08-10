@@ -267,7 +267,6 @@ function load_latest_users_to_home_page() {
 			console.log(result.error);
 		}
 	});
-
 }
 
 
