@@ -649,7 +649,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				printf('{ "success": false, "error": "%s"}', $e->getMessage());
 				die();
 			}
-			$account->set_password($_POST['password']);
+			$account->set_password(hash("sha512", $_POST['password']));
 			try {
 				if($account->update() != false) {
 					printf('{ "success": true }');
