@@ -147,6 +147,11 @@ class account {
 		} else {
 			throw new Exception("Password was empty.");
 		}
+		if(!empty($this->identifier)) {
+			$statement->bind("s", $this->identifier);
+		} else {
+			throw new Exception("Identifier was empty.");
+		}
 		$result = $statement->execute();
 		if($result->success() == true) {
 			return $this->select();
