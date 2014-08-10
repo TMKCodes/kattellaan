@@ -1293,13 +1293,41 @@ function load_edit_account_page(uid) {
 }
 
 function change_username(uid, username) {
-
-	return false;
+	var ret = false;
+	$.ajax({
+		url: "php/api.php",
+		type: "POST",
+		async: false,
+		data: { call : 'change_username', uid : uid, username : username }
+	}).done(function(data) {
+		console.log(data);
+		data = $.parseJSON(data);
+		if(data.success == true) {
+			ret = true;
+		} else {
+			console.log(data.error);
+		}
+	});
+	return ret;
 }
 
 function change_password(uid, password) {
-
-	return false;
+	var ret = false;
+	$.ajax({
+		url: "php/api.php",
+		type: "POST",
+		async: false,
+		data: { call : 'change_password', uid : uid, username : password }
+	}).done(function(data) {
+		console.log(data);
+		data = $.parseJSON(data);
+		if(data.success == true) {
+			ret = true;
+		} else {
+			console.log(data.error);
+		}
+	});
+	return ret;
 }
 
 $("#edit-account-form").submit(function(evt) {
