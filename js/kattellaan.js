@@ -1289,6 +1289,7 @@ function load_edit_account_page(uid) {
 	$("#uid-edit-account-input").val(uid);
 	$("#edit-account-form").show();
 	$("#password-mismatch-account-edit-glyphicon").remove();
+	$("#edit-account-form > p").remove();
 	load_page("edit-account-page");
 }
 
