@@ -1289,7 +1289,7 @@ function load_edit_account_page(uid) {
 	$("#uid-edit-account-input").val(uid);
 	$("#edit-account-form").show();
 	$("#password-mismatch-account-edit-glyphicon").remove();
-	$("#edit-account-form > p").remove();
+	$("#edit-account-success").remove();
 	load_page("edit-account-page");
 }
 
@@ -1362,10 +1362,10 @@ $("#edit-account-form").submit(function(evt) {
 		console.log(success);
 		if(success == true) {
 			$("#edit-account-form").hide();
-			$("#edit-account-form").after("<p>Tilin muutos onnistui.</p>");
+			$("#edit-account-form").after("<p id=\"edit-account-success\">Tilin muutos onnistui.</p>");
 		} else {
 			$("#edit-account-form").hide();
-			$("#edit-account-form").after("<p>Tilin muutos epäonnistui.</p>");
+			$("#edit-account-form").after("<p id=\"edit-account-success\">Tilin muutos epäonnistui.</p>");
 			console.log("failed to update username or password");
 		}
 	}
