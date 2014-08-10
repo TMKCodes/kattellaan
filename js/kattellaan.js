@@ -1317,7 +1317,7 @@ function change_password(uid, password) {
 		url: "php/api.php",
 		type: "POST",
 		async: false,
-		data: { call : 'change_password', uid : uid, username : password }
+		data: { call : 'change_password', uid : uid, password : password }
 	}).done(function(data) {
 		console.log(data);
 		data = $.parseJSON(data);
