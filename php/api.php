@@ -676,7 +676,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				if($rows > 0) {
 					$latest_users = array();
 					for($i = 0; $i < $rows; $i++) {
-						$row = $results->fetch_array(RASSOC);
+						$row = $result->fetch_array(RASSOC);
 						array_push($latest_users, $row); 
 					}
 					printf('{ "success": true, "users" : %s }', json_encode($latest_users));
