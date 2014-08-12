@@ -264,11 +264,12 @@ function load_latest_users_to_home_page() {
 		if(result.success === true) {
 			console.log(result.users);
 			var latest_users_display = "";
-			for(var i = 0; i < result.users.count; i++) {
+			for(var i = 0; i < 6; i++) {
 				latest_users_display += '<div class="new-user col-xs-2 col-sm-2">';
 				latest_users_display += '<div class="uid" style="display: none;">' + result.users[i].id +  '</div>';
 				latest_users_display += '<div class="profile-picture"><img src="/uploads/' + result.users[i].picture + '" alt="' + result.users[i].username + '" /></div>';
 				latest_users_display += '</div>';
+				console.log(latest_users_display);
 			}
 			console.log(latest_users_display);
 			$("#latest-users-display").html(latest_users_display);
