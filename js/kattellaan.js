@@ -2399,8 +2399,6 @@ $("#register-account-form").submit(function(evt) {
 			if(result.success === true) {
 				open_session(result.account.username, result.account.password);
 				if($.cookie("session") !== undefined) {
-					$("#authentication-form").hide();
-					$("#user-menu").show();
 					load_page("register-invite-page");
 					$.cookie("username", result.account.username);
 				} else {
@@ -4282,6 +4280,8 @@ $("#register-confirm-profile-information-form").submit(function(evt) {
 			console.log("Profile saved\r\n");
 			$.removeCookie("next-page");
 			load_page("registeration-done-page");
+			$("#authentication-form").hide();
+			$("#user-menu").show();
 		} else {
 			console.log(result.error);
 			if(result.error == "Profile with the user id already exists.") {
