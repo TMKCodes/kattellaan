@@ -668,7 +668,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				printf('{ "success": false, "error": "Failed to confirm session."}');
 				die();
 			}
-			$query = "SELECT `id`, `username`, `picture` FROM `account` INNER JOIN `profile` ON profile.identifier = account.id ORDER BY `registered` DESC LIMIT 0, 10;";
+			$query = "SELECT `id`, `username`, `picture` FROM `account` INNER JOIN `profile` ON profile.identifier = account.id ORDER BY `id` DESC LIMIT 0, 10;";
 			$statement = $database->prepare($query);
 			$result = $statement->execute();
 			if($result->success() == true) {
