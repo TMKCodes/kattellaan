@@ -276,7 +276,7 @@ function load_latest_users_to_home_page() {
 			$("#latest-users-display").html(latest_users_display);
 			$(".profile-picture").click(function(evt) {
 				var father = $(this).parent();
-				var uid = $(father).children("uid").text();
+				var uid = $(father).children(".uid").text();
 				load_custom_page("profile-page", "&uid=" + uid);
 			});
 		} else {
