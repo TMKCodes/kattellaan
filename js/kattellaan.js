@@ -270,8 +270,8 @@ function load_latest_users_to_home_page() {
 				latest_users_display += '<div class="profile-picture"><img src="/uploads/' + result.users[i].picture + '" alt="' + result.users[i].username + '" /></div>';
 				latest_users_display += '</div>';
 			}
+			console.log(latest_users_display);
 			$("#latest-users-display").html(latest_users_display);
-			$("#home-page-logged-in-features").show();
 		} else {
 			console.log(result.error);
 		}
