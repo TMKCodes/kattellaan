@@ -4281,7 +4281,7 @@ $("#register-confirm-profile-information-form").submit(function(evt) {
 		if(result.success === true) {
 			console.log("Profile saved\r\n");
 			$.removeCookie("next-page");
-			next_page("registeration-done-page");
+			load_page("registeration-done-page");
 		} else {
 			console.log(result.error);
 		}
