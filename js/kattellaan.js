@@ -262,7 +262,6 @@ function load_latest_users_to_home_page() {
 		console.log(data);
 		var result = $.parseJSON(data);
 		if(result.success === true) {
-			console.log(result.users);
 			var latest_users_display = "";
 			for(var i = 0; i < 6; i++) {
 				latest_users_display += '<div class="new-user col-xs-2 col-sm-2">';
@@ -273,9 +272,7 @@ function load_latest_users_to_home_page() {
 					latest_users_display += '<div class="profile-picture"><img style="width: 100%;" src="/uploads/default.jpg" alt="' + result.users[i].username + '" /></div>';
 				}
 				latest_users_display += '</div>';
-				console.log(latest_users_display);
 			}
-			console.log(latest_users_display);
 			$("#latest-users-display").html(latest_users_display);
 		} else {
 			console.log(result.error);
