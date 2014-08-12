@@ -4284,6 +4284,9 @@ $("#register-confirm-profile-information-form").submit(function(evt) {
 			load_page("registeration-done-page");
 		} else {
 			console.log(result.error);
+			if(result.error == "Profile with the user id already exists.") {
+				load_page("registeration-done-page");
+			}
 		}
 	});
 });
