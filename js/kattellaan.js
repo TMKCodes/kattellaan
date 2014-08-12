@@ -271,6 +271,7 @@ function load_latest_users_to_home_page() {
 				latest_users_display += '</div>';
 			}
 			$("#latest-users-display").html(latest_users_display);
+			$("#home-page-logged-in-features").show();
 		} else {
 			console.log(result.error);
 		}
