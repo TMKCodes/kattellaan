@@ -1769,6 +1769,8 @@ $("document").ready(function() {
 				session = session.split("||");
 				load_edit_account_page(session[1]);
 			}
+		} else if(page === "") {
+			load_home_page();
 		} else {
 			load_page(page);
 		}
