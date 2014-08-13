@@ -1332,7 +1332,7 @@ function load_edit_account_page(uid) {
 
 function select_edit_profile_values(select, values) {
 	values = values.split(",");
-	for(var i = 0; i < values(len), i++) {
+	for(var i = 0; i < values.length; i++) {
 		$(select).multiselect("select", values[i], false);
 	}
 	$(select).multiselect("refresh");
