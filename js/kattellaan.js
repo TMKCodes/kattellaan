@@ -1336,8 +1336,9 @@ function load_edit_profile_page(uid) {
 	$("#height-edit-profile-input").val(profile.height);
 	$("#weight-edit-profile-input").val(profile.weight);
 	$("#income-edit-profile-input").val(profile.income);
-	$("#gender-edit-profile-input").children('option [value="man"]').prop("selected", true);
-	$("#gender-edit-profile-input").parent().children("btn-group").multiselect("refresh");
+	$("#gender-edit-profile-input").multiselect("widget").find(":checkbox[value='man']").attr("checked", "checked");
+	$("#gender-edit-profile-input option[value='man']").attr("selected", 1);
+	$("#gender-edit-profile-input").multiselect("refresh");
 	load_page("edit-profile-page");
 }
 
