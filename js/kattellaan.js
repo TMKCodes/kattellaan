@@ -1336,7 +1336,8 @@ function load_edit_profile_page(uid) {
 	$("#height-edit-profile-input").val(profile.height);
 	$("#weight-edit-profile-input").val(profile.weight);
 	$("#income-edit-profile-input").val(profile.income);
-	$("#gender-edit-profile-input").children('option [value="man"]').select();
+	var group = $("#gender-edit-profile").parent();
+	$(group).children('input [type="checkbox"] [value="man"]').parent().parent().addClass("active");
 	load_page("edit-profile-page");
 }
 
