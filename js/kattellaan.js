@@ -2271,7 +2271,7 @@ function toggle_search_inputs(btn, which) {
 
 $("#toggle-edit-profile-basic-information-inputs-button").click(function(evt) {
 	evt.preventDefault();
-	toggle_search_inputs(btn, "#edit-profile-basic-information-inputs");
+	toggle_search_inputs(this, "#edit-profile-basic-information-inputs");
 });
 
 $("#toggle-basic-information-inputs-button").click(function(evt) {
@@ -2281,7 +2281,7 @@ $("#toggle-basic-information-inputs-button").click(function(evt) {
 
 $("#toggle-edit-profile-outlook-inputs-button").click(function(evt) {
 	evt.preventDefault();
-	toggle_search_inputs(btn, "#edit-profile-outlook-inputs");
+	toggle_search_inputs(this, "#edit-profile-outlook-inputs");
 });
 
 $("#toggle-outlook-inputs-button").click(function(evt) {
@@ -2291,7 +2291,7 @@ $("#toggle-outlook-inputs-button").click(function(evt) {
 
 $("#toggle-edit-profile-background-inputs-button").click(function(evt) {
 	evt.preventDefault();
-	toggle_search_inputs(btn, "#edit-profile-background-inputs");
+	toggle_search_inputs(this, "#edit-profile-background-inputs");
 });
 
 $("#toggle-background-inputs-button").click(function(evt) {
@@ -2301,7 +2301,7 @@ $("#toggle-background-inputs-button").click(function(evt) {
 
 $("#toggle-edit-profile-lifestyle-inputs-button").click(function(evt) {
 	evt.preventDefault();
-	toggle_search_inputs(btn, "#edit-profile-lifestyle-inputs");
+	toggle_search_inputs(this, "#edit-profile-lifestyle-inputs");
 });
 
 $("#toggle-lifestyle-inputs-button").click(function(evt) {
