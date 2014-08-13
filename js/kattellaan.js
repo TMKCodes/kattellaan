@@ -1333,6 +1333,8 @@ function load_edit_account_page(uid) {
 function load_edit_profile_page(uid) {
 	var profile = get_profile(uid);
 	$("#birthday-edit-profile-input").val(profile.birthday);
+	$("#height-edit-profile-input").val(profile.height);
+	$("#weight-edit-profile-input").val(profile.weight);
 	load_page("edit-profile-page");
 }
 
