@@ -1330,6 +1330,12 @@ function load_edit_account_page(uid) {
 	load_page("edit-account-page");
 }
 
+function load_edit_profile_page(uid) {
+	var profile = get_profile(uid);
+
+	load_page("edit-profile-page");
+}
+
 function change_username(uid, username) {
 	var ret = false;
 	$.ajax({
@@ -1406,6 +1412,10 @@ $("#edit-account-form").submit(function(evt) {
 			console.log("failed to update username or password");
 		}
 	}
+});
+
+$("#edit-profile-form").submit(function(evt) {
+	evt.preventDefault();
 });
 
 function get_discussion(suid, ruid) {
@@ -1773,6 +1783,12 @@ $("document").ready(function() {
 				var session = window.atob($.cookie("session"));
 				session = session.split("||");
 				load_edit_account_page(session[1]);
+			}
+		} else if(page === "edit-profile-page") {
+			if($.cookie("session") != undefined) {
+				var session = window.atob($.cookie("session"));
+				session = session.split("||");
+				load_edit_profile_page(session[1]);
 			}
 		} else {
 			load_page(page);
@@ -2322,6 +2338,15 @@ $("#edit-account-page-button > a").click(function(evt) {
 		var session = window.atob($.cookie("session"));
 		session = session.split("||");
 		load_edit_account_page(session[1]);
+	}
+});
+
+$("#edit-profile-page-button > a").click(function(evt) {
+	evt.preventDefault();
+	if($.cookie("session") !== undefined) {
+		var session = window.atob($.cookie("session"));
+		session = session.split("||");
+		load_edit_profile_page(session[1]);
 	}
 });
 
