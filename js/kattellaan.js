@@ -1345,6 +1345,9 @@ function load_edit_profile_page(uid) {
 	$("#weight-edit-profile-input").val(profile.weight);
 	$("#income-edit-profile-input").val(profile.income);
 	select_edit_profile_values("#gender-edit-profile-input", profile.gender);
+	select_edit_profile_values("#relationship-status-edit-profile-input", profile.relationship_status);
+	select_edit_profile_values("#sexual-orientation-edit-profile-input", profile.sexual_orientation);
+	select_edit_profile_values("#looking-for-edit-profile-input", profile.looking_for);
 	load_page("edit-profile-page");
 }
 
