@@ -1336,6 +1336,7 @@ function load_edit_profile_page(uid) {
 	$("#height-edit-profile-input").val(profile.height);
 	$("#weight-edit-profile-input").val(profile.weight);
 	$("#income-edit-profile-input").val(profile.income);
+	$("#gender-edit-profile-input").children('option [value="man"]').select();
 	load_page("edit-profile-page");
 }
 
