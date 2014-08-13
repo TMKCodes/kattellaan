@@ -1330,14 +1330,21 @@ function load_edit_account_page(uid) {
 	load_page("edit-account-page");
 }
 
+function select_edit_profile_values(select, values) {
+	values = values.split(",");
+	for(var i = 0; i < values(len), i++) {
+		$(select).multiselect("select", values[i], false);
+	}
+	$(select).multiselect("refresh");
+}
+
 function load_edit_profile_page(uid) {
 	var profile = get_profile(uid);
 	$("#birthday-edit-profile-input").val(profile.birthday);
 	$("#height-edit-profile-input").val(profile.height);
 	$("#weight-edit-profile-input").val(profile.weight);
 	$("#income-edit-profile-input").val(profile.income);
-	$("#gender-edit-profile-input").multiselect("select", "man", false);
-	$("#gender-edit-profile-input").multiselect("refresh");
+	select_edit_profile_values("#gender-edit-profile-input", profile.gender);
 	load_page("edit-profile-page");
 }
 
