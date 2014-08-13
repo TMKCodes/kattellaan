@@ -230,8 +230,8 @@
 						Tiliasetukset
 					</div>
 					<div class="panel-body">
-						<div class="col-sm-4"></div>
-						<div class="col-sm-4">
+						<div class="col-xs-0 col-sm-4"></div>
+						<div class="col-xs-12 col-sm-4">
 							<form method="POST" action="php/api.php" id="edit-account-form" role="form">
 								<div class="form-group">
 									<label for="username-edit-account-input">Käyttäjätunnus:</label>
@@ -249,10 +249,415 @@
 								<input type="submit" class="form-control btn btn-default" value="Lähetä" />
 							</form>
 						</div>
-						<div class="col-sm-4"></div>
+						<div class="col-xs-0 col-sm-4"></div>
 					</div>
 					<div class="panel-footer">
 						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- edit profile page -->
+	<div class="contianer" id="edit-profile-page" style="display: none;">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Profiiliasetukset.
+					</div>
+					<div class="panel-body">
+						<div class="col-xs-0 col-sm-4"></div>
+						<div class="col-xs-12 col-sm4">
+							<form method="POST" action="php/api.php" id="edit-profile-form" role="form">
+								<button id="toggle-edit-profile-basic-information-inputs-button" class="btn btn-success btn-block" style="text-align: left; padding-left: 10px; margin-bottom: 10px;">
+									<i class="glyphicon glyphicon-arrow-up"></i>&nbsp;Piiloita perustiedot.
+								</button>	
+								<div id="basic-information-inputs">
+									<input type="hidden" name="uid" id="user-identifier-edit-profile-input" />
+									<div class="form-inline form-group">
+										<label for="birthday-edit-profile-input">Syntymäpäivä:</label>&nbsp;
+										<input type="date" class="form-control" name="birthday" id="birthday-edit-profile-input" />
+									</div>
+									<div class="form-inline form-group">
+										<label for="street-address-edit-profile-input">Katuosoite:</label>
+										<input type="text" class="form-control" name="street-address" id="street-address-edit-profile-input" />
+									</div>
+									<div class="form-inline form-group">
+										<label for="town-address-edit-profile-input">Kunta:</label>
+										<input type="text" class="form-control" name="town-address" id="town-address-edit-profile-input" />
+									</div>
+									<div class="form-inline form-group">
+										<label for="country-address-edit-profile-input">Valtio:</label>
+										<input type="text" class="form-control" name="country-address" id="country-address-edit-profile-input" />
+									</div>
+									<div class="form-group">
+										<label for="gender-edit-profile-input">Sukupuoli:</label>
+										<select class="multiselect form-control" id="gender-edit-profile-input" name="gender[]" multiple="multiple">
+											<option value="man">Miehiä</option>
+											<option value="woman">Naisia</option>
+											<option value="transman">Transumiehiä</option>
+											<option value="transwoman">Transunaisia</option>
+											<option value="sexless">Sukupuolettomia</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="relationship-status-edit-profile-input">Suhdestatus:</label>
+										<select class="multiselect form-control" id="relationship-status-edit-profile-input" name="relationship-status[]" multiple="multiple">
+											<option value="single">Sinkku</option>
+											<option value="relationship">Parishude</option>
+											<option value="cohabitation">Avoliitto</option>
+											<option value="marriage">Avioliitto</option>
+											<option value="divorce">Eronnut</option>
+											<option value="seperation">Asumusero</option>
+											<option value="widow">Leski</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="sexual-orientation-edit-profile-input">Suuntautuminen:</label>
+										<select class="multiselect form-control" id="sexual-orientation-edit-profile-input" name="sexual-orientation[]" multiple="multiple">
+											<option value="hetero">Heteroseksuaali</option>
+											<option value="gay">Homoseksuaali</option>
+											<option value="bi">Biseksuaali</option>
+											<option value="ase">Aseksuaali</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="looking-for-edit-profile-input">Kiikarissa:</label>
+										<select class="multiselect form-control" id="looking-for-edit-profile-input" name="looking-for[]" multiple="multiple">
+											<option value="friends">Ystäviä</option>
+											<option value="love">Rakkautta</option>
+											<option value="date">Tapaamisia</option>
+											<option value="sex">Seksiä</option>
+											<option value="other">Jotain muuta</option>
+										</select>
+									</div>
+								</div>
+								<button id="toggle-edit-profile-outlook-inputs-button" class="btn btn-success btn-block" style="text-align: left; padding-left: 10px; margin-bottom: 10px;">
+									<i class="glyphicon glyphicon-arrow-down"></i>&nbsp;Ulkonäkö.
+								</button>
+								<div id="outlook-inputs" style="display: none;">
+									<!-- Height, Weight, body-type, eye-color, hair-length, hair-color -->
+									<div class="form-inline form-group">
+										<label for="height-edit-profile-input">Pituus:</label>
+										<input type="number" class="form-control" id="height-edit-profile-input" name="min-height" min="0" max="300" />&nbsp;-&nbsp;
+										<input type="number" class="form-control" name="max-height" min="0" max="300" />
+									</div>
+									<div class="form-inline form-group">
+										<label for="weight-edit-profile-input">Paino:</label>
+										<input type="number" class="form-control" id="weight-edit-profile-input" name="min-weight" min="0" max="600" />&nbsp;-&nbsp;
+										<input type="number" class="form-control" name="max-weight" min="0" max="300" />
+									</div>
+									<div class="form-group">
+										<label for="body-type-edit-profile-input">Ruumiinrakenne:</label>
+										<select class="multiselect form-control" id="body-type-edit-profile-input" name="body-type[]" multiple="multiple">
+											<option value="slender">Siro</option>
+											<option value="slim">Hoikka</option>
+											<option value="low-fat">Vähärasvainen</option>
+											<option value="sporty">Sporttinen</option>
+											<option value="muscular">Lihaksikas</option>
+											<option value="roundish">Pyöreähkö</option>
+											<option value="overweight">Ylipainoinen</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="eye-color-edit-profile-input">Silmien väri:</label>
+										<select class="multiselect form-control" id="eye-color-edit-profile-input" name="eye-color[]" multiple="multiple">
+											<option value="blue">Sinininen</option>
+											<option value="brown">Ruskea</option>
+											<option value="green">Vihreä</option>
+											<option value="gray">Harmaa</option>
+											<option value="amber">Kullanruskea</option>
+											<option value="hazel">Pähkinänruskea</option>
+											<option value="red">Punainen</option>
+											<option value="violet">Violetti</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="hair-length-edit-profile-input">Hiusten pituus:</label>
+										<select class="multiselect form-control" id="hair-length-edit-profile-input" name="hair-length[]" multiple="multiple">
+											<option value="bald">Kalju</option>
+											<option value="hedgehog">Siili</option>
+											<option value="short">Lyhyet</option>
+											<option value="long">Pitkät</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="hair-color-edit-profile-input">Hiusten väri:</label>
+										<select class="multiselect form-control" id="hair-color-edit-profile-input" name="hair-color[]" multiple="multiple">
+											<option value="verylight">Hyvin vaalea</option>
+											<option value="light">Vaalea</option>
+											<option value="lightbrown">Vaaleanruskea</option>
+											<option value="brown">Ruskea</option>
+											<option value="black">Musta</option>
+											<option value="gray">Harmaa</option>
+											<option value="red">Punainen</option>
+											<option value="pink">Pinkki</option>
+											<option value="white">Valkoinen</option>
+											<option value="colorful">Värikäs</option>
+											<option value="changeable">Muuttuu usein</option>
+										</select>
+									</div>
+								</div>
+								<button id="toggle-edit-profile-background-inputs-button" class="btn btn-success btn-block" style="text-align: left; padding-left: 10px; margin-bottom: 10px;">
+									<i class="glyphicon glyphicon-arrow-down"></i>&nbsp;Tausta.
+								</button>
+								<div id="background-inputs" style="display: none;">
+									<div class="form-group">
+										<label for="kids-edit-profile-input">Lapsia:</label>
+										<select class="multiselect form-control" id="kids-edit-profile-input" name="kids[]" multiple="multiple">
+											<option value="yes">Kyllä</option>
+											<option value="no">Ei</option>
+											<option value="athome">Kotona</option>
+											<option value="somewhereelse">Muualla</option>
+											<option value="jointcustody">Yhteishuoltajuus</option>
+											<option value="solecustody">Yksinhuoltaja</option>
+											<option value="iwantkids">Haluan lapsia</option>
+											<option value="idontwantkids">En halua lapsia</option>
+											<option value="idontknowifiwantkids">En tiedä haluanko lapsia</option>
+											<option value="kidsdonotmatter">Lapset eivät haittaa</option>
+											<option value="weekendparent">Kerran viikossa lapset minulla</option>
+											<option value="secondweekendparent">Kaksi kertaa kuussa lapset minulla</option>
+											<option value="monthlyparent">Kerran kuussa lapset minulla</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="accomodation-edit-profile-input">Asumismuoto:</label>
+										<select class="multiselect form-control" id="accomodation-edit-profile-input" name="accomodation[]" multiple="multiple">
+											<option value="alone">Yksin</option>
+											<option value="withfriend">Ystävän kanssa</option>
+											<option value="withparents">Vanhempien luona</option>
+											<option value="sharedflat">Kimppakämpässä</option>
+											<option value="withpartner">Kumppanin kanssa</option>
+											<option value="homeless">Koditon</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="ethnic-identity-edit-profile-input">Etinen identiteetti:</label>
+										<select class="multiselect form-control" id="ethnic-identity-edit-profile-input" name="ethnic-identity[]" multiple="multiple">
+											<option value="white">Valkoinen</option>
+											<option value="black">Musta</option>
+											<option value="indian">Intialainen</option>
+											<option value="latino">Latino</option>
+											<option value="arab">Arabi</option>
+											<option value="asian">Aasialainen</option>
+											<option value="midget">Lyhytkasvuinen</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="languge-skills-edit-profile-input">Kielitaito:</label>
+										<select class="multiselect form-control" id="language-skills-edit-profile-input" name="language-skills[]" multiple="multiple">
+											<option value="finnish">Suomi</option>
+											<option value="swedish">Ruotsi</option>
+											<option value="english">Englanti</option>
+											<option value="russian">Venäjä</option>
+											<option value="german">Saksa</option>
+											<option value="japanese">Japani</option>
+											<option value="others">Muita</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="education-edit-profile-input">Koulutus:</label>
+										<select class="multiselect form-control" id="education-edit-profile-input" name="education[]" multiple="multiple">
+											<option value="untrained">Kouluttamaton</option>
+											<option value="lifeschool">Elämänkoulu</option>
+											<option value="school">Peruskoulu</option>
+											<option value="vocational">Ammattikoulu</option>
+											<option value="high">Lukio</option>
+											<option value="applied">Ammattikorkeakoulu</option>
+											<option value="college">Yliopisto/korkeakoulu</option>
+											<option value="masters">Maisterin tutkinto</option>
+											<option value="doctor">Tohtorin tutkinto</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="work-edit-profile-input">Työssäkäynti:</label>
+										<select class="multiselect form-control" id="work-edit-profile-input" name="work[]" multiple="multiple">
+											<option value="unemployed">Työtön</option>
+											<option value="student">Opiskelija</option>
+											<option value="part-time">Osa-aikatyö</option>
+											<option value="morning">Aamutyö</option>
+											<option value="day">Päivätyö</option>
+											<option value="evening">Iltatyö</option>
+											<option value="night">Yötyö</option>
+											<option value="workaholic">Työnarkomaani</option>
+											<option value="pension">Eläke</option>
+										</select>
+									</div>
+									<div class="form-inline form-group">
+										<label for="income-edit-profile-input">Vuositulot:</label>
+										<input type="number" class="form-control" id="income-edit-profile-input" name="min-income" min="0" max="600" />&nbsp;-&nbsp;
+										<input type="number" class="form-control" name="max-income" min="0" max="300" />
+									</div>
+									<div class="form-group">
+										<label for="vocation-edit-profile-input">Ammattiala:</label>
+										<select class="multiselect form-control" id="vocation-edit-profile-input" name="vocation[]" multiple="multiple">
+											<option value="administrator/finance">Hallinto/talous</option>
+											<option value="information-technology">Information-technology</option>
+											<option value="social/health">Sosiaaly-/terveysala</option>
+											<option value="communications/media/culture">Viestintä/media/kulttuuri</option>
+											<option value="marketing/sales">Markkinointi/myynti</option>
+											<option value="science/technology">Tiede/teknologia</option>
+											<option value="education">Koulutus</option>
+											<option value="housewife/-husband">Kotiäiti/-isä</option>
+											<option value="agriculture-forestry">Maa- ja metsätalous</option>
+											<option value="entrepreneur">Yrittäjä</option>
+										</select>
+									</div>
+								</div>
+								<button id="toggle-edit-profile-lifestyle-inputs-button" class="btn btn-success btn-block" style="text-align: left; padding-left: 10px; margin-bottom: 10px;">
+									<i class="glyphicon glyphicon-arrow-down"></i>&nbsp;Elämäntyyli.
+								</button>
+								<div id="lifestyle-inputs" style="display: none;">
+									<div class="form-group">
+										<label for="dress-style-edit-profile-input">Pukeutumistyyli:</label>
+										<select class="multiselect form-control" id="dress-style-edit-profile-input" name="dress-style[]" multiple="multiple">
+											<option value="fashionable">Muodikas</option>
+											<option value="business">Bisnes</option>
+											<option value="sport">Sporttinen</option>
+											<option value="classic">Klassinen</option>
+											<option value="fleamarket">Kirpputori</option>
+											<option value="self-indulgent">Mukavuuden haluinen</option>
+											<option value="regular">Normaali</option>
+											<option value="hoppers">Hoppari</option>
+											<option value="rocker">Rokkari</option>
+											<option value="goth">Gootti</option>
+											<option value="allthesame">Ihan sama</option>
+											<option value="nudist">Nudisti</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="smoking-edit-profile-input">Tupakointi:</label>
+										<select class="multiselect form-control" id="smoking-edit-profile-input" name="smoking[]" multiple="multiple">
+											<option value="smokeless">Savuton</option>
+											<option value="company">Seurassa</option>
+											<option value="drunken">Humalassa</option>
+											<option value="regular">Säännöllisesti</option>
+											<option value="chimney">Korsteeni</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="alcohol-edit-profile-input">Alkoholi:</label>
+										<select class="multiselect form-control" id="alcohol-edit-profile-input" name="alcohol[]" multiple="multiple">
+											<option value="alcohol-free">Alkoholiton</option>
+											<option value="holidays">Juhlapäivinä</option>
+											<option value="company">Seurassa</option>
+											<option value="withfood">Ruuan kanssa</option>
+											<option value="occassionally">Satunnaisesti</option>
+											<option value="everyday">Joka päivä</option>
+											<option value="weekly">Viikottain</option>
+											<option value="monthly">Kerran kuussa</option>
+											<option value="yearly">Kerran tai pari vuodessa</option>
+											<option value="alcoholic">Alkoholisti</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="pets-edit-profile-input">Lemmikit:</label>
+										<select class="multiselect form-control" id="pets-edit-profile-input" name="pets[]" multiple="multiple">
+											<option value="nopets">Ei lemmikkejä</option>
+											<option value="likepets">Tykkää lemmikeistä</option>
+											<option value="horse">Hevonen</option>
+											<option value="pony">Poni</option>
+											<option value="spider">Hämähäkki</option>
+											<option value="fish">Kala</Option>
+											<option value="rodent">Jyrsijä</option>
+											<option value="turtle">Kilpikonna</option>
+											<option value="dog">Koira</option>
+											<option value="cat">Kissa</option>
+											<option value="snake">Käärme</option>
+											<option value="bird">Lintu</option>
+											<option value="stuffed-animal">Pehmolelu</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="exercise-edit-profile-input">Liikunta:</label>
+										<select class="multiselect form-control" id="exercise-edit-profile-input" name="exercise[]" multiple="multiple">
+											<option value="idont">Ei urheile</option>
+											<option value="casually">Satunnaisesti</option>
+											<option value="regularly">Säännöllisesti</option>
+											<option value="daily">Päivittäin</option>
+											<option value="lifestyle">Elämäntapa</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="travel-edit-profile-input">Matkustelu:</label>
+										<select class="multiselect form-control" id="travel-edit-profile-input" name="travel[]" multiple="multiple">
+											<option value="cottagebatty">Mökkihöperö</option>
+											<option value="neighboring-areas">Lähialueilla</option>
+											<option value="occassionally">Satunnaisesti</option>
+											<option value="few-times-a-year">Muutaman kertaa vuodessa</option>
+											<option value="monthly">Kuukausittain</option>
+											<option value="weekly">Viikottain</option>
+											<option value="daily">Päivittäin</option>
+											<option value="allthetime">Matkalla aina johonkin</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="religion-edit-profile-input">Uskonto:</label>
+										<select class="multiselect form-control" id="religion-edit-profile-input" name="religion[]" multiple="multiple">
+											<option value="atheist">Ateisti</option>
+											<option value="agnostic">Agnostikko</option>
+											<option value="buddhism">Buddhalainen</option>
+											<option value="christian">Kristitty</option>
+											<option value="hinduism">Hindu</option>
+											<option value="muslism">Muslimi</option>
+											<option value="jewish">Juutalainen</option>
+											<option value="newage">New Age</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="religion-importance-edit-profile-input">Uskonnon merkitys:</label>
+										<select class="multiselect form-control" id="religion-importance-edit-profile-input" name="religion-importance[]" multiple="multiple">
+											<option value="insignificant">Merkityksetön</option>
+											<option value="low">Vähäinen</option>
+											<option value="normal">Normaali</option>
+											<option value="important">Tärkeä</option>
+											<option value="true-blue">Vakaumuksellinen</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="left-right-politics-edit-profile-input">Poliittisesti vasemmalla vai oikealla:</label>
+										<select class="multiselect form-control" id="left-right-politics-edit-profile-input" name="left-right-politics[]" multiple="multiple">
+											<option value="left">Vasemmistolainen</option>
+											<option value="moderateleft">Maltillisesti vasemmalla</option>
+											<option value="inbetween">Jossain välimaastossa</option>
+											<option value="moderateright">Maltillisesti oikealla</option>
+											<option value="right">Oikeistolainen</option>
+											<option value="dontknow">Ei tiedä</option>
+											<option value="dontcare">Ei välitä</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="liberal-conservative-politics-edit-profile-input">Poliittisesti liberaali vai konservatiivinen:</label>
+										<select class="multiselect form-control" id="liberal-conservative-politics-edit-profile-input" name="liberal-conservative-politics[]" multiple="multiple">
+											<option value="conservative">Konservatiivinen</option>
+											<option value="ratherconservative">Melko konservatiivinen</option>
+											<option value="inbetween">Jossain välimaastossa</option>
+											<option value="ratherliberal">Melko liberaali</option>
+											<option value="liberal">Liberaali</option>
+											<option value="dontknow">Ei tiedä</option>
+											<option value="dontcare">Ei välitä</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="political-importance-edit-profile-input">Politiikan tärkeys:</label>
+										<select class="multiselect form-control" id="political-importance-edit-profile-input" name="political-importance[]" multiple="multiple">
+											<option value="dontcare">Ei välitä</option>
+											<option value="tittle-follow">Lähinnä otsikkotasolla</option>
+											<option value="active-follow">Seuraa aktiivisesti</option>
+											<option value="involved">Mukana politiikassa</option>
+										</select>
+									</div>
+								</div>
+								<div id="edit-profile-controls">
+									<div class="row form-inline form-group">
+										<div class="col-xs-6"><input type="submit" class="btn btn-primary btn-block form-control" id="edit-profile-submit" value="Etsi"/></div>
+									</div>
+								</div>
+							</form>		
+						</div>
+						<div class="col-xs-0 col-sm-4"></div>
 					</div>
 				</div>
 			</div>
