@@ -1344,6 +1344,12 @@ function load_edit_profile_page(uid) {
 	$("#height-edit-profile-input").val(profile.height);
 	$("#weight-edit-profile-input").val(profile.weight);
 	$("#income-edit-profile-input").val(profile.income);
+	$("#best-things-in-the-world-edit-profile-input").val(profile.best_things_in_the_world);
+	$("#ignite-me-edit-profile-input").val(profile.ignite_me);
+	$("#favorite-movies-edit-profile-input").val(profile.favorite_movies);
+	$("#favorite-bands-edit-profile-input").val(profile.favorite_bands);
+	$("#favorite-radio-shows-edit-profile-input").val(profile.favorite_radio_shows);
+	$("#not-exciting-edit-profile-input").val(profile.not_exciting);
 
 	var address = profile.address.split("+");
 	var country = address[address.length-1]
@@ -1357,10 +1363,11 @@ function load_edit_profile_page(uid) {
 			street += " " + address[i]; 
 		}
 	}
-
 	$("#street-address-edit-profile-input").val(street);
 	$("#town-address-edit-profile-input").val(town);
 	$("#country-address-edit-profile-input").val(country);
+	
+	
 	select_edit_profile_values("#gender-edit-profile-input", profile.gender);
 	select_edit_profile_values("#relationship-status-edit-profile-input", profile.relationship_status);
 	select_edit_profile_values("#sexual-orientation-edit-profile-input", profile.sexual_orientation);
@@ -2368,6 +2375,11 @@ $("#toggle-edit-profile-lifestyle-inputs-button").click(function(evt) {
 $("#toggle-lifestyle-inputs-button").click(function(evt) {
 	evt.preventDefault();
 	toggle_search_inputs(this, "#lifestyle-inputs");
+});
+
+$("#toggle-edit-profile-favorites-inputs-button").click(function(evt) {
+	evt.preventDefault();
+	toggle_search_inputs(this, "edit-profile-favorites-inputs");
 });
 
 $("#own-profile-button").click(function(evt) {
