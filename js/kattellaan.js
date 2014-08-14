@@ -1352,8 +1352,9 @@ function load_edit_profile_page(uid) {
 	if(address.length == 3) {
 		street += address[0]
 	} else {
-		for(var i = 0; i < address.length-2; i++) {
-			street += address[i]; 
+		street += address[0]
+		for(var i = 1; i < address.length-2; i++) {
+			street += " " + address[i]; 
 		}
 	}
 
