@@ -1348,25 +1348,36 @@ function load_edit_profile_page(uid) {
 	select_edit_profile_values("#relationship-status-edit-profile-input", profile.relationship_status);
 	select_edit_profile_values("#sexual-orientation-edit-profile-input", profile.sexual_orientation);
 	select_edit_profile_values("#looking-for-edit-profile-input", profile.looking_for);
-    select_edit_profile_values("#body-type-edit-profile-input", profile.body_type);
-    select_edit_profile_values("#eye-color-edit-profile-input", profile.eye_color);
-    select_edit_profile_values("#hair-length-edit-profile-input", profile.hair_length);
-    select_edit_profile_values("#hair-color-edit-profile-input", profile.hair_color);
-    select_edit_profile_values("#kids-edit-profile-input", profile.kids);
-    select_edit_profile_values("#accomodation-edit-profile-input", profile.accomodation);
-    select_edit_profile_values("#ethnic-identity-edit-profile-input", profile.ethnic_identity);
-    select_edit_profile_values("#language-skills-edit-profile-input", profile.language_skills);
-    select_edit_profile_values("#education-edit-profile-input", profile.education);
-    select_edit_profile_values("#work-edit-profile-input", profile.work);
-    select_edit_profile_values("#vocation-edit-profile-input", profile.vocation)
-    select_edit_profile_values("#kids-edit-profile-input", profile.kids);
-    select_edit_profile_values("#accomodation-edit-profile-input", profile.accomodation);
-    select_edit_profile_values("#ethnic-identity-edit-profile-input", profile.ethnic_identity);
-    select_edit_profile_values("#language-skills-edit-profile-input", profile.language_skills);
-    select_edit_profile_values("#education-edit-profile-input", profile.education);
-    select_edit_profile_values("#work-edit-profile-input", profile.work);
-    select_edit_profile_values("#vocation-edit-profile-input", profile.vocation);;
-    load_page("edit-profile-page");
+	select_edit_profile_values("#body-type-edit-profile-input", profile.body_type);
+	select_edit_profile_values("#eye-color-edit-profile-input", profile.eye_color);
+	select_edit_profile_values("#hair-length-edit-profile-input", profile.hair_length);
+	select_edit_profile_values("#hair-color-edit-profile-input", profile.hair_color);
+	select_edit_profile_values("#kids-edit-profile-input", profile.kids);
+	select_edit_profile_values("#accomodation-edit-profile-input", profile.accomodation);
+	select_edit_profile_values("#ethnic-identity-edit-profile-input", profile.ethnic_identity);
+	select_edit_profile_values("#language-skills-edit-profile-input", profile.language_skills);
+	select_edit_profile_values("#education-edit-profile-input", profile.education);
+	select_edit_profile_values("#work-edit-profile-input", profile.work);
+	select_edit_profile_values("#vocation-edit-profile-input", profile.vocation)
+	select_edit_profile_values("#kids-edit-profile-input", profile.kids);
+	select_edit_profile_values("#accomodation-edit-profile-input", profile.accomodation);
+	select_edit_profile_values("#ethnic-identity-edit-profile-input", profile.ethnic_identity);
+	select_edit_profile_values("#language-skills-edit-profile-input", profile.language_skills);
+	select_edit_profile_values("#education-edit-profile-input", profile.education);
+	select_edit_profile_values("#work-edit-profile-input", profile.work);
+	select_edit_profile_values("#vocation-edit-profile-input", profile.vocation);
+	select_edit_profile_values("#dress-style-edit-profile-input", profile.dress_style);
+	select_edit_profile_values("#smoking-edit-profile-input", profile.smoking);
+	select_edit_profile_values("#alcohol-edit-profile-input", profile.alcohol);
+	select_edit_profile_values("#pets-edit-profile-input", profile.pets);
+	select_edit_profile_values("#exercise-edit-profile-input", profile.exercise);
+	select_edit_profile_values("#travel-edit-profile-input", profile.travel);
+	select_edit_profile_values("#religion-edit-profile-input", profile.religion);
+	select_edit_profile_values("#religion-importance-edit-profile-input", profile.religion_importance);
+	select_edit_profile_values("#left-right-politics-edit-profile-input", profile.left_right_politics);
+	select_edit_profile_values("#liberal-conservative-politics-edit-profile-input", profile.liberal_conservative_politics);
+	select_edit_profile_values("#political-importance-edit-profile-input", profile.political_importance);
+	load_page("edit-profile-page");
 }
 
 function change_username(uid, username) {
