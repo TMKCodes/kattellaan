@@ -2379,7 +2379,7 @@ $("#toggle-lifestyle-inputs-button").click(function(evt) {
 
 $("#toggle-edit-profile-favorites-inputs-button").click(function(evt) {
 	evt.preventDefault();
-	toggle_search_inputs(this, "edit-profile-favorites-inputs");
+	toggle_search_inputs(this, "#edit-profile-favorites-inputs");
 });
 
 $("#own-profile-button").click(function(evt) {
