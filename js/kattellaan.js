@@ -1778,7 +1778,7 @@ $("document").ready(function() {
 						var label = ($(this).attr('label') !== undefined) ? $(this).attr('label') : $(this).html();
 						selected  += label + ', ';
 					});
-					return selected.substr(0, selected.length -2) + '<b class="caret"></b>';
+					return selected.substr(0, selected.length -2) + ' <b class="caret"></b>';
 				}
 			}
 		}
