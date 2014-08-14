@@ -1352,6 +1352,20 @@ function load_edit_profile_page(uid) {
     select_edit_profile_values("#eye-color-edit-profile-input", profile.eye_color);
     select_edit_profile_values("#hair-length-edit-profile-input", profile.hair_length);
     select_edit_profile_values("#hair-color-edit-profile-input", profile.hair_color);
+    select_edit_profile_values("#kids-edit-profile-input", profile.kids);
+    select_edit_profile_values("#accomodation-edit-profile-input", profile.accomodation);
+    select_edit_profile_values("#ethnic-identity-edit-profile-input", profile.ethnic_identity);
+    select_edit_profile_values("#language-skills-edit-profile-input", profile.language_skills);
+    select_edit_profile_values("#education-edit-profile-input", profile.education);
+    select_edit_profile_values("#work-edit-profile-input", profile.work);
+    select_edit_profile_values("#vocation-edit-profile-input", profile.vocation)
+    select_edit_profile_values("#kids-edit-profile-input", profile.kids);
+    select_edit_profile_values("#accomodation-edit-profile-input", profile.accomodation);
+    select_edit_profile_values("#ethnic-identity-edit-profile-input", profile.ethnic_identity);
+    select_edit_profile_values("#language-skills-edit-profile-input", profile.language_skills);
+    select_edit_profile_values("#education-edit-profile-input", profile.education);
+    select_edit_profile_values("#work-edit-profile-input", profile.work);
+    select_edit_profile_values("#vocation-edit-profile-input", profile.vocation);;
     load_page("edit-profile-page");
 }
 
