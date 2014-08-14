@@ -1348,7 +1348,11 @@ function load_edit_profile_page(uid) {
 	select_edit_profile_values("#relationship-status-edit-profile-input", profile.relationship_status);
 	select_edit_profile_values("#sexual-orientation-edit-profile-input", profile.sexual_orientation);
 	select_edit_profile_values("#looking-for-edit-profile-input", profile.looking_for);
-	load_page("edit-profile-page");
+    select_edit_profile_values("#body-type-edit-profile-input", profile.body_type);
+    select_edit_profile_values("#eye-color-edit-profile-input", profile.eye_color);
+    select_edit_profile_values("#hair-length-edit-profile-input", profile.hair_length);
+    select_edit_profile_values("#hair-color-edit-profile-input", profile.hair_color);
+    load_page("edit-profile-page");
 }
 
 function change_username(uid, username) {
