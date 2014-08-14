@@ -2326,13 +2326,13 @@ function toggle_search_inputs(btn, which) {
 		$(btn).children("i").removeClass("glyphicon-arrow-down");
 		$(btn).children("i").addClass("glyphicon-arrow-up");
 		var text = $(btn).html();
-		$(btn).html(text.replace("Piiloita", "Näytä"));
+		$(btn).html(text.replace("Näytä", "Piiloita"));
 		$(which).show();
 	} else {
 		$(btn).children("i").removeClass("glyphicon-arrow-up");
 		$(btn).children("i").addClass("glyphicon-arrow-down");
 		var text = $(btn).html();
-		$(btn).html(text.replace("Näytä", "Piiloita"));
+		$(btn).html(text.replace("Piiloita", "Näytä"));
 		$(which).hide();
 	}
 }
