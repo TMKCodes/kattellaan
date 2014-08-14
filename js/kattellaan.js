@@ -1344,6 +1344,22 @@ function load_edit_profile_page(uid) {
 	$("#height-edit-profile-input").val(profile.height);
 	$("#weight-edit-profile-input").val(profile.weight);
 	$("#income-edit-profile-input").val(profile.income);
+
+	var address = profile.address.split("+");
+	var country = address[address.length-1]
+	var town = address[address.length-2]
+	var street = "";
+	if(address.length == 3) {
+		street += address[0]
+	} else {
+		for(var i = 0; i < address.length-2; i++) {
+			street += address[i]; 
+		}
+	}
+
+	$("#street-address-edit-profile-input").val(street);
+	$("#town-address-edit-profile-input").val(town);
+	$("#country-address-edit-profile-input").val(country);
 	select_edit_profile_values("#gender-edit-profile-input", profile.gender);
 	select_edit_profile_values("#relationship-status-edit-profile-input", profile.relationship_status);
 	select_edit_profile_values("#sexual-orientation-edit-profile-input", profile.sexual_orientation);
