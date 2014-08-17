@@ -263,7 +263,7 @@ function load_latest_users_to_home_page() {
 		var result = $.parseJSON(data);
 		if(result.success === true) {
 			var latest_users_display = "";
-			for(var i = 0; i < 6; i++) {
+			for(var i = 0; i < ((result.users.length < 6) ? result.users.length : 6); i++) {
 				latest_users_display += '<div class="new-user col-xs-2 col-sm-2">';
 				latest_users_display += '<div class="uid" style="display: none;">' + result.users[i].id +  '</div>';
 				if(result.users[i].picture != "") {
