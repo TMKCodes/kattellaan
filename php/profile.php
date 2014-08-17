@@ -87,7 +87,9 @@ class profile {
 		$this->income = $profile['income'];
 		$this->kids = $profile['kids'];
 		$this->language_skills = $profile['language_skills'];
-		$this->latlng = $profile['latlng'];
+		if(!empty($profile['latlng'])) {
+			$this->latlng = $profile['latlng'];
+		}
 		$this->left_right_politics = $profile['left_right_politics'];
 		$this->liberal_conservative_politics = $profile['liberal_conservative_politics'];
 		$this->looking_for = $profile['looking_for'];
@@ -346,6 +348,7 @@ class profile {
 				"`gender` = ?, `hair_color` = ?, `height` = ?, `ignite_me` = ?, " . 
 				"`income` = ?, `kids` = ?, `language_skills` = ?, `latlng` = ?, " .
 				"`left_right_politics` = ?, `liberal_conservative_politics` = ?, " .	
+				OA
 				"`looking_for` = ?, `not_exciting` = ?, `pets` = ?, `picture` = ?, `profile_text` = ?, " .
 				"`political_importance` = ?, `relationship_status` = ?, `religion` = ?, " .
 				"`religion_importance` = ?, `sexual_orientation` = ?, `smoking` = ?, " .
