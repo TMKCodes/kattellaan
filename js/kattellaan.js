@@ -1217,19 +1217,19 @@ function load_profile_page(uid) {
 	$("#profile-page-basic-information-asl").html(asl + profile_text);
 	
 	var favorites = "<h3>Lempiasiat</h3>";
-	if(profile.best_things_in_the_world != undefined) 
+	if(profile.best_things_in_the_world != "") 
 		favorites += "<p><b>Parasta maailmassa:</b> " + profile.best_things_in_the_world + "</p>";
-	if(profile.ignite_me != undefined) 
+	if(profile.ignite_me != "") 
 		favorites += "<p><b>Sytyttää:</b> " + profile.ignite_me + "</p>";
-	if(profile.favorite_television_series != undefined) 
+	if(profile.favorite_television_series != "") 
 		favorites += "<p><b>Sarjat:</b> " + profile.favorite_television_series + "</p>";
-	if(profile.favorite_movies != undefined)
+	if(profile.favorite_movies != "")
 		favorites += "<p><b>Elokuvat:</b> " + profile.favorite_movies + "</p>";
-	if(profile.favorite_bands != undefined)
+	if(profile.favorite_bands != "")
 		favorites += "<p><b>Musiikki:</b> " + profile.favorite_bands + "</p>";
-	if(profile.favorite_radio_shows != undefined)
+	if(profile.favorite_radio_shows != "")
 		favorites += "<p><b>Radio:</b> " + profile.favorite_radio_shows + "</p>";
-	if(profile.not_exciting != undefined) 
+	if(profile.not_exciting != "") 
 		favorites += "<p><b>Huonoa maailmassa:</b> " + profile.not_exciting + "</p>";
 
 	$("#profile-page-information-favorites").html(favorites);
