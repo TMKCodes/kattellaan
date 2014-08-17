@@ -46,7 +46,7 @@ class session {
 			"secret TEXT NOT NULL," .
 			"client TEXT NOT NULL," .
 			"timestamp DATETIME NOT NULL, " .
-			"onlin INT NOT NULL );";
+			"online INT NOT NULL );";
 		$statement = $this->database->prepare($table_statement);
 		$result = $statement->execute();
 		return $result->success();
@@ -82,8 +82,7 @@ class session {
 					} else {
 						throw new Exception("Failed to create session.");
 					}
-				} else {
-					
+				} else {	
 					throw new Exception("Session already exists");
 				}
 			} else {
