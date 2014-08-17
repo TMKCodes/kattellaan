@@ -1341,7 +1341,6 @@ function select_edit_profile_values(select, values) {
 function submit_profile_editions() {
 	var ret = false;
 	var form_data = $("#edit-profile-form").serialize();
-	console.log(form_data);
 	if(check_session() === true) {
 		form_data = form_data + "&call=edit_profile";
 	}
