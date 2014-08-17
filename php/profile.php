@@ -348,7 +348,6 @@ class profile {
 				"`gender` = ?, `hair_color` = ?, `height` = ?, `ignite_me` = ?, " . 
 				"`income` = ?, `kids` = ?, `language_skills` = ?, `latlng` = ?, " .
 				"`left_right_politics` = ?, `liberal_conservative_politics` = ?, " .	
-				OA
 				"`looking_for` = ?, `not_exciting` = ?, `pets` = ?, `picture` = ?, `profile_text` = ?, " .
 				"`political_importance` = ?, `relationship_status` = ?, `religion` = ?, " .
 				"`religion_importance` = ?, `sexual_orientation` = ?, `smoking` = ?, " .
