@@ -696,7 +696,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			$call = json_encode($_POST);
 			$profile = new profile($database);
 			if($profile->select($_POST['uid']) == true) {
-				$data = json_encode($call);
+				$data = json_decode($call);
 				$data['address'] = $_POST['street-address'] . " " . $_POST['town-address'] . " " . $_POST['country-address'];
 				$data['address'] = str_replace(" ", "+", $data['address']);
 				var_dump($data);
