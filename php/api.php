@@ -703,6 +703,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				$data['kids'] = implode(",", $data['kids']);
 				$data['language_skills'] = implode(",", $data['language_skills']);
 				$data['pets'] = implode(",", $data['pets']);
+				var_dump($data);
 				$profile->set($data);
 				if($profile->update() == true) {
 					printf('{ "success": true }');
