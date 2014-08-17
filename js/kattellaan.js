@@ -1221,7 +1221,8 @@ function load_profile_page(uid) {
 	var favorites = "<h3>Lempiasiat</h3>";
 	favorites += "<p><b>Parasta maailmassa:</b> " + profile.best_things_in_the_world + "</p>";
 	favorites += "<p><b>Sytyttää:</b> " + profile.ignite_me + "</p>";
-	favorites += "<p><b>Elokuvati/sarjat:</b> " + profile.favorite_movies + "</p>";
+	favorites += "<p><b>Sarjat:</b> " + profile.favorite_television_series + "</p>";
+	favorites += "<p><b>Elokuvat:</b> " + profile.favorite_movies + "</p>";
 	favorites += "<p><b>Musiikki:</b> " + profile.favorite_bands + "</p>";
 	favorites += "<p><b>Radio:</b> " + profile.favorite_radio_shows + "</p>";
 	favorites += "<p><b>Huonoa maailmassa:</b> " + profile.not_exciting + "</p>";
@@ -1374,6 +1375,7 @@ function load_edit_profile_page(uid) {
 	$("#favorite-movies-edit-profile-input").val(profile.favorite_movies);
 	$("#favorite-bands-edit-profile-input").val(profile.favorite_bands);
 	$("#favorite-radio-shows-edit-profile-input").val(profile.favorite_radio_shows);
+	$("#favorite-television-series-edit-profile-input").val(profile.favorite_television_series);
 	$("#not-exciting-edit-profile-input").val(profile.not_exciting);
 
 	var address = profile.address.split("+");
