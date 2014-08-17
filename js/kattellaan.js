@@ -1338,8 +1338,28 @@ function select_edit_profile_values(select, values) {
 	$(select).multiselect("refresh");
 }
 
+function submit_profile_editions() {
+	var ret = false;
+	$.ajax({
+		url: "php/api.php",
+		type: "POST",
+		async: false,
+		data: { call : 'edit_profile', profile : $("#edit-profile-form").serialize() }
+	}).done(function(data) {
+		console.log(data);
+		data = $.parseJSON(data);
+		if(data.success == true) {
+			ret = true;
+		} else {
+			console.log(data.error);
+		}
+	});
+	return ret;
+}
+
 function load_edit_profile_page(uid) {
 	var profile = get_profile(uid);
+	$("#user-identifier-edit-profile-input").val(uid);
 	$("#birthday-edit-profile-input").val(profile.birthday);
 	$("#height-edit-profile-input").val(profile.height);
 	$("#weight-edit-profile-input").val(profile.weight);
@@ -1402,6 +1422,10 @@ function load_edit_profile_page(uid) {
 	select_edit_profile_values("#liberal-conservative-politics-edit-profile-input", profile.liberal_conservative_politics);
 	select_edit_profile_values("#political-importance-edit-profile-input", profile.political_importance);
 	load_page("edit-profile-page");
+	$("#edit-profile-form").submit(function(evt) {
+		evt.preventDefault();
+		submit_profile_editions();
+	});
 }
 
 function change_username(uid, username) {
