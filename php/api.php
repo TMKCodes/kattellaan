@@ -694,7 +694,18 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				die;
 			}
 			$call = json_encode($_POST);
-			printf('{ "success": false, "error": %s }', $call);
+			$profile = new profile($database);
+			if($profile->select($uid) == true) {
+				$data = json_encode($call);
+				$data['address'] = $_POST['street-address'] . " " . $_POST['town-address'] . " " . $_POST['country-address'];
+				$data['address'] = str_replace(" ", "+", $data['address']);
+				$profile->set($data);
+				if($profile->update() == true) {
+					printf('{ "success": true }');
+				} else {
+					printf('{ "success": false, "error": "Failed to update profile" }');
+				}
+			}
 		} else {
 			printf('{ "success": false, "error": "Session was not found" }');
 		}
