@@ -76,6 +76,7 @@ class profile {
 		$this->favorite_bands = $profile['favorite_bands'];
 		$this->favorite_movies = $profile['favorite_movies'];
 		$this->favorite_radio_shows = $profile['favorite_radio_shows'];
+		$this->favorite_television_series = $profile['favorite_television_series'];
 		$this->gender = $profile['gender'];
 		$this->hair_length = $profile['hair_length'];
 		$this->hair_color = $profile['hair_color'];
@@ -128,6 +129,7 @@ class profile {
 		$profile['favorite_bands'] = $this->favorite_bands;
 		$profile['favorite_movies'] = $this->favorite_movies;
 		$profile['favorite_radio_shows'] = $this->favorite_radio_shows;
+		$profile['favorite_television_series'] = $this->favorite_television_series;
 		$profile['gender'] = $this->gender;
 		$profile['hair_length'] = $this->hair_length;
 		$profile['hair_color'] = $this->hair_color;
@@ -174,6 +176,7 @@ class profile {
 			"favorite_bands TEXT," .
 			"favorite_movies TEXT," .
 			"favorite_radio_shows TEXT," .
+			"favorite_television_series TEXT,".
 			"gender TEXT," .
 			"hair_length TEXT," .
 			"hair_color TEXT," .
@@ -280,6 +283,7 @@ class profile {
 		$statement->bind('s', $this->favorite_bands);
 		$statement->bind('s', $this->favorite_movies);
 		$statement->bind('s', $this->favorite_radio_shows);
+		$statement->bind('s', $this->favorite_television_series);
 		$statement->bind('s', $this->gender);
 		$statement->bind('s', $this->hair_length);
 		$statement->bind('s', $this->hair_color);
@@ -317,7 +321,8 @@ class profile {
 			$query = "INSERT INTO `profile` (`accomodation`, `address`, `alcohol`, " . 
 				"`best_things_in_the_world`, `birthday`, `body_type`, `dress_style`, " .
 				"`education`, `ethnic_identity`, `exercise`, `eye_color`, `favorite_bands`, " .
-				"`favorite_movies`, `favorite_radio_shows`, `gender`, `hair_length`,  `hair_color`,".
+				"`favorite_movies`, `favorite_radio_shows`, `favorite_television_series`, " .
+				"`gender`, `hair_length`,  `hair_color`,".
 				"`height`, `identifier`, `ignite_me`, `income`, `kids`, `language_skills`,".
 				"`latlng`, `left_right_politics`, `liberal_conservative_politics`,".
 				"`looking_for`, `not_exciting`, `pets`, `picture`, `profile_text`, `political_importance`,".
@@ -327,7 +332,7 @@ class profile {
 				"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " . // 10
 				"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " . // 20
 				"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " . // 30
-				"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"; // 38
+				"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"; // 42
 			$statement = $this->database->prepare($query);
 			$statement = $this->sbind($statement, true);
 			$result = $statement->execute();
@@ -344,7 +349,7 @@ class profile {
 				"`best_things_in_the_world` = ?, `birthday` = ?, `body_type` = ?, " .
 				"`dress_style` = ?, `education` = ?, `ethnic_identity` = ?, " .
 				"`exercise` = ?, `eye_color` = ?, `favorite_bands` = ?, " .
-				"`favorite_movies` = ?, `favorite_radio_shows` = ?, " .
+				"`favorite_movies` = ?, `favorite_radio_shows` = ?, `favorite_television_series` = ?" .
 				"`gender` = ?, `hair_length` = ?, `hair_color` = ?, `height` = ?, `ignite_me` = ?, " . 
 				"`income` = ?, `kids` = ?, `language_skills` = ?, `latlng` = ?, " .
 				"`left_right_politics` = ?, `liberal_conservative_politics` = ?, " .	
