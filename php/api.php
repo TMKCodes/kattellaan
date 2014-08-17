@@ -699,7 +699,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				$data = json_decode($call, true);
 				$data['address'] = $_POST['street-address'] . " " . $_POST['town-address'] . " " . $_POST['country-address'];
 				$data['address'] = str_replace(" ", "+", $data['address']);
-				$data['looking_for'] = implode(",", $data['looking-for']);
+				$data['looking_for'] = implode(",", $data['looking_for']);
 				$data['kids'] = implode(",", $data['kids']);
 				$data['language_skills'] = implode(",", $data['language_skills']);
 				$data['pets'] = implode(",", $data['pets']);
