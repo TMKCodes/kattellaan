@@ -349,7 +349,7 @@ class profile {
 				"`best_things_in_the_world` = ?, `birthday` = ?, `body_type` = ?, " .
 				"`dress_style` = ?, `education` = ?, `ethnic_identity` = ?, " .
 				"`exercise` = ?, `eye_color` = ?, `favorite_bands` = ?, " .
-				"`favorite_movies` = ?, `favorite_radio_shows` = ?, `favorite_television_series` = ?" .
+				"`favorite_movies` = ?, `favorite_radio_shows` = ?, `favorite_television_series` = ?, " .
 				"`gender` = ?, `hair_length` = ?, `hair_color` = ?, `height` = ?, `ignite_me` = ?, " . 
 				"`income` = ?, `kids` = ?, `language_skills` = ?, `latlng` = ?, " .
 				"`left_right_politics` = ?, `liberal_conservative_politics` = ?, " .	
