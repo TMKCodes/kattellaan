@@ -1340,11 +1340,16 @@ function select_edit_profile_values(select, values) {
 
 function submit_profile_editions() {
 	var ret = false;
+	var form_data = $("#edit-profile-form").serialize();
+	console.log(form_data);
+	if(check_session() === true) {
+		form_data = form_data + "&call=edit_profile";
+	}
 	$.ajax({
 		url: "php/api.php",
 		type: "POST",
 		async: false,
-		data: { call : 'edit_profile', profile : $("#edit-profile-form").serialize() }
+		data: form_data 
 	}).done(function(data) {
 		console.log(data);
 		data = $.parseJSON(data);
