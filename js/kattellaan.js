@@ -1364,6 +1364,7 @@ function submit_profile_editions() {
 function load_edit_profile_page(uid) {
 	var profile = get_profile(uid);
 	$("#user-identifier-edit-profile-input").val(uid);
+	$("#profile-text-edit-profile-input").val(profile.profile_text);
 	$("#birthday-edit-profile-input").val(profile.birthday);
 	$("#height-edit-profile-input").val(profile.height);
 	$("#weight-edit-profile-input").val(profile.weight);

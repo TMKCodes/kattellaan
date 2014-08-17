@@ -357,7 +357,9 @@ class profile {
 			$statement = $this->sbind($statement, false);
 			$statement->bind('i', $this->identifier);
 			$result = $statement->execute();
-			return $result->success();
+			if($result->success() == true) {
+				return true;
+			}
 		} else {
 			return false;
 		}
