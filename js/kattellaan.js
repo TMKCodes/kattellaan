@@ -932,9 +932,7 @@ function recursive_pets(pets) {
 			petsArr[i] = "En halua kertoa";
 		}
         }
-        var petsParsed = petsArr.join(", ");
-
-	return pets;
+        return petsArr.join(", ");
 }
 
 function exercise(ex) {
