@@ -686,6 +686,17 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				die();
 			}
 		}
+	} else if(!empty($_POST['call']) && $_POST['call'] == "edit_profile") {
+		if(!empty($_COOKIE['session'])) {
+			$session = new session($database, "sha512");
+			if($session->confirm($_COOKIE['session']) == false) {
+				printf('{ "success": false, "error": "Failed to confirm session." }');
+				die;
+			}
+			printf('{ "success": false, "error": "%s" }', $_POST['profile']);
+		} else {
+			printf('{ "success": false, "error": "Session was not found" }');
+		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "search") {
 		if(!empty($_COOKIE['session'])) {
 			$session = new session($database, "sha512");
