@@ -356,6 +356,7 @@ class profile {
 			$statement = $this->database->prepare($query);
 			$statement = $this->sbind($statement, false);
 			$statement->bind('i', $this->identifier);
+			printf("%s\r\n", $statement->get());
 			$result = $statement->execute();
 			if($result->success() == true) {
 				return true;
