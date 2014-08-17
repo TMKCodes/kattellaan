@@ -345,7 +345,7 @@ class profile {
 				"`dress_style` = ?, `education` = ?, `ethnic_identity` = ?, " .
 				"`exercise` = ?, `eye_color` = ?, `favorite_bands` = ?, " .
 				"`favorite_movies` = ?, `favorite_radio_shows` = ?, " .
-				"`gender` = ?, `hair_color` = ?, `height` = ?, `ignite_me` = ?, " . 
+				"`gender` = ?, `hair_length` = ?, `hair_color` = ?, `height` = ?, `ignite_me` = ?, " . 
 				"`income` = ?, `kids` = ?, `language_skills` = ?, `latlng` = ?, " .
 				"`left_right_politics` = ?, `liberal_conservative_politics` = ?, " .	
 				"`looking_for` = ?, `not_exciting` = ?, `pets` = ?, `picture` = ?, `profile_text` = ?, " .
@@ -355,7 +355,7 @@ class profile {
 				"WHERE `identifier` = ?;";
 			$statement = $this->database->prepare($query);
 			$statement = $this->sbind($statement, false);
-			//$statement->bind('i', $this->identifier);
+			$statement->bind('i', $this->identifier);
 			printf("%s\r\n", $statement->get());
 			$result = $statement->execute();
 			if($result->success() == true) {
