@@ -80,7 +80,7 @@ class profile {
 		$this->hair_length = $profile['hair_length'];
 		$this->hair_color = $profile['hair_color'];
 		$this->height = $profile['height'];
-		if($profile['identifier'])) {
+		if(!empty($profile['identifier'])) {
 			$this->identifier = $profile['identifier'];
 		}
 		$this->ignite_me = $profile['ignite_me'];
