@@ -55,7 +55,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					"Tähän viestiin saa vastata jos on jotain kysyttävää.\r\n\r\n" .
 					"Terveisin kattellaan treffipalstalta.\r\n";
 				$headers = "From: support@kattellaan.com\r\n" .
-					"Content-Type: text/html; charset=UTF-8\r\n" .
+					"Content-Type: text/plain; charset=UTF-8\r\n" .
 					"Reply-To: support@kattellaan.com\r\n" .
 					"X-Mailer: PHP/" . phpversion();
 				mail($to, $subject, $message, $headers);
@@ -81,7 +81,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					"Kuitenkin jos haluat uuden salasanan mene osoitteeseen:\r\n" . $pwa . "\r\n" .
 					"Terveisiä kattellaan treffipalvelusta.";
 				$headers = "From: support@kattellaan.com\r\n" .
-					"Content-Type: text/html; charset=UTF-8\r\n" .
+					"Content-Type: text/plain; charset=UTF-8\r\n" .
 					"Reply-To: support@kattellaan.com\r\n" .
 					"X-Mailer: PHP/" . phpversion();
 				mail($to, $subject, $message, $headers);
