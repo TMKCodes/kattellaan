@@ -222,6 +222,37 @@
 		</div>
 	</div>
 
+	<div class="container" id="password-recovery-page" style="display: none;">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Salasanan palautus
+					</div>
+					<div class="panel-body">
+						<div class="col-xs-0 col-sm-4"></div>
+						<div class="col-xs-12 col-sm-4">
+							<form method="POST" action="php/api.php" id="password-recovery-form" role="form">
+								<div class="form-group">
+									<label for="username-password-recovery-input">Käyttäjätunnus:</label>
+									<input type="text" class="form-control" id="username-password-recovery-input" name="username" />
+								</div>
+								<div class="form-group">
+									<label for="email-password-recovery-input">Sähköpostiosoite:</label>
+									<input type="text" class="form-control" id="email-password-recovery-input" name="address" />
+								</div>
+								<input type="hidden" name="call" value="password-recovery" />
+								<input type="submit" class="form-control btn btn-default" value="Pyydä uusi salasana." />
+							</form>
+						</div>
+						<div class="col-xs-0 col-sm-4"></div>
+					</div>
+					<div class="panel-footer"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- edit account page -->
 	<div class="container" id="edit-account-page" style="display: none;">
 		<div class="row">

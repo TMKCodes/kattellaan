@@ -2307,7 +2307,30 @@ $("#navigation-left > li").click(function(evt) {
 	$(this).addClass("active");
 });
 
+function load_password_recovery_page() {
+	load_page("password-recovery-page");
+	$("#password-recovery-form").submit(function(evt) {
+		evt.preventDefault();
+		$.ajax({
+			url: "php/api.php",
+			type: "POST",
+			data: $(this).serialize()
+		}).done(function(data) {
+			console.log(data);
+			data = $.parseJSON(data);
+			if(data.success == true) {
 
+			} else {
+				
+			}
+		});
+	});
+}
+
+$("#password-recovery-page-button").click(function(evt) {
+	evt.preventDefault();
+	load_password_recovery_page();
+});
 
 $("#user-menu > li").click(function(evt) {
 	evt.preventDefault();

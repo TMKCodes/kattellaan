@@ -67,6 +67,30 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				printf('{ "success": false, "error": "account already exists"}');
 			}
 		}
+	} else if(!empty($_POST['call']) && $_POST['call'] == "password-recovery") {
+		$account = new account($database);
+		$account->set_username($_POST['username']);
+		if($account->select() == true) {
+			if($account->get_address() == $_POST['address']) {
+				$pwa = "https://kattellaan.com?page=new-password&secret=";
+				$pwa += base64_encode($account->get_identifier() . "||" . hash("sha512", $account->get_username() . "/" . $account->get_address() . "/" . $account->get_password() . "/" . $account->get_registered()));
+				$to = $account->get_address();
+				$subject = "kattellaan.com salasana palautus.";
+				$message = "Hei " . $account->get_username() ."!\r\n\r\n" .
+					"Sinun tunnuksellesi on pyydetty uutta salasanaa. Jos et ole tätä pyytänyt voit unohtaa viestin.\r\n" .
+					"Kuitenkin jos haluat uuden salasanan mene osoitteeseen:\r\n" . $pwa . "\r\n" .
+					"Terveisiä kattellaan treffipalvelusta.";
+				$headers = "From: support@kattellaan.com\r\n" .
+					"Content-Type: text/html; charset=UTF-8\r\n" .
+					"Reply-To: support@kattellaan.com\r\n" .
+					"X-Mailer: PHP/" . phpversion();
+				mail($to, $subject, $message, $headers);
+			} else {
+				printf('{ "success": false, "error": "email does not match." }');
+			}
+		} else {
+			printf('{ "success": false, "error": "Username does not exist." }');
+		}
 	} else if(!empty($_GET['call']) && $_GET['call'] == "open_session") {
 		try {
 			$session = new session($database, "sha512");
