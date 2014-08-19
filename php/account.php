@@ -48,7 +48,7 @@ class account {
 		$this->registered = $registered;
 	}
 
-	public function get_registered($registered) {
+	public function get_registered() {
 		return $this->registered;
 	}
 
