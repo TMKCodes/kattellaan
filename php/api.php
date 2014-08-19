@@ -85,6 +85,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					"Reply-To: support@kattellaan.com\r\n" .
 					"X-Mailer: PHP/" . phpversion();
 				mail($to, $subject, $message, $headers);
+				printf('{ "success": true }');
 			} else {
 				printf('{ "success": false, "error": "email does not match." }');
 			}
