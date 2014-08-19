@@ -73,7 +73,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		if($account->select() == true) {
 			if($account->get_address() == $_POST['address']) {
 				$pwa = "https://kattellaan.com?page=new-password&secret=";
-				$pwa += base64_encode($account->get_identifier() . "||" . hash("sha512", $account->get_username() . "/" . $account->get_address() . "/" . $account->get_password() . "/" . $account->get_registered()));
+				$pwa .= base64_encode($account->get_identifier() . "||" . hash("sha512", $account->get_username() . "/" . $account->get_address() . "/" . $account->get_password() . "/" . $account->get_registered()));
 				$to = $account->get_address();
 				$subject = "kattellaan.com salasana palautus.";
 				$message = "Hei " . $account->get_username() ."!\r\n\r\n" .
