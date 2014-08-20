@@ -1893,8 +1893,7 @@ $("document").ready(function() {
 				load_edit_profile_page(session[1]);
 			}
 		} else if(page === "new-password-page") {
-			var secret = "&secret=" + get_url_parameter("secret");
-			load_custom_page(page, secret);	
+			load_new_password_page();
 		} else {
 			load_page(page);
 		}
@@ -2307,6 +2306,12 @@ $("#navigation-left > li").click(function(evt) {
 	$("#user-menu").children().removeClass("active");
 	$(this).addClass("active");
 });
+
+function load_new_password_page() {
+
+	var secret = "&secret=" + get_url_parameter("secret");
+	load_custom_page(page, secret);	
+}
 
 function load_password_recovery_page() {
 	load_page("password-recovery-page");
