@@ -307,14 +307,12 @@ function load_home_page() {
 function load_page(page) {
 	$("body > .container").hide();
 	$("#" + page).show();
-	$("#web-advertisement").show();
 	history.pushState(null, page, hostname + "?page=" + page);
 }
 
 function load_custom_page(page, addons) {
 	$("body > .container").hide();
 	$("#" + page).show();
-	$("#web-advertisement").show();
 	history.pushState(null, page, hostname + "?page=" + page + addons);
 }
 
