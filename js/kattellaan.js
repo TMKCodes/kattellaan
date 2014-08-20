@@ -1894,6 +1894,9 @@ $("document").ready(function() {
 				session = session.split("||");
 				load_edit_profile_page(session[1]);
 			}
+		} else if(page === "new-password") {
+			var secret = "?secret=" + get_url_parameter("secret");
+			load_custom_page(page, secret);	
 		} else {
 			load_page(page);
 		}
