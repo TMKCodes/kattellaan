@@ -227,7 +227,7 @@
 		</div>
 	</div>
 
-	<div class="container" id="new-password-page" style="display: none;">
+	<div class="container" id="password-recovery-page" style="display: none;">
 		<div class="row">
 			<div class="col-xs-12 col-sm-12">
 				<div class="panel panel-default">
@@ -248,6 +248,38 @@
 								</div>
 								<input type="hidden" name="call" value="password-recovery" />
 								<input type="submit" class="form-control btn btn-default" value="Pyydä uusi salasana." />
+							</form>
+						</div>
+						<div class="col-xs-0 col-sm-4"></div>
+					</div>
+					<div class="panel-footer"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container" id="new-password-page" style="display: none;">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12">
+				<div class="panel panel-default">
+					<div class="panel-headin">
+						Uusi salasanasi.
+					</div>
+					<div class="panel-body">	
+						<div class="col-xs-0 col-sm-4"></div>
+						<div class="col-xs-12 col-sm-4">
+							<form method="POST" action="php/api.php" id="new-password-form" role="form">
+								<div class="form-group">
+									<label for="new-password-input">Uusi salasana:</label>
+									<input type="password" class="form-control" id="new-password-input" name="password" />
+								</div>
+								<div class="form-group">
+									<label for="new-password-confirm-input">Uuden salasanan varmistus:</label>
+									<input type="password" class="form-control" id="new-password-confirm-input" name="password-confirm" />
+								</div>
+								<input type="hidden" name="uid" />
+								<input type="hidden" name="call" value="new-password" />
+								<input type="submit" class="form-control btn btn-default" value="Lähetä uusi salasana." />
 							</form>
 						</div>
 						<div class="col-xs-0 col-sm-4"></div>
