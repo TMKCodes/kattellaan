@@ -2310,7 +2310,7 @@ $("#navigation-left > li").click(function(evt) {
 function load_new_password_page() {
 
 	var secret = "&secret=" + get_url_parameter("secret");
-	load_custom_page(page, secret);	
+	load_custom_page("new-password-page", secret);	
 }
 
 function load_password_recovery_page() {
