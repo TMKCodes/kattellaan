@@ -189,7 +189,30 @@ class distance {
 							$exists_statement->bind("i", $next_start);
 							$exists_result = $exists_statement->execute();
 							if($exists_result->success() == true && $exists_result->rows() == 1) {
-								continue;
+								$next_end_found = false;
+								$next_end = $next_end + 1;
+								while($next_end_found == false) {
+									$next_end_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ?;");
+									$next_end_statement->bind("i", $next_end);
+									$next_end_result = $next_end_statement->execute();
+									if($next_end_result->success() == true && $next_end_result->rows() == 1) {
+										$next_end_data = $next_end_result->fetch_array(RASSOC);
+										$next_end = $next_end_data['id'];
+										$exists_statement = $this->database->prepare("SELECT * FROM `distance` WHERE (`start` = ? AND `end` = ?) OR (`start` = ? AND `end` = ?);");
+										$exists_statement->bind("i", $next_start);
+										$exists_statement->bind("i", $next_end);
+										$exists_statement->bind("i", $next_end);
+										$exists_statement->bind("i", $next_start);
+										$exists_result = $exists_statement->execute();
+										if($exists_result->success() == true && $exists_result->rows() == 1) {
+											continue;
+										} else {
+											$next_end_found = true;	
+										}
+									} else {
+										$next_end += 1;
+									}
+								}	
 							} else {
 								$next_start_found = true;	
 							}
@@ -199,7 +222,7 @@ class distance {
 					}
 				}
 			} else {
-				$next_start = $last_distance['start'];
+				$next_start = $last_distance['start'];		
 				$next_end_found = false;
 				$next_end = $last_distance['end'] + 1;
 				while($next_end_found == false) {
@@ -223,7 +246,7 @@ class distance {
 					} else {
 						$next_end += 1;
 					}
-				}	
+				}
 			}
 
 			
