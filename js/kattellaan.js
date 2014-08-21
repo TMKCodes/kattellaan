@@ -441,7 +441,8 @@ function odd_relationship_status(s) {
 
 function unknown_town(town) {
 	// TODO: write ajax query to save unknown towns in to file.
-	return town;
+	
+	return town + ":sta";
 }
 
 
