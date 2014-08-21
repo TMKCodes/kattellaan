@@ -164,9 +164,6 @@ class distance {
 			$last_distance = $last_distance_result->fetch_array(RASSOC);
 			$first_position = $first_position_result->fetch_array(RASSOC);
 			$last_position = $last_position_result->fetch_array(RASSOC);
-			if($first_position['id'] == $last_position['id']) {
-				return false;
-			}
 		
 			if($last_distance['end'] == $last_position['id']) {
 				$next_end = $first_position['id'];
