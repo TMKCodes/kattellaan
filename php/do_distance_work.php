@@ -40,7 +40,6 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					$completed = true;
 				}
 			} catch(exception $e) {
-				$distance_work['end']['identifier'] += 1;
 				continue;		
 			}
 		}
