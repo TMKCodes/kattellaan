@@ -21,6 +21,8 @@ class account {
 	}
 	
 	public function set_username($username) {
+		$username = str_replace("<", "&lt;", $username);
+		$username = str_replace(">", "&gt;", $username);
 		$this->username = $username;
 	}
 	
