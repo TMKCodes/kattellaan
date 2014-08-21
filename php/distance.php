@@ -212,8 +212,21 @@ class distance {
 			}
 			
 			//printf("Next start: %s, Next end: %s\r\n", $next_start, $next_end);
-		
-			return array("start" => $next_start, "end" => $next_end);
+			$start_select = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ?");
+			$start_select->bind("i", $next_start);
+			$start_result = $start_select->execute();
+			if($start_result->success() == true && $start_result->rows() == 1) {
+				$start = $start_result->fetch_array(RASSOC);
+				$start['identifier'] = $start['id'];
+			}
+			$end_select = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ?");
+			$end_select->bind("i", $next_end);
+			$end_result = $end_select->execute();
+			if($end_result->success() == true && $end_result->rows() == 1) {
+				$end = $end_result->fetch_array(RASSOC);
+				$end['identifier'] = $end['id'];
+			}
+			return array("start" => $start, "end" => $end);
 		} else {
 			$start = 1;
 			$end_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ?");
