@@ -18,6 +18,7 @@ $database = new db("mysqli");
 if($database->connect("127.0.01", $passwd[0], $passwd[1], "kattellaan") == true) {
 	$distance = new distance($database);
 	$distance_work = $distance->get_uncalculated();
+	printf("%s\r\n", $distance_work);
 	if($distance_work != false) {	
 		$completed = false;
 		while($completed == false) {
