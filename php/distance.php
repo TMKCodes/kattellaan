@@ -205,9 +205,9 @@ class distance {
 				}
 			}
 			
-			$start['identifier'] = $next_start;
-			$end['identifier'] = $next_end;
-			return array("start" => $start, "end" => $end);
+			printf("Next start: %s, Next end: %s\r\n", $next_start, $next_end);
+		
+			return array("start" => $next_start, "end" => $next_end);
 		} else {
 			$end_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ?");
 			$end_statement->bind("i", $start + 1);
