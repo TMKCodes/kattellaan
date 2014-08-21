@@ -178,6 +178,7 @@ class distance {
 					$next_start = $last_distance['start'] + 1;
 					while($next_start_found == false) {
 						$next_start_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ?;");
+						$next_start_statement->bind("i", $next_start);
 						$next_start_result = $next_start_statement->execute();
 						if($next_start_result->success() == true && $next_start_result->rows() == 1) {
 							$next_start_data = $next_start_result->fetch_array(RASSOC);
@@ -194,6 +195,7 @@ class distance {
 				$next_end = $last_distance['end'] + 1;
 				while($next_end_found == false) {
 					$next_end_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ?;");
+					$next_end_statement->bind("i", $next_end);
 					$next_end_result = $next_end_statement->execute();
 					if($next_end_result->success() == true && $next_end_result->rows() == 1) {
 						$next_end_data = $next_end_result->fetch_array(RASSOC);
