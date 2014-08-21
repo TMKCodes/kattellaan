@@ -68,7 +68,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					printf('{ "success": false, "error": "account already exists"}');
 				}
 			} catch (Exception $e) {
-				printf('{ "success": false, "error": "%s" }', $e->getMessage();
+				printf('{ "success": false, "error": "%s" }', $e->getMessage());
 			}
 		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "password-recovery") {
