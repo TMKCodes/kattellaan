@@ -181,7 +181,7 @@ class distance {
 			$end_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ?");
 			$end_statement->bind("i", $start + 1);
 			$end_result = $end_statement->execute();
-			if($end_result->success() == true && $end_result->rows() > 1) {
+			if($end_result->success() == true && $end_result->rows() >= 1) {
 				$end = $end_result->fetch_array(RASSOC);
 				printf("End:\r\n"); print_r($end);
 				$start_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ?");
