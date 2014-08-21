@@ -151,7 +151,7 @@ class distance {
 		$result = $statement->execute();
 		if($result->success() == true && $result->rows() >= 1) {
 			$data = $result->fetch_array(RASSOC);
-			printf("Distance:\r\n"); print_r($data);
+//			printf("Distance:\r\n"); print_r($data);
 			$next_end = $data['end'] + 1;
 			$next_start = $data['start'] + 1;
 			$end_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ? OR `id` = ? ORDER BY `id` DESC LIMIT 0, 1;");
@@ -160,7 +160,7 @@ class distance {
 			$end_result = $end_statement->execute();
 			if($end_result->success() == true && $end_result->rows() >= 1) {
 				$end = $end_result->fetch_array(RASSOC);
-				printf("End:\r\n"); print_r($end);
+//				printf("End:\r\n"); print_r($end);
 				$start_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ?;");
 				if($end['id'] == $next_end) {
 					$start_statement->bind("i", $data['start']);
@@ -170,33 +170,33 @@ class distance {
 				$start_result = $start_statement->execute();
 				if($start_result->success() == true && $start_result->rows() >= 1) {
 					$start = $start_result->fetch_array(RASSOC);
-					printf("Start:\r\n"); print_r($start);
+//					printf("Start:\r\n"); print_r($start);
 					$start['identifier'] = $start['id'];
 					$end['identifier'] = $end['id'];
 					return array("start" => $start, "end" => $end);
 				}
 			}
 		} else {
-			printf("else");
+//			printf("else");
 			$end_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ?");
 			$end_statement->bind("i", $start + 1);
 			$end_result = $end_statement->execute();
 			if($end_result->success() == true && $end_result->rows() >= 1) {
 				$end = $end_result->fetch_array(RASSOC);
-				printf("End:\r\n"); print_r($end);
+				//printf("End:\r\n"); print_r($end);
 				$start_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ?");
 				$start_statement->bind("i", $start);
 				$start_result = $start_statement->execute();
 				if($start_result->success() == true && $start_result->rows() >= 1) {
 					$start = $start_result->fetch_array(RASSOC);
-					printf("Start:\r\n"); print_r($start);
+					//printf("Start:\r\n"); print_r($start);
 					$start['identifier'] = $start['id'];
 					$end['identifier'] = $end['id'];
 					return array("start" => $start, "end" => $end);
 				}
 			}
 		}
-		printf("odd");
+//		printf("odd");
 		return false;
 	}
 }
