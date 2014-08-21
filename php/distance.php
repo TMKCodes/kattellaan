@@ -206,7 +206,7 @@ class distance {
 						$exists_statement->bind("i", $next_start);
 						$exists_result = $exists_statement->execute();
 						if($exists_result->success() == true && $exists_result->rows() == 1) {
-							continue;
+							$next_end += 1;
 						} else {
 							$next_end_found = true;	
 						}
