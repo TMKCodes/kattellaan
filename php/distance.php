@@ -151,7 +151,7 @@ class distance {
 		$result = $statement->execute();
 		if($result->success() == true) {
 			$data = $result->fetch_array(RASSOC);
-			//print_r($data);
+			print_r($data);
 			$next_end = $data['end'] + 1;
 			$next_start = $data['start'] + 1;
 			$end_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ? OR `id` = ? ORDER BY `id` DESC LIMIT 0, 1;");
@@ -160,7 +160,7 @@ class distance {
 			$end_result = $end_statement->execute();
 			if($end_result->success() == true && $end_result->rows() >= 1) {
 				$end = $end_result->fetch_array(RASSOC);
-				//print_r($end);
+				print_r($end);
 				$start_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ?;");
 				if($end['id'] == $next_end) {
 					$start_statement->bind("i", $data['start']);
