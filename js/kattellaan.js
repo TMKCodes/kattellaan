@@ -1153,11 +1153,27 @@ function load_profile_page(uid) {
 	if(uid !== vuid) {
 		var distance = parseInt(get_distance(vuid, uid));
 		if(!isNaN(distance)) {
-			if(distance < 1000) {
-				profile_text += " asuu " + distance + " metrin päässä.";
-			} else {
-				profile_text += " asuu " + distance / 1000 + " kilometrin päässä.";
-			} 
+			distance = distance / 1000;
+			var new_distance;
+			if(distance >= 0 && distance < 10) {
+				profile_text += "asuu alle 10 kilometrin päässä.";
+			}
+			if(distance >= 10 && distance < 50) {
+				profile_text += "asuu alle 50 kilometrin päässä.";
+			}
+			if(distance >= 50 && distance < 100) {
+				profile_text += " asuu alle 100 kilometrin päässä.";
+			}
+			if(distance >= 100 && distance < 250) {
+				profile_text += " asuu alle 250 kilometrin päässä.";
+			}
+			if(distance >= 250 && distance < 500) {
+				profile_text += " asuu alle 500 kilometrin päässä.";
+			}
+			if(distance >= 500) {
+				profile_text += " asuu yli 500 kilometrin päässä.";
+			}
+			
 		}
 	}
 		
