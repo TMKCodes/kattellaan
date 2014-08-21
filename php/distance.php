@@ -199,7 +199,15 @@ class distance {
 					if($next_end_result->success() == true && $next_end_result->rows() == 1) {
 						$next_end_data = $next_end_result->fetch_array(RASSOC);
 						$next_end = $next_end_data['id'];
-						if($next_end != $next_start) {
+						$exists_statement = $this->database->prepare("SELECT * FROM `distance` WHERE (`start` = ? AND `end` = ?) OR (`start` = ? AND `end` = ?);");
+						$exists_statement->bind("i", $next_start);
+						$exists_statement->bind("i", $next_end);
+						$exists_statement->bind("i", $next_end);
+						$exists_statement->bind("i", $next_start);
+						$exists_result = $exists_statement->execute();
+						if($exists_result->success() == true && $exists_result->rows() == 1) {
+							continue;
+						} else {
 							$next_end_found = true;	
 						}
 					} else {
