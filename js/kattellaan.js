@@ -1156,10 +1156,10 @@ function load_profile_page(uid) {
 			distance = distance / 1000;
 			var new_distance;
 			if(distance >= 0 && distance < 10) {
-				profile_text += "asuu alle 10 kilometrin päässä.";
+				profile_text += " asuu alle 10 kilometrin päässä.";
 			}
 			if(distance >= 10 && distance < 50) {
-				profile_text += "asuu alle 50 kilometrin päässä.";
+				profile_text += " asuu alle 50 kilometrin päässä.";
 			}
 			if(distance >= 50 && distance < 100) {
 				profile_text += " asuu alle 100 kilometrin päässä.";
