@@ -170,6 +170,9 @@ class distance {
 			
 			if($last_distance['end'] == $last_position['id']) {
 				$next_end = $first_position['id'];
+				if($next_end == $last_distance['start']) {
+					$next_end++;
+				}
 				if($last_distance['start'] == $last_position['id']) {
 					$next_start = $first_position['id'];
 					$next_start = $first_position['id'];
