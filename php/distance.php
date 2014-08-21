@@ -195,7 +195,7 @@ class distance {
 				}
 			}
 		}
-
+		printf("odd");
 		return false;
 	}
 }
