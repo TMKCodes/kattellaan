@@ -211,7 +211,7 @@ class distance {
 				}
 			}
 			
-			printf("Next start: %s, Next end: %s\r\n", $next_start, $next_end);
+			//printf("Next start: %s, Next end: %s\r\n", $next_start, $next_end);
 		
 			return array("start" => $next_start, "end" => $next_end);
 		} else {
