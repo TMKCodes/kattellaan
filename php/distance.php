@@ -207,7 +207,11 @@ class distance {
 										if($exists_result->success() == true && $exists_result->rows() == 1) {
 											continue;
 										} else {
-											$next_end_found = true;	
+											if($next_start != $next_end) {
+												$ext_end_found = true;	
+											} else {
+												$next_end += 1;
+											}
 										}
 									} else {
 										$next_end += 1;
