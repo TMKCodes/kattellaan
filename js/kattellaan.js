@@ -29,7 +29,7 @@ function do_distance_work() {
 		async: true,
 		data: { call : "get_work", work_type : "distance", session : session }
 	}).done(function(data) {
-		//console.log(data);
+		console.log(data);
 		data = $.parseJSON(data);
 		if(data.success === true) {
 			var R = 6378137;
@@ -40,7 +40,7 @@ function do_distance_work() {
 				Math.sin(dLong / 2) * Math.sin(dLong / 2);
 			var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 			var d = R * c;
-			//console.log("Distance in meters: " + d);
+			console.log("Distance in meters: " + d);
 			var session = $.cookie("session");
 			$.ajax({
 				url: "php/api.php",
@@ -50,17 +50,17 @@ function do_distance_work() {
 					start : data.work.start.identifier, end : data.work.end.identifier,
 					distance : d }
 			}).done(function(data) {
-				//console.log(data);
+				console.log(data);
 				data = $.parseJSON(data);
 				if(data.success === true) {
 					success = true;
 				} else {
-					//console.log(data.error);
+					console.log(data.error);
 					success = false;
 				}
 			});
 		} else {
-			//console.log(data.error);
+			console.log(data.error);
 			success = false;
 		}
 	});
@@ -73,7 +73,7 @@ function open_session(username, password) {
 		async: false,
 		data: { call : 'open_session', username : username, password : password }
 	}).done(function(data) {
-		//console.log(data);
+		console.log(data);
 		var result = $.parseJSON(data);
 		if(result.success === true) {
 			$.cookie("session", result.session);
@@ -95,7 +95,7 @@ function close_session() {
 		async: false,
 		data: { call: 'close_session', session: session }
 	}).done(function(data) {
-		//console.log(data);
+		console.log(data);
 		var result = $.parseJSON(data);
 		if(result.success === true) {
 			if($.cookie("session") !== undefined) {
@@ -105,7 +105,7 @@ function close_session() {
 			$("#authentication-form").show();
 			load_home_page();
 		} else {
-			//console.log("Error: " + result.error);
+			console.log("Error: " + result.error);
 		}
 	});
 }
@@ -128,7 +128,7 @@ function update_session() {
 			async: false,
 			data: { call : 'update_session', session : session }
 		}).done(function(data) {
-			//console.log(data);
+			console.log(data);
 			var result = $.parseJSON(data);
 			if(result.success === true) {
 				$.cookie("session", result.session);
@@ -139,7 +139,7 @@ function update_session() {
 			}
 		});
 	} else {
-		//console.log("Session was not found.");
+		console.log("Session was not found.");
 		$("#user-menu").hide();
 		$("#authentication-form").show();
 		$("#register-information-jumbotron").show();
@@ -154,12 +154,12 @@ function get_username(uid) {
 		async: false,
 		data: { call : 'get_username', uid : uid }
 	}).done(function(data) {
-		//console.log(data);
+		console.log(data);
 		var result = $.parseJSON(data);
 		if(result.success === true) {
 			username = result.username;
 		} else {
-			//console.log(result.error);
+			console.log(result.error);
 			if(result.error == "Failed to confirm session") {
 				close_session();
 			}
@@ -177,12 +177,12 @@ function get_profile(uid) {
 		async: false,
 		data: { call : 'get_profile', uid : uid }
 	}).done(function(data) {
-		//console.log(data);
+		console.log(data);
 		var result = $.parseJSON(data);
 		if(result.success === true) {
 			profile = result.profile;
 		} else {
-			//console.log(result.error);
+			console.log(result.error);
 			profile = result.error;
 			if(result.error = "Failed to confirm session") {
 				close_session();
@@ -209,7 +209,7 @@ function get_town(latlng) {
 	latlng = latlng.replace(/\(/g, '');
 	latlng = latlng.replace(/\)/g, '');
 	latlng = latlng.replace(/\ /g, '');
-	//console.log(latlng);
+	console.log(latlng);
 	$.ajax({
 		url: "https://maps.googleapis.com/maps/api/geocode/json",
 		type: "GET",
@@ -217,7 +217,7 @@ function get_town(latlng) {
 		async: false,
 		data: { latlng: latlng, sensor: true }
 	}).done(function(data) {
-		//console.log(data);
+		console.log(data);
 		if(data.status === "OK") {
 			for(var i = 0; i < data.results[0].address_components.length; i++) {
 				if(data.results[0].address_components[i].types[0] === "locality" || data.results[0].address_components[i].types[0] == "administrative_area_level_3") {
@@ -259,7 +259,7 @@ function load_latest_users_to_home_page() {
 		async: true,
 		data: { call : 'get_latest_users' }
 	}).done(function(data) {
-		//console.log(data);
+		console.log(data);
 		var result = $.parseJSON(data);
 		if(result.success === true) {
 			var latest_users_display = "";
@@ -280,7 +280,7 @@ function load_latest_users_to_home_page() {
 				load_profile_page(uid);
 			});
 		} else {
-			//console.log(result.error);
+			console.log(result.error);
 		}
 	});
 }
@@ -393,11 +393,11 @@ function eye_color(eyec) {
 
 function recursive_looking_for(lookingFor) {
 	var lookingForArr = lookingFor.split(", ");
-	//console.log(lookingForArr);
+	console.log(lookingForArr);
 	if(lookingForArr.length == 1) {
 		lookingForArr = lookingFor.split(",");
 	}
-	//console.log(lookingForArr);
+	console.log(lookingForArr);
 	for(var i = 0; i < lookingForArr.length; i++) {
 		lookingForArr[i] = looking_for(lookingForArr[i]);
 	}
@@ -1107,12 +1107,12 @@ function get_distance(my_uid, his_uid) {
 		async: false,
 		data: { call : 'get_distance', my_uid : my_uid, his_uid : his_uid }
 	}).done(function(data) {
-		//console.log(data);
+		console.log(data);
 		data = $.parseJSON(data);
 		if(data.success === true) {
 			distance = data.distance;
 		} else {
-			//console.log(data.error);
+			console.log(data.error);
 			if(data.error == "Failed to confirm session") {
 				close_session();
 			}
@@ -1356,12 +1356,12 @@ function submit_profile_editions() {
 		async: false,
 		data: form_data 
 	}).done(function(data) {
-		//console.log(data);
+		console.log(data);
 		data = $.parseJSON(data);
 		if(data.success == true) {
 			ret = true;
 		} else {
-			//console.log(data.error);
+			console.log(data.error);
 		}
 	});
 	return ret;
@@ -1448,12 +1448,12 @@ function change_username(uid, username) {
 		async: false,
 		data: { call : 'change_username', uid : uid, username : username }
 	}).done(function(data) {
-		//console.log(data);
+		console.log(data);
 		data = $.parseJSON(data);
 		if(data.success == true) {
 			ret = true;
 		} else {
-			//console.log(data.error);
+			console.log(data.error);
 		}
 	});
 	return ret;
@@ -1467,12 +1467,12 @@ function change_password(uid, password) {
 		async: false,
 		data: { call : 'change_password', uid : uid, password : password }
 	}).done(function(data) {
-		//console.log(data);
+		console.log(data);
 		data = $.parseJSON(data);
 		if(data.success == true) {
 			ret = true;
 		} else {
-			//console.log(data.error);
+			console.log(data.error);
 		}
 	});
 	return ret;
@@ -1483,16 +1483,16 @@ $("#edit-account-form").submit(function(evt) {
 	var success = false;
 	var nosuccess = false;
 	var uid = $("#uid-edit-account-input").val();
-	//console.log(uid);
+	console.log(uid);
 	var username = $("#username-edit-account-input").val();
-	//console.log(username);
+	console.log(username);
 	if(username != "") {
 		success = change_username(uid, username);
 	}
 	var apassword = $("#apassword-edit-account-input").val();
-	//console.log(apassword);
+	console.log(apassword);
 	var bpassword = $("#bpassword-edit-account-input").val();
-	//console.log(bpassword);
+	console.log(bpassword);
 	if(apassword != "" || bpassword != "") {
 		if(apassword == bpassword) {
 			success = change_password(uid, apassword);
@@ -1504,16 +1504,16 @@ $("#edit-account-form").submit(function(evt) {
 			nosuccess = true;		
 		}
 	}
-	//console.log(nosuccess);
+	console.log(nosuccess);
 	if(nosuccess == false) {
-		//console.log(success);
+		console.log(success);
 		if(success == true) {
 			$("#edit-account-form").hide();
 			$("#edit-account-form").after("<p id=\"edit-account-success\">Tilin muutos onnistui.</p>");
 		} else {
 			$("#edit-account-form").hide();
 			$("#edit-account-form").after("<p id=\"edit-account-success\">Tilin muutos epäonnistui.</p>");
-			//console.log("failed to update username or password");
+			console.log("failed to update username or password");
 		}
 	}
 });
@@ -1530,12 +1530,12 @@ function get_discussion(suid, ruid) {
 		async: false,
 		data: { call : 'get_discussion', suid : suid, ruid : ruid, limit : 30 }
 	}).done(function(data) {
-		//console.log(data);
+		console.log(data);
 		data = $.parseJSON(data);
 		if(data.success === true) {
 			discussion = data.discussion;
 		} else {
-			//console.log(data.error);
+			console.log(data.error);
 			if(data.error == "Failed to confirm session") {
 				close_session();
 			}
@@ -1553,12 +1553,12 @@ function get_discussions(uid) {
 		async: false,
 		data: { call : 'get_discussions', uid : uid }
 	}).done(function(data) {
-		//console.log(data);
+		console.log(data);
 		data = $.parseJSON(data);
 		if(data.success === true) {
 			discussions = data.discussions;
 		} else {
-			//console.log(data.error);
+			console.log(data.error);
 			if(data.error == "Failed to confirm session.") {
 				close_session();
 			}
@@ -1576,7 +1576,7 @@ function get_unread_messages(only_count) {
 		async: false,
 		data: { call : 'get_unread_messages', only_count : only_count }
 	}).done(function(data) {
-		//console.log(data);
+		console.log(data);
 		data = $.parseJSON(data);
 		if(data.success == true) {
 			result = data;
@@ -1595,7 +1595,7 @@ function long_pull_messages(suid) {
 			async: true,
 			data: { call : 'long_pull_messages', suid : suid }
 		}).done(function(data) {
-			//console.log(data);
+			console.log(data);
 			data = $.parseJSON(data);
 			if(data.success == true) {
 				if($("#messages-page").is(":visible")) {	
@@ -1627,7 +1627,7 @@ function set_message_to_seen(mid) {
 		async: false,
 		data: { call : 'set_message_as_read', mid : mid }
 	}).done(function(data) {
-		//console.log(data);
+		console.log(data);
 		data = $.parseJSON(data);
 		if(data.success == true) {
 			$(".unread_message_id").each(function(i, obj) {
@@ -1738,7 +1738,7 @@ function load_messages_page(uid, duid) {
 					url: $(this).attr('action'),
 					data: $(this).serialize()
 				}).done(function(data) {
-					//console.log(data);
+					console.log(data);
 					var result = $.parseJSON(data);
 					if(result.success === true) {
 						var newMsg = "<div class=\"panel panel-success\" style=\"width: 80%; float: right; text-align: right;\">";
@@ -1755,12 +1755,12 @@ function load_messages_page(uid, duid) {
 						}
 						$("#messages-page-conversation-messages").scrollTop($("#messages-page-conversation-messages")[0].scrollHeight);
 					} else {
-						//console.log(result.error);
+						console.log(result.error);
 					}
 				});	
 			});
 		} else {
-			//console.log("fuck!");
+			console.log("fuck!");
 		}
 	} else {
 		$("#messages-page-conversation-new-message").html("Lähetä uusi viesti.");
@@ -1800,7 +1800,7 @@ function load_messages_page(uid, duid) {
 }
 
 function load_search_page(ssid) {
-	//console.log("search page opened.");
+	console.log("search page opened.");
 	if(check_session() == false) {
 		$("#search-submit").prop('disabled', true);
 	}
@@ -1926,9 +1926,9 @@ $("document").ready(function() {
 		$("#home-page-features").show();
 		if($.cookie("allow-cookies") != "true") {
 			$("#cookie-need-message").show();
-			//console.log("cookie use is not yet allowed.");
+			console.log("cookie use is not yet allowed.");
 		} else {
-			//console.log("cookie use is already allowed.");
+			console.log("cookie use is already allowed.");
 		}
 	}
 	// ...
@@ -1936,8 +1936,8 @@ $("document").ready(function() {
 		dataType: "json",
 		data: { session: $.cookie("session") },
 		beforeSubmit: function(formData, jqForm, options) {
-			//console.log("About to submit: \r\n" + $.param(formData));
-			//console.log($.cookie("session"));
+			console.log("About to submit: \r\n" + $.param(formData));
+			console.log($.cookie("session"));
 			$("#register-picture-upload-progress").show();
 			$("#register-picture-upload-progress-bar").width("0%");
 			$("#register-picture-upload-progress-percent").html("0%");
@@ -1952,19 +1952,19 @@ $("document").ready(function() {
 		uploadProgress: function(evt, position, total, percentComplete) {
 			$("#register-picture-upload-progress-bar").width(percentComplete + "%");
 			$("#register-picture-upload-progress-percent").html(percentComplete + "%");
-			//console.log("Sending: " + percentComplete + "%");
+			console.log("Sending: " + percentComplete + "%");
 			if(percentComplete === 100) {
 				$("#register-picture-upload-progress-percent").html("Odota.");
 			}
 		},
 		error: function(jqXHR, textStatus, errorThrown) {
-			//console.log("jqXHR: " + jqXHR.responseText + "\r\nStatus: " + textStatus + "\r\nError: " + errorThrown);
+			console.log("jqXHR: " + jqXHR.responseText + "\r\nStatus: " + textStatus + "\r\nError: " + errorThrown);
 		}, 
 		success: function(responseText, statusText, xhr, $form) {
-			//console.log(responseText);
-			//console.log("File sent.");
+			console.log(responseText);
+			console.log("File sent.");
 			if(statusText === "success") {
-				//console.log("File sent successfully.");
+				console.log("File sent successfully.");
 				if(responseText.success === true) {
 					$("#register-picture-upload-progress-bar").width("100%");
 					$("#register-picture-upload-progress-percent").html("Lähetetty.");
@@ -1978,7 +1978,7 @@ $("document").ready(function() {
 						var rowNumber = 0;
 						var count = responseText.uploaded_files.length;
 						for(var i = 0; i < count; i++) {
-							//console.log("Uploaded file: " + responseText.uploaded_files[i]);
+							console.log("Uploaded file: " + responseText.uploaded_files[i]);
 							if(i % 4 === 0) {
 								rowNumber = i / 4;
 								$("#register-select-picture").append("<div class=\"row\" id=\"row-" + rowNumber + "\"></div>");
@@ -1992,19 +1992,19 @@ $("document").ready(function() {
 					}
 					if(responseText.failed_files !== undefined) {
 						for(var x = 0; x < responseText.failed_files.length; x++) {
-							//console.log("Failed to upload file: " + responseText.failed_files[x]);
+							console.log("Failed to upload file: " + responseText.failed_files[x]);
 						}
 						$("#register-picture-upload-progress-percent").html("Joidenkin tiedostojen lähetys epäonnistui!");
 					}
 				} else {
 					$("#register-picture-upload-progress-bar").width("0%");
 					$("#register-picture-upload-progress-percent").width("Tiedoston lähetys epäonnistui!");
-					//console.log("File uploading failed: " + responseText.error);
+					console.log("File uploading failed: " + responseText.error);
 				}
 			} else {
 				$("#register-picture-upload-progress-bar").width("0%");
 				$("#register-picture-upload-progress-percent").html("Tiedoston lähetys epäonnistui!");
-				//console.log("Uploading failed.");
+				console.log("Uploading failed.");
 			}
 		}
 	});
@@ -2274,18 +2274,18 @@ $("#search-reset").click(function(evt) {
 $("#search-submit").click(function(evt) {
 	evt.preventDefault();
 	var form_data = $("#search-form").serialize();
-	//console.log(form_data);
+	console.log(form_data);
 	if(check_session() === true) {
 		form_data = form_data + "&call=search";
 	}
-	//console.log(form_data);
+	console.log(form_data);
 	$.ajax({
                 url: "php/api.php",
                 type: "POST",
                 async: false,
                 data: form_data
         }).done(function(data) {
-		//console.log(data);
+		console.log(data);
 		data = $.parseJSON(data);
 		if(data.success == true) {
 			window.user_search_results = data.result;
@@ -2321,7 +2321,7 @@ function load_password_recovery_page() {
 			type: "POST",
 			data: $(this).serialize()
 		}).done(function(data) {
-			//console.log(data);
+			console.log(data);
 			data = $.parseJSON(data);
 			if(data.success == true) {
 
@@ -2529,13 +2529,13 @@ $("#hide-authentication-error-page-button").click(function(evt) {
 $("#allow-cookie-use").click(function(evt) {
 	$.cookie("allow-cookies", "true");
 	$("#cookie-need-message").hide();
-	//console.log("allowed cookie use.");
+	console.log("allowed cookie use.");
 });
 
 $("#disallow-cookie-use").click(function(evt) {
 	var cookies = document.cookie.split(";");
 	$("#cookie-need-message").hide();
-	//console.log("disallowed cookie use, removing all cookies.");
+	console.log("disallowed cookie use, removing all cookies.");
 	for(var i = 0; i < cookies.length; i++) 
 		$.removeCookie(cookies[i].split("=")[0]);	
 });
@@ -2567,11 +2567,11 @@ $("#register-account-form").submit(function(evt) {
 	} else if($("#register-account-password-confirm-input").val().length <= 0) {
 		$("#register-account-password-empty-error").show();
 	} else if($("#register-account-password-input").val() !== $("#register-account-password-confirm-input").val()) {
-		//console.log($("#register-account-password-input").val() + " !== " + $("#register-account-password-confirm-input").val());
+		console.log($("#register-account-password-input").val() + " !== " + $("#register-account-password-confirm-input").val());
 		$("#register-account-password-mismatch-error").show();
 	} else {
-		//console.log("method: " + $(this).attr('method'));
-		//console.log("action: " + $(this).attr('action'));
+		console.log("method: " + $(this).attr('method'));
+		console.log("action: " + $(this).attr('action'));
 		$.ajax({
 			type: $(this).attr('method'),
 			url: $(this).attr('action'),
@@ -2584,7 +2584,7 @@ $("#register-account-form").submit(function(evt) {
 					load_page("register-invite-page");
 					$.cookie("username", result.account.username);
 				} else {
-					//console.log("Failed to authenticate.");
+					console.log("Failed to authenticate.");
 					$("#register-account-first-login-error").show();
 				}
 			} else {
@@ -2616,7 +2616,7 @@ $("#register-invite-form").submit(function(evt) {
 		url: $(this).attr('action'),
 		data: form_data
 	}).done(function(data) {
-		//console.log(data);
+		console.log(data);
 		var result = $.parseJSON(data);
 		if(result.success === true) {
 			var cloneinput = $("#register-invite-friend-addresses").children(":first").clone();
@@ -2624,7 +2624,7 @@ $("#register-invite-form").submit(function(evt) {
 			var count = 0;
 			var invites = "";
 			for(var index in result.invite) {
-				//console.log(result.invite[index]);
+				console.log(result.invite[index]);
 				if(result.invite[index] !== true) {
 					$("#register-invite-friend-addresses").append(cloneinput);
 					$("#register-invite-friend-addresses").children(":last").children("label").attr("for", "register-invite-friend-address-input-" + count);
@@ -2646,7 +2646,7 @@ $("#register-invite-form").submit(function(evt) {
 			}
 		} else {
 			// failed to confirm session.
-			//console.log("Exception happened: " + result.error);
+			console.log("Exception happened: " + result.error);
 		}
 	});
 });
@@ -4456,16 +4456,16 @@ $("#register-confirm-profile-information-form").submit(function(evt) {
 			weight : $.cookie("weight"),
 			work : $.cookie("work") }
 	}).done(function(data) {
-		//console.log(data);
+		console.log(data);
 		var result = $.parseJSON(data);
 		if(result.success === true) {
-			//console.log("Profile saved\r\n");
+			console.log("Profile saved\r\n");
 			$.removeCookie("next-page");
 			load_page("registeration-done-page");
 			$("#authentication-form").hide();
 			$("#user-menu").show();
 		} else {
-			//console.log(result.error);
+			console.log(result.error);
 			if(result.error == "Profile with the user id already exists.") {
 				load_page("registeration-done-page");
 			}
@@ -4510,13 +4510,13 @@ $("#register-select-location-show-on-map").click(function(evt) {
 	var municipality_replaced = municipality.replace(" ", "+");
 	var country_replaced = country.replace(" ", "+");
 	var jaddress = street_address_replaced + "+" + municipality_replaced + "+" + country_replaced;
-	//console.log(jaddress);
+	console.log(jaddress);
 	$.ajax({
 		url: "https://maps.googleapis.com/maps/api/geocode/json",
 		type: "GET",
 		data: { address : jaddress, sensor: false }
 	}).done(function(data) {
-		//console.log(data);
+		console.log(data);
 		if(data.status === "OK") {
 			var myLatLong = new google.maps.LatLng(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng)
 			var marker = new google.maps.Marker({
@@ -4525,7 +4525,7 @@ $("#register-select-location-show-on-map").click(function(evt) {
 			});
 		} else {
 			// display error
-			//console.log("failed to query location.");
+			console.log("failed to query location.");
 		}
 	});
 });
@@ -4553,7 +4553,7 @@ $("#register-select-location-done-button").click(function(evt) {
 			history.pushState(null, "register select profile picture", hostname + "?page=register-select-profile-picture-page");
 		} else {
 			$("#register-select-location-page-error").show();
-			//console.log("Failed to retrieve address location");
+			console.log("Failed to retrieve address location");
 		}
 	});
 });
