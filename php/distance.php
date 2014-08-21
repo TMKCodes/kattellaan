@@ -146,7 +146,7 @@ class distance {
 	}
 	
 	function get_uncalculated() {
-		$start = 79;
+		$start = 1;
 		$statement = $this->database->prepare("SELECT * FROM `distance` ORDER BY `id` DESC LIMIT 0, 1;");
 		$result = $statement->execute();
 		if($result->success() == true) {
