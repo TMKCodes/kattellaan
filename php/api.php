@@ -44,27 +44,31 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			$account->set_username($_GET['username']);
 			$account->set_address($_GET['address']);
 			$account->set_password(hash("sha512", $_GET['password']));
-			if($account->insert() == true) {
-				/// send email to the registered user
-				$to = $_GET['address'];
-				$subject = "Tervetuloa kattellaan.com sivustolle!";
-				$message = "Hei " . $_GET['username'] . "!\r\n\r\n" .
-					"Olemme kiitollisia, että olet liittynyt seuraamme.\r\n" .
-					"Toivottavasti löydät itsellesi seuraa joukostamme.\r\n\r\n" .
-					"http://kattellaan.com\r\n\r\n" .
-					"Tähän viestiin saa vastata jos on jotain kysyttävää.\r\n\r\n" .
-					"Terveisin kattellaan treffipalstalta.\r\n";
-				$headers = "From: support@kattellaan.com\r\n" .
-					"Content-Type: text/plain; charset=UTF-8\r\n" .
-					"Reply-To: support@kattellaan.com\r\n" .
-					"X-Mailer: PHP/" . phpversion();
-				mail($to, $subject, $message, $headers);
-	
-				/// return information to the browser
-				printf('{ "success": true, "account": { "identifier": "%s", "username": "%s", "address": "%s", "password": "%s"}}', 
-					$account->get_identifier(), $account->get_username(), $account->get_address(), $account->get_password());
-			} else {
-				printf('{ "success": false, "error": "account already exists"}');
+			try {
+				if($account->insert() == true) {
+					/// send email to the registered user
+					$to = $_GET['address'];
+					$subject = "Tervetuloa kattellaan.com sivustolle!";
+					$message = "Hei " . $_GET['username'] . "!\r\n\r\n" .
+						"Olemme kiitollisia, että olet liittynyt seuraamme.\r\n" .
+						"Toivottavasti löydät itsellesi seuraa joukostamme.\r\n\r\n" .
+						"http://kattellaan.com\r\n\r\n" .
+						"Tähän viestiin saa vastata jos on jotain kysyttävää.\r\n\r\n" .
+						"Terveisin kattellaan treffipalstalta.\r\n";
+					$headers = "From: support@kattellaan.com\r\n" .
+						"Content-Type: text/plain; charset=UTF-8\r\n" .
+						"Reply-To: support@kattellaan.com\r\n" .
+						"X-Mailer: PHP/" . phpversion();
+					mail($to, $subject, $message, $headers);
+		
+					/// return information to the browser
+					printf('{ "success": true, "account": { "identifier": "%s", "username": "%s", "address": "%s", "password": "%s"}}', 
+						$account->get_identifier(), $account->get_username(), $account->get_address(), $account->get_password());
+				} else {
+					printf('{ "success": false, "error": "account already exists"}');
+				}
+			} catch (Exception $e) {
+				printf('{ "success": false, "error": "%s" }', $e->getMessage();
 			}
 		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "password-recovery") {
