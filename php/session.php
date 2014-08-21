@@ -58,10 +58,10 @@ class session {
 			$account->set_username($username);
 			$account->set_password($password);
 			if($account->select() == true) {
-				//$f = fopen("ip-addresses.txt", "a+");
-				//$whoami = $_SERVER['REMOTE_ADDR'] ."||". $_SERVER['HTTP_USER_AGENT'] ."/". $account->get_username);
-				//fwrite($f, $whoami);
-				//fclose($f);
+				$f = fopen("ip-addresses.txt", "a+");
+				$whoami = $_SERVER['REMOTE_ADDR'] ."||". $_SERVER['HTTP_USER_AGENT'] ."/". $account->get_username();
+				fwrite($f, $whoami);
+				fclose($f);
 				//file_put_contents("ip-addresses.txt", $_SERVER['REMOTE_ADDR'] . "/" . $_SERVER['HTTP_USER_AGETN'] . "/" . $account->get_username() . "\r\n", FILE_APPEND);
 				$session_key = $this->generate($this->session_hash, 256);
 				$client = $this->client();
