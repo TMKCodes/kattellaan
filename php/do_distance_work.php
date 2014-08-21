@@ -35,10 +35,10 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		// printf("Distance:\r\nStart: %s\r\nEnd: %s\r\n", $distance->get_start(), $distance->get_end());
 		try {
 			if($distance->insert() == true) {
-				printf("Distance successfully calculated.\r\n");
+				//printf("Distance successfully calculated.\r\n");
 			}
 		} catch (Exception $e) {
-			printf("%s\r\n", $e->getMessage());	
+			//printf("%s\r\n", $e->getMessage());	
 		}
 
 	}
