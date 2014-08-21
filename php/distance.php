@@ -148,16 +148,16 @@ class distance {
 	function get_uncalculated() {
 		$last_distance_statement = $this->database->prepare("SELECT * FROM `distance` ORDER BY `id` DESC LIMIT 0, 1;");
 		$last_distance_result = $last_distance_statement->execute();
-		if($last_distance_result->success() >= 1) {
+		if($last_distance_result->success() == true && $last_distance_result->rows() == 1) {
 			$first_position_statement = $this->database->prepare("SELECT * FROM `position` LIMIT 0, 1;");
 			$first_position_result = $first_position_statement->execute();
-			if($first_position_result->success() >= 1) {
+			if($first_position_result->rows() < 1) {
 				return false;
 			}
 
 			$last_position_statement = $this->database->prepare("SELECT * FROM `position` ORDER BY `id` DESC LIMIT 0, 1;");
 			$last_position_result = $last_position_statement->execute();
-			if($last_position_result->success() >= 1) {
+			if($last_position_result->rows() < 1) {
 				return false;
 			}
 
@@ -227,7 +227,6 @@ class distance {
 				}
 			}
 		}
-//		printf("odd");
 		return false;
 	}
 }
