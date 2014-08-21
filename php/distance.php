@@ -221,13 +221,11 @@ class distance {
 			$end_result = $end_statement->execute();
 			if($end_result->success() == true && $end_result->rows() >= 1) {
 				$end = $end_result->fetch_array(RASSOC);
-				printf("End:\r\n"); print_r($end);
 				$start_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ?");
 				$start_statement->bind("i", $start);
 				$start_result = $start_statement->execute();
 				if($start_result->success() == true && $start_result->rows() >= 1) {
 					$start = $start_result->fetch_array(RASSOC);
-					printf("Start:\r\n"); print_r($start);
 					$start['identifier'] = $start['id'];
 					$end['identifier'] = $end['id'];
 					return array("start" => $start, "end" => $end);

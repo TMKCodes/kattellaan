@@ -39,7 +39,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				printf("Distance successfully calculated.\r\n");
 			}
 		} catch (Exception $e) {
-			
+			printf("No distances to calculate.\r\n");	
 		}
 
 	}
