@@ -66,6 +66,10 @@ class profile {
 	}
 
 	public function set($profile) {
+		foreach($profile as &$val) {
+			$val = str_replace("<", "&lt;", $val);
+			$val = str_replace(">", "&gt;", $val);
+		}
 		$this->accomodation = $profile['accomodation'];
 		$this->address = $profile['address'];
 		$this->alcohol = $profile['alcohol'];
