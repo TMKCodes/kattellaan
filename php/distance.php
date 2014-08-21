@@ -146,38 +146,69 @@ class distance {
 	}
 	
 	function get_uncalculated() {
-		$start = 1;
-		$statement = $this->database->prepare("SELECT * FROM `distance` ORDER BY `id` DESC LIMIT 0, 1;");
-		$result = $statement->execute();
-		if($result->success() == true && $result->rows() >= 1) {
-			$data = $result->fetch_array(RASSOC);
-			printf("Distance:\r\n"); print_r($data);
-			$next_end = $data['end'] + 1;
-			$next_start = $data['start'] + 1;
-			$end_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ? OR `id` = ? ORDER BY `id` DESC LIMIT 0, 1;");
-			$end_statement->bind("i", $next_end);
-			$end_statement->bind("i", $start);
-			$end_result = $end_statement->execute();
-			if($end_result->success() == true && $end_result->rows() >= 1) {
-				$end = $end_result->fetch_array(RASSOC);
-				printf("End:\r\n"); print_r($end);
-				$start_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ?;");
-				if($end['id'] == $next_end) {
-					$start_statement->bind("i", $data['start']);
+		$last_distance_statement = $this->database->prepare("SELECT * FROM `distance` ORDER BY `id` DESC LIMIT 0, 1;");
+		$last_distance_result = $last_distance_statement->execute();
+		if($last_distance_result->success() >= 1) {
+			$first_position_statement = $this->database->prepare("SELECT * FROM `position` LIMIT 0, 1;");
+			$first_position_result = $first_position_statement->execute();
+			if($first_position_result->success() >= 1) {
+				return false;
+			}
+
+			$last_position_statement = $this->database->prepare("SELECT * FROM `position` ORDER BY `id` DESC LIMIT 0, 1;");
+			$last_position_result = $last_position_statement->execute();
+			if($last_position_result->success() >= 1) {
+				return false;
+			}
+
+			$last_distance = $last_distance_result->fetch_array(RASSOC);
+			$first_position = $first_position_result->fetch_array(RASSOC);
+			$last_position = $last_position_result->fetch_array(RASSOC);
+			if($first_position['id'] == $last_position['id']) {
+				return false;
+			}
+			
+			if($last_distance['end'] == $last_position['id']) {
+				$next_end = $first_position['id'];
+				if($last_distance['start'] == $last_position['id']) {
+					$next_start = $first_position['id'];
+					$next_start = $first_position['id'];
 				} else {
-					$start_statement->bind("i", $next_start);
+					$next_start_found = false;
+					$next_start = $last_distance['start'] + 1;
+					while($next_start_found == false) {
+						$next_start_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ?;");
+						$next_start_result = $next_start_statement->execute();
+						if($next_start_result->success() == true && $next_start_result->rows() == 1) {
+							$next_start_data = $next_start_result->fetch_array(RASSOC);
+							$next_start = $next_start_data['id'];
+							$next_start_found = true;
+						} else {
+							$next_start += 1;
+						}
+					}
 				}
-				$start_result = $start_statement->execute();
-				if($start_result->success() == true && $start_result->rows() >= 1) {
-					$start = $start_result->fetch_array(RASSOC);
-					printf("Start:\r\n"); print_r($start);
-					$start['identifier'] = $start['id'];
-					$end['identifier'] = $end['id'];
-					return array("start" => $start, "end" => $end);
+			} else {
+				$next_start = $last_distance['start'];
+				$next_end_found = false;
+				$next_end = $last_distance['end'] + 1;
+				while($next_end_found == false) {
+					$next_end_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ?;");
+					$next_end_result = $next_end_statement->execute();
+					if($next_end_result->success() == true && $next_end_result->rows() == 1) {
+						$next_end_data = $next_end_result->fetch_array(RASSOC);
+						$next_end = $next_end_data['id'];
+						$next_end_found = true;
+					} else {
+						$next_end += 1;
+					}
 				}
 			}
+			
+			$start['identifier'] = $next_start;
+			$end['identifier'] = $next_end;
+			return array("start" => $start, "end" => $end);
 		} else {
-			printf("else");
 			$end_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ?");
 			$end_statement->bind("i", $start + 1);
 			$end_result = $end_statement->execute();
