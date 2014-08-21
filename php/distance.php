@@ -200,7 +200,7 @@ class distance {
 					if($next_end_result->success() == true && $next_end_result->rows() == 1) {
 						$next_end_data = $next_end_result->fetch_array(RASSOC);
 						$next_end = $next_end_data['id'];
-						if($next_end == $last_distance['start'] || $next_end == $next_start) {
+						if($next_end == $last_distance['start']) {
 							$next_end += 1;
 						} else {
 							$next_end_found = true;
