@@ -40,35 +40,32 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			printf('{ "success": false, "error": "password-mismatch" }');
 		} else {
 			/// insert account to the database
+			try {
 			$account = new account($database);
 			$account->set_username($_GET['username']);
 			$account->set_address($_GET['address']);
 			$account->set_password(hash("sha512", $_GET['password']));
-			try {
-				if($account->insert() == true) {
-					/// send email to the registered user
-					$to = $_GET['address'];
-					$subject = "Tervetuloa kattellaan.com sivustolle!";
-					$message = "Hei " . $_GET['username'] . "!\r\n\r\n" .
-						"Olemme kiitollisia, että olet liittynyt seuraamme.\r\n" .
-						"Toivottavasti löydät itsellesi seuraa joukostamme.\r\n\r\n" .
-						"http://kattellaan.com\r\n\r\n" .
-						"Tähän viestiin saa vastata jos on jotain kysyttävää.\r\n\r\n" .
-						"Terveisin kattellaan treffipalstalta.\r\n";
-					$headers = "From: support@kattellaan.com\r\n" .
-						"Content-Type: text/plain; charset=UTF-8\r\n" .
-						"Reply-To: support@kattellaan.com\r\n" .
-						"X-Mailer: PHP/" . phpversion();
-					mail($to, $subject, $message, $headers);
-		
-					/// return information to the browser
-					printf('{ "success": true, "account": { "identifier": "%s", "username": "%s", "address": "%s", "password": "%s"}}', 
-						$account->get_identifier(), $account->get_username(), $account->get_address(), $account->get_password());
-				} else {
-					printf('{ "success": false, "error": "account already exists"}');
-				}
-			} catch (Exception $e) {
-				printf('{ "success": false, "error": "%s" }', $e->getMessage());
+			if($account->insert() == true) {
+				/// send email to the registered user
+				$to = $_GET['address'];
+				$subject = "Tervetuloa kattellaan.com sivustolle!";
+				$message = "Hei " . $_GET['username'] . "!\r\n\r\n" .
+					"Olemme kiitollisia, että olet liittynyt seuraamme.\r\n" .
+					"Toivottavasti löydät itsellesi seuraa joukostamme.\r\n\r\n" .
+					"http://kattellaan.com\r\n\r\n" .
+					"Tähän viestiin saa vastata jos on jotain kysyttävää.\r\n\r\n" .
+					"Terveisin kattellaan treffipalstalta.\r\n";
+				$headers = "From: support@kattellaan.com\r\n" .
+					"Content-Type: text/plain; charset=UTF-8\r\n" .
+					"Reply-To: support@kattellaan.com\r\n" .
+					"X-Mailer: PHP/" . phpversion();
+				mail($to, $subject, $message, $headers);
+	
+				/// return information to the browser
+				printf('{ "success": true, "account": { "identifier": "%s", "username": "%s", "address": "%s", "password": "%s"}}', 
+					$account->get_identifier(), $account->get_username(), $account->get_address(), $account->get_password());
+			} else {
+				printf('{ "success": false, "error": "account already exists"}');
 			}
 		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "password-recovery") {
@@ -80,6 +77,10 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				$pwa .= base64_encode($account->get_identifier() . "||" . hash("sha512", $account->get_username() . "/" . $account->get_address() . "/" . $account->get_password() . "/" . $account->get_registered()));
 				$to = $account->get_address();
 				$subject = "kattellaan.com salasana palautus.";
+				$message = "Hei " . $account->get_username() ."!\r\n\r\n" .
+					"Sinun tunnuksellesi on pyydetty uutta salasanaa. Jos et ole tätä pyytänyt voit unohtaa viestin.\r\n" .
+					"Kuitenkin jos haluat uuden salasanan mene osoitteeseen:\r\n" . $pwa . "\r\n" .
+					"Terveisiä kattellaan treffipalvelusta.";
 				$message = "Hei " . $account->get_username() ."!\r\n\r\n" .
 					"Sinun tunnuksellesi on pyydetty uutta salasanaa. Jos et ole tätä pyytänyt voit unohtaa viestin.\r\n" .
 					"Kuitenkin jos haluat uuden salasanan mene osoitteeseen:\r\n" . $pwa . "\r\n" .
@@ -728,13 +729,14 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			$profile = new profile($database);
 			if($profile->select($_POST['uid']) == true) {
 				$data = json_decode($call, true);
+				printf('{ "success": false, "error": "%s" }', $data);
 				$data['address'] = $_POST['street-address'] . " " . $_POST['town-address'] . " " . $_POST['country-address'];
 				$data['address'] = str_replace(" ", "+", $data['address']);
 				$data['looking_for'] = implode(",", $data['looking_for']);
 				$data['kids'] = implode(",", $data['kids']);
 				$data['language_skills'] = implode(",", $data['language_skills']);
 				$data['pets'] = implode(",", $data['pets']);
-				$data['picture'] = $data['picture'];
+				$data['picture'] = $profile->get_picture();
 				$profile->set($data);
 				if($profile->update() == true) {
 					printf('{ "success": true }');
@@ -1144,11 +1146,6 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			$distances = array();
 			if(!empty($_POST['max-distance'])) {
 				$searcher_identifier = $session->get_identifier($_COOKIE['session']);
-				$distance_statement = $database->prepare("SELECT * FROM `distance` WHERE `distance` <= ? AND (`start` = ? OR `end` = ?);");
-				$distance_statement->bind("i", $_POST['max-distance'] * 1000);
-				$distance_statement->bind("i", $searcher_identifier);
-				$distance_statement->bind("i", $searcher_identifier);
-				$distance_result = $distance_statement->execute();
 				if($distance_result->success() == true) {
 					$rows = $distance_result->rows();
 					for($i = 0; $i < $rows; $i++) {

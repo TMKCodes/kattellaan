@@ -46,6 +46,10 @@ class profile {
 	private $weight;
 	private $work;
 
+	public function get_picture() {
+		return $this->picture;
+	}
+
 	public function __construct($database) {
 		$this->database = $database;
 	}	
