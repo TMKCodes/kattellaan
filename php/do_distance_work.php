@@ -15,7 +15,7 @@ function rad($x) {
 
 $passwd = explode(":", base64_decode(file_get_contents("/home/temek/kattellaan/.passwd")));
 $database = new db("mysqli");
-if($database->connect("127.0.01", $passwd[0], $passwd[1], "kattellaan") == true) {
+if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true) {
 	$distance = new distance($database);
 	$distance_work = $distance->get_uncalculated();
 	printf("%s\r\n", $distance_work);
