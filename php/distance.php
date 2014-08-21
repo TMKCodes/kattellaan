@@ -149,7 +149,7 @@ class distance {
 		$start = 1;
 		$statement = $this->database->prepare("SELECT * FROM `distance` ORDER BY `id` DESC LIMIT 0, 1;");
 		$result = $statement->execute();
-		if($result->success() == true) {
+		if($result->success() == true && $result->rows() > 0) {
 			$data = $result->fetch_array(RASSOC);
 			print_r($data);
 			$next_end = $data['end'] + 1;
