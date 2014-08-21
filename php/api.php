@@ -588,7 +588,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					die();
 				}
 				$results = array();
-				if(!$empty($discussions)) {
+				if(!empty($discussions)) {
 					foreach($discussions as $discussion) {
 						$sacc = new account($database);
 						$racc = new account($database);
