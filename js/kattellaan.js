@@ -1764,9 +1764,6 @@ function load_messages_page(uid, duid) {
 		$("#messages-page-conversation-new-message").html("Lähetä uusi viesti.");
 	}
 	var discussions = get_discussions(uid);
-	if(discussions == false) {
-		return false;
-	}
 	var discussions_already = [];
 	if(discussions != undefined) {
 		var disc_list = "<ul class=\"list-group\">";	
