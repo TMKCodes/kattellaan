@@ -189,7 +189,7 @@ class distance {
 							$exists_statement->bind("i", $next_start);
 							$exists_result = $exists_statement->execute();
 							if($exists_result->success() == true && $exists_result->rows() == 1) {
-								$next_start += 1;
+								continue;
 							} else {
 								$next_start_found = true;	
 							}
@@ -216,7 +216,7 @@ class distance {
 						$exists_statement->bind("i", $next_start);
 						$exists_result = $exists_statement->execute();
 						if($exists_result->success() == true && $exists_result->rows() == 1) {
-							$next_end += 1;
+							continue;
 						} else {
 							$next_end_found = true;	
 						}
