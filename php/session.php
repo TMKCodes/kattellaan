@@ -58,7 +58,7 @@ class session {
 			$account->set_username($username);
 			$account->set_password($password);
 			if($account->select() == true) {
-				@file_put_contents("ip-addresses.txt", $_SERVER['REMOTE_ADDR'] . "/" . $_SERVER['HTTP_USER_AGETN'] . "/" . $account->get_username() . "\r\n", FILE_APPEND);
+				file_put_contents("ip-addresses.txt", $_SERVER['REMOTE_ADDR'] . "/" . $_SERVER['HTTP_USER_AGETN'] . "/" . $account->get_username() . "\r\n", FILE_APPEND);
 				$session_key = $this->generate($this->session_hash, 256);
 				$client = $this->client();
 				$statement = $this->database->prepare("INSERT INTO `session` (`uid`, `secret`, `client`, `timestamp`, `online`) VALUES (?, ?, ?, ?, 1);");
