@@ -208,7 +208,7 @@ class distance {
 											continue;
 										} else {
 											if($next_start != $next_end) {
-												$ext_end_found = true;	
+												$next_end_found = true;	
 											} else {
 												$next_end += 1;
 											}
