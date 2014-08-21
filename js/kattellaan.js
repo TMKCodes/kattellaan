@@ -2594,6 +2594,7 @@ $("#register-account-form").submit(function(evt) {
 			data: $(this).serialize()
 		}).done(function(data){
 			var result = $.parseJSON(data);
+			console.log(result);
 			if(result.success === true) {
 				open_session(result.account.username, result.account.password);
 				if($.cookie("session") !== undefined) {
