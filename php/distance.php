@@ -177,6 +177,7 @@ class distance {
 				}
 			}
 		} else {
+			printf("else");
 			$end_statement = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ?");
 			$end_statement->bind("i", $start + 1);
 			$end_result = $end_statement->execute();
