@@ -211,7 +211,7 @@ class distance {
 				}
 			}
 			
-			//printf("Next start: %s, Next end: %s\r\n", $next_start, $next_end);
+			printf("Next start: %s, Next end: %s\r\n", $next_start, $next_end);
 			$start_select = $this->database->prepare("SELECT * FROM `position` WHERE `id` = ?");
 			$start_select->bind("i", $next_start);
 			$start_result = $start_select->execute();
