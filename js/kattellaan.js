@@ -1712,7 +1712,7 @@ function load_messages_page(uid, duid) {
 	$("#messages-page-conversation-messages").css("max-height: 600px; overflow-x: hidden; overflow-y: scroll;");
 	if(duid != 0) {
 		var receiver_name = get_username(duid);
-		$("#messages-page-conversation-who").html("Keskustelu " + receiver_name + ":n kanssa.");
+		$("#messages-page-conversation-who").html("Keskustelu käyttäjän " + receiver_name + " kanssa.");
 
 		var discussion = get_discussion(uid, duid);
 		if(discussion != undefined) {
