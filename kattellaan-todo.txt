@@ -1,0 +1,10 @@
+Kattellaan TODO:
+================
+
+* Korjaa matka laskenta niin, ettei se jumita tietokantaa.
+* Käyttäjän salasanan palautus valmiiksi.
+* Viesti sivulla lisää linkki toisen käyttäjän profiiliin.
+* Näytä vain kuvalliset kun checkbox valitaan.
+* Lisää onnistui ja epäonnistui viestejä.
+* Rajoitukset syntymäpäivälle.
+
