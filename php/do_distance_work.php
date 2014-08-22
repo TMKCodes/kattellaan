@@ -38,7 +38,9 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				//printf("Distance successfully calculated.\r\n");
 			}
 		} catch (Exception $e) {
-			//printf("%s\r\n", $e->getMessage());	
+			//printf("%s\r\n", $e->getMessage());
+			sleep(1800);
+			printf("sleeping..\r\n");
 		}
 
 	}
