@@ -80,7 +80,7 @@
 		<div class="alert alert-danger">
 			Syötit väärän käyttäjänimen tai salasanan. Jos olet unohtanut salasanasi voit saada sähköpostilla uuden. 
 			<button type="buttin" class="btn btn-default" id="password-recovery-page-button">Palauta salasana</button>
-			<button type="button" class="btn btn-default" id="hide-authentication-error-page-button">Piiloita</button>
+			<button type="button" class="btn btn-default" id="hide-authentication-error-page-button">Piilota</button>
 		</div>
 	</div>
 
@@ -104,7 +104,7 @@
 				(adsbygoogle = window.adsbygoogle || []).push({});
 			</script>
 			<div id="no-ad" style="display: none;">
-				<p>Oletko ystävällinen ja estäisit mainosten esto ohjelmistojen toiminnan sivustollamme. Jos haluat mainokset piiloon sivustollamme ehdotan plus jäsenyyden hankkimista.</p>	
+				<p>Oletko ystävällinen ja estäisit mainostenesto-ohjelmistojen toiminnan sivustollamme. Jos haluat mainokset piiloon, kannattaa harkita plus-jäsenyyden hankkimista.</p>	
 			</div>
 			<script async type="text/javascript">
 				window.onload = function() {
@@ -138,10 +138,10 @@
 			<div class="col-xs-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h1>Tervetuloa kattellaan treffipalstalle!</h1>
+						<h1>Tervetuloa Kattellaan treffipalstalle!</h1>
 					</div>
 					<div class="panel-body">
-						<p>Kattellaan on suomalaisille tarkoitettu seuran haku palsta. Liity seuraamme!</p>
+						<p>Kattellaan on suomalaisille tarkoitettu seuranhakupalsta. Liity seuraamme!</p>
 						<button type="button" class="btn btn-success btn-lg" id="start-registeration-button">Rekisteröidy käyttäjäksi</button>
 					</div>
 				</div>
@@ -790,7 +790,7 @@
 					<div class="panel-body">
 						<form method="POST" action="php/api.php" id="search-form" role="form">
 							<button id="toggle-basic-information-inputs-button" class="btn btn-success btn-block" style="text-align: left; padding-left: 10px; margin-bottom: 10px;">
-								<i class="glyphicon glyphicon-arrow-up"></i>&nbsp;Piiloita perustieto valinnat.
+								<i class="glyphicon glyphicon-arrow-up"></i>&nbsp;Piiloita perustiedot
 							</button>	
 							<div id="basic-information-inputs" >
 								<div class="form-inline form-group">
@@ -803,8 +803,8 @@
 									<input type="number" class="form-control" name="age-max" id="age-max-search-input" value="40" min="18" max="150"/>
 								</div>
 								<div class="form-inline form-group">
-									<label for="location-search-input">Maantieteellinen alue:</label>
-									<input type="text" class="form-control" name="location" id="location-search-input" placeholder="Esimerkiksi kunta.">
+									<label for="location-search-input">Kunta:</label>
+									<input type="text" class="form-control" name="location" id="location-search-input" placeholder="Kunta.">
 								</div>
 								<div class="form-inline form-group" style="display: none;" data-tip="Toimii vain käyttäjille jotka ovat sallineet etäisyyden näyttämisen.">
 									<label for="max-distance-search-input">Etäisyys:</label>&nbsp;
@@ -853,7 +853,7 @@
 								</div>
 							</div>
 							<button id="toggle-outlook-inputs-button" class="btn btn-success btn-block" style="text-align: left; padding-left: 10px; margin-bottom: 10px;">
-								<i class="glyphicon glyphicon-arrow-down"></i>&nbsp;Näytä ulkonäkö valinnat.
+								<i class="glyphicon glyphicon-arrow-down"></i>&nbsp;Näytä ulkonäkö
 							</button>
 							<div id="outlook-inputs" style="display: none;">
 								<!-- Height, Weight, body-type, eye-color, hair-length, hair-color -->
@@ -919,7 +919,7 @@
 								</div>
 							</div>
 							<button id="toggle-background-inputs-button" class="btn btn-success btn-block" style="text-align: left; padding-left: 10px; margin-bottom: 10px;">
-								<i class="glyphicon glyphicon-arrow-down"></i>&nbsp;Näytä tausta valinnat.
+								<i class="glyphicon glyphicon-arrow-down"></i>&nbsp;Näytä tausta
 							</button>
 							<div id="background-inputs" style="display: none;">
 								<div class="form-group">
@@ -1025,7 +1025,7 @@
 								</div>
 							</div>
 							<button id="toggle-lifestyle-inputs-button" class="btn btn-success btn-block" style="text-align: left; padding-left: 10px; margin-bottom: 10px;">
-								<i class="glyphicon glyphicon-arrow-down"></i>&nbsp;Näytä elämäntyyli valinnat.
+								<i class="glyphicon glyphicon-arrow-down"></i>&nbsp;Näytä elämäntyyli
 							</button>
 							<div id="lifestyle-inputs" style="display: none;">
 								<div class="form-group">
@@ -1317,18 +1317,18 @@
 				<h1>Kattellaan opastus.</h1>
 				<p>Jos sinulla on jotain kysyttävää voit lähettää sähköpostia osoitteseen <b>support[at]kattellaan.com</b> ja vastaamme sinulle mahdollisimman nopeasti, mutta olisitko ensin ystävällinen ja tarkista ensin usein kysytyt kysymykset ja muut ohjeet joita tältä sivustolta löydät.</p>
 				<h2>Usein kysytyt kysymykset:</h2>
+				<h3>Menetänkö tunnukseni kun palvelu julkaistaan kokonaisena?</h3>
+				<p>Jos ei tapahdu mitään katastrofia palvelun kehityksen aikana, niin yritämme pitää kaikki tunnukset tallessa jotta ei tarvitse rekisteröityä uudestaan.</p>
+				<h3>Mitä plus-jäsenyydestä on hyötyä?</h3>
+				<p>VIP tunnuksia ei ole vielä saatavilla. Kun saamme rakennettua VIP järjestelmän niin VIP:ien ei tarvitse katsella sivuston mainoksia. VIP jäsenet saavat myös lisää näkyvyyttä treffaajien etsinnässä ja muutenkin palvelussa. VIP käyttäjät pääsevät katselemaan koko viestihistoriaansa ja tallentamaan enemmän kuin kolme hakua. Ja paljon muuta!</p>
 				<h3>Voimassa olevat käyttöehdot ja rekisteriseloste?</h3>
 				<p>Kattellaan palvelussa esillä olevat käyttöehdot ja rekisteriseloste ovat voimassa olevia.<p>
 				<ul>
 					<li><a href="?page=register-terms-of-service-page">Käyttöehdot</a></li>
 					<li><a href="?page=privacy-policy-page">Rekisteriseloste</a></li>
 				<ul>
-				<h3>Menetänkö tunnukseni kun palvelu julkaistaan kokonaisena?</h3>
-				<p>Jos ei tapahdu mitään katastrofia palvelun kehityksen aikana, niin yritämme pitää kaikki tunnukset tallessa jotta ei tarvitse rekisteröityä uudestaan.</p>
-				<h3>Mitä VIP tunnuksista on hyötyä</h3>
-				<p>VIP tunnuksia ei ole vielä saatavilla. Kun saamme rakennettua VIP järjestelmän niin VIP:ien ei tarvitse katsella sivuston mainoksia. VIP jäsenet saavat myös lisää näkyvyyttä treffaajien etsinnässä ja muutenkin palvelussa. VIP käyttäjät pääsevät katselemaan koko viestihistoriaansa ja tallentamaan enemmän kuin kolme hakua. Ja paljon muuta!</p>
 				<h3>Kuka on ohjelmoinut sivuston?</h3>
-				<p>Yksin kertaisesti ja yksinäisesti Toni Korpela</p>
+				<p>Yksinkertaisesti ja yksinäisesti Toni Korpela</p>
 			</div>
 		</div>
 	</div>
@@ -1384,12 +1384,12 @@
 				<p>Palveluun lähettäessä materiaalia käyttäjä vakuuttaa olevansa joko aineiston tekijänoikeuksien tai käyttäjänoikeuksien haltija.</p>
 				<p>Palvelussa käyttäjä ei saa esiintyä useammalla kuin yhdellä henkilökohtaisella tunnuksella. </p>
 				<p>Käyttäjä sitoutuu ymmärtävänsä, että sivustolle lähetettyä aineistoa, kuten alastomuutta sisältäviä kuvia, ei välttämättä koskaa saa täysin poistettua Internetistä. </p>
-				<p>Käyttäjä sitoutuu olemaan käyttämättä palvelua SUomen lain ja palvelun käyttöehtojen vastaisiin toimenpiteisiin.</p>
+				<p>Käyttäjä sitoutuu olemaan käyttämättä palvelua Suomen lain ja palvelun käyttöehtojen vastaisiin toimenpiteisiin.</p>
 				<p>Käyttäjä vastaa siitä, etteivät hänen käyttämänsä laitteet tai ohjelmistot aiheuta haittaa palvelulle tai muille palvelun käyttäjille.</p>
 				<p>Käyttäjä ei saa tarkoituksella johtaa muita käyttäjiä harhaan.</p>
 				<p>Käyttäjä sitoituu olemaan mainostamatta muita kaupallisia sivustoja, palveluita tai yhteisöjä tässä palvelussa. </p>
-				<p>Käyttäjä on velvollinen ilmoittamaan häiriköinnistä tai käyttöehtojen vastaisesta materiaalista välittömästi palvelun tarjoajalle käyttäen joko sähköpostia tai erityisiä ilmianna linkkejä. </p>
-				<b>3. Palvelun tarjoajan oikeudet ja velvoitteet.</b><br />
+				<p>Käyttäjä on velvollinen ilmoittamaan häiriköinnistä tai käyttöehtojen vastaisesta materiaalista välittömästi palvelun tarjoajalle käyttäen joko sähköpostia tai erityisiä ilmiantolinkkejä. </p>
+				<b>3. Palveluntarjoajan oikeudet ja velvoitteet.</b><br />
 				<p>Palvelun tarjoaja voi lopettaa tämän palvelun tarjoamisen tai irtisanoa tämän sopimuksen ilman etukäteisvaroitusta ja palveluntarjoaja voi näissä tapauksissa poistaa käyttäjän tiedot.</p>
 				<p>Lähettämällä aineistoa mille tahansa palvelun tarjoajan palvelimelle, esimerkiksi sähköpostitse tai sivuston välityksellä, käyttäjä sitoutuu seuraaviin ehtoihin:</p> 
 				<ul>
@@ -1629,9 +1629,9 @@
 				<label class="input-group-addon" for="register-select-relationship-status-input">Suhde tilanne:</label>
 				<select id="register-select-relationship-status-input" class="form-control" name="relationship-status">
 					<option value="single">Sinkku</option>
-					<option value="relationship">Parisuhde</option>
-					<option value="cohabitation">Avoliitto</option>
-					<option value="marriage">Avioliitto</option>
+					<option value="relationship">Parisuhteessa</option>
+					<option value="cohabitation">Avoliittossa</option>
+					<option value="marriage">Avioliittossa</option>
 					<option value="divorce">Eronnut</option>
 					<option value="seperation">Asumusero</option>
 					<option value="widow">Leski</option>
@@ -2027,7 +2027,7 @@
 					<option value="sporty">Sporttinen</option>
 					<option value="classic">Klassinen</option>
 					<option value="fleamarket">Kirpputori</option>
-					<option value="self-indulgent">Mukavuuden haluinen</option>
+					<option value="self-indulgent">Mukavuudenhaluinen</option>
 					<option value="regular">Normaali</option>
 					<option value="hoppers">Hoppari</option>
 					<option value="rocker">Rokkari</option>
