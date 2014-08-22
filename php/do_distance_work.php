@@ -43,6 +43,9 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			printf("sleeping..\r\n");
 		}
 
+	} else {
+		sleep(1800);
+		printf("sleeping..\r\n");
 	}
 } else {
 	printf("Failed to connect to database\r\n");
