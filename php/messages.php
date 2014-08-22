@@ -153,6 +153,8 @@ class message {
 		if(empty($this->message)) {
 			$this->message = "";
 		}
+		$this->message = str_replace("<", "&lt;", $this->message);
+		$this->message = str_replace(">", "&gt;", $this->message);
 		$query = "INSERT INTO `message` (`sender`, `receiver`, `timestamp`, `seen`, `type`, `message`) " .
 				"VALUES (?, ?, ?, ?, ?, ?);";
 		$statement = $this->database->prepare($query);
