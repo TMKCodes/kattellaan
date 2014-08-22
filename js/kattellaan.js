@@ -1660,7 +1660,7 @@ function set_message_to_seen(mid) {
 						}
 					} else {
 						$("#user-menu-messages > a").html('<b class="glyphicon glyphicon-envelope"></b> Ilmoitukset <b class="caret"></b>');
-						$("#user-menu-messages > .dropdown-menu > #empty > a").html("<i id=\"count\" style=\"display: none;\">0</i>Ei uusia ilmoituksia.");
+						$("#user-menu-messages > .dropdown-menu > #empty > a").html("<i id=\"count\" style=\"display: none;\">0</i>Ei uusia ilmoituksia");
 					}
 				}
 			});
@@ -1704,7 +1704,7 @@ function update_unread_messages() {
 		});
 	} else {
 		$("#user-menu-messages > a").html('<b class="glyphicon glyphicon-envelope"></b> Ilmoitukset <b class="caret"></b>');
-		$("#user-menu-messages > .dropdown-menu > #empty > a").html("<i id=\"count\" style=\"display: none;\">0</i>Ei uusia ilmoituksia.");
+		$("#user-menu-messages > .dropdown-menu > #empty > a").html("<i id=\"count\" style=\"display: none;\">0</i>Ei uusia ilmoituksia");
 	}
 }
 
@@ -2406,13 +2406,13 @@ function toggle_search_inputs(btn, which) {
 		$(btn).children("i").removeClass("glyphicon-arrow-down");
 		$(btn).children("i").addClass("glyphicon-arrow-up");
 		var text = $(btn).html();
-		$(btn).html(text.replace("Näytä", "Piiloita"));
+		$(btn).html(text.replace("Näytä", "Piilota"));
 		$(which).show();
 	} else {
 		$(btn).children("i").removeClass("glyphicon-arrow-up");
 		$(btn).children("i").addClass("glyphicon-arrow-down");
 		var text = $(btn).html();
-		$(btn).html(text.replace("Piiloita", "Näytä"));
+		$(btn).html(text.replace("Piilota", "Näytä"));
 		$(which).hide();
 	}
 }
