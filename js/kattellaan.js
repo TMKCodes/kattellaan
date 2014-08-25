@@ -2338,7 +2338,7 @@ function load_new_password_page() {
 			$("#new-password-form-failure").show("<p>Antamasi salasanat ovat erilaiset.</p>");
 		} else {
 			$.ajax({
-				url: "php/api.php";
+				url: "php/api.php",
 				type: "POST",
 				data: $(this).serialize();
 			}).done(function(data) {
