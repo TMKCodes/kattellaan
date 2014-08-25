@@ -51,10 +51,10 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					$profile = new profile($database);
 					$pdata = $profile->get();
 					if(!empty($_POST['birthday'])) {
-						$pdata['birthday'] = $_POST['birthday']);
+						$pdata['birthday'] = $_POST['birthday'];
 					}
 					if(!empty($_POST['gender'])) {
-						$pdata['gender'] = $_POST['gender']);
+						$pdata['gender'] = $_POST['gender'];
 					}
 					if(!empty($_POST['profile-text'])) {
 						$pdata['profile_text'] = $_POST['profile-text'];
