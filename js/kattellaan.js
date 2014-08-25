@@ -2686,12 +2686,12 @@ $("#register-account-form").submit(function(evt) {
 		}
 	});
 	var username = $("#register-account-username-input").val();
-	if(username.length >= 0) {
+	if(username.length > 0) {
 		var address = $("#register-account-address-input").val();
 		var addressRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-		if(address.length >= 0 && !addressRegex.test(address)) {
+		if(address.length > 0 && !addressRegex.test(address)) {
 			var password = $("#register-account-password-confirm-input").val();
-			if($("#register-account-password-input").val() == $("#register-account-password-confirm-input").val() && password.length >= 0 ) {
+			if($("#register-account-password-input").val() == $("#register-account-password-confirm-input").val() && password.length > 0 ) {
 				if(g == true) {
 					$.ajax({
 						url: "php/api.php",
