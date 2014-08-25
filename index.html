@@ -1456,15 +1456,9 @@
 				<label class="input-group-addon" for="register-account-username-input">Käyttäjätunnus:</label>
 				<input type="text" class="form-control" id="register-account-username-input" name="username" placeholder="Syötä haluamasi käyttäjätunnus." />
 			</div>
-			<div id="register-account-username-empty-error" class="alert alert-danger" style="display: none;">
-				<p>Sinun tarvitsee syöttää käyttäjätunnus.</p>
-			</div>
 			<div class="input-group col-xs-12 col-sm-6" style="margin-bottom: 5px;">
 				<label class="input-group-addon" for="register-account-address-input">Sähköposti:</label>
 				<input type="email" class="form-control" id="register-account-address-input" name="address" placeholder="Syötä sähköposti osoitteesi." />
-			</div>
-			<div id="register-account-address-empty-error" class="alert alert-danger" style="display: none;">
-				<p>Sinun tarvitsee syöttää sähköposti osoitteesi.</p>
 			</div>
 			<div class="input-group col-xs-12 col-sm-6" style="margin-bottom: 5px;">
 				<label class="input-group-addon" for="register-account-password-input">Salasana:</label>
@@ -1474,20 +1468,27 @@
 				<label class="input-group-addon" for="register-account-password-confirm-input">Salasana varmistus:</label>
 				<input type="password" class="form-control" id="register-account-password-confirm-input" name="password-confirm" />
 			</div>
-			<div id="register-account-password-empty-error" class="alert alert-danger" style="display: none;">
-				<p>Sinun tarvitsee syöttää salasanasi.</p>
+			<div class="input-group col-xs-12 col-sm-6">
+				<label class="input-group-addon" for="register-select-birthday-input">Syntymäpäivä:</label>
+				<input type="date" class="form-control" name="birthday" id="register-select-birthday-input" required="required" placeholder="yyyy-mm-dd">
 			</div>
-			<div id="register-account-password-mismatch-error" class="alert alert-danger" style="display: none;">
-				<p>Syöttämäsi salasanat ovet erilaiset. Niiden tarvitsee olla samanlaiset.</p>
+			<div class="input-group col-xs-12 col-sm-6">
+				<label class="input-group-addon" for="register-select-gender-input">Sukupuoli:</label>
+				<select id="register-select-gender-input" class="form-control" name="gender" required="required">
+					<option value="man">Mies</option>
+					<option value="woman">Nainen</option>
+					<option value="transman">Transmies</option>
+					<option value="transwoman">Transnainen</option>
+					<option value="sexless">Sukupuoleton</option>
+				</select>
 			</div>
-			<input type="hidden" name="call" value="register" style="margin-right: 5px;"/>
-			<input type="submit" class="btn btn-default" id="register-account-done-button" value="Liity jäseneksi" />
-			<div id="register-account-failure-error" class="alert alert-danger" style="display: none;">
-				<p>Rekisteröinti epännostui. Yritä uudelleen.</p>
+			<div class="input-group col-xs-12 col-sm-6">
+				<textarea id="register-select-profile-text-input" class="form-control custom-control" name="register-select-profile-text-input"></textarea>
+				<div class="input-group-addon input-group-btn">
+					<input type="submit" class="btn btn-default" id="register-select-profile-text-done-button" value="Jatka" />
+				</div>
 			</div>
-			<div id="register-account-first-login-error" class="alert alert-danger" style="display: none;">
-				<p>Jokin meni pieleen rekisteröinnissä, ensimmäisen istunnon aloittaminen epäonnistui.</p>
-			</div>
+
 		</div>
 		<div class="row">
 			<h1>Kotiosoite</h1>
@@ -1535,43 +1536,6 @@
 			<div class="alert alert-warning" style="margin-top: 5px;">
 				<p><b>Kuvan latauksessa</b> saattaa esiintyä ongelma joka estää tiedoston lähettämisen. Jos tiedoston lähetys jää jumiin odotus kohtaan yritä päivittää sivu. Jos ei sen jälkeen onnistu niin ohita profiilikuvan valinta. Sinun selaimesi saattaa olla liian vanha tämän tapaiseen tiedoston lähettämiseen.</p>
 			</div>
-		</div>
-		<div class="row">
-			<h1>Profiilikirjoitelma</h1>
-			<div class="input-group col-xs-3">
-				<textarea id="register-select-profile-text-input" class="form-control custom-control" name="register-select-profile-text-input"></textarea>
-				<div class="input-group-addon input-group-btn">
-					<input type="submit" class="btn btn-default" id="register-select-profile-text-done-button" value="Jatka" />
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<h1>Sukupuoli</h1>
-			<div class="input-group col-xs-3">
-				<label class="input-group-addon" for="register-select-gender-input">Sukupuoli:</label>
-				<select id="register-select-gender-input" class="form-control" name="gender" required="required">
-					<option value="man">Mies</option>
-					<option value="woman">Nainen</option>
-					<option value="transman">Transmies</option>
-					<option value="transwoman">Transnainen</option>
-					<option value="sexless">Sukupuoleton</option>
-				</select>
-				<div class="input-group-btn">
-					<input type="submit" class="btn btn-default" id="register-select-gender-done-button" value="Jatka" />
-				</div>
-			</div>
-			<div id="register-select-gender-error" class="alert alert-danger" style="display: none;"><p>Et vielä valinnut sukupuoltasi.</p></div>
-		</div>
-		<div class="row">
-			<h1>Syntymäpäivä</h1>
-			<div class="input-group col-xs-3">
-				<label class="input-group-addon" for="register-select-birthday-input">Syntymäpäivä:</label>
-				<input type="date" class="form-control" name="birthday" id="register-select-birthday-input" required="required" placeholder="yyyy-mm-dd">
-				<div class="input-group-btn">
-					<input type="submit" class="btn btn-default" id="register-select-birthday-done-button" value="Jatka" />
-				</div>
-			</div>
-			<div id="register-select-birthday-error" class="alert alert-danger" style="display: none;"><p>Et vielä valinnut syntymäpäivääsi.</p></div>
 		</div>
 	</div>
 
