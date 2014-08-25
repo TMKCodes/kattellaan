@@ -2677,6 +2677,14 @@ $("#register-account-form").submit(function(evt) {
 			$("#register-select-street-address-checked-input").val(street_address.replace(" ", "+"));
 			g = true;
 		} else {
+			$("#register-select-street-address-input").parent().addClass("has-error");
+			$("#register-select-street-address-input").parent().children("label").prepend("<span class=\"glyphicon glyphicon-remove form-control-feedback\">&snbp;</span>");
+			$("#register-select-street-address-input").parent().addClass("has-feedback");
+			$("#register-select-street-address-input").change(function(evt) {
+				$("#register-select-street-address-input").parent().removeClass("has-error");
+				$("#register-select-street-address-input").parent().removeClass("has-feedback");
+				$("#register-select-street-address-input").parent().children("label").children("span").remove();
+			});
 			console.log("Registeration failed, because could not retrieve address location.");
 		}
 	});
@@ -2731,7 +2739,7 @@ $("#register-select-profile-picture-form").submit(function(evt) {
 $("#register-button").click(function(evt) {
 	evt.preventDefault();
 	$("#register-account-form").submit();
-	if(uid != false) {
+	if(registeration_success != false) {
 		$("#register-select-profile-picture-form").submit();
 	}
 	if(registeration_success == true) {
