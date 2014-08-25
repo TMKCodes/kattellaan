@@ -2690,7 +2690,8 @@ $("#register-account-form").submit(function(evt) {
 		var address = $("#register-account-address-input").val();
 		var addressRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
 		if(address.length >= 0 && !addressRegex.test(address)) {
-			if($("#register-account-password-input").val() == $("#register-account-password-confirm-input").val()) {
+			var password = $("#register-account-password-confirm-input").val();
+			if($("#register-account-password-input").val() == $("#register-account-password-confirm-input").val() && password.length >= 0 ) {
 				if(g == true) {
 					$.ajax({
 						url: "php/api.php",
