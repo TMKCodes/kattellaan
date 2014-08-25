@@ -2336,25 +2336,25 @@ function load_new_password_page() {
 		evt.preventDefault();
 		if($("#new-password-form input [name='password']").val() != $("#new-password-form input [name='password-confirm']").val()) {
 			$("#new-password-form-failure").show("<p>Antamasi salasanat ovat erilaiset.</p>");
-			return false;
+		} else {
+			$.ajax({
+				url: "php/api.php";
+				type: "POST",
+				data: $(this).serialize();
+			}).done(function(data) {
+				console.log(data);
+				data = $.parseJSON(data);
+				if(data.success == true) {
+					$("#new-password-form").hide();
+					$("#new-password-form-success").show();
+					$("#new-password-form-failure").hide();
+				} else {
+					$("#new-password-form-success").hide();
+					$("#new-password-form-failure").show();
+					$("#new-password-form-failure").html("<p>" + data.error + "</p>");
+				}
+			});
 		}
-		$.ajax({
-			url: "php/api.php";
-			type: "POST",
-			data: $(this).serialize();
-		}).done(function(data) {
-			console.log(data);
-			data = $.parseJSON(data);
-			if(data.success == true) {
-				$("#new-password-form").hide();
-				$("#new-password-form-success").show();
-				$("#new-password-form-failure").hide();
-			} else {
-				$("#new-password-form-success").hide();
-				$("#new-password-form-failure").show();
-				$("#new-password-form-failure").html("<p>" + data.error + "</p>");
-			}
-		});
 	});
 
 }
