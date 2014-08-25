@@ -26,44 +26,73 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		exit;
 	}
 
-	/// register new account event.
-	if(!empty($_GET['call']) && $_GET['call'] == "register") {
-		if(empty($_GET['username'])) {
+	if(!empty($_POST['call']) && $_POST['call'] == "register-account") {
+		if(empty($_POST['username'])) {
 			printf('{ "success": false, "error": "username is empty." }');
-		} else if(empty($_GET['address'])) {
+		} else if(empty($_POST['address'])) {
 			printf('{ "success": false, "error": "address is empty." }');
-		} else if(empty($_GET['password'])) {
+		} else if(empty($_POST['password'])) {
 			printf('{ "success": false, "error": "password is empty." }');
-		} else if(empty($_GET['password-confirm'])) {
+		} else if(empty($_POST['password-confirm'])) {
 			printf('{ "success": false, "error": "password-confirm is empty" }');
-		} else if($_GET['password'] != $_GET['password-confirm']) {
+		} else if($_POST['password'] != $_POST['password-confirm']) {
 			printf('{ "success": false, "error": "password-mismatch" }');
+		} else if(empty($_POST['street-address-checked']) {
+			printf('{ "success": false, "error": "address can not be empty" }');
+		} else if(empty($_POST['latitude-longitude']) {
+			printf('{ "success": false, "error": "latitude longitude can not be empty." }');
 		} else {
-			/// insert account to the database
 			try {
 				$account = new account($database);
-				$account->set_username($_GET['username']);
-				$account->set_address($_GET['address']);
-				$account->set_password(hash("sha512", $_GET['password']));
+				$account->set_username($_POST['username']);
+				$account->set_address($_POST['address']);
+				$account->set_password(hash("sha512", $_POST['password']));
 				if($account->insert() == true) {
-					/// send email to the registered user
-					$to = $_GET['address'];
-					$subject = "Tervetuloa kattellaan.com sivustolle!";
-					$message = "Hei " . $_GET['username'] . "!\r\n\r\n" .
-						"Olemme kiitollisia, että olet liittynyt seuraamme.\r\n" .
-						"Toivottavasti löydät itsellesi seuraa joukostamme.\r\n\r\n" .
-						"http://kattellaan.com\r\n\r\n" .
-						"Tähän viestiin saa vastata jos on jotain kysyttävää.\r\n\r\n" .
-						"Terveisin kattellaan treffipalstalta.\r\n";
-					$headers = "From: support@kattellaan.com\r\n" .
-						"Content-Type: text/plain; charset=UTF-8\r\n" .
-						"Reply-To: support@kattellaan.com\r\n" .
-						"X-Mailer: PHP/" . phpversion();
-					mail($to, $subject, $message, $headers);
-		
-					/// return information to the browser
-					printf('{ "success": true, "account": { "identifier": "%s", "username": "%s", "address": "%s", "password": "%s"}}', 
-						$account->get_identifier(), $account->get_username(), $account->get_address(), $account->get_password());
+					$profile = new profile($database);
+					$pdata = $profile->get();
+					if(!empty($_POST['birthday'])) {
+						$pdata['birthday'] = $_POST['birthday']);
+					}
+					if(!empty($_POST['gender'])) {
+						$pdata['gender'] = $_POST['gender']);
+					}
+					if(!empty($_POST['profile-text'])) {
+						$pdata['profile_text'] = $_POST['profile-text'];
+					}
+					$pdata['latlng'] = $_POST['latitude-longitude'];
+					$pdata['address'] = $_POST['street-adress-checked'];
+					$pdata['identifier'] = $account->get_identifier();	
+					$profile->set($pdata);
+					if($profile->select($identifier) == false) {	
+						if($profile->insert() == true) {
+							$position = new position($database);
+							$latlng = $profile->strip_latlng($_POST['latlng']);
+							$position->set_latitude($latlng[0]);
+							$position->set_longitude($latlng[1]);
+							$position->insert();
+							/// send email to the registered user
+							$to = $_POST['address'];
+							$subject = "Tervetuloa kattellaan.com sivustolle!";
+							$message = "Hei " . $_POST['username'] . "!\r\n\r\n" .
+								"Olemme kiitollisia, että olet liittynyt seuraamme.\r\n" .
+								"Toivottavasti löydät itsellesi seuraa joukostamme.\r\n\r\n" .
+								"http://kattellaan.com\r\n\r\n" .
+								"Tähän viestiin saa vastata jos on jotain kysyttävää.\r\n\r\n" .
+								"Terveisin kattellaan treffipalstalta.\r\n";
+							$headers = "From: support@kattellaan.com\r\n" .
+								"Content-Type: text/plain; charset=UTF-8\r\n" .
+								"Reply-To: support@kattellaan.com\r\n" .
+								"X-Mailer: PHP/" . phpversion();
+							mail($to, $subject, $message, $headers);
+				
+							/// return information to the browser
+							printf('{ "success": true, "uid": "%s" }', $account->get_identifier());
+						} else {
+							printf('{ "success": false, "error": "profile creation failed." }');
+						}
+					} else {
+						printf('{ "success": false, "error": "profile already exists." }');
+					}
 				} else {
 					printf('{ "success": false, "error": "account already exists"}');
 				}
@@ -264,36 +293,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			}
 		} else {
 			printf('{ "success": false, "error": "No files uploaded." }');
-		}
-	} else if(!empty($_POST['call']) && $_POST['call'] == "create_profile") {
-		if(!empty($_POST['session'])) {
-			$session = new session($database, "sha512");
-			if($session->confirm($_POST['session']) == false) {
-				printf('{ "success": false, "error": "Failed to confirm session." }');
-				die();
-			}
-			$identifier = $session->get_identifier($_POST['session']);
-			$data = $_POST;
-			$data['identifier'] = $identifier;
-			$profile = new profile($database);
-			$profile->set($data);
-			if($profile->select($identifier) == false) {	
-				if($profile->insert() == true) {
-					$position = new position($database);
-					$latlng = $profile->strip_latlng($_POST['latlng']);
-					$position->set_latitude($latlng[0]);
-					$position->set_longitude($latlng[1]);
-					$position->insert();
-					printf('{ "success": true }');
-				} else {
-					printf('{ "success": false, "error": "Failed to insert into database." }');
-				}
-			} else {
-				printf('{ "success": false, "error": "Profile with the user id already exists." }');
-			}
-		} else {
-			printf('{ "success": false, "error": "Not auhtenticated." }');
-		}
+		}	
 	} else if(!empty($_POST['call']) && $_POST['call'] == "get_work") {
 		if(!empty($_POST['session'])) {
 			$session = new session($database, "sha512");
