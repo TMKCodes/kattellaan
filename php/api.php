@@ -246,48 +246,25 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			die();
 		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "upload") {
-		if(!empty($_COOKIE['session'])) {
-			$session = new session($database, "sha512");
-			if($session->confirm($_COOKIE['session']) == false) {
-				printf('{ "success": false, "error": "Failed to confirm session" }');
-				die();
-			} 
-			$account_identifier = $session->get_identifier($_COOKIE['session']);
-			$uploaded_files = array();
-			$failed_files = array();
-			$upload_directory = "/home/temek/kattellaan-live/uploads/";
-			if(!empty($_FILES)) {
-				$ufile = new file($database, $upload_directory, "uploads/");
-				for($i = 0; $i < count($_FILES['file']['name']); $i++) {
-					$ufile->set_name(strtolower($_FILES['file']['name'][$i]));
-					$ufile->set_owner($account_identifier);
-					try { if($ufile->insert() == true) {
-							if(move_uploaded_file($_FILES['file']['tmp_name'][$i], $upload_directory . $ufile->get_name())) {	
-								array_push($uploaded_files, $ufile->get_name());
-							} else {
-								$file->delete();
-								array_push($failed_files, $_FILES['file']['name'][$i]);
-							}
-						} else {
-							printf('{ "success": false, "error": "Failed to store filename in database" }');
-							die();
-						}
-					} catch (Exception $e) {
-						printf('{ "success": false, "error": "%s" }', $e->getMessage());
-						die();
-					}
-				}
-				if(empty($failed_files)) {
-					printf('{ "success": true, "uploaded_files": %s }', json_encode($uploaded_files));
+		$uploaded_files = array();
+		$failed_files = array();
+		$upload_directory = "/home/temek/kattellaan-live/uploads/";
+		if(!empty($_FILES)) {
+			for($i = 0; $i < count($_FILES['file']['name']); $i++) {
+				if(move_uploaded_file($_FILES['file']['tmp_name'][$i], $upload_directory . $ufile->get_name())) {	
+					array_push($uploaded_files, $ufile->get_name());
 				} else {
-					printf('{ "success": false, "uploaded_files": %s, "failed_files": %s }', json_encode($uploaded_files), json_encode($failed_files));
+					array_push($failed_files, $_FILES['file']['name'][$i]);
 				}
+			}
+			if(empty($failed_files)) {
+				printf('{ "success": true, "uploaded_files": %s }', json_encode($uploaded_files));
 			} else {
-				printf('{ "success": false, "error": "No files uploaded." }');
+				printf('{ "success": false, "uploaded_files": %s, "failed_files": %s }', json_encode($uploaded_files), json_encode($failed_files));
 			}
 		} else {
-			printf('{ "success": false, "error": "Not authenticated." }');
-		}	
+			printf('{ "success": false, "error": "No files uploaded." }');
+		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "create_profile") {
 		if(!empty($_POST['session'])) {
 			$session = new session($database, "sha512");
