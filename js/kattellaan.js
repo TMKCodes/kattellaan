@@ -2674,7 +2674,7 @@ $("#register-account-form").submit(function(evt) {
 		if(data.status === "OK") {
 			var ll = new google.maps.LatLong(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng);
 			$("#register-select-latitude-longitude-input").val(ll);
-			$("#register-select-street-address-checked-input").val(street_address(" ", "+"));
+			$("#register-select-street-address-checked-input").val(street_address.replace(" ", "+"));
 			g = true;
 		} else {
 			console.log("Registeration failed, because could not retrieve address location.");
