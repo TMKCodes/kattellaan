@@ -105,7 +105,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			if(!empty($_POST['secret'])) {
 				// base64_encode($account->get_identifier() . "||" . hash("sha512", $account->get_username() . "/" . $account->get_address() . "/" . $account->get_password() . "/" . $account->get_registered()));
 				$pwa = base64_decode($_POST['secret']);
-				$pwa = str_explode("||", $pwa);
+				$pwa = explode("||", $pwa);
 				if(count($pwa) == 2) {
 					$account = new account($database);
 					$account->set_identifier($pwa[0]);
