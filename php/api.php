@@ -95,10 +95,10 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				mail($to, $subject, $message, $headers);
 				printf('{ "success": true }');
 			} else {
-				printf('{ "success": false, "error": "email does not match." }');
+				printf('{ "success": false, "error": "Käyttäjätunnuksen sähköpostiosoite ei vastaa antamaasi sähköpostiosoitetta." }');
 			}
 		} else {
-			printf('{ "success": false, "error": "Username does not exist." }');
+			printf('{ "success": false, "error": "Antamaasi käyttäjätunnusta ei ole olemassa." }');
 		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "new-password") {
 		try {

@@ -2330,6 +2330,9 @@ function load_new_password_page() {
 }
 
 function load_password_recovery_page() {
+	$("#password-recovery-form").show();
+	$("#password-recovery-form-success").hide();
+	$("#password-recovery-form-failure").hide();
 	load_page("password-recovery-page");
 	$("#password-recovery-form").submit(function(evt) {
 		evt.preventDefault();
@@ -2341,9 +2344,12 @@ function load_password_recovery_page() {
 			console.log(data);
 			data = $.parseJSON(data);
 			if(data.success == true) {
-
+				$("#password-recovery-form").hide();
+				$("#password-recovery-form-success").show();
 			} else {
-				
+				$("#password-recovery-form-failure").show();
+				console.log(data.error);
+				$("#password-recovery-form-failure").html("<p>" + data.error + "</p>");
 			}
 		});
 	});
