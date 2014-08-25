@@ -2346,7 +2346,9 @@ function load_password_recovery_page() {
 			if(data.success == true) {
 				$("#password-recovery-form").hide();
 				$("#password-recovery-form-success").show();
+				$("#password-recovery-form-failure").hide();
 			} else {
+				$("#password-recovery-form-success").hide();
 				$("#password-recovery-form-failure").show();
 				console.log(data.error);
 				$("#password-recovery-form-failure").html("<p>" + data.error + "</p>");
