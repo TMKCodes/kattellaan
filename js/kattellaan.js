@@ -2688,7 +2688,7 @@ $("#register-account-form").submit(function(evt) {
 	var username = $("#register-account-username-input").val();
 	if(username.length > 0) {
 		var address = $("#register-account-address-input").val();
-		var addressRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+		var addressRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 		if(address.length > 0 && !addressRegex.test(address)) {
 			var password = $("#register-account-password-confirm-input").val();
 			if($("#register-account-password-input").val() == $("#register-account-password-confirm-input").val() && password.length > 0 ) {
@@ -2724,7 +2724,7 @@ $("#register-account-form").submit(function(evt) {
 			$("#register-account-address-input").parent().addClass("has-error");
 			$("#register-account-address-input").change(function(evt) {
 				var address = $("#register-account-address-input").val();
-				var addressRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+				var addressRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 				if(address.length >= 0 && !addressRegex.test(address)) {
 					$("#register-account-address-input").parent().removeClass("has-error");
 				}
