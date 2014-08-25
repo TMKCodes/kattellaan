@@ -2724,7 +2724,7 @@ $("#register-account-form").submit(function(evt) {
 			$("#register-account-address-input").parent().addClass("has-error");
 			$("#register-account-address-input").change(function(evt) {
 				var address = $("#register-account-address-input").val();
-				var addressRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+				var addressRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
 				if(address.length >= 0 && !addressRegex.test(address)) {
 					$("#register-account-address-input").parent().removeClass("has-error");
 				}
@@ -2735,7 +2735,8 @@ $("#register-account-form").submit(function(evt) {
 	} else {
 		$("#register-account-username-input").parent().addClass("has-error");
 		$("#register-account-username-input").change(function(evt) {
-			if($("#register-account-password-input").val() == $("#register-account-username-input").val()) {
+			var username = $("#register-account-username-input").val();
+			if(username.length > 0) {
 				$("#register-account-username-input").parent().removeClass("has-error");
 			}	
 		});
