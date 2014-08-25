@@ -2685,29 +2685,58 @@ $("#register-account-form").submit(function(evt) {
 			console.log("Registeration failed, because could not retrieve address location.");
 		}
 	});
-	if($("#register-account-password-input").val() == $("#register-account-password-confirm-input").val()) {
-		if(g == true) {
-			$.ajax({
-				url: "php/api.php",
-				type: "POST",
-				async: false,
-				data: $(this).serialize()
-			}).done(function(data) {
-				data = $.parseJSON(data);
-				registeration_success = data.success;
-				if(data.success == true) {
-					$("#register-select-profile-picture-form [name='owner']").val(data.uid);
+	var username = $("#register-account-username-input").val();
+	if(username.length >= 0) {
+		var address = $("#register-account-address-input").val();
+		var addressRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+		if(address.length >= 0 && !addressRegex.test(address)) {
+			if($("#register-account-password-input").val() == $("#register-account-password-confirm-input").val()) {
+				if(g == true) {
+					$.ajax({
+						url: "php/api.php",
+						type: "POST",
+						async: false,
+						data: $(this).serialize()
+					}).done(function(data) {
+						data = $.parseJSON(data);
+						registeration_success = data.success;
+						if(data.success == true) {
+							$("#register-select-profile-picture-form [name='owner']").val(data.uid);
+						} else {
+							console.log(data.error);
+						}
+					});
 				} else {
-					console.log(data.error);
+					registeration_success = false;
 				}
-			});
+			} else {
+				$("#register-account-password-confirm-input").parent().addClass("has-error");
+				$("#register-account-password-confirm-input").change(function(evt) {
+					if($("#register-account-password-input").val() == $("#register-account-password-confirm-input").val()) {
+						$("#register-account-password-confirm-input").parent().removeClass("has-error");
+					}
+					
+				});
+				registeration_success = false;
+			}
 		} else {
+			$("#register-account-address-input").parent().addClass("has-error");
+			$("#register-account-address-input").change(function(evt) {
+				var address = $("#register-account-address-input").val();
+				var addressRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+				if(address.length >= 0 && !addressRegex.test(address)) {
+					$("#register-account-address-input").parent().removeClass("has-error");
+				}
+	
+			});
 			registeration_success = false;
 		}
 	} else {
-		$("#register-account-password-confirm-input").parent().addClass("has-error");
-		$("#register-account-password-confirm-input").change(function(evt) {
-			$("#register-account-password-confirm-input").parent().removeClass("has-error");
+		$("#register-account-username-input").parent().addClass("has-error");
+		$("#register-account-username-input").change(function(evt) {
+			if($("#register-account-password-input").val() == $("#register-account-username-input").val()) {
+				$("#register-account-username-input").parent().removeClass("has-error");
+			}	
 		});
 		registeration_success = false;
 	}
