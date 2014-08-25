@@ -2646,6 +2646,7 @@ $("#register-select-location-done-button").click(function(evt) {
 		data: { address : jaddress, sensor: false }
 	}).done(function(data) {
 		if(data.status === "OK") {
+
 			var myLatLong = new google.maps.LatLng(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng)
 			$.cookie("latlng", myLatLong);
 			$("body > .container").hide();
@@ -2672,8 +2673,8 @@ $("#register-account-form").submit(function(evt) {
 		data : { address : street_address, sensor: false }
 	}).done(function(data) {
 		if(data.status === "OK") {
-			var ll = "(" + data.results[0].geometry.location.lat + ", " data.results[0].geometry.location.lng + ")";
-			$("#register-select-latitude-longitude-input").val(ll);
+			var myLatLong = new google.maps.LatLng(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng)
+			$("#register-select-latitude-longitude-input").val(myLatLong);
 			$("#register-select-street-address-checked-input").val(street_address.replace(" ", "+"));
 			g = true;
 		} else {
