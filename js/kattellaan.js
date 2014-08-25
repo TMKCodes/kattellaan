@@ -4556,17 +4556,10 @@ $("#register-select-country-input").change(function(evt) {
 $("#register-select-location-show-on-map").click(function(evt) {
 	evt.preventDefault();
 	var street_address = $("#register-select-street-address-input").val();
-	var municipality = $("#register-select-municipality-input").val();
-	var country = $("#register-select-country-input").val();
-	var street_address_replaced = street_address.replace(" ", "+");
-	var municipality_replaced = municipality.replace(" ", "+");
-	var country_replaced = country.replace(" ", "+");
-	var jaddress = street_address_replaced + "+" + municipality_replaced + "+" + country_replaced;
-	console.log(jaddress);
 	$.ajax({
 		url: "https://maps.googleapis.com/maps/api/geocode/json",
 		type: "GET",
-		data: { address : jaddress, sensor: false }
+		data: { address : street_address, sensor: false }
 	}).done(function(data) {
 		console.log(data);
 		if(data.status === "OK") {
