@@ -103,7 +103,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 	} else if(!empty($_GET['call']) && $_GET['call'] == "open_session") {
 		try {
 			$session = new session($database, "sha512");
-			$session_key = $session->open($_GET['username'], $_GET['password']);
+			$session_key = $session->open($_GET['username'], hash("sha512", $_GET['password']));
 			printf('{ "success": true, "session": "%s" }', $session_key);	
 		} catch (Exception $e) {
 			printf('{ "success": false, "error": "%s" }', $e->getMessage());
