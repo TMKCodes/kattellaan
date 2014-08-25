@@ -75,6 +75,10 @@ class account {
 		if(!empty($this->identifier)) {
 			$statement = $this->database->prepare("SELECT * FROM `account` WHERE `id` = ?;");
 			$statement->bind("s", $this->identifier);
+		} else if(!empty($this->username) && !empty($this->address)) {
+			$statement = $this->database->prepare("SELECT * FROM `account` WHERE `username` = ? OR `address` = ?");
+			$statement->bind("s", $this->username);
+			$statement->bind("s", $this->password);
 		} else if(!empty($this->username)) {
 			$statement = $this->database->prepare("SELECT * FROM `account` WHERE `username` = ?;");
 			$statement->bind("s", $this->username);

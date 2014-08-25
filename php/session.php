@@ -56,6 +56,7 @@ class session {
 		if(!empty($username) && !empty($password)) {
 			$account = new account($this->database);
 			$account->set_username($username);
+			$account->set_address($username);
 			$account->set_password($password);
 			if($account->select() == true) {
 				if($account->get_password() == $password) {
