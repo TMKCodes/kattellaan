@@ -2079,14 +2079,14 @@ function display_results(search_results, index) {
 	}
 	if($("#select-search-result-order").find(":selected").val() == "new-logins") {
 		results.sort(compare_login);
+		results.reverse();
 	} else if($("#select-search-result-order").find(":selected").val() == "old-logins") {
 		results.sort(compare_login);
-		results.reverse();
 	} else if($("#select-search-result-order").find(":selected").val() == "new-members") {
 		results.sort(compare_registered);
+		results.reverse();
 	} else if($("#select-search-result-order").find(":selected").val() == "old-members") {
 		results.sort(compare_registered);
-		results.reverse();
 	} else if($("#select-search-result-order").find(":selected").val() == "young-members") {
 		results.sort(compare_birthday);
 	} else if($("#select-search-result-order").find(":selected").val() == "aged-members") {
