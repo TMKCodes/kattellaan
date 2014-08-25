@@ -2689,7 +2689,7 @@ $("#register-account-form").submit(function(evt) {
 	if(username.length > 0) {
 		var address = $("#register-account-address-input").val();
 		var addressRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-		if(address.length > 0 && !addressRegex.test(address)) {
+		if(address.length > 0 && addressRegex.test(address)) {
 			var password = $("#register-account-password-confirm-input").val();
 			if($("#register-account-password-input").val() == $("#register-account-password-confirm-input").val() && password.length > 0 ) {
 				if(g == true) {
@@ -2725,7 +2725,7 @@ $("#register-account-form").submit(function(evt) {
 			$("#register-account-address-input").change(function(evt) {
 				var address = $("#register-account-address-input").val();
 				var addressRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-				if(address.length >= 0 && !addressRegex.test(address)) {
+				if(address.length >= 0 && addressRegex.test(address)) {
 					$("#register-account-address-input").parent().removeClass("has-error");
 				}
 	
