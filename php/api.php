@@ -100,6 +100,50 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		} else {
 			printf('{ "success": false, "error": "Username does not exist." }');
 		}
+	} else if(!empty($_POST['call']) && $_POST['call'] == "new-password") {
+		try {
+			if(!empty($_POST['secret']) {
+				// base64_encode($account->get_identifier() . "||" . hash("sha512", $account->get_username() . "/" . $account->get_address() . "/" . $account->get_password() . "/" . $account->get_registered()));
+				$pwa = base64_decode($_GET['secret']);
+				$pwa = str_explde("||", $pwa);
+				if(count($pwa) == 2) {
+					$account = new account($database);
+					$account->set_identifier($pwa[0]);
+					if($account->select() == true) {
+						$secret = hash("sha512", $account->get_username() . "/" $account->get_address() . "/" . $account->get_password() . "/" . $account->get_registered());
+						if($secret == $pwa[1]) {
+							if(!empty($_POST['password'])) {
+								$account->set_password(hash("sha512", $_POST['password']));
+								if($account->update() == true) {
+									printf('{ "success": true }');	
+								} else {
+									printf('{ "success": false, "error": "Salasanan päivitys epäonnistui." }');	
+								}
+							} else {
+								// empty password can not do.
+								printf('{ "success": false, "error": "Uusi salasana ei voi olla tyhjä." }');	
+							}
+						} else {
+							// wrong secret
+							printf('{ "success": false, "error": "Sinulla ei ole oikeutta, muuttaa tämän käyttäjätilin salasanaa." }');
+						}
+					} else {
+						// account with the identifier was not found.
+						printf('{ "success": false, "error": "Käyttäjätiliä ei löytynyt." }');
+					}
+				} else {
+					// incorrect secret
+					printf('{ "success": false, "error": "Salaisuus on väärin muodostettu." }');
+				}
+			} else {
+				// no secret
+				printf('{ "success": false, "error": "Ei salaisuutta." }');
+			}
+		} catch (Exception $e) {
+			// something horrible happened.
+			printf('{ "success", false, "error": "%s" }', $e->getMessage());
+		}
+
 	} else if(!empty($_GET['call']) && $_GET['call'] == "open_session") {
 		try {
 			$session = new session($database, "sha512");
