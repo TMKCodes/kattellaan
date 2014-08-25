@@ -4530,7 +4530,7 @@ $("#register-confirm-profile-information-form").submit(function(evt) {
 
 var map;
 
-$("#register-select-location-page").on("show", function() {
+$("#register-account-page").on("show", function() {
 	var map_canvas = document.getElementById("google_map_canvas");
 	var map_options = {
 		center: new google.maps.LatLng(61.4894846, 21.7298981),
