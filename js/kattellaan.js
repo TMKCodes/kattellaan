@@ -1991,7 +1991,7 @@ $("document").ready(function() {
 						for(var i = 0; i < count; i++) {
 							console.log("Uploaded file: " + responseText.uploaded_files[i]);
 							$("#register-select-profile-picture").append("<option value=" + responseText.uploaded_files[i] + ">" + responseText.uploaded_files[i] + "</option>");
-							$("#uploaded_files").append("<input type=\"hidden\" name=\"file-" + i + "\" value=\"" + responseText.uploaded_files[i] + "\" />");
+							$(".uploaded_files").append("<input type=\"hidden\" name=\"file-" + i + "\" value=\"" + responseText.uploaded_files[i] + "\" />");
 						}
 					}
 					if(responseText.failed_files !== undefined) {
