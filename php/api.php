@@ -260,7 +260,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			if(empty($failed_files)) {
 				printf('{ "success": true, "uploaded_files": %s }', json_encode($uploaded_files));
 			} else {
-				printf('{ "success": false, "uploaded_files": %s, "failed_files": %s }', json_encode($uploaded_files), json_encode($failed_files));
+				printf('{ "success": true, "uploaded_files": %s, "failed_files": %s }', json_encode($uploaded_files), json_encode($failed_files));
 			}
 		} else {
 			printf('{ "success": false, "error": "No files uploaded." }');
