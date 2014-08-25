@@ -2678,12 +2678,8 @@ $("#register-account-form").submit(function(evt) {
 			g = true;
 		} else {
 			$("#register-select-street-address-input").parent().addClass("has-error");
-			$("#register-select-street-address-input").parent().children("label").prepend("<span class=\"glyphicon glyphicon-remove form-control-feedback\">&snbp;</span>");
-			$("#register-select-street-address-input").parent().addClass("has-feedback");
 			$("#register-select-street-address-input").change(function(evt) {
 				$("#register-select-street-address-input").parent().removeClass("has-error");
-				$("#register-select-street-address-input").parent().removeClass("has-feedback");
-				$("#register-select-street-address-input").parent().children("label").children("span").remove();
 			});
 			console.log("Registeration failed, because could not retrieve address location.");
 		}
@@ -2709,12 +2705,8 @@ $("#register-account-form").submit(function(evt) {
 		}
 	} else {
 		$("#register-account-password-confirm-input").parent().addClass("has-error");
-		$("#register-account-password-confirm-input").parent().children("label").prepend("<span class=\"glyphicon glyphicon-remove form-control-feedback\">&snbp;</span>");
-		$("#register-account-password-confirm-input").parent().addClass("has-feedback");
 		$("#register-account-password-confirm-input").change(function(evt) {
 			$("#register-account-password-confirm-input").parent().removeClass("has-error");
-			$("#register-account-password-confirm-input").parent().removeClass("has-feedback");
-			$("#register-account-password-confirm-input").parent().children("label").children("span").remove();
 		});
 		registeration_success = false;
 	}
