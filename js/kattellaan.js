@@ -2323,8 +2323,9 @@ $("#navigation-left > li").click(function(evt) {
 });
 
 function load_new_password_page() {
-	var secret = "&secret=" + get_url_parameter("secret");
+	var secret = get_url_parameter("secret");
 	$("#new-password-form").prepend("<input type=\"hidden\" name=\"secret\" value=\"" + secret + "\" />");
+	secret = "&secret=" + secret;
 	load_custom_page("new-password-page", secret);	
 }
 
