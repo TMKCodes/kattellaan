@@ -60,13 +60,13 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 						$pdata['profile_text'] = $_POST['profile-text'];
 					}
 					$pdata['latlng'] = $_POST['latitude-longitude'];
-					$pdata['address'] = $_POST['street-adress-checked'];
+					$pdata['address'] = $_POST['street-address-checked'];
 					$pdata['identifier'] = $account->get_identifier();	
 					$profile->set($pdata);
-					if($profile->select($identifier) == false) {	
+					if($profile->select($pdata['identifier']) == false) {	
 						if($profile->insert() == true) {
 							$position = new position($database);
-							$latlng = $profile->strip_latlng($_POST['latlng']);
+							$latlng = $profile->strip_latlng($pdata['latlng']);
 							$position->set_latitude($latlng[0]);
 							$position->set_longitude($latlng[1]);
 							$position->insert();
