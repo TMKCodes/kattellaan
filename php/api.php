@@ -211,7 +211,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			$account_identifier = $session->get_identifier($_COOKIE['session']);
 			$uploaded_files = array();
 			$failed_files = array();
-			$upload_directory = "/home/temek/kattellaan/uploads/";
+			$upload_directory = "/home/temek/kattellaan-live/uploads/";
 			if(!empty($_FILES)) {
 				$ufile = new file($database, $upload_directory, "uploads/");
 				for($i = 0; $i < count($_FILES['file']['name']); $i++) {
