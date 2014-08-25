@@ -58,37 +58,41 @@ class session {
 			$account->set_username($username);
 			$account->set_password($password);
 			if($account->select() == true) {
-				$f = fopen("ip-addresses.txt", "a+");
-				$whoami = $_SERVER['REMOTE_ADDR'] ."||". $_SERVER['HTTP_USER_AGENT'] ."/". $account->get_username();
-				fwrite($f, $whoami);
-				fclose($f);
-				//file_put_contents("ip-addresses.txt", $_SERVER['REMOTE_ADDR'] . "/" . $_SERVER['HTTP_USER_AGETN'] . "/" . $account->get_username() . "\r\n", FILE_APPEND);
-				$session_key = $this->generate($this->session_hash, 256);
-				$client = $this->client();
-				$statement = $this->database->prepare("INSERT INTO `session` (`uid`, `secret`, `client`, `timestamp`, `online`) VALUES (?, ?, ?, ?, 1);");
-				$statement->bind("i", $account->get_identifier());
-				$statement->bind("s", $session_key);
-				$statement->bind("s", $client);
-				$statement->bind("s", gmdate("Y-m-d H:i:s"));
-				$result = $statement->execute();
-				if($result->success() == true) {
-					$statement = $this->database->prepare("SELECT * FROM `session` WHERE `uid` = ? AND `secret` = ? AND `client` = ?;");
+				if($account->get_password() == $password) {
+					$f = fopen("ip-addresses.txt", "a+");
+					$whoami = $_SERVER['REMOTE_ADDR'] ."||". $_SERVER['HTTP_USER_AGENT'] ."/". $account->get_username();
+					fwrite($f, $whoami);
+					fclose($f);
+					//file_put_contents("ip-addresses.txt", $_SERVER['REMOTE_ADDR'] . "/" . $_SERVER['HTTP_USER_AGETN'] . "/" . $account->get_username() . "\r\n", FILE_APPEND);
+					$session_key = $this->generate($this->session_hash, 256);
+					$client = $this->client();
+					$statement = $this->database->prepare("INSERT INTO `session` (`uid`, `secret`, `client`, `timestamp`, `online`) VALUES (?, ?, ?, ?, 1);");
 					$statement->bind("i", $account->get_identifier());
 					$statement->bind("s", $session_key);
 					$statement->bind("s", $client);
+					$statement->bind("s", gmdate("Y-m-d H:i:s"));
 					$result = $statement->execute();
 					if($result->success() == true) {
-						if($result->rows() > 1) {
-							throw new Exception("Too many identical sessions.");
+						$statement = $this->database->prepare("SELECT * FROM `session` WHERE `uid` = ? AND `secret` = ? AND `client` = ?;");
+						$statement->bind("i", $account->get_identifier());
+						$statement->bind("s", $session_key);
+						$statement->bind("s", $client);
+						$result = $statement->execute();
+						if($result->success() == true) {
+							if($result->rows() > 1) {
+								throw new Exception("Too many identical sessions.");
+							} else {
+								$data = $result->fetch_array(RASSOC);
+								return base64_encode($data['id'] . "||" . $account->get_identifier() . "||" . $session_key . "||" . $client);
+							}
 						} else {
-							$data = $result->fetch_array(RASSOC);
-							return base64_encode($data['id'] . "||" . $account->get_identifier() . "||" . $session_key . "||" . $client);
+							throw new Exception("Failed to create session.");
 						}
-					} else {
-						throw new Exception("Failed to create session.");
+					} else {	
+						throw new Exception("Session already exists");
 					}
-				} else {	
-					throw new Exception("Session already exists");
+				} else {
+					throw new Exception("Wrong password.");
 				}
 			} else {
 				throw new Exception("Something wrong with the username and password.");
