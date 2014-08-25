@@ -2634,14 +2634,8 @@ $("#register-account-form").submit(function(evt) {
 			var result = $.parseJSON(data);
 			console.log(result);
 			if(result.success === true) {
-				open_session(result.account.username, result.account.password);
-				if($.cookie("session") !== undefined) {
-					load_page("register-invite-page");
-					$.cookie("username", result.account.username);
-				} else {
-					console.log("Failed to authenticate.");
-					$("#register-account-first-login-error").show();
-				}
+				load_page("register-invite-page");
+				$.cookie("username", result.account.username);
 			} else {
 				$("#register-account-failure-error").show();
 			}
