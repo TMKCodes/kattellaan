@@ -110,7 +110,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					$account = new account($database);
 					$account->set_identifier($pwa[0]);
 					if($account->select() == true) {
-						$secret = hash("sha512", $account->get_username() . "/" $account->get_address() . "/" . $account->get_password() . "/" . $account->get_registered());
+						$secret = hash("sha512", $account->get_username() . "/" . $account->get_address() . "/" . $account->get_password() . "/" . $account->get_registered());
 						if($secret == $pwa[1]) {
 							if(!empty($_POST['password'])) {
 								$account->set_password(hash("sha512", $_POST['password']));
