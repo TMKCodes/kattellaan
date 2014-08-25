@@ -4555,9 +4555,6 @@ $("#register-select-country-input").change(function(evt) {
 
 $("#register-select-location-show-on-map").click(function(evt) {
 	evt.preventDefault();
-	if(window.map === undefined) {
-		show_register_select_location_page();
-	}
 	var street_address = $("#register-select-street-address-input").val();
 	var municipality = $("#register-select-municipality-input").val();
 	var country = $("#register-select-country-input").val();
