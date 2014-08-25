@@ -54,7 +54,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 						$pdata['birthday'] = $_POST['birthday'];
 					}
 					if(!empty($_POST['gender'])) {
-						$pdata['gender'] = $_POST['gender'];
+						$pdata['gender'] = $_POST['gender']);
 					}
 					if(!empty($_POST['profile-text'])) {
 						$pdata['profile_text'] = $_POST['profile-text'];
@@ -94,7 +94,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 						printf('{ "success": false, "error": "profile already exists." }');
 					}
 				} else {
-					printf('{ "success": false, "error": "account already exists"}');
+					printf('{ "success": false, "error": "account already exists" }');
 				}
 			} catch (Exception $e) {
 				printf('{ "success": false, "error": "%s" }', $e->getMessage());	

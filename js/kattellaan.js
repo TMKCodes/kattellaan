@@ -2699,6 +2699,7 @@ $("#register-account-form").submit(function(evt) {
 						async: false,
 						data: $(this).serialize()
 					}).done(function(data) {
+						console.log(data);
 						data = $.parseJSON(data);
 						registeration_success = data.success;
 						if(data.success == true) {
