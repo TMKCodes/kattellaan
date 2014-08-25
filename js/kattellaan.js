@@ -1907,6 +1907,8 @@ $("document").ready(function() {
 				session = session.split("||");
 				load_edit_profile_page(session[1]);
 			}
+		} else if(page === "password-recovery-page") {
+			load_password_recovery_page();
 		} else if(page === "new-password-page") {
 			load_new_password_page();
 		} else {
