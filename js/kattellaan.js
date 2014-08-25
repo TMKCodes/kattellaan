@@ -1987,25 +1987,10 @@ $("document").ready(function() {
 					$("#register-picture-upload-progress-bar").width("100%");
 					$("#register-picture-upload-progress-percent").html("Lähetetty.");
 					if(responseText.uploaded_files !== undefined) {
-						if($("#register-select-picture").length === 0) {
-							$("#register-select-profile-picture-page").append("<div id=\"register-select-picture\"></div>");
-						}
-						if($("#register-select-picture-header").length === 0) {
-							$("#register-select-picture").append("<h1 id=\"register-select-picture-header\">Valitse profiili kuvasi.</h1>");
-						}
-						var rowNumber = 0;
 						var count = responseText.uploaded_files.length;
 						for(var i = 0; i < count; i++) {
 							console.log("Uploaded file: " + responseText.uploaded_files[i]);
-							if(i % 4 === 0) {
-								rowNumber = i / 4;
-								$("#register-select-picture").append("<div class=\"row\" id=\"row-" + rowNumber + "\"></div>");
-							}
-							$("#row-" + rowNumber).append("<div class=\"col-xs-6 col-md-3\"><div class=\"thumbnail\" id=\"thumbnail-" + i + "\">" +
-											"<img style=\"heigth: 300px; width: 300px;\" src=\"uploads/" + responseText.uploaded_files[i] + "\" alt=\"" + responseText.uploaded_files[i]+ "\" />" +
-											"<div class=\"caption\"><p>" + responseText.uploaded_files[i]+ "</p>" +
-											"<button class=\"btn btn-default\" onclick=\"register_select_profile_picture('" + responseText.uploaded_files[i] + "'); return false;\">Valitse tämä</button>" +
-											"</div></div></div>");
+							$("#register-select-profile-picture").append("<option value=" + responseText.uploaded_files[i] + ">" + responseText.uploaded_files[i] + "</option>");
 						}
 					}
 					if(responseText.failed_files !== undefined) {
