@@ -62,8 +62,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 					mail($to, $subject, $message, $headers);
 		
 					/// return information to the browser
-					printf('{ "success": true, "account": { "identifier": "%s", "username": "%s", "address": "%s", "password": "%s"}}', 
-						$account->get_identifier(), $account->get_username(), $account->get_address(), $account->get_password());
+					printf('{ "success": true, "identifier": "%s" }', $account->get_identifier());
 				} else {
 					printf('{ "success": false, "error": "account already exists"}');
 				}
