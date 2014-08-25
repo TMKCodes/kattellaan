@@ -2334,7 +2334,7 @@ function load_new_password_page() {
 	load_custom_page("new-password-page", secret);	
 	$("#new-password-form").submit(function(evt) {
 		evt.preventDefault();
-		if($("#new-password-form input [name='password']").val() == $("#new-password-form input [name='password-confirm']").val()) {
+		if($("#new-password-form [name='password']").val() != $("#new-password-form [name='password-confirm']").val()) {
 			$("#new-password-form-failure").show();
 			$("#new-password-form-failure").html("<p>Antamasi salasanat ovat erilaiset.</p>");
 		} else {
