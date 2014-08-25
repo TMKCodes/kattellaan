@@ -2084,12 +2084,11 @@ function display_results(search_results, index) {
 		results.reverse();
 	} else if($("#select-search-result-order").find(":selected").val() == "new-members") {
 		results.sort(compare_registered);
-		results.reverse();
 	} else if($("#select-search-result-order").find(":selected").val() == "old-members") {
 		results.sort(compare_registered);
+		results.reverse();
 	} else if($("#select-search-result-order").find(":selected").val() == "young-members") {
 		results.sort(compare_birthday);
-	
 	} else if($("#select-search-result-order").find(":selected").val() == "aged-members") {
 		results.sort(compare_birthday);
 		results.reverse();
