@@ -1453,7 +1453,8 @@
 		<div class="row">
 			<div class="col-xs-0 col-sm-3"></div>
 			<div class="col-xs-12 col-sm-6">
-				<form id="register-account-form" method="POST" action="POST">
+				<form id="register-account-form" method="POST" action="php/api.php">
+					<input type="hidden" name="call" value="register-account" />
 					<div class="input-group" style="margin-bottom: 5px;">
 						<label class="input-group-addon" for="register-account-username-input">Käyttäjätunnus:</label>
 						<input type="text" class="form-control" id="register-account-username-input" name="username" placeholder="Syötä haluamasi käyttäjätunnus." required="required"/>
@@ -1473,10 +1474,12 @@
 					<div id="google_map_canvas" style="width: 100%; height: 400px; margin-bottom: 5px;"></div>
 					<div class="input-group" style="margin-bottom: 15px;">
 						<label class="input-group-addon" for="register-select-street-address-input">Katuosoite:</label>
-						<input type="text" class="form-control" id="register-select-street-address-input" name="street-address" required="required">
+						<input type="text" class="form-control" id="register-select-street-address-input" name="street-address" required="required" />
 						<div class="input-group-btn">
 							<button id="register-select-location-show-on-map" class="btn btn-default" style="margin-right: 5px;">Näytä kartalla</button>
 						</div>
+						<input type="hidden" id="register-select-street-address-checked-input" name="street-address-checked" />
+						<input type="hidden" id="register-select-latitude-longitude-input" name="latitude-longitude" />
 					</div>
 					<div class="input-group" style="margin-bottom: 5px;">
 						<label class="input-group-addon" for="register-select-birthday-input">Syntymäpäivä:</label>
@@ -1508,13 +1511,15 @@
 					<div id="register-picture-upload-progress-percent" style="position:absolute; display:inline-block; top:3px; left:48%;"></div>
 				</div>
 				<form id="register-select-profile-picture-form" method="POST" action="php/api.php">
+					<input type="hidden" name="call" value="register-select-profile-picture" />
+					<input type="hidden" name="owner" />
 					<div class="input-group" style="margin-top: 5px; margin-bottom: 5px;">
 						<label class="input-group-addon" for="register-select-profile-picture">Profiilikuva:</label>
 						<select id="register-select-profile-picture" class="form-control" name="picture"></select>
 						<div class="uploaded_files"></div>
 					</div>
 				</form>
-				<button class="btn btn-success btn-block">Lähetä käyttäjätunnuksesi.</button>
+				<button id="register-button" class="btn btn-success btn-block">Lähetä käyttäjätunnuksesi.</button>
 			</div>
 			<div class="col-xs-0 col-sm-3"></div>
 		</div>
@@ -1536,7 +1541,7 @@
 	<script type="text/javascript">
  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  m=s.getElementsByTagName(o)[1];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-48069428-3', 'auto');
