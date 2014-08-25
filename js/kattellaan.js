@@ -2683,7 +2683,7 @@ $("#register-account-form").submit(function(evt) {
 	if($("#register-account-password-input").val() == $("#register-account-password-confirm-input").val()) {
 		if(g == true) {
 			$.ajax({
-				url: "php/api.php";
+				url: "php/api.php",
 				type: "POST",
 				async: false,
 				data: $(this).serialize()
