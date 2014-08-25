@@ -2328,7 +2328,31 @@ function load_new_password_page() {
 	var secret = get_url_parameter("secret");
 	$("#new-password-form").prepend("<input type=\"hidden\" name=\"secret\" value=\"" + secret + "\" />");
 	secret = "&secret=" + secret;
+	$("#new-password-form").show();
+	$("#new-password-form-success").hide();
+	$("#new-password-form-failure").hide();
 	load_custom_page("new-password-page", secret);	
+	$("#new-password-form").submit(function(evt) {
+		evt.preventDefault();
+		$.ajax({
+			url: "php/api.php";
+			type: "POST",
+			data: $(this).serialize();
+		}).done(function(data) {
+			console.log(data);
+			data = $.parseJSON(data);
+			if(data.success == true) {
+				$("#new-password-form").hide();
+				$("#new-password-form-success").show();
+				$("#new-password-form-failure").hide();
+			} else {
+				$("#new-password-form-success").hide();
+				$("#new-password-form-failure").show();
+				$("#new-password-form-failure").html("<p>" + data.error + "</p>");
+			}
+		});
+	});
+
 }
 
 function load_password_recovery_page() {
@@ -2352,7 +2376,6 @@ function load_password_recovery_page() {
 			} else {
 				$("#password-recovery-form-success").hide();
 				$("#password-recovery-form-failure").show();
-				console.log(data.error);
 				$("#password-recovery-form-failure").html("<p>" + data.error + "</p>");
 			}
 		});
