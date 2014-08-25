@@ -252,7 +252,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		if(!empty($_FILES)) {
 			for($i = 0; $i < count($_FILES['file']['name']); $i++) {
 				if(move_uploaded_file($_FILES['file']['tmp_name'][$i], $upload_directory . $_FILES['file']['name'][$i])) {	
-					array_push($uploaded_files, $_FILES['file']['name'][$i]));
+					array_push($uploaded_files, $_FILES['file']['name'][$i]);
 				} else {
 					array_push($failed_files, $_FILES['file']['name'][$i]);
 				}
