@@ -37,9 +37,9 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			printf('{ "success": false, "error": "password-confirm is empty" }');
 		} else if($_POST['password'] != $_POST['password-confirm']) {
 			printf('{ "success": false, "error": "password-mismatch" }');
-		} else if(empty($_POST['street-address-checked']) {
+		} else if(empty($_POST['street-address-checked'])) {
 			printf('{ "success": false, "error": "address can not be empty" }');
-		} else if(empty($_POST['latitude-longitude']) {
+		} else if(empty($_POST['latitude-longitude'])) {
 			printf('{ "success": false, "error": "latitude longitude can not be empty." }');
 		} else {
 			try {
