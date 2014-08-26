@@ -2768,7 +2768,7 @@ $("#register-button").click(function(evt) {
 	if(registeration_success != false) {
 		$("#register-select-profile-picture-form").submit();
 		if(registeration_success == true) {
-			load_edit_profile_page("registeration-done-page");
+			load_page("registeration-done-page");
 		} else {
 			$("#register-button").addClass("disabled");
 			$("#register-button").prop("disabled", true);
