@@ -111,7 +111,7 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 							$file_count = count($_POST['files']);
 							$success = false;
 							for($i = 0; $i < $file_count; $i++) {
-								$file = new file($database);
+								$file = new file($database, "", "");
 								$file->set_name($_POST['files'][$i]);
 								$file->set_owner($_POST['owner']);
 								try { 
