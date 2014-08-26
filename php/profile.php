@@ -49,6 +49,9 @@ class profile {
 	public function get_picture() {
 		return $this->picture;
 	}
+	public function set_picture($picture) {
+		$this->picture = $picture;
+	}
 
 	public function __construct($database) {
 		$this->database = $database;
