@@ -49,9 +49,54 @@ class profile {
 	public function get_picture() {
 		return $this->picture;
 	}
+	public function set_picture($picture) {
+		$this->picture = $picture;
+	}
 
 	public function __construct($database) {
 		$this->database = $database;
+		$this->accomodation = "";
+		$this->address = "";
+		$this->alcohol = "";
+		$this->best_things_in_the_world = "";
+		$this->birthday = "";
+		$this->body_type = "";
+		$this->dress_style = "";
+		$this->education = "";
+		$this->ethnic_identity = "";
+		$this->exercise = "";
+		$this->eye_color = "";
+		$this->favorite_bands = "";
+		$this->favorite_movies = "";
+		$this->favorite_radio_shows = "";
+		$this->favorite_television_series = "";
+		$this->gender = "";
+		$this->hair_length = "";
+		$this->hair_color = "";
+		$this->height = "";
+		$this->identifier = "";
+		$this->ignite_me = "";
+		$this->income = "";
+		$this->kids = "";
+		$this->language_skills = "";
+		$this->latlng = "";
+		$this->left_right_politics = "";
+		$this->liberal_conservative_politics = "";
+		$this->looking_for = "";
+		$this->not_exciting = "";
+		$this->pets = "";
+		$this->picture = "";
+		$this->profile_text = "";
+		$this->political_importance = "";
+		$this->relationship_status = "";
+		$this->religion = "";
+		$this->religion_importance = "";
+		$this->sexual_orientation = "";
+		$this->smoking = "";
+		$this->travel = "";
+		$this->vocation = "";
+		$this->weight = "";
+		$this->work = "";	
 	}	
 
 	public function strip_latlng($latlng) {

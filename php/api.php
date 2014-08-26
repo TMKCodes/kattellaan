@@ -26,49 +26,140 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 		exit;
 	}
 
-	/// register new account event.
-	if(!empty($_GET['call']) && $_GET['call'] == "register") {
-		if(empty($_GET['username'])) {
+	if(!empty($_POST['call']) && $_POST['call'] == "register-account") {
+		if(empty($_POST['username'])) {
 			printf('{ "success": false, "error": "username is empty." }');
-		} else if(empty($_GET['address'])) {
+		} else if(empty($_POST['address'])) {
 			printf('{ "success": false, "error": "address is empty." }');
-		} else if(empty($_GET['password'])) {
+		} else if(empty($_POST['password'])) {
 			printf('{ "success": false, "error": "password is empty." }');
-		} else if(empty($_GET['password-confirm'])) {
+		} else if(empty($_POST['password-confirm'])) {
 			printf('{ "success": false, "error": "password-confirm is empty" }');
-		} else if($_GET['password'] != $_GET['password-confirm']) {
+		} else if($_POST['password'] != $_POST['password-confirm']) {
 			printf('{ "success": false, "error": "password-mismatch" }');
+		} else if(empty($_POST['street-address-checked'])) {
+			printf('{ "success": false, "error": "address can not be empty" }');
+		} else if(empty($_POST['latitude-longitude'])) {
+			printf('{ "success": false, "error": "latitude longitude can not be empty." }');
 		} else {
-			/// insert account to the database
 			try {
 				$account = new account($database);
-				$account->set_username($_GET['username']);
-				$account->set_address($_GET['address']);
-				$account->set_password(hash("sha512", $_GET['password']));
+				$account->set_username($_POST['username']);
+				$account->set_address($_POST['address']);
+				$account->set_password(hash("sha512", $_POST['password']));
 				if($account->insert() == true) {
-					/// send email to the registered user
-					$to = $_GET['address'];
-					$subject = "Tervetuloa kattellaan.com sivustolle!";
-					$message = "Hei " . $_GET['username'] . "!\r\n\r\n" .
-						"Olemme kiitollisia, että olet liittynyt seuraamme.\r\n" .
-						"Toivottavasti löydät itsellesi seuraa joukostamme.\r\n\r\n" .
-						"http://kattellaan.com\r\n\r\n" .
-						"Tähän viestiin saa vastata jos on jotain kysyttävää.\r\n\r\n" .
-						"Terveisin kattellaan treffipalstalta.\r\n";
-					$headers = "From: support@kattellaan.com\r\n" .
-						"Content-Type: text/plain; charset=UTF-8\r\n" .
-						"Reply-To: support@kattellaan.com\r\n" .
-						"X-Mailer: PHP/" . phpversion();
-					mail($to, $subject, $message, $headers);
-		
-					/// return information to the browser
-					printf('{ "success": true, "account": { "identifier": "%s", "username": "%s" }}', 
-						$account->get_identifier(), $account->get_username());
+					$profile = new profile($database);
+					$pdata = $profile->get();
+					if(!empty($_POST['birthday'])) {
+						$pdata['birthday'] = $_POST['birthday'];
+					}
+					if(!empty($_POST['gender'])) {
+						$pdata['gender'] = $_POST['gender'];
+					}
+					if(!empty($_POST['profile-text'])) {
+						$pdata['profile_text'] = $_POST['profile-text'];
+					}
+					$pdata['latlng'] = $_POST['latitude-longitude'];
+					$pdata['address'] = $_POST['street-address-checked'];
+					$pdata['identifier'] = $account->get_identifier();	
+					$profile->set($pdata);
+					if($profile->select($pdata['identifier']) == false) {	
+						if($profile->insert() == true) {
+							$position = new position($database);
+							$latlng = $profile->strip_latlng($pdata['latlng']);
+							$position->set_latitude($latlng[0]);
+							$position->set_longitude($latlng[1]);
+							$position->insert();
+							/// send email to the registered user
+							$to = $_POST['address'];
+							$subject = "Tervetuloa kattellaan.com sivustolle!";
+							$message = "Hei " . $_POST['username'] . "!\r\n\r\n" .
+								"Olemme kiitollisia, että olet liittynyt seuraamme.\r\n" .
+								"Toivottavasti löydät itsellesi seuraa joukostamme.\r\n\r\n" .
+								"http://kattellaan.com\r\n\r\n" .
+								"Tähän viestiin saa vastata jos on jotain kysyttävää.\r\n\r\n" .
+								"Terveisin kattellaan treffipalstalta.\r\n";
+							$headers = "From: support@kattellaan.com\r\n" .
+								"Content-Type: text/plain; charset=UTF-8\r\n" .
+								"Reply-To: support@kattellaan.com\r\n" .
+								"X-Mailer: PHP/" . phpversion();
+							mail($to, $subject, $message, $headers);
+				
+							/// return information to the browser
+							printf('{ "success": true, "uid": "%s" }', $account->get_identifier());
+						} else {
+							printf('{ "success": false, "error": "profile creation failed." }');
+						}
+					} else {
+						printf('{ "success": false, "error": "profile already exists." }');
+					}
 				} else {
-					printf('{ "success": false, "error": "account already exists"}');
+					printf('{ "success": false, "error": "account already exists" }');
 				}
 			} catch (Exception $e) {
 				printf('{ "success": false, "error": "%s" }', $e->getMessage());	
+			}
+		}
+	} else if(!empty($_POST['call']) && $_POST['call'] == "register-select-profile-picture") {
+		if(!empty($_POST['owner'])) {	
+			if(!empty($_POST['picture'])) {
+				$profile = new profile($database);
+				if($profile->select($_POST['owner']) == true) {
+					$profile->set_picture($_POST['picture']);
+					if($profile->update() == true) { 
+						if(!empty($_POST['files'])) {
+							$file_count = count($_POST['files']);
+							$success = false;
+							for($i = 0; $i < $file_count; $i++) {
+								$file = new file($database, "", "");
+								$file->set_name($_POST['files'][$i]);
+								$file->set_owner($_POST['owner']);
+								try { 
+									$success = $file->insert();
+									if($success == false) break;
+								} catch (Exception $e) {
+									printf('{ "success": false, "error": "%s" }', $e->getMessage());
+									die();
+								}
+							}
+							if($success == true) {
+								printf('{ "success": true }');
+							} else {
+								printf('{ "success": false, "error": "could not save some files" }');
+							}
+						} else {
+							printf('{ "success": true }');
+						}
+					} else {
+						printf('{ "success": false, "error": "failed to update profile" }');
+					}
+				} else {
+					printf('{ "success": false, "error": "failed to select profile" }');
+				}
+			} else {
+				if(!empty($_POST['files'])) {
+					$file_count = count($_POST['files']);
+					$success = false;
+					for($i = 0; $i < $file_count; $i++) {
+						$file = new file($database);
+						$file->set_name($_POST['files'][$i]);
+						$file->set_owner($_POST['owner']);
+						try { 
+							$success = $file->insert();
+							if($success == false) break;
+						} catch (Exception $e) {
+							printf('{ "success": false, "error": "%s" }', $e->getMessage());
+							die();
+						}
+					}
+					if($success == true) {
+						printf('{ "success": false, "error": "%s" }');
+					} else {
+						printf('{ "success": false, "error": "could not save some files" }');
+					}
+				} else {
+					printf('{ "success": true }');
+				}
 			}
 		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "password-recovery") {
@@ -246,77 +337,25 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 			die();
 		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "upload") {
-		if(!empty($_COOKIE['session'])) {
-			$session = new session($database, "sha512");
-			if($session->confirm($_COOKIE['session']) == false) {
-				printf('{ "success": false, "error": "Failed to confirm session" }');
-				die();
-			} 
-			$account_identifier = $session->get_identifier($_COOKIE['session']);
-			$uploaded_files = array();
-			$failed_files = array();
-			$upload_directory = "/home/temek/kattellaan-live/uploads/";
-			if(!empty($_FILES)) {
-				$ufile = new file($database, $upload_directory, "uploads/");
-				for($i = 0; $i < count($_FILES['file']['name']); $i++) {
-					$ufile->set_name(strtolower($_FILES['file']['name'][$i]));
-					$ufile->set_owner($account_identifier);
-					try { if($ufile->insert() == true) {
-							if(move_uploaded_file($_FILES['file']['tmp_name'][$i], $upload_directory . $ufile->get_name())) {	
-								array_push($uploaded_files, $ufile->get_name());
-							} else {
-								$file->delete();
-								array_push($failed_files, $_FILES['file']['name'][$i]);
-							}
-						} else {
-							printf('{ "success": false, "error": "Failed to store filename in database" }');
-							die();
-						}
-					} catch (Exception $e) {
-						printf('{ "success": false, "error": "%s" }', $e->getMessage());
-						die();
-					}
-				}
-				if(empty($failed_files)) {
-					printf('{ "success": true, "uploaded_files": %s }', json_encode($uploaded_files));
+		$uploaded_files = array();
+		$failed_files = array();
+		$upload_directory = "/home/temek/kattellaan-live/uploads/";
+		if(!empty($_FILES)) {
+			for($i = 0; $i < count($_FILES['file']['name']); $i++) {
+				if(move_uploaded_file($_FILES['file']['tmp_name'][$i], $upload_directory . $_FILES['file']['name'][$i])) {	
+					array_push($uploaded_files, $_FILES['file']['name'][$i]);
 				} else {
-					printf('{ "success": false, "uploaded_files": %s, "failed_files": %s }', json_encode($uploaded_files), json_encode($failed_files));
+					array_push($failed_files, $_FILES['file']['name'][$i]);
 				}
+			}
+			if(empty($failed_files)) {
+				printf('{ "success": true, "uploaded_files": %s }', json_encode($uploaded_files));
 			} else {
-				printf('{ "success": false, "error": "No files uploaded." }');
+				printf('{ "success": true, "uploaded_files": %s, "failed_files": %s }', json_encode($uploaded_files), json_encode($failed_files));
 			}
 		} else {
-			printf('{ "success": false, "error": "Not authenticated." }');
+			printf('{ "success": false, "error": "No files uploaded." }');
 		}	
-	} else if(!empty($_POST['call']) && $_POST['call'] == "create_profile") {
-		if(!empty($_POST['session'])) {
-			$session = new session($database, "sha512");
-			if($session->confirm($_POST['session']) == false) {
-				printf('{ "success": false, "error": "Failed to confirm session." }');
-				die();
-			}
-			$identifier = $session->get_identifier($_POST['session']);
-			$data = $_POST;
-			$data['identifier'] = $identifier;
-			$profile = new profile($database);
-			$profile->set($data);
-			if($profile->select($identifier) == false) {	
-				if($profile->insert() == true) {
-					$position = new position($database);
-					$latlng = $profile->strip_latlng($_POST['latlng']);
-					$position->set_latitude($latlng[0]);
-					$position->set_longitude($latlng[1]);
-					$position->insert();
-					printf('{ "success": true }');
-				} else {
-					printf('{ "success": false, "error": "Failed to insert into database." }');
-				}
-			} else {
-				printf('{ "success": false, "error": "Profile with the user id already exists." }');
-			}
-		} else {
-			printf('{ "success": false, "error": "Not auhtenticated." }');
-		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "get_work") {
 		if(!empty($_POST['session'])) {
 			$session = new session($database, "sha512");
