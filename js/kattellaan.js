@@ -2675,7 +2675,7 @@ $("#register-account-form").submit(function(evt) {
 		if(data.status === "OK") {
 			var myLatLong = new google.maps.LatLng(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng)
 			$("#register-select-latitude-longitude-input").val(myLatLong);
-			$("#register-select-street-address-checked-input").val(street_address.replace(" ", "+"));
+			$("#register-select-street-address-checked-input").val(street_address.split(" ").join("+"));
 			g = true;
 		} else {
 			$("#register-select-street-address-input").parent().addClass("has-error");
