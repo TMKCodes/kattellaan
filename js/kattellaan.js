@@ -2767,10 +2767,12 @@ $("#register-button").click(function(evt) {
 	$("#register-account-form").submit();
 	if(registeration_success != false) {
 		$("#register-select-profile-picture-form").submit();
-	}
-	if(registeration_success == true) {
-
-	} else {
-
+		if(registeration_success == true) {
+			load_edit_profile_page("registeration-done-page");
+		} else {
+			$("#register-button").addClass("disabled");
+			$("#register-button").prop("disabled", true);
+			$("#register-button").append("<p>Rekisteröinnissä tapahtui virhe. Lähetä sähköpostia support@kattellaan.com niin korjaamme tilanteen.</p>");
+		}
 	}
 });
