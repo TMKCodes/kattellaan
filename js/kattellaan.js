@@ -2753,6 +2753,7 @@ $("#register-select-profile-picture-form").submit(function(evt) {
 		type: "POST",
 		data: $(this).serialize()
 	}).done(function(data) {
+		console.log(data);
 		data = $.parseJSON(data);
 		registeration_success = data.success;
 		if(data.success == false) {
