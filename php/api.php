@@ -100,6 +100,68 @@ if($database->connect("127.0.0.1", $passwd[0], $passwd[1], "kattellaan") == true
 				printf('{ "success": false, "error": "%s" }', $e->getMessage());	
 			}
 		}
+	} else if(!empty($_POST['call']) && $_POST['call'] == "register-select-profile-picture") {
+		if(!empty($_POST['owner'])) {	
+			if(!empty($_POST['picture'])) {
+				$profile = new profile($database);
+				if($profile->select($_POST['owner']) == true) {
+					$profile->set_picture($_POST['picture']);
+					if($profile->update() == true) { 
+						if(!empty($_POST['files'])) {
+							$file_count = count($_POST['files']);
+							$success = false;
+							for($i = 0; $i < $file_count; $i++) {
+								$file = new file($database);
+								$file->set_name($_POST['files'][$i]);
+								$file->set_owner($_POST['owner']);
+								try { 
+									$success = $file->insert();
+									if($success == false) break;
+								} catch (Exception $e) {
+									printf('{ "success": false, "error": "%s" }', $e->getMessage());
+									die();
+								}
+							}
+							if($success == true) {
+								printf('{ "success": true }');
+							} else {
+								printf('{ "success": false, "error": "could not save some files" }');
+							}
+						} else {
+							printf('{ "success": true }');
+						}
+					} else {
+						printf('{ "success": false, "error": "failed to update profile" }');
+					}
+				} else {
+					printf('{ "success": false, "error": "failed to select profile" }');
+				}
+			} else {
+				if(!empty($_POST['files'])) {
+					$file_count = count($_POST['files']);
+					$success = false;
+					for($i = 0; $i < $file_count; $i++) {
+						$file = new file($database);
+						$file->set_name($_POST['files'][$i]);
+						$file->set_owner($_POST['owner']);
+						try { 
+							$success = $file->insert();
+							if($success == false) break;
+						} catch (Exception $e) {
+							printf('{ "success": false, "error": "%s" }', $e->getMessage());
+							die();
+						}
+					}
+					if($success == true) {
+						printf('{ "success": false, "error": "%s" }');
+					} else {
+						printf('{ "success": false, "error": "could not save some files" }');
+					}
+				} else {
+					printf('{ "success": true }');
+				}
+			}
+		}
 	} else if(!empty($_POST['call']) && $_POST['call'] == "password-recovery") {
 		$account = new account($database);
 		$account->set_username($_POST['username']);
